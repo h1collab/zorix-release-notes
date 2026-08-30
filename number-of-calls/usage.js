@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T21:19:28+02:00",
+  "updatedAt": "2026-08-30T21:33:20+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -8,7 +8,16 @@ window.ZORIX_CODE_USAGE = {
       "family": "Nex Coder 3.8",
       "tokens": 3220000000000,
       "status": "Preview",
-      "share": 47.8618
+      "share": 39.136
+    },
+    {
+      "name": "Zorix Nex Coder 3.7 Pro (Max)",
+      "provider": "Zorix",
+      "family": "Nex Coder 3.7",
+      "tokens": 1500000000000,
+      "weeklyTokens": 10500000000000,
+      "status": "Available",
+      "share": 18.2311
     },
     {
       "name": "DeepSeek V4 Flash 0731",
@@ -16,7 +25,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "DeepSeek V4",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 17.8367
+      "share": 14.5849
     },
     {
       "name": "Claude Opus 5",
@@ -24,7 +33,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Claude Opus",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 17.8367
+      "share": 14.5849
     },
     {
       "name": "Tencent Hy3",
@@ -32,7 +41,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Hy3",
       "tokens": 950000000000,
       "status": "Available",
-      "share": 14.1207
+      "share": 11.5463
     },
     {
       "name": "Kimi K2.7 Code",
@@ -41,7 +50,7 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 157142857143,
       "weeklyTokens": 1100000000000,
       "status": "Available",
-      "share": 2.3358
+      "share": 1.9099
     },
     {
       "name": "Gemini 3.7 Flash",
@@ -50,7 +59,7 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 414285714,
       "weeklyTokens": 2900000000,
       "status": "Available",
-      "share": 0.0062
+      "share": 0.005
     },
     {
       "name": "Xiaomi MiMo-V2.5",
@@ -58,7 +67,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "MiMo",
       "tokens": 150000000,
       "status": "Available",
-      "share": 0.0022
+      "share": 0.0018
     },
     {
       "name": "GLM 5.2 Max",

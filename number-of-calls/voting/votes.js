@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-08-30T21:19:29+02:00",
+  "updatedAt": "2026-08-30T21:33:20+02:00",
   "metric": "community_votes",
   "models": [
     {
@@ -69,6 +69,11 @@ window.ZORIX_COMMUNITY_VOTES = {
     },
     {
       "id": "mimo-v25",
+      "votes": 0,
+      "uncertainty": 0
+    },
+    {
+      "id": "nex-coder-37-pro-max",
       "votes": 0,
       "uncertainty": 0
     },

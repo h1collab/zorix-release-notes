@@ -308,4 +308,23 @@ window.ZORIX_MODEL_BENCHMARKS = {
     benchmarkNote: "K3 benchmark results use Moonshot's published max-reasoning configuration unless otherwise noted."
   },
 
+
+  "nex-coder-37-pro-max": {
+    slug: "zorix/nex-coder-3.7-pro-max",
+    tagline: "Maximum-effort Nex Coder 3.7 Pro deployment for demanding software-engineering workloads.",
+    description: "Zorix Nex Coder 3.7 Pro (Max) is the maximum-effort deployment profile of Nex Coder 3.7 Pro. It is intended for complex repository-scale coding, terminal-oriented workflows and longer agentic tasks where additional reasoning and verification are preferred over latency. Max identifies the inference profile rather than a separate checkpoint.",
+    highlights: [
+      "10.5T recorded tokens per week",
+      "1.5T normalized tokens per day",
+      "Maximum-effort inference profile",
+      "Repository-scale coding workflows",
+      "Zorix Nex Coder 3.7 Pro family"
+    ],
+    modalities: ["Text", "Code", "Tools"],
+    released: "—",
+    availability: "Available",
+    weights: null,
+    benchmarkNote: "Uses the Nex Coder 3.7 Pro checkpoint evaluation where applicable. Max is an inference profile, not a separate benchmark checkpoint."
+  },
+
 };

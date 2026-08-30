@@ -63,6 +63,19 @@ window.ZORIX_BENCHMARKS = {
 
   scores: {
 
+    
+    "nex-coder-37-pro-max": {
+      "forge": 91.7,
+      "swe-verified": 97.4,
+      "swe-pro": 89.8,
+      "terminal-21": 97.4,
+      "bigcode": 92.6,
+      "livecode": 85.6,
+      "repobench": 92.2,
+      "cruxeval": 94.1,
+      "humaneval-plus": 97.4
+    },
+
     "nex-coder-38-neptune": {
       "forge": 95.5,
       "swe-verified": 99.0,

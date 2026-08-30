@@ -464,4 +464,13 @@ window.ZORIX_EXTERNAL_BENCHMARKS = {
     ]
   },
 
+
+  "nex-coder-37-pro-max": {
+    label: "Zorix Nex Coder 3.7 Pro evaluation",
+    sourceType: "internal",
+    note: "The Max label represents the Zorix inference-effort profile. Benchmark figures are attached to the Nex Coder 3.7 Pro checkpoint rather than to a separately trained Max checkpoint.",
+    source: "https://doc.zorix.it/zorix-nex-coder/3.7pro-preview",
+    evaluations: []
+  },
+
 };

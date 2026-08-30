@@ -390,4 +390,37 @@ window.ZORIX_MODEL_DETAILS = [
     ]
   },
 
+  {
+    id: "nex-coder-37-pro-max",
+    name: "Zorix Nex Coder 3.7 Pro (Max)",
+    provider: "Zorix",
+    logo: "/number-of-calls/assets/logos/zorix.svg",
+    family: "Nex Coder 3.7",
+    status: "Available",
+
+    dailyTokens: 1500000000000,
+    weeklyTokens: 10500000000000,
+
+    context: "—",
+    parameters: "—",
+    activeParameters: "—",
+    architecture: "Nex Coder · Pro · Max effort",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#111111",
+
+    about: "Zorix Nex Coder 3.7 Pro (Max) is the maximum-effort deployment profile of Nex Coder 3.7 Pro inside Zorix Code. The Max label refers to the inference and routing profile rather than a separate model checkpoint. Its recorded traffic is 10.5T tokens per week, equivalent to approximately 1.5T tokens per day.",
+
+    docs: "https://doc.zorix.it/zorix-nex-coder/3.7pro-preview",
+
+    chart: [
+      1180,1210,1245,1280,1315,1350,1380,1410,1440,1460,
+      1475,1490,1505,1520,1530,1540,1530,1515,1500,1490,
+      1495,1500,1505,1500,1498,1502,1500,1500,1500,1500
+    ]
+  },
+
 ];

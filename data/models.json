@@ -112,5 +112,13 @@
     "tokens": 300000,
     "weeklyTokens": 2100000,
     "status": "Available"
+  },
+  {
+    "name": "Zorix Nex Coder 3.7 Pro (Max)",
+    "provider": "Zorix",
+    "family": "Nex Coder 3.7",
+    "tokens": 1500000000000,
+    "weeklyTokens": 10500000000000,
+    "status": "Available"
   }
 ]
