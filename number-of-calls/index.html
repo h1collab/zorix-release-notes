@@ -1796,6 +1796,73 @@ h1{
 
 }
 
+
+/* =========================================================
+   IMAGE AI + INTELLIGENCE BENCHMARKS
+   ========================================================= */
+
+.benchmark-source-badge{
+  display:inline-flex;
+  align-items:center;
+
+  margin-left:7px;
+
+  min-height:22px;
+
+  padding:0 7px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  vertical-align:2px;
+}
+
+.benchmark-score-secondary{
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.benchmark-preliminary{
+  display:inline-flex;
+
+  margin-top:4px;
+
+  padding:3px 6px;
+
+  border:1px solid #e3c084;
+  border-radius:999px;
+
+  color:#9a6317;
+
+  font-size:8px;
+  text-transform:uppercase;
+}
+
+.bench-value-note{
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:8px;
+}
+
+.benchmark-chart.image-ai-view .bench-bar{
+  border-radius:7px 7px 0 0;
+}
+
+.benchmark-chart.intelligence-view .bench-bar{
+  border-radius:7px 7px 0 0;
+}
+
+
 </style>
 </head>
 
@@ -2155,6 +2222,21 @@ h1{
             data-benchmark="swe">
       SWE-bench Verified
     </button>
+
+    <button
+      class="benchmark-tab"
+      data-benchmark="image-ai"
+    >
+      Image AI
+    </button>
+
+    <button
+      class="benchmark-tab"
+      data-benchmark="intelligence"
+    >
+      Intelligence Index
+    </button>
+
   </div>
 
   <div class="benchmark-meta">
@@ -2162,7 +2244,10 @@ h1{
       Terminal-Bench 2.1
     </div>
 
-    <div class="benchmark-note">
+    <div
+      class="benchmark-note"
+      id="benchmarkSourceNote"
+    >
       Ultra endpoint · AA4 preview/internal comparison
     </div>
   </div>
@@ -2236,9 +2321,11 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788119772"></script>
-<script src="./usage.js?v=1788119772"></script>
-<script src="./quota.js?v=1788119772"></script>
+<script src="./models.js?v=1788121006"></script>
+<script src="./usage.js?v=1788121006"></script>
+<script src="./image-ai.js?v=1788121006"></script>
+<script src="./intelligence-index.js?v=1788121006"></script>
+<script src="./quota.js?v=1788121006"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -3868,6 +3955,183 @@ renderChart();
    Ultra endpoint = sixth value in each preview curve.
    ========================================================= */
 
+
+const IMAGE_AI_DATA =
+  window.ZORIX_IMAGE_AI || {
+    models:[]
+  };
+
+
+const INTELLIGENCE_INDEX_DATA =
+  window.ZORIX_INTELLIGENCE_INDEX || {
+    models:[]
+  };
+
+
+function benchmarkLogoForProvider(provider){
+
+  const map={
+    "Zorix":"./assets/logos/zorix.svg",
+    "OpenAI":"./assets/logos/openai.svg",
+    "Anthropic":"./assets/logos/anthropic.svg",
+    "Google":"./assets/logos/gemini.svg",
+    "DeepSeek":"./assets/logos/deepseek.svg",
+    "Tencent":"./assets/logos/hunyuan.svg",
+    "Xiaomi":"./assets/logos/mimo.svg",
+    "Z.ai":"./assets/logos/glm.svg",
+    "Moonshot AI":"./assets/logos/kimi.svg"
+  };
+
+  return map[provider] || "";
+}
+
+
+function benchmarkColorForProvider(provider){
+
+  const map={
+    "Zorix":"#111111",
+    "OpenAI":"#111111",
+    "Anthropic":"#D97757",
+    "Google":"#4285F4",
+    "DeepSeek":"#4D6BFE",
+    "Tencent":"#2563EB",
+    "Xiaomi":"#FF6900",
+    "Z.ai":"#111111",
+    "Moonshot AI":"#1783FF",
+    "Microsoft AI":"#6B6B66",
+    "Reve":"#6C4BEF",
+    "xAI":"#111111",
+    "Meta":"#087AEA"
+  };
+
+  return map[provider] || "#6B6B66";
+}
+
+
+function imageAIBenchmarkValues(){
+
+  return (
+    IMAGE_AI_DATA.models ||
+    []
+  )
+  .slice(0,7)
+  .map(
+    item=>{
+
+      /*
+       * For one visual ranking only, use the source
+       * available for that model in this order:
+       *
+       * 1. Arena
+       * 2. Artificial Analysis
+       *
+       * We do NOT average Elo systems.
+       */
+      const source =
+        item.arena
+          ? "Arena"
+          : "Artificial Analysis";
+
+
+      const sourceData =
+        item.arena ||
+        item.artificialAnalysis;
+
+
+      return {
+        name:item.name,
+        provider:item.provider,
+
+        logo:
+          benchmarkLogoForProvider(
+            item.provider
+          ),
+
+        score:
+          Number(
+            sourceData?.score || 0
+          ),
+
+        displayScore:
+          String(
+            sourceData?.score || "—"
+          ),
+
+        rank:
+          sourceData?.rank || null,
+
+        uncertainty:
+          sourceData?.uncertainty ?? null,
+
+        source,
+
+        preliminary:
+          Boolean(
+            sourceData?.preliminary
+          ),
+
+        color:
+          benchmarkColorForProvider(
+            item.provider
+          )
+      };
+
+    }
+  );
+
+}
+
+
+function intelligenceBenchmarkValues(){
+
+  return (
+    INTELLIGENCE_INDEX_DATA.models ||
+    []
+  )
+  .map(
+    item=>({
+      name:item.name,
+
+      provider:
+        item.provider,
+
+      logo:
+        benchmarkLogoForProvider(
+          item.provider
+        ),
+
+      score:
+        Number(
+          item.score || 0
+        ),
+
+      displayScore:
+        Number(
+          item.score || 0
+        ).toFixed(1),
+
+      approximate:
+        Boolean(
+          item.approximate
+        ),
+
+      source:
+        "Artificial Analysis",
+
+      color:
+        benchmarkColorForProvider(
+          item.provider
+        )
+    })
+  )
+  .sort(
+    (a,b)=>
+      b.score-a.score
+  );
+
+}
+
+
 const BENCHMARKS = {
   terminal: {
     name: "Terminal-Bench 2.1",
@@ -4046,163 +4310,547 @@ const BENCHMARKS = {
 
 
 function renderBenchmark(key){
-  const benchmark = BENCHMARKS[key];
-  if(!benchmark) return;
 
-  const chart = document.getElementById("benchmarkChart");
-  const name = document.getElementById("benchmarkName");
-  const legend = document.getElementById("benchmarkLegend");
-  const table = document.getElementById("benchmarkTableBody");
+  const chart =
+    document.getElementById(
+      "benchmarkChart"
+    );
 
-  if(!chart || !name || !legend || !table) return;
+  const legend =
+    document.getElementById(
+      "benchmarkLegend"
+    );
 
-  name.textContent = benchmark.name;
+  const table =
+    document.getElementById(
+      "benchmarkTableBody"
+    );
 
-  chart.querySelectorAll(".bench-column").forEach(el=>el.remove());
+  const name =
+    document.getElementById(
+      "benchmarkName"
+    );
 
-  const data = [...benchmark.values].sort(
-    (a,b)=>b.score-a.score
+  const sourceNote =
+    document.getElementById(
+      "benchmarkSourceNote"
+    );
+
+
+  if(
+    !chart ||
+    !legend ||
+    !table ||
+    !name
+  ){
+    return;
+  }
+
+
+  let values=[];
+  let benchmarkName="";
+  let note="";
+  let scaleMax=100;
+  let scaleMin=0;
+
+
+  chart.classList.remove(
+    "image-ai-view",
+    "intelligence-view"
   );
+
+
+  /*
+   * ========================================================
+   * IMAGE AI
+   * ========================================================
+   */
+
+  if(key==="image-ai"){
+
+    values=
+      imageAIBenchmarkValues();
+
+
+    benchmarkName=
+      "Image AI Top 7";
+
+
+    note=
+      "Arena + Artificial Analysis · source scores remain separate";
+
+
+    chart.classList.add(
+      "image-ai-view"
+    );
+
+
+    scaleMin=
+      Math.max(
+        0,
+        Math.min(
+          ...values.map(
+            item=>item.score
+          )
+        ) - 80
+      );
+
+
+    scaleMax=
+      Math.max(
+        ...values.map(
+          item=>item.score
+        )
+      ) + 15;
+
+  }
+
+
+  /*
+   * ========================================================
+   * ARTIFICIAL ANALYSIS INTELLIGENCE INDEX
+   * NO COST AXIS
+   * ========================================================
+   */
+
+  else if(
+    key==="intelligence"
+  ){
+
+    values=
+      intelligenceBenchmarkValues();
+
+
+    benchmarkName=
+      "Intelligence Index v4.1";
+
+
+    note=
+      "Artificial Analysis · benchmark score only · no cost axis";
+
+
+    chart.classList.add(
+      "intelligence-view"
+    );
+
+
+    scaleMin=0;
+
+
+    scaleMax=
+      Math.max(
+        65,
+        ...values.map(
+          item=>item.score
+        )
+      );
+
+  }
+
+
+  /*
+   * ========================================================
+   * EXISTING BENCHMARKS
+   * ========================================================
+   */
+
+  else{
+
+    const benchmark =
+      BENCHMARKS[key];
+
+
+    if(!benchmark){
+      return;
+    }
+
+
+    values=
+      benchmark.values || [];
+
+
+    benchmarkName=
+      benchmark.name;
+
+
+    note=
+      "Ultra endpoint · AA4 preview/internal comparison";
+
+
+    scaleMin=0;
+    scaleMax=100;
+
+  }
+
+
+  name.textContent=
+    benchmarkName;
+
+
+  if(sourceNote){
+
+    sourceNote.textContent=
+      note;
+
+  }
+
+
+  /*
+   * Remove previous generated columns.
+   */
+  chart
+    .querySelectorAll(
+      ".bench-column"
+    )
+    .forEach(
+      element=>
+        element.remove()
+    );
+
 
   chart.style.setProperty(
     "--bench-count",
-    String(data.length)
+    Math.max(
+      1,
+      values.length
+    )
   );
 
-  data.forEach(item=>{
-    const column = document.createElement("div");
-    column.className = "bench-column";
 
-    const logoHTML = item.logo
-      ? `<img src="${item.logo}" alt="">`
-      : `<span class="bench-logo-fallback">${item.fallback || item.provider.slice(0,1)}</span>`;
+  /*
+   * ========================================================
+   * COLUMNS
+   * ========================================================
+   */
 
-    column.innerHTML = `
-      <div class="bench-score">
-        ${item.score.toFixed(1)}%
-      </div>
+  values.forEach(
+    (item,index)=>{
 
-      <div class="bench-bar"
-           style="
-             height:${item.score}%;
-             background:${item.color}
-           ">
-      </div>
+      const column =
+        document.createElement(
+          "div"
+        );
 
-      <div class="bench-identity">
 
-        <div class="bench-logo">
-          ${logoHTML}
-        </div>
+      column.className=
+        "bench-column";
 
-        <div class="bench-label">
-          ${item.name}
 
-          ${item.preview
-            ? '<span class="benchmark-preview-tag">AA4 preview</span>'
-            : ''
-          }
+      const score =
+        Number(
+          item.score || 0
+        );
 
-          <span class="bench-provider">
-            ${item.provider}
-          </span>
-        </div>
 
-      </div>
-    `;
+      const range =
+        Math.max(
+          1,
+          scaleMax-scaleMin
+        );
 
-    chart.appendChild(column);
-  });
 
-  legend.innerHTML = data.map(item=>{
-    const logo = item.logo
-      ? `<img src="${item.logo}" alt="">`
-      : `<span class="bench-logo-fallback">${item.fallback || item.provider.slice(0,1)}</span>`;
+      const ratio =
+        Math.max(
+          0,
+          Math.min(
+            1,
+            (
+              score-scaleMin
+            ) /
+            range
+          )
+        );
 
-    return `
-      <div class="benchmark-legend-item">
 
-        <span class="benchmark-dot"
-              style="background:${item.color}">
-        </span>
+      const height =
+        ratio*100;
 
-        <span class="benchmark-legend-logo">
-          ${logo}
-        </span>
 
-        <span class="benchmark-legend-text">
-          <b>${item.name}</b>
-          <small>${item.provider}</small>
-        </span>
+      const display =
+        item.displayScore ??
+        score.toFixed(1);
 
-      </div>
-    `;
-  }).join("");
 
-  table.innerHTML = data.map(item=>`
-    <tr>
-      <td>
-        <div style="
-          display:flex;
-          align-items:center;
-          gap:10px
-        ">
+      const logo =
+        item.logo
+          ? `
+            <div class="bench-logo">
 
-          ${
-            item.logo
-            ? `<img
-                 src="${item.logo}"
-                 alt=""
-                 style="
-                   width:24px;
-                   height:24px;
-                   object-fit:contain;
-                   flex:0 0 auto
-                 "
-               >`
-            : ''
-          }
+              <img
+                src="${item.logo}"
+                alt=""
+              >
 
-          <span>
-            ${item.name}
+            </div>
+          `
+          : `
+            <div class="bench-logo">
 
-            ${item.preview
-              ? '<span class="benchmark-preview-tag">preview</span>'
-              : ''
+              <div class="bench-logo-fallback">
+                ${
+                  String(
+                    item.provider ||
+                    "?"
+                  ).slice(0,1)
+                }
+              </div>
+
+            </div>
+          `;
+
+
+      let sub="";
+
+
+      if(key==="image-ai"){
+
+        sub=`
+          <span class="benchmark-score-secondary">
+            ${
+              item.source
+            }${
+              item.rank
+                ? ` · #${item.rank}`
+                : ""
+            }${
+              item.uncertainty !== null &&
+              item.uncertainty !== undefined
+                ? ` · ±${item.uncertainty}`
+                : ""
             }
           </span>
 
+          ${
+            item.preliminary
+              ? `
+                <span class="benchmark-preliminary">
+                  Preliminary
+                </span>
+              `
+              : ""
+          }
+        `;
+
+      }
+
+
+      if(key==="intelligence"){
+
+        sub=`
+          <span class="benchmark-score-secondary">
+            Artificial Analysis
+          </span>
+
+          ${
+            item.approximate
+              ? `
+                <span class="bench-value-note">
+                  chart-transcribed ≈
+                </span>
+              `
+              : ""
+          }
+        `;
+
+      }
+
+
+      column.innerHTML=`
+
+        <div class="bench-score">
+
+          ${display}
+
+          ${
+            key==="image-ai"
+              ? ""
+              : key==="intelligence"
+                ? ""
+                : "%"
+          }
+
         </div>
-      </td>
-
-      <td>${item.provider}</td>
-
-      <td>${item.score.toFixed(1)}%</td>
-    </tr>
-  `).join("");
-}
 
 
-document.querySelectorAll(".benchmark-tab").forEach(button=>{
-  button.addEventListener("click",()=>{
-    document.querySelectorAll(".benchmark-tab")
-      .forEach(x=>x.classList.remove("active"));
+        <div
+          class="bench-bar"
+          style="
+            height:${height}%;
+            background:${
+              item.color ||
+              "#111"
+            }
+          "
+        ></div>
 
-    button.classList.add("active");
 
-    renderBenchmark(button.dataset.benchmark);
+        <div class="bench-identity">
+
+          ${logo}
+
+
+          <div class="bench-label">
+
+            ${item.name}
+
+            <span class="bench-provider">
+              ${item.provider || ""}
+            </span>
+
+            ${sub}
+
+            ${
+              item.preview
+                ? `
+                  <span class="benchmark-preview-tag">
+                    Preview
+                  </span>
+                `
+                : ""
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      chart.appendChild(
+        column
+      );
+
   });
-});
-
-renderBenchmark("terminal");
 
 
-/* =========================================================
-   Mobile navigation
-   ========================================================= */
+  /*
+   * ========================================================
+   * LEGEND
+   * ========================================================
+   */
 
-const menuButton = document.getElementById("menuButton");
-const menuOverlay = document.getElementById("menuOverlay");
+  legend.innerHTML=
+    values.map(
+      (item,index)=>`
+
+        <div class="benchmark-legend-item">
+
+          <span
+            class="benchmark-dot"
+            style="
+              background:${
+                item.color ||
+                "#111"
+              }
+            "
+          ></span>
+
+
+          <span class="benchmark-legend-logo">
+
+            ${
+              item.logo
+                ? `
+                  <img
+                    src="${item.logo}"
+                    alt=""
+                  >
+                `
+                : ""
+            }
+
+          </span>
+
+
+          <span class="benchmark-legend-text">
+
+            <b>
+              ${item.name}
+            </b>
+
+            <small>
+              ${
+                item.provider ||
+                ""
+              }
+            </small>
+
+          </span>
+
+        </div>
+
+      `
+    ).join("");
+
+
+  /*
+   * ========================================================
+   * TABLE
+   * ========================================================
+   */
+
+  table.innerHTML=
+    values.map(
+      (item,index)=>{
+
+        let scoreText=
+          item.displayScore ??
+          Number(
+            item.score || 0
+          ).toFixed(1);
+
+
+        if(
+          key!=="image-ai" &&
+          key!=="intelligence"
+        ){
+
+          scoreText+="%";
+
+        }
+
+
+        if(key==="image-ai"){
+
+          scoreText+=
+            ` · ${item.source}`;
+
+        }
+
+
+        if(
+          key==="intelligence" &&
+          item.approximate
+        ){
+
+          scoreText=
+            "≈"+scoreText;
+
+        }
+
+
+        return `
+          <tr>
+
+            <td>
+              ${item.name}
+            </td>
+
+            <td>
+              ${item.provider || ""}
+            </td>
+
+            <td>
+              ${scoreText}
+            </td>
+
+          </tr>
+        `;
+
+      }
+    ).join("");
+
+}
 
 function openMenu(){
   if(!menuOverlay) return;
@@ -4341,6 +4989,48 @@ document.addEventListener("keydown",e=>{
   );
 
 })();
+
+
+document
+  .querySelectorAll(
+    ".benchmark-tab"
+  )
+  .forEach(
+    button=>{
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          document
+            .querySelectorAll(
+              ".benchmark-tab"
+            )
+            .forEach(
+              item=>
+                item.classList.remove(
+                  "active"
+                )
+            );
+
+
+          button
+            .classList.add(
+              "active"
+            );
+
+
+          renderBenchmark(
+            button.dataset.benchmark
+          );
+
+        }
+      );
+
+    }
+  );
+
+
 </script>
 
 </body>
