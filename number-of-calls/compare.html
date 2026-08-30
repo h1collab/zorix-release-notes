@@ -1167,6 +1167,95 @@ h1{
 
 }
 
+
+/* =========================================================
+   PUBLIC BENCHMARK COMPARE
+   ========================================================= */
+
+.public-compare-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:34px;
+}
+
+.public-compare-column{
+  min-width:0;
+}
+
+.public-compare-model{
+  margin-bottom:14px;
+
+  font-size:18px;
+  letter-spacing:-.025em;
+}
+
+.public-compare-source{
+  min-height:22px;
+
+  margin-bottom:13px;
+
+  color:var(--muted);
+  font-size:10px;
+}
+
+.public-compare-row{
+  min-height:66px;
+
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+
+  gap:12px;
+  align-items:center;
+
+  border-top:1px solid var(--line);
+}
+
+.public-compare-key{
+  font-size:12px;
+}
+
+.public-compare-detail{
+  margin-top:3px;
+
+  color:var(--muted);
+  font-size:9px;
+}
+
+.public-compare-value{
+  text-align:right;
+
+  font-size:16px;
+
+  font-variant-numeric:tabular-nums;
+}
+
+.public-compare-unit{
+  margin-left:3px;
+
+  color:var(--muted);
+  font-size:10px;
+}
+
+.public-compare-empty{
+  padding:20px;
+
+  border:1px solid var(--line);
+  border-radius:10px;
+
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+@media(max-width:760px){
+
+  .public-compare-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
 </head>
 
@@ -1577,6 +1666,30 @@ h1{
 
 </section>
 
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Published evaluations
+    </div>
+
+    <div class="section-note">
+      Provider and third-party results for each selected model.
+      Different benchmark harnesses are not treated as
+      directly comparable unless the benchmark name matches.
+    </div>
+
+  </div>
+
+  <div
+    class="public-compare-grid"
+    id="publicBenchmarkCompare"
+  ></div>
+
+</section>
+
 <section class="section">
 
   <div class="section-head">
@@ -1649,10 +1762,11 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788117825"></script>
-<script src="./usage.js?v=1788117825"></script>
-<script src="./benchmarks.js?v=1788117825"></script>
-<script src="./voting/votes.js?v=1788117825"></script>
+<script src="./models.js?v=1788117984"></script>
+<script src="./usage.js?v=1788117984"></script>
+<script src="./benchmarks.js?v=1788117984"></script>
+<script src="./external-benchmarks.js?v=1788117984"></script>
+<script src="./voting/votes.js?v=1788117984"></script>
 
 <script>
 
@@ -3032,6 +3146,148 @@ function renderFullBenchmarkComparison(a,b){
 }
 
 
+
+
+function renderPublishedBenchmarkComparison(a,b){
+
+  const target =
+    document.getElementById(
+      "publicBenchmarkCompare"
+    );
+
+  if(!target){
+    return;
+  }
+
+
+  const catalog =
+    window.ZORIX_EXTERNAL_BENCHMARKS || {};
+
+
+  function column(model){
+
+    const entry =
+      catalog[
+        model.id
+      ];
+
+
+    const evaluations =
+      entry &&
+      Array.isArray(
+        entry.evaluations
+      )
+        ? entry.evaluations
+        : [];
+
+
+    if(!evaluations.length){
+
+      return `
+        <div class="public-compare-column">
+
+          <div class="public-compare-model">
+            ${model.name}
+          </div>
+
+          <div class="public-compare-empty">
+            No verified published evaluation
+            is attached for this exact model
+            configuration.
+          </div>
+
+        </div>
+      `;
+
+    }
+
+
+    return `
+      <div class="public-compare-column">
+
+        <div class="public-compare-model">
+          ${model.name}
+        </div>
+
+        <div class="public-compare-source">
+
+          ${
+            entry.sourceType === "provider"
+              ? "Provider published"
+              : entry.sourceType === "third-party"
+                ? "Third-party"
+                : "External"
+          }
+
+          ·
+
+          ${
+            entry.label ||
+            "Published evaluation"
+          }
+
+        </div>
+
+        ${
+          evaluations.map(
+            item=>`
+
+              <div class="public-compare-row">
+
+                <div>
+
+                  <div class="public-compare-key">
+                    ${item.benchmark}
+                  </div>
+
+                  ${
+                    item.detail
+                      ? `
+                        <div class="public-compare-detail">
+                          ${item.detail}
+                        </div>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+
+                <div class="public-compare-value">
+
+                  ${item.value}
+
+                  ${
+                    item.unit
+                      ? `
+                        <span class="public-compare-unit">
+                          ${item.unit}
+                        </span>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+              </div>
+
+            `
+          ).join("")
+        }
+
+      </div>
+    `;
+
+  }
+
+
+  target.innerHTML=
+    column(a) +
+    column(b);
+
+}
+
+
 function render(){
 
   const a=models.find(
@@ -3059,6 +3315,7 @@ function render(){
   renderUsage(a,b);
   renderVoting(a,b);
   renderFullBenchmarkComparison(a,b);
+  renderPublishedBenchmarkComparison(a,b);
   renderBenchmarks(a,b);
 
 
