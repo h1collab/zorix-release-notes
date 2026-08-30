@@ -431,7 +431,7 @@ canvas{
     >
 
       <img
-        src="../assets/logos/zorix.svg?v=1788119772"
+        src="../assets/logos/zorix.svg?v=1788120652"
         alt=""
       >
 
@@ -522,6 +522,14 @@ canvas{
 
       <option value="benchmark">
         Benchmark ranking
+      </option>
+
+      <option value="intelligence-cost">
+        Intelligence × cost
+      </option>
+
+      <option value="image-ai">
+        Image AI Top 7
       </option>
 
     </select>
@@ -655,9 +663,13 @@ canvas{
 
 
 
-<script src="../models.js?v=1788119772"></script>
-<script src="../usage.js?v=1788119772"></script>
-<script src="../benchmarks.js?v=1788119772"></script>
+<script src="../models.js?v=1788120652"></script>
+<script src="../usage.js?v=1788120652"></script>
+<script src="../benchmarks.js?v=1788120652"></script>
+
+<script src="../image-ai.js?v=1788120652"></script>
+<script src="../intelligence-cost.js?v=1788120652"></script>
+
 
 
 <script>
@@ -679,6 +691,17 @@ const benchmarkData =
   window.ZORIX_BENCHMARKS || {
     metrics:[],
     scores:{}
+  };
+
+const imageAIData =
+  window.ZORIX_IMAGE_AI || {
+    models:[],
+    methodology:{}
+  };
+
+const intelligenceCostData =
+  window.ZORIX_INTELLIGENCE_COST || {
+    points:[]
   };
 
 
@@ -775,6 +798,91 @@ function fmt(n){
   return String(
     Math.round(n)
   );
+}
+
+
+
+
+function providerColor(provider){
+
+  const map={
+    "OpenAI":"#111111",
+    "Microsoft AI":"#6B6B66",
+    "Google":"#4285F4",
+    "Reve":"#6546D7",
+    "xAI":"#111111",
+    "Meta":"#087AEA",
+    "Bytedance":"#3256D8",
+    "Alibaba":"#3451C6",
+    "Ideogram":"#111111",
+    "Tencent":"#2563EB",
+    "Z.ai":"#111111",
+    "Xiaomi":"#FF6900",
+    "Anthropic":"#D97757",
+    "Kimi":"#1783FF",
+    "Moonshot AI":"#1783FF",
+    "DeepSeek":"#4D6BFE",
+    "Zorix":"#111111"
+  };
+
+  return map[provider] || "#70706B";
+}
+
+
+function providerInitial(provider){
+
+  return String(
+    provider || "?"
+  )
+  .trim()
+  .slice(0,1)
+  .toUpperCase();
+
+}
+
+
+function drawProviderMark(
+  provider,
+  x,
+  y,
+  size=36
+){
+
+  ctx.save();
+
+  roundedRect(
+    x,
+    y,
+    size,
+    size,
+    Math.max(
+      7,
+      size*.22
+    )
+  );
+
+  ctx.fillStyle=
+    providerColor(
+      provider
+    );
+
+  ctx.fill();
+
+
+  text(
+    providerInitial(
+      provider
+    ),
+    x+size/2,
+    y+size*.69,
+    size*.43,
+    "700",
+    "#fff",
+    "center"
+  );
+
+  ctx.restore();
+
 }
 
 
@@ -2287,6 +2395,790 @@ async function drawBenchmarkRanking(){
 }
 
 
+
+
+async function drawImageAIRanking(){
+
+  clearCanvas();
+
+  await drawBrand();
+
+
+  const rows =
+    (
+      imageAIData.models ||
+      []
+    )
+    .slice(0,7);
+
+
+  text(
+    "Metron Image AI",
+    76,
+    104,
+    58,
+    "600"
+  );
+
+
+  text(
+    "Top 7 · Arena + Artificial Analysis",
+    76,
+    151,
+    30,
+    "500",
+    "#333"
+  );
+
+
+  wrapText(
+    "Cross-source editorial ranking. Arena scores and Artificial Analysis Elo remain separate and are not averaged into a fake universal score.",
+    76,
+    190,
+    1000,
+    29,
+    18,
+    "#6B6861"
+  );
+
+
+  /*
+   * Header
+   */
+  monoText(
+    "MODEL",
+    130,
+    258,
+    13,
+    "#77736C"
+  );
+
+  monoText(
+    "ARENA",
+    1080,
+    258,
+    13,
+    "#77736C",
+    "right"
+  );
+
+  monoText(
+    "ARTIFICIAL ANALYSIS",
+    1470,
+    258,
+    13,
+    "#77736C",
+    "right"
+  );
+
+
+  ctx.strokeStyle="#D9D7D1";
+  ctx.lineWidth=1;
+
+  ctx.beginPath();
+  ctx.moveTo(72,274);
+  ctx.lineTo(1510,274);
+  ctx.stroke();
+
+
+  const startY=300;
+  const rowH=70;
+
+
+  for(
+    let i=0;
+    i<rows.length;
+    i++
+  ){
+
+    const row =
+      rows[i];
+
+    const y =
+      startY+
+      i*rowH;
+
+
+    /*
+     * rank circle
+     */
+    ctx.beginPath();
+
+    ctx.arc(
+      91,
+      y+26,
+      21,
+      0,
+      Math.PI*2
+    );
+
+    ctx.strokeStyle=
+      i<3
+        ? "#A7A39B"
+        : "#D3D0C9";
+
+    ctx.lineWidth=2;
+
+    ctx.stroke();
+
+
+    monoText(
+      String(row.rank),
+      91,
+      y+32,
+      16,
+      "#5D5952",
+      "center"
+    );
+
+
+    drawProviderMark(
+      row.provider,
+      132,
+      y+5,
+      42
+    );
+
+
+    text(
+      row.name,
+      194,
+      y+29,
+      22,
+      i<3
+        ? "600"
+        : "500",
+      "#1B1B19"
+    );
+
+
+    text(
+      row.provider,
+      194,
+      y+50,
+      12,
+      "400",
+      "#77736C"
+    );
+
+
+    /*
+     * Arena
+     */
+    if(row.arena){
+
+      monoText(
+        `#${row.arena.rank}`,
+        880,
+        y+20,
+        14,
+        "#77736C"
+      );
+
+
+      text(
+        `${row.arena.score} ±${row.arena.uncertainty}`,
+        1080,
+        y+39,
+        21,
+        "500",
+        providerColor(
+          row.provider
+        ),
+        "right"
+      );
+
+
+      if(
+        row.arena.preliminary
+      ){
+
+        text(
+          "PRELIMINARY",
+          1080,
+          y+56,
+          9,
+          "600",
+          "#A15A14",
+          "right"
+        );
+
+      }
+
+    }else{
+
+      text(
+        "—",
+        1080,
+        y+39,
+        20,
+        "400",
+        "#AAA69E",
+        "right"
+      );
+
+    }
+
+
+    /*
+     * AA
+     */
+    if(
+      row.artificialAnalysis
+    ){
+
+      monoText(
+        `#${row.artificialAnalysis.rank}`,
+        1215,
+        y+20,
+        14,
+        "#77736C"
+      );
+
+
+      text(
+        `${row.artificialAnalysis.elo}`,
+        1470,
+        y+39,
+        21,
+        "500",
+        providerColor(
+          row.provider
+        ),
+        "right"
+      );
+
+
+      text(
+        `±${row.artificialAnalysis.ci}`,
+        1470,
+        y+57,
+        10,
+        "400",
+        "#77736C",
+        "right"
+      );
+
+    }else{
+
+      text(
+        "—",
+        1470,
+        y+39,
+        20,
+        "400",
+        "#AAA69E",
+        "right"
+      );
+
+    }
+
+
+    /*
+     * divider
+     */
+    ctx.strokeStyle="#E5E3DE";
+    ctx.lineWidth=1;
+
+    ctx.beginPath();
+    ctx.moveTo(72,y+68);
+    ctx.lineTo(1510,y+68);
+    ctx.stroke();
+
+  }
+
+
+  /*
+   * source legend
+   */
+
+  text(
+    "Arena",
+    76,
+    822,
+    14,
+    "600",
+    "#333"
+  );
+
+  text(
+    "Text-to-Image Overall · Aug 25, 2026",
+    128,
+    822,
+    13,
+    "400",
+    "#6D6962"
+  );
+
+
+  text(
+    "Artificial Analysis",
+    580,
+    822,
+    14,
+    "600",
+    "#333"
+  );
+
+  text(
+    "Text-to-Image global leaderboard · current",
+    718,
+    822,
+    13,
+    "400",
+    "#6D6962"
+  );
+
+
+  monoText(
+    "SOURCE: ARENA.AI + ARTIFICIAL ANALYSIS · COMPOSITE ORDER: ZORIX METRON",
+    76,
+    865,
+    13,
+    "#68645E"
+  );
+
+
+  monoText(
+    todayText(),
+    1510,
+    865,
+    13,
+    "#68645E",
+    "right"
+  );
+
+}
+
+
+
+
+async function drawIntelligenceCost(){
+
+  clearCanvas();
+
+  await drawBrand();
+
+
+  const points =
+    (
+      intelligenceCostData.points ||
+      []
+    )
+    .filter(
+      point=>
+        Number(point.cost)>0 &&
+        Number.isFinite(
+          Number(
+            point.intelligence
+          )
+        )
+    );
+
+
+  text(
+    "Metron Intelligence Index",
+    72,
+    94,
+    55,
+    "600"
+  );
+
+
+  text(
+    "Intelligence × cost",
+    72,
+    139,
+    29,
+    "500",
+    "#333"
+  );
+
+
+  text(
+    "Only sourced cost-per-task observations are plotted.",
+    72,
+    180,
+    18,
+    "400",
+    "#6D6962"
+  );
+
+
+  const left=112;
+  const right=1490;
+  const top=245;
+  const bottom=770;
+
+  const plotW=
+    right-left;
+
+  const plotH=
+    bottom-top;
+
+
+  if(!points.length){
+
+    /*
+     * We intentionally do not fabricate the
+     * screenshot's price observations.
+     */
+
+    ctx.strokeStyle="#D8D6D0";
+    ctx.lineWidth=1;
+
+    ctx.beginPath();
+    ctx.moveTo(left,top);
+    ctx.lineTo(left,bottom);
+    ctx.lineTo(right,bottom);
+    ctx.stroke();
+
+
+    text(
+      "No sourced cost-per-task observations yet",
+      800,
+      455,
+      35,
+      "600",
+      "#393936",
+      "center"
+    );
+
+
+    wrapText(
+      "Add verified cost and intelligence observations to intelligence-cost.js. Models without sourced values are deliberately omitted rather than estimated from API token prices.",
+      425,
+      510,
+      750,
+      30,
+      18,
+      "#77736C"
+    );
+
+
+    monoText(
+      "SOURCE: ZORIX METRON · EMPTY UNTIL VERIFIED COST/TASK DATA IS ADDED",
+      72,
+      860,
+      13,
+      "#68645E"
+    );
+
+
+    return;
+
+  }
+
+
+  const costs =
+    points.map(
+      point=>
+        Number(point.cost)
+    );
+
+
+  const scores =
+    points.map(
+      point=>
+        Number(
+          point.intelligence
+        )
+    );
+
+
+  let xMin=
+    Math.min(...costs);
+
+  let xMax=
+    Math.max(...costs);
+
+
+  xMin=
+    Math.max(
+      .001,
+      xMin*.75
+    );
+
+  xMax=
+    xMax*1.25;
+
+
+  let yMin=
+    Math.floor(
+      Math.min(...scores)-3
+    );
+
+  let yMax=
+    Math.ceil(
+      Math.max(...scores)+3
+    );
+
+
+  const logMin=
+    Math.log10(xMin);
+
+  const logMax=
+    Math.log10(xMax);
+
+
+  function xFor(cost){
+
+    return left+
+      (
+        Math.log10(cost)-
+        logMin
+      )/
+      (
+        logMax-logMin
+      )*
+      plotW;
+
+  }
+
+
+  function yFor(score){
+
+    return bottom-
+      (
+        score-yMin
+      )/
+      (
+        yMax-yMin
+      )*
+      plotH;
+
+  }
+
+
+  /*
+   * horizontal grids
+   */
+  const yTicks=6;
+
+
+  for(
+    let i=0;
+    i<=yTicks;
+    i++
+  ){
+
+    const score=
+      yMin+
+      (
+        yMax-yMin
+      )*
+      i/yTicks;
+
+
+    const y=
+      yFor(score);
+
+
+    ctx.strokeStyle="#E4E2DD";
+    ctx.setLineDash([4,7]);
+
+    ctx.beginPath();
+    ctx.moveTo(left,y);
+    ctx.lineTo(right,y);
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+
+
+    monoText(
+      score.toFixed(0),
+      left-17,
+      y+6,
+      14,
+      "#77736C",
+      "right"
+    );
+
+  }
+
+
+  /*
+   * log x ticks
+   */
+  const candidates=[
+    .001,
+    .002,
+    .005,
+    .01,
+    .02,
+    .05,
+    .1,
+    .2,
+    .5,
+    1,
+    2,
+    5,
+    10
+  ];
+
+
+  candidates
+    .filter(
+      value=>
+        value>=xMin &&
+        value<=xMax
+    )
+    .forEach(
+      value=>{
+
+        const x=
+          xFor(value);
+
+
+        ctx.strokeStyle="#ECEAE5";
+
+        ctx.beginPath();
+        ctx.moveTo(x,top);
+        ctx.lineTo(x,bottom);
+        ctx.stroke();
+
+
+        monoText(
+          "$"+value,
+          x,
+          bottom+28,
+          13,
+          "#77736C",
+          "center"
+        );
+
+      }
+    );
+
+
+  /*
+   * axes
+   */
+  ctx.strokeStyle="#7E7A73";
+  ctx.lineWidth=1.5;
+
+  ctx.beginPath();
+  ctx.moveTo(left,top);
+  ctx.lineTo(left,bottom);
+  ctx.lineTo(right,bottom);
+  ctx.stroke();
+
+
+  /*
+   * points
+   */
+  points.forEach(
+    point=>{
+
+      const x=
+        xFor(
+          Number(
+            point.cost
+          )
+        );
+
+
+      const y=
+        yFor(
+          Number(
+            point.intelligence
+          )
+        );
+
+
+      const color=
+        providerColor(
+          point.provider
+        );
+
+
+      ctx.beginPath();
+
+      ctx.arc(
+        x,
+        y,
+        8,
+        0,
+        Math.PI*2
+      );
+
+      ctx.fillStyle=color;
+      ctx.fill();
+
+
+      ctx.strokeStyle="#fff";
+      ctx.lineWidth=2;
+      ctx.stroke();
+
+
+      text(
+        point.label,
+        x+13,
+        y-8,
+        12,
+        "500",
+        color
+      );
+
+    }
+  );
+
+
+  /*
+   * y label
+   */
+  ctx.save();
+
+  ctx.translate(
+    35,
+    (
+      top+bottom
+    )/2
+  );
+
+  ctx.rotate(
+    -Math.PI/2
+  );
+
+  text(
+    intelligenceCostData.yLabel ||
+    "Intelligence index",
+    0,
+    0,
+    15,
+    "500",
+    "#555",
+    "center"
+  );
+
+  ctx.restore();
+
+
+  text(
+    intelligenceCostData.xLabel ||
+    "Cost per task (USD, log scale)",
+    (
+      left+right
+    )/2,
+    830,
+    15,
+    "500",
+    "#555",
+    "center"
+  );
+
+
+  monoText(
+    "SOURCE: ZORIX METRON · VALUES SHOWN ONLY WHEN SOURCE DATA IS ATTACHED",
+    72,
+    870,
+    13,
+    "#68645E"
+  );
+
+}
+
+
 /* ============================================================
    UI
    ============================================================ */
@@ -2308,6 +3200,38 @@ function fillMetrics(){
     `;
 
     metricSelect.disabled=true;
+
+    return;
+  }
+
+
+  if(
+    type==="image-ai"
+  ){
+
+    metricSelect.disabled=true;
+
+    metricSelect.innerHTML=`
+      <option value="composite">
+        Arena + Artificial Analysis
+      </option>
+    `;
+
+    return;
+  }
+
+
+  if(
+    type==="intelligence-cost"
+  ){
+
+    metricSelect.disabled=true;
+
+    metricSelect.innerHTML=`
+      <option value="cost-intelligence">
+        Cost × intelligence
+      </option>
+    `;
 
     return;
   }
@@ -2370,7 +3294,11 @@ async function render(){
         ? "Benchmark ranking · Zorix Metron"
         : type==="ranking"
           ? "Token ranking · Zorix Metron"
-          : "Relative usage index · Zorix Metron";
+          : type==="intelligence-cost"
+            ? "Intelligence × cost · Zorix Metron"
+            : type==="image-ai"
+              ? "Image AI Top 7 · Zorix Metron"
+              : "Relative usage index · Zorix Metron";
 
 
   if(type==="usage"){
@@ -2383,9 +3311,23 @@ async function render(){
 
     await drawUsageRanking();
 
-  }else{
+  }else if(
+    type==="benchmark"
+  ){
 
     await drawBenchmarkRanking();
+
+  }else if(
+    type==="intelligence-cost"
+  ){
+
+    await drawIntelligenceCost();
+
+  }else if(
+    type==="image-ai"
+  ){
+
+    await drawImageAIRanking();
 
   }
 
