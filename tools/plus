@@ -1,0 +1,208 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+ROOT="$HOME/projects/zorix-release-notes"
+DATA="$ROOT/data/releases.json"
+BUILD="$ROOT/tools/build_news.py"
+
+ensure_files() {
+  mkdir -p "$ROOT/data"
+  [ -f "$DATA" ] || echo '[]' > "$DATA"
+}
+
+list_news() {
+  python - "$DATA" <<'PY'
+import json, sys
+p=sys.argv[1]
+items=json.load(open(p,encoding="utf-8"))
+if not items:
+    print("No news.")
+    raise SystemExit
+for i,x in enumerate(items,1):
+    print(f"{i}. {x.get('date','')} | {x.get('title','')}")
+PY
+}
+
+add_news() {
+  printf "Title: "
+  read -r title
+  [ -n "$title" ] || { echo "Title is required."; return; }
+
+  printf "Date (YYYY-MM-DD): "
+  read -r date
+  [ -n "$date" ] || { echo "Date is required."; return; }
+
+  printf "Content: "
+  read -r content
+  [ -n "$content" ] || { echo "Content is required."; return; }
+
+  printf "Category [Updates]: "
+  read -r category
+  category="${category:-Updates}"
+
+  printf "Status [Published]: "
+  read -r status
+  status="${status:-Published}"
+
+  python - "$DATA" "$title" "$date" "$content" "$category" "$status" <<'PY'
+import json,sys
+p,title,date,content,category,status=sys.argv[1:]
+items=json.load(open(p,encoding="utf-8"))
+items.append({
+  "title": title,
+  "date": date,
+  "content": content,
+  "category": category,
+  "status": status
+})
+with open(p,"w",encoding="utf-8") as f:
+    json.dump(items,f,ensure_ascii=False,indent=2)
+print("Added.")
+PY
+
+  python "$BUILD"
+}
+
+edit_news() {
+  list_news
+  printf "Number to edit: "
+  read -r n
+
+  python - "$DATA" "$n" <<'PY'
+import json,sys
+p=sys.argv[1]
+try:
+    idx=int(sys.argv[2])-1
+except:
+    print("Invalid number.")
+    raise SystemExit(1)
+
+items=json.load(open(p,encoding="utf-8"))
+if idx<0 or idx>=len(items):
+    print("Not found.")
+    raise SystemExit(1)
+
+x=items[idx]
+
+print("Leave blank to keep current value.")
+
+title=input(f"Title [{x.get('title','')}]: ").strip()
+date=input(f"Date [{x.get('date','')}]: ").strip()
+content=input(f"Content [{x.get('content','')}]: ").strip()
+category=input(f"Category [{x.get('category','Updates')}]: ").strip()
+status=input(f"Status [{x.get('status','Published')}]: ").strip()
+
+if title: x["title"]=title
+if date: x["date"]=date
+if content: x["content"]=content
+if category: x["category"]=category
+if status: x["status"]=status
+
+if not x.get("title") or not x.get("date") or not x.get("content"):
+    print("Title, date and content are required.")
+    raise SystemExit(1)
+
+with open(p,"w",encoding="utf-8") as f:
+    json.dump(items,f,ensure_ascii=False,indent=2)
+
+print("Updated.")
+PY
+
+  python "$BUILD"
+}
+
+delete_news() {
+  list_news
+  printf "Number to delete: "
+  read -r n
+
+  python - "$DATA" "$n" <<'PY'
+import json,sys
+p=sys.argv[1]
+try:
+    idx=int(sys.argv[2])-1
+except:
+    print("Invalid number.")
+    raise SystemExit(1)
+
+items=json.load(open(p,encoding="utf-8"))
+if idx<0 or idx>=len(items):
+    print("Not found.")
+    raise SystemExit(1)
+
+x=items[idx]
+print("Deleting:", x.get("title",""))
+confirm=input("Type YES to confirm: ")
+if confirm!="YES":
+    print("Cancelled.")
+    raise SystemExit
+
+items.pop(idx)
+
+with open(p,"w",encoding="utf-8") as f:
+    json.dump(items,f,ensure_ascii=False,indent=2)
+
+print("Deleted.")
+PY
+
+  python "$BUILD"
+}
+
+publish_news() {
+  cd "$ROOT" || exit 1
+
+  python "$BUILD"
+
+  git add .
+  if git diff --cached --quiet; then
+    echo "Nothing to publish."
+    return
+  fi
+
+  git commit -m "Update Zorix news"
+  git push
+}
+
+menu() {
+  while true; do
+    echo
+    echo "ZORIX NEWS"
+    echo "1) Add"
+    echo "2) Edit"
+    echo "3) Delete"
+    echo "4) List"
+    echo "5) Rebuild"
+    echo "6) Publish"
+    echo "0) Exit"
+    printf "> "
+    read -r choice
+
+    case "$choice" in
+      1) add_news ;;
+      2) edit_news ;;
+      3) delete_news ;;
+      4) list_news ;;
+      5) python "$BUILD" ;;
+      6) publish_news ;;
+      0) exit 0 ;;
+      *) echo "Invalid option." ;;
+    esac
+  done
+}
+
+ensure_files
+
+if [ "$1" != "news" ]; then
+  echo "Usage: plus news"
+  exit 1
+fi
+
+case "$2" in
+  add) add_news ;;
+  edit) edit_news ;;
+  delete) delete_news ;;
+  list) list_news ;;
+  build) python "$BUILD" ;;
+  publish) publish_news ;;
+  "") menu ;;
+  *) echo "Usage: plus news [add|edit|delete|list|build|publish]" ;;
+esac
