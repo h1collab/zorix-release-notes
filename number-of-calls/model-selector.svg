@@ -1,0 +1,64 @@
+<svg
+  width="390"
+  height="420"
+  viewBox="0 0 390 420"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width="390" height="420" rx="28" fill="#F7F7F5"/>
+  <rect x="12" y="12" width="366" height="396" rx="24" fill="#FFFFFF"/>
+  <rect x="171" y="22" width="48" height="5" rx="2.5" fill="#D8D8D4"/>
+
+  <text x="32" y="62" fill="#1D1D1B"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="18" font-weight="600">Choose model</text>
+
+  <text x="32" y="83" fill="#8B8B86"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13" font-weight="400">Select a model for this chat</text>
+
+  <g>
+    <rect x="22" y="103" width="346" height="55" rx="12" fill="transparent"/>
+    <text x="34" y="136" fill="#252523"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="15" font-weight="500">DeepSeek v4 flash</text>
+    <path d="M344 126L350 132L344 138" stroke="#B0B0AB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <line x1="34" y1="158" x2="356" y2="158" stroke="#EFEFED"/>
+
+  <g>
+    <rect x="22" y="159" width="346" height="55" rx="12" fill="transparent"/>
+    <text x="34" y="192" fill="#252523"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="15" font-weight="500">Tencent Hy 3</text>
+    <path d="M344 182L350 188L344 194" stroke="#B0B0AB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <line x1="34" y1="214" x2="356" y2="214" stroke="#EFEFED"/>
+
+  <g>
+    <rect x="22" y="215" width="346" height="55" rx="12" fill="transparent"/>
+    <text x="34" y="248" fill="#252523"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="15" font-weight="500">Xiaomi MiMo V2.5</text>
+    <path d="M344 238L350 244L344 250" stroke="#B0B0AB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <line x1="34" y1="270" x2="356" y2="270" stroke="#EFEFED"/>
+
+  <g>
+    <rect x="22" y="275" width="346" height="58" rx="13" fill="#F3F3F0"/>
+    <text x="34" y="309" fill="#171715"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="15" font-weight="600">ChatGPT 5.6 Luna</text>
+    <path d="M337 303.5L342 308.5L352 298"
+      stroke="#181816" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g>
+    <rect x="22" y="337" width="346" height="55" rx="12" fill="transparent"/>
+    <text x="34" y="370" fill="#252523"
+      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="15" font-weight="500">Zorix Nex Coder 3.8 neptune</text>
+    <path d="M344 360L350 366L344 372" stroke="#B0B0AB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

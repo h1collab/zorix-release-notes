@@ -7,19 +7,18 @@
 
 <style>
 :root{
-  --bg:#fbfaf7;
-  --surface:#fff;
-  --text:#11110f;
-  --muted:#77736c;
-  --line:#dedbd4;
-  --soft:#f0eee8;
+  --bg:#f7f7f5;
+  --surface:#ffffff;
+  --text:#181816;
+  --muted:#7d7d77;
+  --line:#e9e9e4;
+  --chip:#f3f3f0;
   --dark:#171715;
-  --accent:#d97757;
-  --max:1440px;
+  --purple:#7c3aed;
+  --max:1380px;
 }
 
 *{box-sizing:border-box}
-
 body{
   margin:0;
   background:var(--bg);
@@ -27,7 +26,6 @@ body{
   font-family:
     "OpenAI Sans",
     Inter,
-    ui-sans-serif,
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
@@ -36,462 +34,331 @@ body{
     sans-serif;
   -webkit-font-smoothing:antialiased;
 }
-
-button,input,select{
-  font:inherit;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
 
 header{
   position:sticky;
   top:0;
-  z-index:20;
-  background:rgba(251,250,247,.9);
+  z-index:30;
   backdrop-filter:blur(16px);
+  background:rgba(247,247,245,.88);
   border-bottom:1px solid var(--line);
 }
-
 .nav{
   max-width:var(--max);
   margin:auto;
-  padding:15px 28px;
+  padding:15px 22px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
+.brand{display:flex;align-items:center;gap:10px}
 .logo{
-  font-size:20px;
-  font-weight:650;
-  letter-spacing:-.04em;
+  width:32px;height:32px;border-radius:10px;
+  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
 }
-
-.context{
+.brand-title{font-weight:650;letter-spacing:-.04em;font-size:18px}
+.mono{
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:12px;
   color:var(--muted);
+  font-size:12px;
 }
-
-.nav-right{
-  display:flex;
-  gap:8px;
-}
-
+.nav-links{display:flex;gap:8px;align-items:center}
 .pill{
-  padding:8px 13px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  font-size:13px;
+  padding:8px 12px;border:1px solid var(--line);
+  border-radius:999px;background:#fff;font-size:13px;
 }
-
-.pill.dark{
-  background:var(--dark);
-  color:#fff;
-  border-color:var(--dark);
-}
+.pill.dark{background:var(--dark);color:#fff;border-color:var(--dark)}
 
 main{
   max-width:var(--max);
   margin:auto;
-  padding:74px 28px 120px;
+  padding:42px 22px 110px;
 }
-
+.hero{
+  display:flex;justify-content:space-between;gap:24px;
+  align-items:flex-end;padding-bottom:34px;border-bottom:1px solid var(--line);
+}
 .eyebrow{
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:22px;
+  color:var(--muted);font-size:12px;margin-bottom:18px;
 }
-
 h1{
-  font-size:clamp(58px,8vw,122px);
-  line-height:.88;
-  letter-spacing:-.07em;
+  margin:0;
   font-weight:500;
+  letter-spacing:-.065em;
+  line-height:.9;
+  font-size:clamp(52px,9vw,110px);
+}
+.hero p{
+  max-width:520px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
   margin:0;
 }
 
-.hero-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:30px;
-  margin-top:40px;
-  padding-bottom:48px;
-}
-
-.hero-copy{
-  max-width:600px;
-  color:var(--muted);
-  line-height:1.55;
-  font-size:15px;
-}
-
-.live{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:12px;
-}
-
-.live-dot{
-  width:7px;
-  height:7px;
-  background:#59a269;
-  border-radius:50%;
-}
-
-.toolbar{
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:11px 0;
-  display:flex;
-  gap:10px;
-  justify-content:flex-end;
-  flex-wrap:wrap;
-}
-
-.control{
-  background:transparent;
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:9px 13px;
-  font-size:13px;
-}
-
-.stats{
+.top-stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   border-bottom:1px solid var(--line);
 }
-
 .stat{
-  min-height:190px;
-  padding:32px 0;
+  padding:28px 0 34px;
+  min-height:158px;
   border-right:1px solid var(--line);
 }
-
-.stat:not(:first-child){
-  padding-left:32px;
-}
-
-.stat:last-child{
-  border-right:0;
-}
-
+.stat:last-child{border-right:0}
+.stat:not(:first-child){padding-left:22px}
 .stat-label{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11px;
   color:var(--muted);
-  font-size:12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
 }
-
 .stat-value{
-  font-size:clamp(42px,5vw,72px);
-  letter-spacing:-.055em;
-  margin-top:38px;
+  margin-top:30px;
+  font-size:clamp(30px,4.5vw,60px);
+  letter-spacing:-.05em;
 }
-
-.section{
-  padding:62px 0;
-  border-bottom:1px solid var(--line);
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);
+  gap:42px;
+  padding-top:40px;
 }
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:flex-end;
-  margin-bottom:30px;
-}
-
-.section-title{
+.panel-title{
   font-size:30px;
   letter-spacing:-.04em;
+  margin-bottom:8px;
 }
-
-.section-desc{
+.panel-desc{
   color:var(--muted);
   font-size:13px;
-  max-width:480px;
+  line-height:1.5;
+  margin-bottom:20px;
 }
 
-.usage-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1.6fr) minmax(320px,.65fr);
-  gap:60px;
-}
-
-.chart{
-  height:330px;
-  border-left:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  display:flex;
-  align-items:flex-end;
-  gap:8px;
-  padding:20px 18px 0;
-}
-
-.bar-wrap{
-  flex:1;
-  height:100%;
-  display:flex;
-  align-items:flex-end;
-}
-
-.bar{
-  width:100%;
-  min-height:2px;
-  background:var(--dark);
-  border-radius:3px 3px 0 0;
-  transition:.2s;
-}
-
-.bar:hover{
-  background:var(--accent);
-}
-
-.terminal{
-  background:#171715;
-  color:#e8e6df;
-  border-radius:14px;
-  min-height:330px;
-  padding:22px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:12px;
-  line-height:1.7;
-}
-
-.prompt{
-  color:#d97757;
-}
-
-.dim{
-  color:#8d8b84;
-}
-
-.model-table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-.model-table th{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  color:var(--muted);
-  font-size:11px;
-  text-align:left;
-  font-weight:400;
-  padding:0 12px 12px;
-}
-
-.model-table td{
-  border-top:1px solid var(--line);
-  padding:21px 12px;
-  font-size:14px;
-}
-
-.model-name{
-  font-size:17px;
-  letter-spacing:-.02em;
-}
-
-.model-family{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
-}
-
-.number{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-}
-
-.rank{
-  color:var(--muted);
-  width:40px;
-}
-
-.progress{
-  width:100%;
-  height:5px;
-  background:var(--soft);
-  border-radius:99px;
-  overflow:hidden;
-  margin-top:8px;
-}
-
-.progress > div{
-  height:100%;
-  background:var(--dark);
-}
-
-.status{
+.models-card{
+  background:#fff;
   border:1px solid var(--line);
-  padding:4px 7px;
-  border-radius:999px;
-  font-size:11px;
+  border-radius:24px;
+  overflow:hidden;
+}
+.sheet-head{
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--line);
+}
+.sheet-title{
+  font-size:18px;
+  font-weight:600;
+}
+.sheet-sub{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:13px;
+}
+.model-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 18px;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+  transition:background .15s ease;
+}
+.model-row:last-child{border-bottom:0}
+.model-row:hover{background:#fafaf8}
+.provider-badge{
+  width:28px;height:28px;border-radius:8px;
+  display:grid;place-items:center;
+  color:#fff;font-size:14px;font-weight:700;
+  flex:0 0 auto;
+}
+.model-main{min-width:0;flex:1}
+.model-name{
+  font-size:15px;font-weight:500;color:#252523;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.model-meta{
+  margin-top:3px;font-size:12px;color:var(--muted);
+}
+.model-tokens{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12px;color:#181816;
   white-space:nowrap;
 }
-
-.empty{
-  padding:70px 0;
-  color:var(--muted);
+.chev{
+  color:#b0b0ab;font-size:20px;line-height:1;
+}
+.selector-preview{
+  margin-top:22px;
+  background:#fff;border:1px solid var(--line);
+  border-radius:24px;padding:18px;
+}
+.selector-preview img{
+  width:100%;height:auto;display:block;
+  border-radius:18px;background:#f7f7f5;
 }
 
-footer{
-  max-width:var(--max);
-  margin:auto;
-  padding:28px;
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:12px;
+.right-stack{
+  display:flex;flex-direction:column;gap:22px;
 }
-
-@media(max-width:850px){
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  .stat{
-    border-right:0;
-    border-bottom:1px solid var(--line);
-    padding-left:0!important;
-  }
-
-  .usage-layout{
-    grid-template-columns:1fr;
-  }
-
-  .hero-bottom{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .table-wrap{
-    overflow:auto;
-  }
+.usage-card,.quota-card{
+  background:#fff;border:1px solid var(--line);
+  border-radius:24px;padding:20px;
 }
-
-.public-quota{
-  padding:62px 0;
-  border-bottom:1px solid var(--line);
+.big-num{
+  font-size:42px;letter-spacing:-.05em;margin-top:16px;
 }
-
-.quota-top{
-  display:grid;
-  grid-template-columns:1.4fr .8fr .8fr;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+.small-muted{
+  font-size:13px;color:var(--muted);line-height:1.5;
 }
-
-.quota-main,
-.quota-stat{
-  padding:30px 0 34px;
-}
-
-.quota-stat{
-  padding-left:28px;
+.mini-chart{
+  margin-top:18px;
+  height:150px;
+  display:flex;align-items:flex-end;gap:4px;
   border-left:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:10px 10px 0 10px;
 }
-
-.quota-label{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  color:var(--muted);
-  font-size:11px;
-  text-transform:uppercase;
+.bar-wrap{flex:1;height:100%;display:flex;align-items:flex-end}
+.bar{
+  width:100%;background:#1e90ff;border-radius:3px 3px 0 0;opacity:.95;
 }
-
-.quota-value{
-  margin-top:18px;
-  font-size:clamp(38px,5vw,68px);
-  line-height:1;
-  letter-spacing:-.055em;
-}
-
-.quota-small{
-  margin-top:18px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:13px;
-}
-
-.quota-live{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  margin-top:18px;
-  font-size:12px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-}
-
-.quota-history{
-  margin-top:32px;
-}
-
-.quota-entry{
+.rank-list{margin-top:18px}
+.rank-item{
   display:grid;
-  grid-template-columns:160px 180px 1fr auto;
-  gap:18px;
-  padding:17px 0;
-  border-top:1px solid var(--line);
-  font-size:13px;
+  grid-template-columns:auto 1fr auto;
+  gap:12px;
+  padding:12px 0;border-top:1px solid var(--line);
   align-items:center;
 }
-
-.quota-entry-type{
+.rank-name{font-size:14px}
+.rank-token{
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  text-transform:uppercase;
-  font-size:11px;
+  font-size:12px;
 }
 
-.quota-entry-amount{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:15px;
+.modal{
+  position:fixed;inset:0;display:none;z-index:100;
+  background:rgba(0,0,0,.26);backdrop-filter:blur(8px);
+  align-items:flex-end;justify-content:center;
+  padding:18px;
+}
+.modal.open{display:flex}
+.sheet{
+  width:min(760px,100%);
+  max-height:92vh;
+  overflow:auto;
+  border-radius:28px 28px 18px 18px;
+  background:#fff;
+  box-shadow:0 20px 70px rgba(0,0,0,.18);
+  border:1px solid rgba(0,0,0,.06);
+}
+.handle{
+  width:48px;height:5px;border-radius:3px;background:#d8d8d4;
+  margin:12px auto 8px;
+}
+.sheet-inner{padding:0 20px 24px}
+.sheet-top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+}
+.modal-title{
+  font-size:22px;font-weight:600;letter-spacing:-.04em;
+  margin-top:8px;
+}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.badge{
+  padding:7px 12px;border:1px solid var(--line);
+  background:#f8f8f6;border-radius:999px;font-size:13px;
+}
+.close-btn{
+  margin-top:6px;
+  border:1px solid var(--line);background:#fff;
+  width:34px;height:34px;border-radius:999px;font-size:18px;
+}
+.metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  margin-top:26px;
+}
+.metric-box{
+  border:1px solid var(--line);border-radius:18px;padding:16px;
+  background:#fcfcfa;
+}
+.metric-k{font-size:13px;color:var(--muted)}
+.metric-v{font-size:18px;margin-top:8px}
+.section{
+  padding-top:22px;margin-top:22px;border-top:1px solid var(--line);
+}
+.section h3{
+  margin:0 0 10px;font-size:18px;letter-spacing:-.03em;
+}
+.section p{
+  margin:0;color:#4d4d49;font-size:15px;line-height:1.65;
+}
+.chart-wrap{
+  margin-top:16px;
+}
+.chart-title{
+  font-size:14px;font-weight:600;margin-bottom:10px;
+}
+.chart-sub{
+  color:var(--muted);font-size:13px;margin-bottom:12px;
+}
+.detail-chart{
+  height:220px;
+  display:flex;align-items:flex-end;gap:4px;
+  border-left:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:10px 10px 0 10px;
+}
+.detail-legend{
+  display:grid;grid-template-columns:1fr auto;gap:10px;
+  margin-top:12px;font-size:14px;
+}
+.dot{
+  width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px;
+}
+.actions{
+  display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;
+}
+.action-btn{
+  padding:12px 16px;border-radius:14px;border:1px solid var(--line);
+  background:#fff;font-size:14px;
+}
+.action-btn.primary{
+  background:#7c3aed;color:#fff;border-color:#7c3aed;
+}
+.footer{
+  margin-top:24px;color:var(--muted);font-size:12px;text-align:center;
 }
 
-.quota-entry-note{
-  color:var(--muted);
+@media (max-width: 980px){
+  .grid{grid-template-columns:1fr}
+  .top-stats{grid-template-columns:repeat(2,1fr)}
 }
-
-@media(max-width:800px){
-  .quota-top{
-    grid-template-columns:1fr;
-  }
-
-  .quota-stat{
-    border-left:0;
-    border-top:1px solid var(--line);
-    padding-left:0;
-  }
-
-  .quota-entry{
-    grid-template-columns:1fr;
-    gap:7px;
-  }
+@media (max-width: 640px){
+  main{padding-left:14px;padding-right:14px}
+  .hero{flex-direction:column;align-items:flex-start}
+  .top-stats{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important}
+  .metrics{grid-template-columns:1fr}
 }
-
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="nav">
     <div class="brand">
-      <a class="logo" href="../">zorix</a>
-      <span class="context">code / usage</span>
+      <div class="logo"></div>
+      <div>
+        <div class="brand-title">zorix</div>
+        <div class="mono">code / number-of-calls</div>
+      </div>
     </div>
-
-    <div class="nav-right">
+    <div class="nav-links">
       <a class="pill" href="../">Release notes</a>
       <a class="pill dark" href="https://doc.zorix.it/">Docs</a>
     </div>
@@ -499,325 +366,280 @@ footer{
 </header>
 
 <main>
-
-  <div class="eyebrow">$ zorix code usage --models</div>
-
-  <h1>Number<br>of calls</h1>
-
-  <div class="hero-bottom">
-    <div class="hero-copy">
-      Model usage across Zorix Code. Calls are grouped by model and can be
-      inspected across the selected reporting period.
+  <div class="hero">
+    <div>
+      <div class="eyebrow">$ zorix code usage --models --tokens</div>
+      <h1>Number<br>of calls</h1>
     </div>
-
-    <div class="live">
-      <span class="live-dot"></span>
-      usage data
-    </div>
+    <p>
+      A hybrid OpenAI-style editorial analytics page with an opencode-like
+      developer surface, showing model availability, usage and public quota.
+    </p>
   </div>
 
-  <div class="toolbar">
-    <select class="control" id="range">
-      <option value="7">Last 7 days</option>
-      <option value="30" selected>Last 30 days</option>
-      <option value="all">All time</option>
-    </select>
-
-    <select class="control" id="family">
-      <option value="all">All models</option>
-    </select>
-  </div>
-
-  <section class="stats">
+  <section class="top-stats">
     <div class="stat">
-      <div class="stat-label">TOKENS / DAY</div>
-      <div class="stat-value" id="totalCalls">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">TOKENS PROCESSED</div>
+      <div class="stat-label">TOTAL DAILY TOKENS</div>
       <div class="stat-value" id="totalTokens">0</div>
     </div>
-
     <div class="stat">
       <div class="stat-label">ACTIVE MODELS</div>
       <div class="stat-value" id="activeModels">0</div>
     </div>
-  </section>
-
-  
-<section class="public-quota">
-  <div class="section-head">
-    <div>
-      <div class="section-title">Public quota</div>
+    <div class="stat">
+      <div class="stat-label">TOP MODEL</div>
+      <div class="stat-value" id="topModel">—</div>
     </div>
-
-    <div class="section-desc">
-      Public Zorix Code token capacity issued by Zorix.
-      Allocations are published through the official quota feed.
-    </div>
-  </div>
-
-  <div class="quota-top">
-    <div class="quota-main">
-      <div class="quota-label">CURRENT PUBLIC QUOTA</div>
-      <div class="quota-value" id="quotaCurrent">0</div>
-
-      <div class="quota-live">
-        <span class="live-dot"></span>
-        public allocation
-      </div>
-    </div>
-
-    <div class="quota-stat">
-      <div class="quota-label">TOTAL ISSUED</div>
-      <div class="quota-value" id="quotaIssued">0</div>
-    </div>
-
-    <div class="quota-stat">
-      <div class="quota-label">ALLOCATIONS</div>
-      <div class="quota-value" id="quotaCount">0</div>
-    </div>
-  </div>
-
-  <div class="quota-history">
-    <div class="quota-label">RECENT ALLOCATIONS</div>
-    <div id="quotaHistory"></div>
-  </div>
-</section>
-
-
-<section class="section">
-    <div class="section-head">
-      <div>
-        <div class="section-title">Usage over time</div>
-      </div>
-      <div class="section-desc">
-        Daily token usage across models available through Zorix Code.
-      </div>
-    </div>
-
-    <div class="usage-layout">
-      <div id="chart" class="chart"></div>
-
-      <div class="terminal" id="terminal"></div>
+    <div class="stat">
+      <div class="stat-label">PUBLIC QUOTA</div>
+      <div class="stat-value" id="publicQuota">0</div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-head">
-      <div class="section-title">Models</div>
-      <div class="section-desc">
-        Ranked by reported single-day token usage.
+  <div class="grid">
+    <section>
+      <div class="panel-title">Available models</div>
+      <div class="panel-desc">
+        Current models available in Zorix Code. Tap a model to open a detailed
+        sheet with provider information, pricing, about text and usage chart.
       </div>
-    </div>
 
-    <div class="table-wrap">
-      <table class="model-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>MODEL</th>
-            <th>DAILY TOKENS</th>
-            <th>PROVIDER</th>
-            <th>SHARE</th>
-            <th>STATUS</th>
-          </tr>
-        </thead>
-        <tbody id="modelRows"></tbody>
-      </table>
-    </div>
+      <div class="models-card">
+        <div class="sheet-head">
+          <div class="sheet-title">Choose model</div>
+          <div class="sheet-sub">Select a model for this chat</div>
+        </div>
+        <div id="modelList"></div>
+      </div>
 
-    <div id="empty" class="empty" hidden>
-      No usage has been recorded yet.
-    </div>
-  </section>
+      <div class="selector-preview">
+        <div class="panel-desc" style="margin-bottom:12px">
+          Embedded selector SVG preview
+        </div>
+        <img src="./model-selector.svg" alt="Model selector SVG preview">
+      </div>
+    </section>
 
+    <aside class="right-stack">
+      <div class="usage-card">
+        <div class="panel-title" style="font-size:24px">Daily token usage</div>
+        <div class="small-muted">Reported single-day usage volume</div>
+        <div class="big-num" id="usageBig">0</div>
+        <div class="mini-chart" id="miniChart"></div>
+
+        <div class="rank-list" id="rankList"></div>
+      </div>
+
+      <div class="quota-card">
+        <div class="panel-title" style="font-size:24px">Public quota</div>
+        <div class="small-muted">
+          Official public capacity issued via edu plus / eduadd plus.
+        </div>
+        <div class="big-num" id="quotaBig">0</div>
+        <div class="small-muted" id="quotaUpdated">No updates yet</div>
+      </div>
+    </aside>
+  </div>
 </main>
 
-<footer>
-  <span>Zorix Code</span>
-  <span id="updated"></span>
-</footer>
+<div class="modal" id="modelModal">
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="sheet-inner">
+      <div class="sheet-top">
+        <div>
+          <div class="modal-title" id="modalName">Model</div>
+          <div class="badges" id="modalBadges"></div>
+        </div>
+        <button class="close-btn" id="modalClose">×</button>
+      </div>
 
-<script src="usage.js?v=1788102337"></script>
-<script src="quota.js?v=1788102636"></script>
+      <div class="metrics">
+        <div class="metric-box">
+          <div class="metric-k">Context</div>
+          <div class="metric-v" id="modalContext">—</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-k">Input</div>
+          <div class="metric-v" id="modalInput">—</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-k">Output</div>
+          <div class="metric-v" id="modalOutput">—</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>About</h3>
+        <p id="modalAbout"></p>
+      </div>
+
+      <div class="section">
+        <div class="chart-title">Tokens (last 30 days)</div>
+        <div class="chart-sub" id="modalTokenHeadline"></div>
+        <div class="detail-chart" id="detailChart"></div>
+        <div class="detail-legend">
+          <div><span class="dot" id="legendDot" style="background:#1e90ff"></span>Prompt / usage trend</div>
+          <div id="legendValue">0</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="action-btn" href="https://doc.zorix.it/" target="_blank" rel="noopener">View model page ↗</a>
+        <button class="action-btn primary">Get API Key</button>
+      </div>
+
+      <div class="footer">Zorix Code · model detail sheet</div>
+    </div>
+  </div>
+</div>
+
+<script src="./usage.js?v=4"></script>
+<script src="./quota.js?v=4"></script>
+<script src="./models.js?v=1"></script>
 
 <script>
-const data = window.ZORIX_CODE_USAGE || {
-  totals:{calls:0,tokens:0,models:0},
-  models:[],
-  daily:[]
-};
+const usage = window.ZORIX_CODE_USAGE || { models: [] };
+const quota = window.ZORIX_PUBLIC_QUOTA || { current: 0, updatedAt: null };
+const models = window.ZORIX_MODEL_DETAILS || [];
 
-const fmt = n => new Intl.NumberFormat('en-US',{
-  notation:n >= 1000000 ? 'compact':'standard',
-  maximumFractionDigits:1
-}).format(n || 0);
-
-function render(){
-  const family=document.getElementById('family').value;
-
-  let models=data.models.filter(m =>
-    family==='all' || m.family===family
-  );
-
-  models.sort((a,b)=>(b.tokens||0)-(a.tokens||0));
-
-  const calls=models.reduce((a,m)=>a+(m.tokens||0),0);
-  const tokens=models.reduce((a,m)=>a+(m.tokens||0),0);
-  const active=models.filter(m=>(m.tokens||0)>0).length;
-
-  document.getElementById('totalCalls').textContent=fmt(calls);
-  document.getElementById('totalTokens').textContent=fmt(tokens);
-  document.getElementById('activeModels').textContent=fmt(active);
-
-  const max=Math.max(...models.map(x=>x.tokens||0),1);
-
-  document.getElementById('modelRows').innerHTML=models.map((m,i)=>`
-    <tr>
-      <td class="rank number">${String(i+1).padStart(2,'0')}</td>
-
-      <td>
-        <div class="model-name">${m.name}</div>
-        <div class="model-family">${m.family}</div>
-      </td>
-
-      <td class="number">${fmt(m.tokens)}</td>
-
-      <td>${m.provider || "—"}</td>
-
-      <td style="min-width:150px">
-        <span class="number">${tokens ? (((m.tokens||0)/tokens)*100).toFixed(2) : "0.00"}%</span>
-        <div class="progress">
-          <div style="width:${tokens ? ((m.tokens||0)/tokens)*100 : 0}%"></div>
-        </div>
-      </td>
-
-      <td>
-        <span class="status">${m.status}</span>
-      </td>
-    </tr>
-  `).join('');
-
-  document.getElementById('empty').hidden=models.some(x=>(x.tokens||0)>0);
-
-  renderChart();
-  renderTerminal(models,calls);
+function fmtCompact(n){
+  return new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    maximumFractionDigits: 2
+  }).format(n || 0);
 }
-
-function renderChart(){
-  const daily=data.daily || [];
-  const chart=document.getElementById('chart');
-
-  if(!daily.length){
-    chart.innerHTML=
-      '<div style="margin:auto;color:#77736c;font-size:13px">No time-series data yet</div>';
-    return;
-  }
-
-  const max=Math.max(...daily.map(x=>x.tokens||0),1);
-
-  chart.innerHTML=daily.map(d=>`
-    <div class="bar-wrap" title="${d.date}: ${fmt(d.tokens||0)} tokens">
-      <div class="bar" style="height:${Math.max(1,((d.tokens||0)/max)*100)}%"></div>
+function fmtFull(n){
+  return new Intl.NumberFormat('en-US').format(n || 0);
+}
+function colorForProvider(provider){
+  const map = {
+    "Zorix":"#6D28D9",
+    "OpenAI":"#8B5CF6",
+    "DeepSeek":"#3B82F6",
+    "Tencent":"#22C55E",
+    "Xiaomi":"#F59E0B"
+  };
+  return map[provider] || "#777";
+}
+function buildBars(container, arr, color){
+  const max = Math.max(...arr, 1);
+  container.innerHTML = arr.map(v => `
+    <div class="bar-wrap">
+      <div class="bar" style="height:${Math.max(2, (v/max)*100)}%; background:${color || '#1e90ff'}"></div>
     </div>
   `).join('');
 }
 
-function renderTerminal(models,total){
-  const top=models[0];
+function renderTop(){
+  const sorted = [...models].sort((a,b) => b.dailyTokens - a.dailyTokens);
+  const total = sorted.reduce((a,m) => a + (m.dailyTokens || 0), 0);
 
-  document.getElementById('terminal').innerHTML=`
-    <span class="prompt">$</span> zorix usage --summary<br><br>
+  document.getElementById('totalTokens').textContent = fmtCompact(total);
+  document.getElementById('activeModels').textContent = String(sorted.length);
+  document.getElementById('topModel').textContent = sorted[0] ? sorted[0].providerShort : "—";
+  document.getElementById('publicQuota').textContent = fmtCompact(quota.current || 0);
 
-    <span class="dim">scope</span>
-    &nbsp;&nbsp;&nbsp;zorix-code<br>
+  document.getElementById('usageBig').textContent = fmtCompact(total) + " tokens";
+  document.getElementById('quotaBig').textContent = fmtCompact(quota.current || 0) + " tokens";
+  document.getElementById('quotaUpdated').textContent =
+    quota.updatedAt
+    ? ("Updated " + new Date(quota.updatedAt).toLocaleString())
+    : "No updates yet";
 
-    <span class="dim">tokens/day</span>
-    &nbsp;&nbsp;&nbsp;${fmt(total)}<br>
-
-    <span class="dim">models</span>
-    &nbsp;&nbsp;${models.length}<br>
-
-    <span class="dim">top</span>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${top ? top.name : 'none'}<br><br>
-
-    <span class="prompt">></span>
-    ${total ? 'usage data loaded' : 'waiting for usage data'}
-  `;
+  buildBars(
+    document.getElementById('miniChart'),
+    sorted.map(x => x.dailyTokens / 1000000000),
+    "#1e90ff"
+  );
 }
 
-const families=[...new Set(data.models.map(m=>m.family))];
+function renderList(){
+  const list = document.getElementById('modelList');
+  const sorted = [...models].sort((a,b) => b.dailyTokens - a.dailyTokens);
 
-document.getElementById('family').innerHTML +=
-  families.map(x=>`<option value="${x}">${x}</option>`).join('');
-
-document.getElementById('family').addEventListener('change',render);
-document.getElementById('range').addEventListener('change',render);
-
-document.getElementById('updated').textContent =
-  data.updatedAt
-  ? 'Updated ' + new Date(data.updatedAt).toLocaleString()
-  : '';
-
-
-function quotaFormat(n){
-  n = Number(n || 0);
-
-  if(n >= 1e15) return (n/1e15).toFixed(2).replace(/\.00$/,'') + 'P';
-  if(n >= 1e12) return (n/1e12).toFixed(2).replace(/\.00$/,'') + 'T';
-  if(n >= 1e9)  return (n/1e9).toFixed(2).replace(/\.00$/,'') + 'B';
-  if(n >= 1e6)  return (n/1e6).toFixed(2).replace(/\.00$/,'') + 'M';
-  if(n >= 1e3)  return (n/1e3).toFixed(2).replace(/\.00$/,'') + 'K';
-
-  return String(n);
-}
-
-function renderPublicQuota(){
-  const q = window.ZORIX_PUBLIC_QUOTA || {
-    current:0,
-    totalIssued:0,
-    history:[]
-  };
-
-  document.getElementById('quotaCurrent').textContent =
-    quotaFormat(q.current) + ' tokens';
-
-  document.getElementById('quotaIssued').textContent =
-    quotaFormat(q.totalIssued);
-
-  document.getElementById('quotaCount').textContent =
-    (q.history || []).length;
-
-  const history = (q.history || []).slice(0,8);
-
-  document.getElementById('quotaHistory').innerHTML =
-    history.length
-    ? history.map(x => `
-      <div class="quota-entry">
-        <div class="quota-entry-type">
-          ${x.type === 'official' ? 'Official issue' : 'Realtime add'}
-        </div>
-
-        <div class="quota-entry-amount">
-          +${quotaFormat(x.amount)}
-        </div>
-
-        <div class="quota-entry-note">
-          ${x.note || ''}
-        </div>
-
-        <div class="number" style="color:var(--muted)">
-          ${new Date(x.timestamp).toLocaleString()}
-        </div>
+  list.innerHTML = sorted.map(m => `
+    <div class="model-row" data-id="${m.id}">
+      <div class="provider-badge" style="background:${colorForProvider(m.provider)}">
+        ${m.providerShort}
       </div>
-    `).join('')
-    : '<div class="empty">No public quota has been issued yet.</div>';
+      <div class="model-main">
+        <div class="model-name">${m.name}</div>
+        <div class="model-meta">${m.provider} · ${m.status}</div>
+      </div>
+      <div class="model-tokens">${fmtCompact(m.dailyTokens)}</div>
+      <div class="chev">›</div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.model-row').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.getAttribute('data-id');
+      const model = models.find(x => x.id === id);
+      if(model) openModal(model);
+    });
+  });
 }
 
-render();
-renderPublicQuota();
+function renderRank(){
+  const sorted = [...models].sort((a,b) => b.dailyTokens - a.dailyTokens);
+  const total = sorted.reduce((a,m) => a + m.dailyTokens, 0);
+  document.getElementById('rankList').innerHTML = sorted.map((m, i) => `
+    <div class="rank-item">
+      <div class="provider-badge" style="background:${colorForProvider(m.provider)};width:24px;height:24px;font-size:12px">
+        ${i+1}
+      </div>
+      <div>
+        <div class="rank-name">${m.name}</div>
+        <div class="small-muted">${((m.dailyTokens/total)*100).toFixed(2)}% share</div>
+      </div>
+      <div class="rank-token">${fmtCompact(m.dailyTokens)}</div>
+    </div>
+  `).join('');
+}
+
+function openModal(model){
+  document.getElementById('modalName').textContent = model.name;
+  document.getElementById('modalContext').textContent = model.context;
+  document.getElementById('modalInput').textContent = model.inputPrice;
+  document.getElementById('modalOutput').textContent = model.outputPrice;
+  document.getElementById('modalAbout').textContent = model.about;
+  document.getElementById('modalTokenHeadline').textContent =
+    fmtCompact(model.dailyTokens) + " tokens · last 30 days";
+  document.getElementById('legendDot').style.background = model.color || "#1e90ff";
+  document.getElementById('legendValue').textContent = fmtCompact(model.dailyTokens);
+
+  document.getElementById('modalBadges').innerHTML = [
+    model.provider,
+    ...(model.badges || [])
+  ].map(x => `<span class="badge">${x}</span>`).join('');
+
+  buildBars(
+    document.getElementById('detailChart'),
+    model.chart || [],
+    model.color || "#1e90ff"
+  );
+
+  document.getElementById('modelModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('modelModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modelModal').addEventListener('click', e => {
+  if(e.target.id === 'modelModal') closeModal();
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeModal();
+});
+
+renderTop();
+renderList();
+renderRank();
 </script>
 
 </body>
