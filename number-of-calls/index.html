@@ -1344,6 +1344,458 @@ h1{
   }
 }
 
+
+/* =========================================================
+   OPENAI-STYLE USAGE FILTERS
+   ========================================================= */
+
+.usage-filter-bar{
+  margin-top:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:12px;
+}
+
+.usage-model-picker{
+  position:relative;
+  width:min(340px,100%);
+}
+
+.usage-filter-trigger{
+  width:100%;
+  min-height:56px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:18px;
+
+  padding:10px 14px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:#fff;
+
+  cursor:pointer;
+  text-align:left;
+
+  transition:
+    background .12s ease,
+    border-color .12s ease,
+    box-shadow .12s ease;
+}
+
+.usage-filter-trigger:hover{
+  background:#fafaf8;
+}
+
+.usage-filter-trigger.open{
+  border-color:#a9a9a4;
+
+  box-shadow:
+    0 0 0 3px rgba(0,0,0,.035);
+}
+
+.usage-filter-trigger-copy{
+  min-width:0;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:3px;
+}
+
+.usage-filter-label{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.usage-filter-value{
+  max-width:255px;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size:14px;
+}
+
+.usage-filter-chevron{
+  color:var(--muted);
+  font-size:12px;
+
+  transition:transform .14s ease;
+}
+
+.usage-filter-trigger.open
+.usage-filter-chevron{
+  transform:rotate(180deg);
+}
+
+
+/* popup */
+
+.usage-picker-popover{
+  position:absolute;
+
+  z-index:70;
+
+  left:0;
+  top:calc(100% + 8px);
+
+  width:min(390px,calc(100vw - 36px));
+
+  overflow:hidden;
+
+  border:1px solid #d8d8d4;
+  border-radius:16px;
+
+  background:#fff;
+
+  box-shadow:
+    0 18px 48px rgba(0,0,0,.13);
+}
+
+.usage-picker-popover[hidden]{
+  display:none !important;
+}
+
+.usage-picker-search-wrap{
+  position:relative;
+
+  padding:12px;
+  border-bottom:1px solid #ecece9;
+}
+
+.usage-picker-search-icon{
+  position:absolute;
+
+  left:24px;
+  top:50%;
+
+  width:17px;
+  height:17px;
+
+  transform:translateY(-50%);
+
+  color:#777772;
+}
+
+.usage-picker-search{
+  width:100%;
+  height:43px;
+
+  padding:
+    0
+    13px
+    0
+    38px;
+
+  border:1px solid #deded9;
+  border-radius:10px;
+
+  outline:none;
+
+  background:#fafaf8;
+
+  font:inherit;
+  font-size:13px;
+}
+
+.usage-picker-search:focus{
+  border-color:#aaa;
+
+  background:#fff;
+
+  box-shadow:
+    0 0 0 3px rgba(0,0,0,.035);
+}
+
+.usage-picker-actions{
+  min-height:43px;
+
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+
+  gap:7px;
+
+  padding:6px 10px;
+
+  border-bottom:1px solid #efefec;
+}
+
+.usage-picker-actions button{
+  padding:7px 9px;
+
+  border:0;
+  border-radius:7px;
+
+  background:transparent;
+
+  color:#555551;
+
+  font-size:11px;
+  cursor:pointer;
+}
+
+.usage-picker-actions button:hover{
+  background:#f3f3f0;
+}
+
+.usage-picker-list{
+  max-height:365px;
+
+  overflow:auto;
+
+  padding:6px;
+}
+
+.usage-picker-option{
+  width:100%;
+
+  display:grid;
+
+  grid-template-columns:
+    34px
+    minmax(0,1fr)
+    22px;
+
+  gap:10px;
+  align-items:center;
+
+  padding:9px 10px;
+
+  border:0;
+  border-radius:10px;
+
+  background:#fff;
+
+  cursor:pointer;
+  text-align:left;
+}
+
+.usage-picker-option:hover{
+  background:#f7f7f4;
+}
+
+.usage-picker-option.selected{
+  background:#f4f4f1;
+}
+
+.usage-picker-logo{
+  width:32px;
+  height:32px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid #e4e4e0;
+  border-radius:8px;
+
+  background:#fff;
+}
+
+.usage-picker-logo img{
+  width:23px;
+  height:23px;
+
+  object-fit:contain;
+}
+
+.usage-picker-logo-fallback{
+  color:#555;
+  font-size:11px;
+}
+
+.usage-picker-copy{
+  min-width:0;
+}
+
+.usage-picker-name{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size:13px;
+}
+
+.usage-picker-provider{
+  margin-top:3px;
+
+  color:var(--muted);
+  font-size:10px;
+}
+
+.usage-picker-check{
+  width:18px;
+  height:18px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid #cfcfca;
+  border-radius:5px;
+
+  color:#fff;
+
+  font-size:11px;
+}
+
+.usage-picker-option.selected
+.usage-picker-check{
+  border-color:#111;
+  background:#111;
+}
+
+.usage-picker-footer{
+  min-height:54px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:14px;
+
+  padding:8px 11px;
+
+  border-top:1px solid #e9e9e6;
+
+  background:#fafaf8;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.usage-picker-done{
+  min-width:67px;
+  height:35px;
+
+  border:0;
+  border-radius:9px;
+
+  background:#111;
+  color:#fff;
+
+  font-size:12px;
+  cursor:pointer;
+}
+
+
+/* range segmented control */
+
+.usage-range-picker{
+  display:inline-flex;
+
+  padding:3px;
+
+  border:1px solid var(--line);
+  border-radius:12px;
+
+  background:#f5f5f2;
+}
+
+.usage-range-picker button{
+  min-height:42px;
+
+  padding:0 14px;
+
+  border:0;
+  border-radius:9px;
+
+  background:transparent;
+
+  color:#656560;
+
+  font-size:12px;
+  white-space:nowrap;
+
+  cursor:pointer;
+
+  transition:
+    background .12s ease,
+    color .12s ease,
+    box-shadow .12s ease;
+}
+
+.usage-range-picker button:hover{
+  color:#111;
+}
+
+.usage-range-picker button.active{
+  background:#fff;
+  color:#111;
+
+  box-shadow:
+    0 1px 4px rgba(0,0,0,.09);
+}
+
+
+/* empty state */
+
+.usage-empty{
+  padding:32px 0;
+
+  border-top:1px solid var(--line);
+
+  color:var(--muted);
+  font-size:13px;
+}
+
+
+/* dynamic range meta */
+
+.usage-range-meta{
+  display:inline-flex;
+
+  margin-left:7px;
+
+  padding:3px 6px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  vertical-align:2px;
+}
+
+
+@media(max-width:740px){
+
+  .usage-filter-bar{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .usage-model-picker{
+    width:100%;
+  }
+
+  .usage-range-picker{
+    width:100%;
+  }
+
+  .usage-range-picker button{
+    flex:1;
+
+    min-width:0;
+    padding:0 6px;
+  }
+
+  .usage-picker-popover{
+    width:100%;
+  }
+
+}
+
 </style>
 </head>
 
@@ -1441,12 +1893,12 @@ h1{
 
 <section class="summary">
   <div class="summary-cell">
-    <div class="summary-label">Daily token volume</div>
+    <div class="summary-label" id="usageTotalLabel">Daily token volume</div>
     <div class="summary-value" id="dailyTotal">0</div>
   </div>
 
   <div class="summary-cell">
-    <div class="summary-label">Available models</div>
+    <div class="summary-label" id="usageModelCountLabel">Selected models</div>
     <div class="summary-value" id="modelCount">0</div>
   </div>
 
@@ -1497,11 +1949,9 @@ h1{
 </div>
 
 
-  <div class="x-axis">
-    <span>Day 1</span>
-    <span>Day 10</span>
-    <span>Day 20</span>
-    <span>Day 30</span>
+  <div class="x-axis" id="usageXAxis">
+    <span>—</span>
+    <span>—</span>
   </div>
 
   <div class="chart-note">
@@ -1510,16 +1960,163 @@ h1{
   </div>
 <div class="chart-legend" id="chartLegend"></div>
 
-  <div class="controls">
-    <select class="control" id="modelFilter">
-      <option value="all">All models</option>
-    </select>
+  <div class="usage-filter-bar">
 
-    <select class="control">
-      <option>This month</option>
-      <option>This week</option>
-      <option>Today</option>
-    </select>
+    <div class="usage-model-picker" id="usageModelPicker">
+
+      <button
+        class="usage-filter-trigger"
+        id="usageModelTrigger"
+        type="button"
+        aria-expanded="false"
+      >
+
+        <span class="usage-filter-trigger-copy">
+
+          <span class="usage-filter-label">
+            Models
+          </span>
+
+          <span
+            class="usage-filter-value"
+            id="usageModelTriggerValue"
+          >
+            All models
+          </span>
+
+        </span>
+
+        <span class="usage-filter-chevron">
+          ▾
+        </span>
+
+      </button>
+
+
+      <div
+        class="usage-picker-popover"
+        id="usageModelPopover"
+        hidden
+      >
+
+        <div class="usage-picker-search-wrap">
+
+          <svg
+            class="usage-picker-search-icon"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+          >
+            <circle
+              cx="8.5"
+              cy="8.5"
+              r="5.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M12.7 12.7L17 17"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <input
+            class="usage-picker-search"
+            id="usageModelSearch"
+            type="search"
+            placeholder="Search models"
+            autocomplete="off"
+          >
+
+        </div>
+
+
+        <div class="usage-picker-actions">
+
+          <button
+            type="button"
+            id="usageSelectAll"
+          >
+            Select all
+          </button>
+
+          <button
+            type="button"
+            id="usageClearModels"
+          >
+            Clear
+          </button>
+
+        </div>
+
+
+        <div
+          class="usage-picker-list"
+          id="usageModelList"
+        ></div>
+
+
+        <div class="usage-picker-footer">
+
+          <span id="usageSelectedCount">
+            0 selected
+          </span>
+
+          <button
+            class="usage-picker-done"
+            id="usageModelDone"
+            type="button"
+          >
+            Done
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="usage-range-picker"
+      role="group"
+      aria-label="Usage period"
+    >
+
+      <button
+        type="button"
+        data-usage-range="today"
+      >
+        Today
+      </button>
+
+      <button
+        type="button"
+        data-usage-range="7d"
+      >
+        This week
+      </button>
+
+      <button
+        class="active"
+        type="button"
+        data-usage-range="30d"
+      >
+        30 days
+      </button>
+
+      <button
+        type="button"
+        data-usage-range="all"
+      >
+        All
+      </button>
+
+    </div>
+
   </div>
 
   <div class="models" id="models"></div>
@@ -1633,9 +2230,9 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788117825"></script>
-<script src="./usage.js?v=1788117825"></script>
-<script src="./quota.js?v=1788117825"></script>
+<script src="./models.js?v=1788119031"></script>
+<script src="./usage.js?v=1788119031"></script>
+<script src="./quota.js?v=1788119031"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -1658,6 +2255,10 @@ const shades = [
 
 let logMode=false;
 let filter='all';
+let usageRange='30d';
+let selectedModelIds=new Set(
+  modelsData.map(model=>model.id)
+);
 let currentPopoverDay=null;
 
 function fmt(n){
@@ -1673,57 +2274,495 @@ function fmt(n){
 }
 
 function visibleModels(){
-  return filter==='all'
-    ? modelsData
-    : modelsData.filter(x=>x.id===filter);
+
+  return modelsData.filter(
+    model=>
+      selectedModelIds.has(
+        model.id
+      )
+  );
+
 }
 
-function renderSummary(){
-  const total=modelsData.reduce((a,m)=>a+(m.dailyTokens||0),0);
+function maxHistoryDays(){
 
-  document.getElementById('dailyTotal').textContent=fmt(total);
-  document.getElementById('modelCount').textContent=modelsData.length;
-  document.getElementById('publicQuota').textContent=fmt(quota.current);
-  document.getElementById('quotaCurrent').textContent=fmt(quota.current)+' tokens';
-  document.getElementById('quotaIssued').textContent=fmt(quota.totalIssued);
-  document.getElementById('quotaCount').textContent=(quota.history||[]).length;
+  return Math.max(
+    1,
+    ...modelsData.map(
+      model=>
+        Array.isArray(model.chart)
+          ? model.chart.length
+          : 0
+    )
+  );
+
+}
+
+
+function rangeDays(){
+
+  const available =
+    maxHistoryDays();
+
+
+  if(usageRange==='today'){
+    return 1;
+  }
+
+  if(usageRange==='7d'){
+    return Math.min(
+      7,
+      available
+    );
+  }
+
+  if(usageRange==='30d'){
+    return Math.min(
+      30,
+      available
+    );
+  }
+
+  return available;
+
+}
+
+
+function rangeIndices(){
+
+  const available =
+    maxHistoryDays();
+
+  const count =
+    rangeDays();
+
+  const start =
+    Math.max(
+      0,
+      available-count
+    );
+
+  return Array.from(
+    {
+      length:count
+    },
+    (_,index)=>
+      start+index
+  );
+
+}
+
+
+function periodLabel(){
+
+  if(usageRange==='today'){
+    return 'Today';
+  }
+
+  if(usageRange==='7d'){
+    return 'This week';
+  }
+
+  if(usageRange==='30d'){
+    return '30-day trend';
+  }
+
+  return 'All available trend';
+}
+
+
+function periodShort(){
+
+  if(usageRange==='today'){
+    return 'today';
+  }
+
+  if(usageRange==='7d'){
+    return 'this week';
+  }
+
+  if(usageRange==='30d'){
+    return '30 days';
+  }
+
+  return 'available history';
+}
+
+
+function periodMeasuredLabel(){
+
+  if(usageRange==='today'){
+    return 'current daily';
+  }
+
+  if(usageRange==='7d'){
+    return 'weekly / rate-equivalent';
+  }
+
+  return 'trend-estimated';
+}
+
+
+/*
+ * Raw trend period total.
+ */
+function trendPeriodTotal(model){
+
+  return rangeIndices()
+    .reduce(
+      (sum,index)=>
+        sum +
+        pointValue(
+          model,
+          index
+        ),
+      0
+    );
+
+}
+
+
+/*
+ * Period total shown in summary/list.
+ *
+ * Today:
+ *   current measured daily value.
+ *
+ * Week:
+ *   exact weeklyTokens when supplied;
+ *   otherwise current daily rate × 7.
+ *
+ * 30d / all:
+ *   sum of the available normalized trend.
+ */
+function rangeModelTokens(model){
+
+  if(usageRange==='today'){
+
+    return Number(
+      model.dailyTokens || 0
+    );
+
+  }
+
+
+  if(usageRange==='7d'){
+
+    if(
+      model.weeklyTokens !== undefined &&
+      model.weeklyTokens !== null
+    ){
+
+      return Number(
+        model.weeklyTokens || 0
+      );
+
+    }
+
+    return Number(
+      model.dailyTokens || 0
+    ) * 7;
+
+  }
+
+
+  return trendPeriodTotal(
+    model
+  );
+
+}
+
+
+/*
+ * For the seven-day chart, scale the seven visible
+ * trend points so their sum matches weeklyTokens
+ * when an explicit weekly value exists.
+ */
+function rangePointValue(
+  model,
+  day
+){
+
+  const raw =
+    pointValue(
+      model,
+      day
+    );
+
+
+  if(usageRange!=='7d'){
+    return raw;
+  }
+
+
+  const indices =
+    rangeIndices();
+
+
+  const rawTotal =
+    indices.reduce(
+      (sum,index)=>
+        sum +
+        pointValue(
+          model,
+          index
+        ),
+      0
+    );
+
+
+  const target =
+    rangeModelTokens(
+      model
+    );
+
+
+  if(
+    rawTotal<=0 ||
+    target<=0
+  ){
+    return raw;
+  }
+
+
+  return raw *
+    target /
+    rawTotal;
+
+}
+
+
+function renderSummary(){
+
+  const source =
+    visibleModels();
+
+
+  const total =
+    source.reduce(
+      (sum,model)=>
+        sum +
+        rangeModelTokens(
+          model
+        ),
+      0
+    );
+
+
+  const totalLabel =
+    document.getElementById(
+      'usageTotalLabel'
+    );
+
+
+  if(totalLabel){
+
+    totalLabel.innerHTML=
+      `${periodLabel()} token volume
+       <span class="usage-range-meta">
+         ${periodMeasuredLabel()}
+       </span>`;
+
+  }
+
+
+  document
+    .getElementById(
+      'dailyTotal'
+    )
+    .textContent=
+      fmt(total);
+
+
+  document
+    .getElementById(
+      'modelCount'
+    )
+    .textContent=
+      source.length;
+
+
+  document
+    .getElementById(
+      'publicQuota'
+    )
+    .textContent=
+      fmt(quota.current);
+
+
+  document
+    .getElementById(
+      'quotaCurrent'
+    )
+    .textContent=
+      fmt(quota.current)
+      +
+      ' tokens';
+
+
+  document
+    .getElementById(
+      'quotaIssued'
+    )
+    .textContent=
+      fmt(
+        quota.totalIssued
+      );
+
+
+  document
+    .getElementById(
+      'quotaCount'
+    )
+    .textContent=
+      (
+        quota.history ||
+        []
+      ).length;
+
 }
 
 function renderModels(){
-  const sorted=[...modelsData].sort((a,b)=>b.dailyTokens-a.dailyTokens);
-  const total=sorted.reduce((a,m)=>a+m.dailyTokens,0);
 
-  document.getElementById('models').innerHTML=sorted.map((m,i)=>{
-    const share=total ? (m.dailyTokens/total)*100 : 0;
+  const source =
+    visibleModels();
 
-    return `
-      <a class="model-row"
-         href="./model.html?id=${encodeURIComponent(m.id)}">
 
-        <div class="rank">${i+1}.</div>
+  const sorted =
+    [...source].sort(
+      (a,b)=>
+        rangeModelTokens(b) -
+        rangeModelTokens(a)
+    );
 
-        <div class="model-logo">
-          ${
-            m.logo
-            ? `<img src="${m.logo}" alt="">`
-            : `<div class="fallback">${m.provider.slice(0,1)}</div>`
-          }
-        </div>
 
-        <div>
-          <div class="model-name">${m.name}</div>
-          <div class="provider">by <span>${m.provider.toLowerCase()}</span></div>
-        </div>
+  const total =
+    sorted.reduce(
+      (sum,model)=>
+        sum +
+        rangeModelTokens(model),
+      0
+    );
 
-        <div class="usage">
-          <div class="tokens">${fmt(m.dailyTokens)} tokens</div>
-          <div class="share">${share.toFixed(2)}% share</div>
-        </div>
 
-        <div class="arrow">↗</div>
-      </a>
+  const target =
+    document.getElementById(
+      'models'
+    );
+
+
+  if(!sorted.length){
+
+    target.innerHTML=`
+      <div class="usage-empty">
+        No models selected.
+        Open the Models picker to select one or more models.
+      </div>
     `;
-  }).join('');
+
+    return;
+  }
+
+
+  target.innerHTML=
+    sorted.map(
+      (model,index)=>{
+
+        const value =
+          rangeModelTokens(
+            model
+          );
+
+
+        const share =
+          total
+            ? value/total*100
+            : 0;
+
+
+        return `
+          <a
+            class="model-row"
+            href="./model.html?id=${
+              encodeURIComponent(
+                model.id
+              )
+            }"
+          >
+
+            <div class="rank">
+              ${index+1}.
+            </div>
+
+            <div class="model-logo">
+
+              ${
+                model.logo
+                  ? `
+                    <img
+                      src="${model.logo}"
+                      alt=""
+                    >
+                  `
+                  : `
+                    <div class="fallback">
+                      ${
+                        model.provider
+                          .slice(0,1)
+                      }
+                    </div>
+                  `
+              }
+
+            </div>
+
+
+            <div>
+
+              <div class="model-name">
+                ${model.name}
+              </div>
+
+              <div class="provider">
+
+                by
+
+                <span>
+                  ${
+                    model.provider
+                      .toLowerCase()
+                  }
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="usage">
+
+              <div class="tokens">
+                ${fmt(value)} tokens
+              </div>
+
+              <div class="share">
+                ${share.toFixed(2)}% share
+                · ${periodShort()}
+              </div>
+
+            </div>
+
+
+            <div class="arrow">
+              ↗
+            </div>
+
+          </a>
+        `;
+
+      }
+    ).join('');
+
 }
 
 function pointValue(model,day){
@@ -1882,115 +2921,902 @@ function renderLegend(){
   `).join("");
 }
 
+function renderXAxis(
+  indices
+){
+
+  const axis =
+    document.getElementById(
+      'usageXAxis'
+    );
+
+
+  if(!axis){
+    return;
+  }
+
+
+  if(!indices.length){
+
+    axis.innerHTML='';
+    return;
+  }
+
+
+  const first =
+    indices[0];
+
+  const last =
+    indices[
+      indices.length-1
+    ];
+
+
+  if(indices.length===1){
+
+    axis.innerHTML=`
+      <span>
+        ${dayLabel(first)}
+      </span>
+
+      <span>
+        Today
+      </span>
+    `;
+
+    return;
+  }
+
+
+  if(indices.length<=7){
+
+    const middle =
+      indices[
+        Math.floor(
+          indices.length/2
+        )
+      ];
+
+
+    axis.innerHTML=`
+      <span>
+        ${dayLabel(first)}
+      </span>
+
+      <span>
+        ${dayLabel(middle)}
+      </span>
+
+      <span>
+        ${dayLabel(last)}
+      </span>
+    `;
+
+    return;
+  }
+
+
+  const p1 =
+    indices[
+      Math.floor(
+        (
+          indices.length-1
+        ) /
+        3
+      )
+    ];
+
+  const p2 =
+    indices[
+      Math.floor(
+        (
+          indices.length-1
+        ) *
+        2 /
+        3
+      )
+    ];
+
+
+  axis.innerHTML=`
+    <span>${dayLabel(first)}</span>
+    <span>${dayLabel(p1)}</span>
+    <span>${dayLabel(p2)}</span>
+    <span>${dayLabel(last)}</span>
+  `;
+
+}
+
+
 function renderChart(){
-  const source=visibleModels();
+
+  const source =
+    visibleModels();
+
+
   renderLegend();
-  const days=30;
+
+
+  const indices =
+    rangeIndices();
+
 
   hidePopover();
 
-  const totals=[];
 
-  for(let d=0;d<days;d++){
-    totals.push(
-      source.reduce((sum,m)=>sum+pointValue(m,d),0)
+  const plot =
+    document.getElementById(
+      'plot'
     );
-  }
 
-  const transformed=totals.map(v=>
-    logMode ? Math.log10(Math.max(v,1)) : v
+
+  plot
+    .querySelectorAll(
+      '.stack'
+    )
+    .forEach(
+      element=>
+        element.remove()
+    );
+
+
+  renderXAxis(
+    indices
   );
 
-  const max=Math.max(...transformed,1);
 
-  const plot=document.getElementById('plot');
+  if(!source.length){
 
-  plot.querySelectorAll('.stack').forEach(x=>x.remove());
+    document
+      .getElementById(
+        'yAxis'
+      )
+      .innerHTML='';
 
-  for(let d=0;d<days;d++){
-    const stack=document.createElement('div');
-    stack.className='stack';
-
-    const values=source.map(m=>pointValue(m,d));
-    const totalRaw=values.reduce((a,b)=>a+b,0);
-
-    source.forEach((m,i)=>{
-      const raw=values[i];
-
-      let fraction;
-
-      if(logMode){
-        const full=Math.log10(Math.max(totalRaw,1));
-        fraction=full
-          ? Math.log10(Math.max(raw,1))/max
-          : 0;
-      }else{
-        fraction=max
-          ? raw/max
-          : 0;
-      }
-
-      const seg=document.createElement('div');
-      seg.className='segment';
-      seg.style.height=(fraction*100)+'%';
-      seg.style.background=m.color || shades[i%shades.length];
-
-      stack.appendChild(seg);
-    });
-
-    stack.title=`${dayLabel(d)} · ${fmt(totalRaw)} tokens`;
-
-    stack.addEventListener('click', (e) => {
-      e.stopPropagation();
-
-      if(currentPopoverDay === d){
-        hidePopover();
-        return;
-      }
-
-      showPopover(d, stack, source);
-    });
-
-    if(window.innerWidth > 900){
-      stack.addEventListener('mouseenter', () => {
-        showPopover(d, stack, source);
-      });
-    }
-
-    plot.appendChild(stack);
+    return;
   }
 
-  const axis=document.getElementById('yAxis');
+
+  const totals =
+    indices.map(
+      day=>
+        source.reduce(
+          (sum,model)=>
+            sum +
+            rangePointValue(
+              model,
+              day
+            ),
+          0
+        )
+    );
+
+
+  const transformed =
+    totals.map(
+      value=>
+        logMode
+          ? Math.log10(
+              Math.max(
+                value,
+                1
+              )
+            )
+          : value
+    );
+
+
+  const max =
+    Math.max(
+      ...transformed,
+      1
+    );
+
+
+  indices.forEach(
+    day=>{
+
+      const stack =
+        document.createElement(
+          'div'
+        );
+
+      stack.className='stack';
+
+
+      const values =
+        source.map(
+          model=>
+            rangePointValue(
+              model,
+              day
+            )
+        );
+
+
+      const totalRaw =
+        values.reduce(
+          (a,b)=>a+b,
+          0
+        );
+
+
+      source.forEach(
+        (model,index)=>{
+
+          const raw =
+            values[index];
+
+
+          let fraction=0;
+
+
+          if(logMode){
+
+            /*
+             * Log mode visualizes transformed contribution.
+             * This is a visual scale only.
+             */
+            fraction =
+              max
+                ? Math.log10(
+                    Math.max(
+                      raw,
+                      1
+                    )
+                  ) /
+                  max
+                : 0;
+
+          }else{
+
+            fraction =
+              max
+                ? raw/max
+                : 0;
+
+          }
+
+
+          const segment =
+            document.createElement(
+              'div'
+            );
+
+          segment.className=
+            'segment';
+
+
+          segment.style.height=
+            Math.max(
+              0,
+              fraction*100
+            )
+            +
+            '%';
+
+
+          segment.style.background=
+            model.color ||
+            shades[
+              index %
+              shades.length
+            ];
+
+
+          stack.appendChild(
+            segment
+          );
+
+        }
+      );
+
+
+      stack.title=
+        `${dayLabel(day)} · ${fmt(totalRaw)} tokens`;
+
+
+      stack.addEventListener(
+        'click',
+        event=>{
+
+          event.stopPropagation();
+
+
+          if(
+            currentPopoverDay ===
+            day
+          ){
+
+            hidePopover();
+            return;
+
+          }
+
+
+          showPopover(
+            day,
+            stack,
+            source
+          );
+
+        }
+      );
+
+
+      if(
+        window.innerWidth >
+        900
+      ){
+
+        stack.addEventListener(
+          'mouseenter',
+          ()=>{
+
+            showPopover(
+              day,
+              stack,
+              source
+            );
+
+          }
+        );
+
+      }
+
+
+      plot.appendChild(
+        stack
+      );
+
+    }
+  );
+
+
+  const axis =
+    document.getElementById(
+      'yAxis'
+    );
+
 
   if(logMode){
-    axis.innerHTML=`
-      <span class="y-tick" style="bottom:25%">25%</span>
-      <span class="y-tick" style="bottom:50%">50%</span>
-      <span class="y-tick" style="bottom:75%">75%</span>
-      <span class="y-tick" style="bottom:100%">Log</span>
-    `;
-  }else{
-    const rawMax=Math.max(...totals,1);
 
     axis.innerHTML=`
-      <span class="y-tick" style="bottom:25%">${fmt(rawMax*.25)}</span>
-      <span class="y-tick" style="bottom:50%">${fmt(rawMax*.50)}</span>
-      <span class="y-tick" style="bottom:75%">${fmt(rawMax*.75)}</span>
-      <span class="y-tick" style="bottom:100%">${fmt(rawMax)}</span>
+      <span
+        class="y-tick"
+        style="bottom:25%"
+      >
+        25%
+      </span>
+
+      <span
+        class="y-tick"
+        style="bottom:50%"
+      >
+        50%
+      </span>
+
+      <span
+        class="y-tick"
+        style="bottom:75%"
+      >
+        75%
+      </span>
+
+      <span
+        class="y-tick"
+        style="bottom:100%"
+      >
+        Log
+      </span>
     `;
+
+  }else{
+
+    const rawMax =
+      Math.max(
+        ...totals,
+        1
+      );
+
+
+    axis.innerHTML=`
+      <span
+        class="y-tick"
+        style="bottom:25%"
+      >
+        ${fmt(rawMax*.25)}
+      </span>
+
+      <span
+        class="y-tick"
+        style="bottom:50%"
+      >
+        ${fmt(rawMax*.50)}
+      </span>
+
+      <span
+        class="y-tick"
+        style="bottom:75%"
+      >
+        ${fmt(rawMax*.75)}
+      </span>
+
+      <span
+        class="y-tick"
+        style="bottom:100%"
+      >
+        ${fmt(rawMax)}
+      </span>
+    `;
+
   }
+
+
+  const note =
+    document.querySelector(
+      '.chart-note'
+    );
+
+
+  if(note){
+
+    if(usageRange==='today'){
+
+      note.textContent=
+        'Today uses the current recorded daily token value for each selected model.';
+
+    }else if(usageRange==='7d'){
+
+      note.textContent=
+        'This week uses recorded weeklyTokens where supplied; models without a weekly measurement use the current daily rate × 7. The visible daily shape follows the available normalized trend.';
+
+    }else{
+
+      note.textContent=
+        '30-day and All views use the available normalized model trend because measured per-model historical daily records are not yet available for the full period.';
+
+    }
+
+  }
+
+}
+const usageModelTrigger =
+  document.getElementById(
+    'usageModelTrigger'
+  );
+
+const usageModelPopover =
+  document.getElementById(
+    'usageModelPopover'
+  );
+
+const usageModelList =
+  document.getElementById(
+    'usageModelList'
+  );
+
+const usageModelSearch =
+  document.getElementById(
+    'usageModelSearch'
+  );
+
+const usageModelTriggerValue =
+  document.getElementById(
+    'usageModelTriggerValue'
+  );
+
+const usageSelectedCount =
+  document.getElementById(
+    'usageSelectedCount'
+  );
+
+
+function pickerLogo(model){
+
+  if(model.logo){
+
+    return `
+      <img
+        src="${model.logo}"
+        alt=""
+      >
+    `;
+
+  }
+
+
+  return `
+    <span class="usage-picker-logo-fallback">
+      ${
+        model.provider
+          .slice(0,1)
+      }
+    </span>
+  `;
+
 }
 
-const filterSelect=document.getElementById('modelFilter');
 
-filterSelect.innerHTML += modelsData
-  .map(m=>`<option value="${m.id}">${m.name}</option>`)
-  .join('');
+function updateUsagePickerSummary(){
 
-filterSelect.addEventListener('change',()=>{
-  filter=filterSelect.value;
+  const count =
+    selectedModelIds.size;
+
+
+  if(count===modelsData.length){
+
+    usageModelTriggerValue
+      .textContent=
+        'All models';
+
+  }else if(count===0){
+
+    usageModelTriggerValue
+      .textContent=
+        'No models';
+
+  }else if(count===1){
+
+    const selected =
+      modelsData.find(
+        model=>
+          selectedModelIds.has(
+            model.id
+          )
+      );
+
+
+    usageModelTriggerValue
+      .textContent=
+        selected
+          ? selected.name
+          : '1 model';
+
+  }else{
+
+    usageModelTriggerValue
+      .textContent=
+        `${count} models`;
+
+  }
+
+
+  usageSelectedCount.textContent=
+    `${count} selected`;
+
+}
+
+
+function refreshUsage(){
+
+  renderSummary();
+  renderModels();
   renderChart();
-});
+  updateUsagePickerSummary();
+
+}
+
+
+function renderUsageModelPicker(){
+
+  const query =
+    String(
+      usageModelSearch.value ||
+      ''
+    )
+    .trim()
+    .toLowerCase();
+
+
+  const rows =
+    modelsData
+      .filter(
+        model=>
+          !query ||
+          model.name
+            .toLowerCase()
+            .includes(query) ||
+          model.provider
+            .toLowerCase()
+            .includes(query) ||
+          model.id
+            .toLowerCase()
+            .includes(query)
+      )
+      .sort(
+        (a,b)=>
+          b.dailyTokens -
+          a.dailyTokens
+      );
+
+
+  usageModelList.innerHTML=
+    rows.map(
+      model=>{
+
+        const selected =
+          selectedModelIds.has(
+            model.id
+          );
+
+
+        return `
+          <button
+            class="usage-picker-option ${
+              selected
+                ? 'selected'
+                : ''
+            }"
+            type="button"
+            data-model-id="${model.id}"
+          >
+
+            <span class="usage-picker-logo">
+              ${pickerLogo(model)}
+            </span>
+
+            <span class="usage-picker-copy">
+
+              <span class="usage-picker-name">
+                ${model.name}
+              </span>
+
+              <span class="usage-picker-provider">
+                ${model.provider}
+              </span>
+
+            </span>
+
+
+            <span class="usage-picker-check">
+              ${selected ? '✓' : ''}
+            </span>
+
+          </button>
+        `;
+
+      }
+    ).join('');
+
+
+  usageModelList
+    .querySelectorAll(
+      '[data-model-id]'
+    )
+    .forEach(
+      button=>{
+
+        button.addEventListener(
+          'click',
+          ()=>{
+
+            const id =
+              button.dataset.modelId;
+
+
+            if(
+              selectedModelIds.has(id)
+            ){
+
+              selectedModelIds.delete(id);
+
+            }else{
+
+              selectedModelIds.add(id);
+
+            }
+
+
+            renderUsageModelPicker();
+            refreshUsage();
+
+          }
+        );
+
+      }
+    );
+
+
+  updateUsagePickerSummary();
+
+}
+
+
+function openUsageModelPicker(){
+
+  usageModelPopover.hidden=false;
+
+  usageModelTrigger
+    .classList.add(
+      'open'
+    );
+
+  usageModelTrigger
+    .setAttribute(
+      'aria-expanded',
+      'true'
+    );
+
+
+  requestAnimationFrame(
+    ()=>{
+
+      usageModelSearch.focus();
+
+    }
+  );
+
+}
+
+
+function closeUsageModelPicker(){
+
+  usageModelPopover.hidden=true;
+
+  usageModelTrigger
+    .classList.remove(
+      'open'
+    );
+
+  usageModelTrigger
+    .setAttribute(
+      'aria-expanded',
+      'false'
+    );
+
+}
+
+
+usageModelTrigger.addEventListener(
+  'click',
+  event=>{
+
+    event.stopPropagation();
+
+
+    if(
+      usageModelPopover.hidden
+    ){
+
+      openUsageModelPicker();
+
+    }else{
+
+      closeUsageModelPicker();
+
+    }
+
+  }
+);
+
+
+usageModelPopover.addEventListener(
+  'click',
+  event=>
+    event.stopPropagation()
+);
+
+
+usageModelSearch.addEventListener(
+  'input',
+  renderUsageModelPicker
+);
+
+
+document
+  .getElementById(
+    'usageSelectAll'
+  )
+  .addEventListener(
+    'click',
+    ()=>{
+
+      selectedModelIds=
+        new Set(
+          modelsData.map(
+            model=>model.id
+          )
+        );
+
+
+      renderUsageModelPicker();
+      refreshUsage();
+
+    }
+  );
+
+
+document
+  .getElementById(
+    'usageClearModels'
+  )
+  .addEventListener(
+    'click',
+    ()=>{
+
+      selectedModelIds.clear();
+
+      renderUsageModelPicker();
+      refreshUsage();
+
+    }
+  );
+
+
+document
+  .getElementById(
+    'usageModelDone'
+  )
+  .addEventListener(
+    'click',
+    closeUsageModelPicker
+  );
+
+
+document.addEventListener(
+  'click',
+  event=>{
+
+    if(
+      !event.target.closest(
+        '#usageModelPicker'
+      )
+    ){
+
+      closeUsageModelPicker();
+
+    }
+
+  }
+);
+
+
+/* ---------------------------------------------------------
+   real range filter
+   --------------------------------------------------------- */
+
+document
+  .querySelectorAll(
+    '[data-usage-range]'
+  )
+  .forEach(
+    button=>{
+
+      button.addEventListener(
+        'click',
+        ()=>{
+
+          usageRange =
+            button.dataset
+              .usageRange;
+
+
+          document
+            .querySelectorAll(
+              '[data-usage-range]'
+            )
+            .forEach(
+              item=>
+                item.classList
+                  .toggle(
+                    'active',
+                    item===button
+                  )
+            );
+
+
+          refreshUsage();
+
+        }
+      );
+
+    }
+  );
+
+
+renderUsageModelPicker();
+
 
 document.getElementById('linearBtn').onclick=()=>{
   logMode=false;
