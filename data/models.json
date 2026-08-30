@@ -96,5 +96,21 @@
     "tokens": 242857,
     "weeklyTokens": 1700000,
     "status": "Available"
+  },
+  {
+    "name": "Kimi K2.7 Code",
+    "provider": "Moonshot AI",
+    "family": "Kimi K2.7",
+    "tokens": 157142857143,
+    "weeklyTokens": 1100000000000,
+    "status": "Available"
+  },
+  {
+    "name": "Kimi K3",
+    "provider": "Moonshot AI",
+    "family": "Kimi K3",
+    "tokens": 300000,
+    "weeklyTokens": 2100000,
+    "status": "Available"
   }
 ]

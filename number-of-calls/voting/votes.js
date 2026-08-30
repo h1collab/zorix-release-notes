@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-08-30T20:50:02+02:00",
+  "updatedAt": "2026-08-30T21:19:29+02:00",
   "metric": "community_votes",
   "models": [
     {
@@ -54,6 +54,16 @@ window.ZORIX_COMMUNITY_VOTES = {
     },
     {
       "id": "gpt-56-sol-max",
+      "votes": 0,
+      "uncertainty": 0
+    },
+    {
+      "id": "kimi-k27-code",
+      "votes": 0,
+      "uncertainty": 0
+    },
+    {
+      "id": "kimi-k3",
       "votes": 0,
       "uncertainty": 0
     },

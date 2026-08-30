@@ -334,6 +334,134 @@ window.ZORIX_EXTERNAL_BENCHMARKS = {
         unit:"%"
       }
     ]
-  }
+  },
+
+
+  "kimi-k27-code": {
+    label: "Moonshot AI published evaluation",
+    sourceType: "provider",
+    note: "Moonshot reports these K2.7 Code results using Kimi Code CLI with thinking enabled, temperature 1.0, top-p 0.95 and a 262,144-token context. Kimi Code Bench v2 and Kimi Claw 24/7 Bench are Moonshot in-house benchmarks; Program Bench, MLS Bench Lite, MCP Atlas and MCP Mark are external benchmark suites evaluated by Moonshot.",
+    source: "https://www.kimi.ai/resources/kimi-k2-7-code",
+    evaluations: [
+      {
+        benchmark: "Kimi Code Bench v2",
+        value: "62.0",
+        unit: "%",
+        detail: "Moonshot in-house coding benchmark."
+      },
+      {
+        benchmark: "Program Bench",
+        value: "53.6",
+        unit: "%"
+      },
+      {
+        benchmark: "MLS Bench Lite",
+        value: "35.1",
+        unit: "%"
+      },
+      {
+        benchmark: "Kimi Claw 24/7 Bench",
+        value: "46.9",
+        unit: "%",
+        detail: "Moonshot in-house agentic benchmark."
+      },
+      {
+        benchmark: "MCP Atlas",
+        value: "76.0",
+        unit: "%"
+      },
+      {
+        benchmark: "MCP Mark Verified",
+        value: "81.1",
+        unit: "%"
+      },
+      {
+        benchmark: "DuelLab GameBench 2",
+        value: "37.3",
+        unit: "score",
+        detail: "Third-party DuelLab result; partial 1/3 evidence, tested Aug 5, 2026."
+      }
+    ]
+  },
+
+  "kimi-k3": {
+    label: "Moonshot AI Kimi K3 evaluation",
+    sourceType: "provider",
+    note: "Moonshot reports Kimi K3 with reasoning_effort=max, temperature 1.0 and top-p 1.0. Harnesses vary by benchmark, so these results should not be treated as a single universal score.",
+    source: "https://github.com/MoonshotAI/Kimi-K3",
+    evaluations: [
+      {
+        benchmark: "Terminal-Bench 2.1",
+        value: "88.3",
+        unit: "%"
+      },
+      {
+        benchmark: "FrontierSWE",
+        value: "81.2",
+        unit: "%"
+      },
+      {
+        benchmark: "DeepSWE",
+        value: "67.5",
+        unit: "%"
+      },
+      {
+        benchmark: "ProgramBench",
+        value: "77.8",
+        unit: "%"
+      },
+      {
+        benchmark: "MLS-Bench-Lite",
+        value: "48.3",
+        unit: "%"
+      },
+      {
+        benchmark: "Kimi Code Bench 2.0",
+        value: "72.9",
+        unit: "%"
+      },
+      {
+        benchmark: "BrowseComp",
+        value: "91.2",
+        unit: "%",
+        detail: "Also listed as Verified by evals.report."
+      },
+      {
+        benchmark: "DeepSearchQA",
+        value: "95.0",
+        unit: "F1"
+      },
+      {
+        benchmark: "MCPMark-Verified",
+        value: "94.5",
+        unit: "%"
+      },
+      {
+        benchmark: "MCP-Atlas",
+        value: "84.2",
+        unit: "%"
+      },
+      {
+        benchmark: "GPQA Diamond",
+        value: "93.5",
+        unit: "%"
+      },
+      {
+        benchmark: "MMMU-Pro",
+        value: "81.6",
+        unit: "%"
+      },
+      {
+        benchmark: "OmniDocBench",
+        value: "91.1",
+        unit: "%"
+      },
+      {
+        benchmark: "GDPval-AA v2",
+        value: "1686",
+        unit: "Elo"
+      }
+    ]
+  },
 
 };

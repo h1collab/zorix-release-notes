@@ -269,6 +269,43 @@ window.ZORIX_MODEL_BENCHMARKS = {
   "deepseek-v4-flash-0731": {
     terminal: 87.7,
     swe: 88.5
-  }
+  },
+
+
+  "kimi-k27-code": {
+    slug: "moonshot/kimi-k2.7-code",
+    tagline: "Open agentic coding model for long-horizon software engineering.",
+    description: "Kimi K2.7 Code is Moonshot AI's open-source coding-focused agentic model. It targets longer software-engineering trajectories such as repository work, multi-file implementation, debugging and autonomous tool use. Moonshot reports that K2.7 Code improves both coding and agent performance over K2.6 while using roughly 30% fewer thinking tokens.",
+    highlights: [
+      "1T total parameters",
+      "32B active parameters",
+      "256K-token context",
+      "MoE with MLA attention",
+      "Open-source coding and agentic model"
+    ],
+    modalities: ["Text", "Code", "Image", "Tools"],
+    released: "Aug 12, 2026",
+    availability: "Available",
+    weights: "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+    benchmarkNote: "Moonshot-published benchmark results are shown separately from Zorix internal evaluations."
+  },
+
+  "kimi-k3": {
+    slug: "moonshot/kimi-k3",
+    tagline: "Moonshot AI's 2.8T open frontier model for coding and agents.",
+    description: "Kimi K3 is Moonshot AI's flagship open frontier model. Its 2.8T-parameter mixture-of-experts architecture activates approximately 104B parameters per token and combines KDA with gated MLA attention. It supports up to a 1M-token context window and is positioned for coding, long-running agents, reasoning, research and multimodal workflows.",
+    highlights: [
+      "2.8T total parameters",
+      "104B active parameters",
+      "1M-token context",
+      "KDA + Gated MLA",
+      "Text and image multimodality"
+    ],
+    modalities: ["Text", "Code", "Image", "Tools"],
+    released: "Jul 2026",
+    availability: "Available",
+    weights: "https://huggingface.co/moonshotai/Kimi-K3",
+    benchmarkNote: "K3 benchmark results use Moonshot's published max-reasoning configuration unless otherwise noted."
+  },
 
 };

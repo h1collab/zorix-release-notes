@@ -322,5 +322,72 @@ window.ZORIX_MODEL_DETAILS = [
       230,238,247,256,265,274,283,292,301,310,
       320,315,311,307,303,299,295,291,287,283
     ]
-  }
+  },
+
+  {
+    id: "kimi-k27-code",
+    name: "Kimi K2.7 Code",
+    provider: "Moonshot AI",
+    logo: "/number-of-calls/assets/logos/kimi.svg",
+    family: "Kimi K2.7",
+    status: "Available",
+
+    dailyTokens: 157142857143,
+    weeklyTokens: 1100000000000,
+
+    context: "256K tokens",
+    parameters: "1T",
+    activeParameters: "32B",
+    architecture: "MoE · MLA",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#1783FF",
+
+    about: "Kimi K2.7 Code is Moonshot AI's open-source coding-focused agentic model. It is designed for long-horizon software engineering, coding workflows and autonomous tool use. Zorix Code recorded 1.1T tokens per week for this model.",
+
+    docs: "https://www.kimi.ai/resources/kimi-k2-7-code",
+
+    chart: [
+      72,76,81,86,90,95,101,108,116,123,
+      130,137,143,149,153,157,154,151,148,145,
+      149,152,155,157,158,158,157,157,157,157
+    ]
+  },
+
+  {
+    id: "kimi-k3",
+    name: "Kimi K3",
+    provider: "Moonshot AI",
+    logo: "/number-of-calls/assets/logos/kimi.svg",
+    family: "Kimi K3",
+    status: "Available",
+
+    dailyTokens: 300000,
+    weeklyTokens: 2100000,
+
+    context: "1M tokens",
+    parameters: "2.8T",
+    activeParameters: "104B",
+    architecture: "MoE · KDA + Gated MLA",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#1783FF",
+
+    about: "Kimi K3 is Moonshot AI's flagship open model for coding, reasoning, agentic work and multimodal tasks. It uses a 2.8T-parameter mixture-of-experts architecture with approximately 104B active parameters and supports up to a 1M-token context window. Zorix Code recorded 2.1M tokens per week.",
+
+    docs: "https://www.kimi.ai/blog/kimi-k3",
+
+    chart: [
+      170,176,182,188,195,202,210,218,227,236,
+      245,254,263,272,281,289,295,300,298,296,
+      294,292,291,293,296,298,300,300,300,300
+    ]
+  },
+
 ];

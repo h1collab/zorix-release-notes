@@ -65,6 +65,16 @@
       "id": "gpt-56-sol-max",
       "votes": 0,
       "uncertainty": 0
+    },
+    {
+      "id": "kimi-k27-code",
+      "votes": 0,
+      "uncertainty": 0
+    },
+    {
+      "id": "kimi-k3",
+      "votes": 0,
+      "uncertainty": 0
     }
   ],
   "history": [

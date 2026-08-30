@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T20:50:02+02:00",
+  "updatedAt": "2026-08-30T21:19:28+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -8,7 +8,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Nex Coder 3.8",
       "tokens": 3220000000000,
       "status": "Preview",
-      "share": 49.0064
+      "share": 47.8618
     },
     {
       "name": "DeepSeek V4 Flash 0731",
@@ -16,7 +16,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "DeepSeek V4",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 18.2633
+      "share": 17.8367
     },
     {
       "name": "Claude Opus 5",
@@ -24,7 +24,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Claude Opus",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 18.2633
+      "share": 17.8367
     },
     {
       "name": "Tencent Hy3",
@@ -32,7 +32,16 @@ window.ZORIX_CODE_USAGE = {
       "family": "Hy3",
       "tokens": 950000000000,
       "status": "Available",
-      "share": 14.4584
+      "share": 14.1207
+    },
+    {
+      "name": "Kimi K2.7 Code",
+      "provider": "Moonshot AI",
+      "family": "Kimi K2.7",
+      "tokens": 157142857143,
+      "weeklyTokens": 1100000000000,
+      "status": "Available",
+      "share": 2.3358
     },
     {
       "name": "Gemini 3.7 Flash",
@@ -41,7 +50,7 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 414285714,
       "weeklyTokens": 2900000000,
       "status": "Available",
-      "share": 0.0063
+      "share": 0.0062
     },
     {
       "name": "Xiaomi MiMo-V2.5",
@@ -49,7 +58,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "MiMo",
       "tokens": 150000000,
       "status": "Available",
-      "share": 0.0023
+      "share": 0.0022
     },
     {
       "name": "GLM 5.2 Max",
@@ -90,6 +99,15 @@ window.ZORIX_CODE_USAGE = {
       "name": "Claude Fable 5 (with fallback max)",
       "provider": "Anthropic",
       "family": "Claude Fable",
+      "tokens": 300000,
+      "weeklyTokens": 2100000,
+      "status": "Available",
+      "share": 0.0
+    },
+    {
+      "name": "Kimi K3",
+      "provider": "Moonshot AI",
+      "family": "Kimi K3",
       "tokens": 300000,
       "weeklyTokens": 2100000,
       "status": "Available",
