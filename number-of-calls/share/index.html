@@ -1,0 +1,2508 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  http-equiv="Cache-Control"
+  content="no-cache, no-store, must-revalidate"
+>
+
+<meta
+  http-equiv="Pragma"
+  content="no-cache"
+>
+
+<meta
+  http-equiv="Expires"
+  content="0"
+>
+
+<title>Zorix Metron · Public charts</title>
+
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#6b6b67;
+  --line:#deded9;
+  --soft:#f6f6f3;
+  --max:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+button,
+select{
+  font:inherit;
+  color:inherit;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
+/* ============================================================
+   NAV
+   ============================================================ */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  border-bottom:1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(15px);
+}
+
+.nav{
+  max-width:var(--max);
+  height:66px;
+
+  margin:auto;
+  padding:0 24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand img{
+  width:31px;
+  height:31px;
+}
+
+.brand strong{
+  font-size:19px;
+  font-weight:600;
+
+  letter-spacing:-.04em;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:22px;
+
+  color:#444;
+
+  font-size:13px;
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    70px
+    24px
+    120px;
+}
+
+.hero{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(250px,390px);
+
+  gap:55px;
+
+  align-items:end;
+
+  padding-bottom:53px;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.eyebrow{
+  margin-bottom:15px;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+h1{
+  margin:0;
+
+  font-size:
+    clamp(54px,8vw,105px);
+
+  line-height:.91;
+
+  font-weight:500;
+
+  letter-spacing:-.065em;
+}
+
+.hero-copy{
+  margin:0 0 6px;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.55;
+}
+
+
+/* ============================================================
+   CONTROLS
+   ============================================================ */
+
+.controls{
+  padding:
+    31px
+    0;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr))
+    auto;
+
+  gap:10px;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.control-group{
+  min-width:0;
+}
+
+.control-label{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.control-select{
+  width:100%;
+  min-height:46px;
+
+  padding:
+    0
+    38px
+    0
+    13px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:11px;
+
+  background:#fff;
+
+  outline:none;
+
+  font-size:13px;
+}
+
+.control-select:focus{
+  border-color:#aaa;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(0,0,0,.035);
+}
+
+.download-wrap{
+  display:flex;
+  align-items:flex-end;
+}
+
+.download{
+  min-height:46px;
+
+  padding:
+    0
+    18px;
+
+  border:0;
+  border-radius:11px;
+
+  background:#111;
+  color:#fff;
+
+  cursor:pointer;
+
+  font-size:13px;
+}
+
+.download:hover{
+  opacity:.86;
+}
+
+
+/* ============================================================
+   PREVIEW
+   ============================================================ */
+
+.preview-section{
+  padding-top:42px;
+}
+
+.preview-head{
+  display:flex;
+
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:25px;
+
+  margin-bottom:18px;
+}
+
+.preview-title{
+  font-size:29px;
+
+  letter-spacing:-.045em;
+}
+
+.preview-meta{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.canvas-shell{
+  width:100%;
+
+  overflow:auto;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:16px;
+
+  background:#efefec;
+
+  padding:14px;
+}
+
+canvas{
+  display:block;
+
+  width:100%;
+  height:auto;
+
+  min-width:680px;
+
+  background:#faf9f5;
+
+  border-radius:7px;
+}
+
+.note{
+  max-width:760px;
+
+  margin-top:20px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media(max-width:760px){
+
+  .nav{
+    padding:
+      0
+      18px;
+  }
+
+  .nav-right{
+    display:none;
+  }
+
+  main{
+    padding:
+      43px
+      18px
+      90px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .controls{
+    grid-template-columns:1fr;
+  }
+
+  .download-wrap{
+    margin-top:4px;
+  }
+
+  .download{
+    width:100%;
+  }
+
+  .preview-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="../"
+    >
+
+      <img
+        src="../assets/logos/zorix.svg?v=1788119772"
+        alt=""
+      >
+
+      <strong>
+        Zorix Metron
+      </strong>
+
+    </a>
+
+
+    <div class="nav-right">
+
+      <a href="../">
+        Usage
+      </a>
+
+      <a href="../#benchmarks">
+        Benchmarks
+      </a>
+
+      <a href="../voting/">
+        Voting
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+
+<main>
+
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Public media
+    </div>
+
+    <h1>
+      Metron<br>
+      charts
+    </h1>
+
+  </div>
+
+
+  <p class="hero-copy">
+
+    Generate publication-ready PNG charts
+    from Zorix Metron model usage and
+    benchmark data.
+
+    Images are rendered locally in your browser
+    at 1600 × 900 and can be saved directly.
+
+  </p>
+
+</section>
+
+
+
+<section class="controls">
+
+
+  <div class="control-group">
+
+    <label class="control-label">
+      Report
+    </label>
+
+    <select
+      class="control-select"
+      id="reportType"
+    >
+
+      <option value="usage">
+        Usage index
+      </option>
+
+      <option value="ranking">
+        Usage ranking
+      </option>
+
+      <option value="benchmark">
+        Benchmark ranking
+      </option>
+
+    </select>
+
+  </div>
+
+
+
+  <div class="control-group">
+
+    <label class="control-label">
+      Metric
+    </label>
+
+    <select
+      class="control-select"
+      id="metricSelect"
+    ></select>
+
+  </div>
+
+
+
+  <div class="control-group">
+
+    <label class="control-label">
+      Models
+    </label>
+
+    <select
+      class="control-select"
+      id="modelCountSelect"
+    >
+
+      <option value="5">
+        Top 5
+      </option>
+
+      <option
+        value="8"
+        selected
+      >
+        Top 8
+      </option>
+
+      <option value="10">
+        Top 10
+      </option>
+
+      <option value="12">
+        Top 12
+      </option>
+
+    </select>
+
+  </div>
+
+
+
+  <div class="download-wrap">
+
+    <button
+      class="download"
+      id="downloadButton"
+      type="button"
+    >
+      Download PNG
+    </button>
+
+  </div>
+
+
+</section>
+
+
+
+<section class="preview-section">
+
+  <div class="preview-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Preview
+      </div>
+
+      <div class="preview-title">
+        1600 × 900
+      </div>
+
+    </div>
+
+
+    <div
+      class="preview-meta"
+      id="previewMeta"
+    >
+      Zorix Metron
+    </div>
+
+  </div>
+
+
+  <div class="canvas-shell">
+
+    <canvas
+      id="chartCanvas"
+      width="1600"
+      height="900"
+    ></canvas>
+
+  </div>
+
+
+  <div class="note">
+
+    Usage figures represent token traffic recorded
+    inside Zorix Code / Metron and should not be
+    interpreted as global provider usage.
+
+    Benchmark cards retain their source framing;
+    Zorix internal preview evaluations are not
+    represented as independent third-party submissions.
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<script src="../models.js?v=1788119772"></script>
+<script src="../usage.js?v=1788119772"></script>
+<script src="../benchmarks.js?v=1788119772"></script>
+
+
+<script>
+
+/* ============================================================
+   DATA
+   ============================================================ */
+
+const models =
+  window.ZORIX_MODEL_DETAILS || [];
+
+const usageData =
+  window.ZORIX_CODE_USAGE || {
+    models:[],
+    daily:[]
+  };
+
+const benchmarkData =
+  window.ZORIX_BENCHMARKS || {
+    metrics:[],
+    scores:{}
+  };
+
+
+const canvas =
+  document.getElementById(
+    "chartCanvas"
+  );
+
+const ctx =
+  canvas.getContext(
+    "2d"
+  );
+
+
+const W=1600;
+const H=900;
+
+
+const reportType =
+  document.getElementById(
+    "reportType"
+  );
+
+const metricSelect =
+  document.getElementById(
+    "metricSelect"
+  );
+
+const modelCountSelect =
+  document.getElementById(
+    "modelCountSelect"
+  );
+
+
+const colors=[
+  "#0F766E",
+  "#2563EB",
+  "#D97706",
+  "#7C3AED",
+  "#DC2626",
+  "#0891B2",
+  "#4F46E5",
+  "#65A30D",
+  "#C2410C",
+  "#475569",
+  "#DB2777",
+  "#0284C7"
+];
+
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+function fmt(n){
+
+  n=Number(n || 0);
+
+  if(n>=1e15)
+    return (
+      n/1e15
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"P";
+
+  if(n>=1e12)
+    return (
+      n/1e12
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"T";
+
+  if(n>=1e9)
+    return (
+      n/1e9
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"B";
+
+  if(n>=1e6)
+    return (
+      n/1e6
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"M";
+
+  if(n>=1e3)
+    return (
+      n/1e3
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"K";
+
+  return String(
+    Math.round(n)
+  );
+}
+
+
+function todayText(){
+
+  return new Intl.DateTimeFormat(
+    "en-US",
+    {
+      year:"numeric",
+      month:"short",
+      day:"numeric"
+    }
+  ).format(
+    new Date()
+  );
+
+}
+
+
+function cleanLogoSrc(src){
+
+  if(!src){
+    return null;
+  }
+
+
+  const base =
+    src.split("?")[0];
+
+
+  if(
+    base.startsWith(
+      "/number-of-calls/"
+    )
+  ){
+
+    return ".." +
+      base.replace(
+        "/number-of-calls",
+        ""
+      );
+
+  }
+
+
+  if(
+    base.startsWith("./")
+  ){
+
+    return "../" +
+      base.slice(2);
+
+  }
+
+
+  return base;
+}
+
+
+function roundedRect(
+  x,
+  y,
+  w,
+  h,
+  r
+){
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    x,
+    y,
+    w,
+    h,
+    r
+  );
+
+}
+
+
+function text(
+  value,
+  x,
+  y,
+  size,
+  weight="400",
+  color="#111",
+  align="left"
+){
+
+  ctx.save();
+
+  ctx.font=
+    `${weight} ${size}px Inter, Arial, sans-serif`;
+
+  ctx.fillStyle=color;
+
+  ctx.textAlign=align;
+
+  ctx.textBaseline=
+    "alphabetic";
+
+  ctx.fillText(
+    String(value),
+    x,
+    y
+  );
+
+  ctx.restore();
+
+}
+
+
+function monoText(
+  value,
+  x,
+  y,
+  size,
+  color="#65655f",
+  align="left"
+){
+
+  ctx.save();
+
+  ctx.font=
+    `${size}px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`;
+
+  ctx.fillStyle=color;
+
+  ctx.textAlign=align;
+
+  ctx.fillText(
+    String(value),
+    x,
+    y
+  );
+
+  ctx.restore();
+
+}
+
+
+function wrapText(
+  value,
+  x,
+  y,
+  maxWidth,
+  lineHeight,
+  size=21,
+  color="#696965"
+){
+
+  ctx.save();
+
+  ctx.font=
+    `400 ${size}px Inter, Arial, sans-serif`;
+
+  ctx.fillStyle=color;
+
+  const words =
+    String(value)
+      .split(/\s+/);
+
+  let line="";
+  let yy=y;
+
+
+  words.forEach(
+    word=>{
+
+      const test =
+        line
+          ? line+" "+word
+          : word;
+
+      if(
+        ctx.measureText(test)
+          .width >
+        maxWidth
+      ){
+
+        ctx.fillText(
+          line,
+          x,
+          yy
+        );
+
+        line=word;
+
+        yy+=lineHeight;
+
+      }else{
+
+        line=test;
+
+      }
+
+    }
+  );
+
+
+  if(line){
+
+    ctx.fillText(
+      line,
+      x,
+      yy
+    );
+
+  }
+
+  ctx.restore();
+
+  return yy;
+}
+
+
+function loadImage(src){
+
+  return new Promise(
+    resolve=>{
+
+      if(!src){
+        resolve(null);
+        return;
+      }
+
+
+      const img =
+        new Image();
+
+
+      img.onload=
+        ()=>resolve(img);
+
+
+      img.onerror=
+        ()=>resolve(null);
+
+
+      img.src=src;
+
+    }
+  );
+
+}
+
+
+function getModel(id){
+
+  return models.find(
+    model=>
+      model.id===id
+  ) || null;
+
+}
+
+
+function chartValue(
+  model,
+  index
+){
+
+  const arr =
+    model.chart || [];
+
+
+  if(!arr.length){
+    return 0;
+  }
+
+
+  const actualIndex =
+    Math.max(
+      0,
+      Math.min(
+        arr.length-1,
+        index
+      )
+    );
+
+
+  const raw =
+    Number(
+      arr[actualIndex] || 0
+    );
+
+
+  const last =
+    Number(
+      arr[
+        arr.length-1
+      ] || 1
+    );
+
+
+  return last
+    ? raw/last *
+      Number(
+        model.dailyTokens || 0
+      )
+    : 0;
+
+}
+
+
+function topModels(
+  count,
+  mode="daily"
+){
+
+  return [...models]
+    .sort(
+      (a,b)=>{
+
+        const av =
+          mode==="weekly"
+            ? Number(
+                a.weeklyTokens ??
+                a.dailyTokens*7
+              )
+            : Number(
+                a.dailyTokens || 0
+              );
+
+
+        const bv =
+          mode==="weekly"
+            ? Number(
+                b.weeklyTokens ??
+                b.dailyTokens*7
+              )
+            : Number(
+                b.dailyTokens || 0
+              );
+
+
+        return bv-av;
+
+      }
+    )
+    .slice(
+      0,
+      count
+    );
+
+}
+
+
+/* ============================================================
+   BRAND HEADER
+   ============================================================ */
+
+async function drawBrand(){
+
+  const logo =
+    await loadImage(
+      "../assets/logos/zorix.svg"
+    );
+
+
+  if(logo){
+
+    ctx.drawImage(
+      logo,
+      1250,
+      62,
+      72,
+      72
+    );
+
+  }
+
+
+  text(
+    "Zorix",
+    1338,
+    103,
+    40,
+    "600",
+    "#111"
+  );
+
+
+  text(
+    "METRON",
+    1338,
+    132,
+    17,
+    "500",
+    "#555"
+  );
+
+}
+
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+function clearCanvas(){
+
+  ctx.clearRect(
+    0,
+    0,
+    W,
+    H
+  );
+
+
+  ctx.fillStyle=
+    "#FAF9F5";
+
+  ctx.fillRect(
+    0,
+    0,
+    W,
+    H
+  );
+
+}
+
+
+/* ============================================================
+   USAGE INDEX
+   Similar information hierarchy to publication usage reports,
+   but rendered in Zorix Metron visual language.
+   ============================================================ */
+
+async function drawUsageIndex(){
+
+  clearCanvas();
+
+  await drawBrand();
+
+
+  const count =
+    Number(
+      modelCountSelect.value
+    );
+
+
+  const selected =
+    topModels(
+      Math.min(
+        count,
+        8
+      )
+    );
+
+
+  text(
+    "Metron Usage Index",
+    90,
+    115,
+    63,
+    "600"
+  );
+
+
+  text(
+    "Relative daily token activity by model",
+    90,
+    160,
+    28,
+    "400",
+    "#555"
+  );
+
+
+  wrapText(
+    "Each model is indexed to its own first visible trend point (=100), allowing relative movement to be compared without implying that models have equal absolute traffic.",
+    90,
+    202,
+    1030,
+    30,
+    20,
+    "#6A6A65"
+  );
+
+
+  const left=130;
+  const right=1480;
+  const top=285;
+  const bottom=705;
+
+  const plotW=
+    right-left;
+
+  const plotH=
+    bottom-top;
+
+
+  const normalized =
+    selected.map(
+      model=>{
+
+        const arr =
+          model.chart || [];
+
+
+        const points =
+          arr.length
+            ? arr.map(Number)
+            : [
+                100,
+                100
+              ];
+
+
+        const base =
+          Number(
+            points[0] || 1
+          );
+
+
+        return {
+          model,
+          points:
+            points.map(
+              value=>
+                base
+                  ? value/base*100
+                  : 100
+            )
+        };
+
+      }
+    );
+
+
+  let maxValue =
+    Math.max(
+      200,
+      ...normalized.flatMap(
+        item=>item.points
+      )
+    );
+
+
+  maxValue =
+    Math.ceil(
+      maxValue/100
+    )*100;
+
+
+  /* grid */
+
+  ctx.strokeStyle=
+    "#DEDCD6";
+
+  ctx.lineWidth=1;
+
+
+  const ticks=5;
+
+
+  for(
+    let i=0;
+    i<=ticks;
+    i++
+  ){
+
+    const y =
+      bottom -
+      i/ticks *
+      plotH;
+
+
+    ctx.setLineDash(
+      [
+        5,
+        7
+      ]
+    );
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      left,
+      y
+    );
+
+    ctx.lineTo(
+      right,
+      y
+    );
+
+    ctx.stroke();
+
+
+    ctx.setLineDash([]);
+
+
+    monoText(
+      Math.round(
+        maxValue *
+        i/ticks
+      ),
+      left-18,
+      y+7,
+      17,
+      "#77736B",
+      "right"
+    );
+
+  }
+
+
+  ctx.strokeStyle=
+    "#99958D";
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    left,
+    top
+  );
+
+  ctx.lineTo(
+    left,
+    bottom
+  );
+
+  ctx.lineTo(
+    right,
+    bottom
+  );
+
+  ctx.stroke();
+
+
+  /* baseline 100 */
+
+  const baselineY =
+    bottom -
+    100/maxValue *
+    plotH;
+
+
+  ctx.strokeStyle=
+    "#AAA69E";
+
+  ctx.setLineDash(
+    [
+      8,
+      8
+    ]
+  );
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    left,
+    baselineY
+  );
+
+  ctx.lineTo(
+    right,
+    baselineY
+  );
+
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+
+
+  monoText(
+    "baseline = 100",
+    right,
+    baselineY-10,
+    15,
+    "#77736B",
+    "right"
+  );
+
+
+  /* model lines */
+
+  normalized.forEach(
+    (item,index)=>{
+
+      const points =
+        item.points;
+
+
+      ctx.strokeStyle=
+        item.model.color ||
+        colors[
+          index %
+          colors.length
+        ];
+
+
+      ctx.fillStyle=
+        ctx.strokeStyle;
+
+
+      ctx.lineWidth=5;
+
+      ctx.lineJoin=
+        "round";
+
+      ctx.lineCap=
+        "round";
+
+
+      ctx.beginPath();
+
+
+      points.forEach(
+        (value,i)=>{
+
+          const x =
+            left +
+            (
+              points.length===1
+                ? .5
+                : i/
+                  (
+                    points.length-1
+                  )
+            ) *
+            plotW;
+
+
+          const y =
+            bottom -
+            Math.min(
+              maxValue,
+              value
+            ) /
+            maxValue *
+            plotH;
+
+
+          if(i===0){
+
+            ctx.moveTo(
+              x,
+              y
+            );
+
+          }else{
+
+            ctx.lineTo(
+              x,
+              y
+            );
+
+          }
+
+      });
+
+
+      ctx.stroke();
+
+
+      points.forEach(
+        (value,i)=>{
+
+          const x =
+            left +
+            (
+              points.length===1
+                ? .5
+                : i/
+                  (
+                    points.length-1
+                  )
+            ) *
+            plotW;
+
+
+          const y =
+            bottom -
+            Math.min(
+              maxValue,
+              value
+            ) /
+            maxValue *
+            plotH;
+
+
+          ctx.beginPath();
+
+          ctx.arc(
+            x,
+            y,
+            5,
+            0,
+            Math.PI*2
+          );
+
+          ctx.fill();
+
+      });
+
+  });
+
+
+  /* legend */
+
+  const legendY=764;
+
+  const colWidth=350;
+
+
+  for(
+    let index=0;
+    index<normalized.length;
+    index++
+  ){
+
+    const item =
+      normalized[index];
+
+
+    const row =
+      Math.floor(
+        index/4
+      );
+
+
+    const col =
+      index%4;
+
+
+    const x =
+      110 +
+      col*colWidth;
+
+
+    const y =
+      legendY +
+      row*45;
+
+
+    ctx.fillStyle=
+      item.model.color ||
+      colors[
+        index %
+        colors.length
+      ];
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      x,
+      y-5,
+      7,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fill();
+
+
+    text(
+      item.model.name,
+      x+20,
+      y,
+      17,
+      "500",
+      "#353531"
+    );
+
+  }
+
+
+  monoText(
+    "SOURCE: ZORIX METRON · TOKEN TRAFFIC RECORDED INSIDE ZORIX CODE",
+    90,
+    865,
+    14,
+    "#68645E"
+  );
+
+
+  monoText(
+    todayText(),
+    1510,
+    865,
+    14,
+    "#68645E",
+    "right"
+  );
+
+}
+
+
+/* ============================================================
+   USAGE RANKING
+   ============================================================ */
+
+async function drawUsageRanking(){
+
+  clearCanvas();
+
+  await drawBrand();
+
+
+  const count =
+    Number(
+      modelCountSelect.value
+    );
+
+
+  const metric =
+    metricSelect.value;
+
+
+  const weekly =
+    metric==="weekly";
+
+
+  const selected =
+    topModels(
+      Math.min(
+        count,
+        12
+      ),
+      weekly
+        ? "weekly"
+        : "daily"
+    );
+
+
+  text(
+    "Metron Model Usage",
+    75,
+    105,
+    58,
+    "600"
+  );
+
+
+  text(
+    weekly
+      ? "Weekly token volume"
+      : "Daily token volume",
+    75,
+    150,
+    27,
+    "400",
+    "#555"
+  );
+
+
+  text(
+    "Models ranked by recorded Zorix Code / Metron traffic",
+    75,
+    188,
+    19,
+    "400",
+    "#6D6961"
+  );
+
+
+  const values =
+    selected.map(
+      model=>
+        weekly
+          ? Number(
+              model.weeklyTokens ??
+              model.dailyTokens*7
+            )
+          : Number(
+              model.dailyTokens || 0
+            )
+    );
+
+
+  const maximum =
+    Math.max(
+      ...values,
+      1
+    );
+
+
+  const startY=255;
+
+  const availableH=530;
+
+  const rowH=
+    availableH/
+    selected.length;
+
+
+  const nameX=120;
+  const logoX=475;
+  const barX=610;
+  const barMaxW=700;
+
+
+  for(
+    let i=0;
+    i<selected.length;
+    i++
+  ){
+
+    const model =
+      selected[i];
+
+
+    const value =
+      values[i];
+
+
+    const y =
+      startY +
+      i*rowH;
+
+
+    monoText(
+      String(i+1),
+      76,
+      y+23,
+      18,
+      "#6E6A63",
+      "center"
+    );
+
+
+    text(
+      model.name,
+      nameX,
+      y+24,
+      21,
+      i<3
+        ? "600"
+        : "500",
+      "#222"
+    );
+
+
+    text(
+      model.provider,
+      nameX,
+      y+45,
+      12,
+      "400",
+      "#77736C"
+    );
+
+
+    const logo =
+      await loadImage(
+        cleanLogoSrc(
+          model.logo
+        )
+      );
+
+
+    if(logo){
+
+      ctx.drawImage(
+        logo,
+        logoX-18,
+        y+5,
+        38,
+        38
+      );
+
+    }else{
+
+      roundedRect(
+        logoX-18,
+        y+5,
+        38,
+        38,
+        9
+      );
+
+      ctx.fillStyle=
+        "#E9E8E4";
+
+      ctx.fill();
+
+
+      text(
+        model.provider
+          .slice(0,1),
+        logoX+1,
+        y+31,
+        15,
+        "600",
+        "#555",
+        "center"
+      );
+
+    }
+
+
+    const width =
+      value/
+      maximum *
+      barMaxW;
+
+
+    roundedRect(
+      barX,
+      y+8,
+      Math.max(
+        4,
+        width
+      ),
+      33,
+      6
+    );
+
+
+    ctx.fillStyle=
+      model.color ||
+      colors[
+        i %
+        colors.length
+      ];
+
+    ctx.fill();
+
+
+    monoText(
+      fmt(value),
+      barX +
+      width +
+      17,
+      y+34,
+      19,
+      "#625E57"
+    );
+
+  }
+
+
+  monoText(
+    "SOURCE: ZORIX METRON",
+    75,
+    855,
+    14,
+    "#68645E"
+  );
+
+
+  monoText(
+    weekly
+      ? "NOTE: WEEKLY TOKEN VOLUME"
+      : "NOTE: DAILY TOKEN VOLUME",
+    1510,
+    855,
+    14,
+    "#68645E",
+    "right"
+  );
+
+}
+
+
+/* ============================================================
+   BENCHMARK RANKING
+   ============================================================ */
+
+async function drawBenchmarkRanking(){
+
+  clearCanvas();
+
+  await drawBrand();
+
+
+  const metric =
+    metricSelect.value;
+
+
+  const metricInfo =
+    benchmarkData.metrics
+      .find(
+        item=>
+          item.id===metric
+      );
+
+
+  const metricName =
+    metricInfo
+      ? metricInfo.name
+      : metric;
+
+
+  const count =
+    Number(
+      modelCountSelect.value
+    );
+
+
+  const rows =
+    Object.entries(
+      benchmarkData.scores || {}
+    )
+    .map(
+      ([id,scores])=>{
+
+        const model =
+          getModel(id);
+
+
+        const value =
+          Number(
+            scores[
+              metric
+            ]
+          );
+
+
+        if(
+          !Number.isFinite(value)
+        ){
+          return null;
+        }
+
+
+        return {
+          id,
+          model,
+          name:
+            model?.name ||
+            id,
+          provider:
+            model?.provider ||
+            "Zorix evaluation",
+          logo:
+            model?.logo ||
+            "../assets/logos/zorix.svg",
+          color:
+            model?.color ||
+            "#1E3A8A",
+          value
+        };
+
+      }
+    )
+    .filter(Boolean)
+    .sort(
+      (a,b)=>
+        b.value-a.value
+    )
+    .slice(
+      0,
+      count
+    );
+
+
+  text(
+    "Metron Benchmark",
+    75,
+    102,
+    58,
+    "600"
+  );
+
+
+  text(
+    metricName,
+    75,
+    151,
+    31,
+    "500",
+    "#333"
+  );
+
+
+  text(
+    "Zorix evaluation ranking",
+    75,
+    190,
+    19,
+    "400",
+    "#6C6860"
+  );
+
+
+  const min =
+    rows.length
+      ? Math.max(
+          0,
+          Math.min(
+            ...rows.map(
+              row=>row.value
+            )
+          ) - 4
+        )
+      : 0;
+
+
+  const max =
+    rows.length
+      ? Math.min(
+          100,
+          Math.max(
+            ...rows.map(
+              row=>row.value
+            )
+          ) + 1
+        )
+      : 100;
+
+
+  const range =
+    Math.max(
+      1,
+      max-min
+    );
+
+
+  const startY=250;
+
+  const availableH=535;
+
+  const rowH=
+    rows.length
+      ? availableH/
+        rows.length
+      : 50;
+
+
+  const nameX=125;
+  const logoX=510;
+  const barX=630;
+  const barMaxW=675;
+
+
+  for(
+    let i=0;
+    i<rows.length;
+    i++
+  ){
+
+    const row =
+      rows[i];
+
+
+    const y =
+      startY+
+      i*rowH;
+
+
+    /* rank circle */
+
+    ctx.beginPath();
+
+    ctx.arc(
+      78,
+      y+23,
+      20,
+      0,
+      Math.PI*2
+    );
+
+    ctx.strokeStyle=
+      "#CCC9C2";
+
+    ctx.lineWidth=2;
+
+    ctx.stroke();
+
+
+    monoText(
+      String(i+1),
+      78,
+      y+30,
+      17,
+      "#666159",
+      "center"
+    );
+
+
+    text(
+      row.name,
+      nameX,
+      y+25,
+      21,
+      i<3
+        ? "600"
+        : "500",
+      "#222"
+    );
+
+
+    text(
+      row.provider,
+      nameX,
+      y+46,
+      12,
+      "400",
+      "#77736C"
+    );
+
+
+    const logo =
+      await loadImage(
+        cleanLogoSrc(
+          row.logo
+        )
+      );
+
+
+    if(logo){
+
+      ctx.drawImage(
+        logo,
+        logoX-19,
+        y+3,
+        40,
+        40
+      );
+
+    }
+
+
+    const ratio =
+      (
+        row.value-min
+      )/
+      range;
+
+
+    const width =
+      Math.max(
+        18,
+        ratio*
+        barMaxW
+      );
+
+
+    roundedRect(
+      barX,
+      y+7,
+      width,
+      34,
+      5
+    );
+
+
+    ctx.fillStyle=
+      row.color ||
+      "#1E3A8A";
+
+    ctx.fill();
+
+
+    monoText(
+      row.value
+        .toFixed(1),
+      barX+
+      width+
+      17,
+      y+34,
+      19,
+      "#625E57"
+    );
+
+
+    text(
+      "%",
+      barX+
+      width+
+      72,
+      y+33,
+      14,
+      "400",
+      "#77736C"
+    );
+
+  }
+
+
+  if(!rows.length){
+
+    text(
+      "No evaluated models for this benchmark.",
+      800,
+      470,
+      28,
+      "500",
+      "#77736C",
+      "center"
+    );
+
+  }
+
+
+  monoText(
+    "SOURCE: ZORIX METRON · INTERNAL EVALUATION",
+    75,
+    855,
+    14,
+    "#68645E"
+  );
+
+
+  monoText(
+    "NOTE: PREVIEW / TESTING FIGURES",
+    1510,
+    855,
+    14,
+    "#68645E",
+    "right"
+  );
+
+}
+
+
+/* ============================================================
+   UI
+   ============================================================ */
+
+function fillMetrics(){
+
+  const type =
+    reportType.value;
+
+
+  if(
+    type==="usage"
+  ){
+
+    metricSelect.innerHTML=`
+      <option value="index">
+        Relative index
+      </option>
+    `;
+
+    metricSelect.disabled=true;
+
+    return;
+  }
+
+
+  if(
+    type==="ranking"
+  ){
+
+    metricSelect.disabled=false;
+
+    metricSelect.innerHTML=`
+      <option value="daily">
+        Daily tokens
+      </option>
+
+      <option value="weekly">
+        Weekly tokens
+      </option>
+    `;
+
+    return;
+  }
+
+
+  metricSelect.disabled=false;
+
+
+  metricSelect.innerHTML=
+    (
+      benchmarkData.metrics ||
+      []
+    )
+    .map(
+      metric=>`
+        <option
+          value="${metric.id}"
+        >
+          ${metric.name}
+        </option>
+      `
+    )
+    .join("");
+
+}
+
+
+async function render(){
+
+  const type =
+    reportType.value;
+
+
+  document
+    .getElementById(
+      "previewMeta"
+    )
+    .textContent=
+      type==="benchmark"
+        ? "Benchmark ranking · Zorix Metron"
+        : type==="ranking"
+          ? "Token ranking · Zorix Metron"
+          : "Relative usage index · Zorix Metron";
+
+
+  if(type==="usage"){
+
+    await drawUsageIndex();
+
+  }else if(
+    type==="ranking"
+  ){
+
+    await drawUsageRanking();
+
+  }else{
+
+    await drawBenchmarkRanking();
+
+  }
+
+}
+
+
+reportType.addEventListener(
+  "change",
+  ()=>{
+
+    fillMetrics();
+    render();
+
+  }
+);
+
+
+metricSelect.addEventListener(
+  "change",
+  render
+);
+
+
+modelCountSelect.addEventListener(
+  "change",
+  render
+);
+
+
+document
+  .getElementById(
+    "downloadButton"
+  )
+  .addEventListener(
+    "click",
+    async ()=>{
+
+      await render();
+
+
+      canvas.toBlob(
+        blob=>{
+
+          if(!blob){
+            return;
+          }
+
+
+          const type =
+            reportType.value;
+
+
+          const metric =
+            metricSelect.value ||
+            "report";
+
+
+          const stamp =
+            new Date()
+              .toISOString()
+              .slice(
+                0,
+                10
+              );
+
+
+          const url =
+            URL.createObjectURL(
+              blob
+            );
+
+
+          const a =
+            document.createElement(
+              "a"
+            );
+
+
+          a.href=url;
+
+          a.download=
+            `zorix-metron-${type}-${metric}-${stamp}.png`;
+
+
+          document.body
+            .appendChild(a);
+
+
+          a.click();
+
+
+          a.remove();
+
+
+          setTimeout(
+            ()=>
+              URL.revokeObjectURL(
+                url
+              ),
+            1000
+          );
+
+        },
+        "image/png",
+        1
+      );
+
+    }
+  );
+
+
+fillMetrics();
+
+render();
+
+</script>
+
+
+</body>
+</html>
