@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-08-30T20:24:56+02:00",
+  "updatedAt": "2026-08-30T20:35:27+02:00",
   "metric": "community_votes",
   "models": [
     {
@@ -66,6 +66,65 @@ window.ZORIX_COMMUNITY_VOTES = {
       "id": "tencent-hy3",
       "votes": 0,
       "uncertainty": 0
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-08-30T20:35:26+02:00",
+      "models": {
+        "claude-opus-5": {
+          "votes": 1507,
+          "uncertainty": 5
+        },
+        "nex-coder-38-neptune": {
+          "votes": 1552,
+          "uncertainty": 4
+        },
+        "deepseek-v4-flash-0731": {
+          "votes": 1496,
+          "uncertainty": 6
+        },
+        "tencent-hy3": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "mimo-v25": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "gpt-56-luna": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "glm-53-flash": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "glm-52-max": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "gemini-37-flash": {
+          "votes": 1488,
+          "uncertainty": 4
+        },
+        "claude-sonnet-5": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "claude-opus-48": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "claude-fable-5-fallback-max": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "gpt-56-sol-max": {
+          "votes": 0,
+          "uncertainty": 0
+        }
+      }
     }
   ]
 };

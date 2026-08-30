@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-import json
+from datetime import datetime
 import subprocess
+import json
 import sys
 
 ROOT = Path.home() / "projects/zorix-release-notes"
@@ -14,11 +15,10 @@ BUILD = ROOT / "tools/build_votes.py"
 def usage():
     print(
         "Usage:\n"
-        "  plusvote <model-id> <votes> [uncertainty]\n"
-        "\n"
+        "  plusvote <model-id> <votes> [uncertainty]\n\n"
         "Examples:\n"
-        "  plusvote claude-opus-5 1507\n"
-        "  plusvote nex-coder-38-neptune 1550 5"
+        "  plusvote nex-coder-38-neptune 1600 4\n"
+        "  plusvote claude-opus-5 1540 5"
     )
 
 
@@ -29,15 +29,14 @@ if len(sys.argv) < 3:
 
 model_id = sys.argv[1]
 
+
 try:
     votes = int(
         sys.argv[2]
         .replace(",", "")
     )
 except ValueError:
-    raise SystemExit(
-        "votes must be an integer"
-    )
+    raise SystemExit("votes must be an integer")
 
 
 uncertainty = 0
@@ -61,16 +60,21 @@ data = json.loads(
     )
 )
 
-
 models = data.setdefault(
     "models",
+    []
+)
+
+history = data.setdefault(
+    "history",
     []
 )
 
 
 target = next(
     (
-        x for x in models
+        x
+        for x in models
         if x.get("id") == model_id
     ),
     None
@@ -78,7 +82,6 @@ target = next(
 
 
 if target is None:
-
     target = {
         "id": model_id,
         "votes": 0,
@@ -90,6 +93,39 @@ if target is None:
 
 target["votes"] = votes
 target["uncertainty"] = uncertainty
+
+
+# Full leaderboard snapshot.
+snapshot = {
+    "at": datetime.now()
+        .astimezone()
+        .isoformat(timespec="seconds"),
+
+    "models": {
+        item["id"]: {
+            "votes": int(
+                item.get("votes", 0)
+            ),
+            "uncertainty": int(
+                item.get(
+                    "uncertainty",
+                    0
+                )
+            )
+        }
+        for item in models
+        if item.get("id")
+    }
+}
+
+
+history.append(snapshot)
+
+
+# Avoid unlimited file growth.
+# Keep latest 365 snapshots for now.
+if len(history) > 365:
+    data["history"] = history[-365:]
 
 
 DATA.write_text(
@@ -120,4 +156,8 @@ print(
         if uncertainty
         else ""
     )
+)
+
+print(
+    "Voting history snapshot added."
 )

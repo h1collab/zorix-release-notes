@@ -3,9 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <title>Model usage | Zorix Code</title>
 
 <style>
@@ -1356,7 +1353,6 @@ h1{
     <div class="nav-actions">
       <div class="nav-right">
         <a href="./">Usage</a>
-      <a href="./voting/">Voting</a>
         <a href="#benchmarks">Benchmarks</a>
         <a href="https://doc.zorix.it/">Docs</a>
       </div>
@@ -1390,11 +1386,6 @@ h1{
 
     <a class="menu-item" href="#benchmarks">
       <span>Benchmarks</span>
-      <span>›</span>
-    </a>
-
-    <a class="menu-item" href="./voting/">
-      <span>Voting leaderboard</span>
       <span>›</span>
     </a>
 
@@ -1633,30 +1624,9 @@ h1{
 
 </main>
 
-<script>
-(function(){
-  var s=document.createElement("script");
-  s.src='./models.js'+"?v="+Date.now();
-  s.async=false;
-  document.head.appendChild(s);
-})();
-</script>
-<script>
-(function(){
-  var s=document.createElement("script");
-  s.src='./usage.js'+"?v="+Date.now();
-  s.async=false;
-  document.head.appendChild(s);
-})();
-</script>
-<script>
-(function(){
-  var s=document.createElement("script");
-  s.src='./quota.js'+"?v="+Date.now();
-  s.async=false;
-  document.head.appendChild(s);
-})();
-</script>
+<script src="./models.js?v=1788109229"></script>
+<script src="./usage.js?v=1788109229"></script>
+<script src="./quota.js?v=1788109229"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -2431,105 +2401,6 @@ document.addEventListener("keydown",e=>{
   }
 });
 
-</script>
-
-
-<script>
-/* ZORIX PROVIDER ROUTES */
-
-(()=>{
-  const routes={
-    "Zorix":"/zorix/",
-    "Anthropic":"/anthropic/",
-    "OpenAI":"/openai/",
-    "Google":"/google/",
-    "DeepSeek":"/deepseek/",
-    "Tencent":"/tencent/",
-    "Xiaomi":"/xiaomi/",
-    "Z.ai":"/zai/"
-  };
-
-  function wireProviderRoutes(){
-
-    document
-      .querySelectorAll(".provider span")
-      .forEach(el=>{
-
-        const provider=
-          el.textContent.trim();
-
-        const route=
-          routes[provider];
-
-        if(!route)
-          return;
-
-        if(el.dataset.providerRoute)
-          return;
-
-        el.dataset.providerRoute="1";
-
-        el.style.cursor="pointer";
-
-        el.setAttribute(
-          "role",
-          "link"
-        );
-
-        el.setAttribute(
-          "tabindex",
-          "0"
-        );
-
-        el.addEventListener(
-          "click",
-          e=>{
-
-            e.stopPropagation();
-
-            location.href=route;
-
-          }
-        );
-
-        el.addEventListener(
-          "keydown",
-          e=>{
-
-            if(
-              e.key==="Enter" ||
-              e.key===" "
-            ){
-              e.preventDefault();
-              location.href=route;
-            }
-
-          }
-        );
-
-      });
-
-  }
-
-
-  wireProviderRoutes();
-
-
-  const observer=
-    new MutationObserver(
-      wireProviderRoutes
-    );
-
-
-  observer.observe(
-    document.body,
-    {
-      childList:true,
-      subtree:true
-    }
-  );
-
-})();
 </script>
 
 </body>
