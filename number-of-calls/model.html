@@ -827,6 +827,130 @@ h1{
 
 }
 
+
+/* =========================================================
+   PUBLIC / PROVIDER EVALUATIONS
+   ========================================================= */
+
+.public-eval-source{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  margin-bottom:21px;
+}
+
+.public-eval-type{
+  display:inline-flex;
+  align-items:center;
+
+  min-height:26px;
+
+  padding:0 9px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  font-size:10px;
+
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.public-eval-link{
+  color:var(--muted);
+
+  font-size:11px;
+
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.public-eval-list{
+  border-top:1px solid var(--line);
+}
+
+.public-eval-row{
+  min-height:76px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:20px;
+  align-items:center;
+
+  border-bottom:1px solid var(--line);
+}
+
+.public-eval-name{
+  font-size:14px;
+}
+
+.public-eval-detail{
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.45;
+}
+
+.public-eval-value{
+  text-align:right;
+
+  font-size:22px;
+
+  font-variant-numeric:tabular-nums;
+}
+
+.public-eval-unit{
+  margin-left:4px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.public-eval-note{
+  margin-top:18px;
+
+  max-width:700px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+.public-eval-empty{
+  padding:24px;
+
+  border:1px solid var(--line);
+  border-radius:12px;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.55;
+}
+
+@media(max-width:700px){
+
+  .public-eval-row{
+    grid-template-columns:
+      minmax(0,1fr)
+      minmax(80px,auto);
+  }
+
+  .public-eval-value{
+    font-size:18px;
+  }
+
+}
+
 </style>
 
 </head>
@@ -1075,7 +1199,31 @@ h1{
   </section>
 
 
-  <section class="section">
+  
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Public evaluations
+    </div>
+
+    <div class="section-copy">
+      Provider-published or external model evaluations.
+      These are shown separately from Zorix AA4 internal
+      preview results because benchmark harnesses and
+      evaluation settings may differ.
+    </div>
+
+  </div>
+
+  <div
+    id="publicEvaluationContent"
+  ></div>
+
+</section>
+
+<section class="section">
 
     <div class="section-head">
 
@@ -1118,9 +1266,10 @@ h1{
 </div>
 
 
-<script src="./models.js?v=1788117069"></script>
-<script src="./model-profiles.js?v=1788117069"></script>
-<script src="./benchmarks.js?v=1788117069"></script>
+<script src="./models.js?v=1788117120"></script>
+<script src="./model-profiles.js?v=1788117120"></script>
+<script src="./benchmarks.js?v=1788117120"></script>
+<script src="./external-benchmarks.js?v=1788117120"></script>
 
 <script>
 
@@ -1653,6 +1802,170 @@ function radarHTML(
 }
 
 
+
+
+function renderPublicEvaluations(){
+
+  const target =
+    document.getElementById(
+      "publicEvaluationContent"
+    );
+
+  if(!target || !model){
+    return;
+  }
+
+
+  const catalog =
+    window.ZORIX_EXTERNAL_BENCHMARKS || {};
+
+
+  const entry =
+    catalog[
+      model.id
+    ];
+
+
+  if(!entry){
+
+    target.innerHTML=`
+      <div class="public-eval-empty">
+        No public evaluation record has been
+        attached for this model yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const evaluations =
+    Array.isArray(
+      entry.evaluations
+    )
+      ? entry.evaluations
+      : [];
+
+
+  const sourceLink =
+    entry.source
+      ? `
+        <a
+          class="public-eval-link"
+          href="${entry.source}"
+          target="_blank"
+          rel="noopener"
+        >
+          View source ↗
+        </a>
+      `
+      : "";
+
+
+  const rows =
+    evaluations.length
+      ? `
+        <div class="public-eval-list">
+
+          ${
+            evaluations.map(
+              item=>`
+
+                <div class="public-eval-row">
+
+                  <div>
+
+                    <div class="public-eval-name">
+                      ${item.benchmark}
+                    </div>
+
+                    ${
+                      item.detail
+                        ? `
+                          <div class="public-eval-detail">
+                            ${item.detail}
+                          </div>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+
+                  <div class="public-eval-value">
+
+                    ${item.value}
+
+                    ${
+                      item.unit
+                        ? `
+                          <span class="public-eval-unit">
+                            ${item.unit}
+                          </span>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+                </div>
+
+              `
+            ).join("")
+          }
+
+        </div>
+      `
+      : `
+        <div class="public-eval-empty">
+          ${
+            entry.note ||
+            "No verified public benchmark attached."
+          }
+        </div>
+      `;
+
+
+  target.innerHTML=`
+
+    <div class="public-eval-source">
+
+      <span class="public-eval-type">
+        ${
+          entry.sourceType ||
+          "external"
+        }
+      </span>
+
+      <strong>
+        ${
+          entry.label ||
+          "Public evaluation"
+        }
+      </strong>
+
+      ${sourceLink}
+
+    </div>
+
+    ${rows}
+
+    ${
+      evaluations.length &&
+      entry.note
+        ? `
+          <div class="public-eval-note">
+            ${entry.note}
+          </div>
+        `
+        : ""
+    }
+
+  `;
+
+}
+
+
 if(!model){
 
   document
@@ -2133,6 +2446,8 @@ if(!model){
     </div>
 
   `;
+
+  renderPublicEvaluations();
 
   /* details */
 
