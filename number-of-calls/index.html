@@ -500,7 +500,7 @@ footer{
   <span id="updated"></span>
 </footer>
 
-<script src="usage.js"></script>
+<script src="usage.js?v=1788102337"></script>
 
 <script>
 const data = window.ZORIX_CODE_USAGE || {
@@ -575,11 +575,11 @@ function renderChart(){
     return;
   }
 
-  const max=Math.max(...daily.map(x=>x.calls),1);
+  const max=Math.max(...daily.map(x=>x.tokens||0),1);
 
   chart.innerHTML=daily.map(d=>`
-    <div class="bar-wrap" title="${d.date}: ${d.calls} calls">
-      <div class="bar" style="height:${Math.max(1,(d.calls/max)*100)}%"></div>
+    <div class="bar-wrap" title="${d.date}: ${fmt(d.tokens||0)} tokens">
+      <div class="bar" style="height:${Math.max(1,((d.tokens||0)/max)*100)}%"></div>
     </div>
   `).join('');
 }
@@ -593,7 +593,7 @@ function renderTerminal(models,total){
     <span class="dim">scope</span>
     &nbsp;&nbsp;&nbsp;zorix-code<br>
 
-    <span class="dim">calls</span>
+    <span class="dim">tokens/day</span>
     &nbsp;&nbsp;&nbsp;${fmt(total)}<br>
 
     <span class="dim">models</span>
