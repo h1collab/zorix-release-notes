@@ -3,18 +3,18 @@
   "models": [
     {
       "id": "claude-opus-5",
-      "votes": 0,
-      "uncertainty": 0
+      "votes": 1507,
+      "uncertainty": 5
     },
     {
       "id": "nex-coder-38-neptune",
-      "votes": 0,
-      "uncertainty": 0
+      "votes": 1552,
+      "uncertainty": 4
     },
     {
       "id": "deepseek-v4-flash-0731",
-      "votes": 0,
-      "uncertainty": 0
+      "votes": 1496,
+      "uncertainty": 6
     },
     {
       "id": "tencent-hy3",
@@ -43,8 +43,8 @@
     },
     {
       "id": "gemini-37-flash",
-      "votes": 0,
-      "uncertainty": 0
+      "votes": 1488,
+      "uncertainty": 4
     },
     {
       "id": "claude-sonnet-5",
