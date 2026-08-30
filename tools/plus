@@ -189,20 +189,361 @@ menu() {
   done
 }
 
+
+MODELS="$ROOT/data/models.json"
+MODEL_DAILY="$ROOT/data/model-daily.json"
+MODEL_BUILD="$ROOT/tools/build_models.py"
+
+ensure_model_files() {
+  mkdir -p "$ROOT/data" "$ROOT/number-of-calls"
+  [ -f "$MODELS" ] || echo '[]' > "$MODELS"
+  [ -f "$MODEL_DAILY" ] || echo '[]' > "$MODEL_DAILY"
+}
+
+list_models() {
+  python - "$MODELS" <<'PYMODELS'
+import json,sys
+
+items=json.load(open(sys.argv[1],encoding="utf-8"))
+
+if not items:
+    print("No models.")
+    raise SystemExit
+
+items=sorted(
+    items,
+    key=lambda x:x.get("tokens",0),
+    reverse=True
+)
+
+for i,m in enumerate(items,1):
+    tokens=m.get("tokens",0)
+
+    if tokens >= 1_000_000_000_000:
+        display=f"{tokens/1_000_000_000_000:.2f}T"
+    elif tokens >= 1_000_000_000:
+        display=f"{tokens/1_000_000_000:.2f}B"
+    elif tokens >= 1_000_000:
+        display=f"{tokens/1_000_000:.2f}M"
+    elif tokens >= 1_000:
+        display=f"{tokens/1_000:.2f}K"
+    else:
+        display=str(tokens)
+
+    print(
+        f"{i}. {m.get('name','')} | "
+        f"{m.get('provider','')} | "
+        f"{display} tokens/day"
+    )
+PYMODELS
+}
+
+add_model() {
+  printf "Model name: "
+  read -r name
+  [ -n "$name" ] || { echo "Model name is required."; return; }
+
+  printf "Provider: "
+  read -r provider
+  [ -n "$provider" ] || provider="Zorix"
+
+  printf "Family: "
+  read -r family
+  [ -n "$family" ] || family="$name"
+
+  printf "Tokens/day: "
+  read -r tokens
+
+  if ! [[ "$tokens" =~ ^[0-9]+$ ]]; then
+    echo "Tokens must be an integer."
+    return
+  fi
+
+  printf "Status [Available]: "
+  read -r status
+  status="${status:-Available}"
+
+  python - "$MODELS" "$name" "$provider" "$family" "$tokens" "$status" <<'PYMODELS'
+import json,sys
+
+p,name,provider,family,tokens,status=sys.argv[1:]
+
+items=json.load(open(p,encoding="utf-8"))
+
+if any(x.get("name")==name for x in items):
+    print("A model with that name already exists.")
+    raise SystemExit(1)
+
+items.append({
+    "name":name,
+    "provider":provider,
+    "family":family,
+    "tokens":int(tokens),
+    "status":status
+})
+
+with open(p,"w",encoding="utf-8") as f:
+    json.dump(items,f,ensure_ascii=False,indent=2)
+
+print("Model added.")
+PYMODELS
+
+  python "$MODEL_BUILD"
+}
+
+edit_model() {
+  list_models
+
+  printf "Model number to edit: "
+  read -r number
+
+  python - "$MODELS" "$number" <<'PYMODELS'
+import json,sys
+
+p=sys.argv[1]
+
+try:
+    number=int(sys.argv[2])
+except:
+    print("Invalid number.")
+    raise SystemExit(1)
+
+items=json.load(open(p,encoding="utf-8"))
+
+ordered=sorted(
+    enumerate(items),
+    key=lambda x:x[1].get("tokens",0),
+    reverse=True
+)
+
+if number < 1 or number > len(ordered):
+    print("Model not found.")
+    raise SystemExit(1)
+
+original_index,m=ordered[number-1]
+
+print("Leave blank to keep current value.")
+
+name=input(f"Name [{m.get('name','')}]: ").strip()
+provider=input(f"Provider [{m.get('provider','')}]: ").strip()
+family=input(f"Family [{m.get('family','')}]: ").strip()
+tokens=input(f"Tokens/day [{m.get('tokens',0)}]: ").strip()
+status=input(f"Status [{m.get('status','Available')}]: ").strip()
+
+if name:
+    m["name"]=name
+
+if provider:
+    m["provider"]=provider
+
+if family:
+    m["family"]=family
+
+if tokens:
+    if not tokens.isdigit():
+        print("Tokens must be an integer.")
+        raise SystemExit(1)
+    m["tokens"]=int(tokens)
+
+if status:
+    m["status"]=status
+
+items[original_index]=m
+
+with open(p,"w",encoding="utf-8") as f:
+    json.dump(items,f,ensure_ascii=False,indent=2)
+
+print("Model updated.")
+PYMODELS
+
+  python "$MODEL_BUILD"
+}
+
+delete_model() {
+  list_models
+
+  printf "Model number to delete: "
+  read -r number
+
+  python - "$MODELS" "$number" <<'PYMODELS'
+import json,sys
+
+p=sys.argv[1]
+
+try:
+    number=int(sys.argv[2])
+except:
+    print("Invalid number.")
+    raise SystemExit(1)
+
+items=json.load(open(p,encoding="utf-8"))
+
+ordered=sorted(
+    enumerate(items),
+    key=lambda x:x[1].get("tokens",0),
+    reverse=True
+)
+
+if number < 1 or number > len(ordered):
+    print("Model not found.")
+    raise SystemExit(1)
+
+original_index,m=ordered[number-1]
+
+print("Deleting:",m.get("name"))
+
+if input("Type YES to confirm: ")!="YES":
+    print("Cancelled.")
+    raise SystemExit
+
+items.pop(original_index)
+
+with open(p,"w",encoding="utf-8") as f:
+    json.dump(items,f,ensure_ascii=False,indent=2)
+
+print("Model deleted.")
+PYMODELS
+
+  python "$MODEL_BUILD"
+}
+
+record_model_daily() {
+  printf "Date (YYYY-MM-DD): "
+  read -r date
+
+  printf "Total tokens for day: "
+  read -r tokens
+
+  if ! [[ "$tokens" =~ ^[0-9]+$ ]]; then
+    echo "Tokens must be an integer."
+    return
+  fi
+
+  python - "$MODEL_DAILY" "$date" "$tokens" <<'PYMODELS'
+import json,sys
+from datetime import datetime
+
+p,date,tokens=sys.argv[1:]
+
+try:
+    datetime.strptime(date,"%Y-%m-%d")
+except:
+    print("Invalid date.")
+    raise SystemExit(1)
+
+items=json.load(open(p,encoding="utf-8"))
+
+entry=next((x for x in items if x.get("date")==date),None)
+
+if entry:
+    entry["tokens"]=int(tokens)
+else:
+    items.append({
+        "date":date,
+        "tokens":int(tokens)
+    })
+
+items.sort(key=lambda x:x["date"])
+
+with open(p,"w",encoding="utf-8") as f:
+    json.dump(items,f,ensure_ascii=False,indent=2)
+
+print("Daily usage recorded.")
+PYMODELS
+
+  python "$MODEL_BUILD"
+}
+
+publish_models() {
+  cd "$ROOT" || exit 1
+
+  python "$MODEL_BUILD"
+
+  git add \
+    data/models.json \
+    data/model-daily.json \
+    number-of-calls/usage.js \
+    number-of-calls/index.html \
+    tools/build_models.py \
+    tools/plus
+
+  if git diff --cached --quiet; then
+    echo "Nothing to publish."
+    return
+  fi
+
+  git commit -m "Update Zorix model usage"
+  git push
+}
+
+models_menu() {
+  ensure_model_files
+
+  while true; do
+    echo
+    echo "ZORIX MODELS"
+    echo
+    echo "1) Add model"
+    echo "2) Edit model"
+    echo "3) Delete model"
+    echo "4) List models"
+    echo "5) Record daily usage"
+    echo "6) Rebuild"
+    echo "7) Publish"
+    echo "0) Exit"
+    printf "> "
+    read -r choice
+
+    case "$choice" in
+      1) add_model ;;
+      2) edit_model ;;
+      3) delete_model ;;
+      4) list_models ;;
+      5) record_model_daily ;;
+      6) python "$MODEL_BUILD" ;;
+      7) publish_models ;;
+      0) exit 0 ;;
+      *) echo "Invalid option." ;;
+    esac
+  done
+}
+
+
 ensure_files
 
-if [ "$1" != "news" ]; then
-  echo "Usage: plus news"
-  exit 1
-fi
+case "$1" in
+  news)
+    case "$2" in
+      add) add_news ;;
+      edit) edit_news ;;
+      delete) delete_news ;;
+      list) list_news ;;
+      build) python "$BUILD" ;;
+      publish) publish_news ;;
+      "") menu ;;
+      *) echo "Usage: plus news [add|edit|delete|list|build|publish]" ;;
+    esac
+    ;;
 
-case "$2" in
-  add) add_news ;;
-  edit) edit_news ;;
-  delete) delete_news ;;
-  list) list_news ;;
-  build) python "$BUILD" ;;
-  publish) publish_news ;;
-  "") menu ;;
-  *) echo "Usage: plus news [add|edit|delete|list|build|publish]" ;;
+  models)
+    ensure_model_files
+    case "$2" in
+      add) add_model ;;
+      edit) edit_model ;;
+      delete) delete_model ;;
+      list) list_models ;;
+      daily) record_model_daily ;;
+      build) python "$MODEL_BUILD" ;;
+      publish) publish_models ;;
+      "") models_menu ;;
+      *) echo "Usage: plus models [add|edit|delete|list|daily|build|publish]" ;;
+    esac
+    ;;
+
+  *)
+    echo "Usage:"
+    echo "  plus news"
+    echo "  plus models"
+    ;;
 esac
+

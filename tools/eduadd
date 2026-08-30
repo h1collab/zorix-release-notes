@@ -1,0 +1,44 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+ROOT="$HOME/projects/zorix-release-notes"
+
+if [ "$1" != "plus" ]; then
+  echo "Usage: eduadd plus"
+  exit 1
+fi
+
+cd "$ROOT" || exit 1
+
+echo
+echo "ZORIX CODE / ADD PUBLIC QUOTA"
+echo
+
+printf "Amount to add (examples: 100M, 5B, 0.5T): "
+read -r amount
+
+[ -n "$amount" ] || {
+  echo "Amount is required."
+  exit 1
+}
+
+printf "Note [Realtime quota increase]: "
+read -r note
+
+note="${note:-Realtime quota increase}"
+
+python tools/quota_update.py realtime "$amount" "$note" || exit 1
+
+git add \
+  data/public-quota.json \
+  number-of-calls/quota.js
+
+if git diff --cached --quiet; then
+  echo "Nothing changed."
+  exit 0
+fi
+
+git commit -m "Increase Zorix Code public quota"
+git push
+
+echo
+echo "Public quota updated."
