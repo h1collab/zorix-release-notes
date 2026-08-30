@@ -942,8 +942,8 @@ h1{
   font-weight:500;
 }
 
-.benchmark-table th:nth-child(2),
-.benchmark-table td:nth-child(2){
+.benchmark-table th:last-child,
+.benchmark-table td:last-child{
   text-align:right;
 }
 
@@ -988,6 +988,148 @@ h1{
 
   .benchmark-section{
     padding-top:55px;
+  }
+}
+
+
+/* benchmark model identity */
+
+.bench-identity{
+  position:absolute;
+  top:calc(100% + 12px);
+  left:50%;
+  width:145px;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+
+.bench-logo{
+  width:34px;
+  height:34px;
+  border:1px solid #e1e1dd;
+  border-radius:9px;
+  background:#fff;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+
+.bench-logo img{
+  width:25px;
+  height:25px;
+  object-fit:contain;
+  display:block;
+}
+
+.bench-logo-fallback{
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:650;
+  color:#555;
+}
+
+.bench-label{
+  position:static !important;
+  width:132px !important;
+  transform:none !important;
+  text-align:center !important;
+  font-size:11px;
+  line-height:1.22;
+  overflow-wrap:anywhere;
+}
+
+.bench-provider{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:9px;
+  text-transform:none;
+}
+
+.benchmark-preview-tag{
+  margin-left:0;
+  margin-top:5px;
+}
+
+.benchmark-legend-item{
+  min-height:36px;
+}
+
+.benchmark-legend-logo{
+  width:25px;
+  height:25px;
+  border:1px solid #e4e4e0;
+  border-radius:7px;
+  display:grid;
+  place-items:center;
+  background:#fff;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+
+.benchmark-legend-logo img{
+  width:18px;
+  height:18px;
+  object-fit:contain;
+}
+
+.benchmark-legend-text{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.benchmark-legend-text b{
+  font-size:11px;
+  color:#222;
+  font-weight:500;
+}
+
+.benchmark-legend-text small{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.benchmark-chart{
+  padding-bottom:190px !important;
+}
+
+.bench-column{
+  flex-basis:64px !important;
+}
+
+@media(max-width:740px){
+  .benchmark-chart{
+    min-width:1020px !important;
+    height:560px !important;
+    gap:9px !important;
+    padding-bottom:190px !important;
+  }
+
+  .bench-column{
+    flex-basis:66px !important;
+  }
+
+  .bench-logo{
+    width:31px;
+    height:31px;
+  }
+
+  .bench-logo img{
+    width:23px;
+    height:23px;
+  }
+
+  .bench-label{
+    width:110px !important;
+    font-size:10px;
   }
 }
 
@@ -1227,6 +1369,7 @@ h1{
     <thead>
       <tr>
         <th>Model</th>
+        <th>Provider</th>
         <th>Score</th>
       </tr>
     </thead>
@@ -1273,9 +1416,9 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788107568"></script>
-<script src="./usage.js?v=1788107568"></script>
-<script src="./quota.js?v=1788107568"></script>
+<script src="./models.js?v=1788108050"></script>
+<script src="./usage.js?v=1788108050"></script>
+<script src="./quota.js?v=1788108050"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -1683,6 +1826,7 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.8 Neptune",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:99.0,
         preview:true,
         color:"#111111"
@@ -1690,6 +1834,7 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.8 Uranus",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:98.8,
         preview:true,
         color:"#5B5BD6"
@@ -1697,6 +1842,7 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.8 Mercury",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:98.4,
         preview:true,
         color:"#327FEA"
@@ -1704,54 +1850,63 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.7 Pro",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:97.4,
         color:"#6A6A65"
       },
       {
         name:"Nex Coder Plus Exp 0822",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:96.4,
         color:"#B26C4C"
       },
       {
         name:"Thrym 2.6",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:95.4,
         color:"#38A953"
       },
       {
         name:"HY4",
-        provider:"Zorix",
+        provider:"Tencent",
+        logo:"./assets/logos/hunyuan.svg",
         score:94.0,
         color:"#7893D8"
       },
       {
         name:"Claude reference",
         provider:"Anthropic",
+        logo:"./assets/logos/anthropic.svg",
         score:91.6,
         color:"#D97757"
       },
       {
         name:"GPT reference",
         provider:"OpenAI",
+        logo:"./assets/logos/openai.svg",
         score:90.6,
         color:"#222222"
       },
       {
         name:"Gemini reference",
         provider:"Google",
+        fallback:"G",
         score:89.2,
         color:"#4285F4"
       },
       {
         name:"Qwen reference",
         provider:"Alibaba",
+        fallback:"Q",
         score:88.5,
         color:"#FF7A18"
       },
       {
         name:"DeepSeek reference",
         provider:"DeepSeek",
+        logo:"./assets/logos/deepseek.svg",
         score:87.7,
         color:"#4D6BFE"
       }
@@ -1764,6 +1919,7 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.8 Neptune",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:99.0,
         preview:true,
         color:"#111111"
@@ -1771,6 +1927,7 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.8 Uranus",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:98.8,
         preview:true,
         color:"#5B5BD6"
@@ -1778,6 +1935,7 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.8 Mercury",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:98.4,
         preview:true,
         color:"#327FEA"
@@ -1785,54 +1943,63 @@ const BENCHMARKS = {
       {
         name:"Nex Coder 3.7 Pro",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:97.4,
         color:"#6A6A65"
       },
       {
         name:"Nex Coder Plus Exp 0822",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:96.5,
         color:"#B26C4C"
       },
       {
         name:"Thrym 2.6",
         provider:"Zorix",
+        logo:"./assets/logos/zorix.svg",
         score:95.5,
         color:"#38A953"
       },
       {
         name:"HY4",
-        provider:"Zorix",
+        provider:"Tencent",
+        logo:"./assets/logos/hunyuan.svg",
         score:94.8,
         color:"#7893D8"
       },
       {
         name:"Claude reference",
         provider:"Anthropic",
+        logo:"./assets/logos/anthropic.svg",
         score:92.4,
         color:"#D97757"
       },
       {
         name:"GPT reference",
         provider:"OpenAI",
+        logo:"./assets/logos/openai.svg",
         score:91.4,
         color:"#222222"
       },
       {
         name:"Gemini reference",
         provider:"Google",
+        fallback:"G",
         score:90.0,
         color:"#4285F4"
       },
       {
         name:"Qwen reference",
         provider:"Alibaba",
+        fallback:"Q",
         score:89.3,
         color:"#FF7A18"
       },
       {
         name:"DeepSeek reference",
         provider:"DeepSeek",
+        logo:"./assets/logos/deepseek.svg",
         score:88.5,
         color:"#4D6BFE"
       }
@@ -1864,6 +2031,10 @@ function renderBenchmark(key){
     const column = document.createElement("div");
     column.className = "bench-column";
 
+    const logoHTML = item.logo
+      ? `<img src="${item.logo}" alt="">`
+      : `<span class="bench-logo-fallback">${item.fallback || item.provider.slice(0,1)}</span>`;
+
     column.innerHTML = `
       <div class="bench-score">
         ${item.score.toFixed(1)}%
@@ -1876,26 +2047,55 @@ function renderBenchmark(key){
            ">
       </div>
 
-      <div class="bench-label">
-        ${item.name}
-        ${item.preview
-          ? '<span class="benchmark-preview-tag">AA4 preview</span>'
-          : ''
-        }
-        <span class="bench-provider">${item.provider}</span>
+      <div class="bench-identity">
+
+        <div class="bench-logo">
+          ${logoHTML}
+        </div>
+
+        <div class="bench-label">
+          ${item.name}
+
+          ${item.preview
+            ? '<span class="benchmark-preview-tag">AA4 preview</span>'
+            : ''
+          }
+
+          <span class="bench-provider">
+            ${item.provider}
+          </span>
+        </div>
+
       </div>
     `;
 
     chart.appendChild(column);
   });
 
-  legend.innerHTML = data.map(item=>`
-    <div class="benchmark-legend-item">
-      <span class="benchmark-dot"
-            style="background:${item.color}"></span>
-      <span>${item.name}</span>
-    </div>
-  `).join("");
+  legend.innerHTML = data.map(item=>{
+    const logo = item.logo
+      ? `<img src="${item.logo}" alt="">`
+      : `<span class="bench-logo-fallback">${item.fallback || item.provider.slice(0,1)}</span>`;
+
+    return `
+      <div class="benchmark-legend-item">
+
+        <span class="benchmark-dot"
+              style="background:${item.color}">
+        </span>
+
+        <span class="benchmark-legend-logo">
+          ${logo}
+        </span>
+
+        <span class="benchmark-legend-text">
+          <b>${item.name}</b>
+          <small>${item.provider}</small>
+        </span>
+
+      </div>
+    `;
+  }).join("");
 
   table.innerHTML = data.map(item=>`
     <tr>
@@ -1906,6 +2106,9 @@ function renderBenchmark(key){
           : ''
         }
       </td>
+
+      <td>${item.provider}</td>
+
       <td>${item.score.toFixed(1)}%</td>
     </tr>
   `).join("");
