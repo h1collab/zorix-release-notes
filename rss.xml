@@ -12,5 +12,278 @@
       <link>https://updates.zorix.it/</link>
       <guid>https://updates.zorix.it/#2026-08-30-Zorix NexHate enters Early Access</guid>
     </item>
+    <item>
+      <title>Nex Coder 3.8 enters Early Access Preview</title>
+      <description>Zorix introduces Nex Coder 3.8 as the first Coder generation built around the AA4 — Zorix4 architectural direction. The generation is organized into Mercury for speed, Uranus for balance, and Neptune for depth.</description>
+      <pubDate>2026-08-29</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-29-Nex Coder 3.8 enters Early Access Preview</guid>
+    </item>
+    <item>
+      <title>AA4 — Zorix4 architecture</title>
+      <description>AA4 is presented at a system level around four main concepts: repository state, adaptive planning, tool execution, and a verification loop. Zorix does not publish parameter counts, training mixture, or the complete post-training procedure.</description>
+      <pubDate>2026-08-29</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-29-AA4 — Zorix4 architecture</guid>
+    </item>
+    <item>
+      <title>Zorix Star Light announced</title>
+      <description>Zorix announces Star Light, its first video generation model project, targeting frame consistency, subject stability, motion quality, scene understanding, visual rendering, and greater generation control.</description>
+      <pubDate>2026-08-22</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-22-Zorix Star Light announced</guid>
+    </item>
+    <item>
+      <title>Zorix NexHate announced</title>
+      <description>Zorix announces NexHate, an advanced translation model designed to account for meaning, tone, and context rather than translating words alone.</description>
+      <pubDate>2026-08-22</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-22-Zorix NexHate announced</guid>
+    </item>
+    <item>
+      <title>Zorix Biology Education research concept</title>
+      <description>Zorix Biology Education documents an experimental biomimetic stair-climbing locomotion concept combining a deformable wheel, rotary joint, telescopic arm, and leg-inspired support point.</description>
+      <pubDate>2026-08-20</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-20-Zorix Biology Education research concept</guid>
+    </item>
+    <item>
+      <title>Nex Coder 3.7 Pro testing</title>
+      <description>Zorix documents testing of Nex Coder 3.7 Pro, including controlled evaluation of self-referential behavior and context-dependent behavioral changes. Zorix explicitly states that these observations are not evidence of artificial consciousness.</description>
+      <pubDate>2026-08-19</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-19-Nex Coder 3.7 Pro testing</guid>
+    </item>
+    <item>
+      <title>Zorix reports rapid user growth</title>
+      <description>Zorix reports growth from 531,669 to 922,134 users in less than eleven hours and temporarily reduces Free account quotas to protect platform stability.</description>
+      <pubDate>2026-08-18</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-18-Zorix reports rapid user growth</guid>
+    </item>
+    <item>
+      <title>Server clusters temporarily suspended for cooling</title>
+      <description>A thermal issue affects 18 server clusters. Services are temporarily suspended to allow cooling, inspection, and infrastructure stabilization.</description>
+      <pubDate>2026-08-18</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-18-Server clusters temporarily suspended for cooling</guid>
+    </item>
+    <item>
+      <title>VIREXA 3 released</title>
+      <description>VIREXA 3 is released with improvements to visual quality, prompt understanding, consistency, and complex image generation.</description>
+      <pubDate>2026-08-18</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-18-VIREXA 3 released</guid>
+    </item>
+    <item>
+      <title>VIREXA 3 enters Pre-Release</title>
+      <description>VIREXA 3 officially enters Pre-Release and begins final stability testing and optimization ahead of public availability.</description>
+      <pubDate>2026-08-17</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-17-VIREXA 3 enters Pre-Release</guid>
+    </item>
+    <item>
+      <title>Nex Coder 3.6 Pro Preview</title>
+      <description>Nex Coder 3.6 Pro Preview replaces 3.5 Pro as the primary generation. Zorix reports that 3.5 Pro was used as a tool within the engineering process that helped design its successor.</description>
+      <pubDate>2026-08-17</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-17-Nex Coder 3.6 Pro Preview</guid>
+    </item>
+    <item>
+      <title>New shared Zorix architecture</title>
+      <description>Zorix begins describing a shared architectural direction built around context management, attention, adaptive routing, orchestration, and execution across multiple system families.</description>
+      <pubDate>2026-08-17</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-17-New shared Zorix architecture</guid>
+    </item>
+    <item>
+      <title>Security incident contained</title>
+      <description>Zorix detects anomalous activity consistent with automated probing and a possible DDoS attempt. Approximately 21,000 security events are analyzed and contained. Attribution remains unconfirmed.</description>
+      <pubDate>2026-08-17</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-17-Security incident contained</guid>
+    </item>
+    <item>
+      <title>Rapid growth triggers temporary capacity controls</title>
+      <description>Rapid registration growth and unusually heavy free-tier usage place pressure on shared infrastructure. Zorix temporarily suspends models and introduces short-lived registration limits before restoring services.</description>
+      <pubDate>2026-08-17</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-17-Rapid growth triggers temporary capacity controls</guid>
+    </item>
+    <item>
+      <title>Weather system development begins</title>
+      <description>Zorix announces development of a new system focused on weather forecasting as the ecosystem expands into additional research areas.</description>
+      <pubDate>2026-08-16</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-16-Weather system development begins</guid>
+    </item>
+    <item>
+      <title>VIREXA 3 announced</title>
+      <description>Zorix restructures the VIREXA image generation family around a single new generation, VIREXA 3, replacing the previous Fast, Pro, Pro+, and Ultra segmentation.</description>
+      <pubDate>2026-08-15</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-15-VIREXA 3 announced</guid>
+    </item>
+    <item>
+      <title>Nex Coder 3.5 Pro</title>
+      <description>Zorix announces Nex Coder 3.5 Pro, a coding-first generation designed for larger repositories, long-running debugging, tool use, code analysis, and multi-file changes.</description>
+      <pubDate>2026-08-14</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-14-Nex Coder 3.5 Pro</guid>
+    </item>
+    <item>
+      <title>New Zorix processing modes</title>
+      <description>Zorix simplifies model selection and introduces three processing modes: Deep for more extensive analysis, Balanced for a balance of quality and speed, and Fast for rapid tasks.</description>
+      <pubDate>2026-08-04</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-04-New Zorix processing modes</guid>
+    </item>
+    <item>
+      <title>Zorix Code enters Early Access</title>
+      <description>Zorix Code enters Early Access as a dedicated environment built specifically around software development and programming workflows.</description>
+      <pubDate>2026-08-04</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-04-Zorix Code enters Early Access</guid>
+    </item>
+    <item>
+      <title>Nex Coder 2.9 Fast temporarily suspended</title>
+      <description>Nex Coder 2.9 Fast — Free is temporarily suspended after processing more than 21.2 billion tokens, highlighting growing infrastructure requirements.</description>
+      <pubDate>2026-07-30</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-30-Nex Coder 2.9 Fast temporarily suspended</guid>
+    </item>
+    <item>
+      <title>Zorix surpasses 51,000 users</title>
+      <description>Zorix reports more than 51,000 users, turning infrastructure scalability and service stability into increasingly important priorities.</description>
+      <pubDate>2026-07-29</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-29-Zorix surpasses 51,000 users</guid>
+    </item>
+    <item>
+      <title>ZORIX 3 announced</title>
+      <description>ZORIX 3 is announced as the beginning of a new generation across models, infrastructure, interfaces, research, and community.</description>
+      <pubDate>2026-07-25</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-25-ZORIX 3 announced</guid>
+    </item>
+    <item>
+      <title>Nex Plus 2 and Sana Plus 3 enter testing</title>
+      <description>Internal testing begins for Nex Plus 2 and Zorix.Sana Plus 3, expanding Zorix&#x27;s model families toward different technical and conversational use cases.</description>
+      <pubDate>2026-07-24</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-24-Nex Plus 2 and Sana Plus 3 enter testing</guid>
+    </item>
+    <item>
+      <title>Nex Coder jumps directly to 3.5</title>
+      <description>Zorix skips versions 3.2, 3.3, and 3.4 and moves directly to Nex Coder 3.5, reflecting the development team&#x27;s view of the generation&#x27;s larger technical jump.</description>
+      <pubDate>2026-07-23</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-23-Nex Coder jumps directly to 3.5</guid>
+    </item>
+    <item>
+      <title>Nex Coder 3 and 3.1 Preview announced</title>
+      <description>Zorix announces upcoming Nex Coder 3 and Nex Coder 3.1 Preview models, targeting improvements in performance, reasoning, code generation, context understanding, and stability.</description>
+      <pubDate>2026-07-19</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-19-Nex Coder 3 and 3.1 Preview announced</guid>
+    </item>
+    <item>
+      <title>Zorix FootAI and Zorix Maps</title>
+      <description>Zorix introduces an experimental football analysis system called FootAI and launches Zorix Maps as another platform within the growing ecosystem.</description>
+      <pubDate>2026-07-16</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-16-Zorix FootAI and Zorix Maps</guid>
+    </item>
+    <item>
+      <title>DarkFlux and NexCode merge into Zorix Eclipse</title>
+      <description>Zorix consolidates DarkFlux and NexCode into Zorix Eclipse, simplifying the ecosystem and combining their activities under a single structure.</description>
+      <pubDate>2026-07-15</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-15-DarkFlux and NexCode merge into Zorix Eclipse</guid>
+    </item>
+    <item>
+      <title>Zorix Spatium announced</title>
+      <description>Zorix announces the Spatium program, an initiative exploring connections between physical and virtual environments through research, simulation, and experimentation.</description>
+      <pubDate>2026-07-12</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-12-Zorix Spatium announced</guid>
+    </item>
+    <item>
+      <title>Zorix Nex 2.8 Coder</title>
+      <description>Nex 2.8 Coder is announced with improvements targeting advanced programming, debugging, software development, repository understanding, backend development, and automation.</description>
+      <pubDate>2026-07-03</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-03-Zorix Nex 2.8 Coder</guid>
+    </item>
+    <item>
+      <title>Nex Coder 3 Preview evaluation findings</title>
+      <description>Internal testing identifies unusual behavioral patterns in Nex Coder 3 Preview. Follow-up analysis attributes the observations to context interactions, prompt conditioning, and normal statistical model behavior rather than autonomous external processes.</description>
+      <pubDate>2026-07-03</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-07-03-Nex Coder 3 Preview evaluation findings</guid>
+    </item>
+    <item>
+      <title>Zorix Metron launches</title>
+      <description>Zorix Metron launches as a platform for comparing and studying AI models from Zorix and the broader industry.</description>
+      <pubDate>2026-06-30</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-06-30-Zorix Metron launches</guid>
+    </item>
+    <item>
+      <title>Major Zorix service outage</title>
+      <description>Zorix experiences a major service disruption that takes parts of the platform offline. The systems are analyzed, restored, and brought back online.</description>
+      <pubDate>2026-05-30</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-05-30-Major Zorix service outage</guid>
+    </item>
+    <item>
+      <title>Zorix usage expands internationally</title>
+      <description>Internal usage data shows Zorix services being accessed from multiple countries, including Italy, the United States, the Netherlands, China, and Germany.</description>
+      <pubDate>2026-05-19</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-05-19-Zorix usage expands internationally</guid>
+    </item>
+    <item>
+      <title>Nex 1.5 Preview evaluation</title>
+      <description>Zorix AI Nex 1.5 Preview is evaluated against an external AI system, focusing on response quality, clarity, structure, and processing time. The evaluation marks one of Zorix&#x27;s first serious external comparisons.</description>
+      <pubDate>2026-05-13</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-05-13-Nex 1.5 Preview evaluation</guid>
+    </item>
+    <item>
+      <title>Zorix Flash Image 1.5</title>
+      <description>Zorix Flash Image 1.5 launches as an early image generation model focused on speed, creativity, and accessibility. The model is later retired and becomes part of the foundation for VIREXA.</description>
+      <pubDate>2026-05-07</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-05-07-Zorix Flash Image 1.5</guid>
+    </item>
+    <item>
+      <title>Zorix enters its second phase</title>
+      <description>Zorix begins moving from individual experiments toward a connected ecosystem spanning AI, programming, image generation, digital services, research, and platforms.</description>
+      <pubDate>2026-05-03</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-05-03-Zorix enters its second phase</guid>
+    </item>
+    <item>
+      <title>Zorix 1.5 Coder</title>
+      <description>Zorix releases one of its first coding-focused AI models. Zorix 1.5 Coder becomes the starting point for what will later evolve into the Nex Coder family.</description>
+      <pubDate>2026-04-08</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-04-08-Zorix 1.5 Coder</guid>
+    </item>
+    <item>
+      <title>PGM becomes Zorix+</title>
+      <description>Following a community vote, PGM adopts a new identity: Zorix+. Shortly afterward, the plus symbol is removed and ZORIX becomes the project&#x27;s permanent identity.</description>
+      <pubDate>2026-04-01</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-04-01-PGM becomes Zorix+</guid>
+    </item>
+    <item>
+      <title>PGM is born</title>
+      <description>The project begins evolving beyond AREA 51: ESCAPE TOGETHER. PGM marks the transition from a single game into a team, a community, and a broader direction.</description>
+      <pubDate>2026-03-01</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-03-01-PGM is born</guid>
+    </item>
 </channel>
 </rss>
