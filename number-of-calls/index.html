@@ -1624,9 +1624,9 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788109229"></script>
-<script src="./usage.js?v=1788109229"></script>
-<script src="./quota.js?v=1788109229"></script>
+<script src="./models.js?v=1788110591"></script>
+<script src="./usage.js?v=1788110591"></script>
+<script src="./quota.js?v=1788110591"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -2401,6 +2401,105 @@ document.addEventListener("keydown",e=>{
   }
 });
 
+</script>
+
+
+<script>
+/* ZORIX PROVIDER ROUTES */
+
+(()=>{
+  const routes={
+    "Zorix":"/zorix/",
+    "Anthropic":"/anthropic/",
+    "OpenAI":"/openai/",
+    "Google":"/google/",
+    "DeepSeek":"/deepseek/",
+    "Tencent":"/tencent/",
+    "Xiaomi":"/xiaomi/",
+    "Z.ai":"/zai/"
+  };
+
+  function wireProviderRoutes(){
+
+    document
+      .querySelectorAll(".provider span")
+      .forEach(el=>{
+
+        const provider=
+          el.textContent.trim();
+
+        const route=
+          routes[provider];
+
+        if(!route)
+          return;
+
+        if(el.dataset.providerRoute)
+          return;
+
+        el.dataset.providerRoute="1";
+
+        el.style.cursor="pointer";
+
+        el.setAttribute(
+          "role",
+          "link"
+        );
+
+        el.setAttribute(
+          "tabindex",
+          "0"
+        );
+
+        el.addEventListener(
+          "click",
+          e=>{
+
+            e.stopPropagation();
+
+            location.href=route;
+
+          }
+        );
+
+        el.addEventListener(
+          "keydown",
+          e=>{
+
+            if(
+              e.key==="Enter" ||
+              e.key===" "
+            ){
+              e.preventDefault();
+              location.href=route;
+            }
+
+          }
+        );
+
+      });
+
+  }
+
+
+  wireProviderRoutes();
+
+
+  const observer=
+    new MutationObserver(
+      wireProviderRoutes
+    );
+
+
+  observer.observe(
+    document.body,
+    {
+      childList:true,
+      subtree:true
+    }
+  );
+
+})();
 </script>
 
 </body>

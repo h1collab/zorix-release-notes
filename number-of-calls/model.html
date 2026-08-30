@@ -475,5 +475,74 @@ if(!model){
 }
 </script>
 
+
+<script>
+/* ZORIX MODEL PROVIDER ROUTES */
+
+(()=>{
+  const routes={
+    "Zorix":"/zorix/",
+    "Anthropic":"/anthropic/",
+    "OpenAI":"/openai/",
+    "Google":"/google/",
+    "DeepSeek":"/deepseek/",
+    "Tencent":"/tencent/",
+    "Xiaomi":"/xiaomi/",
+    "Z.ai":"/zai/"
+  };
+
+  function wire(){
+
+    document
+      .querySelectorAll(
+        ".provider, [data-provider]"
+      )
+      .forEach(el=>{
+
+        let value=
+          el.dataset.provider ||
+          el.textContent.trim();
+
+        value=
+          value.replace(/^by\s+/i,"")
+               .trim();
+
+        const route=
+          routes[value];
+
+        if(!route)
+          return;
+
+        if(el.dataset.companyRoute)
+          return;
+
+        el.dataset.companyRoute="1";
+        el.style.cursor="pointer";
+        el.style.textDecoration="underline";
+        el.style.textUnderlineOffset="3px";
+
+        el.addEventListener(
+          "click",
+          ()=>location.href=route
+        );
+
+      });
+
+  }
+
+  wire();
+
+  new MutationObserver(wire)
+    .observe(
+      document.body,
+      {
+        childList:true,
+        subtree:true
+      }
+    );
+
+})();
+</script>
+
 </body>
 </html>
