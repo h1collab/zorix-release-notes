@@ -17,7 +17,7 @@ window.ZORIX_MODEL_DETAILS = [
     docs: "https://www.anthropic.com/claude/opus",
     chart: [280,310,340,360,390,430,470,500,540,570,610,660,720,770,820,880,930,980,1040,1090,1140,1200,1170,1130,1100,1060,1020,990,970,950],
     color: "#D97757",
-  }
+  },
   {
     id: "nex-coder-38-neptune",
     name: "Nex Coder 3.8 Preview Neptune",
@@ -36,7 +36,7 @@ window.ZORIX_MODEL_DETAILS = [
     docs: "https://doc.zorix.it/zorix-nex-coder/3.8-aa4",
     chart: [520,610,590,640,700,720,780,860,910,980,1020,1100,1250,1410,1600,1840,2100,2350,2680,2940,3220,3080,2870,2750,2600,2480,2360,2290,2210,2150],
     color: "#2563EB",
-  }
+  },
   {
     id: "deepseek-v4-flash-0731",
     name: "DeepSeek V4 Flash 0731",
@@ -54,7 +54,7 @@ window.ZORIX_MODEL_DETAILS = [
     about: "DeepSeek V4 Flash 0731 is available through Zorix Code. Usage statistics on this page represent the token volume recorded for the model in the Zorix Code environment.",
     chart: [320,420,390,450,510,530,560,590,610,620,700,740,760,810,860,920,980,1010,1050,1110,1160,1200,1130,1080,990,950,910,880,845,820],
     color: "#4D6BFE",
-  }
+  },
   {
     id: "tencent-hy3",
     name: "Tencent Hy3",
@@ -72,7 +72,7 @@ window.ZORIX_MODEL_DETAILS = [
     about: "Tencent Hy3 is currently available through Zorix Code. Usage statistics reflect the volume observed inside Zorix Code.",
     chart: [260,300,320,310,360,400,430,450,470,490,530,560,580,610,630,670,710,760,790,830,870,920,950,910,860,810,780,740,700,660],
     color: "#00A7CE",
-  }
+  },
   {
     id: "mimo-v25",
     name: "Xiaomi MiMo-V2.5",
@@ -90,7 +90,7 @@ window.ZORIX_MODEL_DETAILS = [
     about: "Xiaomi MiMo-V2.5 is currently available through Zorix Code. Usage statistics reflect the volume observed inside Zorix Code.",
     chart: [20,25,22,18,30,34,31,42,48,50,44,39,47,56,61,66,72,80,97,120,150,138,121,109,93,84,72,61,55,49],
     color: "#FF6900",
-  }
+  },
   {
     id: "gpt-56-luna",
     name: "GPT-5.6 Luna",
@@ -108,7 +108,7 @@ window.ZORIX_MODEL_DETAILS = [
     about: "GPT-5.6 Luna is currently available through Zorix Code. Usage statistics on this page reflect Zorix Code traffic rather than global OpenAI usage.",
     chart: [5,8,7,9,11,12,10,13,16,15,17,18,21,25,28,31,27,29,33,41,60,72,69,63,55,48,44,40,36,31],
     color: "#10A37F",
-  }
+  },
     {
     id: "glm-53-flash",
     name: "GLM 5.3 Flash",
@@ -140,7 +140,7 @@ window.ZORIX_MODEL_DETAILS = [
       229,236,243,251,258,266,274,281,289,296,
       300,297,294,291,288,285,282,279,276,273
     ]
-  }
+  },
     {
     id: "glm-52-max",
     name: "GLM 5.2 Max",
