@@ -292,6 +292,7 @@
 
 <div class="toast" id="toast">RSS feed URL copied</div>
 <script src="releases.js?v=1788078359"></script>
+<script src="details.js?v=1"></script>
 <script>
 const releases = window.ZORIX_RELEASES || [];
 
@@ -323,49 +324,139 @@ function escapeSvgText(value){
     .replaceAll('"','&quot;');
 }
 
+
+function hashText(s){
+  let h=2166136261;
+  for(const c of String(s)){
+    h ^= c.charCodeAt(0);
+    h = Math.imul(h,16777619);
+  }
+  return h>>>0;
+}
+
+function escapeSvgText(v){
+  return String(v??'')
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;');
+}
+
 function releaseSvg(r){
-  const title = escapeSvgText(r.title);
-  const category = escapeSvgText(r.category || 'Updates');
-  const status = escapeSvgText(r.status || 'Published');
-  const date = escapeSvgText(prettyDate(r.date));
+  const d=(window.ZORIX_DETAILS||{})[r.title]||{};
+  const type=d.visual||r.category?.toLowerCase()||'default';
+  const seed=hashText(r.title);
+  const a=70+(seed%120);
+  const b=160+((seed>>3)%180);
+  const c=350+((seed>>7)%260);
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="${title}">
+  const title=escapeSvgText(r.title);
+  const label=escapeSvgText(d.eyebrow||r.category||'Zorix');
+  const date=escapeSvgText(prettyDate(r.date));
+
+  const baseStart=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#f7f4ed"/>
+  <text x="64" y="62" font-family="Arial" font-size="18" fill="#6d675f">ZORIX / ${label}</text>
+  <text x="1136" y="62" text-anchor="end" font-family="Arial" font-size="18" fill="#6d675f">${date}</text>`;
 
-  <circle cx="1090" cy="92" r="54" fill="#d97757"/>
-  <circle cx="1040" cy="540" r="90" fill="#c9c3a7" opacity=".65"/>
+  const footer=`<text x="64" y="584" font-family="Arial" font-size="18" fill="#171513">${title}</text></svg>`;
 
-  <path d="M70 112H1130" stroke="#171513" stroke-opacity=".18"/>
-  <path d="M70 520H1130" stroke="#171513" stroke-opacity=".18"/>
+  if(type==='aa4'||type==='aa4-loop'){
+    return baseStart+`
+      <circle cx="600" cy="310" r="86" fill="#d97757"/>
+      <text x="600" y="302" text-anchor="middle" font-family="Arial" font-size="31" fill="#fff">AA4</text>
+      <text x="600" y="336" text-anchor="middle" font-family="Arial" font-size="15" fill="#fff">ZORIX4</text>
 
-  <text x="70" y="78"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="25"
-    fill="#171513">ZORIX / RELEASE NOTES</text>
+      <rect x="105" y="160" width="210" height="92" rx="46" fill="#171513"/>
+      <text x="210" y="213" text-anchor="middle" font-family="Arial" font-size="17" fill="#fff">Repository state</text>
 
-  <text x="70" y="166"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="22"
-    fill="#6b665e">${category}</text>
+      <rect x="885" y="160" width="210" height="92" rx="46" fill="#b5af91"/>
+      <text x="990" y="213" text-anchor="middle" font-family="Arial" font-size="17">Adaptive planning</text>
 
-  <foreignObject x="70" y="205" width="930" height="220">
-    <div xmlns="http://www.w3.org/1999/xhtml"
-      style="font-family:Arial,Helvetica,sans-serif;font-size:66px;line-height:0.98;letter-spacing:-3px;font-weight:500;color:#171513;">
-      ${title}
-    </div>
-  </foreignObject>
+      <rect x="885" y="385" width="210" height="92" rx="46" fill="#8097a6"/>
+      <text x="990" y="438" text-anchor="middle" font-family="Arial" font-size="17">Tool execution</text>
 
-  <text x="70" y="565"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="20"
-    fill="#6b665e">${date}</text>
+      <rect x="105" y="385" width="210" height="92" rx="46" fill="#d9cfc0"/>
+      <text x="210" y="438" text-anchor="middle" font-family="Arial" font-size="17">Verification loop</text>
 
-  <text x="1130" y="565"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="20"
-    text-anchor="end"
-    fill="#171513">${status}</text>
-</svg>`;
+      <path d="M315 206 C430 110 490 178 540 235" fill="none" stroke="#171513" stroke-width="2"/>
+      <path d="M660 235 C720 178 790 110 885 206" fill="none" stroke="#171513" stroke-width="2"/>
+      <path d="M990 252 L990 385" stroke="#171513" stroke-width="2"/>
+      <path d="M885 431 C760 525 700 450 660 385" fill="none" stroke="#171513" stroke-width="2"/>
+      <path d="M540 385 C470 455 395 525 315 431" fill="none" stroke="#171513" stroke-width="2"/>
+    `+footer;
+  }
+
+  if(type==='chip'){
+    return baseStart+`
+      <rect x="370" y="130" width="460" height="330" rx="42" fill="#171513"/>
+      ${Array.from({length:8},(_,i)=>`<path d="M${410+i*50} 105V130M${410+i*50} 460V485" stroke="#d97757" stroke-width="5"/>`).join('')}
+      ${Array.from({length:5},(_,i)=>`<path d="M345 ${175+i*55}H370M830 ${175+i*55}H855" stroke="#d97757" stroke-width="5"/>`).join('')}
+      <text x="600" y="280" text-anchor="middle" font-family="Arial" font-size="92" fill="#fff">2B</text>
+      <text x="600" y="334" text-anchor="middle" font-family="Arial" font-size="19" fill="#bbb">LOCAL MODEL</text>
+    `+footer;
+  }
+
+  if(type==='speed'||type==='star'){
+    let rays='';
+    for(let i=0;i<18;i++){
+      let y=120+i*22;
+      let len=150+((seed+i*37)%600);
+      rays+=`<path d="M80 ${y} H${80+len}" stroke="${i%3===0?'#d97757':'#171513'}" stroke-width="${i%4===0?6:2}" opacity="${.3+(i%5)*.12}"/>`;
+    }
+    return baseStart+rays+`
+      <circle cx="${850+(seed%160)}" cy="${250+(seed%100)}" r="95" fill="#d97757"/>
+      <path d="M930 120L955 205L1040 230L955 255L930 340L905 255L820 230L905 205Z" fill="#171513"/>
+    `+footer;
+  }
+
+  if(type==='image-grid'||type==='image-orbit'){
+    let cells='';
+    for(let i=0;i<12;i++){
+      const x=90+(i%4)*245;
+      const y=125+Math.floor(i/4)*125;
+      const r=(seed+i*43)%80;
+      cells+=`<rect x="${x}" y="${y}" width="205" height="95" rx="${10+r/5}" fill="${['#d97757','#c4bca8','#899ca6','#171513'][i%4]}" opacity="${.65+(i%3)*.12}"/>`;
+    }
+    return baseStart+cells+footer;
+  }
+
+  if(type==='repo'||type==='repo-network'||type==='terminal'){
+    let nodes='';
+    let lines='';
+    const pts=[];
+    for(let i=0;i<11;i++){
+      let x=120+((seed+i*137)%900);
+      let y=130+((seed>>2+i*83)%340);
+      pts.push([x,y]);
+    }
+    pts.forEach((p,i)=>{
+      if(i) lines+=`<path d="M${pts[i-1][0]} ${pts[i-1][1]} L${p[0]} ${p[1]}" stroke="#8e887f" stroke-width="2"/>`;
+      nodes+=`<circle cx="${p[0]}" cy="${p[1]}" r="${i%3?13:23}" fill="${i%4===0?'#d97757':'#171513'}"/>`;
+    });
+    return baseStart+lines+nodes+`
+      <rect x="${a}" y="${b}" width="330" height="120" rx="12" fill="#171513"/>
+      <text x="${a+24}" y="${b+40}" font-family="monospace" font-size="16" fill="#fff">$ inspect repository</text>
+      <text x="${a+24}" y="${b+72}" font-family="monospace" font-size="16" fill="#aaa">run tests → verify</text>
+    `+footer;
+  }
+
+  if(type==='constellation'){
+    return baseStart+`
+      <circle cx="600" cy="300" r="66" fill="#171513"/>
+      <circle cx="260" cy="200" r="46" fill="#d97757"/>
+      <circle cx="930" cy="180" r="58" fill="#899ca6"/>
+      <circle cx="910" cy="420" r="40" fill="#b7ae8e"/>
+      <circle cx="300" cy="430" r="52" fill="#d8cdc0"/>
+      <path d="M310 220L540 285M660 280L875 195M650 330L870 405M545 340L345 410" stroke="#171513" stroke-width="2"/>
+    `+footer;
+  }
+
+  return baseStart+`
+    <circle cx="${a+220}" cy="${b}" r="110" fill="#d97757"/>
+    <rect x="${c}" y="170" width="330" height="210" rx="40" fill="#171513"/>
+    <path d="M120 455 C300 ${250+(seed%120)} 720 ${520-(seed%180)} 1080 250" fill="none" stroke="#8f897f" stroke-width="3"/>
+  `+footer;
 }
 
 const releaseModal = document.getElementById('releaseModal');
@@ -382,7 +473,62 @@ let activeSvgCode = '';
 
 function openReleaseModal(r){
   modalTitle.textContent = r.title || '';
-  modalContent.textContent = r.content || '';
+  const detail=(window.ZORIX_DETAILS||{})[r.title]||{};
+
+modalContent.innerHTML = `
+  <p>${r.content || ''}</p>
+
+  ${detail.summary ? `
+    <h3 style="margin-top:28px">Overview</h3>
+    <p>${detail.summary}</p>
+  ` : ''}
+
+  ${detail.capabilities?.length ? `
+    <h3 style="margin-top:28px">Capabilities</h3>
+    <ul>
+      ${detail.capabilities.map(x=>`<li>${x}</li>`).join('')}
+    </ul>
+  ` : ''}
+
+  ${detail.metrics?.length ? `
+    <h3 style="margin-top:28px">Documented metrics</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
+      ${detail.metrics.map(x=>`
+        <div style="border:1px solid #deded9;border-radius:12px;padding:14px">
+          <div style="font-size:12px;color:#6b6b67">${x[0]}</div>
+          <div style="font-size:27px;margin-top:5px">${x[1]}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : ''}
+
+  ${detail.variants?.length ? `
+    <h3 style="margin-top:28px">Variants</h3>
+    ${detail.variants.map(x=>`
+      <p><strong>${x[0]}</strong> — ${x[1]}</p>
+    `).join('')}
+  ` : ''}
+
+  ${detail.note ? `<p style="margin-top:25px;color:#6b6b67">${detail.note}</p>` : ''}
+
+  ${detail.source ? `
+    <p style="margin-top:30px">
+      <a href="${detail.source}" target="_blank" rel="noopener"
+         style="text-decoration:underline;text-underline-offset:4px">
+        Open technical documentation ↗
+      </a>
+    </p>
+  ` : ''}
+
+  ${detail.paper ? `
+    <p>
+      <a href="${detail.paper}" target="_blank" rel="noopener"
+         style="text-decoration:underline;text-underline-offset:4px">
+        Read technical paper ↗
+      </a>
+    </p>
+  ` : ''}
+`;
 
   modalMeta.innerHTML = `
     <span class="modal-badge">${r.category || 'Updates'}</span>
