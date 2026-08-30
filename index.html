@@ -31,7 +31,198 @@
     .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,18px);opacity:0;transition:.2s;background:#111;color:#fff;border-radius:999px;padding:10px 14px;font-size:13px;pointer-events:none;z-index:80}.toast.show{opacity:1;transform:translate(-50%,0)}
     @media(max-width:920px){.nav{grid-template-columns:1fr auto}.nav-center{display:none}.hero-row{align-items:flex-start;flex-direction:column}.toolbar{grid-template-columns:1fr 1fr}.toolbar .spacer{display:none}.search-wrap{grid-column:1/-1}.footer-grid{grid-template-columns:1fr 1fr}.note,.month-empty{grid-template-columns:1fr;gap:20px}.meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.status{margin-top:0}.content{max-width:none}}
     @media(max-width:560px){.nav-right .pill:first-child{display:none}h1{font-size:clamp(62px,20vw,92px)}.hero{padding-top:70px}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column}.content p,.content ul{font-size:16px}.note{padding:32px 0 38px}}
-  </style>
+  
+/* Release detail modal */
+.note{
+  cursor:pointer;
+  transition:background .18s ease;
+}
+.note:hover{
+  background:rgba(0,0,0,.018);
+}
+
+.release-modal{
+  position:fixed;
+  inset:0;
+  z-index:120;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(13,13,13,.38);
+  backdrop-filter:blur(7px);
+}
+
+.release-modal.open{
+  display:flex;
+}
+
+.release-dialog{
+  width:min(920px,100%);
+  max-height:min(820px,90vh);
+  overflow:auto;
+  background:#fff;
+  border:1px solid #deded9;
+  border-radius:22px;
+  box-shadow:0 24px 80px rgba(0,0,0,.18);
+}
+
+.release-dialog-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:18px 20px;
+  border-bottom:1px solid #deded9;
+  position:sticky;
+  top:0;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  z-index:3;
+}
+
+.release-dialog-label{
+  font-size:13px;
+  color:#6b6b67;
+}
+
+.modal-close{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid #deded9;
+  background:#fff;
+  font-size:21px;
+  line-height:1;
+}
+
+.modal-close:hover{
+  background:#f1f1ed;
+}
+
+.release-dialog-body{
+  padding:30px 30px 34px;
+}
+
+.modal-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:22px;
+}
+
+.modal-badge{
+  border:1px solid #d5d5cf;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  color:#565652;
+}
+
+.modal-title{
+  font-size:clamp(34px,5vw,62px);
+  line-height:.98;
+  letter-spacing:-.05em;
+  font-weight:500;
+  margin:0 0 22px;
+}
+
+.modal-content{
+  font-size:17px;
+  line-height:1.65;
+  max-width:72ch;
+  margin-bottom:36px;
+}
+
+.svg-section{
+  border-top:1px solid #deded9;
+  padding-top:28px;
+}
+
+.svg-section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  margin-bottom:14px;
+}
+
+.svg-section-title{
+  font-size:14px;
+  font-weight:600;
+}
+
+.svg-actions{
+  display:flex;
+  gap:8px;
+}
+
+.svg-action{
+  border:1px solid #d3d3cd;
+  background:#fff;
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:12px;
+}
+
+.svg-action:hover{
+  background:#f1f1ed;
+}
+
+.svg-preview{
+  border:1px solid #deded9;
+  border-radius:16px;
+  padding:14px;
+  background:#f7f7f3;
+  overflow:hidden;
+}
+
+.svg-preview svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.svg-code{
+  margin-top:12px;
+  display:none;
+  background:#111;
+  color:#eee;
+  border-radius:14px;
+  padding:16px;
+  overflow:auto;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:12px;
+  line-height:1.6;
+  white-space:pre;
+}
+
+.svg-code.open{
+  display:block;
+}
+
+@media(max-width:620px){
+  .release-modal{
+    padding:10px;
+    align-items:flex-end;
+  }
+
+  .release-dialog{
+    border-radius:20px 20px 10px 10px;
+    max-height:92vh;
+  }
+
+  .release-dialog-body{
+    padding:24px 18px 28px;
+  }
+
+  .svg-section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
+</style>
 </head>
 <body>
 <div class="shell">
@@ -61,6 +252,44 @@
 
   <footer id="about"><div class="footer"><div class="footer-grid"><div><a class="footer-brand" href="#">zorix</a></div><div class="fcol"><h3>Product</h3><a href="#notes">Release notes</a><a href="#notes">Models</a><a href="#notes">Zorix Code</a></div><div class="fcol"><h3>Research</h3><a href="#notes">Metron</a><a href="#notes">Spatium</a><a href="#notes">Safety</a></div><div class="fcol"><h3>Developers</h3><a href="#notes">Documentation</a><a href="#notes">API</a><a href="#notes">Status</a></div><div class="fcol"><h3>Company</h3><a href="#about">About</a><a href="#about">Community</a><a href="#about">Contact</a></div></div><div class="footer-bottom"><div>Zorix © 2026</div><div class="footer-links"><span>English</span><span>Last updated August 30, 2026</span></div></div></div></footer>
 </div>
+
+<div class="release-modal" id="releaseModal" aria-hidden="true">
+  <div class="release-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="release-dialog-head">
+      <div class="release-dialog-label">Zorix release detail</div>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+    </div>
+
+    <div class="release-dialog-body">
+      <div class="modal-meta" id="modalMeta"></div>
+
+      <h2 class="modal-title" id="modalTitle"></h2>
+
+      <div class="modal-content" id="modalContent"></div>
+
+      <section class="svg-section">
+        <div class="svg-section-head">
+          <div class="svg-section-title">Release visual / SVG</div>
+
+          <div class="svg-actions">
+            <button class="svg-action" id="toggleSvgCode" type="button">
+              View SVG code
+            </button>
+
+            <button class="svg-action" id="copySvgCode" type="button">
+              Copy SVG
+            </button>
+          </div>
+        </div>
+
+        <div class="svg-preview" id="svgPreview"></div>
+
+        <pre class="svg-code" id="svgCode"></pre>
+      </section>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast">RSS feed URL copied</div>
 <script src="releases.js?v=1788078359"></script>
 <script>
@@ -74,12 +303,171 @@ function renderTabs(){tabs.innerHTML=categories.map(c=>`<button class="tab ${c==
 function releaseHTML(r){return `<article class="note"><div class="meta"><div><div class="category">${r.category}</div><div class="date">${prettyDate(r.date)}</div></div><span class="status">${r.status}</span></div><div class="content"><h2>${r.title}</h2><p>${r.content}</p>${r.bullets?`<ul>${r.bullets.map(x=>`<li>${x}</li>`).join('')}</ul>`:''}${r.note?`<p class="small">${r.note}</p>`:''}</div></article>`}
 function render(){let q=search.value.trim().toLowerCase();let arr=releases.filter(r=>(active==='All'||r.category===active)&&(!q||`${r.title} ${r.content} ${r.category} ${r.status} ${(r.bullets||[]).join(' ')}`.toLowerCase().includes(q)));arr.sort((a,b)=>(new Date(b.date)-new Date(a.date))*(newest?1:-1));let subset=arr.slice(0,visible);let html='';
  if(active==='All'&&!q&&newest){html+=`<div class="month-empty"><div>February 2026</div><div>No release note is documented for February in the supplied Zorix history.</div></div>`}
- html+=subset.map(releaseHTML).join('');feed.innerHTML=html;noResults.style.display=arr.length?'none':'block';loadRow.style.display=arr.length>visible?'flex':'none'}
+ window.__VISIBLE_RELEASES = subset;
+html+=subset.map((r,i)=>{
+  const raw=releaseHTML(r);
+  return raw.replace('<article class="note">', `<article class="note" data-release-index="${i}" tabindex="0" role="button">`);
+}).join('');
+feed.innerHTML=html;noResults.style.display=arr.length?'none':'block';loadRow.style.display=arr.length>visible?'flex':'none'}
 renderTabs();render();
 search.addEventListener('input',()=>{visible=10;render()});
 document.getElementById('sortBtn').onclick=()=>{newest=!newest;document.getElementById('sortLabel').textContent=newest?'Newest':'Oldest';render()};
 document.getElementById('filterBtn').onclick=()=>{active=active==='All'?'Coding':'All';visible=10;document.getElementById('filterLabel').textContent=active==='All'?'Filter':'Coding only';renderTabs();render()};
 document.getElementById('loadMore').onclick=()=>{visible+=10;render()};
+
+function escapeSvgText(value){
+  return String(value ?? '')
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;');
+}
+
+function releaseSvg(r){
+  const title = escapeSvgText(r.title);
+  const category = escapeSvgText(r.category || 'Updates');
+  const status = escapeSvgText(r.status || 'Published');
+  const date = escapeSvgText(prettyDate(r.date));
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="${title}">
+  <rect width="1200" height="630" fill="#f7f4ed"/>
+
+  <circle cx="1090" cy="92" r="54" fill="#d97757"/>
+  <circle cx="1040" cy="540" r="90" fill="#c9c3a7" opacity=".65"/>
+
+  <path d="M70 112H1130" stroke="#171513" stroke-opacity=".18"/>
+  <path d="M70 520H1130" stroke="#171513" stroke-opacity=".18"/>
+
+  <text x="70" y="78"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="25"
+    fill="#171513">ZORIX / RELEASE NOTES</text>
+
+  <text x="70" y="166"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="22"
+    fill="#6b665e">${category}</text>
+
+  <foreignObject x="70" y="205" width="930" height="220">
+    <div xmlns="http://www.w3.org/1999/xhtml"
+      style="font-family:Arial,Helvetica,sans-serif;font-size:66px;line-height:0.98;letter-spacing:-3px;font-weight:500;color:#171513;">
+      ${title}
+    </div>
+  </foreignObject>
+
+  <text x="70" y="565"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="20"
+    fill="#6b665e">${date}</text>
+
+  <text x="1130" y="565"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="20"
+    text-anchor="end"
+    fill="#171513">${status}</text>
+</svg>`;
+}
+
+const releaseModal = document.getElementById('releaseModal');
+const modalClose = document.getElementById('modalClose');
+const modalTitle = document.getElementById('modalTitle');
+const modalContent = document.getElementById('modalContent');
+const modalMeta = document.getElementById('modalMeta');
+const svgPreview = document.getElementById('svgPreview');
+const svgCode = document.getElementById('svgCode');
+const toggleSvgCode = document.getElementById('toggleSvgCode');
+const copySvgCode = document.getElementById('copySvgCode');
+
+let activeSvgCode = '';
+
+function openReleaseModal(r){
+  modalTitle.textContent = r.title || '';
+  modalContent.textContent = r.content || '';
+
+  modalMeta.innerHTML = `
+    <span class="modal-badge">${r.category || 'Updates'}</span>
+    <span class="modal-badge">${prettyDate(r.date)}</span>
+    <span class="modal-badge">${r.status || 'Published'}</span>
+  `;
+
+  activeSvgCode = releaseSvg(r);
+
+  svgPreview.innerHTML = activeSvgCode;
+  svgCode.textContent = activeSvgCode;
+  svgCode.classList.remove('open');
+  toggleSvgCode.textContent = 'View SVG code';
+
+  releaseModal.classList.add('open');
+  releaseModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeReleaseModal(){
+  releaseModal.classList.remove('open');
+  releaseModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+modalClose.addEventListener('click', closeReleaseModal);
+
+releaseModal.addEventListener('click', e => {
+  if(e.target === releaseModal){
+    closeReleaseModal();
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && releaseModal.classList.contains('open')){
+    closeReleaseModal();
+  }
+});
+
+toggleSvgCode.addEventListener('click', () => {
+  const opened = svgCode.classList.toggle('open');
+  toggleSvgCode.textContent = opened ? 'Hide SVG code' : 'View SVG code';
+});
+
+copySvgCode.addEventListener('click', async () => {
+  try{
+    await navigator.clipboard.writeText(activeSvgCode);
+    copySvgCode.textContent = 'Copied';
+    setTimeout(() => copySvgCode.textContent = 'Copy SVG', 1300);
+  }catch(e){
+    copySvgCode.textContent = 'Copy failed';
+  }
+});
+
+feed.addEventListener('click', e => {
+  const note = e.target.closest('.note');
+  if(!note) return;
+
+  const index = Number(note.dataset.releaseIndex);
+  const r = window.__VISIBLE_RELEASES?.[index];
+
+  if(r){
+    openReleaseModal(r);
+  }
+});
+
+
+
+feed.addEventListener('keydown', e => {
+  if(e.key !== 'Enter' && e.key !== ' ') return;
+
+  const note = e.target.closest('.note');
+  if(!note) return;
+
+  e.preventDefault();
+
+  const index = Number(note.dataset.releaseIndex);
+  const r = window.__VISIBLE_RELEASES?.[index];
+
+  if(r){
+    openReleaseModal(r);
+  }
+});
+
+
 document.getElementById('copyRss').onclick=async()=>{let url=new URL('rss.xml',location.href).href;try{await navigator.clipboard.writeText(url)}catch(e){}let t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)};
 </script>
 </body></html>
