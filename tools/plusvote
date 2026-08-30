@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import json
+import subprocess
+import sys
+
+ROOT = Path.home() / "projects/zorix-release-notes"
+
+DATA = ROOT / "data/votes.json"
+BUILD = ROOT / "tools/build_votes.py"
+
+
+def usage():
+    print(
+        "Usage:\n"
+        "  plusvote <model-id> <votes> [uncertainty]\n"
+        "\n"
+        "Examples:\n"
+        "  plusvote claude-opus-5 1507\n"
+        "  plusvote nex-coder-38-neptune 1550 5"
+    )
+
+
+if len(sys.argv) < 3:
+    usage()
+    raise SystemExit(1)
+
+
+model_id = sys.argv[1]
+
+try:
+    votes = int(
+        sys.argv[2]
+        .replace(",", "")
+    )
+except ValueError:
+    raise SystemExit(
+        "votes must be an integer"
+    )
+
+
+uncertainty = 0
+
+if len(sys.argv) >= 4:
+    try:
+        uncertainty = int(
+            sys.argv[3]
+            .replace("±", "")
+            .replace(",", "")
+        )
+    except ValueError:
+        raise SystemExit(
+            "uncertainty must be an integer"
+        )
+
+
+data = json.loads(
+    DATA.read_text(
+        encoding="utf-8"
+    )
+)
+
+
+models = data.setdefault(
+    "models",
+    []
+)
+
+
+target = next(
+    (
+        x for x in models
+        if x.get("id") == model_id
+    ),
+    None
+)
+
+
+if target is None:
+
+    target = {
+        "id": model_id,
+        "votes": 0,
+        "uncertainty": 0
+    }
+
+    models.append(target)
+
+
+target["votes"] = votes
+target["uncertainty"] = uncertainty
+
+
+DATA.write_text(
+    json.dumps(
+        data,
+        ensure_ascii=False,
+        indent=2
+    ),
+    encoding="utf-8"
+)
+
+
+subprocess.run(
+    [
+        sys.executable,
+        str(BUILD)
+    ],
+    check=True
+)
+
+
+print(
+    f"{model_id}: "
+    f"{votes:,} votes"
+    +
+    (
+        f" ±{uncertainty}"
+        if uncertainty
+        else ""
+    )
+)
