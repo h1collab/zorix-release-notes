@@ -1116,38 +1116,17 @@ function providerLink(model){
 
 function resolveModelLogo(model){
 
-  const logo =
-    String(
-      model?.logo || ""
-    );
+  const logo = String(model?.logo || "");
 
-  if(!logo)
-    return "";
+  if(!logo) return "";
 
-
-  if(
-    logo.startsWith(
-      "./assets/"
-    )
-  ){
-    return (
-      "../" +
-      logo.slice(2)
-    );
+  if(logo.startsWith("./assets/")){
+    return "/number-of-calls/" + logo.slice(2);
   }
 
-
-  if(
-    logo.startsWith(
-      "assets/"
-    )
-  ){
-    return (
-      "../" +
-      logo
-    );
+  if(logo.startsWith("assets/")){
+    return "/number-of-calls/" + logo;
   }
-
 
   return logo;
 }
@@ -1908,13 +1887,29 @@ function renderVoteCurveV2(){
             max
           );
 
-
+        /*
+         * One real snapshot cannot form a historical line.
+         * Draw a horizontal guide + large endpoint instead,
+         * so the current voting position is still visible.
+         */
         pieces.push(`
+          <line
+            x1="60"
+            y1="${point.y}"
+            x2="940"
+            y2="${point.y}"
+            stroke="${color}"
+            stroke-width="3"
+            stroke-opacity=".28"
+            stroke-dasharray="7 7"
+            vector-effect="non-scaling-stroke"
+          />
+
           <circle
             class="vote-dot"
             cx="${point.x}"
             cy="${point.y}"
-            r="8"
+            r="9"
             fill="#fff"
             stroke="${color}"
             stroke-width="5"
@@ -2101,10 +2096,8 @@ function renderVoteCurveV2(){
     ).join("");
 
 }
-
-renderVoteCurveV2();
-
 render();
+renderVoteCurveV2();
 
 
   }

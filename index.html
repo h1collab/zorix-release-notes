@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
   <title>Release notes | Zorix</title>
   <meta name="description" content="Product updates, model releases, research, and platform changes from Zorix." />
   <meta name="theme-color" content="#f7f7f5" />
@@ -291,8 +294,22 @@
 </div>
 
 <div class="toast" id="toast">RSS feed URL copied</div>
-<script src="releases.js?v=1788078359"></script>
-<script src="details.js?v=1"></script>
+<script>
+(function(){
+  var s=document.createElement("script");
+  s.src='releases.js'+"?v="+Date.now();
+  s.async=false;
+  document.head.appendChild(s);
+})();
+</script>
+<script>
+(function(){
+  var s=document.createElement("script");
+  s.src='details.js'+"?v="+Date.now();
+  s.async=false;
+  document.head.appendChild(s);
+})();
+</script>
 <script>
 const releases = window.ZORIX_RELEASES || [];
 

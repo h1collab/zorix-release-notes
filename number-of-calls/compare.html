@@ -3317,5 +3317,17 @@ setTimeout(
   id="toastStack"
 ></div>
 
+
+<script>
+window.addEventListener("load", function(){
+
+  if(typeof renderPickerTrigger === "function"){
+    renderPickerTrigger("A");
+    renderPickerTrigger("B");
+  }
+
+});
+</script>
+
 </body>
 </html>
