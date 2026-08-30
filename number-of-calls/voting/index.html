@@ -1454,26 +1454,88 @@ h1{
 
 
 
-<script src="../models.js?v=1788116631"></script>
-<script src="./votes.js?v=1788116237">
+
+<script src="../models.js?v=1788117069"></script>
+<script src="./votes.js?v=1788117069"></script>
+
+<script>
+const models =
+  window.ZORIX_MODEL_DETAILS || [];
+
+const voteData =
+  window.ZORIX_COMMUNITY_VOTES || {
+    models:[],
+    history:[]
+  };
 
 
-/* =========================================================
-   Voting visualization V3
-   ========================================================= */
+const providerRoutes = {
+  "Zorix":"/zorix/",
+  "Anthropic":"/anthropic/",
+  "OpenAI":"/openai/",
+  "Google":"/google/",
+  "DeepSeek":"/deepseek/",
+  "Tencent":"/tencent/",
+  "Xiaomi":"/xiaomi/",
+  "Z.ai":"/zai/"
+};
 
-function voteVizLogo(model){
+
+const voteMap =
+  new Map(
+    (voteData.models || []).map(
+      item=>[
+        item.id,
+        {
+          votes:Number(
+            item.votes || 0
+          ),
+          uncertainty:Number(
+            item.uncertainty || 0
+          )
+        }
+      ]
+    )
+  );
+
+
+const merged =
+  models.map(
+    (model,index)=>{
+
+      const vote =
+        voteMap.get(
+          model.id
+        ) || {
+          votes:0,
+          uncertainty:0
+        };
+
+      return {
+        ...model,
+        votes:vote.votes,
+        uncertainty:vote.uncertainty,
+        originalIndex:index
+      };
+
+    }
+  );
+
+
+function resolveLogo(model){
 
   const src =
     String(
       model?.logo || ""
     );
 
-  if(!src)
+  if(!src){
     return "";
+  }
 
-  if(src.startsWith("/"))
+  if(src.startsWith("/")){
     return src;
+  }
 
   if(src.startsWith("./assets/")){
     return (
@@ -1493,17 +1555,198 @@ function voteVizLogo(model){
 }
 
 
+function logoHTML(model){
+
+  const src =
+    resolveLogo(model);
+
+  if(src){
+
+    return `
+      <img
+        src="${src}"
+        alt=""
+        loading="lazy"
+      >
+    `;
+
+  }
+
+  return `
+    <span class="logo-fallback">
+      ${String(
+        model.provider || "?"
+      ).slice(0,1)}
+    </span>
+  `;
+}
+
+
+function providerHTML(model){
+
+  const route =
+    providerRoutes[
+      model.provider
+    ];
+
+  if(!route){
+    return model.provider;
+  }
+
+  return `
+    <a href="${route}">
+      ${model.provider}
+    </a>
+  `;
+}
+
+
+function fmtVotes(value){
+
+  return Number(
+    value || 0
+  ).toLocaleString(
+    "en-US"
+  );
+}
+
+
+function render(){
+
+  const input =
+    document.getElementById(
+      "search"
+    );
+
+  const query =
+    String(
+      input?.value || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  const visible =
+    [...merged]
+      .filter(
+        model=>
+          !query ||
+          model.name
+            .toLowerCase()
+            .includes(query) ||
+          model.provider
+            .toLowerCase()
+            .includes(query) ||
+          model.id
+            .toLowerCase()
+            .includes(query)
+      )
+      .sort(
+        (a,b)=>
+          b.votes-a.votes ||
+          a.originalIndex-b.originalIndex
+      );
+
+
+  document
+    .getElementById(
+      "rows"
+    )
+    .innerHTML =
+      visible.map(
+        (model,index)=>`
+
+          <article
+            class="row"
+            data-rank="${index+1}"
+          >
+
+            <div class="rank">
+
+              <span class="chevron">
+                ›
+              </span>
+
+              <strong>
+                ${index+1}
+              </strong>
+
+            </div>
+
+
+            <div class="identity">
+
+              <a
+                class="logo"
+                href="../model.html?id=${
+                  encodeURIComponent(
+                    model.id
+                  )
+                }"
+              >
+                ${logoHTML(model)}
+              </a>
+
+
+              <div>
+
+                <a
+                  class="model-name"
+                  href="../model.html?id=${
+                    encodeURIComponent(
+                      model.id
+                    )
+                  }"
+                >
+                  ${model.name}
+                </a>
+
+                <div class="model-id">
+                  ${model.id}
+                </div>
+
+                <div class="provider">
+                  ${providerHTML(model)}
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="score ${
+                model.votes===0
+                  ? "zero"
+                  : ""
+              }"
+            >
+
+              <div class="score-main">
+                ${fmtVotes(model.votes)}
+              </div>
+
+              <div class="score-sub">
+
+                ${
+                  model.uncertainty
+                    ? `±${model.uncertainty}`
+                    : "votes"
+                }
+
+              </div>
+
+            </div>
+
+          </article>
+
+        `
+      )
+      .join("");
+}
+
+
 function renderVotingVisualization(){
-
-  const voting =
-    window.ZORIX_COMMUNITY_VOTES || {
-      models:[],
-      history:[]
-    };
-
-  const catalog =
-    window.ZORIX_MODEL_DETAILS || [];
-
 
   const palette=[
     "#2563EB",
@@ -1518,43 +1761,24 @@ function renderVotingVisualization(){
 
 
   const current =
-    [...(voting.models || [])]
+    [...merged]
       .filter(
-        x=>
-          Number(x.votes || 0) > 0
+        model=>model.votes>0
       )
       .sort(
         (a,b)=>
-          Number(b.votes || 0) -
-          Number(a.votes || 0)
+          b.votes-a.votes
       )
       .map(
-        (vote,index)=>{
-
-          const meta =
-            catalog.find(
-              m=>m.id===vote.id
-            ) || {};
-
-          return {
-            ...vote,
-            name:
-              meta.name ||
-              vote.id,
-            provider:
-              meta.provider ||
-              "Unknown",
-            logo:
-              meta.logo || "",
-            color:
-              meta.color ||
-              palette[
-                index %
-                palette.length
-              ]
-          };
-
-        }
+        (model,index)=>({
+          ...model,
+          chartColor:
+            model.color ||
+            palette[
+              index %
+              palette.length
+            ]
+        })
       );
 
 
@@ -1568,7 +1792,7 @@ function renderVotingVisualization(){
 
     lollipop.innerHTML=`
       <div class="rank-history-empty">
-        No voting scores have been published.
+        No non-zero voting scores were loaded.
       </div>
     `;
 
@@ -1579,7 +1803,7 @@ function renderVotingVisualization(){
   const minimum =
     Math.min(
       ...current.map(
-        x=>Number(x.votes)
+        model=>model.votes
       )
     );
 
@@ -1587,20 +1811,22 @@ function renderVotingVisualization(){
   const maximum =
     Math.max(
       ...current.map(
-        x=>Number(x.votes)
+        model=>model.votes
       )
     );
 
 
   /*
-   * Use a cropped comparison scale instead of zero.
-   * Voting values around ~1500 become visibly distinguishable.
+   * Deliberately cropped scale.
+   * This chart compares ~1500-point values,
+   * not distance from absolute zero.
    */
   const lower =
     Math.max(
       0,
       minimum-25
     );
+
 
   const range =
     Math.max(
@@ -1613,24 +1839,18 @@ function renderVotingVisualization(){
     current.map(
       (model,index)=>{
 
-        const pct =
+        const percent =
           Math.max(
-            4,
+            5,
             Math.min(
               100,
               (
-                Number(model.votes) -
+                model.votes -
                 lower
               ) /
               range *
               100
             )
-          );
-
-
-        const logo =
-          voteVizLogo(
-            model
           );
 
 
@@ -1640,17 +1860,7 @@ function renderVotingVisualization(){
             <div class="vote-lollipop-model">
 
               <div class="vote-lollipop-logo">
-                ${
-                  logo
-                    ? `
-                      <img
-                        src="${logo}"
-                        alt=""
-                      >
-                    `
-                    : model.provider
-                      .slice(0,1)
-                }
+                ${logoHTML(model)}
               </div>
 
               <div class="vote-lollipop-name">
@@ -1671,16 +1881,16 @@ function renderVotingVisualization(){
               <div
                 class="vote-lollipop-fill"
                 style="
-                  width:${pct}%;
-                  background:${model.color}
+                  width:${percent}%;
+                  background:${model.chartColor}
                 "
               ></div>
 
               <div
                 class="vote-lollipop-dot"
                 style="
-                  left:${pct}%;
-                  background:${model.color}
+                  left:${percent}%;
+                  background:${model.chartColor}
                 "
               ></div>
 
@@ -1690,19 +1900,10 @@ function renderVotingVisualization(){
             <div class="vote-lollipop-score">
 
               <div>
+                ${fmtVotes(model.votes)}
                 ${
-                  Number(
-                    model.votes
-                  ).toLocaleString()
-                }
-
-                ${
-                  Number(
-                    model.uncertainty || 0
-                  )
-                    ? ` ±${
-                        model.uncertainty
-                      }`
+                  model.uncertainty
+                    ? ` ±${model.uncertainty}`
                     : ""
                 }
               </div>
@@ -1717,14 +1918,15 @@ function renderVotingVisualization(){
         `;
 
       }
-    ).join("");
+    )
+    .join("");
 
 
   const history =
     Array.isArray(
-      voting.history
+      voteData.history
     )
-      ? voting.history
+      ? voteData.history
       : [];
 
 
@@ -1733,9 +1935,7 @@ function renderVotingVisualization(){
       "voteSnapshotCount"
     )
     .textContent =
-      `${
-        history.length
-      } snapshot${
+      `${history.length} snapshot${
         history.length===1
           ? ""
           : "s"
@@ -1753,28 +1953,22 @@ function renderVotingVisualization(){
     );
 
 
-  /*
-   * A rank trajectory requires >= 2 real snapshots.
-   */
   if(history.length < 2){
 
     wrap.hidden=true;
     empty.hidden=false;
 
     empty.innerHTML=`
-      Rank history needs at least
-      <strong>2 real voting snapshots</strong>.
-      You currently have
-      <strong>${history.length}</strong>.
-      The next plusvote update will create
-      the first visible ranking movement.
+      <strong>Current ranking is available above.</strong><br>
+      Rank history requires at least 2 real snapshots.
+      There ${
+        history.length===1
+          ? "is currently 1 snapshot"
+          : "are currently no snapshots"
+      }.
+      Your next plusvote update will create
+      the first real rank-change segment.
     `;
-
-    document
-      .getElementById(
-        "rankBumpDates"
-      )
-      .innerHTML="";
 
     return;
   }
@@ -1784,10 +1978,7 @@ function renderVotingVisualization(){
   empty.hidden=true;
 
 
-  /*
-   * Calculate rank for every historical snapshot.
-   */
-  const snapshotRanks =
+  const historicalRankings =
     history.map(
       snapshot=>{
 
@@ -1795,19 +1986,17 @@ function renderVotingVisualization(){
           Object.entries(
             snapshot.models || {}
           )
-          .filter(
-            ([_,value])=>
-              Number(
-                value?.votes || 0
-              ) > 0
-          )
           .map(
-            ([id,value])=>({
+            ([id,data])=>({
               id,
               votes:Number(
-                value.votes
+                data?.votes || 0
               )
-            }))
+            })
+          )
+          .filter(
+            item=>item.votes>0
+          )
           .sort(
             (a,b)=>
               b.votes-a.votes
@@ -1819,8 +2008,7 @@ function renderVotingVisualization(){
             (item,index)=>[
               item.id,
               index+1
-            ]
-          )
+            ])
         );
 
       }
@@ -1829,65 +2017,59 @@ function renderVotingVisualization(){
 
   const maxRank =
     Math.max(
+      1,
       current.length,
-      ...snapshotRanks.map(
-        map=>map.size
+      ...historicalRankings.map(
+        ranks=>ranks.size
       )
     );
 
 
-  const yAxis =
-    document.getElementById(
+  document
+    .getElementById(
       "rankYAxis"
-    );
+    )
+    .innerHTML =
+      Array.from(
+        {
+          length:maxRank
+        },
+        (_,index)=>{
+
+          const top =
+            maxRank===1
+              ? 50
+              : (
+                  index /
+                  (maxRank-1)
+                ) *
+                100;
+
+          return `
+            <span
+              class="rank-y-label"
+              style="top:${top}%"
+            >
+              #${index+1}
+            </span>
+          `;
+
+        }
+      ).join("");
 
 
-  yAxis.innerHTML =
-    Array.from(
-      {
-        length:maxRank
-      },
-      (_,index)=>{
-
-        const rank =
-          index+1;
-
-        const y =
-          maxRank===1
-            ? 50
-            : (
-                index /
-                (maxRank-1)
-              ) *
-              100;
-
-        return `
-          <span
-            class="rank-y-label"
-            style="top:${y}%"
-          >
-            #${rank}
-          </span>
-        `;
-
-      }
-    ).join("");
-
-
-  function position(
+  function point(
     snapshotIndex,
     rank
   ){
 
     const x =
-      history.length===1
-        ? 500
-        : 40 +
-          snapshotIndex /
-          (
-            history.length-1
-          ) *
-          920;
+      40 +
+      snapshotIndex /
+      (
+        history.length-1
+      ) *
+      920;
 
 
     const y =
@@ -1907,11 +2089,10 @@ function renderVotingVisualization(){
       x,
       y
     };
-
   }
 
 
-  const svgOutput=[];
+  const output=[];
 
 
   current.forEach(
@@ -1920,50 +2101,46 @@ function renderVotingVisualization(){
       const points=[];
 
 
-      snapshotRanks.forEach(
-        (map,snapshotIndex)=>{
+      historicalRankings.forEach(
+        (ranks,snapshotIndex)=>{
 
           const rank =
-            map.get(
+            ranks.get(
               model.id
             );
 
-          if(!rank)
+          if(!rank){
             return;
+          }
 
 
-          const pt =
-            position(
+          const p =
+            point(
               snapshotIndex,
               rank
             );
 
 
-          points.push({
-            ...pt,
-            rank
-          });
-
+          points.push(p);
         }
       );
 
 
-      if(points.length < 2)
+      if(points.length < 2){
         return;
+      }
 
 
-      svgOutput.push(`
+      output.push(`
         <polyline
           points="${
-            points
-              .map(
-                p=>
-                  `${p.x},${p.y}`
-              )
-              .join(" ")
+            points.map(
+              p=>
+                `${p.x},${p.y}`
+            ).join(" ")
           }"
           fill="none"
-          stroke="${model.color}"
+          stroke="${model.chartColor}"
           stroke-width="4"
           vector-effect="non-scaling-stroke"
           stroke-linecap="round"
@@ -1973,15 +2150,15 @@ function renderVotingVisualization(){
 
 
       points.forEach(
-        point=>{
+        p=>{
 
-          svgOutput.push(`
+          output.push(`
             <circle
-              cx="${point.x}"
-              cy="${point.y}"
+              cx="${p.x}"
+              cy="${p.y}"
               r="6"
               fill="#fff"
-              stroke="${model.color}"
+              stroke="${model.chartColor}"
               stroke-width="4"
               vector-effect="non-scaling-stroke"
             />
@@ -1998,31 +2175,30 @@ function renderVotingVisualization(){
     .getElementById(
       "rankBumpSvg"
     )
-    .innerHTML=
-      svgOutput.join("");
+    .innerHTML =
+      output.join("");
 
 
-  function shortDate(raw){
+  function dateText(raw){
 
-    const d =
+    const date =
       new Date(raw);
 
     if(
       Number.isNaN(
-        d.getTime()
+        date.getTime()
       )
     ){
       return "—";
     }
 
-    return d.toLocaleDateString(
+    return date.toLocaleDateString(
       undefined,
       {
         month:"short",
         day:"numeric"
       }
     );
-
   }
 
 
@@ -2032,16 +2208,12 @@ function renderVotingVisualization(){
     )
     .innerHTML=`
       <span>
-        ${
-          shortDate(
-            history[0]?.at
-          )
-        }
+        ${dateText(history[0]?.at)}
       </span>
 
       <span>
         ${
-          shortDate(
+          dateText(
             history[
               history.length-1
             ]?.at
@@ -2049,33 +2221,39 @@ function renderVotingVisualization(){
         }
       </span>
     `;
+}
+
+
+document
+  .getElementById(
+    "search"
+  )
+  ?.addEventListener(
+    "input",
+    render
+  );
+
+
+if(voteData.updatedAt){
+
+  document
+    .getElementById(
+      "updated"
+    )
+    .textContent =
+      "Vote totals last updated " +
+      new Date(
+        voteData.updatedAt
+      ).toLocaleString() +
+      ". Community voting is independent from benchmark and token usage rankings.";
 
 }
 
+
+render();
+renderVotingVisualization();
+
 </script>
-
-
-
-
-
-
-
-<script>
-window.addEventListener(
-  "load",
-  function(){
-
-    if(
-      typeof renderVotingVisualization
-      ===
-      "function"
-    ){
-      renderVotingVisualization();
-    }
-
-  }
-);
-</script>
-
 </body>
+
 </html>
