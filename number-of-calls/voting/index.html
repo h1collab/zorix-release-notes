@@ -798,6 +798,166 @@ h1{
 
 }
 
+
+/* =========================================================
+   STABLE VOTING TREND
+   ========================================================= */
+
+.stable-vote-history{
+  margin:34px 0 44px;
+  padding-bottom:40px;
+  border-bottom:1px solid var(--line);
+}
+
+.stable-vote-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:24px;
+  margin-bottom:24px;
+}
+
+.stable-vote-title{
+  font-size:28px;
+  letter-spacing:-.04em;
+}
+
+.stable-vote-sub{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.stable-vote-count{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.stable-vote-chart{
+  position:relative;
+  height:360px;
+
+  border-left:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.stable-vote-grid{
+  position:absolute;
+  left:0;
+  right:0;
+
+  border-top:1px solid #ecece9;
+
+  pointer-events:none;
+}
+
+#stableVoteSvg{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  overflow:visible;
+}
+
+.stable-vote-axis{
+  margin-top:10px;
+
+  display:flex;
+  justify-content:space-between;
+
+  color:var(--muted);
+  font-size:10px;
+}
+
+.stable-vote-legend{
+  margin-top:20px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(210px,1fr));
+
+  gap:10px 15px;
+}
+
+.stable-vote-legend-item{
+  min-width:0;
+
+  display:grid;
+
+  grid-template-columns:
+    30px
+    minmax(0,1fr)
+    auto;
+
+  gap:9px;
+  align-items:center;
+
+  padding:8px 9px;
+
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+
+.stable-vote-logo{
+  width:29px;
+  height:29px;
+
+  display:grid;
+  place-items:center;
+}
+
+.stable-vote-logo img{
+  width:24px;
+  height:24px;
+
+  object-fit:contain;
+}
+
+.stable-vote-name{
+  min-width:0;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size:12px;
+}
+
+.stable-vote-score{
+  font-size:12px;
+
+  font-variant-numeric:tabular-nums;
+}
+
+.stable-vote-provider{
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--muted);
+  font-size:10px;
+}
+
+@media(max-width:700px){
+
+  .stable-vote-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .stable-vote-chart{
+    height:285px;
+  }
+
+  .stable-vote-legend{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
 
 </head>
@@ -886,56 +1046,67 @@ h1{
 
 
 
-<section class="vote-chart-section">
 
-  <div class="vote-chart-head">
 
-    <div class="vote-chart-title">
-      Votes over time
-    </div>
 
-    <div class="vote-chart-copy">
-      Historical community vote totals.
-      Each update made through plusvote creates
-      a new leaderboard snapshot.
-    </div>
+<section class="stable-vote-history">
 
-  </div>
+  <div class="stable-vote-head">
 
-  <div id="voteChartContainer">
+    <div>
+      <div class="stable-vote-title">
+        Voting trend
+      </div>
 
-    <div class="vote-chart-box">
-
-      <div
-        class="vote-grid"
-        style="top:25%"
-      ></div>
-
-      <div
-        class="vote-grid"
-        style="top:50%"
-      ></div>
-
-      <div
-        class="vote-grid"
-        style="top:75%"
-      ></div>
-
-      <svg
-        class="vote-chart-svg"
-        id="voteHistoryChart"
-        viewBox="0 0 1000 340"
-        preserveAspectRatio="none"
-      ></svg>
-
+      <div class="stable-vote-sub">
+        Community vote totals over time.
+      </div>
     </div>
 
     <div
-      class="vote-chart-legend"
-      id="voteHistoryLegend"
+      class="stable-vote-count"
+      id="stableVoteCount"
     ></div>
 
   </div>
+
+
+  <div class="stable-vote-chart">
+
+    <div
+      class="stable-vote-grid"
+      style="top:25%"
+    ></div>
+
+    <div
+      class="stable-vote-grid"
+      style="top:50%"
+    ></div>
+
+    <div
+      class="stable-vote-grid"
+      style="top:75%"
+    ></div>
+
+    <svg
+      id="stableVoteSvg"
+      viewBox="0 0 1000 340"
+      preserveAspectRatio="none"
+    ></svg>
+
+  </div>
+
+
+  <div
+    class="stable-vote-axis"
+    id="stableVoteAxis"
+  ></div>
+
+
+  <div
+    class="stable-vote-legend"
+    id="stableVoteLegend"
+  ></div>
 
 </section>
 
@@ -991,8 +1162,9 @@ h1{
 
 
 
-<script src="../models.js?v=1788115802"></script>
-<script src="./votes.js?v=1788115802"></script>
+
+<script src="../models.js?v=1788116237"></script>
+<script src="./votes.js?v=1788116237"></script>
 
 <script>
 window.addEventListener(
@@ -1588,10 +1760,6 @@ function renderVoteHistory(){
     ).join("");
 
 }
-
-renderVoteHistory();
-
-
 /* =========================================================
    Voting curve renderer V2
    ========================================================= */
@@ -2067,7 +2235,6 @@ function renderVoteCurveV2(){
 
 }
 render();
-renderVoteCurveV2();
 }
 );
 </script>
@@ -2080,6 +2247,673 @@ window.addEventListener("DOMContentLoaded", function(){
     new Event("zorixVotingDataReady")
   );
 });
+
+
+
+/* =========================================================
+   Stable voting trend renderer
+   ========================================================= */
+
+function stableVoteLogo(model){
+
+  let src = String(
+    model?.logo || ""
+  );
+
+  if(!src)
+    return "";
+
+  if(src.startsWith("./assets/")){
+    src =
+      "/number-of-calls/" +
+      src.slice(2);
+  }
+
+  if(src.startsWith("assets/")){
+    src =
+      "/number-of-calls/" +
+      src;
+  }
+
+  return src;
+}
+
+
+function renderStableVotingTrend(){
+
+  const svg =
+    document.getElementById(
+      "stableVoteSvg"
+    );
+
+  const legend =
+    document.getElementById(
+      "stableVoteLegend"
+    );
+
+  const axis =
+    document.getElementById(
+      "stableVoteAxis"
+    );
+
+  const count =
+    document.getElementById(
+      "stableVoteCount"
+    );
+
+
+  if(
+    !svg ||
+    !legend ||
+    !axis
+  ){
+    return;
+  }
+
+
+  const voting =
+    window.ZORIX_COMMUNITY_VOTES || {
+      models:[],
+      history:[]
+    };
+
+
+  const catalog =
+    window.ZORIX_MODEL_DETAILS || [];
+
+
+  const history =
+    Array.isArray(voting.history)
+      ? voting.history
+      : [];
+
+
+  /*
+   * IMPORTANT:
+   * Build chart models from VOTES,
+   * not from merged leaderboard state.
+   */
+  const ranked =
+    [...(voting.models || [])]
+      .filter(
+        x=>
+          Number(x.votes || 0) > 0
+      )
+      .sort(
+        (a,b)=>
+          Number(b.votes || 0) -
+          Number(a.votes || 0)
+      )
+      .slice(0,8)
+      .map(
+        vote=>{
+
+          const info =
+            catalog.find(
+              model=>
+                model.id === vote.id
+            ) || {};
+
+          return {
+            id:vote.id,
+
+            votes:
+              Number(
+                vote.votes || 0
+              ),
+
+            uncertainty:
+              Number(
+                vote.uncertainty || 0
+              ),
+
+            name:
+              info.name ||
+              vote.id,
+
+            provider:
+              info.provider ||
+              "Unknown",
+
+            logo:
+              info.logo || "",
+
+            color:
+              info.color || ""
+          };
+
+        }
+      );
+
+
+  count.textContent =
+    history.length === 1
+      ? "1 snapshot"
+      : `${history.length} snapshots`;
+
+
+  if(!ranked.length){
+
+    svg.innerHTML="";
+
+    legend.innerHTML=`
+      <div style="
+        color:var(--muted);
+        font-size:13px;
+      ">
+        No ranked voting models yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const palette=[
+    "#2563EB",
+    "#D97757",
+    "#4D6BFE",
+    "#4285F4",
+    "#00A7CE",
+    "#10A37F",
+    "#8B5CF6",
+    "#E0A11A"
+  ];
+
+
+  function colorFor(
+    model,
+    index
+  ){
+
+    return (
+      model.color ||
+      palette[
+        index %
+        palette.length
+      ]
+    );
+
+  }
+
+
+  function historyValues(model){
+
+    /*
+     * If there's no history, still use current votes.
+     */
+    if(!history.length){
+      return [
+        model.votes
+      ];
+    }
+
+
+    return history.map(
+      snapshot=>{
+
+        const entry =
+          snapshot?.models?.[
+            model.id
+          ];
+
+        /*
+         * Older snapshots may not contain
+         * a newly-added model.
+         *
+         * Use null rather than fake zero.
+         */
+        if(!entry)
+          return null;
+
+        return Number(
+          entry.votes || 0
+        );
+
+      }
+    );
+
+  }
+
+
+  const allValues=[];
+
+
+  ranked.forEach(
+    model=>{
+
+      historyValues(model)
+        .forEach(
+          value=>{
+
+            if(
+              value !== null &&
+              Number.isFinite(value) &&
+              value > 0
+            ){
+              allValues.push(value);
+            }
+
+          }
+        );
+
+    }
+  );
+
+
+  /*
+   * Current votes are ALWAYS included,
+   * so 1-snapshot pages still render correctly.
+   */
+  ranked.forEach(
+    model=>
+      allValues.push(
+        model.votes
+      )
+  );
+
+
+  const rawMin =
+    Math.min(...allValues);
+
+  const rawMax =
+    Math.max(...allValues);
+
+
+  const difference =
+    Math.max(
+      1,
+      rawMax-rawMin
+    );
+
+
+  const padding =
+    Math.max(
+      15,
+      difference*.25
+    );
+
+
+  const min =
+    Math.max(
+      0,
+      rawMin-padding
+    );
+
+  const max =
+    rawMax+padding;
+
+
+  function point(
+    value,
+    index,
+    length
+  ){
+
+    const x =
+      length <= 1
+        ? 500
+        : 40 +
+          index /
+          (length-1) *
+          920;
+
+
+    const y =
+      315 -
+      (
+        (value-min) /
+        Math.max(
+          1,
+          max-min
+        )
+      ) *
+      285;
+
+
+    return {
+      x,
+      y
+    };
+
+  }
+
+
+  const output=[];
+
+
+  ranked.forEach(
+    (model,modelIndex)=>{
+
+      let values =
+        historyValues(model);
+
+
+      /*
+       * Drop missing snapshots.
+       */
+      values =
+        values.filter(
+          value=>
+            value !== null &&
+            Number.isFinite(value) &&
+            value > 0
+        );
+
+
+      /*
+       * Current value is authoritative.
+       *
+       * If latest history snapshot is older than
+       * current votes, append current score as
+       * another visible point.
+       */
+      if(
+        !values.length ||
+        values[
+          values.length-1
+        ] !== model.votes
+      ){
+        values.push(
+          model.votes
+        );
+      }
+
+
+      const color =
+        colorFor(
+          model,
+          modelIndex
+        );
+
+
+      /*
+       * ONE point:
+       * render a visible horizontal guide
+       * and endpoint.
+       */
+      if(values.length === 1){
+
+        const pt =
+          point(
+            values[0],
+            0,
+            1
+          );
+
+
+        output.push(`
+          <line
+            x1="70"
+            y1="${pt.y}"
+            x2="930"
+            y2="${pt.y}"
+            stroke="${color}"
+            stroke-width="3"
+            stroke-opacity=".24"
+            stroke-dasharray="8 8"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <circle
+            cx="${pt.x}"
+            cy="${pt.y}"
+            r="9"
+            fill="#fff"
+            stroke="${color}"
+            stroke-width="5"
+            vector-effect="non-scaling-stroke"
+          />
+        `);
+
+        return;
+      }
+
+
+      const points =
+        values.map(
+          (value,index)=>{
+
+            const pt =
+              point(
+                value,
+                index,
+                values.length
+              );
+
+            return (
+              pt.x.toFixed(2)
+              + ","
+              + pt.y.toFixed(2)
+            );
+
+          }
+        ).join(" ");
+
+
+      output.push(`
+        <polyline
+          points="${points}"
+          fill="none"
+          stroke="${color}"
+          stroke-width="4"
+          vector-effect="non-scaling-stroke"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      `);
+
+
+      values.forEach(
+        (value,index)=>{
+
+          const pt =
+            point(
+              value,
+              index,
+              values.length
+            );
+
+
+          output.push(`
+            <circle
+              cx="${pt.x}"
+              cy="${pt.y}"
+              r="4.5"
+              fill="#fff"
+              stroke="${color}"
+              stroke-width="3"
+              vector-effect="non-scaling-stroke"
+            />
+          `);
+
+        }
+      );
+
+    }
+  );
+
+
+  svg.innerHTML =
+    output.join("");
+
+
+  /*
+   * Legend — derived directly from current
+   * non-zero voting models.
+   */
+  legend.innerHTML =
+    ranked.map(
+      (model,index)=>{
+
+        const logo =
+          stableVoteLogo(
+            model
+          );
+
+
+        return `
+          <div class="stable-vote-legend-item">
+
+            <div class="stable-vote-logo">
+
+              ${
+                logo
+                  ? `
+                    <img
+                      src="${logo}"
+                      alt=""
+                    >
+                  `
+                  : model.provider
+                    .slice(0,1)
+              }
+
+            </div>
+
+
+            <div class="stable-vote-name">
+
+              ${model.name}
+
+              <span class="stable-vote-provider">
+                ${model.provider}
+              </span>
+
+            </div>
+
+
+            <div
+              class="stable-vote-score"
+              style="
+                color:${
+                  colorFor(
+                    model,
+                    index
+                  )
+                }
+              "
+            >
+
+              ${model.votes.toLocaleString()}
+
+              ${
+                model.uncertainty
+                  ? ` ±${model.uncertainty}`
+                  : ""
+              }
+
+            </div>
+
+          </div>
+        `;
+
+      }
+    ).join("");
+
+
+  function dateLabel(value){
+
+    if(!value)
+      return "Current";
+
+    const date =
+      new Date(value);
+
+    if(
+      Number.isNaN(
+        date.getTime()
+      )
+    ){
+      return "Current";
+    }
+
+
+    return date.toLocaleString(
+      undefined,
+      {
+        month:"short",
+        day:"numeric",
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+  }
+
+
+  if(!history.length){
+
+    axis.innerHTML=`
+      <span>Current</span>
+      <span>Current voting scores</span>
+      <span>Current</span>
+    `;
+
+  }else if(history.length === 1){
+
+    axis.innerHTML=`
+      <span>
+        ${dateLabel(history[0].at)}
+      </span>
+
+      <span>
+        Current snapshot
+      </span>
+
+      <span>
+        Current
+      </span>
+    `;
+
+  }else{
+
+    axis.innerHTML=`
+      <span>
+        ${
+          dateLabel(
+            history[0].at
+          )
+        }
+      </span>
+
+      <span>
+        ${history.length} snapshots
+      </span>
+
+      <span>
+        ${
+          dateLabel(
+            history[
+              history.length-1
+            ].at
+          )
+        }
+      </span>
+    `;
+
+  }
+
+}
+
+</script>
+
+
+<script>
+window.addEventListener(
+  "load",
+  function(){
+
+    if(
+      typeof renderStableVotingTrend
+      ===
+      "function"
+    ){
+      renderStableVotingTrend();
+    }
+
+  }
+);
 </script>
 
 </body>
