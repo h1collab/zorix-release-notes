@@ -1042,6 +1042,131 @@ h1{
 
 }
 
+
+/* =========================================================
+   FULL BENCHMARK MATRIX
+   ========================================================= */
+
+.full-benchmark-head,
+.full-benchmark-row{
+  display:grid;
+
+  grid-template-columns:
+    minmax(180px,1.5fr)
+    minmax(100px,.7fr)
+    70px
+    minmax(100px,.7fr);
+
+  gap:14px;
+  align-items:center;
+}
+
+.full-benchmark-head{
+  padding:12px 0;
+
+  border-bottom:1px solid var(--line);
+
+  color:var(--muted);
+  font-size:10px;
+}
+
+.full-benchmark-row{
+  min-height:74px;
+
+  border-bottom:1px solid var(--line);
+}
+
+.full-benchmark-name{
+  font-size:13px;
+}
+
+.full-benchmark-family{
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--muted);
+  font-size:9px;
+}
+
+.full-benchmark-score{
+  font-size:20px;
+
+  font-variant-numeric:tabular-nums;
+}
+
+.full-benchmark-score.missing{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.full-benchmark-delta{
+  color:var(--muted);
+
+  font-size:11px;
+
+  font-variant-numeric:tabular-nums;
+}
+
+.full-benchmark-bar{
+  width:100%;
+  max-width:140px;
+
+  height:5px;
+
+  margin-top:8px;
+
+  overflow:hidden;
+
+  border-radius:99px;
+
+  background:#ededeb;
+}
+
+.full-benchmark-fill{
+  height:100%;
+
+  border-radius:99px;
+
+  background:#111;
+}
+
+.full-benchmark-note{
+  margin-top:20px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+@media(max-width:760px){
+
+  .full-benchmark-head,
+  .full-benchmark-row{
+    grid-template-columns:
+      minmax(105px,1.3fr)
+      minmax(65px,.8fr)
+      42px
+      minmax(65px,.8fr);
+
+    gap:6px;
+  }
+
+  .full-benchmark-score{
+    font-size:14px;
+  }
+
+  .full-benchmark-score.missing{
+    font-size:9px;
+  }
+
+  .full-benchmark-bar{
+    display:none;
+  }
+
+}
+
 </style>
 </head>
 
@@ -1400,6 +1525,58 @@ h1{
 </section>
 
 
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Benchmark matrix
+    </div>
+
+    <div class="section-note">
+      Full current benchmark coverage for the selected models.
+      Missing values mean that model has not been evaluated
+      in the current Zorix AA4 preview dataset.
+    </div>
+
+  </div>
+
+
+  <div class="full-benchmark-head">
+
+    <div>
+      Benchmark
+    </div>
+
+    <div id="fullBenchNameA">
+      Model A
+    </div>
+
+    <div>
+      Δ
+    </div>
+
+    <div id="fullBenchNameB">
+      Model B
+    </div>
+
+  </div>
+
+
+  <div
+    class="full-benchmark-table"
+    id="fullBenchmarkCompare"
+  ></div>
+
+
+  <div
+    class="full-benchmark-note"
+    id="fullBenchmarkNote"
+  ></div>
+
+</section>
+
 <section class="section">
 
   <div class="section-head">
@@ -1472,9 +1649,10 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788116631"></script>
-<script src="./usage.js?v=1788116631"></script>
-<script src="./voting/votes.js?v=1788116631"></script>
+<script src="./models.js?v=1788116695"></script>
+<script src="./usage.js?v=1788116695"></script>
+<script src="./benchmarks.js?v=1788116695"></script>
+<script src="./voting/votes.js?v=1788116695"></script>
 
 <script>
 
@@ -2633,6 +2811,227 @@ function renderVoting(a,b){
 }
 
 
+
+
+function renderFullBenchmarkComparison(a,b){
+
+  const data =
+    window.ZORIX_BENCHMARKS || {
+      meta:{},
+      metrics:[],
+      scores:{}
+    };
+
+
+  const metrics =
+    data.metrics || [];
+
+
+  const scoresA =
+    data.scores?.[a.id] || {};
+
+
+  const scoresB =
+    data.scores?.[b.id] || {};
+
+
+  const target =
+    document.getElementById(
+      "fullBenchmarkCompare"
+    );
+
+
+  if(!target){
+    return;
+  }
+
+
+  const nameA =
+    document.getElementById(
+      "fullBenchNameA"
+    );
+
+  const nameB =
+    document.getElementById(
+      "fullBenchNameB"
+    );
+
+
+  if(nameA){
+    nameA.textContent=a.name;
+  }
+
+  if(nameB){
+    nameB.textContent=b.name;
+  }
+
+
+  target.innerHTML =
+    metrics.map(
+      metric=>{
+
+        const rawA =
+          scoresA[
+            metric.id
+          ];
+
+        const rawB =
+          scoresB[
+            metric.id
+          ];
+
+
+        const hasA =
+          rawA !== undefined &&
+          rawA !== null &&
+          Number.isFinite(
+            Number(rawA)
+          );
+
+
+        const hasB =
+          rawB !== undefined &&
+          rawB !== null &&
+          Number.isFinite(
+            Number(rawB)
+          );
+
+
+        const valueA =
+          hasA
+            ? Number(rawA)
+            : null;
+
+
+        const valueB =
+          hasB
+            ? Number(rawB)
+            : null;
+
+
+        let delta="—";
+
+
+        if(hasA && hasB){
+
+          const diff =
+            valueA-valueB;
+
+          delta =
+            (
+              diff>0
+                ? "+"
+                : ""
+            )
+            +
+            diff.toFixed(1);
+
+        }
+
+
+        function scoreHTML(
+          has,
+          value
+        ){
+
+          if(!has){
+
+            return `
+              <div class="full-benchmark-score missing">
+                Not evaluated
+              </div>
+            `;
+
+          }
+
+
+          return `
+            <div class="full-benchmark-score">
+              ${value.toFixed(1)}%
+            </div>
+
+            <div class="full-benchmark-bar">
+
+              <div
+                class="full-benchmark-fill"
+                style="
+                  width:${Math.max(
+                    0,
+                    Math.min(
+                      100,
+                      value
+                    )
+                  )}%
+                "
+              ></div>
+
+            </div>
+          `;
+
+        }
+
+
+        return `
+          <div class="full-benchmark-row">
+
+            <div class="full-benchmark-name">
+
+              ${metric.name}
+
+              <span class="full-benchmark-family">
+                ${metric.family}
+              </span>
+
+            </div>
+
+
+            <div>
+              ${
+                scoreHTML(
+                  hasA,
+                  valueA
+                )
+              }
+            </div>
+
+
+            <div class="full-benchmark-delta">
+              ${delta}
+            </div>
+
+
+            <div>
+              ${
+                scoreHTML(
+                  hasB,
+                  valueB
+                )
+              }
+            </div>
+
+          </div>
+        `;
+
+      }
+    ).join("");
+
+
+  const note =
+    document.getElementById(
+      "fullBenchmarkNote"
+    );
+
+
+  if(note){
+
+    note.textContent =
+      data.meta?.note || "";
+
+  }
+
+}
+
+
 function render(){
 
   const a=models.find(
@@ -2659,6 +3058,7 @@ function render(){
   renderSpecs(a,b);
   renderUsage(a,b);
   renderVoting(a,b);
+  renderFullBenchmarkComparison(a,b);
   renderBenchmarks(a,b);
 
 
