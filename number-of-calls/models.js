@@ -102,5 +102,41 @@ window.ZORIX_MODEL_DETAILS = [
     outputPrice: "—",
     about: "GPT-5.6 Luna is currently available through Zorix Code. Usage statistics on this page reflect Zorix Code traffic rather than global OpenAI usage.",
     chart: [5,8,7,9,11,12,10,13,16,15,17,18,21,25,28,31,27,29,33,41,60,72,69,63,55,48,44,40,36,31]
+  },
+  {
+    id: "glm-53-flash",
+    name: "GLM 5.3 Flash",
+    provider: "Z.ai",
+    logo: "./assets/logos/glm.svg",
+    family: "GLM 5",
+    status: "Available",
+    dailyTokens: 300000,
+    weeklyTokens: 2100000,
+    context: "—",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Closed",
+    inputPrice: "—",
+    outputPrice: "—",
+    about: "GLM 5.3 Flash is available through Zorix Metron API, Zorix's hybrid API layer. Observed usage is 2.1M tokens per week, normalized here to approximately 300K tokens per day for the rankings view.",
+    chart: [180,184,188,192,196,202,208,214,220,226,232,238,245,252,258,264,270,276,282,288,293,300,295,291,287,283,279,274,270,266]
+  },
+  {
+    id: "glm-52-max",
+    name: "GLM 5.2 Max",
+    provider: "Z.ai",
+    logo: "./assets/logos/glm.svg",
+    family: "GLM 5",
+    status: "Available",
+    dailyTokens: 314286,
+    weeklyTokens: 2200000,
+    context: "—",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Closed",
+    inputPrice: "—",
+    outputPrice: "—",
+    about: "GLM 5.2 Max is available through Zorix Metron API, Zorix's hybrid API layer. Observed usage is 2.2M tokens per week, normalized here to approximately 314.29K tokens per day for the rankings view.",
+    chart: [188,191,194,198,201,205,209,214,219,223,228,233,239,245,251,257,264,271,278,285,292,300,307,314,309,305,300,296,291,287]
   }
 ];

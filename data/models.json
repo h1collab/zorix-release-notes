@@ -40,5 +40,19 @@
     "family": "Claude Opus",
     "tokens": 1200000000000,
     "status": "Available"
+  },
+  {
+    "name": "GLM 5.3 Flash",
+    "provider": "Z.ai",
+    "family": "GLM 5",
+    "tokens": 300000,
+    "status": "Available"
+  },
+  {
+    "name": "GLM 5.2 Max",
+    "provider": "Z.ai",
+    "family": "GLM 5",
+    "tokens": 314286,
+    "status": "Available"
   }
 ]

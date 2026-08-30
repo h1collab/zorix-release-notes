@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T17:56:17+02:00",
+  "updatedAt": "2026-08-30T18:16:57+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -43,10 +43,26 @@ window.ZORIX_CODE_USAGE = {
       "share": 0.0023
     },
     {
+      "name": "GLM 5.2 Max",
+      "provider": "Z.ai",
+      "family": "GLM 5",
+      "tokens": 314286,
+      "status": "Available",
+      "share": 0.0
+    },
+    {
       "name": "GPT-5.6 Luna",
       "provider": "OpenAI",
       "family": "GPT-5.6",
       "tokens": 310000,
+      "status": "Available",
+      "share": 0.0
+    },
+    {
+      "name": "GLM 5.3 Flash",
+      "provider": "Z.ai",
+      "family": "GLM 5",
+      "tokens": 300000,
       "status": "Available",
       "share": 0.0
     }
