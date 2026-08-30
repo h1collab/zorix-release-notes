@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T18:48:51+02:00",
+  "updatedAt": "2026-08-30T18:53:28+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -75,6 +75,42 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 300000,
       "status": "Available",
       "weeklyTokens": 2100000,
+      "share": 0.0
+    },
+    {
+      "name": "Claude Sonnet 5",
+      "provider": "Anthropic",
+      "family": "Claude Sonnet",
+      "tokens": 300000,
+      "weeklyTokens": 2100000,
+      "status": "Available",
+      "share": 0.0
+    },
+    {
+      "name": "Claude Fable 5 (with fallback max)",
+      "provider": "Anthropic",
+      "family": "Claude Fable",
+      "tokens": 300000,
+      "weeklyTokens": 2100000,
+      "status": "Available",
+      "share": 0.0
+    },
+    {
+      "name": "GPT-5.6 Sol (Max)",
+      "provider": "OpenAI",
+      "family": "GPT-5.6",
+      "tokens": 242857,
+      "weeklyTokens": 1700000,
+      "status": "Available",
+      "share": 0.0
+    },
+    {
+      "name": "Claude Opus 4.8",
+      "provider": "Anthropic",
+      "family": "Claude Opus",
+      "tokens": 157143,
+      "weeklyTokens": 1100000,
+      "status": "Available",
       "share": 0.0
     }
   ],

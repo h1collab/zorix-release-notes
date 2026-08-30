@@ -202,5 +202,125 @@ window.ZORIX_MODEL_DETAILS = [
       358,376,394,412,431,451,472,494,517,541,
       565,590,616,643,671,700,730,760,790,820
     ]
+  },
+  {
+    id: "claude-sonnet-5",
+    name: "Claude Sonnet 5",
+    provider: "Anthropic",
+    logo: "./assets/logos/anthropic.svg",
+    family: "Claude Sonnet",
+    status: "Available",
+
+    dailyTokens: 300000,
+    weeklyTokens: 2100000,
+
+    context: "—",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Closed",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#C96F4A",
+
+    about: "Claude Sonnet 5 is available through Zorix Code. Recorded usage is 2.1M tokens per week, normalized to approximately 300K tokens per day.",
+
+    chart: [
+      160,166,172,179,185,192,199,206,214,222,
+      230,238,247,256,265,274,283,292,301,310,
+      320,315,311,307,303,299,295,291,287,283
+    ]
+  },
+  {
+    id: "claude-opus-48",
+    name: "Claude Opus 4.8",
+    provider: "Anthropic",
+    logo: "./assets/logos/anthropic.svg",
+    family: "Claude Opus",
+    status: "Available",
+
+    dailyTokens: 157143,
+    weeklyTokens: 1100000,
+
+    context: "—",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Closed",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#A85D42",
+
+    about: "Claude Opus 4.8 is available through Zorix Code. Recorded usage is 1.1M tokens per week, normalized to approximately 157.14K tokens per day.",
+
+    chart: [
+      160,166,172,179,185,192,199,206,214,222,
+      230,238,247,256,265,274,283,292,301,310,
+      320,315,311,307,303,299,295,291,287,283
+    ]
+  },
+  {
+    id: "claude-fable-5-fallback-max",
+    name: "Claude Fable 5 (with fallback max)",
+    provider: "Anthropic",
+    logo: "./assets/logos/anthropic.svg",
+    family: "Claude Fable",
+    status: "Available",
+
+    dailyTokens: 300000,
+    weeklyTokens: 2100000,
+
+    context: "—",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Closed",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#D88A69",
+
+    about: "Claude Fable 5 with fallback max is available through Zorix Code. Recorded usage is 2.1M tokens per week, normalized to approximately 300K tokens per day.",
+
+    chart: [
+      160,166,172,179,185,192,199,206,214,222,
+      230,238,247,256,265,274,283,292,301,310,
+      320,315,311,307,303,299,295,291,287,283
+    ]
+  },
+  {
+    id: "gpt-56-sol-max",
+    name: "GPT-5.6 Sol (Max)",
+    provider: "OpenAI",
+    logo: "./assets/logos/openai.svg",
+    family: "GPT-5.6",
+    status: "Available",
+
+    dailyTokens: 242857,
+    weeklyTokens: 1700000,
+
+    context: "—",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Closed",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#10A37F",
+
+    about: "GPT-5.6 Sol (Max) is available through Zorix Code. Recorded usage is 1.7M tokens per week, normalized to approximately 242.86K tokens per day.",
+
+    chart: [
+      160,166,172,179,185,192,199,206,214,222,
+      230,238,247,256,265,274,283,292,301,310,
+      320,315,311,307,303,299,295,291,287,283
+    ]
   }
 ];

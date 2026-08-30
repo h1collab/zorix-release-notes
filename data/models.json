@@ -64,5 +64,37 @@
     "tokens": 414285714,
     "weeklyTokens": 2900000000,
     "status": "Available"
+  },
+  {
+    "name": "Claude Sonnet 5",
+    "provider": "Anthropic",
+    "family": "Claude Sonnet",
+    "tokens": 300000,
+    "weeklyTokens": 2100000,
+    "status": "Available"
+  },
+  {
+    "name": "Claude Opus 4.8",
+    "provider": "Anthropic",
+    "family": "Claude Opus",
+    "tokens": 157143,
+    "weeklyTokens": 1100000,
+    "status": "Available"
+  },
+  {
+    "name": "Claude Fable 5 (with fallback max)",
+    "provider": "Anthropic",
+    "family": "Claude Fable",
+    "tokens": 300000,
+    "weeklyTokens": 2100000,
+    "status": "Available"
+  },
+  {
+    "name": "GPT-5.6 Sol (Max)",
+    "provider": "OpenAI",
+    "family": "GPT-5.6",
+    "tokens": 242857,
+    "weeklyTokens": 1700000,
+    "status": "Available"
   }
 ]
