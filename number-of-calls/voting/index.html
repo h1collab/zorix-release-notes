@@ -5,6 +5,9 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 
 <title>Community voting | Zorix Code</title>
 
@@ -635,11 +638,54 @@ h1{
 </main>
 
 
-<script src="../models.js?v=1788114075"></script>
-<script src="./votes.js?v=1788114075"></script>
+
+
 
 <script>
+/*
+ * Always request fresh leaderboard data.
+ * The timestamp makes each page load use a new asset URL.
+ */
+(async()=>{
+  const cacheVersion = Date.now();
 
+  function loadScript(src){
+    return new Promise((resolve,reject)=>{
+      const el = document.createElement("script");
+      el.src = src;
+      el.async = false;
+      el.onload = resolve;
+      el.onerror = reject;
+      document.head.appendChild(el);
+    });
+  }
+
+  try{
+    await loadScript(
+      "../models.js?v=" + cacheVersion
+    );
+
+    await loadScript(
+      "./votes.js?v=" + cacheVersion
+    );
+
+    window.dispatchEvent(
+      new Event("zorixVotingDataReady")
+    );
+
+  }catch(err){
+    console.error(
+      "Failed to load fresh voting data",
+      err
+    );
+  }
+})();
+</script>
+
+<script>
+window.addEventListener(
+  "zorixVotingDataReady",
+  ()=>{
 const models =
   window.ZORIX_MODEL_DETAILS || [];
 
@@ -921,6 +967,9 @@ if(voteData.updatedAt){
 
 render();
 
+
+  }
+);
 </script>
 
 </body>
