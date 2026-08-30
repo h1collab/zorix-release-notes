@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T18:16:57+02:00",
+  "updatedAt": "2026-08-30T18:20:58+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -45,9 +45,10 @@ window.ZORIX_CODE_USAGE = {
     {
       "name": "GLM 5.2 Max",
       "provider": "Z.ai",
-      "family": "GLM 5",
+      "family": "GLM 5.2",
       "tokens": 314286,
       "status": "Available",
+      "weeklyTokens": 2200000,
       "share": 0.0
     },
     {
@@ -64,6 +65,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "GLM 5",
       "tokens": 300000,
       "status": "Available",
+      "weeklyTokens": 2100000,
       "share": 0.0
     }
   ],

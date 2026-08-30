@@ -469,6 +469,92 @@ h1{
   font-weight:600;
 }
 
+
+.popover-row-rich{
+  grid-template-columns:8px minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+}
+
+.popover-model{
+  min-width:0;
+}
+
+.popover-model-link{
+  color:inherit;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+
+.popover-model-link:hover{
+  opacity:.58;
+}
+
+.popover-provider{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:11px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.popover-values{
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  font-variant-numeric:tabular-nums;
+}
+
+.popover-values strong{
+  font-size:13px;
+  font-weight:500;
+}
+
+.popover-values small{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.segment{
+  transition:opacity .12s ease, filter .12s ease;
+}
+
+.stack:hover .segment{
+  filter:saturate(1.08);
+}
+
+.chart-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px 20px;
+  margin:22px 0 0 56px;
+}
+
+.chart-legend-item{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.chart-legend-dot{
+  width:8px;
+  height:8px;
+  border-radius:2px;
+  flex:0 0 auto;
+}
+
+@media(max-width:740px){
+  .chart-legend{
+    margin-left:42px;
+    gap:10px 14px;
+  }
+}
+
 @media(max-width:740px){
   main{
     padding:42px 18px 90px;
@@ -645,6 +731,7 @@ h1{
     Trend visualization. Daily model values should be replaced with measured
     per-day usage when available.
   </div>
+<div class="chart-legend" id="chartLegend"></div>
 
   <div class="controls">
     <select class="control" id="modelFilter">
@@ -690,9 +777,9 @@ h1{
 
 </main>
 
-<script src="./models.js?v=4"></script>
-<script src="./usage.js?v=6"></script>
-<script src="./quota.js?v=6"></script>
+<script src="./models.js?v=1788106858"></script>
+<script src="./usage.js?v=1788106858"></script>
+<script src="./quota.js?v=1788106858"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -703,11 +790,14 @@ const quota = window.ZORIX_PUBLIC_QUOTA || {
 };
 
 const shades = [
-  '#111111',
-  '#30302e',
-  '#52524e',
-  '#74746f',
-  '#999993'
+  "#2563EB",
+  "#4D6BFE",
+  "#D97757",
+  "#00A7CE",
+  "#FF6900",
+  "#10A37F",
+  "#8B5CF6",
+  "#E0A11A"
 ];
 
 let logMode=false;
@@ -805,17 +895,47 @@ function dayLabel(day){
 }
 
 function dayBreakdown(day, source){
-  const rows = source.map((m, i) => ({
-    name: m.name,
-    value: pointValue(m, day),
-    color: shades[i % shades.length]
-  }))
-  .filter(x => x.value > 0)
-  .sort((a, b) => b.value - a.value);
+  let rows = source.map((m, i) => {
+    const daily = pointValue(m, day);
 
-  const total = rows.reduce((sum, row) => sum + row.value, 0);
+    return {
+      id: m.id,
+      name: m.name,
+      provider: m.provider,
+      source: m.source || "Zorix Code",
+      daily,
+      weekly: daily * 7,
+      color: m.color || shades[i % shades.length]
+    };
+  })
+  .filter(x => x.daily > 0)
+  .sort((a,b) => b.daily - a.daily);
 
-  return { rows, total };
+  const total = rows.reduce((sum,row) => sum + row.daily, 0);
+
+  let others = null;
+
+  if(rows.length > 8){
+    const rest = rows.slice(8);
+
+    others = {
+      id: null,
+      name: "Others",
+      provider: "",
+      source: "",
+      daily: rest.reduce((a,x) => a + x.daily, 0),
+      weekly: rest.reduce((a,x) => a + x.weekly, 0),
+      color: "#B7B7B0"
+    };
+
+    rows = rows.slice(0,8);
+
+    if(others.daily > 0){
+      rows.push(others);
+    }
+  }
+
+  return {rows,total};
 }
 
 function hidePopover(){
@@ -837,13 +957,31 @@ function showPopover(day, stackEl, source){
   const data = dayBreakdown(day, source);
 
   dateEl.textContent = dayLabel(day);
-  totalEl.textContent = fmt(data.total) + ' tokens';
+  totalEl.textContent = fmt(data.total) + ' / day';
 
   list.innerHTML = data.rows.map(row => `
-    <div class="popover-row">
+    <div class="popover-row popover-row-rich">
       <span class="popover-swatch" style="background:${row.color}"></span>
-      <span class="popover-name">${row.name}</span>
-      <span class="popover-value">${fmt(row.value)}</span>
+
+      <div class="popover-model">
+        ${
+          row.id
+          ? `<a class="popover-model-link"
+                href="./model.html?id=${encodeURIComponent(row.id)}">
+                ${row.name}
+             </a>`
+          : `<span>${row.name}</span>`
+        }
+
+        <div class="popover-provider">
+          ${row.source || row.provider || ""}
+        </div>
+      </div>
+
+      <div class="popover-values">
+        <strong>${fmt(row.daily)}</strong>
+        <small>${fmt(row.weekly)} / wk</small>
+      </div>
     </div>
   `).join('');
 
@@ -871,8 +1009,26 @@ function showPopover(day, stackEl, source){
   });
 }
 
+
+function renderLegend(){
+  const el=document.getElementById("chartLegend");
+
+  if(!el) return;
+
+  const source=visibleModels();
+
+  el.innerHTML=source.map((m,i)=>`
+    <div class="chart-legend-item">
+      <span class="chart-legend-dot"
+            style="background:${m.color || shades[i%shades.length]}"></span>
+      <span>${m.name}</span>
+    </div>
+  `).join("");
+}
+
 function renderChart(){
   const source=visibleModels();
+  renderLegend();
   const days=30;
 
   hidePopover();
@@ -921,7 +1077,7 @@ function renderChart(){
       const seg=document.createElement('div');
       seg.className='segment';
       seg.style.height=(fraction*100)+'%';
-      seg.style.background=shades[i%shades.length];
+      seg.style.background=m.color || shades[i%shades.length];
 
       stack.appendChild(seg);
     });
