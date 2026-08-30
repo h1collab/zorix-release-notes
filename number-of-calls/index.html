@@ -384,6 +384,91 @@ h1{
   margin-top:19px;
 }
 
+
+.chart-area{
+  position:relative;
+}
+.stack{
+  cursor:pointer;
+}
+.chart-popover{
+  position:absolute;
+  z-index:12;
+  width:min(320px, calc(100% - 24px));
+}
+.chart-popover[hidden]{
+  display:none !important;
+}
+.popover-date{
+  display:inline-block;
+  margin-bottom:10px;
+  padding:8px 12px;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+  font-size:14px;
+  line-height:1;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+.popover-card{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px 14px 10px;
+  box-shadow:0 18px 38px rgba(0,0,0,.10);
+}
+.close-popover{
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:999px;
+  background:#f4f4f1;
+  color:#666;
+  font-size:16px;
+  line-height:1;
+  cursor:pointer;
+}
+.popover-list{
+  margin-top:2px;
+}
+.popover-row{
+  display:grid;
+  grid-template-columns:12px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:7px 0;
+  font-size:14px;
+}
+.popover-swatch{
+  width:6px;
+  height:24px;
+  border-radius:999px;
+}
+.popover-name{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.popover-value{
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.popover-total{
+  margin-top:10px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:15px;
+  font-weight:600;
+}
+
 @media(max-width:740px){
   main{
     padding:42px 18px 90px;
@@ -522,6 +607,8 @@ h1{
     </div>
   </div>
 
+  
+<div class="chart-area">
   <div class="chart-shell">
     <div class="y-axis" id="yAxis"></div>
 
@@ -531,6 +618,21 @@ h1{
       <div class="gridline" style="bottom:75%"></div>
     </div>
   </div>
+
+  <div class="chart-popover" id="chartPopover" hidden>
+    <div class="popover-date" id="popoverDate">—</div>
+
+    <div class="popover-card">
+      <button class="close-popover" id="popoverClose" aria-label="Close">×</button>
+      <div class="popover-list" id="popoverList"></div>
+      <div class="popover-total">
+        <span>Total</span>
+        <span id="popoverTotal">0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <div class="x-axis">
     <span>Day 1</span>
@@ -610,6 +712,7 @@ const shades = [
 
 let logMode=false;
 let filter='all';
+let currentPopoverDay=null;
 
 function fmt(n){
   n=Number(n||0);
@@ -694,9 +797,85 @@ function pointValue(model,day){
     : 0;
 }
 
+function dayLabel(day){
+  const d = new Date();
+  d.setHours(0,0,0,0);
+  d.setDate(d.getDate() - (29 - day));
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+}
+
+function dayBreakdown(day, source){
+  const rows = source.map((m, i) => ({
+    name: m.name,
+    value: pointValue(m, day),
+    color: shades[i % shades.length]
+  }))
+  .filter(x => x.value > 0)
+  .sort((a, b) => b.value - a.value);
+
+  const total = rows.reduce((sum, row) => sum + row.value, 0);
+
+  return { rows, total };
+}
+
+function hidePopover(){
+  const pop = document.getElementById('chartPopover');
+  if(!pop) return;
+  pop.hidden = true;
+  currentPopoverDay = null;
+}
+
+function showPopover(day, stackEl, source){
+  const pop = document.getElementById('chartPopover');
+  const list = document.getElementById('popoverList');
+  const totalEl = document.getElementById('popoverTotal');
+  const dateEl = document.getElementById('popoverDate');
+  const wrap = document.querySelector('.chart-area');
+
+  if(!pop || !list || !totalEl || !dateEl || !wrap) return;
+
+  const data = dayBreakdown(day, source);
+
+  dateEl.textContent = dayLabel(day);
+  totalEl.textContent = fmt(data.total) + ' tokens';
+
+  list.innerHTML = data.rows.map(row => `
+    <div class="popover-row">
+      <span class="popover-swatch" style="background:${row.color}"></span>
+      <span class="popover-name">${row.name}</span>
+      <span class="popover-value">${fmt(row.value)}</span>
+    </div>
+  `).join('');
+
+  pop.hidden = false;
+  currentPopoverDay = day;
+
+  requestAnimationFrame(() => {
+    const wrapRect = wrap.getBoundingClientRect();
+    const barRect = stackEl.getBoundingClientRect();
+
+    let left =
+      (barRect.left - wrapRect.left) +
+      (barRect.width / 2) -
+      (pop.offsetWidth / 2);
+
+    const maxLeft = wrap.clientWidth - pop.offsetWidth - 8;
+    left = Math.max(8, Math.min(maxLeft, left));
+
+    let top = (barRect.top - wrapRect.top) - 12;
+    const maxTop = wrap.clientHeight - pop.offsetHeight - 8;
+    top = Math.max(8, Math.min(maxTop, top));
+
+    pop.style.left = left + 'px';
+    pop.style.top = top + 'px';
+  });
+}
+
 function renderChart(){
   const source=visibleModels();
   const days=30;
+
+  hidePopover();
 
   const totals=[];
 
@@ -747,7 +926,24 @@ function renderChart(){
       stack.appendChild(seg);
     });
 
-    stack.title=`Day ${d+1}: ${fmt(totalRaw)} tokens`;
+    stack.title=`${dayLabel(d)} · ${fmt(totalRaw)} tokens`;
+
+    stack.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      if(currentPopoverDay === d){
+        hidePopover();
+        return;
+      }
+
+      showPopover(d, stack, source);
+    });
+
+    if(window.innerWidth > 900){
+      stack.addEventListener('mouseenter', () => {
+        showPopover(d, stack, source);
+      });
+    }
 
     plot.appendChild(stack);
   }
@@ -797,6 +993,25 @@ document.getElementById('logBtn').onclick=()=>{
   document.getElementById('linearBtn').classList.remove('active');
   renderChart();
 };
+
+const popoverClose = document.getElementById('popoverClose');
+if(popoverClose){
+  popoverClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    hidePopover();
+  });
+}
+
+document.addEventListener('click', (e) => {
+  const pop = document.getElementById('chartPopover');
+  if(!pop || pop.hidden) return;
+
+  if(!pop.contains(e.target) && !e.target.closest('.stack')){
+    hidePopover();
+  }
+});
+
+window.addEventListener('resize', hidePopover);
 
 renderSummary();
 renderModels();
