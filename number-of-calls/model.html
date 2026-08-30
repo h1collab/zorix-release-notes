@@ -1118,8 +1118,9 @@ h1{
 </div>
 
 
-<script src="./models.js?v=1788115802"></script>
-<script src="./model-profiles.js?v=1788115802"></script>
+<script src="./models.js?v=1788116631"></script>
+<script src="./model-profiles.js?v=1788116631"></script>
+<script src="./benchmarks.js?v=1788116631"></script>
 
 <script>
 
@@ -1138,8 +1139,14 @@ const models =
 const profiles =
   window.ZORIX_MODEL_PROFILES || {};
 
+const benchmarkCatalog =
+  window.ZORIX_BENCHMARKS || {
+    metrics:[],
+    scores:{}
+  };
+
 const benchmarkMap =
-  window.ZORIX_MODEL_BENCHMARKS || {};
+  benchmarkCatalog.scores || {};
 
 
 const model =
@@ -1977,108 +1984,155 @@ if(!model){
 
   /* benchmark */
 
-  const bench=
-    benchmarkMap[id];
+  const scores =
+    benchmarkMap[id] || {};
 
 
-  const benchContent=
+  const benchContent =
     document.getElementById(
       "benchmarkContent"
     );
 
 
-  if(
-    !bench ||
-    (
-      bench.terminal === undefined &&
-      bench.swe === undefined
-    )
-  ){
-
-    benchContent.innerHTML=`
-      <div class="bench-empty">
-
-        This model does not currently have
-        a Terminal-Bench 2.1 or
-        SWE-bench Verified score in the
-        Zorix evaluation set.
-
-      </div>
-    `;
-
-  }else{
-
-    const terminal=
-      Number(
-        bench.terminal
-      );
-
-    const swe=
-      Number(
-        bench.swe
-      );
+  const metrics =
+    benchmarkCatalog.metrics || [];
 
 
-    benchContent.innerHTML=`
+  benchContent.innerHTML=`
 
-      <div class="bench-grid">
-
-        ${
-          Number.isFinite(
-            terminal
-          )
-          ? benchmarkCard(
-              "Terminal-Bench 2.1",
-              "terminal",
-              terminal
-            )
-          : ""
-        }
-
-        ${
-          Number.isFinite(
-            swe
-          )
-          ? benchmarkCard(
-              "SWE-bench Verified",
-              "swe",
-              swe
-            )
-          : ""
-        }
-
-      </div>
-
+    <div class="bench-grid">
 
       ${
-        Number.isFinite(
-          terminal
-        ) &&
-        Number.isFinite(
-          swe
-        )
-        ? radarHTML(
-            terminal,
-            swe
-          )
-        : ""
+        metrics.map(
+          metric=>{
+
+            const value =
+              scores[
+                metric.id
+              ];
+
+
+            const evaluated =
+              Number.isFinite(
+                Number(value)
+              );
+
+
+            if(!evaluated){
+
+              return `
+                <div class="bench-card">
+
+                  <div class="bench-name">
+                    ${metric.name}
+                  </div>
+
+                  <div
+                    class="bench-score-row"
+                    style="
+                      margin-top:45px
+                    "
+                  >
+
+                    <div
+                      style="
+                        font-size:24px;
+                        color:var(--muted)
+                      "
+                    >
+                      Not evaluated
+                    </div>
+
+                  </div>
+
+                  <div class="bench-foot">
+                    ${metric.family}
+                  </div>
+
+                </div>
+              `;
+
+            }
+
+
+            const score =
+              Number(value);
+
+
+            return `
+              <div
+                class="bench-card"
+                onclick="
+                  location.href=
+                    './compare.html?a=${
+                      encodeURIComponent(
+                        id
+                      )
+                    }'
+                "
+              >
+
+                <div class="bench-name">
+                  ${metric.name}
+                </div>
+
+                <div class="bench-score-row">
+
+                  <div class="bench-score">
+                    ${score.toFixed(1)}
+                  </div>
+
+                  <div class="bench-unit">
+                    %
+                  </div>
+
+                </div>
+
+                <div class="bench-line">
+
+                  <div
+                    class="bench-fill"
+                    style="
+                      width:${score}%
+                    "
+                  ></div>
+
+                </div>
+
+                <div class="bench-foot">
+
+                  <span>
+                    ${metric.family}
+                  </span>
+
+                  <span>·</span>
+
+                  <span>
+                    Internal preview
+                  </span>
+
+                </div>
+
+              </div>
+            `;
+
+          }
+        ).join("")
       }
 
+    </div>
 
+
+    <div class="bench-note">
       ${
-        profile.benchmarkNote
-        ? `
-          <div class="bench-note">
-            ${profile.benchmarkNote}
-          </div>
-        `
-        : ""
+        benchmarkCatalog
+          .meta
+          ?.note ||
+        ""
       }
+    </div>
 
-    `;
-
-  }
-
+  `;
 
   /* details */
 
