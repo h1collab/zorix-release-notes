@@ -1,28 +1,45 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
 <title>Model | Zorix Code</title>
 
 <style>
+
 :root{
   --bg:#fff;
   --text:#0d0d0d;
-  --muted:#6b6b67;
+  --muted:#666662;
   --line:#deded9;
   --soft:#f7f7f5;
+  --soft2:#fbfbf9;
+  --accent:#7c5ce7;
+  --good:#14b87a;
   --max:1180px;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
-html{-webkit-font-smoothing:antialiased}
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
 
 body{
   margin:0;
+
   background:var(--bg);
   color:var(--text);
+
   font-family:
     "OpenAI Sans",
     "Inter",
@@ -33,20 +50,38 @@ body{
     Helvetica,
     Arial,
     sans-serif;
-  letter-spacing:-.01em;
+
+  letter-spacing:-.013em;
 }
 
-a{color:inherit;text-decoration:none}
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+}
 
 header{
+  position:sticky;
+  top:0;
+  z-index:30;
+
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+
   border-bottom:1px solid var(--line);
 }
 
 .nav{
   max-width:var(--max);
+  height:66px;
+
   margin:auto;
-  height:64px;
   padding:0 24px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -61,487 +96,2072 @@ header{
 .nav-links{
   display:flex;
   gap:24px;
+
   font-size:14px;
 }
 
 main{
   max-width:var(--max);
+
   margin:auto;
-  padding:72px 24px 120px;
+  padding:52px 24px 150px;
 }
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
 
 .back{
   display:inline-flex;
-  align-items:center;
-  gap:7px;
-  font-size:14px;
+
+  margin-bottom:43px;
+
   color:var(--muted);
-  margin-bottom:64px;
+  font-size:13px;
 }
 
 .model-head{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:40px;
-  align-items:start;
-  padding-bottom:48px;
+  padding-bottom:45px;
+
   border-bottom:1px solid var(--line);
 }
 
 .identity{
   display:flex;
-  gap:20px;
-  align-items:flex-start;
-}
 
-.logo-box{
-  width:58px;
-  height:58px;
-  display:flex;
+  gap:16px;
   align-items:center;
-  justify-content:center;
-  flex:0 0 auto;
 }
 
-.logo-box img{
+.logo{
   width:48px;
   height:48px;
+
+  display:grid;
+  place-items:center;
+
+  flex:0 0 auto;
+
+  border:1px solid var(--line);
+  border-radius:50%;
+}
+
+.logo img{
+  max-width:31px;
+  max-height:31px;
+
   object-fit:contain;
 }
 
 .logo-fallback{
-  width:48px;
-  height:48px;
-  border:1px solid var(--line);
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  font-size:18px;
+  font-size:15px;
+}
+
+.title-wrap{
+  min-width:0;
 }
 
 .provider{
   color:var(--muted);
-  font-size:14px;
-  margin-bottom:10px;
+
+  font-size:12px;
+
+  margin-bottom:5px;
+
+  cursor:pointer;
+
+  text-decoration:underline;
+  text-underline-offset:3px;
 }
 
 h1{
-  font-size:clamp(42px,6vw,76px);
-  line-height:.98;
-  letter-spacing:-.055em;
-  font-weight:500;
   margin:0;
-  max-width:850px;
+
+  font-size:clamp(38px,6vw,65px);
+  line-height:.98;
+
+  font-weight:600;
+
+  letter-spacing:-.055em;
 }
 
-.tags{
+.action-row{
+  margin-top:21px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.slug{
+  display:inline-flex;
+  align-items:center;
+
+  padding:10px 0;
+
+  color:#3f3f3c;
+
+  font-size:14px;
+
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+.action{
+  padding:9px 13px;
+
+  border:1px solid var(--line);
+  border-radius:9px;
+
+  background:#fff;
+
+  font-size:13px;
+
+  cursor:pointer;
+}
+
+.action:hover{
+  background:var(--soft);
+}
+
+
+/* =====================================================
+   DESCRIPTION
+   ===================================================== */
+
+.hero-copy{
+  max-width:830px;
+
+  margin-top:40px;
+
+  font-size:clamp(19px,2.2vw,26px);
+  line-height:1.52;
+
+  letter-spacing:-.025em;
+}
+
+.tagline{
+  margin-bottom:14px;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.4;
+}
+
+.highlights{
+  margin:29px 0 0;
+
   display:flex;
   flex-wrap:wrap;
   gap:7px;
-  margin-top:22px;
+
+  padding:0;
+
+  list-style:none;
 }
 
-.tag{
-  padding:7px 11px;
+.highlights li{
+  padding:7px 10px;
+
   border:1px solid var(--line);
   border-radius:999px;
-  font-size:13px;
+
+  font-size:11px;
+
+  color:#535350;
 }
 
-.daily{
-  text-align:right;
-}
 
-.daily-label{
-  color:var(--muted);
-  font-size:13px;
-}
+/* =====================================================
+   META GRID
+   ===================================================== */
 
-.daily-value{
-  margin-top:10px;
-  font-size:28px;
-  letter-spacing:-.04em;
-}
+.meta-grid{
+  margin-top:45px;
 
-.metrics{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+
+.meta-card{
+  min-height:123px;
+
+  padding:20px;
+
+  border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);
 }
 
-.metric{
-  min-height:155px;
-  padding:31px 0;
-  border-right:1px solid var(--line);
-}
-
-.metric:not(:first-child){padding-left:28px}
-.metric:last-child{border-right:0}
-
-.metric-label{
+.meta-label{
   color:var(--muted);
-  font-size:14px;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+  letter-spacing:.045em;
 }
 
-.metric-value{
-  font-size:24px;
-  margin-top:20px;
+.meta-value{
+  margin-top:17px;
+
+  font-size:19px;
+  line-height:1.3;
+
+  letter-spacing:-.025em;
 }
+
+.modalities{
+  display:flex;
+
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.modality{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  min-width:29px;
+  height:29px;
+
+  padding:0 8px;
+
+  border-radius:7px;
+
+  background:#f1f1ef;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   SECTIONS
+   ===================================================== */
 
 .section{
-  display:grid;
-  grid-template-columns:220px minmax(0,1fr);
-  gap:48px;
-  padding:52px 0;
+  padding:58px 0;
+
   border-bottom:1px solid var(--line);
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+
+  gap:28px;
+
+  margin-bottom:28px;
 }
 
 .section-title{
-  font-size:16px;
-  font-weight:600;
-}
+  font-size:31px;
 
-.copy{
-  max-width:720px;
-  font-size:19px;
-  line-height:1.55;
-  letter-spacing:-.018em;
-}
-
-.token-header{
-  margin-bottom:30px;
-}
-
-.token-number{
-  font-size:36px;
   letter-spacing:-.045em;
 }
 
-.token-sub{
+.section-copy{
+  max-width:500px;
+
   color:var(--muted);
-  margin-top:7px;
-  font-size:14px;
+
+  font-size:12px;
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   USAGE
+   ===================================================== */
+
+.usage-summary{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.usage-stat{
+  padding:24px 0;
+}
+
+.usage-stat:not(:first-child){
+  padding-left:25px;
+
+  border-left:1px solid var(--line);
+}
+
+.usage-k{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.usage-v{
+  margin-top:14px;
+
+  font-size:31px;
+
+  letter-spacing:-.045em;
 }
 
 .chart{
   position:relative;
-  height:300px;
+
+  height:310px;
+
+  margin-top:38px;
+
   display:flex;
   align-items:flex-end;
-  gap:5px;
-  padding-top:26px;
+  gap:4px;
+
+  padding-top:30px;
+
   border-bottom:1px solid #aaa;
 }
 
 .grid-line{
   position:absolute;
+
   left:0;
   right:0;
-  border-top:1px solid var(--line);
+
+  border-top:1px solid #ecece8;
+
   pointer-events:none;
 }
 
 .bar{
+  position:relative;
+
+  z-index:2;
+
   flex:1;
+
   min-width:2px;
-  background:#171717;
+
+  border-radius:2px 2px 0 0;
 }
 
-.legend{
-  display:flex;
-  justify-content:space-between;
-  padding-top:16px;
+
+/* =====================================================
+   BENCHMARK
+   ===================================================== */
+
+.bench-empty{
+  padding:34px;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  color:var(--muted);
+
   font-size:14px;
 }
 
-.legend-left{
+.bench-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+}
+
+.bench-card{
+  position:relative;
+
+  min-height:240px;
+
+  padding:25px;
+
+  border:1px solid var(--line);
+  border-radius:16px;
+
+  background:#fff;
+
+  cursor:pointer;
+}
+
+.bench-name{
+  font-size:18px;
+
+  letter-spacing:-.025em;
+}
+
+.bench-rank{
+  position:absolute;
+
+  right:22px;
+  top:22px;
+
+  padding:7px 9px;
+
+  border-radius:8px;
+
+  background:#e8f7f1;
+  color:var(--good);
+
+  font-size:11px;
+}
+
+.bench-score-row{
+  margin-top:38px;
+
+  display:flex;
+  align-items:baseline;
+
+  gap:8px;
+}
+
+.bench-score{
+  font-size:58px;
+
+  font-weight:600;
+
+  letter-spacing:-.06em;
+}
+
+.bench-unit{
+  color:var(--muted);
+
+  font-size:16px;
+}
+
+.bench-line{
+  height:8px;
+
+  margin-top:22px;
+
+  overflow:hidden;
+
+  border-radius:99px;
+
+  background:#ededeb;
+}
+
+.bench-fill{
+  height:100%;
+
+  border-radius:99px;
+
+  background:var(--good);
+}
+
+.bench-foot{
+  margin-top:19px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.bench-note{
+  margin-top:20px;
+
+  padding-top:17px;
+
+  border-top:1px solid var(--line);
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   RADAR
+   ===================================================== */
+
+.radar-card{
+  margin-top:17px;
+
+  padding:25px;
+
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+
+.radar-top{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:20px;
+}
+
+.radar-title{
+  font-size:20px;
+
+  letter-spacing:-.03em;
+}
+
+.radar-toggle{
+  display:flex;
+
+  border:1px solid var(--line);
+  border-radius:8px;
+
+  padding:3px;
+}
+
+.radar-toggle span{
+  padding:7px 10px;
+
+  border-radius:5px;
+
+  font-size:11px;
+}
+
+.radar-toggle span.active{
+  background:#fff;
+
+  box-shadow:
+    0 1px 4px rgba(0,0,0,.1);
+
+  color:var(--accent);
+}
+
+.radar-wrap{
+  max-width:600px;
+
+  margin:auto;
+}
+
+.radar{
+  width:100%;
+  height:auto;
+
+  display:block;
+}
+
+
+/* =====================================================
+   SPEC DETAILS
+   ===================================================== */
+
+.detail-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  border-top:1px solid var(--line);
+}
+
+.detail-row{
+  min-height:95px;
+
+  padding:20px 0;
+
+  border-bottom:1px solid var(--line);
+}
+
+.detail-row:nth-child(even){
+  padding-left:24px;
+
+  border-left:1px solid var(--line);
+}
+
+.detail-label{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.detail-value{
+  margin-top:11px;
+
+  font-size:17px;
+}
+
+
+/* =====================================================
+   BOTTOM BAR
+   ===================================================== */
+
+.bottom-actions{
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  z-index:50;
+
+  padding:
+    14px
+    24px
+    max(14px,env(safe-area-inset-bottom));
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(18px);
+
+  border-top:
+    1px solid var(--line);
+}
+
+.bottom-inner{
+  max-width:var(--max);
+
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+}
+
+.bottom-button{
+  min-height:55px;
+
   display:flex;
   align-items:center;
-  gap:10px;
+  justify-content:center;
+
+  border:1px solid var(--line);
+  border-radius:10px;
+
+  background:#fff;
+
+  font-size:16px;
+
+  cursor:pointer;
 }
 
-.legend-dot{
-  width:10px;
-  height:10px;
-  background:#111;
-  border-radius:50%;
+.bottom-button:hover{
+  background:var(--soft);
 }
 
-.source-link{
-  display:inline-flex;
-  gap:7px;
-  align-items:center;
-  margin-top:24px;
-  text-decoration:underline;
-  text-underline-offset:4px;
-}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
 @media(max-width:760px){
-  main{padding-top:42px}
-  .back{margin-bottom:42px}
-  .model-head{grid-template-columns:1fr}
-  .daily{text-align:left}
-  .metrics{grid-template-columns:1fr}
-  .metric{
-    border-right:0;
-    border-bottom:1px solid var(--line);
-    padding-left:0!important;
+
+  main{
+    padding:
+      36px
+      18px
+      145px;
   }
-  .section{
+
+  .nav{
+    padding:
+      0
+      18px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .meta-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .hero-copy{
+    font-size:20px;
+  }
+
+  .usage-summary{
     grid-template-columns:1fr;
-    gap:22px;
   }
-  .identity{gap:14px}
-  .logo-box{width:48px;height:48px}
-  .logo-box img{width:40px;height:40px}
+
+  .usage-stat:not(:first-child){
+    padding-left:0;
+
+    border-left:0;
+    border-top:1px solid var(--line);
+  }
+
+  .bench-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail-row:nth-child(even){
+    padding-left:0;
+
+    border-left:0;
+  }
+
+  .section-head{
+    align-items:start;
+    flex-direction:column;
+  }
+
+  .chart{
+    height:260px;
+  }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
 <header>
+
   <nav class="nav">
-    <a class="brand" href="../">zorix</a>
+
+    <a
+      class="brand"
+      href="./"
+    >
+      zorix
+    </a>
 
     <div class="nav-links">
-      <a href="./">Usage</a>
-      <a href="https://doc.zorix.it/">Docs</a>
+
+      <a href="./">
+        Usage
+      </a>
+
+      <a href="./#benchmarks">
+        Benchmarks
+      </a>
+
+      <a href="./compare.html">
+        Compare
+      </a>
+
     </div>
+
   </nav>
+
 </header>
 
-<main>
-  <a class="back" href="./">← All models</a>
+
+<main id="main">
+
+  <a
+    class="back"
+    href="./"
+  >
+    ← All models
+  </a>
+
 
   <section class="model-head">
+
     <div class="identity">
-      <div class="logo-box" id="logo"></div>
 
-      <div>
-        <div class="provider" id="provider"></div>
-        <h1 id="name">Model</h1>
+      <div
+        class="logo"
+        id="logo"
+      ></div>
 
-        <div class="tags">
-          <span class="tag" id="family"></span>
-          <span class="tag" id="status"></span>
-        </div>
+      <div class="title-wrap">
+
+        <div
+          class="provider"
+          id="provider"
+        ></div>
+
+        <h1 id="name">
+          Model
+        </h1>
+
       </div>
+
     </div>
 
-    <div class="daily">
-      <div class="daily-label">Daily token volume</div>
-      <div class="daily-value" id="daily">—</div>
-    </div>
-  </section>
 
-  <section class="metrics">
-    <div class="metric">
-      <div class="metric-label">Context</div>
-      <div class="metric-value" id="context">—</div>
-    </div>
+    <div class="action-row">
 
-    <div class="metric">
-      <div class="metric-label">Parameters</div>
-      <div class="metric-value" id="parameters">—</div>
-    </div>
+      <span
+        class="slug"
+        id="slug"
+      ></span>
 
-    <div class="metric">
-      <div class="metric-label">Active parameters</div>
-      <div class="metric-value" id="activeParameters">—</div>
-    </div>
+      <button
+        class="action"
+        id="copySlug"
+      >
+        Copy
+      </button>
 
-    <div class="metric">
-      <div class="metric-label">Architecture</div>
-      <div class="metric-value" id="architecture">—</div>
-    </div>
-
-    <div class="metric">
-      <div class="metric-label">Input</div>
-      <div class="metric-value" id="inputPrice">—</div>
-    </div>
-
-    <div class="metric">
-      <div class="metric-label">Output</div>
-      <div class="metric-value" id="outputPrice">—</div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-title">About</div>
-
-    <div>
-      <div class="copy" id="about"></div>
-      <a class="source-link" id="docs" target="_blank" rel="noopener" hidden>
-        View model documentation ↗
+      <a
+        class="action"
+        id="docs"
+        target="_blank"
+        rel="noopener"
+        hidden
+      >
+        Documentation ↗
       </a>
+
+      <a
+        class="action"
+        id="weights"
+        target="_blank"
+        rel="noopener"
+        hidden
+      >
+        Model weights ↗
+      </a>
+
     </div>
+
+
+    <div class="hero-copy">
+
+      <div
+        class="tagline"
+        id="tagline"
+      ></div>
+
+      <div id="description"></div>
+
+      <ul
+        class="highlights"
+        id="highlights"
+      ></ul>
+
+    </div>
+
+
+    <div
+      class="meta-grid"
+      id="metaGrid"
+    ></div>
+
   </section>
+
 
   <section class="section">
-    <div class="section-title">Tokens</div>
 
-    <div>
-      <div class="token-header">
-        <div class="token-number" id="periodTotal"></div>
-        <div class="token-sub">Usage trend · last 30 days</div>
+    <div class="section-head">
+
+      <div class="section-title">
+        Usage
       </div>
 
-      <div class="chart" id="chart">
-        <div class="grid-line" style="top:25%"></div>
-        <div class="grid-line" style="top:50%"></div>
-        <div class="grid-line" style="top:75%"></div>
+      <div class="section-copy">
+        Token traffic recorded for this model
+        in the Zorix Code or Metron environment.
       </div>
 
-      <div class="legend">
-        <div class="legend-left">
-          <span class="legend-dot"></span>
-          Token volume
+    </div>
+
+
+    <div class="usage-summary">
+
+      <div class="usage-stat">
+
+        <div class="usage-k">
+          Daily
         </div>
 
-        <div id="latest"></div>
+        <div
+          class="usage-v"
+          id="daily"
+        ></div>
+
       </div>
+
+
+      <div class="usage-stat">
+
+        <div class="usage-k">
+          Weekly
+        </div>
+
+        <div
+          class="usage-v"
+          id="weekly"
+        ></div>
+
+      </div>
+
+
+      <div class="usage-stat">
+
+        <div class="usage-k">
+          Source
+        </div>
+
+        <div
+          class="usage-v"
+          id="source"
+        ></div>
+
+      </div>
+
     </div>
+
+
+    <div
+      class="chart"
+      id="chart"
+    >
+
+      <div
+        class="grid-line"
+        style="top:25%"
+      ></div>
+
+      <div
+        class="grid-line"
+        style="top:50%"
+      ></div>
+
+      <div
+        class="grid-line"
+        style="top:75%"
+      ></div>
+
+    </div>
+
   </section>
+
+
+  <section
+    class="section"
+    id="benchmarks"
+  >
+
+    <div class="section-head">
+
+      <div class="section-title">
+        Benchmarks
+      </div>
+
+      <div class="section-copy">
+        Current Zorix evaluation views.
+        Models without a recorded evaluation
+        remain explicitly unevaluated.
+      </div>
+
+    </div>
+
+
+    <div id="benchmarkContent"></div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+        Model details
+      </div>
+
+    </div>
+
+    <div
+      class="detail-grid"
+      id="detailGrid"
+    ></div>
+
+  </section>
+
 </main>
 
-<script src="./models.js?v=1788109229"></script>
+
+<div class="bottom-actions">
+
+  <div class="bottom-inner">
+
+    <a
+      class="bottom-button"
+      id="compareButton"
+    >
+      Compare ◫
+    </a>
+
+    <a
+      class="bottom-button"
+      href="./"
+    >
+      Model usage ↗
+    </a>
+
+  </div>
+
+</div>
+
+
+<script src="./models.js?v=1788111882"></script>
+<script src="./model-profiles.js?v=1788111882"></script>
+
 
 <script>
-const params = new URLSearchParams(location.search);
-const id = params.get('id');
-const models = window.ZORIX_MODEL_DETAILS || [];
-const model = models.find(x => x.id === id);
 
-const fmt = n => new Intl.NumberFormat('en-US',{
-  notation:'compact',
-  maximumFractionDigits:2
-}).format(Number(n)||0);
-
-if(!model){
-  document.querySelector('main').innerHTML =
-    '<a class="back" href="./">← All models</a><h1>Model not found</h1>';
-}else{
-  document.title = `${model.name} | Zorix Code`;
-
-  document.getElementById('provider').textContent = model.provider;
-  document.getElementById('name').textContent = model.name;
-  document.getElementById('family').textContent = model.family;
-  document.getElementById('status').textContent = model.status;
-  document.getElementById('daily').textContent = fmt(model.dailyTokens) + ' tokens';
-
-  document.getElementById('context').textContent = model.context || '—';
-  document.getElementById('parameters').textContent = model.parameters || '—';
-  document.getElementById('activeParameters').textContent = model.activeParameters || '—';
-  document.getElementById('architecture').textContent = model.architecture || '—';
-  document.getElementById('inputPrice').textContent = model.inputPrice || '—';
-  document.getElementById('outputPrice').textContent = model.outputPrice || '—';
-  document.getElementById('about').textContent = model.about || '';
-
-  const logo = document.getElementById('logo');
-
-  if(model.logo){
-    logo.innerHTML = `<img src="${model.logo}" alt="">`;
-  }else{
-    logo.innerHTML = `<div class="logo-fallback">${model.provider.slice(0,1)}</div>`;
-  }
-
-  if(model.docs){
-    const docs = document.getElementById('docs');
-    docs.href = model.docs;
-    docs.hidden = false;
-  }
-
-  const arr = model.chart || [];
-  const max = Math.max(...arr,1);
-  const chart = document.getElementById('chart');
-
-  chart.insertAdjacentHTML(
-    'beforeend',
-    arr.map(v =>
-      `<div class="bar" style="height:${Math.max(1,(v/max)*100)}%" title="${fmt(v)}"></div>`
-    ).join('')
+const params =
+  new URLSearchParams(
+    location.search
   );
 
-  /*
-    These chart points are currently relative trend values, so this deliberately
-    does not claim their sum is measured 30-day token volume.
-  */
-  document.getElementById('periodTotal').textContent =
-    fmt(model.dailyTokens) + ' tokens';
-
-  document.getElementById('latest').textContent =
-    fmt(model.dailyTokens);
-}
-</script>
+const id =
+  params.get("id");
 
 
-<script>
-/* ZORIX MODEL PROVIDER ROUTES */
+const models =
+  window.ZORIX_MODEL_DETAILS || [];
 
-(()=>{
-  const routes={
-    "Zorix":"/zorix/",
-    "Anthropic":"/anthropic/",
-    "OpenAI":"/openai/",
-    "Google":"/google/",
-    "DeepSeek":"/deepseek/",
-    "Tencent":"/tencent/",
-    "Xiaomi":"/xiaomi/",
-    "Z.ai":"/zai/"
-  };
+const profiles =
+  window.ZORIX_MODEL_PROFILES || {};
 
-  function wire(){
+const benchmarkMap =
+  window.ZORIX_MODEL_BENCHMARKS || {};
 
-    document
-      .querySelectorAll(
-        ".provider, [data-provider]"
-      )
-      .forEach(el=>{
 
-        let value=
-          el.dataset.provider ||
-          el.textContent.trim();
+const model =
+  models.find(
+    x=>x.id===id
+  );
 
-        value=
-          value.replace(/^by\s+/i,"")
-               .trim();
+const profile =
+  profiles[id] || {};
 
-        const route=
-          routes[value];
 
-        if(!route)
-          return;
+const providerRoutes = {
+  "Zorix":"/zorix/",
+  "Anthropic":"/anthropic/",
+  "OpenAI":"/openai/",
+  "Google":"/google/",
+  "DeepSeek":"/deepseek/",
+  "Tencent":"/tencent/",
+  "Xiaomi":"/xiaomi/",
+  "Z.ai":"/zai/"
+};
 
-        if(el.dataset.companyRoute)
-          return;
 
-        el.dataset.companyRoute="1";
-        el.style.cursor="pointer";
-        el.style.textDecoration="underline";
-        el.style.textUnderlineOffset="3px";
+function fmt(n){
 
-        el.addEventListener(
-          "click",
-          ()=>location.href=route
-        );
+  n=Number(n || 0);
 
-      });
-
-  }
-
-  wire();
-
-  new MutationObserver(wire)
-    .observe(
-      document.body,
+  const compact=
+    new Intl.NumberFormat(
+      "en-US",
       {
-        childList:true,
-        subtree:true
+        notation:"compact",
+        maximumFractionDigits:2
       }
     );
 
-})();
+  return compact.format(n);
+
+}
+
+
+function weekly(){
+
+  if(
+    model.weeklyTokens !== undefined &&
+    model.weeklyTokens !== null
+  ){
+    return Number(
+      model.weeklyTokens
+    );
+  }
+
+  return Number(
+    model.dailyTokens || 0
+  ) * 7;
+
+}
+
+
+function modalityHTML(list){
+
+  return (
+    list || ["Text"]
+  )
+  .map(
+    x=>`
+      <span class="modality">
+        ${x}
+      </span>
+    `
+  )
+  .join("");
+
+}
+
+
+function metaCard(
+  label,
+  value,
+  raw=false
+){
+
+  return `
+    <div class="meta-card">
+
+      <div class="meta-label">
+        ${label}
+      </div>
+
+      <div class="meta-value">
+        ${
+          raw
+          ? value
+          : (value || "—")
+        }
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function rankFor(
+  key,
+  score
+){
+
+  const values=
+    Object.entries(
+      benchmarkMap
+    )
+    .filter(
+      ([_,v])=>
+        Number.isFinite(
+          Number(v[key])
+        )
+    )
+    .map(
+      ([modelId,v])=>({
+        id:modelId,
+        value:Number(v[key])
+      })
+    )
+    .sort(
+      (a,b)=>
+        b.value-a.value
+    );
+
+
+  const index=
+    values.findIndex(
+      x=>x.id===id
+    );
+
+
+  if(index<0)
+    return null;
+
+
+  return {
+    rank:index+1,
+    total:values.length
+  };
+
+}
+
+
+function percentileLabel(
+  rank,
+  total
+){
+
+  if(
+    !rank ||
+    !total
+  ){
+    return "";
+  }
+
+  const pct=
+    Math.ceil(
+      rank/total*100
+    );
+
+  return `Top ${pct}%`;
+
+}
+
+
+function benchmarkCard(
+  title,
+  key,
+  score
+){
+
+  const rank=
+    rankFor(
+      key,
+      score
+    );
+
+
+  return `
+    <div
+      class="bench-card"
+      onclick="
+        location.href=
+          './compare.html?a=${encodeURIComponent(id)}'
+      "
+    >
+
+      <div class="bench-name">
+        ${title}
+      </div>
+
+      ${
+        rank
+        ? `
+          <div class="bench-rank">
+            ${percentileLabel(
+              rank.rank,
+              rank.total
+            )}
+          </div>
+        `
+        : ""
+      }
+
+      <div class="bench-score-row">
+
+        <div class="bench-score">
+          ${score.toFixed(1)}
+        </div>
+
+        <div class="bench-unit">
+          %
+        </div>
+
+      </div>
+
+
+      <div class="bench-line">
+
+        <div
+          class="bench-fill"
+          style="
+            width:${Math.min(
+              100,
+              Math.max(
+                0,
+                score
+              )
+            )}%
+          "
+        ></div>
+
+      </div>
+
+
+      <div class="bench-foot">
+
+        ${
+          rank
+          ? `
+            <span>
+              Rank ${rank.rank}
+              of ${rank.total}
+            </span>
+
+            <span>·</span>
+          `
+          : ""
+        }
+
+        <span>
+          Click to compare
+        </span>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function radarHTML(
+  terminal,
+  swe
+){
+
+  /*
+   * There are currently only two public comparison
+   * axes on this site. The visualization deliberately
+   * does not invent extra benchmark categories.
+   */
+
+  const axes=[
+    {
+      label:"Terminal",
+      value:terminal
+    },
+    {
+      label:"SWE Verified",
+      value:swe
+    },
+    {
+      label:"Terminal",
+      value:terminal
+    },
+    {
+      label:"SWE Verified",
+      value:swe
+    }
+  ];
+
+
+  const cx=300;
+  const cy=210;
+  const radius=145;
+
+
+  function point(
+    index,
+    total,
+    r
+  ){
+
+    const angle=
+      -Math.PI/2 +
+      index/total *
+      Math.PI*2;
+
+    return [
+      cx +
+      Math.cos(angle)*r,
+
+      cy +
+      Math.sin(angle)*r
+    ];
+
+  }
+
+
+  const grid=[];
+
+
+  for(
+    const ratio of
+    [.25,.5,.75,1]
+  ){
+
+    grid.push(
+      axes.map(
+        (_,i)=>
+          point(
+            i,
+            axes.length,
+            radius*ratio
+          ).join(",")
+      ).join(" ")
+    );
+
+  }
+
+
+  const data=
+    axes.map(
+      (axis,i)=>
+        point(
+          i,
+          axes.length,
+          radius*
+          axis.value/100
+        ).join(",")
+    ).join(" ");
+
+
+  const labels=
+    axes.map(
+      (axis,i)=>{
+
+        const [x,y]=
+          point(
+            i,
+            axes.length,
+            radius+33
+          );
+
+        return `
+          <text
+            x="${x}"
+            y="${y}"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            font-size="13"
+            fill="#333"
+          >
+            ${axis.label}
+          </text>
+        `;
+
+      }
+    ).join("");
+
+
+  return `
+    <div class="radar-card">
+
+      <div class="radar-top">
+
+        <div class="radar-title">
+          Benchmark profile
+        </div>
+
+        <div class="radar-toggle">
+          <span class="active">
+            Score
+          </span>
+          <span>
+            Rank
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="radar-wrap">
+
+        <svg
+          class="radar"
+          viewBox="0 0 600 420"
+          role="img"
+          aria-label="Benchmark performance profile"
+        >
+
+          ${
+            grid.map(
+              points=>`
+                <polygon
+                  points="${points}"
+                  fill="none"
+                  stroke="#deded9"
+                  stroke-width="1"
+                />
+              `
+            ).join("")
+          }
+
+
+          ${
+            axes.map(
+              (_,i)=>{
+
+                const [x,y]=
+                  point(
+                    i,
+                    axes.length,
+                    radius
+                  );
+
+                return `
+                  <line
+                    x1="${cx}"
+                    y1="${cy}"
+                    x2="${x}"
+                    y2="${y}"
+                    stroke="#e2e2df"
+                    stroke-width="1"
+                  />
+                `;
+
+              }
+            ).join("")
+          }
+
+
+          <polygon
+            points="${data}"
+            fill="rgba(124,92,231,.16)"
+            stroke="#7c5ce7"
+            stroke-width="4"
+          />
+
+
+          ${
+            axes.map(
+              (axis,i)=>{
+
+                const [x,y]=
+                  point(
+                    i,
+                    axes.length,
+                    radius*
+                    axis.value/100
+                  );
+
+                return `
+                  <circle
+                    cx="${x}"
+                    cy="${y}"
+                    r="5"
+                    fill="#fff"
+                    stroke="#7c5ce7"
+                    stroke-width="4"
+                  />
+                `;
+
+              }
+            ).join("")
+          }
+
+
+          ${labels}
+
+        </svg>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+if(!model){
+
+  document
+    .getElementById("main")
+    .innerHTML=`
+      <a
+        class="back"
+        href="./"
+      >
+        ← All models
+      </a>
+
+      <h1>
+        Model not found
+      </h1>
+    `;
+
+}else{
+
+
+  document.title=
+    `${model.name} | Zorix Code`;
+
+
+  /* identity */
+
+  const logo=
+    document.getElementById(
+      "logo"
+    );
+
+
+  if(model.logo){
+
+    logo.innerHTML=`
+      <img
+        src="${model.logo}"
+        alt=""
+      >
+    `;
+
+  }else{
+
+    logo.innerHTML=`
+      <span class="logo-fallback">
+        ${model.provider.slice(0,1)}
+      </span>
+    `;
+
+  }
+
+
+  const provider=
+    document.getElementById(
+      "provider"
+    );
+
+  provider.textContent=
+    model.provider;
+
+
+  if(
+    providerRoutes[
+      model.provider
+    ]
+  ){
+
+    provider.onclick=
+      ()=>
+        location.href=
+          providerRoutes[
+            model.provider
+          ];
+
+  }
+
+
+  document
+    .getElementById("name")
+    .textContent=
+      model.name;
+
+
+  const slug=
+    profile.slug ||
+    (
+      model.provider
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-") +
+      "/" +
+      model.id
+    );
+
+
+  document
+    .getElementById("slug")
+    .textContent=
+      slug;
+
+
+  document
+    .getElementById(
+      "copySlug"
+    )
+    .onclick=
+      async ()=>{
+
+        await navigator
+          .clipboard
+          .writeText(slug);
+
+        document
+          .getElementById(
+            "copySlug"
+          )
+          .textContent=
+            "Copied";
+
+      };
+
+
+  if(model.docs){
+
+    const docs=
+      document.getElementById(
+        "docs"
+      );
+
+    docs.href=
+      model.docs;
+
+    docs.hidden=false;
+
+  }
+
+
+  if(profile.weights){
+
+    const weights=
+      document.getElementById(
+        "weights"
+      );
+
+    weights.href=
+      profile.weights;
+
+    weights.hidden=false;
+
+  }
+
+
+  /* unique copy */
+
+  document
+    .getElementById(
+      "tagline"
+    )
+    .textContent=
+      profile.tagline ||
+      model.family;
+
+
+  document
+    .getElementById(
+      "description"
+    )
+    .textContent=
+      profile.description ||
+      model.about ||
+      "";
+
+
+  document
+    .getElementById(
+      "highlights"
+    )
+    .innerHTML=
+      (
+        profile.highlights ||
+        []
+      )
+      .map(
+        x=>`<li>${x}</li>`
+      )
+      .join("");
+
+
+  /* cards */
+
+  document
+    .getElementById(
+      "metaGrid"
+    )
+    .innerHTML=
+
+      metaCard(
+        "Modalities",
+        modalityHTML(
+          profile.modalities
+        ),
+        true
+      )
+
+      +
+
+      metaCard(
+        "Context",
+        model.context
+      )
+
+      +
+
+      metaCard(
+        "Released",
+        profile.released
+      )
+
+      +
+
+      metaCard(
+        "Availability",
+        profile.availability ||
+        model.status
+      )
+
+      +
+
+      metaCard(
+        "Parameters",
+        model.parameters
+      )
+
+      +
+
+      metaCard(
+        "Active parameters",
+        model.activeParameters
+      )
+
+      +
+
+      metaCard(
+        "Architecture",
+        model.architecture
+      )
+
+      +
+
+      metaCard(
+        "Family",
+        model.family
+      );
+
+
+  /* usage */
+
+  document
+    .getElementById(
+      "daily"
+    )
+    .textContent=
+      fmt(
+        model.dailyTokens
+      ) +
+      " tokens";
+
+
+  document
+    .getElementById(
+      "weekly"
+    )
+    .textContent=
+      fmt(
+        weekly()
+      ) +
+      " tokens";
+
+
+  document
+    .getElementById(
+      "source"
+    )
+    .textContent=
+      model.source ||
+      "Zorix Code";
+
+
+  /* trend */
+
+  const arr=
+    model.chart || [];
+
+  const max=
+    Math.max(
+      ...arr,
+      1
+    );
+
+  const chart=
+    document.getElementById(
+      "chart"
+    );
+
+
+  chart.insertAdjacentHTML(
+    "beforeend",
+
+    arr.map(
+      value=>`
+        <div
+          class="bar"
+          style="
+            height:${
+              Math.max(
+                1,
+                value/max*100
+              )
+            }%;
+            background:${
+              model.color ||
+              "#111"
+            }
+          "
+        ></div>
+      `
+    ).join("")
+  );
+
+
+  /* benchmark */
+
+  const bench=
+    benchmarkMap[id];
+
+
+  const benchContent=
+    document.getElementById(
+      "benchmarkContent"
+    );
+
+
+  if(
+    !bench ||
+    (
+      bench.terminal === undefined &&
+      bench.swe === undefined
+    )
+  ){
+
+    benchContent.innerHTML=`
+      <div class="bench-empty">
+
+        This model does not currently have
+        a Terminal-Bench 2.1 or
+        SWE-bench Verified score in the
+        Zorix evaluation set.
+
+      </div>
+    `;
+
+  }else{
+
+    const terminal=
+      Number(
+        bench.terminal
+      );
+
+    const swe=
+      Number(
+        bench.swe
+      );
+
+
+    benchContent.innerHTML=`
+
+      <div class="bench-grid">
+
+        ${
+          Number.isFinite(
+            terminal
+          )
+          ? benchmarkCard(
+              "Terminal-Bench 2.1",
+              "terminal",
+              terminal
+            )
+          : ""
+        }
+
+        ${
+          Number.isFinite(
+            swe
+          )
+          ? benchmarkCard(
+              "SWE-bench Verified",
+              "swe",
+              swe
+            )
+          : ""
+        }
+
+      </div>
+
+
+      ${
+        Number.isFinite(
+          terminal
+        ) &&
+        Number.isFinite(
+          swe
+        )
+        ? radarHTML(
+            terminal,
+            swe
+          )
+        : ""
+      }
+
+
+      ${
+        profile.benchmarkNote
+        ? `
+          <div class="bench-note">
+            ${profile.benchmarkNote}
+          </div>
+        `
+        : ""
+      }
+
+    `;
+
+  }
+
+
+  /* details */
+
+  const details=[
+    [
+      "Provider",
+      model.provider
+    ],
+    [
+      "Status",
+      model.status
+    ],
+    [
+      "Context",
+      model.context
+    ],
+    [
+      "Parameters",
+      model.parameters
+    ],
+    [
+      "Active parameters",
+      model.activeParameters
+    ],
+    [
+      "Architecture",
+      model.architecture
+    ],
+    [
+      "Input",
+      model.inputPrice
+    ],
+    [
+      "Output",
+      model.outputPrice
+    ],
+    [
+      "Daily tokens",
+      fmt(
+        model.dailyTokens
+      )
+    ],
+    [
+      "Weekly tokens",
+      fmt(
+        weekly()
+      )
+    ]
+  ];
+
+
+  document
+    .getElementById(
+      "detailGrid"
+    )
+    .innerHTML=
+      details.map(
+        ([label,value])=>`
+          <div class="detail-row">
+
+            <div class="detail-label">
+              ${label}
+            </div>
+
+            <div class="detail-value">
+              ${value || "—"}
+            </div>
+
+          </div>
+        `
+      ).join("");
+
+
+  document
+    .getElementById(
+      "compareButton"
+    )
+    .href=
+      "./compare.html?a=" +
+      encodeURIComponent(
+        model.id
+      );
+
+}
+
 </script>
 
 </body>
