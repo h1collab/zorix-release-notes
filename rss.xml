@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
-<title>Zorix Release Notes</title>
-<link>./</link>
-<description>Product updates, model releases, research, and platform changes from Zorix.</description>
-<language>en</language>
-<lastBuildDate>Sun, 30 Aug 2026 00:00:00 GMT</lastBuildDate>
-<item><title>Introducing Zorix Nex Coder 3.8</title><pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate><description>Nex Coder 3.8 enters Early Access Preview with Mercury, Uranus, and Neptune on the AA4 — Zorix4 architecture.</description></item>
-<item><title>AA4 — Zorix4 architecture</title><pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate><description>Zorix introduces the system architecture behind Nex Coder 3.8.</description></item>
-<item><title>Zorix NexHate for context-aware translation</title><pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate><description>NexHate is announced as an advanced translation model focused on meaning, tone, and context.</description></item>
-<item><title>Introducing Zorix Star Light</title><pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate><description>Zorix announces its first video-generation model.</description></item>
-<item><title>VIREXA 3 is released</title><pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate><description>VIREXA 3 launches with improvements to image quality, coherence, and prompt understanding.</description></item>
-<item><title>Nex Coder 3.6 Pro Preview</title><pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate><description>Nex Coder 3.6 Pro Preview becomes the primary model, focused on longer software-engineering workflows.</description></item>
-<item><title>Nex Coder 3.5 Pro</title><pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate><description>A coding-first model for larger repositories, debugging, tool use, and multi-file changes.</description></item>
-<item><title>A new Zorix experience and Zorix Code</title><pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate><description>Deep, Balanced, and Fast processing modes arrive alongside Zorix Code Early Access.</description></item>
-<item><title>Introducing Zorix Metron</title><pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate><description>Zorix launches a platform for comparing AI models and understanding their strengths across tasks.</description></item>
-<item><title>Zorix 1.5 Coder</title><pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate><description>An early coding model marks Zorix's move into AI and software systems.</description></item>
+  <title>Zorix Updates</title>
+  <link>https://updates.zorix.it/</link>
+  <description>Zorix release notes and updates</description>
+  
+    <item>
+      <title>Zorix NexHate enters Early Access</title>
+      <description>Zorix NexHate is now available in Early Access, bringing advanced translation focused on meaning, tone, and context.</description>
+      <pubDate>2026-08-30</pubDate>
+      <link>https://updates.zorix.it/</link>
+      <guid>https://updates.zorix.it/#2026-08-30-Zorix NexHate enters Early Access</guid>
+    </item>
 </channel>
 </rss>
