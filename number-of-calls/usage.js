@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T18:53:28+02:00",
+  "updatedAt": "2026-08-30T20:50:02+02:00",
   "metric": "tokens",
   "models": [
     {

@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-08-30T20:45:32+02:00",
+  "updatedAt": "2026-08-30T20:50:02+02:00",
   "metric": "community_votes",
   "models": [
     {

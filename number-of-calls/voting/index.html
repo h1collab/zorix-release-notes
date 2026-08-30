@@ -991,46 +991,8 @@ h1{
 
 
 
-<script>
-/*
- * Always request fresh leaderboard data.
- * The timestamp makes each page load use a new asset URL.
- */
-(async()=>{
-  const cacheVersion = Date.now();
-
-  function loadScript(src){
-    return new Promise((resolve,reject)=>{
-      const el = document.createElement("script");
-      el.src = src;
-      el.async = false;
-      el.onload = resolve;
-      el.onerror = reject;
-      document.head.appendChild(el);
-    });
-  }
-
-  try{
-    await loadScript(
-      "../models.js?v=" + cacheVersion
-    );
-
-    await loadScript(
-      "./votes.js?v=" + cacheVersion
-    );
-
-    window.dispatchEvent(
-      new Event("zorixVotingDataReady")
-    );
-
-  }catch(err){
-    console.error(
-      "Failed to load fresh voting data",
-      err
-    );
-  }
-})();
-</script>
+<script src="../models.js?v=1788115802"></script>
+<script src="./votes.js?v=1788115802"></script>
 
 <script>
 window.addEventListener(
@@ -1116,9 +1078,17 @@ function providerLink(model){
 
 function resolveModelLogo(model){
 
-  const logo = String(model?.logo || "");
+  const logo = String(
+    model?.logo || ""
+  );
 
-  if(!logo) return "";
+  if(!logo){
+    return "";
+  }
+
+  if(logo.startsWith("/")){
+    return logo;
+  }
 
   if(logo.startsWith("./assets/")){
     return "/number-of-calls/" + logo.slice(2);
@@ -2098,10 +2068,18 @@ function renderVoteCurveV2(){
 }
 render();
 renderVoteCurveV2();
-
-
-  }
+}
 );
+</script>
+
+
+<script>
+/* ZORIX_SAFE_VOTING_READY */
+window.addEventListener("DOMContentLoaded", function(){
+  window.dispatchEvent(
+    new Event("zorixVotingDataReady")
+  );
+});
 </script>
 
 </body>

@@ -146,6 +146,17 @@ subprocess.run(
     check=True
 )
 
+bump = ROOT / "tools/bump_assets.py"
+
+if bump.exists():
+    subprocess.run(
+        [
+            sys.executable,
+            str(bump)
+        ],
+        check=True
+    )
+
 
 print(
     f"{model_id}: "
