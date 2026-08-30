@@ -342,6 +342,21 @@ h1{
     </div>
 
     <div class="metric">
+      <div class="metric-label">Parameters</div>
+      <div class="metric-value" id="parameters">—</div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-label">Active parameters</div>
+      <div class="metric-value" id="activeParameters">—</div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-label">Architecture</div>
+      <div class="metric-value" id="architecture">—</div>
+    </div>
+
+    <div class="metric">
       <div class="metric-label">Input</div>
       <div class="metric-value" id="inputPrice">—</div>
     </div>
@@ -416,6 +431,9 @@ if(!model){
   document.getElementById('daily').textContent = fmt(model.dailyTokens) + ' tokens';
 
   document.getElementById('context').textContent = model.context || '—';
+  document.getElementById('parameters').textContent = model.parameters || '—';
+  document.getElementById('activeParameters').textContent = model.activeParameters || '—';
+  document.getElementById('architecture').textContent = model.architecture || '—';
   document.getElementById('inputPrice').textContent = model.inputPrice || '—';
   document.getElementById('outputPrice').textContent = model.outputPrice || '—';
   document.getElementById('about').textContent = model.about || '';

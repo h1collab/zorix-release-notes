@@ -33,5 +33,12 @@
     "family": "GPT-5.6",
     "tokens": 310000,
     "status": "Available"
+  },
+  {
+    "name": "Claude Opus 5",
+    "provider": "Anthropic",
+    "family": "Claude Opus",
+    "tokens": 1200000000000,
+    "status": "Available"
   }
 ]
