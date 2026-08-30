@@ -1,9 +1,15 @@
 window.ZORIX_PUBLIC_QUOTA = {
   "unit": "tokens",
-  "current": 1,
-  "totalIssued": 1,
-  "updatedAt": "2026-08-30T17:10:40+02:00",
+  "current": 2100000001,
+  "totalIssued": 2100000001,
+  "updatedAt": "2026-08-30T17:15:59+02:00",
   "history": [
+    {
+      "type": "official",
+      "amount": 2100000000,
+      "note": "Official allocation",
+      "timestamp": "2026-08-30T17:15:59+02:00"
+    },
     {
       "type": "official",
       "amount": 1,
