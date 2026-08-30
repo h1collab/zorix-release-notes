@@ -56,5 +56,13 @@
     "tokens": 314286,
     "status": "Available",
     "weeklyTokens": 2200000
+  },
+  {
+    "name": "Gemini 3.7 Flash",
+    "provider": "Google",
+    "family": "Gemini 3.7",
+    "tokens": 414285714,
+    "weeklyTokens": 2900000000,
+    "status": "Available"
   }
 ]

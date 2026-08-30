@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T18:20:58+02:00",
+  "updatedAt": "2026-08-30T18:48:51+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -8,7 +8,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Nex Coder 3.8",
       "tokens": 3220000000000,
       "status": "Preview",
-      "share": 49.0095
+      "share": 49.0064
     },
     {
       "name": "DeepSeek V4 Flash 0731",
@@ -16,7 +16,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "DeepSeek V4",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 18.2644
+      "share": 18.2633
     },
     {
       "name": "Claude Opus 5",
@@ -24,7 +24,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Claude Opus",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 18.2644
+      "share": 18.2633
     },
     {
       "name": "Tencent Hy3",
@@ -32,7 +32,16 @@ window.ZORIX_CODE_USAGE = {
       "family": "Hy3",
       "tokens": 950000000000,
       "status": "Available",
-      "share": 14.4593
+      "share": 14.4584
+    },
+    {
+      "name": "Gemini 3.7 Flash",
+      "provider": "Google",
+      "family": "Gemini 3.7",
+      "tokens": 414285714,
+      "weeklyTokens": 2900000000,
+      "status": "Available",
+      "share": 0.0063
     },
     {
       "name": "Xiaomi MiMo-V2.5",

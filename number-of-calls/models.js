@@ -172,4 +172,35 @@ window.ZORIX_MODEL_DETAILS = [
       242,249,256,263,270,278,286,294,301,307,
       314,311,308,305,302,299,296,293,290,287
     ]
-  }];
+  },
+  {
+    id: "gemini-37-flash",
+    name: "Gemini 3.7 Flash",
+    provider: "Google",
+    logo: "./assets/logos/gemini.svg",
+    family: "Gemini 3.7",
+    status: "Available",
+
+    dailyTokens: 414285714,
+    weeklyTokens: 2900000000,
+
+    context: "—",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Closed",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Code",
+    color: "#4285F4",
+
+    about: "Gemini 3.7 Flash is available through Zorix Code. Recorded usage is 2.9B tokens per week, corresponding to approximately 414.29M tokens per day when normalized across seven days.",
+
+    chart: [
+      210,225,239,252,266,280,294,309,325,341,
+      358,376,394,412,431,451,472,494,517,541,
+      565,590,616,643,671,700,730,760,790,820
+    ]
+  }
+];

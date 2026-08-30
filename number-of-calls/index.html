@@ -1133,6 +1133,214 @@ h1{
   }
 }
 
+
+/* ========================================================
+   benchmark identity spacing v3
+   ======================================================== */
+
+.benchmark-chart-scroll{
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+
+.benchmark-chart{
+  min-width:max(1180px, calc(var(--bench-count, 11) * 124px));
+  height:610px;
+  gap:6px !important;
+
+  padding:
+    48px
+    22px
+    170px
+    62px !important;
+}
+
+.bench-column{
+  flex:0 0 116px !important;
+  width:116px !important;
+  min-width:116px !important;
+  height:100%;
+}
+
+.bench-bar{
+  width:50px !important;
+  max-width:50px;
+}
+
+.bench-score{
+  font-size:13px;
+  margin-bottom:9px;
+  white-space:nowrap;
+}
+
+.bench-identity{
+  position:absolute !important;
+
+  top:calc(100% + 14px) !important;
+  left:50% !important;
+
+  width:108px !important;
+
+  transform:translateX(-50%) !important;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+
+  gap:7px;
+}
+
+.bench-logo{
+  width:38px !important;
+  height:38px !important;
+
+  border:1px solid #e1e1de;
+  border-radius:10px;
+
+  background:#fff;
+
+  display:grid;
+  place-items:center;
+
+  flex:0 0 38px;
+}
+
+.bench-logo img{
+  display:block;
+
+  width:27px !important;
+  height:27px !important;
+
+  object-fit:contain;
+}
+
+.bench-label{
+  position:static !important;
+
+  width:108px !important;
+  max-width:108px !important;
+
+  transform:none !important;
+
+  text-align:center !important;
+
+  font-size:10.5px !important;
+  line-height:1.25 !important;
+
+  white-space:normal !important;
+  overflow-wrap:anywhere;
+
+  min-height:32px;
+}
+
+.bench-provider{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:9px !important;
+
+  color:var(--muted);
+}
+
+.benchmark-preview-tag{
+  display:block;
+
+  width:max-content;
+
+  margin:
+    5px
+    auto
+    0 !important;
+
+  font-size:8px;
+}
+
+.benchmark-legend{
+  display:grid !important;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(190px,1fr));
+
+  gap:8px !important;
+}
+
+.benchmark-legend-item{
+  display:grid !important;
+
+  grid-template-columns:
+    8px
+    30px
+    minmax(0,1fr);
+
+  gap:9px;
+
+  align-items:center;
+
+  min-width:0;
+
+  padding:7px 0;
+}
+
+.benchmark-legend-logo{
+  width:30px !important;
+  height:30px !important;
+}
+
+.benchmark-legend-logo img{
+  width:21px !important;
+  height:21px !important;
+}
+
+.benchmark-legend-text{
+  min-width:0;
+}
+
+.benchmark-legend-text b{
+  display:block;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+@media(max-width:740px){
+
+  .benchmark-chart{
+    height:555px !important;
+
+    min-width:
+      calc(var(--bench-count,11) * 120px) !important;
+
+    padding-bottom:
+      165px !important;
+  }
+
+  .bench-column{
+    flex-basis:112px !important;
+    width:112px !important;
+    min-width:112px !important;
+  }
+
+  .bench-identity{
+    width:104px !important;
+  }
+
+  .bench-label{
+    width:104px !important;
+    max-width:104px !important;
+
+    font-size:10px !important;
+  }
+
+  .benchmark-legend{
+    grid-template-columns:1fr !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1320,7 +1528,7 @@ h1{
 
     <p>
       Comparison of Nex Coder 3.8 AA4 preview variants with selected
-      Zorix and external reference models. The chart uses the Ultra
+      Zorix and external external models. The chart uses the Ultra
       endpoint of the supplied internal evaluation curves.
     </p>
   </div>
@@ -1416,9 +1624,9 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788108050"></script>
-<script src="./usage.js?v=1788108050"></script>
-<script src="./quota.js?v=1788108050"></script>
+<script src="./models.js?v=1788108531"></script>
+<script src="./usage.js?v=1788108531"></script>
+<script src="./quota.js?v=1788108531"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -1876,35 +2084,29 @@ const BENCHMARKS = {
         color:"#7893D8"
       },
       {
-        name:"Claude reference",
+        name:"Claude Opus 5",
         provider:"Anthropic",
         logo:"./assets/logos/anthropic.svg",
         score:91.6,
         color:"#D97757"
       },
       {
-        name:"GPT reference",
+        name:"GPT-5.6 Luna",
         provider:"OpenAI",
         logo:"./assets/logos/openai.svg",
         score:90.6,
         color:"#222222"
       },
       {
-        name:"Gemini reference",
+        name:"Gemini 3.7 Flash",
         provider:"Google",
-        fallback:"G",
+        logo:"./assets/logos/gemini.svg",
         score:89.2,
         color:"#4285F4"
       },
+      
       {
-        name:"Qwen reference",
-        provider:"Alibaba",
-        fallback:"Q",
-        score:88.5,
-        color:"#FF7A18"
-      },
-      {
-        name:"DeepSeek reference",
+        name:"DeepSeek V4 Flash 0731",
         provider:"DeepSeek",
         logo:"./assets/logos/deepseek.svg",
         score:87.7,
@@ -1969,35 +2171,29 @@ const BENCHMARKS = {
         color:"#7893D8"
       },
       {
-        name:"Claude reference",
+        name:"Claude Opus 5",
         provider:"Anthropic",
         logo:"./assets/logos/anthropic.svg",
         score:92.4,
         color:"#D97757"
       },
       {
-        name:"GPT reference",
+        name:"GPT-5.6 Luna",
         provider:"OpenAI",
         logo:"./assets/logos/openai.svg",
         score:91.4,
         color:"#222222"
       },
       {
-        name:"Gemini reference",
+        name:"Gemini 3.7 Flash",
         provider:"Google",
-        fallback:"G",
+        logo:"./assets/logos/gemini.svg",
         score:90.0,
         color:"#4285F4"
       },
+      
       {
-        name:"Qwen reference",
-        provider:"Alibaba",
-        fallback:"Q",
-        score:89.3,
-        color:"#FF7A18"
-      },
-      {
-        name:"DeepSeek reference",
+        name:"DeepSeek V4 Flash 0731",
         provider:"DeepSeek",
         logo:"./assets/logos/deepseek.svg",
         score:88.5,
@@ -2025,6 +2221,11 @@ function renderBenchmark(key){
 
   const data = [...benchmark.values].sort(
     (a,b)=>b.score-a.score
+  );
+
+  chart.style.setProperty(
+    "--bench-count",
+    String(data.length)
   );
 
   data.forEach(item=>{
@@ -2100,11 +2301,37 @@ function renderBenchmark(key){
   table.innerHTML = data.map(item=>`
     <tr>
       <td>
-        ${item.name}
-        ${item.preview
-          ? '<span class="benchmark-preview-tag">preview</span>'
-          : ''
-        }
+        <div style="
+          display:flex;
+          align-items:center;
+          gap:10px
+        ">
+
+          ${
+            item.logo
+            ? `<img
+                 src="${item.logo}"
+                 alt=""
+                 style="
+                   width:24px;
+                   height:24px;
+                   object-fit:contain;
+                   flex:0 0 auto
+                 "
+               >`
+            : ''
+          }
+
+          <span>
+            ${item.name}
+
+            ${item.preview
+              ? '<span class="benchmark-preview-tag">preview</span>'
+              : ''
+            }
+          </span>
+
+        </div>
       </td>
 
       <td>${item.provider}</td>
