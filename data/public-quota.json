@@ -16,5 +16,7 @@
       "note": "Initial public allocation",
       "timestamp": "2026-08-30T17:10:40+02:00"
     }
-  ]
+  ],
+  "totalConsumed": 0,
+  "observedUsageTotal": 0
 }

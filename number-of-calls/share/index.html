@@ -431,7 +431,7 @@ canvas{
     >
 
       <img
-        src="../assets/logos/zorix.svg?v=1788153534"
+        src="../assets/logos/zorix.svg?v=1788155917"
         alt=""
       >
 
@@ -522,6 +522,10 @@ canvas{
 
       <option value="benchmark">
         Benchmark ranking
+      </option>
+
+      <option value="voting">
+        Voting ranking
       </option>
 
       <option value="intelligence-cost">
@@ -663,12 +667,13 @@ canvas{
 
 
 
-<script src="../models.js?v=1788153534"></script>
-<script src="../usage.js?v=1788153534"></script>
-<script src="../benchmarks.js?v=1788153534"></script>
+<script src="../models.js?v=1788155917"></script>
+<script src="../voting/votes.js?v=1788155917"></script>
+<script src="../usage.js?v=1788155917"></script>
+<script src="../benchmarks.js?v=1788155917"></script>
 
-<script src="../image-ai.js?v=1788153534"></script>
-<script src="../intelligence-cost.js?v=1788153534"></script>
+<script src="../image-ai.js?v=1788155917"></script>
+<script src="../intelligence-cost.js?v=1788155917"></script>
 
 
 
@@ -680,6 +685,12 @@ canvas{
 
 const models =
   window.ZORIX_MODEL_DETAILS || [];
+
+const votingData =
+  window.ZORIX_COMMUNITY_VOTES || {
+    models:[],
+    history:[]
+  };
 
 const usageData =
   window.ZORIX_CODE_USAGE || {
@@ -3179,6 +3190,358 @@ async function drawIntelligenceCost(){
 }
 
 
+
+
+/* ============================================================
+   VOTING PNG
+   ============================================================ */
+
+async function drawVotingRanking(){
+
+  clearCanvas();
+
+  await drawBrand();
+
+
+  const voteMap=
+    new Map(
+      (
+        votingData.models ||
+        []
+      ).map(
+        item=>[
+          item.id,
+          item
+        ]
+      )
+    );
+
+
+  const rows=
+    models
+      .map(
+        model=>{
+
+          const vote=
+            voteMap.get(
+              model.id
+            ) || {
+              votes:0,
+              uncertainty:0
+            };
+
+
+          return {
+            ...model,
+            votes:Number(
+              vote.votes || 0
+            ),
+            uncertainty:Number(
+              vote.uncertainty || 0
+            )
+          };
+
+        }
+      )
+      .filter(
+        model=>
+          model.votes>0
+      )
+      .sort(
+        (a,b)=>
+          b.votes-a.votes
+      )
+      .slice(
+        0,
+        Math.min(
+          Number(
+            modelCountSelect.value ||
+            8
+          ),
+          12
+        )
+      );
+
+
+  text(
+    "Metron Community Voting",
+    74,
+    105,
+    57,
+    "600"
+  );
+
+
+  text(
+    "Current model ranking",
+    74,
+    151,
+    29,
+    "500",
+    "#333"
+  );
+
+
+  text(
+    "Community voting is independent from token usage and benchmark rankings.",
+    74,
+    190,
+    18,
+    "400",
+    "#6b6861"
+  );
+
+
+  if(!rows.length){
+
+    text(
+      "No non-zero voting scores are available.",
+      800,
+      460,
+      30,
+      "500",
+      "#777",
+      "center"
+    );
+
+    return;
+  }
+
+
+  const min=
+    Math.min(
+      ...rows.map(
+        row=>row.votes
+      )
+    );
+
+
+  const max=
+    Math.max(
+      ...rows.map(
+        row=>row.votes
+      )
+    );
+
+
+  const lower=
+    Math.max(
+      0,
+      min-25
+    );
+
+
+  const range=
+    Math.max(
+      1,
+      max-lower
+    );
+
+
+  const startY=265;
+  const availableH=485;
+
+  const rowH=
+    availableH /
+    rows.length;
+
+
+  const nameX=130;
+  const logoX=500;
+  const barX=625;
+  const barMaxW=680;
+
+
+  for(
+    let i=0;
+    i<rows.length;
+    i++
+  ){
+
+    const row=
+      rows[i];
+
+    const y=
+      startY+
+      i*rowH;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      82,
+      y+22,
+      20,
+      0,
+      Math.PI*2
+    );
+
+    ctx.strokeStyle=
+      "#cbc8c1";
+
+    ctx.lineWidth=2;
+    ctx.stroke();
+
+
+    monoText(
+      String(i+1),
+      82,
+      y+29,
+      16,
+      "#625e57",
+      "center"
+    );
+
+
+    text(
+      row.name,
+      nameX,
+      y+25,
+      21,
+      i<3
+        ? "600"
+        : "500",
+      "#222"
+    );
+
+
+    text(
+      row.provider,
+      nameX,
+      y+46,
+      12,
+      "400",
+      "#77736c"
+    );
+
+
+    const logo=
+      await loadImage(
+        cleanLogoSrc(
+          row.logo
+        )
+      );
+
+
+    if(logo){
+
+      ctx.drawImage(
+        logo,
+        logoX-18,
+        y+4,
+        38,
+        38
+      );
+
+    }
+
+
+    const width=
+      Math.max(
+        14,
+        (
+          row.votes-lower
+        ) /
+        range *
+        barMaxW
+      );
+
+
+    roundedRect(
+      barX,
+      y+8,
+      width,
+      34,
+      6
+    );
+
+
+    ctx.fillStyle=
+      row.color ||
+      colors[
+        i %
+        colors.length
+      ];
+
+    ctx.fill();
+
+
+    monoText(
+      row.votes
+        .toLocaleString(),
+      barX+
+      width+
+      18,
+      y+31,
+      19,
+      "#55514b"
+    );
+
+
+    if(row.uncertainty){
+
+      monoText(
+        "±"+
+        row.uncertainty,
+        barX+
+        width+
+        18,
+        y+49,
+        11,
+        "#8a867e"
+      );
+
+    }
+
+  }
+
+
+  /*
+   * History note
+   */
+  const snapshots=
+    Array.isArray(
+      votingData.history
+    )
+      ? votingData.history.length
+      : 0;
+
+
+  text(
+    `${snapshots} recorded voting snapshot${
+      snapshots===1
+        ? ""
+        : "s"
+    }`,
+    74,
+    805,
+    13,
+    "400",
+    "#77736c"
+  );
+
+
+  monoText(
+    "SOURCE: ZORIX METRON COMMUNITY VOTING",
+    74,
+    862,
+    13,
+    "#68645e"
+  );
+
+
+  monoText(
+    todayText(),
+    1510,
+    862,
+    13,
+    "#68645e",
+    "right"
+  );
+
+}
+
+
 /* ============================================================
    UI
    ============================================================ */
@@ -3230,6 +3593,22 @@ function fillMetrics(){
     metricSelect.innerHTML=`
       <option value="cost-intelligence">
         Cost × intelligence
+      </option>
+    `;
+
+    return;
+  }
+
+
+  if(
+    type==="voting"
+  ){
+
+    metricSelect.disabled=true;
+
+    metricSelect.innerHTML=`
+      <option value="community">
+        Community votes
       </option>
     `;
 
@@ -3301,7 +3680,11 @@ async function render(){
               : "Relative usage index · Zorix Metron";
 
 
-  if(type==="usage"){
+  if(type==="voting"){
+
+    await drawVotingRanking();
+
+  }else if(type==="usage"){
 
     await drawUsageIndex();
 

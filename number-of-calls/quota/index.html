@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  http-equiv="Cache-Control"
+  content="no-cache, no-store, must-revalidate"
+>
+
+<meta
+  http-equiv="Pragma"
+  content="no-cache"
+>
+
+<meta
+  http-equiv="Expires"
+  content="0"
+>
+
+<title>
+Public quota | Zorix Metron
+</title>
+
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#0d0d0d;
+  --muted:#6b6b67;
+  --line:#deded9;
+  --soft:#f6f6f3;
+  --max:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+}
+
+
+/* NAV */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:40;
+
+  border-bottom:
+    1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(16px);
+}
+
+.nav{
+  max-width:var(--max);
+  height:66px;
+
+  margin:auto;
+  padding:0 24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  font-size:19px;
+  font-weight:600;
+
+  letter-spacing:-.04em;
+}
+
+.brand img{
+  width:31px;
+  height:31px;
+}
+
+.nav-links{
+  display:flex;
+  gap:22px;
+
+  font-size:13px;
+}
+
+
+/* MAIN */
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    72px
+    24px
+    120px;
+}
+
+.eyebrow{
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+h1{
+  max-width:900px;
+
+  margin:
+    14px
+    0
+    0;
+
+  font-size:
+    clamp(
+      60px,
+      9vw,
+      120px
+    );
+
+  line-height:.87;
+
+  font-weight:500;
+
+  letter-spacing:-.07em;
+}
+
+.lede{
+  max-width:690px;
+
+  margin-top:30px;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.6;
+}
+
+
+/* CURRENT */
+
+.current{
+  margin-top:64px;
+
+  padding:
+    34px
+    0;
+
+  border-top:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.current-label{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.current-value{
+  margin-top:9px;
+
+  font-size:
+    clamp(
+      55px,
+      9vw,
+      110px
+    );
+
+  line-height:.95;
+
+  letter-spacing:-.065em;
+}
+
+.current-sub{
+  margin-top:13px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+
+/* PROGRESS */
+
+.progress{
+  height:10px;
+
+  margin-top:30px;
+
+  overflow:hidden;
+
+  border-radius:999px;
+
+  background:#ededeb;
+}
+
+.progress-fill{
+  height:100%;
+
+  border-radius:inherit;
+
+  background:#111;
+}
+
+
+/* STATS */
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  margin-top:0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.stat{
+  padding:
+    27px
+    0;
+}
+
+.stat + .stat{
+  padding-left:25px;
+
+  border-left:
+    1px solid var(--line);
+}
+
+.stat-k{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.stat-v{
+  margin-top:10px;
+
+  font-size:25px;
+
+  letter-spacing:-.035em;
+}
+
+
+/* SECTION */
+
+.section{
+  padding:
+    58px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.section-head{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  align-items:flex-end;
+
+  gap:30px;
+
+  margin-bottom:26px;
+}
+
+.section-title{
+  font-size:31px;
+
+  letter-spacing:-.045em;
+}
+
+.section-copy{
+  max-width:490px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+
+/* CHART */
+
+.chart-shell{
+  position:relative;
+
+  min-height:390px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:15px;
+
+  overflow:hidden;
+}
+
+.chart-axis{
+  position:absolute;
+
+  left:0;
+  top:0;
+  bottom:39px;
+
+  width:75px;
+
+  border-right:
+    1px solid #ecece9;
+}
+
+.tick{
+  position:absolute;
+
+  right:11px;
+
+  transform:
+    translateY(50%);
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.chart{
+  position:absolute;
+
+  left:75px;
+  right:17px;
+
+  top:17px;
+  bottom:39px;
+
+  width:
+    calc(100% - 92px);
+
+  height:
+    calc(100% - 56px);
+}
+
+.chart-date-row{
+  position:absolute;
+
+  left:75px;
+  right:17px;
+
+  bottom:0;
+
+  height:39px;
+
+  display:flex;
+  align-items:center;
+  justify-content:
+    space-between;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+
+/* LEDGER */
+
+.ledger{
+  border-top:
+    1px solid var(--line);
+}
+
+.event{
+  min-height:76px;
+
+  display:grid;
+
+  grid-template-columns:
+    120px
+    minmax(0,1fr)
+    150px
+    150px;
+
+  gap:18px;
+
+  align-items:center;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.event-type{
+  font-size:11px;
+}
+
+.credit{
+  color:#087f5b;
+}
+
+.debit{
+  color:#b42318;
+}
+
+.event-note{
+  font-size:12px;
+}
+
+.event-time{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.event-amount,
+.event-balance{
+  text-align:right;
+
+  font-size:13px;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+
+/* INFO */
+
+.info{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:13px;
+}
+
+.info-card{
+  padding:22px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:14px;
+}
+
+.info-title{
+  font-size:16px;
+}
+
+.info-copy{
+  margin-top:9px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+
+@media(max-width:760px){
+
+  .nav{
+    padding:
+      0
+      18px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  main{
+    padding:
+      45px
+      18px
+      90px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .stat + .stat{
+    padding-left:0;
+
+    border-left:0;
+
+    border-top:
+      1px solid var(--line);
+  }
+
+  .section-head{
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+  .event{
+    padding:
+      16px
+      0;
+
+    grid-template-columns:
+      1fr
+      auto;
+  }
+
+  .event-time{
+    grid-column:
+      1 / -1;
+  }
+
+  .event-balance{
+    display:none;
+  }
+
+  .info{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="../"
+    >
+
+      <img
+        src="../assets/logos/zorix.svg?v=1788155917"
+        alt=""
+      >
+
+      <span>
+        Zorix Metron
+      </span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+      <a href="../">
+        Usage
+      </a>
+
+      <a href="../models/">
+        Models
+      </a>
+
+      <a href="../voting/">
+        Voting
+      </a>
+
+      <a href="./">
+        Public quota
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+  <div class="eyebrow">
+    Zorix Code
+  </div>
+
+
+  <h1>
+    Public<br>
+    quota
+  </h1>
+
+
+  <p class="lede">
+    Shared public token capacity published
+    by Zorix. Allocations increase the pool;
+    recorded public usage reduces the
+    remaining balance.
+  </p>
+
+
+  <section class="current">
+
+    <div class="current-label">
+      Remaining public quota
+    </div>
+
+    <div
+      class="current-value"
+      id="remaining"
+    >
+      —
+    </div>
+
+    <div
+      class="current-sub"
+      id="updated"
+    >
+      —
+    </div>
+
+
+    <div class="progress">
+
+      <div
+        class="progress-fill"
+        id="progress"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <div class="stats">
+
+    <div class="stat">
+
+      <div class="stat-k">
+        TOTAL ISSUED
+      </div>
+
+      <div
+        class="stat-v"
+        id="issued"
+      >
+        —
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-k">
+        CONSUMED
+      </div>
+
+      <div
+        class="stat-v"
+        id="consumed"
+      >
+        —
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-k">
+        REMAINING
+      </div>
+
+      <div
+        class="stat-v"
+        id="percent"
+      >
+        —
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+        Quota history
+      </div>
+
+      <div class="section-copy">
+        Remaining balance after allocation and
+        consumption events. The line increases
+        when Zorix adds quota and decreases when
+        recorded public usage is synchronized.
+      </div>
+
+    </div>
+
+
+    <div class="chart-shell">
+
+      <div
+        class="chart-axis"
+        id="axis"
+      ></div>
+
+
+      <svg
+        class="chart"
+        id="quotaChart"
+        viewBox="0 0 1000 330"
+        preserveAspectRatio="none"
+      ></svg>
+
+
+      <div
+        class="chart-date-row"
+        id="dates"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+        Activity
+      </div>
+
+      <div class="section-copy">
+        Allocation and consumption ledger.
+        Consumption is recorded as a delta
+        from the authoritative cumulative
+        public usage meter.
+      </div>
+
+    </div>
+
+
+    <div
+      class="ledger"
+      id="ledger"
+    ></div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+        How it works
+      </div>
+
+    </div>
+
+
+    <div class="info">
+
+      <div class="info-card">
+
+        <div class="info-title">
+          Allocation
+        </div>
+
+        <div class="info-copy">
+          Official and realtime allocations add
+          tokens to total issued quota without
+          resetting previously recorded usage.
+        </div>
+
+      </div>
+
+
+      <div class="info-card">
+
+        <div class="info-title">
+          Consumption
+        </div>
+
+        <div class="info-copy">
+          The cumulative public usage meter is
+          synchronized with Metron. Only the new
+          usage delta is deducted, preventing the
+          same tokens from being counted twice.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script src="../quota.js?v=1788155917"></script>
+
+
+<script>
+
+const quota =
+  window.ZORIX_PUBLIC_QUOTA || {
+    current:0,
+    totalIssued:0,
+    totalConsumed:0,
+    history:[]
+  };
+
+
+function fmt(n){
+
+  n=Number(n || 0);
+
+  if(n>=1e15)
+    return (
+      n/1e15
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"P";
+
+  if(n>=1e12)
+    return (
+      n/1e12
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"T";
+
+  if(n>=1e9)
+    return (
+      n/1e9
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"B";
+
+  if(n>=1e6)
+    return (
+      n/1e6
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"M";
+
+  if(n>=1e3)
+    return (
+      n/1e3
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"K";
+
+  return Math.round(n)
+    .toLocaleString();
+}
+
+
+function dateText(raw){
+
+  const d =
+    new Date(raw);
+
+  if(
+    Number.isNaN(
+      d.getTime()
+    )
+  ){
+    return "—";
+  }
+
+  return d.toLocaleString();
+}
+
+
+const issued =
+  Number(
+    quota.totalIssued || 0
+  );
+
+const consumed =
+  Number(
+    quota.totalConsumed || 0
+  );
+
+const remaining =
+  Math.max(
+    0,
+    Number(
+      quota.current ??
+      issued-consumed
+    )
+  );
+
+
+const percentage =
+  issued
+    ? remaining /
+      issued *
+      100
+    : 0;
+
+
+document
+  .getElementById(
+    "remaining"
+  )
+  .textContent=
+    fmt(remaining)
+    +
+    " tokens";
+
+
+document
+  .getElementById(
+    "issued"
+  )
+  .textContent=
+    fmt(issued);
+
+
+document
+  .getElementById(
+    "consumed"
+  )
+  .textContent=
+    fmt(consumed);
+
+
+document
+  .getElementById(
+    "percent"
+  )
+  .textContent=
+    percentage.toFixed(2)
+    +
+    "%";
+
+
+document
+  .getElementById(
+    "progress"
+  )
+  .style.width=
+    Math.max(
+      0,
+      Math.min(
+        100,
+        percentage
+      )
+    )
+    +
+    "%";
+
+
+document
+  .getElementById(
+    "updated"
+  )
+  .textContent=
+    quota.updatedAt
+      ? "Updated " +
+        dateText(
+          quota.updatedAt
+        )
+      : "No update timestamp";
+
+
+function buildTimeline(){
+
+  const events =
+    [
+      ...(quota.history || [])
+    ]
+    .sort(
+      (a,b)=>
+        new Date(
+          a.timestamp
+        ) -
+        new Date(
+          b.timestamp
+        )
+    );
+
+
+  let balance=0;
+
+  let totalIssuedSeen=0;
+  let totalConsumedSeen=0;
+
+
+  return events.map(
+    event=>{
+
+      const amount=
+        Number(
+          event.amount || 0
+        );
+
+
+      if(
+        event.type==="consume" ||
+        event.direction==="debit"
+      ){
+
+        balance=
+          Math.max(
+            0,
+            balance-amount
+          );
+
+        totalConsumedSeen+=
+          amount;
+
+      }else{
+
+        balance+=
+          amount;
+
+        totalIssuedSeen+=
+          amount;
+
+      }
+
+
+      /*
+       * New-format events carry the exact
+       * remaining value. Prefer it when available.
+       */
+      if(
+        event.remaining !== undefined &&
+        event.remaining !== null
+      ){
+
+        balance=
+          Number(
+            event.remaining
+          );
+
+      }
+
+
+      return {
+        ...event,
+        computedRemaining:
+          balance,
+        computedIssued:
+          totalIssuedSeen,
+        computedConsumed:
+          totalConsumedSeen
+      };
+
+    }
+  );
+
+}
+
+
+const timeline=
+  buildTimeline();
+
+
+function renderChart(){
+
+  const svg=
+    document.getElementById(
+      "quotaChart"
+    );
+
+  const axis=
+    document.getElementById(
+      "axis"
+    );
+
+  const dates=
+    document.getElementById(
+      "dates"
+    );
+
+
+  if(!timeline.length){
+
+    svg.innerHTML="";
+    axis.innerHTML="";
+    dates.innerHTML="";
+    return;
+  }
+
+
+  const values=
+    timeline.map(
+      item=>
+        Number(
+          item.computedRemaining ||
+          0
+        )
+    );
+
+
+  const max=
+    Math.max(
+      ...values,
+      issued,
+      1
+    );
+
+
+  axis.innerHTML=
+    [
+      .25,
+      .5,
+      .75,
+      1
+    ]
+    .map(
+      ratio=>`
+        <span
+          class="tick"
+          style="
+            bottom:${ratio*100}%
+          "
+        >
+          ${fmt(max*ratio)}
+        </span>
+      `
+    )
+    .join("");
+
+
+  const points=
+    timeline.map(
+      (item,index)=>{
+
+        const x=
+          timeline.length===1
+            ? 500
+            : index /
+              (
+                timeline.length-1
+              ) *
+              1000;
+
+
+        const y=
+          315 -
+          (
+            Number(
+              item.computedRemaining ||
+              0
+            ) /
+            max
+          ) *
+          285;
+
+
+        return {
+          x,
+          y,
+          item
+        };
+
+      }
+    );
+
+
+  const grid=
+    [
+      .25,
+      .5,
+      .75,
+      1
+    ]
+    .map(
+      ratio=>{
+
+        const y=
+          315 -
+          ratio*285;
+
+        return `
+          <line
+            x1="0"
+            y1="${y}"
+            x2="1000"
+            y2="${y}"
+            stroke="#e7e7e3"
+            stroke-width="1"
+            vector-effect="non-scaling-stroke"
+          />
+        `;
+
+      }
+    )
+    .join("");
+
+
+  let line="";
+
+
+  if(points.length===1){
+
+    line=`
+      <line
+        x1="0"
+        y1="${points[0].y}"
+        x2="1000"
+        y2="${points[0].y}"
+        stroke="#111"
+        stroke-width="3"
+        vector-effect="non-scaling-stroke"
+      />
+    `;
+
+  }else{
+
+    line=`
+      <polyline
+        points="${
+          points
+            .map(
+              point=>
+                `${point.x},${point.y}`
+            )
+            .join(" ")
+        }"
+        fill="none"
+        stroke="#111"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        vector-effect="non-scaling-stroke"
+      />
+    `;
+
+  }
+
+
+  const circles=
+    points.map(
+      point=>{
+
+        const debit=
+          point.item.type==="consume" ||
+          point.item.direction==="debit";
+
+
+        return `
+          <circle
+            cx="${point.x}"
+            cy="${point.y}"
+            r="6"
+            fill="${
+              debit
+                ? "#b42318"
+                : "#087f5b"
+            }"
+            stroke="#fff"
+            stroke-width="3"
+            vector-effect="non-scaling-stroke"
+          />
+        `;
+
+      }
+    )
+    .join("");
+
+
+  svg.innerHTML=
+    grid +
+    line +
+    circles;
+
+
+  dates.innerHTML=`
+    <span>
+      ${
+        new Date(
+          timeline[0].timestamp
+        ).toLocaleDateString()
+      }
+    </span>
+
+    <span>
+      ${
+        new Date(
+          timeline[
+            timeline.length-1
+          ].timestamp
+        ).toLocaleDateString()
+      }
+    </span>
+  `;
+
+}
+
+
+function renderLedger(){
+
+  const rows=
+    [
+      ...timeline
+    ]
+    .reverse();
+
+
+  const target=
+    document.getElementById(
+      "ledger"
+    );
+
+
+  if(!rows.length){
+
+    target.innerHTML=`
+      <div
+        style="
+          padding:25px 0;
+          color:var(--muted);
+          font-size:12px;
+        "
+      >
+        No quota activity yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  target.innerHTML=
+    rows.map(
+      event=>{
+
+        const debit=
+          event.type==="consume" ||
+          event.direction==="debit";
+
+
+        return `
+          <div class="event">
+
+            <div
+              class="event-type ${
+                debit
+                  ? "debit"
+                  : "credit"
+              }"
+            >
+              ${
+                debit
+                  ? "CONSUMPTION"
+                  : event.type
+                    .toUpperCase()
+              }
+            </div>
+
+
+            <div>
+
+              <div class="event-note">
+                ${
+                  event.note ||
+                  (
+                    debit
+                      ? "Public usage"
+                      : "Quota allocation"
+                  )
+                }
+              </div>
+
+              <div class="event-time">
+                ${dateText(event.timestamp)}
+              </div>
+
+            </div>
+
+
+            <div class="event-amount">
+
+              ${
+                debit
+                  ? "−"
+                  : "+"
+              }
+
+              ${fmt(event.amount)}
+
+            </div>
+
+
+            <div class="event-balance">
+              ${fmt(
+                event.computedRemaining
+              )}
+            </div>
+
+          </div>
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+renderChart();
+renderLedger();
+
+</script>
+
+</body>
+</html>
