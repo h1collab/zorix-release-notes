@@ -47,3 +47,23 @@ OUTPUT.write_text(
 
 print(f"Built {len(models)} models.")
 print(f"Total daily tokens: {total:,}")
+
+
+# Keep the model-detail fallback catalog synchronized.
+import subprocess
+import sys
+
+index_builder = (
+    ROOT /
+    "tools/build_model_index.py"
+)
+
+if index_builder.exists():
+
+    subprocess.run(
+        [
+            sys.executable,
+            str(index_builder)
+        ],
+        check=False
+    )
