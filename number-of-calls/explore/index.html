@@ -1,0 +1,1577 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="zorix-build" content="1788170912">
+
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+Explore models | Zorix Metron
+</title>
+
+<style>
+
+:root{
+  --text:#111;
+  --muted:#70706a;
+  --line:#e3e3de;
+  --soft:#f7f7f4;
+  --max:1450px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+select,
+input{
+  font:inherit;
+}
+
+
+/* HEADER */
+
+header{
+  position:sticky;
+
+  top:0;
+  z-index:50;
+
+  background:
+    rgba(255,255,255,.96);
+
+  backdrop-filter:
+    blur(15px);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.nav{
+  max-width:var(--max);
+
+  min-height:68px;
+
+  margin:auto;
+  padding:10px 24px;
+
+  display:grid;
+
+  grid-template-columns:
+    220px
+    minmax(260px,520px)
+    1fr;
+
+  gap:22px;
+
+  align-items:center;
+}
+
+.brand{
+  font-size:19px;
+  font-weight:600;
+
+  letter-spacing:-.045em;
+}
+
+.search input{
+  width:100%;
+  height:43px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  outline:none;
+}
+
+.nav-links{
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:20px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+
+/* PAGE */
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    48px
+    24px
+    100px;
+}
+
+.hero{
+  display:flex;
+
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:30px;
+
+  padding-bottom:35px;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.eyebrow{
+  margin-bottom:10px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+h1{
+  margin:0;
+
+  font-size:
+    clamp(
+      48px,
+      7vw,
+      82px
+    );
+
+  line-height:.92;
+
+  font-weight:500;
+
+  letter-spacing:-.06em;
+}
+
+.hero-copy{
+  max-width:560px;
+
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.55;
+}
+
+
+/* MODES */
+
+.modes{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  padding:
+    18px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.mode{
+  min-height:33px;
+
+  padding:
+    0
+    11px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  background:#fff;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:10px;
+}
+
+.mode.active{
+  background:#111;
+  color:#fff;
+
+  border-color:#111;
+}
+
+
+/* FILTERS */
+
+.filters{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:9px;
+
+  padding:
+    18px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.filter label{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.filter select{
+  width:100%;
+  min-height:40px;
+
+  padding:
+    0
+    10px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+}
+
+
+/* DATA NOTE */
+
+.data-note{
+  margin:
+    20px
+    0;
+
+  padding:
+    13px
+    14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+
+/* TABLE */
+
+.table-scroll{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+
+  min-width:1100px;
+
+  border-collapse:collapse;
+}
+
+thead{
+  position:sticky;
+
+  top:68px;
+
+  background:#fff;
+
+  z-index:10;
+}
+
+th,
+td{
+  padding:
+    13px
+    10px;
+
+  border-bottom:
+    1px solid var(--line);
+
+  text-align:left;
+}
+
+th{
+  color:var(--muted);
+
+  font-size:9px;
+  font-weight:500;
+
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+td{
+  font-size:11px;
+}
+
+.rank{
+  color:var(--muted);
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.model-cell{
+  display:flex;
+
+  gap:10px;
+
+  align-items:center;
+
+  min-width:280px;
+}
+
+.logo{
+  width:34px;
+  height:34px;
+
+  flex:0 0 auto;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+}
+
+.logo img{
+  width:22px;
+  height:22px;
+
+  object-fit:contain;
+}
+
+.model-name{
+  font-weight:520;
+}
+
+.model-name:hover{
+  text-decoration:underline;
+}
+
+.provider{
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.metric{
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.na{
+  color:#aaa;
+}
+
+.status{
+  display:inline-flex;
+
+  padding:
+    4px
+    7px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  color:var(--muted);
+
+  font-size:8px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .nav{
+    grid-template-columns:
+      auto
+      1fr;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .filters{
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+}
+
+@media(max-width:550px){
+
+  .filters{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="../"
+    >
+      Zorix Metron
+    </a>
+
+
+    <div class="search">
+
+      <input
+        id="search"
+        type="search"
+        placeholder="Search models, providers, families"
+      >
+
+    </div>
+
+
+    <div class="nav-links">
+
+      <a href="../leaderboard/">
+        Leaderboard
+      </a>
+
+      <a href="../compare.html">
+        Compare
+      </a>
+
+      <a href="../models/">
+        Models
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Model intelligence & performance
+    </div>
+
+    <h1>
+      Explore
+    </h1>
+
+  </div>
+
+
+  <div class="hero-copy">
+    Filter and rank current Metron models across
+    usage, context, pricing metadata, benchmarks
+    and community evaluation.
+  </div>
+
+</section>
+
+
+
+<div
+  class="modes"
+  id="modes"
+>
+
+  <button
+    class="mode active"
+    data-mode="usage"
+    type="button"
+  >
+    Usage
+  </button>
+
+  <button
+    class="mode"
+    data-mode="benchmark"
+    type="button"
+  >
+    Intelligence / benchmark
+  </button>
+
+  <button
+    class="mode"
+    data-mode="voting"
+    type="button"
+  >
+    Community
+  </button>
+
+  <button
+    class="mode"
+    data-mode="context"
+    type="button"
+  >
+    Context
+  </button>
+
+  <button
+    class="mode"
+    data-mode="price"
+    type="button"
+  >
+    Price
+  </button>
+
+  <button
+    class="mode"
+    data-mode="speed"
+    type="button"
+  >
+    Speed
+  </button>
+
+  <button
+    class="mode"
+    data-mode="latency"
+    type="button"
+  >
+    Latency
+  </button>
+
+</div>
+
+
+
+<div class="filters">
+
+  <div class="filter">
+
+    <label>
+      Provider
+    </label>
+
+    <select id="provider">
+
+      <option value="">
+        All providers
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="filter">
+
+    <label>
+      Availability
+    </label>
+
+    <select id="status">
+
+      <option value="">
+        All statuses
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="filter">
+
+    <label>
+      Benchmark
+    </label>
+
+    <select id="metric"></select>
+
+  </div>
+
+
+  <div class="filter">
+
+    <label>
+      Sort
+    </label>
+
+    <select id="sort">
+
+      <option value="desc">
+        Highest first
+      </option>
+
+      <option value="asc">
+        Lowest first
+      </option>
+
+    </select>
+
+  </div>
+
+</div>
+
+
+
+<div
+  class="data-note"
+  id="dataNote"
+></div>
+
+
+
+<div class="table-scroll">
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>
+          Rank
+        </th>
+
+        <th>
+          Model
+        </th>
+
+        <th id="mainMetricHead">
+          Daily tokens
+        </th>
+
+        <th>
+          Weekly tokens
+        </th>
+
+        <th>
+          Context
+        </th>
+
+        <th>
+          Input price
+        </th>
+
+        <th>
+          Output price
+        </th>
+
+        <th>
+          Voting
+        </th>
+
+        <th>
+          Status
+        </th>
+
+      </tr>
+
+    </thead>
+
+
+    <tbody id="rows"></tbody>
+
+  </table>
+
+</div>
+
+
+</main>
+
+
+<script src="../models.js?v=1788170912"></script>
+<script src="../usage.js?v=1788170912"></script>
+<script src="../benchmarks.js?v=1788170912"></script>
+<script src="../voting/votes.js?v=1788170912"></script>
+
+
+<script>
+
+(function(){
+
+  "use strict";
+
+
+  const $=
+    id=>
+      document.getElementById(id);
+
+
+  let mode="usage";
+
+
+  /* ======================================================
+     DATA
+     ====================================================== */
+
+  const models=
+    Array.isArray(
+      window.ZORIX_MODEL_DETAILS
+    )
+      ? window.ZORIX_MODEL_DETAILS
+      : [];
+
+
+  const usage=
+    Array.isArray(
+      window.ZORIX_CODE_USAGE?.models
+    )
+      ? window.ZORIX_CODE_USAGE.models
+      : [];
+
+
+  const usageId=
+    new Map();
+
+
+  const usageName=
+    new Map();
+
+
+  usage.forEach(
+    row=>{
+
+      if(row.id){
+        usageId.set(row.id,row);
+      }
+
+      if(row.name){
+        usageName.set(row.name,row);
+      }
+
+    }
+  );
+
+
+  const data=
+    models.map(
+      model=>{
+
+        const u=
+          usageId.get(model.id)
+          ||
+          usageName.get(model.name)
+          ||
+          {};
+
+
+        const daily=
+          Number(
+            u.tokens ??
+            u.dailyTokens ??
+            model.dailyTokens ??
+            0
+          );
+
+
+        const weekly=
+          Number(
+            u.weeklyTokens ??
+            model.weeklyTokens ??
+            daily*7
+          );
+
+
+        const vote=
+          (
+            window.ZORIX_COMMUNITY_VOTES
+            ?.models
+            ||
+            []
+          )
+          .find(
+            row=>
+              row.id===model.id
+          );
+
+
+        return {
+          ...model,
+          dailyTokens:daily,
+          weeklyTokens:weekly,
+          vote:
+            vote
+            ? Number(
+                vote.votes || 0
+              )
+            : null
+        };
+
+      }
+    );
+
+
+  /* ======================================================
+     HELPERS
+     ====================================================== */
+
+  function esc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function compact(value){
+
+    const n=
+      Number(value || 0);
+
+
+    const units=[
+      [1e15,"P"],
+      [1e12,"T"],
+      [1e9,"B"],
+      [1e6,"M"],
+      [1e3,"K"]
+    ];
+
+
+    for(
+      const [u,l]
+      of units
+    ){
+
+      if(n>=u){
+
+        return (
+          (n/u)
+          .toFixed(
+            n/u>=100
+              ? 0
+              : n/u>=10
+                ? 1
+                : 2
+          )
+          .replace(/\.0+$/,"")
+          +l
+        );
+
+      }
+
+    }
+
+
+    return Math.round(n)
+      .toLocaleString();
+
+  }
+
+
+  function contextNumber(value){
+
+    const text=
+      String(value || "")
+      .toUpperCase();
+
+
+    const match=
+      text.match(
+        /([\d.]+)\s*([KMB])/
+      );
+
+
+    if(!match){
+      return null;
+    }
+
+
+    const multiplier={
+      K:1e3,
+      M:1e6,
+      B:1e9
+    };
+
+
+    return (
+      Number(match[1])
+      *
+      multiplier[
+        match[2]
+      ]
+    );
+
+  }
+
+
+  function benchmarkValue(
+    model,
+    metric
+  ){
+
+    const v=
+      window.ZORIX_BENCHMARKS
+      ?.scores
+      ?.[model.id]
+      ?.[metric];
+
+
+    return Number.isFinite(
+      Number(v)
+    )
+      ? Number(v)
+      : null;
+
+  }
+
+
+  /* ======================================================
+     FILTER SETUP
+     ====================================================== */
+
+  [
+    ...new Set(
+      data.map(
+        model=>model.provider
+      )
+      .filter(Boolean)
+    )
+  ]
+  .sort()
+  .forEach(
+    provider=>{
+
+      const option=
+        document.createElement(
+          "option"
+        );
+
+
+      option.value=
+        provider;
+
+      option.textContent=
+        provider;
+
+
+      $("provider")
+        .appendChild(
+          option
+        );
+
+    }
+  );
+
+
+  [
+    ...new Set(
+      data.map(
+        model=>model.status
+      )
+      .filter(Boolean)
+    )
+  ]
+  .sort()
+  .forEach(
+    status=>{
+
+      const option=
+        document.createElement(
+          "option"
+        );
+
+
+      option.value=status;
+      option.textContent=status;
+
+
+      $("status")
+        .appendChild(
+          option
+        );
+
+    }
+  );
+
+
+  const metrics=
+    window.ZORIX_BENCHMARKS
+    ?.metrics
+    ||
+    [];
+
+
+  metrics.forEach(
+    metric=>{
+
+      const option=
+        document.createElement(
+          "option"
+        );
+
+
+      option.value=
+        metric.id;
+
+
+      option.textContent=
+        metric.name ||
+        metric.id;
+
+
+      $("metric")
+        .appendChild(
+          option
+        );
+
+    }
+  );
+
+
+  /* ======================================================
+     MAIN METRIC
+     ====================================================== */
+
+  function metricFor(model){
+
+    switch(mode){
+
+      case "benchmark":
+        return benchmarkValue(
+          model,
+          $("metric").value
+        );
+
+
+      case "voting":
+        return model.vote;
+
+
+      case "context":
+        return contextNumber(
+          model.context
+        );
+
+
+      case "speed":
+      case "latency":
+        return null;
+
+
+      case "price":
+        /*
+         * Price values in current profiles are formatted
+         * strings, not normalized numeric records.
+         */
+        return null;
+
+
+      default:
+        return model.dailyTokens;
+
+    }
+
+  }
+
+
+  function updateModeLabels(){
+
+    const heads={
+
+      usage:
+        "Daily tokens",
+
+      benchmark:
+        $("metric")
+        .selectedOptions[0]
+        ?.textContent
+        ||
+        "Benchmark",
+
+      voting:
+        "Voting score",
+
+      context:
+        "Context",
+
+      price:
+        "Price",
+
+      speed:
+        "Output speed",
+
+      latency:
+        "TTFT latency"
+    };
+
+
+    $("mainMetricHead")
+      .textContent=
+        heads[mode];
+
+
+    const notes={
+
+      usage:
+        "Usage represents traffic recorded inside Zorix Code / Metron.",
+
+      benchmark:
+        "Only models with a published value for the selected Metron benchmark can receive a benchmark rank.",
+
+      voting:
+        "Community scores use the current recorded voting snapshot.",
+
+      context:
+        "Context values come from currently published model metadata.",
+
+      price:
+        "Pricing metadata is displayed where known. Metron does not currently maintain a normalized numeric price index for every model.",
+
+      speed:
+        "Output speed telemetry is not yet measured consistently across the current Metron catalog. No synthetic tokens/s values are shown.",
+
+      latency:
+        "TTFT and end-to-end latency are not yet measured consistently across the current Metron catalog. No synthetic latency values are shown."
+    };
+
+
+    $("dataNote")
+      .textContent=
+        notes[mode];
+
+  }
+
+
+  /* ======================================================
+     RENDER
+     ====================================================== */
+
+  function render(){
+
+    const query=
+      $("search")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+    const provider=
+      $("provider").value;
+
+
+    const status=
+      $("status").value;
+
+
+    let rows=
+      data.filter(
+        model=>{
+
+          const searchable=
+            (
+              model.name+
+              " "+
+              model.provider+
+              " "+
+              model.family
+            )
+            .toLowerCase();
+
+
+          return (
+            (
+              !query
+              ||
+              searchable.includes(
+                query
+              )
+            )
+            &&
+            (
+              !provider
+              ||
+              model.provider===
+              provider
+            )
+            &&
+            (
+              !status
+              ||
+              model.status===
+              status
+            )
+          );
+
+        }
+      );
+
+
+    rows.sort(
+      (a,b)=>{
+
+        const av=
+          metricFor(a);
+
+
+        const bv=
+          metricFor(b);
+
+
+        if(
+          av==null
+          &&
+          bv==null
+        ){
+          return a.name.localeCompare(
+            b.name
+          );
+        }
+
+
+        if(av==null){
+          return 1;
+        }
+
+
+        if(bv==null){
+          return -1;
+        }
+
+
+        return $("sort").value==="asc"
+          ? av-bv
+          : bv-av;
+
+      }
+    );
+
+
+    $("rows").innerHTML=
+      rows.map(
+        (model,index)=>{
+
+          const metric=
+            metricFor(model);
+
+
+          let mainValue;
+
+
+          if(metric==null){
+
+            mainValue=
+              '<span class="na">Not measured</span>';
+
+          }else if(
+            mode==="benchmark"
+          ){
+
+            mainValue=
+              Number(metric)
+              .toFixed(1);
+
+          }else if(
+            mode==="voting"
+          ){
+
+            mainValue=
+              Number(metric)
+              .toLocaleString();
+
+          }else{
+
+            mainValue=
+              compact(metric);
+
+          }
+
+
+          return `
+
+            <tr>
+
+              <td class="rank">
+                ${index+1}
+              </td>
+
+
+              <td>
+
+                <div class="model-cell">
+
+                  <div class="logo">
+
+                    ${
+                      model.logo
+                        ? `
+                          <img
+                            src="${model.logo}"
+                            alt=""
+                          >
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+
+                  <div>
+
+                    <a
+                      class="model-name"
+                      href="../model.html?id=${
+                        encodeURIComponent(
+                          model.id
+                        )
+                      }"
+                    >
+                      ${esc(model.name)}
+                    </a>
+
+                    <div class="provider">
+                      ${esc(model.provider)}
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <td class="metric">
+                ${mainValue}
+              </td>
+
+
+              <td class="metric">
+                ${compact(model.weeklyTokens)}
+              </td>
+
+
+              <td class="metric">
+                ${
+                  model.context
+                  &&
+                  model.context!=="—"
+                    ? esc(model.context)
+                    : '<span class="na">—</span>'
+                }
+              </td>
+
+
+              <td>
+                ${
+                  model.inputPrice
+                  &&
+                  model.inputPrice!=="—"
+                    ? esc(model.inputPrice)
+                    : '<span class="na">—</span>'
+                }
+              </td>
+
+
+              <td>
+                ${
+                  model.outputPrice
+                  &&
+                  model.outputPrice!=="—"
+                    ? esc(model.outputPrice)
+                    : '<span class="na">—</span>'
+                }
+              </td>
+
+
+              <td class="metric">
+                ${
+                  model.vote!=null
+                    ? model.vote
+                      .toLocaleString()
+                    : '<span class="na">—</span>'
+                }
+              </td>
+
+
+              <td>
+
+                <span class="status">
+                  ${esc(model.status || "Available")}
+                </span>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+    updateModeLabels();
+
+  }
+
+
+  /* ======================================================
+     EVENTS
+     ====================================================== */
+
+  [
+    "search",
+    "provider",
+    "status",
+    "metric",
+    "sort"
+  ]
+  .forEach(
+    id=>{
+
+      $(id)
+      .addEventListener(
+        id==="search"
+          ? "input"
+          : "change",
+        render
+      );
+
+    }
+  );
+
+
+  document
+    .querySelectorAll(
+      "[data-mode]"
+    )
+    .forEach(
+      button=>{
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            mode=
+              button.dataset.mode;
+
+
+            document
+              .querySelectorAll(
+                "[data-mode]"
+              )
+              .forEach(
+                item=>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            render();
+
+          }
+        );
+
+      }
+    );
+
+
+  render();
+
+})();
+
+</script>
+
+
+</body>
+</html>
