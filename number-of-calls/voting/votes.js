@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-08-31T19:30:13+02:00",
+  "updatedAt": "2026-08-31T19:30:36+02:00",
   "metric": "community_votes",
   "models": [
     {
@@ -79,7 +79,7 @@ window.ZORIX_COMMUNITY_VOTES = {
     },
     {
       "id": "gemini-36-flash",
-      "votes": 0,
+      "votes": 1339,
       "uncertainty": 0
     },
     {
@@ -1761,6 +1761,92 @@ window.ZORIX_COMMUNITY_VOTES = {
         }
       },
       "note": "Control Center update: claude-sonnet-5"
+    },
+    {
+      "at": "2026-08-31T19:30:36+02:00",
+      "models": {
+        "claude-opus-5": {
+          "votes": 1585,
+          "uncertainty": 4
+        },
+        "nex-coder-38-neptune": {
+          "votes": 1611,
+          "uncertainty": 3
+        },
+        "deepseek-v4-flash-0731": {
+          "votes": 1502,
+          "uncertainty": 5
+        },
+        "tencent-hy3": {
+          "votes": 1342,
+          "uncertainty": 9
+        },
+        "mimo-v25": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "gpt-56-luna": {
+          "votes": 1501,
+          "uncertainty": 0
+        },
+        "glm-53-flash": {
+          "votes": 1567,
+          "uncertainty": 0
+        },
+        "glm-52-max": {
+          "votes": 1529,
+          "uncertainty": 0
+        },
+        "gemini-37-flash": {
+          "votes": 1495,
+          "uncertainty": 4
+        },
+        "claude-sonnet-5": {
+          "votes": 1536,
+          "uncertainty": 0
+        },
+        "claude-opus-48": {
+          "votes": 1469,
+          "uncertainty": 0
+        },
+        "claude-fable-5-fallback-max": {
+          "votes": 1589,
+          "uncertainty": 0
+        },
+        "gpt-56-sol-max": {
+          "votes": 1575,
+          "uncertainty": 0
+        },
+        "kimi-k27-code": {
+          "votes": 1490,
+          "uncertainty": 5
+        },
+        "kimi-k3": {
+          "votes": 1520,
+          "uncertainty": 4
+        },
+        "nex-coder-37-pro-max": {
+          "votes": 1584,
+          "uncertainty": 3
+        },
+        "gemini-36-flash": {
+          "votes": 1339,
+          "uncertainty": 0
+        },
+        "muse-spark-12": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "glm-51": {
+          "votes": 0,
+          "uncertainty": 0
+        },
+        "nvidia-nemotron-3-ultra": {
+          "votes": 0,
+          "uncertainty": 0
+        }
+      },
+      "note": "Control Center update: gemini-36-flash"
     }
   ]
 };
