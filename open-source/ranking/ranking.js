@@ -1,0 +1,4201 @@
+window.ZORIX_OPEN_SOURCE_RANKING = {
+  "updatedAt": "2026-08-31T18:01:55+02:00",
+  "source": "Hugging Face Hub API",
+  "sourceUrl": "https://huggingface.co/models",
+  "methodology": "Public, non-gated language-model repositories with published license metadata. Ranking can be sorted by Hub trending score, downloads in the rolling 30-day window or likes.",
+  "featuredModel": "Zorix-official/Zorix-Nano-0.8B-GGUF",
+  "models": [
+    {
+      "id": "zai-org/GLM-5.3",
+      "author": "zai-org",
+      "name": "GLM-5.3",
+      "url": "https://huggingface.co/zai-org/GLM-5.3",
+      "downloads": 66195,
+      "likes": 1394,
+      "trendingScore": 1337.0,
+      "license": "other",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "GlmMoeDsaForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "glm_moe_dsa",
+        "text-generation",
+        "conversational",
+        "en",
+        "zh",
+        "eval-results",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "createdAt": "2026-08-25T06:42:50.000Z",
+      "lastModified": "2026-08-31T13:33:35.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 66195,
+          "likes": 1394,
+          "trendingScore": 1337.0
+        }
+      ]
+    },
+    {
+      "id": "unsloth/Qwen3.8-Flash-Next-GGUF",
+      "author": "unsloth",
+      "name": "Qwen3.8-Flash-Next-GGUF",
+      "url": "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF",
+      "downloads": 373029,
+      "likes": 626,
+      "trendingScore": 611.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "",
+      "tags": [
+        "gguf",
+        "unsloth",
+        "image-text-to-text",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "createdAt": "2026-08-26T12:29:32.000Z",
+      "lastModified": "2026-08-28T02:51:45.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 373029,
+          "likes": 626,
+          "trendingScore": 611.0
+        }
+      ]
+    },
+    {
+      "id": "tencent/Hy4-preview",
+      "author": "tencent",
+      "name": "Hy4-preview",
+      "url": "https://huggingface.co/tencent/Hy4-preview",
+      "downloads": 2589,
+      "likes": 341,
+      "trendingScore": 336.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "HYV4ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "hy_v4",
+        "text-generation",
+        "hunyuan",
+        "hy4",
+        "moe",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-27T08:52:40.000Z",
+      "lastModified": "2026-08-28T14:58:32.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2589,
+          "likes": 341,
+          "trendingScore": 336.0
+        }
+      ]
+    },
+    {
+      "id": "unsloth/GLM-5.3-Flash-GGUF",
+      "author": "unsloth",
+      "name": "GLM-5.3-Flash-GGUF",
+      "url": "https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF",
+      "downloads": 53350,
+      "likes": 307,
+      "trendingScore": 300.0,
+      "license": "mit",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "",
+      "tags": [
+        "gguf",
+        "unsloth",
+        "glm5_next",
+        "text-generation",
+        "en",
+        "zh",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "createdAt": "2026-08-26T14:21:15.000Z",
+      "lastModified": "2026-08-29T10:43:43.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 53350,
+          "likes": 307,
+          "trendingScore": 300.0
+        }
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+      "author": "deepseek-ai",
+      "name": "DeepSeek-V4-Flash-Vision-Exp",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+      "downloads": 0,
+      "likes": 259,
+      "trendingScore": 257.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "DeepseekV4ForCausalLM",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "deepseek_v4",
+        "text-generation",
+        "image-text-to-text",
+        "eval-results",
+        "endpoints_compatible",
+        "8-bit",
+        "fp8",
+        "region:us"
+      ],
+      "createdAt": "2026-08-31T06:16:18.000Z",
+      "lastModified": "2026-08-31T12:23:00.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 0,
+          "likes": 259,
+          "trendingScore": 257.0
+        }
+      ]
+    },
+    {
+      "id": "OBLITERATUS/Qwen3.8-27B-OBLITERATED",
+      "author": "OBLITERATUS",
+      "name": "Qwen3.8-27B-OBLITERATED",
+      "url": "https://huggingface.co/OBLITERATUS/Qwen3.8-27B-OBLITERATED",
+      "downloads": 759644,
+      "likes": 969,
+      "trendingScore": 230.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Safetensors",
+        "MLX"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "text-generation",
+      "library": "mlx",
+      "tags": [
+        "mlx",
+        "gguf",
+        "qwen3_5",
+        "abliterated",
+        "uncensored",
+        "obliteratus",
+        "qwen3",
+        "qwen3.8",
+        "red-team"
+      ],
+      "createdAt": "2026-08-19T14:53:08.000Z",
+      "lastModified": "2026-08-24T17:47:52.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 759644,
+          "likes": 969,
+          "trendingScore": 230.0
+        }
+      ]
+    },
+    {
+      "id": "BreezeBlue/Breeze-TTS-2",
+      "author": "BreezeBlue",
+      "name": "Breeze-TTS-2",
+      "url": "https://huggingface.co/BreezeBlue/Breeze-TTS-2",
+      "downloads": 2236,
+      "likes": 229,
+      "trendingScore": 227.0,
+      "license": "other",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers",
+        "PyTorch"
+      ],
+      "parameters": null,
+      "architecture": "BreezeForConditionalGeneration",
+      "pipeline": "text-to-speech",
+      "library": "transformers",
+      "tags": [
+        "breeze",
+        "text-generation",
+        "text-to-speech",
+        "speech-generation",
+        "voice-clone",
+        "voice-design",
+        "voice-direction",
+        "cuda",
+        "en"
+      ],
+      "createdAt": "2026-08-25T16:39:34.000Z",
+      "lastModified": "2026-08-25T17:09:45.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2236,
+          "likes": 229,
+          "trendingScore": 227.0
+        }
+      ]
+    },
+    {
+      "id": "HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "author": "HauhauCS",
+      "name": "Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "url": "https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+      "downloads": 1202914,
+      "likes": 808,
+      "trendingScore": 206.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese",
+        "multilingual"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "",
+      "tags": [
+        "gguf",
+        "uncensored",
+        "qwen3.8",
+        "multimodal",
+        "vision",
+        "mtp",
+        "speculative-decoding",
+        "fastmtp",
+        "image-text-to-text"
+      ],
+      "createdAt": "2026-08-17T15:15:19.000Z",
+      "lastModified": "2026-08-17T22:02:10.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 1202914,
+          "likes": 808,
+          "trendingScore": 206.0
+        }
+      ]
+    },
+    {
+      "id": "orcarouter/Qwen3.8-27B-Uncensored-MLX",
+      "author": "orcarouter",
+      "name": "Qwen3.8-27B-Uncensored-MLX",
+      "url": "https://huggingface.co/orcarouter/Qwen3.8-27B-Uncensored-MLX",
+      "downloads": 114057,
+      "likes": 1248,
+      "trendingScore": 189.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors",
+        "MLX"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "mlx",
+      "tags": [
+        "mlx",
+        "qwen3_5",
+        "abliterated",
+        "qwen3.8",
+        "uncensored",
+        "ai-red-team",
+        "red-teaming",
+        "apple-silicon",
+        "quantized"
+      ],
+      "createdAt": "2026-08-17T14:10:50.000Z",
+      "lastModified": "2026-08-27T13:54:41.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 114057,
+          "likes": 1248,
+          "trendingScore": 189.0
+        }
+      ]
+    },
+    {
+      "id": "pipecat-ai/phonellm-alpha-1",
+      "author": "pipecat-ai",
+      "name": "phonellm-alpha-1",
+      "url": "https://huggingface.co/pipecat-ai/phonellm-alpha-1",
+      "downloads": 4721,
+      "likes": 166,
+      "trendingScore": 164.0,
+      "license": "bsd-2-clause",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "NemotronHForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "nemotron_h",
+        "text-generation",
+        "nemotron",
+        "mixture-of-experts",
+        "voice-agent",
+        "phone",
+        "tool-use",
+        "function-calling",
+        "conversational"
+      ],
+      "createdAt": "2026-08-24T18:47:20.000Z",
+      "lastModified": "2026-08-30T20:41:34.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4721,
+          "likes": 166,
+          "trendingScore": 164.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.8-Flash-Next-FP8",
+      "author": "Qwen",
+      "name": "Qwen3.8-Flash-Next-FP8",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next-FP8",
+      "downloads": 84954,
+      "likes": 170,
+      "trendingScore": 162.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen4ExpForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen4_exp",
+        "image-text-to-text",
+        "conversational",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "createdAt": "2026-08-24T08:25:23.000Z",
+      "lastModified": "2026-08-31T08:19:15.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 84954,
+          "likes": 170,
+          "trendingScore": 162.0
+        }
+      ]
+    },
+    {
+      "id": "thomsonreuters/Thomson-1.0-Small",
+      "author": "thomsonreuters",
+      "name": "Thomson-1.0-Small",
+      "url": "https://huggingface.co/thomsonreuters/Thomson-1.0-Small",
+      "downloads": 1045,
+      "likes": 171,
+      "trendingScore": 160.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5_moe",
+        "image-text-to-text",
+        "conversational",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-18T15:33:05.000Z",
+      "lastModified": "2026-08-28T12:27:31.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 1045,
+          "likes": 171,
+          "trendingScore": 160.0
+        }
+      ]
+    },
+    {
+      "id": "peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF",
+      "author": "peculiar-ragdoll",
+      "name": "Tiel-Coder-35B-A3B-GGUF",
+      "url": "https://huggingface.co/peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF",
+      "downloads": 105974,
+      "likes": 159,
+      "trendingScore": 140.0,
+      "license": "mit",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "llama.cpp",
+        "qwen35moe",
+        "moe",
+        "imatrix",
+        "unsloth-dynamic",
+        "agentic-coding",
+        "token-efficient",
+        "vision"
+      ],
+      "createdAt": "2026-08-19T23:11:19.000Z",
+      "lastModified": "2026-08-30T18:46:39.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 105974,
+          "likes": 159,
+          "trendingScore": 140.0
+        }
+      ]
+    },
+    {
+      "id": "JonathanColetti/Qwen3.8-27B-Uncensored-GGUF",
+      "author": "JonathanColetti",
+      "name": "Qwen3.8-27B-Uncensored-GGUF",
+      "url": "https://huggingface.co/JonathanColetti/Qwen3.8-27B-Uncensored-GGUF",
+      "downloads": 2055081,
+      "likes": 866,
+      "trendingScore": 137.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "llama.cpp",
+      "tags": [
+        "llama.cpp",
+        "gguf",
+        "uncensored",
+        "qwen3.8",
+        "mtp",
+        "speculative-decoding",
+        "imatrix",
+        "quantized",
+        "text-generation"
+      ],
+      "createdAt": "2026-08-14T03:43:36.000Z",
+      "lastModified": "2026-08-29T04:18:18.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2055081,
+          "likes": 866,
+          "trendingScore": 137.0
+        }
+      ]
+    },
+    {
+      "id": "ornith-ai/Ornith-1.5-35B-A3B",
+      "author": "ornith-ai",
+      "name": "Ornith-1.5-35B-A3B",
+      "url": "https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B",
+      "downloads": 172695,
+      "likes": 511,
+      "trendingScore": 123.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5_moe",
+        "image-text-to-text",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-18T06:24:38.000Z",
+      "lastModified": "2026-08-23T03:17:39.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 172695,
+          "likes": 511,
+          "trendingScore": 123.0
+        }
+      ]
+    },
+    {
+      "id": "huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF",
+      "author": "huihui-ai",
+      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
+      "url": "https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF",
+      "downloads": 1764919,
+      "likes": 469,
+      "trendingScore": 117.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "abliterated",
+        "uncensored",
+        "huihui",
+        "qwen3",
+        "unsloth",
+        "image-text-to-text",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-16T13:18:55.000Z",
+      "lastModified": "2026-08-31T09:03:38.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 1764919,
+          "likes": 469,
+          "trendingScore": 117.0
+        }
+      ]
+    },
+    {
+      "id": "apodex/Apodex-1.1-mini",
+      "author": "apodex",
+      "name": "Apodex-1.1-mini",
+      "url": "https://huggingface.co/apodex/Apodex-1.1-mini",
+      "downloads": 2185,
+      "likes": 109,
+      "trendingScore": 97.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5_moe",
+        "image-text-to-text",
+        "agent",
+        "apodex",
+        "text-generation",
+        "conversational",
+        "en",
+        "zh",
+        "endpoints_compatible"
+      ],
+      "createdAt": "2026-08-17T04:06:32.000Z",
+      "lastModified": "2026-08-26T06:25:32.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2185,
+          "likes": 109,
+          "trendingScore": 97.0
+        }
+      ]
+    },
+    {
+      "id": "ibm-granite/granite-4.2-30b",
+      "author": "ibm-granite",
+      "name": "granite-4.2-30b",
+      "url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+      "downloads": 4228,
+      "likes": 96,
+      "trendingScore": 95.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "German",
+        "Spanish",
+        "French",
+        "Japanese",
+        "Portuguese",
+        "Arabic",
+        "cs"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "GraniteForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "granite",
+        "text-generation",
+        "granite-4.2",
+        "reasoning",
+        "thinking",
+        "tool-calling",
+        "ibm",
+        "conversational",
+        "en"
+      ],
+      "createdAt": "2026-08-07T16:29:50.000Z",
+      "lastModified": "2026-08-25T17:17:32.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4228,
+          "likes": 96,
+          "trendingScore": 95.0
+        }
+      ]
+    },
+    {
+      "id": "froggeric/Qwen-Fixed-Chat-Templates",
+      "author": "froggeric",
+      "name": "Qwen-Fixed-Chat-Templates",
+      "url": "https://huggingface.co/froggeric/Qwen-Fixed-Chat-Templates",
+      "downloads": 0,
+      "likes": 1533,
+      "trendingScore": 93.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "MLX"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "",
+      "library": "mlx",
+      "tags": [
+        "mlx",
+        "jinja",
+        "chat-template",
+        "qwen",
+        "qwen3.5",
+        "qwen3.6",
+        "qwen3.8",
+        "lm-studio",
+        "llama.cpp"
+      ],
+      "createdAt": "2026-04-23T15:28:14.000Z",
+      "lastModified": "2026-08-24T21:35:17.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 0,
+          "likes": 1533,
+          "trendingScore": 93.0
+        }
+      ]
+    },
+    {
+      "id": "incoai/GLM-5.3-Flash-DFlash2",
+      "author": "incoai",
+      "name": "GLM-5.3-Flash-DFlash2",
+      "url": "https://huggingface.co/incoai/GLM-5.3-Flash-DFlash2",
+      "downloads": 7322,
+      "likes": 90,
+      "trendingScore": 90.0,
+      "license": "cc-by-nc-nd-4.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "DFlash2DraftModel",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "dflash",
+        "dflash2",
+        "speculative-decoding",
+        "block-diffusion",
+        "draft-model",
+        "sglang",
+        "text-generation",
+        "text-generation-inference"
+      ],
+      "createdAt": "2026-08-27T21:41:29.000Z",
+      "lastModified": "2026-08-31T00:44:54.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 7322,
+          "likes": 90,
+          "trendingScore": 90.0
+        }
+      ]
+    },
+    {
+      "id": "ornith-ai/Ornith-1.5-35B-A3B-GGUF",
+      "author": "ornith-ai",
+      "name": "Ornith-1.5-35B-A3B-GGUF",
+      "url": "https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B-GGUF",
+      "downloads": 2237578,
+      "likes": 358,
+      "trendingScore": 88.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "text-generation",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "createdAt": "2026-08-18T06:38:41.000Z",
+      "lastModified": "2026-08-24T03:43:47.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2237578,
+          "likes": 358,
+          "trendingScore": 88.0
+        }
+      ]
+    },
+    {
+      "id": "ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF",
+      "author": "ISTA-DASLab",
+      "name": "Qwen3.8-27B-GSQ-RCO-GGUF",
+      "url": "https://huggingface.co/ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF",
+      "downloads": 18665,
+      "likes": 85,
+      "trendingScore": 82.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "gsq",
+        "rco",
+        "quantization",
+        "mixed-precision",
+        "ist-daslab",
+        "text-generation",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-28T18:38:03.000Z",
+      "lastModified": "2026-08-30T09:05:52.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 18665,
+          "likes": 85,
+          "trendingScore": 82.0
+        }
+      ]
+    },
+    {
+      "id": "superwhisper/s1-mini",
+      "author": "superwhisper",
+      "name": "s1-mini",
+      "url": "https://huggingface.co/superwhisper/s1-mini",
+      "downloads": 6536,
+      "likes": 307,
+      "trendingScore": 81.0,
+      "license": "other",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "text-generation",
+        "asr",
+        "automatic-speech-recognition",
+        "text-normalization",
+        "inverse-text-normalization",
+        "punctuation",
+        "truecasing",
+        "speech-to-text"
+      ],
+      "createdAt": "2026-08-12T14:33:55.000Z",
+      "lastModified": "2026-08-28T14:00:15.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 6536,
+          "likes": 307,
+          "trendingScore": 81.0
+        }
+      ]
+    },
+    {
+      "id": "ornith-ai/Ornith-1.5-9B-GGUF",
+      "author": "ornith-ai",
+      "name": "Ornith-1.5-9B-GGUF",
+      "url": "https://huggingface.co/ornith-ai/Ornith-1.5-9B-GGUF",
+      "downloads": 2425069,
+      "likes": 264,
+      "trendingScore": 73.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "text-generation",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "createdAt": "2026-08-19T00:02:44.000Z",
+      "lastModified": "2026-08-24T02:45:24.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2425069,
+          "likes": 264,
+          "trendingScore": 73.0
+        }
+      ]
+    },
+    {
+      "id": "peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF-MTP",
+      "author": "peculiar-ragdoll",
+      "name": "Tiel-Coder-35B-A3B-GGUF-MTP",
+      "url": "https://huggingface.co/peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF-MTP",
+      "downloads": 89522,
+      "likes": 75,
+      "trendingScore": 70.0,
+      "license": "mit",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "llama.cpp",
+        "qwen35moe",
+        "moe",
+        "imatrix",
+        "unsloth-dynamic",
+        "mtp",
+        "speculative-decoding",
+        "agentic-coding"
+      ],
+      "createdAt": "2026-08-24T18:51:06.000Z",
+      "lastModified": "2026-08-30T18:46:44.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 89522,
+          "likes": 75,
+          "trendingScore": 70.0
+        }
+      ]
+    },
+    {
+      "id": "RadixArk/Qwen3.8-Flash-Next-NVFP4",
+      "author": "RadixArk",
+      "name": "Qwen3.8-Flash-Next-NVFP4",
+      "url": "https://huggingface.co/RadixArk/Qwen3.8-Flash-Next-NVFP4",
+      "downloads": 108962,
+      "likes": 69,
+      "trendingScore": 69.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "Safetensors"
+      ],
+      "parameters": null,
+      "architecture": "Qwen4ExpForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "Model Optimizer",
+      "tags": [
+        "Model Optimizer",
+        "qwen4_exp",
+        "ModelOpt",
+        "Qwen3.8",
+        "quantized",
+        "FP4",
+        "fp4",
+        "sglang",
+        "image-text-to-text"
+      ],
+      "createdAt": "2026-08-25T05:08:22.000Z",
+      "lastModified": "2026-08-26T12:28:41.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 108962,
+          "likes": 69,
+          "trendingScore": 69.0
+        }
+      ]
+    },
+    {
+      "id": "AtomicChat/Qwen3.8-Flash-Next-GGUF",
+      "author": "AtomicChat",
+      "name": "Qwen3.8-Flash-Next-GGUF",
+      "url": "https://huggingface.co/AtomicChat/Qwen3.8-Flash-Next-GGUF",
+      "downloads": 24783,
+      "likes": 70,
+      "trendingScore": 69.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "atomic-chat",
+        "qwen",
+        "qwen3.8",
+        "flash-next",
+        "moe",
+        "multimodal",
+        "imatrix",
+        "quantized"
+      ],
+      "createdAt": "2026-08-26T13:19:05.000Z",
+      "lastModified": "2026-08-27T01:36:22.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 24783,
+          "likes": 70,
+          "trendingScore": 69.0
+        }
+      ]
+    },
+    {
+      "id": "peculiar-ragdoll/Qwen-Sharp-Chat-Templates",
+      "author": "peculiar-ragdoll",
+      "name": "Qwen-Sharp-Chat-Templates",
+      "url": "https://huggingface.co/peculiar-ragdoll/Qwen-Sharp-Chat-Templates",
+      "downloads": 0,
+      "likes": 283,
+      "trendingScore": 67.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "MLX"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "",
+      "library": "mlx",
+      "tags": [
+        "mlx",
+        "jinja",
+        "chat-template",
+        "qwen",
+        "qwen3.5",
+        "qwen3.6",
+        "qwen3.8",
+        "llama.cpp",
+        "lm-studio"
+      ],
+      "createdAt": "2026-08-10T01:35:20.000Z",
+      "lastModified": "2026-08-24T21:46:51.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 0,
+          "likes": 283,
+          "trendingScore": 67.0
+        }
+      ]
+    },
+    {
+      "id": "unsloth/GLM-5.3-GGUF",
+      "author": "unsloth",
+      "name": "GLM-5.3-GGUF",
+      "url": "https://huggingface.co/unsloth/GLM-5.3-GGUF",
+      "downloads": 41221,
+      "likes": 64,
+      "trendingScore": 64.0,
+      "license": "other",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "unsloth",
+        "glm_moe_dsa",
+        "text-generation",
+        "en",
+        "zh",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "createdAt": "2026-08-28T04:05:14.000Z",
+      "lastModified": "2026-08-29T02:35:58.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 41221,
+          "likes": 64,
+          "trendingScore": 64.0
+        }
+      ]
+    },
+    {
+      "id": "ornith-ai/Ornith-1.5-9B",
+      "author": "ornith-ai",
+      "name": "Ornith-1.5-9B",
+      "url": "https://huggingface.co/ornith-ai/Ornith-1.5-9B",
+      "downloads": 217583,
+      "likes": 257,
+      "trendingScore": 61.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-18T06:20:12.000Z",
+      "lastModified": "2026-08-23T06:24:01.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 217583,
+          "likes": 257,
+          "trendingScore": 61.0
+        }
+      ]
+    },
+    {
+      "id": "ibm-granite/granite-4.2-3b",
+      "author": "ibm-granite",
+      "name": "granite-4.2-3b",
+      "url": "https://huggingface.co/ibm-granite/granite-4.2-3b",
+      "downloads": 8221,
+      "likes": 61,
+      "trendingScore": 60.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "German",
+        "Spanish",
+        "French",
+        "Japanese",
+        "Portuguese",
+        "Arabic",
+        "cs"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "GraniteForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "granite",
+        "text-generation",
+        "granite-4.2",
+        "reasoning",
+        "thinking",
+        "tool-calling",
+        "ibm",
+        "conversational",
+        "en"
+      ],
+      "createdAt": "2026-08-07T16:26:43.000Z",
+      "lastModified": "2026-08-25T17:17:13.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8221,
+          "likes": 61,
+          "trendingScore": 60.0
+        }
+      ]
+    },
+    {
+      "id": "0bserverx/Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF",
+      "author": "0bserverx",
+      "name": "Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF",
+      "url": "https://huggingface.co/0bserverx/Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF",
+      "downloads": 1145310,
+      "likes": 329,
+      "trendingScore": 59.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "qwen3.8",
+        "qwen3.5",
+        "heretic",
+        "abliterated",
+        "uncensored",
+        "roleplay",
+        "imatrix",
+        "text-generation"
+      ],
+      "createdAt": "2026-08-14T18:48:26.000Z",
+      "lastModified": "2026-08-20T19:51:25.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 1145310,
+          "likes": 329,
+          "trendingScore": 59.0
+        }
+      ]
+    },
+    {
+      "id": "DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF",
+      "author": "DavidAU",
+      "name": "Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF",
+      "url": "https://huggingface.co/DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF",
+      "downloads": 307736,
+      "likes": 284,
+      "trendingScore": 58.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "",
+      "tags": [
+        "gguf",
+        "qwen3_5",
+        "unsloth",
+        "GAIN Training",
+        "COLD-FUSION",
+        "finetune",
+        "MTP GGUF Quants",
+        "Regular GGUF Quants",
+        "qwen3.8"
+      ],
+      "createdAt": "2026-08-17T08:48:09.000Z",
+      "lastModified": "2026-08-23T01:21:45.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 307736,
+          "likes": 284,
+          "trendingScore": 58.0
+        }
+      ]
+    },
+    {
+      "id": "logic65/Qwen3.8-Whittle-MoE-27B-A17.8B",
+      "author": "logic65",
+      "name": "Qwen3.8-Whittle-MoE-27B-A17.8B",
+      "url": "https://huggingface.co/logic65/Qwen3.8-Whittle-MoE-27B-A17.8B",
+      "downloads": 25929,
+      "likes": 104,
+      "trendingScore": 55.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Safetensors"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForCausalLM",
+      "pipeline": "",
+      "library": "",
+      "tags": [
+        "qwen3_5_moe",
+        "moe",
+        "mixture-of-experts",
+        "research-preview",
+        "whittle",
+        "qwen3.5",
+        "gguf",
+        "router-healing",
+        "region:us"
+      ],
+      "createdAt": "2026-08-18T02:38:44.000Z",
+      "lastModified": "2026-08-29T09:26:01.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 25929,
+          "likes": 104,
+          "trendingScore": 55.0
+        }
+      ]
+    },
+    {
+      "id": "LibertAIDAI/GLM-5.3-Flash-NVFP4",
+      "author": "LibertAIDAI",
+      "name": "GLM-5.3-Flash-NVFP4",
+      "url": "https://huggingface.co/LibertAIDAI/GLM-5.3-Flash-NVFP4",
+      "downloads": 21232,
+      "likes": 55,
+      "trendingScore": 55.0,
+      "license": "mit",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors"
+      ],
+      "parameters": null,
+      "architecture": "Glm5NextForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "",
+      "tags": [
+        "glm5_next",
+        "nvfp4",
+        "blackwell",
+        "sglang",
+        "vllm",
+        "glm",
+        "glm-5",
+        "moe",
+        "multimodal"
+      ],
+      "createdAt": "2026-08-26T15:12:08.000Z",
+      "lastModified": "2026-08-30T12:44:00.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 21232,
+          "likes": 55,
+          "trendingScore": 55.0
+        }
+      ]
+    },
+    {
+      "id": "ibm-granite/granite-4.2-8b",
+      "author": "ibm-granite",
+      "name": "granite-4.2-8b",
+      "url": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+      "downloads": 9012,
+      "likes": 52,
+      "trendingScore": 51.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "German",
+        "Spanish",
+        "French",
+        "Japanese",
+        "Portuguese",
+        "Arabic",
+        "cs"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "GraniteForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "granite",
+        "text-generation",
+        "granite-4.2",
+        "reasoning",
+        "thinking",
+        "tool-calling",
+        "ibm",
+        "conversational",
+        "en"
+      ],
+      "createdAt": "2026-08-07T16:29:09.000Z",
+      "lastModified": "2026-08-25T17:17:24.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 9012,
+          "likes": 52,
+          "trendingScore": 51.0
+        }
+      ]
+    },
+    {
+      "id": "zai-org/GLM-5.3-Flash-BF16",
+      "author": "zai-org",
+      "name": "GLM-5.3-Flash-BF16",
+      "url": "https://huggingface.co/zai-org/GLM-5.3-Flash-BF16",
+      "downloads": 8648,
+      "likes": 52,
+      "trendingScore": 50.0,
+      "license": "mit",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Glm5NextForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "glm5_next",
+        "image-text-to-text",
+        "conversational",
+        "en",
+        "zh",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-25T06:45:05.000Z",
+      "lastModified": "2026-08-31T11:34:44.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8648,
+          "likes": 52,
+          "trendingScore": 50.0
+        }
+      ]
+    },
+    {
+      "id": "DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF",
+      "author": "DavidAU",
+      "name": "Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF",
+      "url": "https://huggingface.co/DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF",
+      "downloads": 847747,
+      "likes": 530,
+      "trendingScore": 48.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "",
+      "tags": [
+        "gguf",
+        "MTP GGUFS",
+        "Regular GGUFS",
+        "NEO Imatrix",
+        "fine tune",
+        "unsloth",
+        "heretic",
+        "uncensored",
+        "abliterated"
+      ],
+      "createdAt": "2026-07-19T04:33:55.000Z",
+      "lastModified": "2026-08-24T04:11:28.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 847747,
+          "likes": 530,
+          "trendingScore": 48.0
+        }
+      ]
+    },
+    {
+      "id": "empero-ai/Qwen3.8-27B-Ridge-GGUF",
+      "author": "empero-ai",
+      "name": "Qwen3.8-27B-Ridge-GGUF",
+      "url": "https://huggingface.co/empero-ai/Qwen3.8-27B-Ridge-GGUF",
+      "downloads": 301904,
+      "likes": 308,
+      "trendingScore": 48.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "llama.cpp",
+        "quantized",
+        "qwen3.8",
+        "qwen3.5",
+        "ridge",
+        "gated-deltanet",
+        "imatrix",
+        "reasoning"
+      ],
+      "createdAt": "2026-08-15T14:25:18.000Z",
+      "lastModified": "2026-08-15T23:51:41.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 301904,
+          "likes": 308,
+          "trendingScore": 48.0
+        }
+      ]
+    },
+    {
+      "id": "Cactus-Compute/needle2",
+      "author": "Cactus-Compute",
+      "name": "needle2",
+      "url": "https://huggingface.co/Cactus-Compute/needle2",
+      "downloads": 42372,
+      "likes": 255,
+      "trendingScore": 46.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [],
+      "parameters": null,
+      "architecture": "NeedleForToolCalling",
+      "pipeline": "text-generation",
+      "library": "cactus-needle",
+      "tags": [
+        "cactus-needle",
+        "needle",
+        "tool-calling",
+        "function-calling",
+        "on-device",
+        "edge",
+        "quantization",
+        "webassembly",
+        "text-generation"
+      ],
+      "createdAt": "2026-07-29T16:11:52.000Z",
+      "lastModified": "2026-08-20T10:35:42.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 42372,
+          "likes": 255,
+          "trendingScore": 46.0
+        }
+      ]
+    },
+    {
+      "id": "outsourc-e/Qwen3.8-27B-Unleashed-GGUF",
+      "author": "outsourc-e",
+      "name": "Qwen3.8-27B-Unleashed-GGUF",
+      "url": "https://huggingface.co/outsourc-e/Qwen3.8-27B-Unleashed-GGUF",
+      "downloads": 63096,
+      "likes": 143,
+      "trendingScore": 45.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "uncensored",
+        "abliterated",
+        "qwen3.8",
+        "imatrix",
+        "dynamic-quant",
+        "text-generation",
+        "en",
+        "zh"
+      ],
+      "createdAt": "2026-08-20T19:33:22.000Z",
+      "lastModified": "2026-08-21T22:35:08.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 63096,
+          "likes": 143,
+          "trendingScore": 45.0
+        }
+      ]
+    },
+    {
+      "id": "peculiar-ragdoll/Dirk-Qwen3.8-27B-GGUF",
+      "author": "peculiar-ragdoll",
+      "name": "Dirk-Qwen3.8-27B-GGUF",
+      "url": "https://huggingface.co/peculiar-ragdoll/Dirk-Qwen3.8-27B-GGUF",
+      "downloads": 32522,
+      "likes": 112,
+      "trendingScore": 43.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "llama.cpp",
+        "qwen3_5",
+        "qwen3.8",
+        "mtp",
+        "speculative-decoding",
+        "token-efficient",
+        "agentic-coding",
+        "vision"
+      ],
+      "createdAt": "2026-08-14T15:37:48.000Z",
+      "lastModified": "2026-08-30T18:26:32.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 32522,
+          "likes": 112,
+          "trendingScore": 43.0
+        }
+      ]
+    },
+    {
+      "id": "OBLITERATUS/Ornith-1.5-9B-OBLITERATED",
+      "author": "OBLITERATUS",
+      "name": "Ornith-1.5-9B-OBLITERATED",
+      "url": "https://huggingface.co/OBLITERATUS/Ornith-1.5-9B-OBLITERATED",
+      "downloads": 16881,
+      "likes": 45,
+      "trendingScore": 43.0,
+      "license": "mit",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "GGUF",
+        "Safetensors"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "text-generation",
+      "library": "",
+      "tags": [
+        "gguf",
+        "qwen3_5",
+        "abliterated",
+        "uncensored",
+        "ornith",
+        "qwen3.5",
+        "obliteratus",
+        "text-generation",
+        "conversational"
+      ],
+      "createdAt": "2026-08-27T00:52:50.000Z",
+      "lastModified": "2026-08-27T04:00:49.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 16881,
+          "likes": 45,
+          "trendingScore": 43.0
+        }
+      ]
+    },
+    {
+      "id": "Jiunsong/SuperQwen3.8-27b-abliterated",
+      "author": "Jiunsong",
+      "name": "SuperQwen3.8-27b-abliterated",
+      "url": "https://huggingface.co/Jiunsong/SuperQwen3.8-27b-abliterated",
+      "downloads": 1077,
+      "likes": 45,
+      "trendingScore": 42.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "qwen3.8",
+        "qwen3.5",
+        "multimodal",
+        "reasoning",
+        "tool-calling",
+        "long-context",
+        "262k-context"
+      ],
+      "createdAt": "2026-08-24T02:23:51.000Z",
+      "lastModified": "2026-08-25T00:13:54.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 1077,
+          "likes": 45,
+          "trendingScore": 42.0
+        }
+      ]
+    },
+    {
+      "id": "z-lab/Qwen3.8-27B-DFlash2",
+      "author": "z-lab",
+      "name": "Qwen3.8-27B-DFlash2",
+      "url": "https://huggingface.co/z-lab/Qwen3.8-27B-DFlash2",
+      "downloads": 152465,
+      "likes": 255,
+      "trendingScore": 41.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "DFlash2DraftModel",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "dflash2",
+        "speculative-decoding",
+        "block-diffusion",
+        "draft-model",
+        "sglang",
+        "vllm",
+        "text-generation",
+        "text-generation-inference"
+      ],
+      "createdAt": "2026-08-15T21:26:10.000Z",
+      "lastModified": "2026-08-19T02:52:37.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 152465,
+          "likes": 255,
+          "trendingScore": 41.0
+        }
+      ]
+    },
+    {
+      "id": "lightx2v/MiniMax-H3-Prompt-Rewriter-LoRA-Omni",
+      "author": "lightx2v",
+      "name": "MiniMax-H3-Prompt-Rewriter-LoRA-Omni",
+      "url": "https://huggingface.co/lightx2v/MiniMax-H3-Prompt-Rewriter-LoRA-Omni",
+      "downloads": 196,
+      "likes": 40,
+      "trendingScore": 40.0,
+      "license": "other",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "peft",
+      "tags": [
+        "peft",
+        "lora",
+        "qwen2.5-omni",
+        "multimodal",
+        "prompt-rewriting",
+        "minimax-h3",
+        "text-to-audio-video",
+        "image-to-audio-video",
+        "text-generation"
+      ],
+      "createdAt": "2026-08-26T06:51:31.000Z",
+      "lastModified": "2026-08-26T07:51:50.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 196,
+          "likes": 40,
+          "trendingScore": 40.0
+        }
+      ]
+    },
+    {
+      "id": "empero-ai/Qwen3.8-9B-Distill-GGUF",
+      "author": "empero-ai",
+      "name": "Qwen3.8-9B-Distill-GGUF",
+      "url": "https://huggingface.co/empero-ai/Qwen3.8-9B-Distill-GGUF",
+      "downloads": 325888,
+      "likes": 193,
+      "trendingScore": 38.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "llama.cpp",
+        "quantized",
+        "empero-ai",
+        "qwen3.5",
+        "qwen3.8",
+        "distillation",
+        "reasoning",
+        "gated-deltanet"
+      ],
+      "createdAt": "2026-08-15T18:08:44.000Z",
+      "lastModified": "2026-08-16T01:00:49.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 325888,
+          "likes": 193,
+          "trendingScore": 38.0
+        }
+      ]
+    },
+    {
+      "id": "LiquidAI/LFM2.5-2.6B",
+      "author": "LiquidAI",
+      "name": "LFM2.5-2.6B",
+      "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
+      "downloads": 198253,
+      "likes": 721,
+      "trendingScore": 36.0,
+      "license": "other",
+      "languages": [
+        "Arabic",
+        "Chinese",
+        "English",
+        "French",
+        "German",
+        "hi",
+        "id",
+        "Italian"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Lfm2ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "lfm2",
+        "text-generation",
+        "liquid",
+        "lfm2.5",
+        "edge",
+        "conversational",
+        "ar",
+        "zh",
+        "en"
+      ],
+      "createdAt": "2026-07-28T22:14:32.000Z",
+      "lastModified": "2026-08-24T21:06:45.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 198253,
+          "likes": 721,
+          "trendingScore": 36.0
+        }
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Pro-0813",
+      "author": "deepseek-ai",
+      "name": "DeepSeek-V4-Pro-0813",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+      "downloads": 134723,
+      "likes": 789,
+      "trendingScore": 36.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "DeepseekV4ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "deepseek_v4",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "8-bit",
+        "fp8",
+        "region:us"
+      ],
+      "createdAt": "2026-08-13T03:05:06.000Z",
+      "lastModified": "2026-08-13T16:28:28.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 134723,
+          "likes": 789,
+          "trendingScore": 36.0
+        }
+      ]
+    },
+    {
+      "id": "darkps/ice-012-audio",
+      "author": "darkps",
+      "name": "ice-012-audio",
+      "url": "https://huggingface.co/darkps/ice-012-audio",
+      "downloads": 66,
+      "likes": 56,
+      "trendingScore": 36.0,
+      "license": "apache-2.0",
+      "languages": [
+        "multilingual"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "iceAudioForCausalLM",
+      "pipeline": "text-to-speech",
+      "library": "transformers",
+      "tags": [
+        "ice-012-audio",
+        "text-generation",
+        "text-to-voice",
+        "voice-to-voice",
+        "text-to-speech",
+        "custom_code",
+        "multilingual",
+        "region:us"
+      ],
+      "createdAt": "2026-08-29T13:56:17.000Z",
+      "lastModified": "2026-08-31T04:14:08.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 66,
+          "likes": 56,
+          "trendingScore": 36.0
+        }
+      ]
+    },
+    {
+      "id": "incoai/Qwen3.8-27B-DFlash2",
+      "author": "incoai",
+      "name": "Qwen3.8-27B-DFlash2",
+      "url": "https://huggingface.co/incoai/Qwen3.8-27B-DFlash2",
+      "downloads": 211534,
+      "likes": 202,
+      "trendingScore": 35.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "DFlash2DraftModel",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "dflash2",
+        "speculative-decoding",
+        "block-diffusion",
+        "draft-model",
+        "sglang",
+        "vllm",
+        "text-generation",
+        "text-generation-inference"
+      ],
+      "createdAt": "2026-08-18T04:09:16.000Z",
+      "lastModified": "2026-08-19T02:52:32.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 211534,
+          "likes": 202,
+          "trendingScore": 35.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.8-2.4T-A95B",
+      "author": "Qwen",
+      "name": "Qwen3.8-2.4T-A95B",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "downloads": 36081,
+      "likes": 1187,
+      "trendingScore": 35.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5_moe_text",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-08T01:50:52.000Z",
+      "lastModified": "2026-08-12T10:24:04.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 36081,
+          "likes": 1187,
+          "trendingScore": 35.0
+        }
+      ]
+    },
+    {
+      "id": "HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive",
+      "author": "HauhauCS",
+      "name": "Gemma-4-E4B-Uncensored-HauhauCS-Aggressive",
+      "url": "https://huggingface.co/HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive",
+      "downloads": 2579254,
+      "likes": 1075,
+      "trendingScore": 34.0,
+      "license": "gemma",
+      "languages": [
+        "English",
+        "multilingual"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "",
+      "tags": [
+        "gguf",
+        "uncensored",
+        "gemma4",
+        "abliterated",
+        "vision",
+        "multimodal",
+        "audio",
+        "image-text-to-text",
+        "en"
+      ],
+      "createdAt": "2026-04-02T22:29:19.000Z",
+      "lastModified": "2026-04-06T03:50:35.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2579254,
+          "likes": 1075,
+          "trendingScore": 34.0
+        }
+      ]
+    },
+    {
+      "id": "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V12-GGUF",
+      "author": "LuffyTheFox",
+      "name": "Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V12-GGUF",
+      "url": "https://huggingface.co/LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V12-GGUF",
+      "downloads": 1005078,
+      "likes": 581,
+      "trendingScore": 32.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English",
+        "Chinese",
+        "multilingual"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "image-text-to-text",
+      "library": "hermes",
+      "tags": [
+        "hermes",
+        "uncensored",
+        "qwen3.6",
+        "moe",
+        "gguf",
+        "vision",
+        "multimodal",
+        "genesis",
+        "agentic"
+      ],
+      "createdAt": "2026-07-13T06:40:13.000Z",
+      "lastModified": "2026-08-31T05:26:26.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 1005078,
+          "likes": 581,
+          "trendingScore": 32.0
+        }
+      ]
+    },
+    {
+      "id": "empero-ai/Qwen3.8-2B-Distill-GGUF",
+      "author": "empero-ai",
+      "name": "Qwen3.8-2B-Distill-GGUF",
+      "url": "https://huggingface.co/empero-ai/Qwen3.8-2B-Distill-GGUF",
+      "downloads": 308515,
+      "likes": 114,
+      "trendingScore": 32.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "llama.cpp",
+        "quantized",
+        "empero-ai",
+        "qwen3.5",
+        "qwen3.8",
+        "distillation",
+        "reasoning",
+        "gated-deltanet"
+      ],
+      "createdAt": "2026-08-15T18:08:46.000Z",
+      "lastModified": "2026-08-16T01:00:50.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 308515,
+          "likes": 114,
+          "trendingScore": 32.0
+        }
+      ]
+    },
+    {
+      "id": "huihui-ai/Huihui-Qwen3.8-27B-abliterated",
+      "author": "huihui-ai",
+      "name": "Huihui-Qwen3.8-27B-abliterated",
+      "url": "https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated",
+      "downloads": 51085,
+      "likes": 323,
+      "trendingScore": 32.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "abliterated",
+        "uncensored",
+        "huihui",
+        "qwen3",
+        "conversational",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2026-08-16T08:22:24.000Z",
+      "lastModified": "2026-08-24T03:47:39.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 51085,
+          "likes": 323,
+          "trendingScore": 32.0
+        }
+      ]
+    },
+    {
+      "id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
+      "author": "agentionai",
+      "name": "Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
+      "url": "https://huggingface.co/agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
+      "downloads": 8106,
+      "likes": 34,
+      "trendingScore": 32.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "rocmfp4",
+        "rocmfpx",
+        "vulkan",
+        "strix-halo",
+        "qwen4exp",
+        "imatrix",
+        "text-generation",
+        "endpoints_compatible"
+      ],
+      "createdAt": "2026-08-28T14:00:37.000Z",
+      "lastModified": "2026-08-30T19:08:16.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8106,
+          "likes": 34,
+          "trendingScore": 32.0
+        }
+      ]
+    },
+    {
+      "id": "unsloth/Qwen3.8-Flash-Next-FP8",
+      "author": "unsloth",
+      "name": "Qwen3.8-Flash-Next-FP8",
+      "url": "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-FP8",
+      "downloads": 2490,
+      "likes": 32,
+      "trendingScore": 32.0,
+      "license": "other",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen4ExpForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen4_exp",
+        "image-text-to-text",
+        "conversational",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "createdAt": "2026-08-26T12:38:30.000Z",
+      "lastModified": "2026-08-26T12:38:50.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 2490,
+          "likes": 32,
+          "trendingScore": 32.0
+        }
+      ]
+    },
+    {
+      "id": "zerodigest/Qwen3.8-27B-Uncensored-YMQ-MTP-GGUF",
+      "author": "zerodigest",
+      "name": "Qwen3.8-27B-Uncensored-YMQ-MTP-GGUF",
+      "url": "https://huggingface.co/zerodigest/Qwen3.8-27B-Uncensored-YMQ-MTP-GGUF",
+      "downloads": 112599,
+      "likes": 74,
+      "trendingScore": 31.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "gguf",
+      "tags": [
+        "gguf",
+        "text-generation",
+        "quantizer",
+        "autoround",
+        "architecture-aware",
+        "mamba",
+        "ssm",
+        "multi-token-prediction",
+        "mtp"
+      ],
+      "createdAt": "2026-08-15T16:20:38.000Z",
+      "lastModified": "2026-08-29T23:23:35.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 112599,
+          "likes": 74,
+          "trendingScore": 31.0
+        }
+      ]
+    },
+    {
+      "id": "orcarouter/GLM-5.3-Flash-MLX",
+      "author": "orcarouter",
+      "name": "GLM-5.3-Flash-MLX",
+      "url": "https://huggingface.co/orcarouter/GLM-5.3-Flash-MLX",
+      "downloads": 10873,
+      "likes": 31,
+      "trendingScore": 31.0,
+      "license": "mit",
+      "languages": [
+        "English",
+        "Chinese"
+      ],
+      "formats": [
+        "Safetensors",
+        "MLX"
+      ],
+      "parameters": null,
+      "architecture": "Glm5NextForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "mlx",
+      "tags": [
+        "mlx",
+        "glm5_next",
+        "glm",
+        "glm-5",
+        "apple-silicon",
+        "quantized",
+        "2-8bit",
+        "moe",
+        "vision-language"
+      ],
+      "createdAt": "2026-08-26T17:38:40.000Z",
+      "lastModified": "2026-08-27T16:12:35.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 10873,
+          "likes": 31,
+          "trendingScore": 31.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-0.6B",
+      "author": "Qwen",
+      "name": "Qwen3-0.6B",
+      "url": "https://huggingface.co/Qwen/Qwen3-0.6B",
+      "downloads": 22182252,
+      "likes": 1560,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-04-27T03:40:08.000Z",
+      "lastModified": "2025-07-26T03:46:27.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 22182252,
+          "likes": 1560,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "openai-community/gpt2",
+      "author": "openai-community",
+      "name": "gpt2",
+      "url": "https://huggingface.co/openai-community/gpt2",
+      "downloads": 14317307,
+      "likes": 3479,
+      "trendingScore": 0.0,
+      "license": "mit",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers",
+        "PyTorch",
+        "ONNX"
+      ],
+      "parameters": null,
+      "architecture": "GPT2LMHeadModel",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "tf",
+        "jax",
+        "tflite",
+        "rust",
+        "onnx",
+        "gpt2",
+        "text-generation",
+        "exbert",
+        "en"
+      ],
+      "createdAt": "2022-03-02T23:29:04.000Z",
+      "lastModified": "2024-02-19T10:57:45.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 14317307,
+          "likes": 3479,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-8B",
+      "author": "Qwen",
+      "name": "Qwen3-8B",
+      "url": "https://huggingface.co/Qwen/Qwen3-8B",
+      "downloads": 13643917,
+      "likes": 1334,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-04-27T03:42:21.000Z",
+      "lastModified": "2025-07-26T03:49:13.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 13643917,
+          "likes": 1334,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "author": "Qwen",
+      "name": "Qwen3.6-35B-A3B-FP8",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "downloads": 12919116,
+      "likes": 362,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5_moe",
+        "image-text-to-text",
+        "conversational",
+        "endpoints_compatible",
+        "fp8",
+        "region:us",
+        "deploy:azure"
+      ],
+      "createdAt": "2026-04-15T06:05:13.000Z",
+      "lastModified": "2026-04-24T02:39:23.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 12919116,
+          "likes": 362,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "author": "unsloth",
+      "name": "Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "url": "https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "downloads": 12664530,
+      "likes": 936,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "unsloth",
+        "qwen3",
+        "qwen",
+        "text-generation",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "createdAt": "2025-07-31T10:27:38.000Z",
+      "lastModified": "2026-01-30T06:29:38.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 12664530,
+          "likes": 936,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.5-9B",
+      "author": "Qwen",
+      "name": "Qwen3.5-9B",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "downloads": 12584452,
+      "likes": 1880,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:sagemaker",
+        "deploy:azure",
+        "region:us"
+      ],
+      "createdAt": "2026-02-27T12:58:26.000Z",
+      "lastModified": "2026-03-02T00:51:43.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 12584452,
+          "likes": 1880,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "facebook/opt-125m",
+      "author": "facebook",
+      "name": "opt-125m",
+      "url": "https://huggingface.co/facebook/opt-125m",
+      "downloads": 11114472,
+      "likes": 294,
+      "trendingScore": 0.0,
+      "license": "other",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Transformers",
+        "PyTorch"
+      ],
+      "parameters": null,
+      "architecture": "OPTForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "tf",
+        "jax",
+        "opt",
+        "text-generation",
+        "en",
+        "text-generation-inference",
+        "region:us",
+        "deploy:azure"
+      ],
+      "createdAt": "2022-05-11T08:25:17.000Z",
+      "lastModified": "2023-09-15T13:10:03.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 11114472,
+          "likes": 294,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+      "author": "nvidia",
+      "name": "Qwen3.6-35B-A3B-NVFP4",
+      "url": "https://huggingface.co/nvidia/Qwen3.6-35B-A3B-NVFP4",
+      "downloads": 10805863,
+      "likes": 578,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "pipeline": "text-generation",
+      "library": "Model Optimizer",
+      "tags": [
+        "Model Optimizer",
+        "qwen3_5_moe",
+        "nvidia",
+        "ModelOpt",
+        "Qwen3.6",
+        "quantized",
+        "FP4",
+        "fp4",
+        "text-generation"
+      ],
+      "createdAt": "2026-05-27T18:09:46.000Z",
+      "lastModified": "2026-08-29T02:26:14.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 10805863,
+          "likes": 578,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "author": "Qwen",
+      "name": "Qwen2.5-7B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+      "downloads": 10577733,
+      "likes": 1570,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen2ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:sagemaker"
+      ],
+      "createdAt": "2024-09-16T11:55:40.000Z",
+      "lastModified": "2025-01-12T02:10:10.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 10577733,
+          "likes": 1570,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "unsloth/Qwen3.8-27B-GGUF",
+      "author": "unsloth",
+      "name": "Qwen3.8-27B-GGUF",
+      "url": "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF",
+      "downloads": 9059937,
+      "likes": 3271,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "",
+      "library": "",
+      "tags": [
+        "gguf",
+        "qwen3_5",
+        "unsloth",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "createdAt": "2026-08-13T08:28:40.000Z",
+      "lastModified": "2026-08-20T12:04:25.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 9059937,
+          "likes": 3271,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-VL-8B-Instruct",
+      "author": "Qwen",
+      "name": "Qwen3-VL-8B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct",
+      "downloads": 8958812,
+      "likes": 1073,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3VLForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_vl",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-10-11T07:23:39.000Z",
+      "lastModified": "2025-10-15T16:16:59.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8958812,
+          "likes": 1073,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "google/gemma-4-31B-it",
+      "author": "google",
+      "name": "gemma-4-31B-it",
+      "url": "https://huggingface.co/google/gemma-4-31B-it",
+      "downloads": 8317909,
+      "likes": 3682,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Gemma4ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "gemma4",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:sagemaker",
+        "deploy:azure",
+        "region:us"
+      ],
+      "createdAt": "2026-03-11T18:22:36.000Z",
+      "lastModified": "2026-07-20T16:42:18.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8317909,
+          "likes": 3682,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.6-27B-FP8",
+      "author": "Qwen",
+      "name": "Qwen3.6-27B-FP8",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "downloads": 8268483,
+      "likes": 350,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "conversational",
+        "endpoints_compatible",
+        "fp8",
+        "region:us",
+        "deploy:azure",
+        "deploy:sagemaker"
+      ],
+      "createdAt": "2026-04-21T07:51:33.000Z",
+      "lastModified": "2026-04-24T02:39:18.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8268483,
+          "likes": 350,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "google/gemma-4-26B-A4B-it",
+      "author": "google",
+      "name": "gemma-4-26B-A4B-it",
+      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+      "downloads": 8137724,
+      "likes": 1457,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Gemma4ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "gemma4",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:sagemaker",
+        "deploy:azure",
+        "region:us"
+      ],
+      "createdAt": "2026-03-11T21:25:57.000Z",
+      "lastModified": "2026-07-20T16:42:12.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8137724,
+          "likes": 1457,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "author": "Qwen",
+      "name": "Qwen2.5-VL-7B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+      "downloads": 8091603,
+      "likes": 1690,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen2_5_VLForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen2_5_vl",
+        "image-text-to-text",
+        "multimodal",
+        "conversational",
+        "en",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2025-01-26T09:26:37.000Z",
+      "lastModified": "2025-04-06T16:23:01.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 8091603,
+          "likes": 1690,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "author": "Qwen",
+      "name": "Qwen2.5-1.5B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+      "downloads": 7642984,
+      "likes": 811,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen2ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:azure"
+      ],
+      "createdAt": "2024-09-17T14:10:29.000Z",
+      "lastModified": "2024-09-25T12:32:50.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 7642984,
+          "likes": 811,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-3B-Instruct",
+      "author": "Qwen",
+      "name": "Qwen2.5-3B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+      "downloads": 7540588,
+      "likes": 557,
+      "trendingScore": 0.0,
+      "license": "other",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen2ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:azure"
+      ],
+      "createdAt": "2024-09-17T14:08:52.000Z",
+      "lastModified": "2024-09-25T12:33:00.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 7540588,
+          "likes": 557,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.5-4B",
+      "author": "Qwen",
+      "name": "Qwen3.5-4B",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "downloads": 7499603,
+      "likes": 865,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:sagemaker",
+        "deploy:azure",
+        "region:us"
+      ],
+      "createdAt": "2026-02-27T14:45:03.000Z",
+      "lastModified": "2026-03-02T00:52:52.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 7499603,
+          "likes": 865,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-Embedding-0.6B",
+      "author": "Qwen",
+      "name": "Qwen3-Embedding-0.6B",
+      "url": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+      "downloads": 6808765,
+      "likes": 1174,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "feature-extraction",
+      "library": "sentence-transformers",
+      "tags": [
+        "sentence-transformers",
+        "qwen3",
+        "text-generation",
+        "sentence-similarity",
+        "feature-extraction",
+        "text-embeddings-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker"
+      ],
+      "createdAt": "2025-06-03T14:25:32.000Z",
+      "lastModified": "2026-04-20T02:45:58.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 6808765,
+          "likes": 1174,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "farbodtavakkoli/OTel-2.0-LLM-31B-IT",
+      "author": "farbodtavakkoli",
+      "name": "OTel-2.0-LLM-31B-IT",
+      "url": "https://huggingface.co/farbodtavakkoli/OTel-2.0-LLM-31B-IT",
+      "downloads": 6742957,
+      "likes": 14,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "gemma4_text",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gemma4_text",
+        "telecom",
+        "telecommunications",
+        "gsma",
+        "at-t",
+        "microsoft",
+        "dell",
+        "amd",
+        "red-hat"
+      ],
+      "createdAt": "2026-07-23T11:27:39.000Z",
+      "lastModified": "2026-08-24T18:38:47.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 6742957,
+          "likes": 14,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "author": "openai",
+      "name": "gpt-oss-20b",
+      "url": "https://huggingface.co/openai/gpt-oss-20b",
+      "downloads": 6450692,
+      "likes": 4971,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "GptOssForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gpt_oss",
+        "text-generation",
+        "vllm",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "8-bit",
+        "mxfp4",
+        "deploy:sagemaker"
+      ],
+      "createdAt": "2025-08-04T22:33:29.000Z",
+      "lastModified": "2025-08-26T17:25:47.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 6450692,
+          "likes": 4971,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "author": "Qwen",
+      "name": "Qwen2.5-0.5B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+      "downloads": 6013414,
+      "likes": 607,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen2ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:azure"
+      ],
+      "createdAt": "2024-09-16T11:52:46.000Z",
+      "lastModified": "2024-09-25T12:32:56.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 6013414,
+          "likes": 607,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-4B",
+      "author": "Qwen",
+      "name": "Qwen3-4B",
+      "url": "https://huggingface.co/Qwen/Qwen3-4B",
+      "downloads": 5837970,
+      "likes": 687,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-04-27T03:41:29.000Z",
+      "lastModified": "2025-07-26T03:46:39.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 5837970,
+          "likes": 687,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.6-27B",
+      "author": "Qwen",
+      "name": "Qwen3.6-27B",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "downloads": 5651249,
+      "likes": 2282,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:sagemaker",
+        "deploy:azure",
+        "region:us"
+      ],
+      "createdAt": "2026-04-21T07:50:43.000Z",
+      "lastModified": "2026-04-24T02:39:16.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 5651249,
+          "likes": 2282,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "author": "openai",
+      "name": "gpt-oss-120b",
+      "url": "https://huggingface.co/openai/gpt-oss-120b",
+      "downloads": 5316895,
+      "likes": 5137,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "GptOssForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gpt_oss",
+        "text-generation",
+        "vllm",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "8-bit",
+        "mxfp4",
+        "deploy:sagemaker"
+      ],
+      "createdAt": "2025-08-04T22:33:06.000Z",
+      "lastModified": "2025-08-26T17:25:03.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 5316895,
+          "likes": 5137,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.8-27B-FP8",
+      "author": "Qwen",
+      "name": "Qwen3.8-27B-FP8",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B-FP8",
+      "downloads": 5303437,
+      "likes": 735,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "conversational",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "createdAt": "2026-08-13T08:01:58.000Z",
+      "lastModified": "2026-08-14T14:44:41.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 5303437,
+          "likes": 735,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.6-35B-A3B",
+      "author": "Qwen",
+      "name": "Qwen3.6-35B-A3B",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "downloads": 4913916,
+      "likes": 2758,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5_moe",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:sagemaker",
+        "deploy:azure",
+        "region:us"
+      ],
+      "createdAt": "2026-04-15T05:59:19.000Z",
+      "lastModified": "2026-04-24T02:53:42.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4913916,
+          "likes": 2758,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-32B",
+      "author": "Qwen",
+      "name": "Qwen3-32B",
+      "url": "https://huggingface.co/Qwen/Qwen3-32B",
+      "downloads": 4808415,
+      "likes": 739,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-04-27T03:52:59.000Z",
+      "lastModified": "2025-07-26T03:45:22.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4808415,
+          "likes": 739,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "dphn/dolphin-2.9.1-yi-1.5-34b",
+      "author": "dphn",
+      "name": "dolphin-2.9.1-yi-1.5-34b",
+      "url": "https://huggingface.co/dphn/dolphin-2.9.1-yi-1.5-34b",
+      "downloads": 4774727,
+      "likes": 65,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "LlamaForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "llama",
+        "text-generation",
+        "generated_from_trainer",
+        "axolotl",
+        "conversational",
+        "dataset:cognitivecomputations/Dolphin-2.9",
+        "dataset:teknium/OpenHermes-2.5",
+        "dataset:m-a-p/CodeFeedback-Filtered-Instruction",
+        "dataset:cognitivecomputations/dolphin-coder"
+      ],
+      "createdAt": "2024-05-18T04:50:56.000Z",
+      "lastModified": "2025-09-08T05:56:56.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4774727,
+          "likes": 65,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3.8-27B",
+      "author": "Qwen",
+      "name": "Qwen3.8-27B",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "downloads": 4720763,
+      "likes": 13438,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:azure",
+        "deploy:sagemaker",
+        "region:us"
+      ],
+      "createdAt": "2026-08-05T08:22:59.000Z",
+      "lastModified": "2026-08-14T15:00:01.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4720763,
+          "likes": 13438,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "author": "deepseek-ai",
+      "name": "DeepSeek-V4-Flash-0731",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+      "downloads": 4561861,
+      "likes": 3837,
+      "trendingScore": 0.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "DeepseekV4ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "deepseek_v4",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "8-bit",
+        "fp8",
+        "deploy:azure",
+        "region:us"
+      ],
+      "createdAt": "2026-07-31T07:30:24.000Z",
+      "lastModified": "2026-08-01T03:07:41.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4561861,
+          "likes": 3837,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "ornith-ai/Ornith-1.0-9B-GGUF",
+      "author": "ornith-ai",
+      "name": "Ornith-1.0-9B-GGUF",
+      "url": "https://huggingface.co/ornith-ai/Ornith-1.0-9B-GGUF",
+      "downloads": 4410015,
+      "likes": 662,
+      "trendingScore": 0.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "text-generation",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "createdAt": "2026-06-25T04:56:13.000Z",
+      "lastModified": "2026-06-25T14:12:12.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 4410015,
+          "likes": 662,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-VL-4B-Instruct",
+      "author": "Qwen",
+      "name": "Qwen3-VL-4B-Instruct",
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct",
+      "downloads": 3937204,
+      "likes": 454,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3VLForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_vl",
+        "image-text-to-text",
+        "conversational",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-10-11T07:23:22.000Z",
+      "lastModified": "2025-10-15T16:15:55.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3937204,
+          "likes": 454,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+      "author": "Qwen",
+      "name": "Qwen2.5-7B-Instruct-AWQ",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-AWQ",
+      "downloads": 3914155,
+      "likes": 51,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen2ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "4-bit",
+        "awq"
+      ],
+      "createdAt": "2024-09-17T13:55:09.000Z",
+      "lastModified": "2024-10-09T12:26:45.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3914155,
+          "likes": 51,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-1.7B",
+      "author": "Qwen",
+      "name": "Qwen3-1.7B",
+      "url": "https://huggingface.co/Qwen/Qwen3-1.7B",
+      "downloads": 3764190,
+      "likes": 526,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-04-27T03:41:05.000Z",
+      "lastModified": "2025-07-26T03:46:32.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3764190,
+          "likes": 526,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "EleutherAI/pythia-160m",
+      "author": "EleutherAI",
+      "name": "pythia-160m",
+      "url": "https://huggingface.co/EleutherAI/pythia-160m",
+      "downloads": 3502122,
+      "likes": 45,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "English"
+      ],
+      "formats": [
+        "Safetensors",
+        "Transformers",
+        "PyTorch"
+      ],
+      "parameters": null,
+      "architecture": "GPTNeoXForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gpt_neox",
+        "text-generation",
+        "causal-lm",
+        "pythia",
+        "en",
+        "dataset:EleutherAI/pile",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2023-02-08T19:25:46.000Z",
+      "lastModified": "2023-07-09T15:52:09.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3502122,
+          "likes": 45,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-4B-Instruct-2507",
+      "author": "Qwen",
+      "name": "Qwen3-4B-Instruct-2507",
+      "url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "downloads": 3406272,
+      "likes": 941,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us",
+        "deploy:sagemaker",
+        "deploy:azure"
+      ],
+      "createdAt": "2025-08-05T10:58:03.000Z",
+      "lastModified": "2025-09-17T06:56:53.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3406272,
+          "likes": 941,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "unsloth/Qwen3.6-27B-NVFP4",
+      "author": "unsloth",
+      "name": "Qwen3.6-27B-NVFP4",
+      "url": "https://huggingface.co/unsloth/Qwen3.6-27B-NVFP4",
+      "downloads": 3302148,
+      "likes": 277,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3_5ForConditionalGeneration",
+      "pipeline": "image-text-to-text",
+      "library": "transformers",
+      "tags": [
+        "qwen3_5",
+        "image-text-to-text",
+        "unsloth",
+        "qwen",
+        "conversational",
+        "endpoints_compatible",
+        "compressed-tensors",
+        "region:us",
+        "deploy:azure"
+      ],
+      "createdAt": "2026-04-23T15:52:31.000Z",
+      "lastModified": "2026-07-12T13:49:13.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3302148,
+          "likes": 277,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-Embedding-4B",
+      "author": "Qwen",
+      "name": "Qwen3-Embedding-4B",
+      "url": "https://huggingface.co/Qwen/Qwen3-Embedding-4B",
+      "downloads": 3248908,
+      "likes": 314,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [],
+      "formats": [
+        "Safetensors",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "Qwen3ForCausalLM",
+      "pipeline": "feature-extraction",
+      "library": "sentence-transformers",
+      "tags": [
+        "sentence-transformers",
+        "qwen3",
+        "text-generation",
+        "sentence-similarity",
+        "feature-extraction",
+        "text-embeddings-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "createdAt": "2025-06-03T14:31:33.000Z",
+      "lastModified": "2025-06-20T09:30:56.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3248908,
+          "likes": 314,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "ornith-ai/Ornith-1.0-35B-GGUF",
+      "author": "ornith-ai",
+      "name": "Ornith-1.0-35B-GGUF",
+      "url": "https://huggingface.co/ornith-ai/Ornith-1.0-35B-GGUF",
+      "downloads": 3162990,
+      "likes": 1055,
+      "trendingScore": 0.0,
+      "license": "mit",
+      "languages": [],
+      "formats": [
+        "GGUF",
+        "Transformers"
+      ],
+      "parameters": null,
+      "architecture": "",
+      "pipeline": "text-generation",
+      "library": "transformers",
+      "tags": [
+        "gguf",
+        "text-generation",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "createdAt": "2026-06-25T04:56:44.000Z",
+      "lastModified": "2026-07-18T03:15:03.000Z",
+      "featured": false,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 3162990,
+          "likes": 1055,
+          "trendingScore": 0.0
+        }
+      ]
+    },
+    {
+      "id": "Zorix-official/Zorix-Nano-0.8B-GGUF",
+      "author": "Zorix-official",
+      "name": "Zorix-Nano-0.8B-GGUF",
+      "url": "https://huggingface.co/Zorix-official/Zorix-Nano-0.8B-GGUF",
+      "downloads": 53,
+      "likes": 4,
+      "trendingScore": 0.0,
+      "license": "apache-2.0",
+      "languages": [
+        "Chinese",
+        "English",
+        "Italian"
+      ],
+      "formats": [
+        "GGUF"
+      ],
+      "parameters": 800000000,
+      "architecture": "ZorixNanoForCausalLM",
+      "pipeline": "",
+      "library": "zorix-gguf-run",
+      "tags": [
+        "zorix-gguf-run",
+        "gguf",
+        "zorix-nano",
+        "zorix",
+        "linux",
+        "debian",
+        "ubuntu",
+        "android",
+        "termux"
+      ],
+      "createdAt": "2026-06-27T09:53:41.000Z",
+      "lastModified": "2026-06-28T07:06:00.000Z",
+      "featured": true,
+      "history": [
+        {
+          "at": "2026-08-31T18:01:55+02:00",
+          "downloads": 53,
+          "likes": 4,
+          "trendingScore": 0.0
+        }
+      ]
+    }
+  ]
+};

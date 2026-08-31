@@ -1,0 +1,1756 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  name="description"
+  content="Zorix Open Source model ranking based on public Hugging Face Hub metadata."
+>
+
+<title>
+  Open Source Ranking | Zorix
+</title>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#6f6f69;
+  --line:#e4e4df;
+  --soft:#f8f8f6;
+  --soft2:#fbfbfa;
+  --accent:#7c3aed;
+  --good:#087a54;
+  --max:1120px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:
+    antialiased;
+}
+
+body{
+  margin:0;
+
+  color:var(--text);
+  background:var(--bg);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.013em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  border-bottom:
+    1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.96);
+
+  backdrop-filter:
+    blur(16px);
+}
+
+.nav{
+  max-width:var(--max);
+  min-height:72px;
+
+  margin:auto;
+  padding:12px 22px;
+
+  display:flex;
+  align-items:center;
+
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  flex:0 0 auto;
+}
+
+.brand-logo{
+  width:38px;
+  height:38px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+}
+
+.brand-logo img{
+  width:26px;
+  height:26px;
+}
+
+.brand-title{
+  font-size:14px;
+  font-weight:600;
+}
+
+.brand-sub{
+  margin-top:2px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.search-shell{
+  min-width:0;
+  flex:1;
+
+  position:relative;
+}
+
+.search{
+  width:100%;
+  min-height:46px;
+
+  padding:
+    0
+    16px
+    0
+    44px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+
+  outline:none;
+
+  background:#fff;
+
+  font-size:14px;
+}
+
+.search:focus{
+  border-color:#aaa;
+}
+
+.search-icon{
+  position:absolute;
+
+  left:16px;
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  color:#92928d;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+
+  gap:17px;
+
+  flex:0 0 auto;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    52px
+    22px
+    100px;
+}
+
+.eyebrow{
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.075em;
+}
+
+h1{
+  margin:
+    12px
+    0
+    0;
+
+  max-width:850px;
+
+  font-size:
+    clamp(
+      42px,
+      7vw,
+      78px
+    );
+
+  line-height:.98;
+
+  font-weight:600;
+
+  letter-spacing:-.055em;
+}
+
+.intro{
+  max-width:720px;
+
+  margin-top:24px;
+
+  color:var(--muted);
+
+  font-size:14px;
+  line-height:1.65;
+}
+
+.source-row{
+  margin-top:23px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:8px;
+}
+
+.source-pill{
+  min-height:31px;
+
+  display:inline-flex;
+  align-items:center;
+
+  padding:0 10px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  background:var(--soft2);
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.toolbar{
+  margin-top:47px;
+
+  padding:
+    13px
+    0;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  align-items:center;
+
+  gap:8px;
+
+  border-top:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.sorts{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:6px;
+}
+
+.sort{
+  min-height:37px;
+
+  padding:
+    0
+    12px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:10px;
+}
+
+.sort.active{
+  color:#fff;
+
+  background:#111;
+
+  border-color:#111;
+}
+
+.filter{
+  min-height:37px;
+
+  margin-left:auto;
+
+  padding:
+    0
+    10px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+
+  color:#555;
+
+  font-size:10px;
+}
+
+.count{
+  padding:
+    18px
+    0
+    10px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.list{
+  display:grid;
+
+  gap:10px;
+}
+
+.model-card{
+  position:relative;
+
+  padding:
+    19px
+    20px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:14px;
+
+  background:#fff;
+
+  transition:
+    border-color .15s ease,
+    transform .15s ease;
+}
+
+.model-card:hover{
+  border-color:#bdbdb8;
+
+  transform:
+    translateY(-1px);
+}
+
+.model-top{
+  display:grid;
+
+  grid-template-columns:
+    48px
+    minmax(0,1fr)
+    auto;
+
+  gap:13px;
+
+  align-items:start;
+}
+
+.rank{
+  width:42px;
+  height:42px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:11px;
+
+  background:var(--soft2);
+
+  font-size:12px;
+  font-weight:600;
+}
+
+.model-author{
+  display:flex;
+  align-items:center;
+
+  gap:6px;
+
+  color:#999;
+
+  font-size:11px;
+}
+
+.verified{
+  color:var(--accent);
+}
+
+.model-name{
+  margin-top:4px;
+
+  font-size:19px;
+  font-weight:600;
+
+  letter-spacing:-.035em;
+
+  overflow-wrap:anywhere;
+}
+
+.like{
+  min-height:35px;
+
+  display:flex;
+  align-items:center;
+
+  gap:6px;
+
+  padding:
+    0
+    10px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  color:#666;
+
+  font-size:10px;
+}
+
+.heart{
+  color:#ef476f;
+
+  font-size:15px;
+}
+
+.tags{
+  margin:
+    15px
+    0
+    0
+    61px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:6px;
+}
+
+.tag{
+  min-height:29px;
+
+  display:inline-flex;
+  align-items:center;
+
+  padding:
+    0
+    9px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+
+  background:#fff;
+
+  color:#565652;
+
+  font-size:9px;
+}
+
+.tag.license{
+  background:var(--soft2);
+}
+
+.stats{
+  margin:
+    18px
+    0
+    0
+    61px;
+
+  display:grid;
+
+  grid-template-columns:
+    1.15fr
+    .8fr
+    .9fr
+    1.2fr
+    1.2fr;
+
+  border-top:
+    1px solid #ecece8;
+}
+
+.stat{
+  min-width:0;
+
+  padding:
+    15px
+    13px
+    2px
+    0;
+}
+
+.stat-k{
+  color:var(--muted);
+
+  font-size:8px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.06em;
+}
+
+.stat-v{
+  margin-top:7px;
+
+  font-size:12px;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
+}
+
+.trend{
+  margin:
+    15px
+    0
+    0
+    61px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:16px;
+
+  align-items:center;
+}
+
+.spark{
+  width:100%;
+  height:52px;
+
+  display:block;
+}
+
+.history-note{
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.open{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.empty{
+  padding:
+    65px
+    20px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:14px;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:12px;
+}
+
+.footer-note{
+  margin-top:25px;
+
+  padding:
+    15px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  background:var(--soft2);
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.6;
+}
+
+@media(max-width:780px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .brand-title,
+  .brand-sub{
+    display:none;
+  }
+
+  main{
+    padding:
+      37px
+      15px
+      80px;
+  }
+
+  .model-card{
+    padding:
+      17px
+      14px;
+  }
+
+  .model-top{
+    grid-template-columns:
+      42px
+      minmax(0,1fr)
+      auto;
+  }
+
+  .rank{
+    width:38px;
+    height:38px;
+  }
+
+  .model-name{
+    font-size:16px;
+  }
+
+  .tags,
+  .stats,
+  .trend{
+    margin-left:0;
+  }
+
+  .stats{
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0,1fr)
+      );
+  }
+
+  .stat{
+    padding-top:12px;
+  }
+
+  .filter{
+    width:100%;
+    margin-left:0;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .nav{
+    padding:
+      10px
+      12px;
+  }
+
+  .brand-logo{
+    width:36px;
+    height:36px;
+  }
+
+  .search{
+    min-height:42px;
+    font-size:12px;
+  }
+
+  .like{
+    padding:
+      0
+      7px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="/"
+    >
+
+      <div class="brand-logo">
+
+        <img
+          src="/number-of-calls/assets/logos/zorix.svg"
+          alt=""
+        >
+
+      </div>
+
+
+      <div>
+
+        <div class="brand-title">
+          Zorix Open Source
+        </div>
+
+        <div class="brand-sub">
+          Public model intelligence
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <div class="search-shell">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        class="search"
+        id="search"
+        placeholder="Search models, authors, licenses..."
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <nav class="nav-links">
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+      <a href="/status/">
+        Status
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="eyebrow">
+    Open source · Ranking
+  </div>
+
+
+  <h1>
+    Open models,
+    ranked by real Hub data.
+  </h1>
+
+
+  <div class="intro">
+    Public non-gated language-model repositories
+    with published license metadata. Rankings use
+    current Hugging Face Hub statistics rather than
+    manually entered scores.
+  </div>
+
+
+  <div class="source-row">
+
+    <a
+      class="source-pill"
+      href="https://huggingface.co/models"
+      target="_blank"
+      rel="noopener"
+    >
+      Source · Hugging Face Hub ↗
+    </a>
+
+    <span
+      class="source-pill"
+      id="updated"
+    >
+      Loading snapshot…
+    </span>
+
+    <span class="source-pill">
+      Downloads · rolling 30 days
+    </span>
+
+  </div>
+
+
+  <div class="toolbar">
+
+    <div class="sorts">
+
+      <button
+        class="sort active"
+        data-sort="trending"
+        type="button"
+      >
+        Trending
+      </button>
+
+      <button
+        class="sort"
+        data-sort="downloads"
+        type="button"
+      >
+        Downloads
+      </button>
+
+      <button
+        class="sort"
+        data-sort="likes"
+        type="button"
+      >
+        Likes
+      </button>
+
+      <button
+        class="sort"
+        data-sort="newest"
+        type="button"
+      >
+        Newest
+      </button>
+
+    </div>
+
+
+    <select
+      class="filter"
+      id="formatFilter"
+    >
+
+      <option value="">
+        All formats
+      </option>
+
+      <option value="GGUF">
+        GGUF
+      </option>
+
+      <option value="Safetensors">
+        Safetensors
+      </option>
+
+      <option value="Transformers">
+        Transformers
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div
+    class="count"
+    id="count"
+  ></div>
+
+
+  <div
+    class="list"
+    id="ranking"
+  ></div>
+
+
+  <div class="footer-note">
+    “Open source” here means the repository is public,
+    non-gated and publishes license metadata. Always review
+    the displayed license before commercial or redistribution
+    use. Download curves shown here contain only snapshots
+    actually collected by Zorix; historical points are never
+    fabricated.
+  </div>
+
+</main>
+
+
+<script src="./ranking.js"></script>
+
+<script>
+
+const DATA =
+  window.ZORIX_OPEN_SOURCE_RANKING
+  ||
+  {
+    models:[]
+  };
+
+
+let sortMode =
+  "trending";
+
+
+const search =
+  document.getElementById(
+    "search"
+  );
+
+
+const formatFilter =
+  document.getElementById(
+    "formatFilter"
+  );
+
+
+function esc(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;");
+
+}
+
+
+function compact(value){
+
+  const n =
+    Number(
+      value || 0
+    );
+
+
+  return new Intl.NumberFormat(
+    "en-US",
+    {
+      notation:"compact",
+      maximumFractionDigits:2
+    }
+  ).format(n);
+
+}
+
+
+function parameters(value){
+
+  if(
+    value===null
+    ||
+    value===undefined
+    ||
+    value===""
+  ){
+    return "Not published";
+  }
+
+
+  const n =
+    Number(value);
+
+
+  if(n>=1e12){
+    return (
+      n/1e12
+    )
+    .toFixed(2)
+    .replace(/\.00$/,"")
+    +
+    "T params";
+  }
+
+
+  if(n>=1e9){
+    return (
+      n/1e9
+    )
+    .toFixed(2)
+    .replace(/\.00$/,"")
+    +
+    "B params";
+  }
+
+
+  if(n>=1e6){
+    return (
+      n/1e6
+    )
+    .toFixed(1)
+    .replace(/\.0$/,"")
+    +
+    "M params";
+  }
+
+
+  return (
+    compact(n)
+    +
+    " params"
+  );
+
+}
+
+
+function dateLabel(value){
+
+  if(!value){
+    return "Not published";
+  }
+
+
+  const date =
+    new Date(value);
+
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+    return value;
+  }
+
+
+  return date
+    .toLocaleDateString(
+      undefined,
+      {
+        year:"numeric",
+        month:"short",
+        day:"numeric"
+      }
+    );
+
+}
+
+
+function sparkline(history){
+
+  const values =
+    (
+      history || []
+    )
+    .map(
+      item=>
+        Number(
+          item.downloads
+        )
+    )
+    .filter(
+      Number.isFinite
+    );
+
+
+  if(values.length<2){
+
+    return `
+      <div class="history-note">
+        Download trend starts after
+        additional real sync snapshots.
+      </div>
+    `;
+
+  }
+
+
+  const width=520;
+  const height=52;
+
+  let min =
+    Math.min(
+      ...values
+    );
+
+  let max =
+    Math.max(
+      ...values
+    );
+
+
+  if(min===max){
+    min-=1;
+    max+=1;
+  }
+
+
+  const points =
+    values.map(
+      (value,index)=>{
+
+        const x =
+          index
+          /
+          Math.max(
+            1,
+            values.length-1
+          )
+          *
+          width;
+
+
+        const y =
+          height
+          -
+          (
+            value-min
+          )
+          /
+          (
+            max-min
+          )
+          *
+          (
+            height-10
+          )
+          -
+          5;
+
+
+        return (
+          x.toFixed(1)
+          +
+          ","
+          +
+          y.toFixed(1)
+        );
+
+      }
+    )
+    .join(" ");
+
+
+  return `
+    <svg
+      class="spark"
+      viewBox="0 0 ${width} ${height}"
+      preserveAspectRatio="none"
+      aria-label="Recorded download trend"
+    >
+
+      <polyline
+        points="${points}"
+        fill="none"
+        stroke="#8b5cf6"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+    </svg>
+  `;
+
+}
+
+
+function tagsHTML(model){
+
+  const items=[];
+
+
+  (
+    model.formats || []
+  )
+  .forEach(
+    item=>
+      items.push(
+        {
+          label:item,
+          className:""
+        }
+      )
+  );
+
+
+  (
+    model.languages || []
+  )
+  .slice(
+    0,
+    4
+  )
+  .forEach(
+    item=>
+      items.push(
+        {
+          label:"🌐 " + item,
+          className:""
+        }
+      )
+  );
+
+
+  (
+    model.tags || []
+  )
+  .slice(
+    0,
+    5
+  )
+  .forEach(
+    item=>{
+
+      if(
+        !items.some(
+          current=>
+            current.label
+            .toLowerCase()
+            ===
+            String(item)
+            .toLowerCase()
+        )
+      ){
+
+        items.push(
+          {
+            label:item,
+            className:""
+          }
+        );
+
+      }
+
+    }
+  );
+
+
+  if(model.license){
+
+    items.push(
+      {
+        label:
+          "⚖ "
+          +
+          model.license,
+
+        className:
+          "license"
+      }
+    );
+
+  }
+
+
+  return items
+    .slice(
+      0,
+      12
+    )
+    .map(
+      item=>`
+
+        <span
+          class="tag ${item.className}"
+        >
+          ${esc(item.label)}
+        </span>
+
+      `
+    )
+    .join("");
+
+}
+
+
+function sortModels(rows){
+
+  rows.sort(
+    (a,b)=>{
+
+      if(sortMode==="downloads"){
+
+        return (
+          Number(
+            b.downloads || 0
+          )
+          -
+          Number(
+            a.downloads || 0
+          )
+        );
+
+      }
+
+
+      if(sortMode==="likes"){
+
+        return (
+          Number(
+            b.likes || 0
+          )
+          -
+          Number(
+            a.likes || 0
+          )
+        );
+
+      }
+
+
+      if(sortMode==="newest"){
+
+        return (
+          new Date(
+            b.createdAt || 0
+          )
+          -
+          new Date(
+            a.createdAt || 0
+          )
+        );
+
+      }
+
+
+      return (
+        Number(
+          b.trendingScore || 0
+        )
+        -
+        Number(
+          a.trendingScore || 0
+        )
+      );
+
+    }
+  );
+
+
+  return rows;
+
+}
+
+
+function render(){
+
+  const query =
+    search.value
+    .trim()
+    .toLowerCase();
+
+
+  const format =
+    formatFilter.value;
+
+
+  let rows =
+    (
+      DATA.models || []
+    )
+    .filter(
+      model=>{
+
+        const text =
+          [
+            model.id,
+            model.author,
+            model.name,
+            model.license,
+            model.pipeline,
+            ...(model.tags || []),
+            ...(model.languages || []),
+            ...(model.formats || [])
+          ]
+          .join(" ")
+          .toLowerCase();
+
+
+        if(
+          query
+          &&
+          !text.includes(
+            query
+          )
+        ){
+          return false;
+        }
+
+
+        if(
+          format
+          &&
+          !(
+            model.formats
+            ||
+            []
+          )
+          .includes(
+            format
+          )
+        ){
+          return false;
+        }
+
+
+        return true;
+
+      }
+    );
+
+
+  rows =
+    sortModels(
+      [...rows]
+    );
+
+
+  document
+    .getElementById(
+      "count"
+    )
+    .textContent =
+      (
+        rows.length
+        +
+        " models"
+      );
+
+
+  const target =
+    document.getElementById(
+      "ranking"
+    );
+
+
+  if(!rows.length){
+
+    target.innerHTML=`
+      <div class="empty">
+        No models match these filters.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  target.innerHTML =
+    rows.map(
+      (model,index)=>`
+
+        <a
+          class="model-card"
+          href="${esc(model.url)}"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <div class="model-top">
+
+            <div class="rank">
+              ${index+1}
+            </div>
+
+
+            <div>
+
+              <div class="model-author">
+
+                ${esc(model.author)}
+
+                ${
+                  model.featured
+                    ? `
+                      <span class="verified">
+                        ◆ Zorix official
+                      </span>
+                    `
+                    : ""
+                }
+
+              </div>
+
+
+              <div class="model-name">
+                ${esc(model.name)}
+              </div>
+
+            </div>
+
+
+            <div class="like">
+
+              <span class="heart">
+                ♥
+              </span>
+
+              ${compact(model.likes)}
+
+            </div>
+
+          </div>
+
+
+          <div class="tags">
+
+            ${tagsHTML(model)}
+
+          </div>
+
+
+          <div class="stats">
+
+            <div class="stat">
+
+              <div class="stat-k">
+                Downloads last month
+              </div>
+
+              <div class="stat-v">
+                ${compact(model.downloads)}
+              </div>
+
+            </div>
+
+
+            <div class="stat">
+
+              <div class="stat-k">
+                Likes
+              </div>
+
+              <div class="stat-v">
+                ${compact(model.likes)}
+              </div>
+
+            </div>
+
+
+            <div class="stat">
+
+              <div class="stat-k">
+                Model size
+              </div>
+
+              <div class="stat-v">
+                ${parameters(model.parameters)}
+              </div>
+
+            </div>
+
+
+            <div class="stat">
+
+              <div class="stat-k">
+                Architecture
+              </div>
+
+              <div
+                class="stat-v"
+                title="${esc(model.architecture || '')}"
+              >
+                ${
+                  esc(
+                    model.architecture
+                    ||
+                    "Not published"
+                  )
+                }
+              </div>
+
+            </div>
+
+
+            <div class="stat">
+
+              <div class="stat-k">
+                Updated
+              </div>
+
+              <div class="stat-v">
+                ${dateLabel(model.lastModified)}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="trend">
+
+            <div>
+              ${sparkline(model.history)}
+            </div>
+
+            <div class="open">
+              View model ↗
+            </div>
+
+          </div>
+
+        </a>
+
+      `
+    )
+    .join("");
+
+}
+
+
+document
+  .querySelectorAll(
+    "[data-sort]"
+  )
+  .forEach(
+    button=>{
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          document
+            .querySelectorAll(
+              "[data-sort]"
+            )
+            .forEach(
+              item=>
+                item.classList.remove(
+                  "active"
+                )
+            );
+
+
+          button
+            .classList.add(
+              "active"
+            );
+
+
+          sortMode =
+            button.dataset.sort;
+
+
+          render();
+
+        }
+      );
+
+    }
+  );
+
+
+search.addEventListener(
+  "input",
+  render
+);
+
+
+formatFilter
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+const updated =
+  document.getElementById(
+    "updated"
+  );
+
+
+if(DATA.updatedAt){
+
+  updated.textContent =
+    "Snapshot · "
+    +
+    new Date(
+      DATA.updatedAt
+    )
+    .toLocaleString();
+
+}else{
+
+  updated.textContent =
+    "Snapshot unavailable";
+
+}
+
+
+render();
+
+</script>
+
+</body>
+
+</html>
