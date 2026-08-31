@@ -1,5 +1,5 @@
 window.ZORIX_STATUS = {
-  "updatedAt": "2026-08-31T08:35:08+02:00",
+  "updatedAt": "2026-08-31T08:41:17+02:00",
   "overall": "operational",
   "message": "All Zorix systems are operating normally.",
   "components": [
@@ -7,7 +7,7 @@ window.ZORIX_STATUS = {
       "id": "zorix-api",
       "name": "Zorix API",
       "description": "Core API requests and model routing.",
-      "status": "operational"
+      "status": "outage"
     },
     {
       "id": "zorix-code",
@@ -37,7 +37,7 @@ window.ZORIX_STATUS = {
       "id": "public-quota",
       "name": "Public quota",
       "description": "Shared public token capacity and quota accounting.",
-      "status": "operational"
+      "status": "outage"
     },
     {
       "id": "updates",
