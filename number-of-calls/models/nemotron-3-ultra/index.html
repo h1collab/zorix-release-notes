@@ -2355,16 +2355,17 @@ h1{
           font-size:10px;
         "
       >
-        Zorix access first · external provider rates second
+        Zorix paid access · external provider pricing
       </div>
 
     </div>
 
 
     <div class="section-copy">
-      Zorix uses account and plan-based access.
-      External API prices are shown per 1M tokens
-      unless the provider uses another billing model.
+      Zorix model access requires a paid subscription
+      through subs.zorix.it. Zorix API availability is
+      reported separately. External API prices are shown
+      per 1M tokens unless stated otherwise.
     </div>
 
   </div>
@@ -5155,8 +5156,9 @@ if(model){
 
 
 
+
 <script>
-/* MODEL_PRICING_RENDERER_V1 */
+/* MODEL_PRICING_RENDERER_V2 */
 
 (function(){
 
@@ -5164,7 +5166,7 @@ if(model){
 
 
   if(
-    typeof model==="undefined"
+    typeof model === "undefined"
     ||
     !model
   ){
@@ -5212,127 +5214,215 @@ if(model){
 
 
   /*
-   * Nex Coder 3.8 is currently a gray rollout.
-   * The rule applies automatically to future 3.8 variants,
-   * not just Neptune.
+   * Every Nex Coder 3.8 variant is currently
+   * excluded from Zorix Chat during gray rollout.
    */
   const nex38 =
     String(
       model.id || ""
-    )
-    .startsWith(
+    ).startsWith(
       "nex-coder-38"
     )
     ||
     String(
       model.family || ""
-    )
-    .startsWith(
+    ).startsWith(
       "Nex Coder 3.8"
     );
 
 
-  const routes=[];
+  const routes = [];
 
 
-  routes.push(
-    {
-      name:
-        zorix.code?.name
-        ||
-        "Zorix Code",
+  /* ======================================================
+     ZORIX CODE
 
-      provider:
-        "Zorix",
+     No direct product entry is intentionally exposed.
+     Access is through a paid subscription.
+     ====================================================== */
 
-      logo:
-        zorix.logo,
+  routes.push({
 
-      url:
-        zorix.code?.url,
+    name:
+      zorix.code?.name
+      ||
+      "Zorix Code",
 
-      source:
-        zorix.plansUrl,
+    provider:
+      "Zorix",
 
-      sourceKind:
-        "Zorix",
+    logo:
+      zorix.logo,
 
-      billing:
-        zorix.code?.billing
-        ||
-        "Plan-based",
+    billing:
+      "Paid plan required",
 
-      price:
-        zorix.code?.price
-        ||
-        "See Zorix plans",
+    price:
+      "Paid subscription required",
 
-      note:
-        zorix.code?.note
-        ||
-        "",
+    note:
+      zorix.code?.note
+      ||
+      (
+        "Access through Zorix Code requires "
+        +
+        "an active paid Zorix subscription."
+      ),
 
-      available:true
-    }
-  );
+    badge:
+      "Paid access",
+
+    available:
+      true,
+
+    actionUrl:
+      zorix.plansUrl
+      ||
+      "https://subs.zorix.it/",
+
+    actionLabel:
+      "Paid plans ↗"
+
+  });
 
 
-  routes.push(
-    {
-      name:
-        zorix.chat?.name
-        ||
-        "Zorix Chat",
+  /* ======================================================
+     ZORIX CHAT
+     ====================================================== */
 
-      provider:
-        "Zorix",
+  routes.push({
 
-      logo:
-        zorix.logo,
+    name:
+      zorix.chat?.name
+      ||
+      "Zorix Chat",
 
-      url:
-        zorix.chat?.url,
+    provider:
+      "Zorix",
 
-      source:
-        zorix.plansUrl,
+    logo:
+      zorix.logo,
 
-      sourceKind:
-        "Zorix",
+    billing:
+      nex38
+        ? "Gray rollout"
+        : "Paid plan required",
 
-      billing:
-        zorix.chat?.billing
-        ||
-        "Plan-based",
+    price:
+      nex38
+        ? "Not available in Zorix Chat"
+        : "Paid subscription required",
 
-      price:
-        nex38
-          ? "Not available"
-          : (
-              zorix.chat?.price
-              ||
-              "See Zorix plans"
-            ),
-
-      note:
-        nex38
-          ? (
-              "Nex Coder 3.8 is not supported "
+    note:
+      nex38
+        ? (
+            "Nex Coder 3.8 is currently in "
+            +
+            "gray rollout and is not available "
+            +
+            "through Zorix Chat."
+          )
+        : (
+            zorix.chat?.note
+            ||
+            (
+              "Access through Zorix Chat requires "
               +
-              "in Zorix Chat during the current "
-              +
-              "gray rollout. Use Zorix Code."
+              "an active paid Zorix subscription."
             )
-          : (
-              zorix.chat?.note
-              ||
-              ""
-            ),
+          ),
 
-      available:
-        !nex38
-    }
-  );
+    badge:
+      nex38
+        ? "Gray rollout"
+        : "Paid access",
 
+    available:
+      !nex38,
+
+    actionUrl:
+      nex38
+        ? ""
+        : (
+            zorix.chat?.url
+            ||
+            "https://zorix.it/chat"
+          ),
+
+    actionLabel:
+      "Open Chat ↗",
+
+    secondaryUrl:
+      zorix.plansUrl
+      ||
+      "https://subs.zorix.it/",
+
+    secondaryLabel:
+      "Paid plans ↗"
+
+  });
+
+
+  /* ======================================================
+     ZORIX API
+
+     API exists as an access method but is currently
+     unavailable. Do not expose an API endpoint here.
+     ====================================================== */
+
+  routes.push({
+
+    name:
+      zorix.api?.name
+      ||
+      "Zorix API",
+
+    provider:
+      "Zorix",
+
+    logo:
+      zorix.logo,
+
+    billing:
+      "API service",
+
+    price:
+      "Temporarily unavailable",
+
+    note:
+      zorix.api?.note
+      ||
+      (
+        "The Zorix API service is currently "
+        +
+        "unavailable. Check Zorix Status for "
+        +
+        "current availability."
+      ),
+
+    badge:
+      "Unavailable",
+
+    available:
+      false,
+
+    actionUrl:
+      zorix.statusUrl
+      ||
+      "/status/",
+
+    actionLabel:
+      "View status ↗",
+
+    allowUnavailableLink:
+      true
+
+  });
+
+
+  /* ======================================================
+     EXTERNAL PROVIDERS
+     ====================================================== */
 
   (
     database.models?.[
@@ -5342,13 +5432,33 @@ if(model){
     []
   )
   .forEach(
-    route=>
-      routes.push(
-        {
-          ...route,
-          available:true
-        }
-      )
+    route=>{
+
+      routes.push({
+
+        ...route,
+
+        available:true,
+
+        actionUrl:
+          route.url
+          ||
+          "",
+
+        actionLabel:
+          "Open provider ↗",
+
+        secondaryUrl:
+          route.source
+          ||
+          "",
+
+        secondaryLabel:
+          "Pricing source ↗"
+
+      });
+
+    }
   );
 
 
@@ -5386,14 +5496,18 @@ if(model){
 
     const badgeClass =
       route.available
-        ? (
-            route.sourceKind==="Official"
-            ||
-            route.sourceKind==="Zorix"
-              ? "good"
-              : ""
-          )
+        ? "good"
         : "warn";
+
+
+    const canOpen =
+      route.actionUrl
+      &&
+      (
+        route.available
+        ||
+        route.allowUnavailableLink
+      );
 
 
     return `
@@ -5444,15 +5558,17 @@ if(model){
           <span
             class="pricing-badge ${badgeClass}"
           >
-            ${
-              route.available
-                ? esc(
-                    route.sourceKind
-                    ||
-                    "Available"
-                  )
-                : "Gray rollout"
-            }
+            ${esc(
+              route.badge
+              ||
+              route.sourceKind
+              ||
+              (
+                route.available
+                  ? "Available"
+                  : "Unavailable"
+              )
+            )}
           </span>
 
         </div>
@@ -5489,7 +5605,11 @@ if(model){
               `
               : `
                 <div class="pricing-price">
-                  ${esc(route.price || "See provider")}
+                  ${esc(
+                    route.price
+                    ||
+                    "See provider"
+                  )}
                 </div>
               `
           }
@@ -5505,39 +5625,47 @@ if(model){
         <div class="pricing-links">
 
           ${
-            route.available
-            &&
-            route.url
+            canOpen
               ? `
                 <a
                   class="pricing-link"
-                  href="${esc(route.url)}"
-                  target="_blank"
-                  rel="noopener"
+                  href="${esc(route.actionUrl)}"
+                  ${
+                    String(
+                      route.actionUrl
+                    ).startsWith("http")
+                      ? 'target="_blank" rel="noopener"'
+                      : ""
+                  }
                 >
-                  Open ↗
+                  ${esc(
+                    route.actionLabel
+                    ||
+                    "Open ↗"
+                  )}
                 </a>
               `
-              : `
-                <span
-                  class="pricing-link disabled"
-                >
-                  Unavailable
-                </span>
-              `
+              : ""
           }
 
 
           ${
-            route.source
+            route.secondaryUrl
+            &&
+            route.secondaryUrl !==
+            route.actionUrl
               ? `
                 <a
                   class="pricing-link"
-                  href="${esc(route.source)}"
+                  href="${esc(route.secondaryUrl)}"
                   target="_blank"
                   rel="noopener"
                 >
-                  Pricing source ↗
+                  ${esc(
+                    route.secondaryLabel
+                    ||
+                    "Source ↗"
+                  )}
                 </a>
               `
               : ""
@@ -5567,21 +5695,17 @@ if(model){
 
     disclaimer.textContent =
       (
-        "Price snapshot: "
+        "Zorix model access currently requires "
         +
-        (
-          database.asOf
-          ||
-          "current published data"
-        )
+        "an active paid subscription through "
         +
-        ". Zorix access is plan/account based, "
+        "subs.zorix.it. Zorix API service is "
         +
-        "so it is not directly equivalent to API "
+        "currently unavailable; refer to Zorix "
         +
-        "per-token billing. External prices can change; "
+        "Status for availability. External provider "
         +
-        "open the linked provider source before budgeting."
+        "prices are separate from Zorix subscription access."
       );
 
   }
@@ -5589,6 +5713,7 @@ if(model){
 })();
 
 </script>
+
 
 </body>
 </html>

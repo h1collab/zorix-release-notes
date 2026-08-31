@@ -1,30 +1,30 @@
 {
   "asOf": "2026-08-31",
-
   "zorix": {
     "logo": "/number-of-calls/assets/logos/zorix.svg",
-
+    "plansUrl": "https://subs.zorix.it/",
+    "statusUrl": "/status/",
     "code": {
       "name": "Zorix Code",
-      "url": "https://zorix.it/nexcode",
-      "billing": "Plan-based",
-      "price": "€0 / €8 / €20 / €60 monthly",
-      "note": "Available through the Zorix coding workspace. Exact model access can depend on account tier and rollout."
+      "billing": "Paid plan required",
+      "price": "Paid subscription required",
+      "note": "Access through Zorix Code requires an active paid Zorix subscription."
     },
-
     "chat": {
       "name": "Zorix Chat",
       "url": "https://zorix.it/chat",
-      "billing": "Plan-based",
-      "price": "€0 / €8 / €20 / €60 monthly",
-      "note": "Available through Zorix Chat when the model is enabled for the account."
+      "billing": "Paid plan required",
+      "price": "Paid subscription required",
+      "note": "Access through Zorix Chat requires an active paid Zorix subscription."
     },
-
-    "plansUrl": "https://zorix.it/"
+    "api": {
+      "name": "Zorix API",
+      "billing": "API service",
+      "price": "Temporarily unavailable",
+      "note": "The Zorix API service is currently unavailable. Check Zorix Status for current availability."
+    }
   },
-
   "models": {
-
     "deepseek-v4-flash-0731": [
       {
         "name": "DeepSeek API",
@@ -40,7 +40,6 @@
         "note": "Cache-miss input and output vary between off-peak and peak pricing."
       }
     ],
-
     "tencent-hy3": [
       {
         "name": "Tencent Cloud",
@@ -56,7 +55,6 @@
         "note": "Tencent Cloud Hy3 public token pricing in CNY."
       }
     ],
-
     "mimo-v25": [
       {
         "name": "Xiaomi MiMo API",
@@ -72,7 +70,6 @@
         "note": "Overseas MiMo-V2.5 pay-as-you-go pricing."
       }
     ],
-
     "gpt-56-luna": [
       {
         "name": "OpenAI API",
@@ -88,7 +85,6 @@
         "note": "GPT-5.6 Luna API list pricing."
       }
     ],
-
     "claude-opus-5": [
       {
         "name": "Claude API",
@@ -103,7 +99,6 @@
         "note": "Claude Opus 5 standard API pricing. Fast mode is priced separately."
       }
     ],
-
     "glm-53-flash": [
       {
         "name": "Z.ai API",
@@ -119,7 +114,6 @@
         "note": "50% launch pricing through 2026-09-09 24:00 UTC+8. List pricing is $0.15 input / $0.50 output."
       }
     ],
-
     "glm-52-max": [
       {
         "name": "Z.ai API",
@@ -132,10 +126,9 @@
         "input": "$1.40",
         "cache": "$0.26",
         "output": "$4.40",
-        "note": "Z.ai publicly prices GLM-5.2 at this rate. The Zorix catalog's Max configuration is not separately priced on the public Z.ai rate card."
+        "note": "Z.ai publicly prices GLM-5.2 at this rate. The Zorix catalog configuration is not separately priced on the public provider rate card."
       }
     ],
-
     "gemini-37-flash": [
       {
         "name": "Gemini API",
@@ -151,7 +144,6 @@
         "note": "Current introductory paid-tier pricing through 2026-12-31. Google also lists a free tier."
       }
     ],
-
     "claude-sonnet-5": [
       {
         "name": "Claude API",
@@ -166,7 +158,6 @@
         "note": "Claude Sonnet 5 standard API pricing."
       }
     ],
-
     "claude-opus-48": [
       {
         "name": "Claude API",
@@ -181,7 +172,6 @@
         "note": "Claude Opus 4.8 standard API pricing."
       }
     ],
-
     "claude-fable-5-fallback-max": [
       {
         "name": "Claude API",
@@ -196,7 +186,6 @@
         "note": "Direct Fable 5 provider rate. Zorix fallback behavior is a separate routing configuration."
       }
     ],
-
     "gpt-56-sol-max": [
       {
         "name": "OpenAI API",
@@ -209,10 +198,9 @@
         "input": "$4",
         "cache": "$0.40",
         "output": "$20",
-        "note": "OpenAI lists max as a GPT-5.6 Sol reasoning effort rather than a separate token price."
+        "note": "The Zorix configuration does not change the provider's published token rate."
       }
     ],
-
     "kimi-k27-code": [
       {
         "name": "OpenRouter",
@@ -228,7 +216,6 @@
         "note": "Current OpenRouter listing for Kimi K2.7 Code. Router/provider rates can change."
       }
     ],
-
     "kimi-k3": [
       {
         "name": "Moonshot API",
@@ -243,7 +230,6 @@
         "output": "$15",
         "note": "Moonshot direct K3 public rate."
       },
-
       {
         "name": "OpenRouter",
         "provider": "Moonshot AI",
@@ -258,7 +244,6 @@
         "note": "Current OpenRouter listed route; provider mix and effective price may change."
       }
     ],
-
     "gemini-36-flash": [
       {
         "name": "Gemini API",
@@ -274,7 +259,6 @@
         "note": "Current introductory paid-tier pricing through 2026-12-31. Google also lists a free tier."
       }
     ],
-
     "muse-spark-12": [
       {
         "name": "Meta Model API",
@@ -290,7 +274,6 @@
         "note": "Standard-tier public rate reported from Meta's rate card; the linked pricing evidence is secondary because the live Meta price table is not reliably indexable."
       }
     ],
-
     "glm-51": [
       {
         "name": "Z.ai API",
@@ -306,7 +289,6 @@
         "note": "GLM-5.1 public API pricing."
       }
     ],
-
     "nemotron-3-ultra": [
       {
         "name": "NVIDIA NIM",

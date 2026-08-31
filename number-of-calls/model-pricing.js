@@ -2,21 +2,27 @@ window.ZORIX_MODEL_PRICING = {
   "asOf": "2026-08-31",
   "zorix": {
     "logo": "/number-of-calls/assets/logos/zorix.svg",
+    "plansUrl": "https://subs.zorix.it/",
+    "statusUrl": "/status/",
     "code": {
       "name": "Zorix Code",
-      "url": "https://zorix.it/nexcode",
-      "billing": "Plan-based",
-      "price": "€0 / €8 / €20 / €60 monthly",
-      "note": "Available through the Zorix coding workspace. Exact model access can depend on account tier and rollout."
+      "billing": "Paid plan required",
+      "price": "Paid subscription required",
+      "note": "Access through Zorix Code requires an active paid Zorix subscription."
     },
     "chat": {
       "name": "Zorix Chat",
       "url": "https://zorix.it/chat",
-      "billing": "Plan-based",
-      "price": "€0 / €8 / €20 / €60 monthly",
-      "note": "Available through Zorix Chat when the model is enabled for the account."
+      "billing": "Paid plan required",
+      "price": "Paid subscription required",
+      "note": "Access through Zorix Chat requires an active paid Zorix subscription."
     },
-    "plansUrl": "https://zorix.it/"
+    "api": {
+      "name": "Zorix API",
+      "billing": "API service",
+      "price": "Temporarily unavailable",
+      "note": "The Zorix API service is currently unavailable. Check Zorix Status for current availability."
+    }
   },
   "models": {
     "deepseek-v4-flash-0731": [
@@ -120,7 +126,7 @@ window.ZORIX_MODEL_PRICING = {
         "input": "$1.40",
         "cache": "$0.26",
         "output": "$4.40",
-        "note": "Z.ai publicly prices GLM-5.2 at this rate. The Zorix catalog's Max configuration is not separately priced on the public Z.ai rate card."
+        "note": "Z.ai publicly prices GLM-5.2 at this rate. The Zorix catalog configuration is not separately priced on the public provider rate card."
       }
     ],
     "gemini-37-flash": [
@@ -192,7 +198,7 @@ window.ZORIX_MODEL_PRICING = {
         "input": "$4",
         "cache": "$0.40",
         "output": "$20",
-        "note": "OpenAI lists max as a GPT-5.6 Sol reasoning effort rather than a separate token price."
+        "note": "The Zorix configuration does not change the provider's published token rate."
       }
     ],
     "kimi-k27-code": [
