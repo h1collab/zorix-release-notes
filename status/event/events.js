@@ -1,6 +1,30 @@
 window.ZORIX_STATUS_EVENTS = {
-  "updatedAt": "2026-08-31T08:55:05+02:00",
+  "updatedAt": "2026-08-31T13:48:38+02:00",
   "events": [
+    {
+      "id": "zrx-20260831-1345-code-capacity",
+      "type": "capacity",
+      "severity": "major",
+      "status": "ongoing",
+      "title": "Nex Coder and VIREXA temporarily paused in Zorix Code",
+      "summary": "Due to exceptionally high demand on Zorix Code, support for the Nex Coder and VIREXA model series has been temporarily suspended inside Zorix Code to protect service stability.",
+      "startedAt": "2026-08-31T13:45:00+02:00",
+      "affected": [
+        "zorix-code",
+        "nex",
+        "virexa"
+      ],
+      "source": "Zorix operational notice",
+      "sourceRef": "2026-08-31 13:45 CEST capacity notice",
+      "attribution": null,
+      "details": [
+        "Zorix Code is experiencing exceptionally high demand.",
+        "Nex Coder model support inside Zorix Code has been temporarily suspended.",
+        "VIREXA model support inside Zorix Code has been temporarily suspended.",
+        "The suspension is a capacity-protection measure and does not by itself indicate a security compromise.",
+        "Service restoration time has not yet been published."
+      ]
+    },
     {
       "id": "zrx-20260822-110607-exfil",
       "type": "security",
