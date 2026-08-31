@@ -1,0 +1,1897 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="zorix-build" content="1788171825">
+
+
+
+
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+Compare models | Zorix Metron
+</title>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#70706a;
+  --line:#e3e3de;
+  --soft:#f7f7f4;
+  --max:1320px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+select,
+input{
+  font:inherit;
+  color:inherit;
+}
+
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  background:
+    rgba(255,255,255,.96);
+
+  backdrop-filter:
+    blur(16px);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.nav{
+  max-width:var(--max);
+  height:68px;
+
+  margin:auto;
+  padding:0 24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  font-size:19px;
+  font-weight:600;
+
+  letter-spacing:-.045em;
+}
+
+.nav-right{
+  display:flex;
+  gap:22px;
+
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* PAGE */
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    66px
+    24px
+    120px;
+}
+
+.eyebrow{
+  color:var(--muted);
+
+  font-size:11px;
+
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+h1{
+  margin:
+    13px
+    0
+    0;
+
+  font-size:
+    clamp(
+      55px,
+      8vw,
+      104px
+    );
+
+  line-height:.9;
+
+  font-weight:500;
+
+  letter-spacing:-.067em;
+}
+
+.hero-copy{
+  max-width:620px;
+
+  margin-top:22px;
+
+  color:var(--muted);
+
+  font-size:14px;
+  line-height:1.55;
+}
+
+
+/* SELECTORS */
+
+.select-bar{
+  margin-top:46px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr))
+    auto;
+
+  gap:10px;
+
+  padding:
+    20px
+    0;
+
+  border-top:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.select-wrap{
+  min-width:0;
+}
+
+.select-label{
+  margin-bottom:7px;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+
+.model-select{
+  width:100%;
+  min-height:47px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  background:#fff;
+
+  padding:
+    0
+    12px;
+
+  outline:none;
+}
+
+.swap{
+  align-self:end;
+
+  min-width:47px;
+  height:47px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  background:#fff;
+
+  cursor:pointer;
+}
+
+.swap:hover{
+  background:var(--soft);
+}
+
+
+/* MODEL HEAD */
+
+.model-heads{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.model-head{
+  min-width:0;
+
+  padding:
+    32px
+    0;
+}
+
+.model-head:first-child{
+  padding-right:30px;
+
+  border-right:
+    1px solid var(--line);
+}
+
+.model-head:last-child{
+  padding-left:30px;
+}
+
+.identity{
+  display:flex;
+
+  gap:14px;
+
+  align-items:center;
+}
+
+.logo{
+  width:46px;
+  height:46px;
+
+  flex:0 0 auto;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:11px;
+}
+
+.logo img{
+  width:29px;
+  height:29px;
+
+  object-fit:contain;
+}
+
+.model-provider{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.model-title{
+  margin-top:3px;
+
+  font-size:25px;
+
+  letter-spacing:-.04em;
+}
+
+.model-title a:hover{
+  text-decoration:underline;
+
+  text-underline-offset:3px;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-top:14px;
+}
+
+.tag{
+  padding:
+    5px
+    8px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+
+/* SECTION */
+
+.section{
+  padding:
+    49px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.section-head{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  align-items:flex-end;
+
+  gap:24px;
+
+  margin-bottom:22px;
+}
+
+.section-title{
+  font-size:28px;
+
+  letter-spacing:-.04em;
+}
+
+.section-note{
+  max-width:470px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+
+  text-align:right;
+}
+
+
+/* TABLE */
+
+.compare-table{
+  width:100%;
+
+  border-collapse:collapse;
+}
+
+.compare-table tr{
+  border-top:
+    1px solid var(--line);
+}
+
+.compare-table th,
+.compare-table td{
+  padding:
+    15px
+    12px;
+
+  vertical-align:top;
+}
+
+.compare-table th{
+  width:24%;
+
+  color:var(--muted);
+
+  text-align:left;
+
+  font-size:10px;
+  font-weight:500;
+}
+
+.compare-table td{
+  width:38%;
+
+  font-size:13px;
+}
+
+.compare-table td:last-child{
+  border-left:
+    1px solid var(--line);
+}
+
+.primary{
+  font-size:17px;
+
+  letter-spacing:-.025em;
+}
+
+.sub{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.na{
+  color:#aaa;
+}
+
+
+/* BENCHMARK */
+
+.metric-toolbar{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-bottom:20px;
+}
+
+.metric-button{
+  min-height:32px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  background:#fff;
+
+  padding:
+    0
+    10px;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:9px;
+}
+
+.metric-button.active{
+  background:#111;
+  color:#fff;
+
+  border-color:#111;
+}
+
+.bench-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:12px;
+}
+
+.bench-card{
+  padding:18px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+}
+
+.bench-name{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.bench-values{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:15px;
+
+  margin-top:18px;
+}
+
+.bench-value{
+  font-size:37px;
+
+  letter-spacing:-.055em;
+}
+
+.bench-model{
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+
+/* SCORE BAR */
+
+.score-track{
+  height:5px;
+
+  margin-top:13px;
+
+  border-radius:99px;
+
+  background:#ecece8;
+
+  overflow:hidden;
+}
+
+.score-fill{
+  height:100%;
+
+  background:#111;
+
+  border-radius:99px;
+}
+
+
+/* SUMMARY */
+
+.summary-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  border:
+    1px solid var(--line);
+
+  border-radius:13px;
+
+  overflow:hidden;
+}
+
+.summary-item{
+  padding:18px;
+
+  border-right:
+    1px solid var(--line);
+}
+
+.summary-item:last-child{
+  border-right:0;
+}
+
+.summary-k{
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.summary-v{
+  margin-top:12px;
+
+  font-size:20px;
+
+  letter-spacing:-.035em;
+}
+
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+  main{
+    padding:
+      43px
+      17px
+      90px;
+  }
+
+  .select-bar{
+    grid-template-columns:1fr;
+  }
+
+  .swap{
+    width:100%;
+  }
+
+  .model-heads{
+    grid-template-columns:1fr;
+  }
+
+  .model-head:first-child{
+    padding-right:0;
+
+    border-right:0;
+    border-bottom:
+      1px solid var(--line);
+  }
+
+  .model-head:last-child{
+    padding-left:0;
+  }
+
+  .bench-grid{
+    grid-template-columns:1fr;
+  }
+
+  .summary-grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .summary-item:nth-child(2){
+    border-right:0;
+  }
+
+  .summary-item:nth-child(-n+2){
+    border-bottom:
+      1px solid var(--line);
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .section-note{
+    text-align:left;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="./"
+    >
+      Zorix Metron
+    </a>
+
+
+    <div class="nav-right">
+
+      <a href="./leaderboard/">
+        Leaderboard
+      </a>
+
+      <a href="./explore/">
+        Explore
+      </a>
+
+      <a href="./models/">
+        Models
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+
+<main>
+
+
+<div class="eyebrow">
+  Model analysis
+</div>
+
+
+<h1>
+  Compare
+</h1>
+
+
+<div class="hero-copy">
+  Compare current Zorix Metron model metadata,
+  usage, pricing, context, benchmarks and
+  community voting side by side.
+</div>
+
+
+
+<div class="select-bar">
+
+  <div class="select-wrap">
+
+    <div class="select-label">
+      Model A
+    </div>
+
+    <select
+      class="model-select"
+      id="modelA"
+    ></select>
+
+  </div>
+
+
+  <button
+    class="swap"
+    id="swap"
+    type="button"
+    title="Swap models"
+  >
+    ⇄
+  </button>
+
+
+  <div class="select-wrap">
+
+    <div class="select-label">
+      Model B
+    </div>
+
+    <select
+      class="model-select"
+      id="modelB"
+    ></select>
+
+  </div>
+
+</div>
+
+
+
+<div
+  class="model-heads"
+  id="modelHeads"
+></div>
+
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Overview
+    </div>
+
+    <div class="section-note">
+      Missing values remain undisclosed or not measured.
+    </div>
+
+  </div>
+
+
+  <table
+    class="compare-table"
+    id="overviewTable"
+  ></table>
+
+</section>
+
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Usage
+    </div>
+
+    <div class="section-note">
+      Zorix Code / Metron traffic only,
+      not global provider usage.
+    </div>
+
+  </div>
+
+
+  <div
+    class="summary-grid"
+    id="usageSummary"
+  ></div>
+
+</section>
+
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Benchmarks
+    </div>
+
+    <div class="section-note">
+      Only published Zorix Metron benchmark values are shown.
+    </div>
+
+  </div>
+
+
+  <div
+    class="bench-grid"
+    id="benchmarks"
+  ></div>
+
+</section>
+
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Community voting
+    </div>
+
+    <div class="section-note">
+      Current recorded voting snapshot.
+    </div>
+
+  </div>
+
+
+  <table
+    class="compare-table"
+    id="votingTable"
+  ></table>
+
+</section>
+
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Performance telemetry
+    </div>
+
+    <div class="section-note">
+      Ready for measured throughput, TTFT and
+      end-to-end latency. No synthetic values are inserted.
+    </div>
+
+  </div>
+
+
+  <table class="compare-table">
+
+    <tr>
+      <th>
+        Output speed
+      </th>
+
+      <td class="na">
+        Not measured
+      </td>
+
+      <td class="na">
+        Not measured
+      </td>
+    </tr>
+
+
+    <tr>
+      <th>
+        Time to first token
+      </th>
+
+      <td class="na">
+        Not measured
+      </td>
+
+      <td class="na">
+        Not measured
+      </td>
+    </tr>
+
+
+    <tr>
+      <th>
+        End-to-end response
+      </th>
+
+      <td class="na">
+        Not measured
+      </td>
+
+      <td class="na">
+        Not measured
+      </td>
+    </tr>
+
+  </table>
+
+</section>
+
+
+</main>
+
+
+<script src="./models.js?v=1788171825"></script>
+<script src="./usage.js?v=1788171825"></script>
+<script src="./benchmarks.js?v=1788171825"></script>
+<script src="./external-benchmarks.js?v=1788171825"></script>
+<script src="./voting/votes.js?v=1788171825"></script>
+
+
+<script>
+
+(function(){
+
+  "use strict";
+
+
+  const $=
+    id=>
+      document.getElementById(id);
+
+
+  /* ======================================================
+     MODELS
+     ====================================================== */
+
+  function allModels(){
+
+    const details=
+      Array.isArray(
+        window.ZORIX_MODEL_DETAILS
+      )
+        ? window.ZORIX_MODEL_DETAILS
+        : [];
+
+
+    const usage=
+      Array.isArray(
+        window.ZORIX_CODE_USAGE?.models
+      )
+        ? window.ZORIX_CODE_USAGE.models
+        : [];
+
+
+    const byId=
+      new Map();
+
+
+    const byName=
+      new Map();
+
+
+    usage.forEach(
+      row=>{
+
+        if(row.id){
+          byId.set(row.id,row);
+        }
+
+        if(row.name){
+          byName.set(row.name,row);
+        }
+
+      }
+    );
+
+
+    /*
+     * Prefer model-details because it owns the stable IDs.
+     */
+    if(details.length){
+
+      return details.map(
+        model=>{
+
+          const u=
+            byId.get(model.id)
+            ||
+            byName.get(model.name)
+            ||
+            {};
+
+
+          const daily=
+            Number(
+              u.tokens ??
+              u.dailyTokens ??
+              model.dailyTokens ??
+              0
+            );
+
+
+          const explicitWeekly=
+            u.weeklyTokens ??
+            model.weeklyTokens;
+
+
+          return {
+            ...model,
+
+            dailyTokens:daily,
+
+            weeklyTokens:
+              explicitWeekly != null
+                ? Number(
+                    explicitWeekly
+                  )
+                : daily*7,
+
+            weeklyEstimated:
+              explicitWeekly == null
+          };
+
+        }
+      );
+
+    }
+
+
+    /*
+     * Fallback if models.js fails.
+     */
+    return usage.map(
+      (row,index)=>{
+
+        const daily=
+          Number(
+            row.tokens ??
+            row.dailyTokens ??
+            0
+          );
+
+
+        return {
+          id:
+            row.id ||
+            "model-"+index,
+
+          name:
+            row.name ||
+            "Unknown model",
+
+          provider:
+            row.provider ||
+            "",
+
+          family:
+            row.family ||
+            "",
+
+          status:
+            row.status ||
+            "Available",
+
+          dailyTokens:daily,
+
+          weeklyTokens:
+            Number(
+              row.weeklyTokens ??
+              daily*7
+            )
+        };
+
+      }
+    );
+
+  }
+
+
+  const models=
+    allModels();
+
+
+  const byId=
+    new Map(
+      models.map(
+        model=>[
+          model.id,
+          model
+        ]
+      )
+    );
+
+
+  /* ======================================================
+     FORMAT
+     ====================================================== */
+
+  function esc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function fmt(value){
+
+    const n=
+      Number(value || 0);
+
+
+    const units=[
+      [1e15,"P"],
+      [1e12,"T"],
+      [1e9,"B"],
+      [1e6,"M"],
+      [1e3,"K"]
+    ];
+
+
+    for(
+      const [unit,label]
+      of units
+    ){
+
+      if(n>=unit){
+
+        const x=
+          n/unit;
+
+
+        return (
+          x.toFixed(
+            x>=100
+              ? 0
+              : x>=10
+                ? 1
+                : 2
+          )
+          .replace(/\.0+$/,"")
+          +
+          label
+        );
+
+      }
+
+    }
+
+
+    return Math.round(n)
+      .toLocaleString();
+
+  }
+
+
+  function value(v){
+
+    return (
+      v == null
+      ||
+      v === ""
+      ||
+      v === "—"
+    )
+      ? '<span class="na">Not disclosed</span>'
+      : esc(v);
+
+  }
+
+
+  /* ======================================================
+     SELECTORS
+     ====================================================== */
+
+  function fillSelect(
+    select,
+    selected
+  ){
+
+    select.innerHTML=
+      models
+      .map(
+        model=>`
+          <option
+            value="${esc(model.id)}"
+            ${
+              model.id===selected
+                ? "selected"
+                : ""
+            }
+          >
+            ${esc(model.name)}
+            ·
+            ${esc(model.provider)}
+          </option>
+        `
+      )
+      .join("");
+
+  }
+
+
+  if(!models.length){
+
+    $("modelHeads").innerHTML=
+      '<div class="na">No model data loaded.</div>';
+
+    return;
+  }
+
+
+  const params=
+    new URLSearchParams(
+      location.search
+    );
+
+
+  let a=
+    params.get("a")
+    ||
+    models[0].id;
+
+
+  let b=
+    params.get("b")
+    ||
+    models[
+      Math.min(
+        1,
+        models.length-1
+      )
+    ].id;
+
+
+  if(!byId.has(a)){
+    a=models[0].id;
+  }
+
+
+  if(!byId.has(b)){
+    b=models[
+      Math.min(
+        1,
+        models.length-1
+      )
+    ].id;
+  }
+
+
+  fillSelect(
+    $("modelA"),
+    a
+  );
+
+
+  fillSelect(
+    $("modelB"),
+    b
+  );
+
+
+  /* ======================================================
+     BENCHMARK
+     ====================================================== */
+
+  function benchmarkValue(
+    id,
+    metric
+  ){
+
+    const internal=
+      window.ZORIX_BENCHMARKS
+      ?.scores
+      ?.[id]
+      ?.[metric];
+
+
+    if(
+      Number.isFinite(
+        Number(internal)
+      )
+    ){
+      return Number(internal);
+    }
+
+
+    return null;
+
+  }
+
+
+  function voteValue(id){
+
+    const row=
+      (
+        window.ZORIX_COMMUNITY_VOTES
+        ?.models
+        ||
+        []
+      )
+      .find(
+        item=>item.id===id
+      );
+
+
+    return row || null;
+
+  }
+
+
+  /* ======================================================
+     RENDER
+     ====================================================== */
+
+  function render(){
+
+    const A=
+      byId.get(a);
+
+
+    const B=
+      byId.get(b);
+
+
+    if(!A || !B){
+      return;
+    }
+
+
+    const url=
+      new URL(
+        location.href
+      );
+
+
+    url.searchParams.set(
+      "a",
+      a
+    );
+
+
+    url.searchParams.set(
+      "b",
+      b
+    );
+
+
+    history.replaceState(
+      null,
+      "",
+      url
+    );
+
+
+    /* HEAD */
+
+    $("modelHeads").innerHTML=
+      [A,B]
+      .map(
+        model=>`
+
+          <div class="model-head">
+
+            <div class="identity">
+
+              <div class="logo">
+
+                ${
+                  model.logo
+                    ? `
+                      <img
+                        src="${model.logo}"
+                        alt=""
+                      >
+                    `
+                    : ""
+                }
+
+              </div>
+
+
+              <div>
+
+                <div class="model-provider">
+                  ${esc(model.provider)}
+                </div>
+
+
+                <div class="model-title">
+
+                  <a
+                    href="/number-of-calls/models/${encodeURIComponent(model.id)}/"
+                  >
+                    ${esc(model.name)}
+                  </a>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="tags">
+
+              <span class="tag">
+                ${esc(model.status || "Available")}
+              </span>
+
+              ${
+                model.family
+                  ? `
+                    <span class="tag">
+                      ${esc(model.family)}
+                    </span>
+                  `
+                  : ""
+              }
+
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+
+    /* OVERVIEW */
+
+    const rows=[
+      [
+        "Provider",
+        A.provider,
+        B.provider
+      ],
+
+      [
+        "Family",
+        A.family,
+        B.family
+      ],
+
+      [
+        "Context window",
+        A.context,
+        B.context
+      ],
+
+      [
+        "Parameters",
+        A.parameters,
+        B.parameters
+      ],
+
+      [
+        "Active parameters",
+        A.activeParameters,
+        B.activeParameters
+      ],
+
+      [
+        "Architecture",
+        A.architecture,
+        B.architecture
+      ],
+
+      [
+        "Input price",
+        A.inputPrice,
+        B.inputPrice
+      ],
+
+      [
+        "Output price",
+        A.outputPrice,
+        B.outputPrice
+      ],
+
+      [
+        "Availability",
+        A.status,
+        B.status
+      ]
+    ];
+
+
+    $("overviewTable").innerHTML=
+      rows.map(
+        row=>`
+
+          <tr>
+
+            <th>
+              ${esc(row[0])}
+            </th>
+
+            <td>
+              <div class="primary">
+                ${value(row[1])}
+              </div>
+            </td>
+
+            <td>
+              <div class="primary">
+                ${value(row[2])}
+              </div>
+            </td>
+
+          </tr>
+
+        `
+      )
+      .join("");
+
+
+    /* USAGE */
+
+    $("usageSummary").innerHTML=`
+
+      <div class="summary-item">
+
+        <div class="summary-k">
+          ${esc(A.name)} · daily
+        </div>
+
+        <div class="summary-v">
+          ${fmt(A.dailyTokens)}
+        </div>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <div class="summary-k">
+          ${esc(B.name)} · daily
+        </div>
+
+        <div class="summary-v">
+          ${fmt(B.dailyTokens)}
+        </div>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <div class="summary-k">
+          ${esc(A.name)} · weekly
+        </div>
+
+        <div class="summary-v">
+          ${fmt(A.weeklyTokens)}
+        </div>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <div class="summary-k">
+          ${esc(B.name)} · weekly
+        </div>
+
+        <div class="summary-v">
+          ${fmt(B.weeklyTokens)}
+        </div>
+
+      </div>
+    `;
+
+
+    /* BENCHMARKS */
+
+    const metrics=
+      window.ZORIX_BENCHMARKS
+      ?.metrics
+      ||
+      [];
+
+
+    $("benchmarks").innerHTML=
+      metrics.length
+        ? metrics.map(
+            metric=>{
+
+              const av=
+                benchmarkValue(
+                  A.id,
+                  metric.id
+                );
+
+
+              const bv=
+                benchmarkValue(
+                  B.id,
+                  metric.id
+                );
+
+
+              if(
+                av==null
+                &&
+                bv==null
+              ){
+                return "";
+              }
+
+
+              return `
+
+                <div class="bench-card">
+
+                  <div class="bench-name">
+                    ${esc(metric.name || metric.id)}
+                  </div>
+
+
+                  <div class="bench-values">
+
+                    <div>
+
+                      <div class="bench-value">
+                        ${
+                          av==null
+                            ? "—"
+                            : av.toFixed(1)
+                        }
+                      </div>
+
+                      <div class="bench-model">
+                        ${esc(A.name)}
+                      </div>
+
+                      ${
+                        av!=null
+                          ? `
+                            <div class="score-track">
+                              <div
+                                class="score-fill"
+                                style="width:${
+                                  Math.max(
+                                    0,
+                                    Math.min(
+                                      100,
+                                      av
+                                    )
+                                  )
+                                }%"
+                              ></div>
+                            </div>
+                          `
+                          : ""
+                      }
+
+                    </div>
+
+
+                    <div>
+
+                      <div class="bench-value">
+                        ${
+                          bv==null
+                            ? "—"
+                            : bv.toFixed(1)
+                        }
+                      </div>
+
+                      <div class="bench-model">
+                        ${esc(B.name)}
+                      </div>
+
+                      ${
+                        bv!=null
+                          ? `
+                            <div class="score-track">
+                              <div
+                                class="score-fill"
+                                style="width:${
+                                  Math.max(
+                                    0,
+                                    Math.min(
+                                      100,
+                                      bv
+                                    )
+                                  )
+                                }%"
+                              ></div>
+                            </div>
+                          `
+                          : ""
+                      }
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("")
+        : '<div class="na">No benchmark catalog loaded.</div>';
+
+
+    /* VOTING */
+
+    const va=
+      voteValue(A.id);
+
+
+    const vb=
+      voteValue(B.id);
+
+
+    $("votingTable").innerHTML=`
+
+      <tr>
+
+        <th>
+          Score
+        </th>
+
+        <td>
+          ${
+            va
+              ? Number(
+                  va.votes || 0
+                ).toLocaleString()
+              : '<span class="na">Not evaluated</span>'
+          }
+        </td>
+
+        <td>
+          ${
+            vb
+              ? Number(
+                  vb.votes || 0
+                ).toLocaleString()
+              : '<span class="na">Not evaluated</span>'
+          }
+        </td>
+
+      </tr>
+
+
+      <tr>
+
+        <th>
+          Uncertainty
+        </th>
+
+        <td>
+          ${
+            va
+              ? "±"+
+                Number(
+                  va.uncertainty || 0
+                )
+              : "—"
+          }
+        </td>
+
+        <td>
+          ${
+            vb
+              ? "±"+
+                Number(
+                  vb.uncertainty || 0
+                )
+              : "—"
+          }
+        </td>
+
+      </tr>
+    `;
+
+  }
+
+
+  $("modelA")
+    .addEventListener(
+      "change",
+      event=>{
+
+        a=event.target.value;
+
+        render();
+
+      }
+    );
+
+
+  $("modelB")
+    .addEventListener(
+      "change",
+      event=>{
+
+        b=event.target.value;
+
+        render();
+
+      }
+    );
+
+
+  $("swap")
+    .addEventListener(
+      "click",
+      ()=>{
+
+        const old=a;
+
+        a=b;
+        b=old;
+
+
+        $("modelA").value=a;
+        $("modelB").value=b;
+
+
+        render();
+
+      }
+    );
+
+
+  render();
+
+})();
+
+</script>
+
+
+</body>
+</html>
