@@ -697,7 +697,7 @@ h1{
 
     <a
       class="brand"
-      href="./"
+      href="/number-of-calls/"
     >
       Zorix Metron
     </a>
@@ -705,15 +705,15 @@ h1{
 
     <div class="nav-right">
 
-      <a href="./leaderboard/">
+      <a href="/number-of-calls/leaderboard/">
         Leaderboard
       </a>
 
-      <a href="./explore/">
+      <a href="/number-of-calls/explore/">
         Explore
       </a>
 
-      <a href="./models/">
+      <a href="/number-of-calls/models/">
         Models
       </a>
 
@@ -963,11 +963,12 @@ h1{
 </main>
 
 
-<script src="./models.js?v=1788171825"></script>
-<script src="./usage.js?v=1788171825"></script>
-<script src="./benchmarks.js?v=1788171825"></script>
-<script src="./external-benchmarks.js?v=1788171825"></script>
-<script src="./voting/votes.js?v=1788171825"></script>
+<script src="/number-of-calls/models.js?v=1788171825"></script>
+<script src="/number-of-calls/model-index.js?v=1788171825"></script>
+<script src="/number-of-calls/usage.js?v=1788171825"></script>
+<script src="/number-of-calls/benchmarks.js?v=1788171825"></script>
+<script src="/number-of-calls/external-benchmarks.js?v=1788171825"></script>
+<script src="/number-of-calls/voting/votes.js?v=1788171825"></script>
 
 
 <script>
@@ -993,6 +994,14 @@ h1{
         window.ZORIX_MODEL_DETAILS
       )
         ? window.ZORIX_MODEL_DETAILS
+        : [];
+
+
+    const fallback=
+      Array.isArray(
+        window.ZORIX_MODEL_INDEX
+      )
+        ? window.ZORIX_MODEL_INDEX
         : [];
 
 
@@ -1030,9 +1039,17 @@ h1{
     /*
      * Prefer model-details because it owns the stable IDs.
      */
-    if(details.length){
+    if(
+      details.length
+      ||
+      fallback.length
+    ){
 
-      return details.map(
+      return (
+        details.length
+          ? details
+          : fallback
+      ).map(
         model=>{
 
           const u=
