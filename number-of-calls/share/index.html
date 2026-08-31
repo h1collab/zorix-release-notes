@@ -6,7 +6,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788158966">
+<meta name="zorix-build" content="1788159899">
+
+
+
 
 
 
@@ -419,6 +422,34 @@ canvas{
 
 }
 
+
+
+/* SHARE TREND V1 */
+
+.controls.trend-active{
+  grid-template-columns:
+    repeat(4,minmax(0,1fr))
+    auto;
+}
+
+@media(max-width:900px){
+
+  .controls.trend-active{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+}
+
+@media(max-width:760px){
+
+  .controls.trend-active{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
 </style>
 
 </head>
@@ -437,7 +468,7 @@ canvas{
     >
 
       <img
-        src="../assets/logos/zorix.svg?v=1788158966"
+        src="../assets/logos/zorix.svg?v=1788159899"
         alt=""
       >
 
@@ -522,6 +553,10 @@ canvas{
         Usage index
       </option>
 
+      <option value="trend">
+        Weekly token curve
+      </option>
+
       <option value="ranking">
         Usage ranking
       </option>
@@ -599,6 +634,35 @@ canvas{
 
 
 
+
+  <div
+    class="control-group"
+    id="trendControls"
+    style="display:none"
+  >
+
+    <label class="control-label">
+      Scale
+    </label>
+
+    <select
+      class="control-select"
+      id="trendScale"
+    >
+
+      <option value="log" selected>
+        Logarithmic
+      </option>
+
+      <option value="linear">
+        Linear
+      </option>
+
+    </select>
+
+  </div>
+
+
   <div class="download-wrap">
 
     <button
@@ -673,13 +737,13 @@ canvas{
 
 
 
-<script src="../models.js?v=1788158966"></script>
-<script src="../voting/votes.js?v=1788158966"></script>
-<script src="../usage.js?v=1788158966"></script>
-<script src="../benchmarks.js?v=1788158966"></script>
+<script src="../models.js?v=1788159899"></script>
+<script src="../voting/votes.js?v=1788159899"></script>
+<script src="../usage.js?v=1788159899"></script>
+<script src="../benchmarks.js?v=1788159899"></script>
 
-<script src="../image-ai.js?v=1788158966"></script>
-<script src="../intelligence-cost.js?v=1788158966"></script>
+<script src="../image-ai.js?v=1788159899"></script>
+<script src="../intelligence-cost.js?v=1788159899"></script>
 
 
 
@@ -3832,6 +3896,773 @@ render();
 
 </script>
 
+
+
+<script>
+
+/* SHARE_WEEKLY_TREND_V1 */
+
+(function(){
+
+  const report =
+    document.getElementById(
+      "reportType"
+    );
+
+  const trendScale =
+    document.getElementById(
+      "trendScale"
+    );
+
+  const trendControls =
+    document.getElementById(
+      "trendControls"
+    );
+
+  const controls =
+    document.querySelector(
+      ".controls"
+    );
+
+  const canvas =
+    document.getElementById(
+      "chartCanvas"
+    );
+
+  if(
+    !report ||
+    !trendScale ||
+    !canvas
+  ){
+    return;
+  }
+
+  const context =
+    canvas.getContext(
+      "2d"
+    );
+
+
+  function cleanModelName(name){
+
+    return String(
+      name || ""
+    );
+
+  }
+
+
+  function weeklyRows(){
+
+    const rows =
+      (
+        window.ZORIX_CODE_USAGE
+        ?.models
+        || []
+      )
+      .map(
+        model=>{
+
+          const daily =
+            Number(
+              model.tokens || 0
+            );
+
+          const weekly =
+            Number(
+              model.weeklyTokens ??
+              daily * 7
+            );
+
+          return {
+            name:
+              cleanModelName(
+                model.name
+              ),
+
+            provider:
+              model.provider ||
+              "",
+
+            value:
+              weekly,
+
+            explicit:
+              model.weeklyTokens != null
+          };
+
+        }
+      )
+      .filter(
+        row=>
+          Number.isFinite(
+            row.value
+          )
+          &&
+          row.value > 0
+      )
+      .sort(
+        (a,b)=>
+          b.value-a.value
+      );
+
+
+    const count =
+      Math.max(
+        2,
+        Number(
+          document
+          .getElementById(
+            "modelCountSelect"
+          )
+          ?.value
+          || 8
+        )
+      );
+
+
+    return rows.slice(
+      0,
+      count
+    );
+
+  }
+
+
+  function compact(value){
+
+    value =
+      Number(value || 0);
+
+
+    const scales=[
+      [1e15,"P"],
+      [1e12,"T"],
+      [1e9,"B"],
+      [1e6,"M"],
+      [1e3,"K"]
+    ];
+
+
+    for(
+      const [size,label]
+      of scales
+    ){
+
+      if(value>=size){
+
+        return (
+          (value/size)
+          .toFixed(
+            value/size >= 10
+              ? 1
+              : 2
+          )
+          .replace(
+            /\.0+$|(\.\d*[1-9])0+$/,
+            "$1"
+          )
+          +
+          label
+        );
+
+      }
+
+    }
+
+
+    return String(
+      Math.round(value)
+    );
+
+  }
+
+
+  function drawWeeklyTrend(){
+
+    const rows =
+      weeklyRows();
+
+
+    const ctx =
+      context;
+
+
+    const W =
+      canvas.width;
+
+    const H =
+      canvas.height;
+
+
+    ctx.clearRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+
+    ctx.fillStyle =
+      "#fbfaf7";
+
+    ctx.fillRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+
+    /* ------------------------------------------
+       Header
+       ------------------------------------------ */
+
+    ctx.fillStyle =
+      "#777770";
+
+    ctx.font =
+      "600 22px Arial";
+
+    ctx.fillText(
+      "ZORIX METRON · WEEKLY TOKEN VOLUME",
+      70,
+      68
+    );
+
+
+    ctx.fillStyle =
+      "#111";
+
+    ctx.font =
+      "600 52px Arial";
+
+    ctx.fillText(
+      "Weekly model token volume",
+      70,
+      132
+    );
+
+
+    ctx.fillStyle =
+      "#777770";
+
+    ctx.font =
+      "25px Arial";
+
+    ctx.fillText(
+      "Top models recorded in Zorix Code / Metron",
+      70,
+      177
+    );
+
+
+    if(!rows.length){
+
+      ctx.fillStyle =
+        "#777";
+
+      ctx.font =
+        "30px Arial";
+
+      ctx.fillText(
+        "No usage data available.",
+        70,
+        320
+      );
+
+      return;
+    }
+
+
+    /* ------------------------------------------
+       Plot
+       ------------------------------------------ */
+
+    const left=130;
+    const right=1470;
+    const top=265;
+    const bottom=750;
+
+    const minPositive =
+      Math.max(
+        1,
+        Math.min(
+          ...rows.map(
+            row=>row.value
+          )
+        )
+      );
+
+    const maxValue =
+      Math.max(
+        ...rows.map(
+          row=>row.value
+        )
+      );
+
+
+    const logMode =
+      trendScale.value ===
+      "log";
+
+
+    let yMin;
+    let yMax;
+
+
+    if(logMode){
+
+      yMin =
+        Math.floor(
+          Math.log10(
+            minPositive
+          )
+        );
+
+      yMax =
+        Math.ceil(
+          Math.log10(
+            maxValue
+          )
+        );
+
+
+      if(yMax===yMin){
+        yMax++;
+      }
+
+    }else{
+
+      yMin=0;
+      yMax=maxValue*1.08;
+
+    }
+
+
+    function yFor(value){
+
+      if(logMode){
+
+        const n =
+          Math.log10(
+            Math.max(
+              1,
+              value
+            )
+          );
+
+
+        return (
+          bottom -
+          (
+            (n-yMin)/
+            (yMax-yMin)
+          )*
+          (
+            bottom-top
+          )
+        );
+
+      }
+
+
+      return (
+        bottom -
+        (
+          value/yMax
+        )*
+        (
+          bottom-top
+        )
+      );
+
+    }
+
+
+    /* horizontal grid */
+
+    ctx.strokeStyle =
+      "#deded8";
+
+    ctx.lineWidth=1;
+
+    ctx.fillStyle =
+      "#777770";
+
+    ctx.font =
+      "20px Arial";
+
+
+    if(logMode){
+
+      for(
+        let exp=yMin;
+        exp<=yMax;
+        exp++
+      ){
+
+        const value =
+          10**exp;
+
+        const y =
+          yFor(value);
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+          left,
+          y
+        );
+
+        ctx.lineTo(
+          right,
+          y
+        );
+
+        ctx.stroke();
+
+
+        ctx.fillText(
+          compact(value),
+          55,
+          y+7
+        );
+
+      }
+
+    }else{
+
+      for(
+        let i=0;
+        i<=5;
+        i++
+      ){
+
+        const value =
+          yMax*i/5;
+
+        const y =
+          yFor(value);
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+          left,
+          y
+        );
+
+        ctx.lineTo(
+          right,
+          y
+        );
+
+        ctx.stroke();
+
+
+        ctx.fillText(
+          compact(value),
+          55,
+          y+7
+        );
+
+      }
+
+    }
+
+
+    /* ------------------------------------------
+       One point per current model.
+       Arrange along X to create the requested
+       ranking curve, not fake historical time.
+       ------------------------------------------ */
+
+    const ascending =
+      [...rows]
+      .sort(
+        (a,b)=>
+          a.value-b.value
+      );
+
+
+    const points =
+      ascending.map(
+        (row,index)=>{
+
+          const x =
+            ascending.length===1
+              ? (
+                  left+right
+                )/2
+              : (
+                  left+
+                  index/
+                  (
+                    ascending.length-1
+                  )*
+                  (
+                    right-left
+                  )
+                );
+
+
+          return {
+            ...row,
+            x,
+            y:yFor(row.value)
+          };
+
+        }
+      );
+
+
+    ctx.strokeStyle =
+      "#171717";
+
+    ctx.lineWidth=5;
+
+    ctx.lineJoin=
+      "round";
+
+    ctx.lineCap=
+      "round";
+
+
+    ctx.beginPath();
+
+
+    points.forEach(
+      (point,index)=>{
+
+        if(index===0){
+
+          ctx.moveTo(
+            point.x,
+            point.y
+          );
+
+        }else{
+
+          ctx.lineTo(
+            point.x,
+            point.y
+          );
+
+        }
+
+      }
+    );
+
+
+    ctx.stroke();
+
+
+    /* ------------------------------------------
+       Markers
+       ------------------------------------------ */
+
+    points.forEach(
+      (point,index)=>{
+
+        const latest =
+          index===
+          points.length-1;
+
+
+        ctx.beginPath();
+
+        ctx.fillStyle =
+          latest
+            ? "#e87520"
+            : "#fff";
+
+        ctx.strokeStyle =
+          latest
+            ? "#e87520"
+            : "#171717";
+
+        ctx.lineWidth=4;
+
+        ctx.arc(
+          point.x,
+          point.y,
+          latest ? 10 : 7,
+          0,
+          Math.PI*2
+        );
+
+        ctx.fill();
+        ctx.stroke();
+
+
+        ctx.fillStyle =
+          "#111";
+
+        ctx.font =
+          latest
+            ? "600 24px Arial"
+            : "21px Arial";
+
+
+        const label =
+          point.name +
+          " · " +
+          compact(
+            point.value
+          )
+          +
+          "/wk";
+
+
+        let lx =
+          point.x+14;
+
+        let ly =
+          point.y-13;
+
+
+        if(
+          lx+420>
+          right
+        ){
+          lx=
+            point.x-410;
+        }
+
+
+        ctx.fillText(
+          label,
+          lx,
+          ly
+        );
+
+      }
+    );
+
+
+    /* axis footer */
+
+    ctx.fillStyle =
+      "#777770";
+
+    ctx.font =
+      "18px Arial";
+
+
+    ctx.fillText(
+      logMode
+        ? "TOKENS PER WEEK · LOG SCALE"
+        : "TOKENS PER WEEK · LINEAR SCALE",
+      left,
+      230
+    );
+
+
+    ctx.fillText(
+      "Ranking curve · current recorded values",
+      left,
+      815
+    );
+
+
+    ctx.fillText(
+      "Weekly values use explicit weeklyTokens when available; otherwise daily rate × 7.",
+      left,
+      850
+    );
+
+
+    const meta =
+      document.getElementById(
+        "previewMeta"
+      );
+
+
+    if(meta){
+
+      meta.textContent =
+        "Weekly token curve · "+
+        (
+          logMode
+            ? "log scale"
+            : "linear scale"
+        );
+
+    }
+
+  }
+
+
+  function updateMode(){
+
+    const trend =
+      report.value==="trend";
+
+
+    trendControls.style.display =
+      trend
+        ? ""
+        : "none";
+
+
+    controls?.classList.toggle(
+      "trend-active",
+      trend
+    );
+
+
+    if(trend){
+
+      drawWeeklyTrend();
+
+    }
+
+  }
+
+
+  report.addEventListener(
+    "change",
+    ()=>{
+      setTimeout(
+        updateMode,
+        0
+      );
+    }
+  );
+
+
+  trendScale.addEventListener(
+    "change",
+    drawWeeklyTrend
+  );
+
+
+  document
+    .getElementById(
+      "modelCountSelect"
+    )
+    ?.addEventListener(
+      "change",
+      ()=>{
+
+        if(
+          report.value===
+          "trend"
+        ){
+          drawWeeklyTrend();
+        }
+
+      }
+    );
+
+
+  updateMode();
+
+})();
+
+</script>
 
 </body>
 </html>
