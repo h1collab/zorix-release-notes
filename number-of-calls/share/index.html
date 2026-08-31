@@ -6,7 +6,8 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788159899">
+<meta name="zorix-build" content="1788160248">
+
 
 
 
@@ -468,7 +469,7 @@ canvas{
     >
 
       <img
-        src="../assets/logos/zorix.svg?v=1788159899"
+        src="../assets/logos/zorix.svg?v=1788160248"
         alt=""
       >
 
@@ -680,6 +681,20 @@ canvas{
 
 
 
+<div
+  id="shareDataStatus"
+  style="
+    margin-top:18px;
+    padding:11px 13px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--muted);
+    font-size:11px;
+    display:none;
+  "
+></div>
+
+
 <section class="preview-section">
 
   <div class="preview-head">
@@ -737,13 +752,13 @@ canvas{
 
 
 
-<script src="../models.js?v=1788159899"></script>
-<script src="../voting/votes.js?v=1788159899"></script>
-<script src="../usage.js?v=1788159899"></script>
-<script src="../benchmarks.js?v=1788159899"></script>
+<script src="../models.js?v=1788160248"></script>
+<script src="../voting/votes.js?v=1788160248"></script>
+<script src="../usage.js?v=1788160248"></script>
+<script src="../benchmarks.js?v=1788160248"></script>
 
-<script src="../image-ai.js?v=1788159899"></script>
-<script src="../intelligence-cost.js?v=1788159899"></script>
+<script src="../image-ai.js?v=1788160248"></script>
+<script src="../intelligence-cost.js?v=1788160248"></script>
 
 
 
@@ -4662,6 +4677,422 @@ render();
 
 })();
 
+</script>
+
+
+<script>
+/* SHARE_DATA_RECOVERY_V2 */
+
+(function(){
+
+  function boot(){
+
+    var usage =
+      window.ZORIX_CODE_USAGE || {
+        models:[]
+      };
+
+
+    var details =
+      window.ZORIX_MODEL_DETAILS || [];
+
+
+    var status =
+      document.getElementById(
+        "shareDataStatus"
+      );
+
+
+    /*
+     * Build metadata lookup by both ID and name.
+     */
+    var byId =
+      new Map();
+
+
+    var byName =
+      new Map();
+
+
+    details.forEach(
+      function(model){
+
+        if(model.id){
+          byId.set(
+            model.id,
+            model
+          );
+        }
+
+        if(model.name){
+          byName.set(
+            model.name,
+            model
+          );
+        }
+
+      }
+    );
+
+
+    /*
+     * Usage models are the authoritative source
+     * for the actual current traffic list.
+     */
+    var usageModels =
+      Array.isArray(
+        usage.models
+      )
+        ? usage.models
+        : [];
+
+
+    /*
+     * If model-details failed or is incomplete,
+     * construct compatible model metadata directly
+     * from usage.js.
+     */
+    if(
+      usageModels.length
+      &&
+      (
+        !Array.isArray(
+          window.ZORIX_MODEL_DETAILS
+        )
+        ||
+        window.ZORIX_MODEL_DETAILS.length===0
+      )
+    ){
+
+      window.ZORIX_MODEL_DETAILS =
+        usageModels.map(
+          function(row,index){
+
+            return {
+              id:
+                row.id ||
+                (
+                  String(
+                    row.name ||
+                    "model-"+index
+                  )
+                  .toLowerCase()
+                  .replace(
+                    /[^a-z0-9]+/g,
+                    "-"
+                  )
+                  .replace(
+                    /^-|-$/g,
+                    ""
+                  )
+                ),
+
+              name:
+                row.name ||
+                "Unknown model",
+
+              provider:
+                row.provider ||
+                "Unknown",
+
+              family:
+                row.family ||
+                "",
+
+              status:
+                row.status ||
+                "Available",
+
+              dailyTokens:
+                Number(
+                  row.tokens ||
+                  row.dailyTokens ||
+                  0
+                ),
+
+              weeklyTokens:
+                row.weeklyTokens != null
+                  ? Number(
+                      row.weeklyTokens
+                    )
+                  : null
+            };
+
+          }
+        );
+
+    }
+
+
+    /*
+     * Back-fill weekly/daily usage into model details.
+     */
+    (
+      window.ZORIX_MODEL_DETAILS || []
+    )
+    .forEach(
+      function(model){
+
+        var source =
+          usageModels.find(
+            function(row){
+
+              return (
+                (
+                  row.id &&
+                  model.id &&
+                  row.id===model.id
+                )
+                ||
+                (
+                  row.name &&
+                  model.name &&
+                  row.name===model.name
+                )
+              );
+
+            }
+          );
+
+
+        if(!source){
+          return;
+        }
+
+
+        model.dailyTokens =
+          Number(
+            source.tokens ??
+            source.dailyTokens ??
+            model.dailyTokens ??
+            0
+          );
+
+
+        if(
+          source.weeklyTokens != null
+        ){
+
+          model.weeklyTokens =
+            Number(
+              source.weeklyTokens
+            );
+
+        }
+
+      }
+    );
+
+
+    /*
+     * Expose a single reliable catalog for
+     * Share renderers and report generators.
+     */
+    window.ZORIX_SHARE_MODELS =
+      usageModels.length
+        ? usageModels.map(
+            function(row,index){
+
+              var detail =
+                (
+                  row.id
+                    ? byId.get(
+                        row.id
+                      )
+                    : null
+                )
+                ||
+                byName.get(
+                  row.name
+                )
+                ||
+                {};
+
+
+              return {
+                ...detail,
+                ...row,
+
+                id:
+                  row.id ||
+                  detail.id ||
+                  (
+                    String(
+                      row.name ||
+                      "model-"+index
+                    )
+                    .toLowerCase()
+                    .replace(
+                      /[^a-z0-9]+/g,
+                      "-"
+                    )
+                    .replace(
+                      /^-|-$/g,
+                      ""
+                    )
+                  ),
+
+                dailyTokens:
+                  Number(
+                    row.tokens ??
+                    row.dailyTokens ??
+                    detail.dailyTokens ??
+                    0
+                  ),
+
+                weeklyTokens:
+                  row.weeklyTokens != null
+                    ? Number(
+                        row.weeklyTokens
+                      )
+                    : (
+                        detail.weeklyTokens != null
+                          ? Number(
+                              detail.weeklyTokens
+                            )
+                          : null
+                      )
+              };
+
+            }
+          )
+        : (
+            window.ZORIX_MODEL_DETAILS ||
+            []
+          );
+
+
+    if(status){
+
+      if(
+        window.ZORIX_SHARE_MODELS.length
+      ){
+
+        status.style.display =
+          "block";
+
+        status.textContent =
+          window.ZORIX_SHARE_MODELS.length +
+          " models loaded · usage and model metadata ready.";
+
+      }else{
+
+        status.style.display =
+          "block";
+
+        status.textContent =
+          "No model records loaded. Check usage.js and models.js.";
+
+      }
+
+    }
+
+
+    /*
+     * If the original page left metric selector empty,
+     * restore its benchmark options.
+     */
+    var metricSelect =
+      document.getElementById(
+        "metricSelect"
+      );
+
+
+    var benchmark =
+      window.ZORIX_BENCHMARKS || {
+        metrics:[],
+        scores:{}
+      };
+
+
+    if(
+      metricSelect &&
+      metricSelect.options.length===0
+      &&
+      Array.isArray(
+        benchmark.metrics
+      )
+    ){
+
+      benchmark.metrics.forEach(
+        function(metric){
+
+          var option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            metric.id;
+
+          option.textContent =
+            metric.name ||
+            metric.id;
+
+          metricSelect.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+     * Force the existing page to re-render through
+     * its normal controls without knowing the exact
+     * private renderer function name.
+     */
+    var report =
+      document.getElementById(
+        "reportType"
+      );
+
+
+    if(report){
+
+      report.dispatchEvent(
+        new Event(
+          "change",
+          {
+            bubbles:true
+          }
+        )
+      );
+
+    }
+
+  }
+
+
+  if(
+    document.readyState===
+    "loading"
+  ){
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function(){
+
+        setTimeout(
+          boot,
+          30
+        );
+
+      }
+    );
+
+  }else{
+
+    setTimeout(
+      boot,
+      30
+    );
+
+  }
+
+})();
 </script>
 
 </body>
