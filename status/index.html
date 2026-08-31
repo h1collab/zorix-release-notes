@@ -6,7 +6,8 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788158966">
+<meta name="zorix-build" content="1788158983">
+
 
 
 
@@ -482,7 +483,7 @@ footer{
     >
 
       <img
-        src="/number-of-calls/assets/logos/zorix.svg?v=1788158966"
+        src="/number-of-calls/assets/logos/zorix.svg?v=1788158983"
         alt=""
       >
 
@@ -624,15 +625,14 @@ footer{
 </main>
 
 
-<script src="./status.js?v=1788158966"></script>
+<script src="./status.js?v=1788158983"></script>
 
 <script>
 
 const DATA =
   window.ZORIX_STATUS || {
     overall:"operational",
-    message:
-      "All Zorix systems are operating normally.",
+    message:"",
     components:[],
     incidents:[]
   };
@@ -643,7 +643,8 @@ const LABELS={
   degraded:"Degraded performance",
   partial_outage:"Partial outage",
   outage:"Major outage",
-  maintenance:"Maintenance"
+  maintenance:"Maintenance",
+  unknown:"Unknown"
 };
 
 
@@ -651,7 +652,6 @@ function label(value){
 
   return (
     LABELS[value] ||
-    value ||
     "Unknown"
   );
 
@@ -671,15 +671,274 @@ function escapeHTML(value){
 }
 
 
-const overall=
+/*
+ * Derive overall status from components.
+ *
+ * Priority:
+ * outage >
+ * partial_outage >
+ * degraded >
+ * maintenance >
+ * operational
+ */
+function deriveOverall(components){
+
+  const priority=[
+    "outage",
+    "partial_outage",
+    "degraded",
+    "maintenance"
+  ];
+
+
+  for(const state of priority){
+
+    if(
+      components.some(
+        component=>
+          component.status===state
+      )
+    ){
+      return state;
+    }
+
+  }
+
+
+  return "operational";
+
+}
+
+
+/*
+ * Human-readable list:
+ * A
+ * A and B
+ * A, B and C
+ */
+function humanList(values){
+
+  const list=[
+    ...values
+  ];
+
+
+  if(list.length===0){
+    return "";
+  }
+
+
+  if(list.length===1){
+    return list[0];
+  }
+
+
+  if(list.length===2){
+    return (
+      list[0] +
+      " and " +
+      list[1]
+    );
+  }
+
+
+  return (
+    list
+      .slice(0,-1)
+      .join(", ")
+    +
+    " and "
+    +
+    list[
+      list.length-1
+    ]
+  );
+
+}
+
+
+function affectedByState(
+  components,
+  state
+){
+
+  return components
+    .filter(
+      component=>
+        component.status===state
+    )
+    .map(
+      component=>
+        component.name
+    );
+
+}
+
+
+function deriveHeadline(
+  overall
+){
+
+  switch(overall){
+
+    case "outage":
+      return (
+        "We’re currently experiencing an outage"
+      );
+
+    case "partial_outage":
+      return (
+        "We’re experiencing a partial outage"
+      );
+
+    case "degraded":
+      return (
+        "We’re experiencing degraded performance"
+      );
+
+    case "maintenance":
+      return (
+        "Scheduled maintenance in progress"
+      );
+
+    default:
+      return (
+        "We’re fully operational"
+      );
+
+  }
+
+}
+
+
+function deriveMessage(
+  components,
+  overall
+){
+
+  if(overall==="operational"){
+
+    return (
+      "All Zorix systems are operating normally."
+    );
+
+  }
+
+
+  const affected=
+    affectedByState(
+      components,
+      overall
+    );
+
+
+  const names=
+    humanList(
+      affected
+    );
+
+
+  if(overall==="outage"){
+
+    return names
+      ? (
+          names +
+          (
+            affected.length===1
+              ? " is currently unavailable."
+              : " are currently unavailable."
+          )
+        )
+      : "Some Zorix services are currently unavailable.";
+
+  }
+
+
+  if(
+    overall===
+    "partial_outage"
+  ){
+
+    return names
+      ? (
+          names +
+          (
+            affected.length===1
+              ? " is experiencing a partial outage."
+              : " are experiencing a partial outage."
+          )
+        )
+      : "Some Zorix services are experiencing a partial outage.";
+
+  }
+
+
+  if(overall==="degraded"){
+
+    return names
+      ? (
+          names +
+          (
+            affected.length===1
+              ? " is experiencing degraded performance."
+              : " are experiencing degraded performance."
+          )
+        )
+      : "Some Zorix services are experiencing degraded performance.";
+
+  }
+
+
+  if(
+    overall===
+    "maintenance"
+  ){
+
+    return names
+      ? (
+          "Scheduled maintenance is in progress for " +
+          names +
+          "."
+        )
+      : "Scheduled maintenance is currently in progress.";
+
+  }
+
+
+  return (
+    DATA.message ||
+    "Zorix system status has changed."
+  );
+
+}
+
+
+const components=
+  Array.isArray(
+    DATA.components
+  )
+    ? DATA.components
+    : [];
+
+
+/*
+ * Do not trust manually stored overall state for rendering.
+ * Calculate it from the actual components.
+ */
+const derivedOverall=
+  deriveOverall(
+    components
+  );
+
+
+const overall =
   document.getElementById(
     "overall"
   );
 
 
-overall.dataset.status=
-  DATA.overall ||
-  "operational";
+overall.dataset.status =
+  derivedOverall;
 
 
 document
@@ -688,7 +947,7 @@ document
   )
   .textContent=
     label(
-      DATA.overall
+      derivedOverall
     );
 
 
@@ -697,9 +956,9 @@ document
     "headline"
   )
   .textContent=
-    DATA.overall==="operational"
-      ? "We’re fully operational"
-      : "We’re currently experiencing issues";
+    deriveHeadline(
+      derivedOverall
+    );
 
 
 document
@@ -707,7 +966,10 @@ document
     "message"
   )
   .textContent=
-    DATA.message || "";
+    deriveMessage(
+      components,
+      derivedOverall
+    );
 
 
 document
@@ -716,10 +978,12 @@ document
   )
   .textContent=
     DATA.updatedAt
-      ? "Updated " +
-        new Date(
-          DATA.updatedAt
-        ).toLocaleString()
+      ? (
+          "Updated " +
+          new Date(
+            DATA.updatedAt
+          ).toLocaleString()
+        )
       : "";
 
 
@@ -728,10 +992,7 @@ document
     "components"
   )
   .innerHTML=
-    (
-      DATA.components ||
-      []
-    )
+    components
     .map(
       item=>`
 
@@ -739,7 +1000,8 @@ document
           class="component"
           data-status="${
             escapeHTML(
-              item.status
+              item.status ||
+              "unknown"
             )
           }"
         >
