@@ -219,3 +219,68 @@ Object.assign(window.ZORIX_DETAILS, {
     visual: "internal"
   }
 });
+
+
+/* =========================================================
+   NEXHATE_1_PREPARING_RELEASE_DETAIL_V1
+   ========================================================= */
+
+Object.assign(
+  window.ZORIX_DETAILS,
+  {
+
+    "Zorix prepares NexHate 1 for release": {
+
+      eyebrow:
+        "First-generation translation AI",
+
+      summary:
+        "Zorix is preparing NexHate 1 as the first named "
+        + "generation of the NexHate translation family. "
+        + "The current xhigh preview is focused on preserving "
+        + "meaning, tone, and context and remains a preview "
+        + "configuration rather than the final release specification.",
+
+      capabilities: [
+        "Meaning-aware translation",
+        "Tone preservation",
+        "Context-aware translation",
+        "Dedicated translation-model family",
+        "Preview-to-release transition"
+      ],
+
+      metrics: [
+        [
+          "Preview score",
+          "1007"
+        ],
+        [
+          "Score base",
+          "1000"
+        ],
+        [
+          "Requests / 5h",
+          "7.1B"
+        ],
+        [
+          "Current reference",
+          "Google TLLM · 1010"
+        ]
+      ],
+
+      note:
+        "Preview measurements describe the current Zorix Translate "
+        + "snapshot and are not final release specifications. "
+        + "Request volume and translation score are separate metrics.",
+
+      article:
+        "/news/zorix-nexhate-1/",
+
+      visual:
+        "translation"
+
+    }
+
+  }
+);
+

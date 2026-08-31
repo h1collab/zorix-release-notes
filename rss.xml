@@ -4,6 +4,15 @@
   <title>Zorix Updates</title>
   <link>https://updates.zorix.it/</link>
   <description>Zorix release notes and updates</description>
+
+  
+    <item>
+      <title>Zorix prepares NexHate 1 for release</title>
+      <description>Zorix is preparing NexHate 1, the first named generation of its translation AI model family, for release. The current xhigh preview focuses on preserving meaning, tone, and context.</description>
+      <pubDate>2026-08-31</pubDate>
+      <link>https://updates.zorix.it/news/zorix-nexhate-1/</link>
+      <guid>https://updates.zorix.it/news/zorix-nexhate-1/</guid>
+    </item>
   
     <item>
       <title>Zorix NexHate enters Early Access</title>

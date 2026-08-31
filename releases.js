@@ -1,5 +1,19 @@
 window.ZORIX_RELEASES = [
   {
+    "title": "Zorix prepares NexHate 1 for release",
+    "date": "2026-08-31",
+    "content": "Zorix is preparing NexHate 1, the first named generation of its translation AI model family, for release. The current xhigh preview focuses on preserving meaning, tone, and context rather than translating words alone.",
+    "category": "Models",
+    "status": "Preparing Release",
+    "bullets": [
+      "Current preview: Zorix NexHate 1 Preview (xhigh)",
+      "Current translation score: 1007 on the 1000-base scale",
+      "Current request observation: 7.1B requests per five-hour window",
+      "Final release date, specifications, pricing, and complete access details are not announced in this note"
+    ],
+    "note": "<a class=\"inline-link\" href=\"/news/zorix-nexhate-1/\">Read the full announcement →</a>"
+  },
+  {
     "title": "Zorix NexHate enters Early Access",
     "date": "2026-08-30",
     "content": "Zorix NexHate is now available in Early Access, bringing advanced translation focused on meaning, tone, and context.",

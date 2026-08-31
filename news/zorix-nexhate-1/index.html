@@ -1,0 +1,1669 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  name="description"
+  content="Zorix is preparing NexHate 1, its first-generation translation AI model, for release."
+>
+
+<meta
+  name="theme-color"
+  content="#ffffff"
+>
+
+<title>
+  Preparing Zorix NexHate 1 for release | Zorix
+</title>
+
+<link
+  rel="canonical"
+  href="https://updates.zorix.it/news/zorix-nexhate-1/"
+>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#0d0d0d;
+  --muted:#6b6b67;
+  --line:#deded9;
+  --soft:#f5f5f2;
+  --soft2:#ecece7;
+  --purple:#7446c8;
+  --max:1440px;
+  --article:820px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  display:block;
+  max-width:100%;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  border-bottom:1px solid rgba(222,222,217,.7);
+
+  background:rgba(255,255,255,.94);
+
+  backdrop-filter:blur(16px);
+}
+
+.nav{
+  max-width:var(--max);
+  min-height:66px;
+
+  margin:auto;
+
+  padding:
+    0
+    clamp(20px,4vw,58px);
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items:center;
+
+  gap:30px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  width:max-content;
+
+  font-size:20px;
+  font-weight:650;
+
+  letter-spacing:-.045em;
+}
+
+.brand img{
+  width:29px;
+  height:29px;
+}
+
+.nav-center{
+  display:flex;
+
+  gap:27px;
+
+  font-size:13px;
+}
+
+.nav-right{
+  justify-self:end;
+
+  display:flex;
+
+  gap:9px;
+}
+
+.nav a:hover{
+  opacity:.58;
+}
+
+.nav-pill{
+  padding:8px 13px;
+
+  border:1px solid #161616;
+  border-radius:999px;
+
+  font-size:12px;
+}
+
+.nav-pill.dark{
+  background:#111;
+  color:#fff;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    clamp(76px,9vw,138px)
+    clamp(20px,4vw,58px)
+    58px;
+}
+
+.hero-meta{
+  margin-bottom:32px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:9px;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+.hero-meta a{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+h1{
+  max-width:1160px;
+
+  margin:0;
+
+  font-size:
+    clamp(
+      56px,
+      8.3vw,
+      126px
+    );
+
+  line-height:.91;
+
+  font-weight:500;
+
+  letter-spacing:-.067em;
+}
+
+.deck{
+  max-width:840px;
+
+  margin:
+    34px
+    0
+    0;
+
+  font-size:
+    clamp(
+      21px,
+      2.1vw,
+      31px
+    );
+
+  line-height:1.25;
+
+  letter-spacing:-.035em;
+}
+
+.hero-actions{
+  margin-top:34px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:9px;
+}
+
+.action{
+  padding:11px 16px;
+
+  border:1px solid #111;
+  border-radius:999px;
+
+  font-size:13px;
+}
+
+.action.primary{
+  background:#111;
+  color:#fff;
+}
+
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.visual-wrap{
+  max-width:var(--max);
+
+  margin:
+    0
+    auto;
+
+  padding:
+    0
+    clamp(20px,4vw,58px)
+    90px;
+}
+
+.visual{
+  overflow:hidden;
+
+  border:1px solid var(--line);
+  border-radius:22px;
+
+  background:#f6f5f1;
+}
+
+.visual svg{
+  display:block;
+
+  width:100%;
+  height:auto;
+}
+
+
+/* =========================================================
+   ARTICLE
+   ========================================================= */
+
+.article{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    0
+    clamp(20px,4vw,58px)
+    125px;
+}
+
+.lead{
+  max-width:var(--article);
+
+  margin:
+    0
+    auto
+    100px;
+
+  font-size:
+    clamp(
+      21px,
+      2vw,
+      27px
+    );
+
+  line-height:1.52;
+
+  letter-spacing:-.027em;
+}
+
+.section{
+  display:grid;
+
+  grid-template-columns:
+    minmax(170px,260px)
+    minmax(0,var(--article));
+
+  justify-content:center;
+
+  gap:
+    clamp(
+      35px,
+      7vw,
+      105px
+    );
+
+  padding:
+    73px
+    0;
+
+  border-top:1px solid var(--line);
+}
+
+.section-label{
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.5;
+
+  text-transform:uppercase;
+
+  letter-spacing:.07em;
+}
+
+.section-body h2{
+  margin:
+    0
+    0
+    29px;
+
+  font-size:
+    clamp(
+      35px,
+      4vw,
+      59px
+    );
+
+  line-height:1;
+
+  font-weight:500;
+
+  letter-spacing:-.052em;
+}
+
+.section-body h3{
+  margin:
+    40px
+    0
+    13px;
+
+  font-size:22px;
+
+  font-weight:550;
+
+  letter-spacing:-.032em;
+}
+
+.section-body p{
+  margin:
+    0
+    0
+    22px;
+
+  font-size:17px;
+  line-height:1.67;
+}
+
+.section-body ul{
+  padding-left:21px;
+
+  font-size:17px;
+  line-height:1.62;
+}
+
+.section-body li{
+  margin:9px 0;
+}
+
+
+/* =========================================================
+   METRICS
+   ========================================================= */
+
+.metrics{
+  margin:
+    42px
+    0;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+
+.metric{
+  min-height:170px;
+
+  padding:24px;
+
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.metric-label{
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.metric-value{
+  margin-top:34px;
+
+  font-size:
+    clamp(
+      38px,
+      5vw,
+      66px
+    );
+
+  line-height:1;
+
+  letter-spacing:-.055em;
+}
+
+.metric-note{
+  margin-top:9px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+
+/* =========================================================
+   COMPARISON
+   ========================================================= */
+
+.compare{
+  margin-top:42px;
+
+  border-top:1px solid var(--line);
+}
+
+.compare-row{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1.55fr)
+    minmax(100px,.55fr)
+    minmax(130px,.7fr);
+
+  align-items:center;
+
+  gap:18px;
+
+  padding:
+    18px
+    0;
+
+  border-bottom:1px solid var(--line);
+}
+
+.compare-head{
+  color:var(--muted);
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.06em;
+}
+
+.compare-model{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  min-width:0;
+}
+
+.compare-logo{
+  width:35px;
+  height:35px;
+
+  object-fit:contain;
+}
+
+.compare-name{
+  font-size:15px;
+  font-weight:550;
+}
+
+.compare-provider{
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.compare-number{
+  font-size:18px;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+}
+
+.data-note{
+  margin-top:16px !important;
+
+  color:var(--muted);
+
+  font-size:12px !important;
+  line-height:1.55 !important;
+}
+
+
+/* =========================================================
+   RELEASE BOX
+   ========================================================= */
+
+.release-box{
+  margin-top:37px;
+
+  padding:
+    clamp(25px,4vw,42px);
+
+  border-radius:18px;
+
+  background:#111;
+  color:#fff;
+}
+
+.release-box-label{
+  color:#aaa;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.07em;
+}
+
+.release-box h3{
+  max-width:650px;
+
+  margin:
+    22px
+    0
+    17px;
+
+  font-size:
+    clamp(
+      31px,
+      4vw,
+      52px
+    );
+
+  line-height:1;
+
+  font-weight:500;
+
+  letter-spacing:-.05em;
+}
+
+.release-box p{
+  max-width:670px;
+
+  margin:0;
+
+  color:#cfcfca;
+
+  font-size:15px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.article-footer{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    42px
+    clamp(20px,4vw,58px)
+    56px;
+
+  border-top:1px solid var(--line);
+}
+
+.article-footer-top{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-start;
+
+  gap:30px;
+}
+
+.footer-brand{
+  font-size:19px;
+  font-weight:650;
+
+  letter-spacing:-.04em;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+
+  justify-content:flex-end;
+
+  gap:18px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.footer-note{
+  margin-top:55px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:850px){
+
+  .nav{
+    grid-template-columns:
+      1fr
+      auto;
+  }
+
+  .nav-center{
+    display:none;
+  }
+
+  .nav-right .secondary{
+    display:none;
+  }
+
+  .section{
+    grid-template-columns:1fr;
+
+    gap:25px;
+  }
+
+  .metrics{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:590px){
+
+  .hero{
+    padding-top:62px;
+  }
+
+  .visual-wrap{
+    padding-bottom:65px;
+  }
+
+  .compare-row{
+    grid-template-columns:
+      minmax(0,1fr)
+      auto;
+
+    gap:12px;
+  }
+
+  .compare-row > :nth-child(3){
+    grid-column:2;
+  }
+
+  .compare-head{
+    display:none;
+  }
+
+  .article-footer-top{
+    flex-direction:column;
+  }
+
+  .footer-links{
+    justify-content:flex-start;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+  <nav
+    class="nav"
+    aria-label="Primary navigation"
+  >
+
+    <a
+      class="brand"
+      href="/"
+    >
+
+      <img
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt=""
+      >
+
+      zorix
+
+    </a>
+
+
+    <div class="nav-center">
+
+      <a href="/">
+        Release notes
+      </a>
+
+      <a href="/translate/">
+        Translate
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+      <a href="/status/">
+        Status
+      </a>
+
+    </div>
+
+
+    <div class="nav-right">
+
+      <a
+        class="nav-pill secondary"
+        href="/translate/benchmark/"
+      >
+        Translation benchmark
+      </a>
+
+      <a
+        class="nav-pill dark"
+        href="/translate/"
+      >
+        Explore Translate
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+<section class="hero">
+
+  <div class="hero-meta">
+
+    <span>
+      August 31, 2026
+    </span>
+
+    <span>
+      ·
+    </span>
+
+    <a href="/?category=Models">
+      Models
+    </a>
+
+    <span>
+      ·
+    </span>
+
+    <span>
+      Preparing release
+    </span>
+
+  </div>
+
+
+  <h1>
+    Preparing
+    Zorix NexHate 1
+    for release
+  </h1>
+
+
+  <p class="deck">
+    Moving our first-generation translation AI model
+    from preview evaluation toward release, with a focus
+    on preserving meaning, tone, and context.
+  </p>
+
+
+  <div class="hero-actions">
+
+    <a
+      class="action primary"
+      href="/translate/"
+    >
+      Explore Zorix Translate
+    </a>
+
+    <a
+      class="action"
+      href="/translate/benchmark/"
+    >
+      View current comparison
+    </a>
+
+  </div>
+
+</section>
+
+
+<section class="visual-wrap">
+
+  <div class="visual">
+
+    <svg
+      viewBox="0 0 1400 720"
+      role="img"
+      aria-label="NexHate 1 translation concept"
+    >
+
+      <rect
+        width="1400"
+        height="720"
+        fill="#f5f4ef"
+      />
+
+
+      <text
+        x="58"
+        y="65"
+        font-family="Arial,sans-serif"
+        font-size="16"
+        fill="#6b6b67"
+      >
+        ZORIX / TRANSLATION
+      </text>
+
+
+      <text
+        x="1340"
+        y="65"
+        text-anchor="end"
+        font-family="Arial,sans-serif"
+        font-size="16"
+        fill="#6b6b67"
+      >
+        NEXHATE 1
+      </text>
+
+
+      <rect
+        x="85"
+        y="180"
+        width="330"
+        height="120"
+        rx="18"
+        fill="#111"
+      />
+
+      <text
+        x="115"
+        y="228"
+        font-family="Arial,sans-serif"
+        font-size="20"
+        fill="#fff"
+      >
+        Meaning
+      </text>
+
+      <text
+        x="115"
+        y="262"
+        font-family="Arial,sans-serif"
+        font-size="14"
+        fill="#aaa"
+      >
+        What the source intends to say
+      </text>
+
+
+      <rect
+        x="85"
+        y="335"
+        width="330"
+        height="120"
+        rx="18"
+        fill="#d9d5cb"
+      />
+
+      <text
+        x="115"
+        y="383"
+        font-family="Arial,sans-serif"
+        font-size="20"
+        fill="#111"
+      >
+        Tone
+      </text>
+
+      <text
+        x="115"
+        y="417"
+        font-family="Arial,sans-serif"
+        font-size="14"
+        fill="#69665f"
+      >
+        How the source communicates it
+      </text>
+
+
+      <rect
+        x="85"
+        y="490"
+        width="330"
+        height="120"
+        rx="18"
+        fill="#c8c4ba"
+      />
+
+      <text
+        x="115"
+        y="538"
+        font-family="Arial,sans-serif"
+        font-size="20"
+        fill="#111"
+      >
+        Context
+      </text>
+
+      <text
+        x="115"
+        y="572"
+        font-family="Arial,sans-serif"
+        font-size="14"
+        fill="#69665f"
+      >
+        What surrounds the sentence
+      </text>
+
+
+      <path
+        d="
+          M415 240
+          C560 240 570 320 650 350
+        "
+        fill="none"
+        stroke="#8c8880"
+        stroke-width="2"
+      />
+
+      <path
+        d="
+          M415 395
+          C550 395 585 370 650 360
+        "
+        fill="none"
+        stroke="#8c8880"
+        stroke-width="2"
+      />
+
+      <path
+        d="
+          M415 550
+          C560 550 570 430 650 375
+        "
+        fill="none"
+        stroke="#8c8880"
+        stroke-width="2"
+      />
+
+
+      <circle
+        cx="760"
+        cy="360"
+        r="115"
+        fill="#7446c8"
+      />
+
+      <text
+        x="760"
+        y="348"
+        text-anchor="middle"
+        font-family="Arial,sans-serif"
+        font-size="31"
+        font-weight="700"
+        fill="#fff"
+      >
+        NexHate 1
+      </text>
+
+      <text
+        x="760"
+        y="384"
+        text-anchor="middle"
+        font-family="Arial,sans-serif"
+        font-size="15"
+        fill="#e5dcf7"
+      >
+        TRANSLATION AI
+      </text>
+
+
+      <path
+        d="
+          M875 360
+          C970 360 1010 280 1075 245
+        "
+        fill="none"
+        stroke="#8c8880"
+        stroke-width="2"
+      />
+
+      <path
+        d="
+          M875 360
+          C970 360 1010 440 1075 475
+        "
+        fill="none"
+        stroke="#8c8880"
+        stroke-width="2"
+      />
+
+
+      <rect
+        x="1075"
+        y="175"
+        width="245"
+        height="130"
+        rx="18"
+        fill="#fff"
+        stroke="#deded9"
+      />
+
+      <text
+        x="1105"
+        y="228"
+        font-family="Arial,sans-serif"
+        font-size="19"
+        fill="#111"
+      >
+        Faithful output
+      </text>
+
+      <text
+        x="1105"
+        y="261"
+        font-family="Arial,sans-serif"
+        font-size="13"
+        fill="#6b6b67"
+      >
+        Preserve intended meaning
+      </text>
+
+
+      <rect
+        x="1075"
+        y="415"
+        width="245"
+        height="130"
+        rx="18"
+        fill="#111"
+      />
+
+      <text
+        x="1105"
+        y="468"
+        font-family="Arial,sans-serif"
+        font-size="19"
+        fill="#fff"
+      >
+        Natural output
+      </text>
+
+      <text
+        x="1105"
+        y="501"
+        font-family="Arial,sans-serif"
+        font-size="13"
+        fill="#aaa"
+      >
+        Preserve tone and context
+      </text>
+
+
+      <text
+        x="58"
+        y="675"
+        font-family="Arial,sans-serif"
+        font-size="13"
+        fill="#77736c"
+      >
+        FIRST-GENERATION NEXHATE TRANSLATION MODEL · RELEASE PREPARATION
+      </text>
+
+    </svg>
+
+  </div>
+
+</section>
+
+
+<article class="article">
+
+
+  <p class="lead">
+    Zorix is preparing NexHate 1, the first named generation
+    of the NexHate translation AI family, for release.
+    The goal is straightforward: translation should preserve
+    what a person means, how they say it, and the context
+    surrounding the text—not only replace words from one
+    language with words from another.
+  </p>
+
+
+  <section class="section">
+
+    <div class="section-label">
+      Why NexHate
+    </div>
+
+
+    <div class="section-body">
+
+      <h2>
+        Translation is more than matching words
+      </h2>
+
+
+      <p>
+        Many translation tasks are easy when a sentence is
+        isolated and literal. They become harder when the
+        important information lives in tone, ambiguity,
+        previous sentences, formatting, or the relationship
+        between multiple parts of a conversation.
+      </p>
+
+
+      <p>
+        NexHate is Zorix's translation-specific model family.
+        NexHate 1 is being developed around the idea that
+        translation quality depends on preserving meaning,
+        tone, and context together.
+      </p>
+
+
+      <p>
+        This is also why Zorix is treating NexHate as a
+        dedicated model family rather than as a translation
+        mode layered on top of an unrelated general-purpose
+        model.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-label">
+      From preview to generation one
+    </div>
+
+
+    <div class="section-body">
+
+      <h2>
+        Moving the xhigh preview toward NexHate 1
+      </h2>
+
+
+      <p>
+        Zorix first announced the NexHate project on
+        August 22. The model entered Early Access on
+        August 30, and the current Zorix Translate snapshot
+        tracks the model as
+        <strong>Zorix NexHate 1 Preview (xhigh)</strong>.
+      </p>
+
+
+      <p>
+        That preview remains a preview measurement—not the
+        final release specification. The next step is to
+        move from the preview identity toward NexHate 1 as
+        the first-generation release of the family.
+      </p>
+
+
+      <div class="release-box">
+
+        <div class="release-box-label">
+          Current state
+        </div>
+
+        <h3>
+          Preview today.
+          First generation next.
+        </h3>
+
+        <p>
+          Zorix is keeping the Preview designation while
+          release qualification continues. Final release
+          timing, final specifications, pricing, and complete
+          access details are not announced in this note.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-label">
+      Current measurements
+    </div>
+
+
+    <div class="section-body">
+
+      <h2>
+        What we are measuring
+      </h2>
+
+
+      <p>
+        The current Zorix Translate snapshot publishes two
+        different signals for NexHate 1 Preview (xhigh):
+        a translation score on a 1000-base scale and request
+        traffic measured over a five-hour window.
+      </p>
+
+
+      <div class="metrics">
+
+        <div class="metric">
+
+          <div class="metric-label">
+            Translation score
+          </div>
+
+          <div class="metric-value">
+            1007
+          </div>
+
+          <div class="metric-note">
+            1000-base scale · +7 from base
+          </div>
+
+        </div>
+
+
+        <div class="metric">
+
+          <div class="metric-label">
+            Requests
+          </div>
+
+          <div class="metric-value">
+            7.1B
+          </div>
+
+          <div class="metric-note">
+            Published five-hour request window
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <h3>
+        Current comparison
+      </h3>
+
+
+      <div class="compare">
+
+        <div class="compare-row compare-head">
+
+          <div>
+            Model
+          </div>
+
+          <div>
+            Score
+          </div>
+
+          <div>
+            Requests / 5h
+          </div>
+
+        </div>
+
+
+        <div class="compare-row">
+
+          <div class="compare-model">
+
+            <img
+              class="compare-logo"
+              src="/number-of-calls/assets/logos/zorix.svg"
+              alt=""
+            >
+
+            <div>
+
+              <div class="compare-name">
+                NexHate 1 Preview (xhigh)
+              </div>
+
+              <div class="compare-provider">
+                Zorix
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="compare-number">
+            1007
+          </div>
+
+          <div class="compare-number">
+            7.1B
+          </div>
+
+        </div>
+
+
+        <div class="compare-row">
+
+          <div class="compare-model">
+
+            <img
+              class="compare-logo"
+              src="/number-of-calls/assets/logos/google.svg"
+              alt=""
+            >
+
+            <div>
+
+              <div class="compare-name">
+                Google Translation LLM
+              </div>
+
+              <div class="compare-provider">
+                Google · TLLM
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="compare-number">
+            1010
+          </div>
+
+          <div class="compare-number">
+            3.5B
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p class="data-note">
+        Snapshot: August 31, 2026. Translation score and
+        request volume are separate measurements. Higher
+        request traffic does not imply higher translation
+        quality. These values describe the current Zorix
+        Translate comparison and are not presented as a
+        universal industry benchmark.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-label">
+      Release preparation
+    </div>
+
+
+    <div class="section-body">
+
+      <h2>
+        Preparing the first release
+      </h2>
+
+
+      <p>
+        NexHate 1 is now being prepared as the first
+        generation of Zorix's translation AI model family.
+        During this stage, the preview label remains useful:
+        it separates measurements collected during preview
+        operation from the eventual release identity.
+      </p>
+
+
+      <p>
+        Zorix is not treating the current preview score,
+        request volume, or xhigh profile name as a promise
+        that every final release configuration will be
+        identical. When the release is ready, the model
+        should be evaluated as the released configuration,
+        not retroactively assumed to be identical to the
+        preview.
+      </p>
+
+
+      <p>
+        The focus of this announcement is therefore the
+        transition itself: NexHate is moving from an
+        experimental and Early Access translation project
+        toward its first named generation.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-label">
+      Access and availability
+    </div>
+
+
+    <div class="section-body">
+
+      <h2>
+        Release details will follow
+      </h2>
+
+
+      <p>
+        This announcement does not set a final launch date
+        or publish final pricing, architecture, parameter
+        count, context length, or complete availability
+        policy for NexHate 1.
+      </p>
+
+
+      <p>
+        The current preview remains represented in Zorix
+        Translate as NexHate 1 Preview (xhigh), where its
+        published score and request measurement can be
+        compared with the currently selected translation
+        reference model.
+      </p>
+
+
+      <div class="hero-actions">
+
+        <a
+          class="action primary"
+          href="/translate/"
+        >
+          Open Zorix Translate
+        </a>
+
+        <a
+          class="action"
+          href="/translate/voting/"
+        >
+          Translation voting
+        </a>
+
+        <a
+          class="action"
+          href="/translate/benchmark/"
+        >
+          Translation benchmark
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-label">
+      Looking ahead
+    </div>
+
+
+    <div class="section-body">
+
+      <h2>
+        A dedicated translation model family
+      </h2>
+
+
+      <p>
+        NexHate 1 represents a new model category inside
+        Zorix: a system whose primary job is translation.
+        The first release is intended to establish the
+        foundation for that family before later generations
+        expand it further.
+      </p>
+
+
+      <p>
+        More information will be published when Zorix is
+        ready to describe the released configuration rather
+        than the preview configuration.
+      </p>
+
+    </div>
+
+  </section>
+
+
+</article>
+
+
+</main>
+
+
+<footer class="article-footer">
+
+  <div class="article-footer-top">
+
+    <a
+      class="footer-brand"
+      href="/"
+    >
+      zorix
+    </a>
+
+
+    <div class="footer-links">
+
+      <a href="/">
+        Release notes
+      </a>
+
+      <a href="/translate/">
+        Translate
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+      <a href="/status/">
+        Status
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-note">
+    Zorix © 2026 · Announcement published August 31, 2026.
+    Preview measurements may change before release.
+  </div>
+
+</footer>
+
+
+</body>
+</html>
