@@ -1,0 +1,1549 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  http-equiv="Cache-Control"
+  content="no-cache, no-store, must-revalidate"
+>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<title>Models | Zorix Metron</title>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#0d0d0d;
+  --muted:#6b6b67;
+  --line:#deded9;
+  --soft:#f6f6f3;
+  --soft2:#fafaf8;
+  --max:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+  color:inherit;
+}
+
+
+/* =========================================================
+   NAV
+   ========================================================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:40;
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(16px);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.nav{
+  max-width:var(--max);
+  height:66px;
+
+  margin:auto;
+  padding:0 24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-size:19px;
+  font-weight:600;
+
+  letter-spacing:-.04em;
+}
+
+.brand img{
+  width:31px;
+  height:31px;
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:22px;
+
+  font-size:13px;
+}
+
+.menu-button{
+  width:42px;
+  height:42px;
+
+  border:0;
+  background:transparent;
+
+  display:grid;
+  place-items:center;
+
+  cursor:pointer;
+}
+
+.menu-lines{
+  width:23px;
+
+  display:grid;
+  gap:5px;
+}
+
+.menu-lines span{
+  height:1.5px;
+
+  display:block;
+
+  border-radius:4px;
+
+  background:#111;
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  background:
+    rgba(0,0,0,.55);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:
+    opacity .17s ease,
+    visibility .17s ease;
+}
+
+.menu-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.menu-sheet{
+  position:absolute;
+
+  right:18px;
+  top:76px;
+
+  width:min(430px,calc(100vw - 36px));
+
+  max-height:
+    calc(100vh - 95px);
+
+  overflow:auto;
+
+  padding:10px;
+
+  border:1px solid #d8d8d4;
+  border-radius:18px;
+
+  background:#fff;
+
+  box-shadow:
+    0 22px 70px
+    rgba(0,0,0,.18);
+
+  transform:
+    translateY(-8px);
+
+  transition:
+    transform .17s ease;
+}
+
+.menu-overlay.open
+.menu-sheet{
+  transform:
+    translateY(0);
+}
+
+.menu-top{
+  padding:
+    13px
+    14px
+    16px;
+
+  border-bottom:
+    1px solid #ecece9;
+}
+
+.menu-title{
+  font-size:17px;
+
+  letter-spacing:-.025em;
+}
+
+.menu-intro{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+.menu-item{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:14px;
+  align-items:center;
+
+  padding:14px;
+
+  border-radius:12px;
+}
+
+.menu-item:hover{
+  background:#f6f6f3;
+}
+
+.menu-item-title{
+  font-size:14px;
+}
+
+.menu-item-desc{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.4;
+}
+
+.menu-arrow{
+  color:#888;
+  font-size:16px;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    70px
+    24px
+    120px;
+}
+
+.hero{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(260px,410px);
+
+  gap:55px;
+  align-items:end;
+
+  padding-bottom:50px;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.eyebrow{
+  margin-bottom:16px;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+h1{
+  margin:0;
+
+  font-size:
+    clamp(61px,9vw,116px);
+
+  line-height:.88;
+
+  font-weight:500;
+
+  letter-spacing:-.068em;
+}
+
+.hero-copy{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.55;
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+
+  padding:
+    28px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.search-wrap{
+  position:relative;
+
+  flex:1;
+
+  max-width:500px;
+}
+
+.search{
+  width:100%;
+  height:48px;
+
+  padding:
+    0
+    16px
+    0
+    43px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+
+  background:#fff;
+
+  outline:none;
+}
+
+.search:focus{
+  border-color:#aaa;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(0,0,0,.035);
+}
+
+.search-icon{
+  position:absolute;
+
+  left:16px;
+  top:50%;
+
+  width:17px;
+  height:17px;
+
+  transform:
+    translateY(-50%);
+
+  color:#777;
+}
+
+.provider-pills{
+  display:flex;
+  gap:7px;
+
+  overflow:auto;
+
+  scrollbar-width:none;
+}
+
+.provider-pill{
+  flex:0 0 auto;
+
+  min-height:44px;
+
+  padding:0 13px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  font-size:12px;
+}
+
+.provider-pill.active{
+  border-color:#111;
+
+  background:#111;
+  color:#fff;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.results-summary{
+  padding:
+    24px
+    0
+    8px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+
+/* =========================================================
+   MODEL CARDS
+   ========================================================= */
+
+.model-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:14px;
+
+  margin-top:17px;
+}
+
+.model-card{
+  min-height:255px;
+
+  padding:22px;
+
+  display:flex;
+  flex-direction:column;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:16px;
+
+  background:#fff;
+
+  transition:
+    transform .13s ease,
+    background .13s ease,
+    border-color .13s ease;
+}
+
+.model-card:hover{
+  transform:
+    translateY(-2px);
+
+  background:#fbfbf9;
+
+  border-color:#c9c9c4;
+}
+
+.model-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:16px;
+}
+
+.model-identity{
+  min-width:0;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+}
+
+.model-logo{
+  width:42px;
+  height:42px;
+
+  flex:0 0 42px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:11px;
+}
+
+.model-logo img{
+  width:29px;
+  height:29px;
+
+  object-fit:contain;
+}
+
+.model-fallback{
+  color:#555;
+
+  font-size:13px;
+}
+
+.model-provider{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.model-name{
+  margin-top:3px;
+
+  font-size:18px;
+
+  line-height:1.2;
+
+  letter-spacing:-.03em;
+}
+
+.status{
+  padding:
+    6px
+    8px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.model-description{
+  min-height:62px;
+
+  margin-top:23px;
+
+  color:#555;
+
+  font-size:12px;
+  line-height:1.5;
+
+  display:-webkit-box;
+
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+
+  overflow:hidden;
+}
+
+.model-meta{
+  margin-top:auto;
+
+  padding-top:20px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+  border-top:
+    1px solid #ecece9;
+}
+
+.meta-k{
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.meta-v{
+  margin-top:5px;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size:13px;
+}
+
+.empty{
+  grid-column:1/-1;
+
+  padding:
+    60px
+    0;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:14px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:760px){
+
+  .nav{
+    padding:
+      0
+      18px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .menu-sheet{
+    left:14px;
+    right:14px;
+
+    top:auto;
+    bottom:14px;
+
+    width:auto;
+
+    max-height:82vh;
+
+    border-radius:22px;
+  }
+
+  main{
+    padding:
+      44px
+      18px
+      90px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+
+    gap:25px;
+  }
+
+  .toolbar{
+    flex-direction:column;
+  }
+
+  .search-wrap{
+    max-width:none;
+  }
+
+  .model-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="../"
+    >
+
+      <img
+        src="../assets/logos/zorix.svg?v=1788152770"
+        alt=""
+      >
+
+      <span>
+        Zorix Metron
+      </span>
+
+    </a>
+
+
+    <div class="nav-actions">
+
+      <div class="nav-links">
+
+        <a href="../">
+          Usage
+        </a>
+
+        <a href="./">
+          Models
+        </a>
+
+        <a href="../#benchmarks">
+          Benchmarks
+        </a>
+
+      </div>
+
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation"
+      >
+
+        <span class="menu-lines">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+      </button>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+
+<div
+  class="menu-overlay"
+  id="menuOverlay"
+  aria-hidden="true"
+>
+
+  <div class="menu-sheet">
+
+    <div class="menu-top">
+
+      <div class="menu-title">
+        Zorix Metron
+      </div>
+
+      <div class="menu-intro">
+        Explore model traffic, benchmarks,
+        community voting and model documentation.
+      </div>
+
+    </div>
+
+
+    <a
+      class="menu-item"
+      href="../"
+    >
+      <div>
+        <div class="menu-item-title">
+          Usage
+        </div>
+
+        <div class="menu-item-desc">
+          Explore token traffic, trends and
+          model usage across Zorix Code.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="menu-item"
+      href="./"
+    >
+      <div>
+        <div class="menu-item-title">
+          Models
+        </div>
+
+        <div class="menu-item-desc">
+          Search the full model catalog and
+          open individual model profiles.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="menu-item"
+      href="../#benchmarks"
+    >
+      <div>
+        <div class="menu-item-title">
+          Benchmarks
+        </div>
+
+        <div class="menu-item-desc">
+          View Zorix Metron internal model
+          evaluations and comparison results.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="menu-item"
+      href="../voting/"
+    >
+      <div>
+        <div class="menu-item-title">
+          Voting
+        </div>
+
+        <div class="menu-item-desc">
+          Community model ranking and
+          recorded voting history.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="menu-item"
+      href="../share/"
+    >
+      <div>
+        <div class="menu-item-title">
+          Public charts
+        </div>
+
+        <div class="menu-item-desc">
+          Generate publication-ready Zorix
+          Metron PNG charts.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="menu-item"
+      href="../#public-quota-section"
+    >
+      <div>
+        <div class="menu-item-title">
+          Public quota
+        </div>
+
+        <div class="menu-item-desc">
+          View the current shared Zorix Code
+          public token allocation.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="menu-item"
+      href="https://doc.zorix.it/"
+    >
+      <div>
+        <div class="menu-item-title">
+          Documentation
+        </div>
+
+        <div class="menu-item-desc">
+          Technical documentation,
+          model notes and developer resources.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ↗
+      </span>
+    </a>
+
+
+    <a
+      class="menu-item"
+      href="../../"
+    >
+      <div>
+        <div class="menu-item-title">
+          Release notes
+        </div>
+
+        <div class="menu-item-desc">
+          Product releases, previews,
+          model updates and announcements.
+        </div>
+      </div>
+
+      <span class="menu-arrow">
+        ↗
+      </span>
+    </a>
+
+  </div>
+
+</div>
+
+
+
+<main>
+
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Zorix Metron
+    </div>
+
+    <h1>
+      Model<br>
+      catalog
+    </h1>
+
+  </div>
+
+
+  <p class="hero-copy">
+
+    Browse every model currently tracked by
+    Zorix Metron.
+
+    Search by model or provider, compare recorded
+    usage, and open a dedicated model profile for
+    specifications, usage and evaluations.
+
+  </p>
+
+</section>
+
+
+
+<section class="toolbar">
+
+  <div class="search-wrap">
+
+    <svg
+      class="search-icon"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+    >
+      <circle
+        cx="8.5"
+        cy="8.5"
+        r="5.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+
+      <path
+        d="M12.7 12.7L17 17"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <input
+      class="search"
+      id="modelSearch"
+      type="search"
+      placeholder="Search models or providers"
+      autocomplete="off"
+    >
+
+  </div>
+
+
+  <div
+    class="provider-pills"
+    id="providerPills"
+  ></div>
+
+</section>
+
+
+<div class="results-summary">
+
+  <span id="resultsCount">
+    0 models
+  </span>
+
+  <span>
+    Select a model to open its profile
+  </span>
+
+</div>
+
+
+<div
+  class="model-grid"
+  id="modelGrid"
+></div>
+
+
+</main>
+
+
+
+<script src="../models.js?v=1788152770"></script>
+<script src="../model-profiles.js?v=1788152770"></script>
+
+<script>
+
+const models =
+  window.ZORIX_MODEL_DETAILS || [];
+
+const profiles =
+  window.ZORIX_MODEL_PROFILES || {};
+
+
+let providerFilter=
+  "All";
+
+
+function fmt(n){
+
+  n=Number(n || 0);
+
+  if(n>=1e15)
+    return (
+      n/1e15
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"P";
+
+  if(n>=1e12)
+    return (
+      n/1e12
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"T";
+
+  if(n>=1e9)
+    return (
+      n/1e9
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"B";
+
+  if(n>=1e6)
+    return (
+      n/1e6
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"M";
+
+  if(n>=1e3)
+    return (
+      n/1e3
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"K";
+
+  return String(
+    Math.round(n)
+  );
+
+}
+
+
+function logoHTML(model){
+
+  if(model.logo){
+
+    return `
+      <img
+        src="${model.logo}"
+        alt=""
+      >
+    `;
+
+  }
+
+
+  return `
+    <span class="model-fallback">
+      ${
+        String(
+          model.provider || "?"
+        ).slice(0,1)
+      }
+    </span>
+  `;
+
+}
+
+
+function renderProviderPills(){
+
+  const providers=[
+    "All",
+    ...new Set(
+      models
+        .map(
+          model=>
+            model.provider
+        )
+        .filter(Boolean)
+    )
+  ];
+
+
+  document
+    .getElementById(
+      "providerPills"
+    )
+    .innerHTML=
+      providers.map(
+        provider=>`
+
+          <button
+            class="provider-pill ${
+              provider===providerFilter
+                ? "active"
+                : ""
+            }"
+            type="button"
+            data-provider="${provider}"
+          >
+            ${provider}
+          </button>
+
+        `
+      ).join("");
+
+
+  document
+    .querySelectorAll(
+      "[data-provider]"
+    )
+    .forEach(
+      button=>{
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            providerFilter=
+              button.dataset.provider;
+
+            renderProviderPills();
+            renderModels();
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+function renderModels(){
+
+  const query =
+    String(
+      document
+        .getElementById(
+          "modelSearch"
+        )
+        .value || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  const rows =
+    models
+      .filter(
+        model=>{
+
+          const providerOk=
+            providerFilter==="All" ||
+            model.provider===
+              providerFilter;
+
+
+          const searchOk=
+            !query ||
+            model.name
+              .toLowerCase()
+              .includes(query) ||
+            model.provider
+              .toLowerCase()
+              .includes(query) ||
+            String(
+              model.family || ""
+            )
+              .toLowerCase()
+              .includes(query);
+
+
+          return (
+            providerOk &&
+            searchOk
+          );
+
+        }
+      )
+      .sort(
+        (a,b)=>
+          Number(
+            b.dailyTokens || 0
+          ) -
+          Number(
+            a.dailyTokens || 0
+          )
+      );
+
+
+  document
+    .getElementById(
+      "resultsCount"
+    )
+    .textContent=
+      `${rows.length} model${
+        rows.length===1
+          ? ""
+          : "s"
+      }`;
+
+
+  const grid=
+    document.getElementById(
+      "modelGrid"
+    );
+
+
+  if(!rows.length){
+
+    grid.innerHTML=`
+      <div class="empty">
+        No matching models.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  grid.innerHTML=
+    rows.map(
+      model=>{
+
+        const profile=
+          profiles[
+            model.id
+          ] || {};
+
+
+        return `
+          <a
+            class="model-card"
+            href="../model.html?id=${
+              encodeURIComponent(
+                model.id
+              )
+            }"
+          >
+
+            <div class="model-top">
+
+              <div class="model-identity">
+
+                <div class="model-logo">
+                  ${logoHTML(model)}
+                </div>
+
+
+                <div>
+
+                  <div class="model-provider">
+                    ${model.provider}
+                  </div>
+
+                  <div class="model-name">
+                    ${model.name}
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <span class="status">
+                ${
+                  model.status ||
+                  "Available"
+                }
+              </span>
+
+            </div>
+
+
+            <div class="model-description">
+              ${
+                profile.description ||
+                model.about ||
+                ""
+              }
+            </div>
+
+
+            <div class="model-meta">
+
+              <div>
+
+                <div class="meta-k">
+                  Daily
+                </div>
+
+                <div class="meta-v">
+                  ${fmt(model.dailyTokens)}
+                </div>
+
+              </div>
+
+
+              <div>
+
+                <div class="meta-k">
+                  Context
+                </div>
+
+                <div class="meta-v">
+                  ${
+                    model.context ||
+                    "—"
+                  }
+                </div>
+
+              </div>
+
+
+              <div>
+
+                <div class="meta-k">
+                  Parameters
+                </div>
+
+                <div class="meta-v">
+                  ${
+                    model.parameters ||
+                    "—"
+                  }
+                </div>
+
+              </div>
+
+            </div>
+
+          </a>
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+document
+  .getElementById(
+    "modelSearch"
+  )
+  .addEventListener(
+    "input",
+    renderModels
+  );
+
+
+const menuButton=
+  document.getElementById(
+    "menuButton"
+  );
+
+const menuOverlay=
+  document.getElementById(
+    "menuOverlay"
+  );
+
+
+function closeMenu(){
+
+  menuOverlay
+    .classList.remove(
+      "open"
+    );
+
+  menuOverlay
+    .setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+}
+
+
+menuButton
+  .addEventListener(
+    "click",
+    event=>{
+
+      event.stopPropagation();
+
+      menuOverlay
+        .classList.add(
+          "open"
+        );
+
+      menuOverlay
+        .setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+    }
+  );
+
+
+menuOverlay
+  .addEventListener(
+    "click",
+    event=>{
+
+      if(
+        event.target===
+        menuOverlay
+      ){
+        closeMenu();
+      }
+
+    }
+  );
+
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+      closeMenu();
+    }
+
+  }
+);
+
+
+renderProviderPills();
+renderModels();
+
+</script>
+
+</body>
+</html>

@@ -1863,6 +1863,49 @@ h1{
 }
 
 
+
+/* =========================================================
+   RICH METRON MENU COPY
+   ========================================================= */
+
+.menu-item-rich{
+  display:grid !important;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:15px;
+
+  align-items:center;
+
+  padding:
+    15px
+    4px !important;
+}
+
+.menu-item-copy{
+  min-width:0;
+}
+
+.menu-item-heading{
+  font-size:18px;
+
+  letter-spacing:-.025em;
+}
+
+.menu-item-description{
+  max-width:310px;
+
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.45;
+}
+
+
 </style>
 </head>
 
@@ -1875,6 +1918,7 @@ h1{
     <div class="nav-actions">
       <div class="nav-right">
         <a href="./">Usage</a>
+        <a href="./models/">Models</a>
       <a href="./voting/">Voting</a>
         <a href="./share/">Charts</a>
         <a href="#benchmarks">Benchmarks</a>
@@ -1894,60 +1938,242 @@ h1{
 </header>
 
 
-<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+
+<div
+  class="menu-overlay"
+  id="menuOverlay"
+  aria-hidden="true"
+>
+
   <div class="menu-sheet">
+
     <div class="menu-handle"></div>
 
-    <a class="menu-item" href="./">
-      <span>Overview</span>
-      <span>↗</span>
-    </a>
 
-    <a class="menu-item" href="#top-models">
-      <span>Model usage</span>
-      <span>›</span>
-    </a>
+    <div
+      style="
+        padding:0 2px 22px;
+      "
+    >
 
-    <a class="menu-item" href="#benchmarks">
-      <span>Benchmarks</span>
-      <span>›</span>
-    </a>
+      <div
+        style="
+          font-size:20px;
+          letter-spacing:-.03em;
+        "
+      >
+        Zorix Metron
+      </div>
 
-    <a class="menu-item" href="./voting/">
-      <span>Voting leaderboard</span>
-      <span>›</span>
-    </a>
+      <div
+        style="
+          max-width:370px;
+          margin-top:7px;
+          color:var(--muted);
+          font-size:11px;
+          line-height:1.5;
+        "
+      >
+        Explore models, recorded token usage,
+        Zorix evaluations, community voting
+        and publication tools.
+      </div>
 
-    <a class="menu-item" href="./share/">
-      <span>Public PNG charts</span>
-      <span>›</span>
-    </a>
-
-    <a class="menu-item" href="#public-quota-section">
-      <span>Public quota</span>
-      <span>›</span>
-    </a>
-
-    <a class="menu-item" href="../">
-      <span>Release notes</span>
-      <span>›</span>
-    </a>
-
-    <a class="menu-item" href="https://doc.zorix.it/">
-      <span>Documentation</span>
-      <span>↗</span>
-    </a>
-
-    <a class="menu-item" href="https://zorix.it/">
-      <span>Zorix</span>
-      <span>↗</span>
-    </a>
-
-    <div class="menu-sub">
-      Zorix Code · model usage and evaluation
     </div>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="./"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Usage
+        </div>
+
+        <div class="menu-item-description">
+          Inspect token traffic, date ranges,
+          selected models and usage trends.
+        </div>
+
+      </div>
+
+      <span>›</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="./models/"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Models
+        </div>
+
+        <div class="menu-item-description">
+          Search the full catalog and open
+          dedicated model profile pages.
+        </div>
+
+      </div>
+
+      <span>›</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="#benchmarks"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Benchmarks
+        </div>
+
+        <div class="menu-item-description">
+          Zorix Metron evaluations for coding,
+          intelligence and image models.
+        </div>
+
+      </div>
+
+      <span>›</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="./compare.html"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Compare models
+        </div>
+
+        <div class="menu-item-description">
+          Place two models side by side for
+          specs, usage and benchmark results.
+        </div>
+
+      </div>
+
+      <span>›</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="./voting/"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Voting
+        </div>
+
+        <div class="menu-item-description">
+          Community scores, current ranking
+          and historical rank movement.
+        </div>
+
+      </div>
+
+      <span>›</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="./share/"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Public charts
+        </div>
+
+        <div class="menu-item-description">
+          Export Metron usage and benchmark
+          graphics as 1600 × 900 PNG files.
+        </div>
+
+      </div>
+
+      <span>›</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="#public-quota-section"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Public quota
+        </div>
+
+        <div class="menu-item-description">
+          Current shared allocation and
+          published quota updates.
+        </div>
+
+      </div>
+
+      <span>›</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="https://doc.zorix.it/"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Documentation
+        </div>
+
+        <div class="menu-item-description">
+          Technical model documentation
+          and developer information.
+        </div>
+
+      </div>
+
+      <span>↗</span>
+    </a>
+
+
+    <a
+      class="menu-item menu-item-rich"
+      href="../"
+    >
+      <div class="menu-item-copy">
+
+        <div class="menu-item-heading">
+          Release notes
+        </div>
+
+        <div class="menu-item-description">
+          Product releases, model previews
+          and Zorix announcements.
+        </div>
+
+      </div>
+
+      <span>↗</span>
+    </a>
+
   </div>
+
 </div>
+
 
 
 <main>
@@ -2206,8 +2432,8 @@ h1{
     </div>
 
     <p>
-      Comparison of Nex Coder 3.8 AA4 preview variants with selected
-      Zorix and external external models. The chart uses the Ultra
+      Zorix Metron model evaluation results across selected
+      coding and agentic benchmarks. The chart uses the Ultra
       endpoint of the supplied internal evaluation curves.
     </p>
   </div>
@@ -2221,20 +2447,6 @@ h1{
     <button class="benchmark-tab"
             data-benchmark="swe">
       SWE-bench Verified
-    </button>
-
-    <button
-      class="benchmark-tab"
-      data-benchmark="image-ai"
-    >
-      Image AI
-    </button>
-
-    <button
-      class="benchmark-tab"
-      data-benchmark="intelligence"
-    >
-      Intelligence Index
     </button>
 
   </div>
@@ -2284,10 +2496,7 @@ h1{
   <div class="benchmark-disclaimer">
     Nex Coder 3.8 Mercury, Uranus and Neptune scores shown here are
     internal AA4 preview/testing values from the supplied preview
-    material. Reference-model values are internal normalized
-    comparisons from the same material and should not be interpreted
-    as official third-party vendor submissions or independently
-    reproduced leaderboard results.
+    material. Scores shown in this section belong to the Zorix Metron evaluation dataset. Different evaluation versions are kept explicitly labeled.
   </div>
 
 </section>
@@ -2321,11 +2530,9 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788121006"></script>
-<script src="./usage.js?v=1788121006"></script>
-<script src="./image-ai.js?v=1788121006"></script>
-<script src="./intelligence-index.js?v=1788121006"></script>
-<script src="./quota.js?v=1788121006"></script>
+<script src="./models.js?v=1788152770"></script>
+<script src="./usage.js?v=1788152770"></script>
+<script src="./quota.js?v=1788152770"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];

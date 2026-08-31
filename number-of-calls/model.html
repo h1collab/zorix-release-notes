@@ -1068,6 +1068,344 @@ h1{
 
 }
 
+
+/* =========================================================
+   OTHER MODELS FROM PROVIDER
+   ========================================================= */
+
+.other-models-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:12px;
+}
+
+.other-model-card{
+  min-height:190px;
+
+  padding:19px;
+
+  display:flex;
+  flex-direction:column;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  background:#fff;
+
+  transition:
+    background .13s ease,
+    transform .13s ease;
+}
+
+.other-model-card:hover{
+  background:var(--soft2);
+
+  transform:
+    translateY(-2px);
+}
+
+.other-model-top{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+}
+
+.other-model-logo{
+  width:36px;
+  height:36px;
+
+  display:grid;
+  place-items:center;
+
+  flex:0 0 36px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+}
+
+.other-model-logo img{
+  width:25px;
+  height:25px;
+
+  object-fit:contain;
+}
+
+.other-model-provider{
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.other-model-name{
+  margin-top:3px;
+
+  font-size:15px;
+  line-height:1.2;
+
+  letter-spacing:-.025em;
+}
+
+.other-model-copy{
+  margin-top:16px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.45;
+
+  display:-webkit-box;
+
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+
+  overflow:hidden;
+}
+
+.other-model-stats{
+  margin-top:auto;
+
+  padding-top:14px;
+
+  display:flex;
+  justify-content:space-between;
+
+  gap:9px;
+
+  border-top:
+    1px solid #ecece9;
+
+  color:#555;
+
+  font-size:10px;
+}
+
+.other-model-empty{
+  padding:25px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:13px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.other-model-refresh{
+  border:0;
+
+  background:transparent;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:11px;
+
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+
+@media(max-width:760px){
+
+  .other-models-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+/* =========================================================
+   MODEL PAGE MENU
+   ========================================================= */
+
+.model-nav-actions{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.model-menu-button{
+  width:42px;
+  height:42px;
+
+  border:0;
+
+  display:grid;
+  place-items:center;
+
+  background:transparent;
+
+  cursor:pointer;
+}
+
+.model-menu-lines{
+  width:23px;
+
+  display:grid;
+  gap:5px;
+}
+
+.model-menu-lines span{
+  display:block;
+
+  height:1.5px;
+
+  border-radius:4px;
+
+  background:#111;
+}
+
+.model-menu-overlay{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  background:
+    rgba(0,0,0,.55);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.17s ease;
+}
+
+.model-menu-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.model-menu-sheet{
+  position:absolute;
+
+  right:18px;
+  top:77px;
+
+  width:min(
+    430px,
+    calc(100vw - 36px)
+  );
+
+  max-height:
+    calc(100vh - 96px);
+
+  overflow:auto;
+
+  padding:10px;
+
+  border:
+    1px solid #d8d8d4;
+
+  border-radius:18px;
+
+  background:#fff;
+
+  box-shadow:
+    0 22px 70px
+    rgba(0,0,0,.18);
+
+  transform:
+    translateY(-8px);
+
+  transition:.17s ease;
+}
+
+.model-menu-overlay.open
+.model-menu-sheet{
+  transform:
+    translateY(0);
+}
+
+.model-menu-top{
+  padding:
+    13px
+    14px
+    16px;
+
+  border-bottom:
+    1px solid #ecece9;
+}
+
+.model-menu-title{
+  font-size:17px;
+
+  letter-spacing:-.025em;
+}
+
+.model-menu-intro{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+.model-menu-item{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:14px;
+  align-items:center;
+
+  padding:14px;
+
+  border-radius:12px;
+}
+
+.model-menu-item:hover{
+  background:var(--soft);
+}
+
+.model-menu-item-title{
+  font-size:14px;
+}
+
+.model-menu-item-desc{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.4;
+}
+
+.model-menu-arrow{
+  color:#888;
+
+  font-size:16px;
+}
+
+
+@media(max-width:760px){
+
+  .model-menu-sheet{
+    left:14px;
+    right:14px;
+    top:auto;
+    bottom:14px;
+
+    width:auto;
+
+    max-height:82vh;
+
+    border-radius:22px;
+  }
+
+}
+
 </style>
 
 </head>
@@ -1106,10 +1444,213 @@ h1{
 
     </div>
 
-  </nav>
+  
+    <button
+      class="model-menu-button"
+      id="modelMenuButton"
+      type="button"
+      aria-label="Open navigation"
+    >
+
+      <span class="model-menu-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+
+    </button>
+</nav>
 
 </header>
 
+
+
+
+<div
+  class="model-menu-overlay"
+  id="modelMenuOverlay"
+  aria-hidden="true"
+>
+
+  <div class="model-menu-sheet">
+
+    <div class="model-menu-top">
+
+      <div class="model-menu-title">
+        Zorix Metron
+      </div>
+
+      <div class="model-menu-intro">
+        Model intelligence, usage,
+        evaluations and community rankings.
+      </div>
+
+    </div>
+
+
+    <a
+      class="model-menu-item"
+      href="./"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Usage
+        </div>
+
+        <div class="model-menu-item-desc">
+          Token volume, model trends,
+          usage filters and traffic share.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./models/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Models
+        </div>
+
+        <div class="model-menu-item-desc">
+          Browse and search every model
+          tracked by Zorix Metron.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./#benchmarks"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Benchmarks
+        </div>
+
+        <div class="model-menu-item-desc">
+          Zorix Metron internal benchmark
+          results and model comparisons.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./compare.html"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Compare models
+        </div>
+
+        <div class="model-menu-item-desc">
+          Compare specifications, usage
+          and evaluations side by side.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./voting/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Voting
+        </div>
+
+        <div class="model-menu-item-desc">
+          Community rankings and
+          historical voting movement.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./share/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Public charts
+        </div>
+
+        <div class="model-menu-item-desc">
+          Export Zorix Metron data as
+          publication-ready PNG graphics.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="https://doc.zorix.it/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Documentation
+        </div>
+
+        <div class="model-menu-item-desc">
+          Technical model documentation
+          and Zorix developer resources.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ↗
+      </span>
+    </a>
+
+  </div>
+
+</div>
 
 <main id="main">
 
@@ -1340,6 +1881,51 @@ h1{
 
   </section>
 
+
+<section
+  class="section"
+  id="otherModelsSection"
+>
+
+  <div class="section-head">
+
+    <div>
+
+      <div
+        class="section-title"
+        id="otherModelsTitle"
+      >
+        Other models
+      </div>
+
+      <div
+        class="section-copy"
+        id="otherModelsCopy"
+      >
+        More models from the same provider.
+      </div>
+
+    </div>
+
+
+    <button
+      class="other-model-refresh"
+      id="refreshOtherModels"
+      type="button"
+    >
+      Show different models
+    </button>
+
+  </div>
+
+
+  <div
+    class="other-models-grid"
+    id="otherModelsGrid"
+  ></div>
+
+</section>
+
 </main>
 
 
@@ -1366,10 +1952,10 @@ h1{
 </div>
 
 
-<script src="./models.js?v=1788119772"></script>
-<script src="./model-profiles.js?v=1788119772"></script>
-<script src="./benchmarks.js?v=1788119772"></script>
-<script src="./external-benchmarks.js?v=1788119772"></script>
+<script src="./models.js?v=1788152770"></script>
+<script src="./model-profiles.js?v=1788152770"></script>
+<script src="./benchmarks.js?v=1788152770"></script>
+<script src="./external-benchmarks.js?v=1788152770"></script>
 
 <script>
 
@@ -2877,6 +3463,409 @@ if(!model){
       );
 
 }
+
+
+
+
+/* =========================================================
+   OTHER MODELS FROM SAME PROVIDER
+   Randomized on every page load.
+   ========================================================= */
+
+function randomUint(max){
+
+  if(max<=1){
+    return 0;
+  }
+
+
+  if(
+    window.crypto &&
+    window.crypto.getRandomValues
+  ){
+
+    const buffer=
+      new Uint32Array(1);
+
+    window.crypto
+      .getRandomValues(
+        buffer
+      );
+
+    return (
+      buffer[0] %
+      max
+    );
+
+  }
+
+
+  return Math.floor(
+    Math.random()*max
+  );
+
+}
+
+
+function shuffled(list){
+
+  const arr=[
+    ...list
+  ];
+
+
+  for(
+    let i=
+      arr.length-1;
+    i>0;
+    i--
+  ){
+
+    const j=
+      randomUint(
+        i+1
+      );
+
+    [
+      arr[i],
+      arr[j]
+    ]=[
+      arr[j],
+      arr[i]
+    ];
+
+  }
+
+
+  return arr;
+
+}
+
+
+function smallFmt(n){
+
+  n=Number(n || 0);
+
+  if(n>=1e15)
+    return (
+      n/1e15
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"P";
+
+  if(n>=1e12)
+    return (
+      n/1e12
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"T";
+
+  if(n>=1e9)
+    return (
+      n/1e9
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"B";
+
+  if(n>=1e6)
+    return (
+      n/1e6
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"M";
+
+  if(n>=1e3)
+    return (
+      n/1e3
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"K";
+
+  return String(
+    Math.round(n)
+  );
+
+}
+
+
+function otherModelLogo(item){
+
+  if(item.logo){
+
+    return `
+      <img
+        src="${item.logo}"
+        alt=""
+      >
+    `;
+
+  }
+
+
+  return `
+    <span class="logo-fallback">
+      ${
+        String(
+          item.provider || "?"
+        ).slice(0,1)
+      }
+    </span>
+  `;
+
+}
+
+
+function renderOtherModels(){
+
+  const title=
+    document.getElementById(
+      "otherModelsTitle"
+    );
+
+  const copy=
+    document.getElementById(
+      "otherModelsCopy"
+    );
+
+  const grid=
+    document.getElementById(
+      "otherModelsGrid"
+    );
+
+
+  if(
+    !model ||
+    !title ||
+    !grid
+  ){
+    return;
+  }
+
+
+  title.textContent=
+    `Other models from ${model.provider}`;
+
+
+  if(copy){
+
+    copy.textContent=
+      `Explore other ${model.provider} models tracked by Zorix Metron. Recommendations are shuffled on each visit.`;
+
+  }
+
+
+  const candidates=
+    models.filter(
+      item=>
+        item.id!==model.id &&
+        item.provider===
+          model.provider
+    );
+
+
+  if(!candidates.length){
+
+    grid.innerHTML=`
+      <div class="other-model-empty">
+        No other ${
+          model.provider
+        } models are currently
+        tracked in this catalog.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const selected=
+    shuffled(
+      candidates
+    )
+    .slice(
+      0,
+      3
+    );
+
+
+  grid.innerHTML=
+    selected.map(
+      item=>{
+
+        const itemProfile=
+          profiles[
+            item.id
+          ] || {};
+
+
+        return `
+          <a
+            class="other-model-card"
+            href="./model.html?id=${
+              encodeURIComponent(
+                item.id
+              )
+            }"
+          >
+
+            <div class="other-model-top">
+
+              <div class="other-model-logo">
+                ${otherModelLogo(item)}
+              </div>
+
+
+              <div>
+
+                <div class="other-model-provider">
+                  ${item.provider}
+                </div>
+
+                <div class="other-model-name">
+                  ${item.name}
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="other-model-copy">
+              ${
+                itemProfile.tagline ||
+                itemProfile.description ||
+                item.about ||
+                item.family ||
+                ""
+              }
+            </div>
+
+
+            <div class="other-model-stats">
+
+              <span>
+                ${smallFmt(item.dailyTokens)}
+                / day
+              </span>
+
+              <span>
+                ${
+                  item.context ||
+                  "Context —"
+                }
+              </span>
+
+            </div>
+
+          </a>
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+document
+  .getElementById(
+    "refreshOtherModels"
+  )
+  ?.addEventListener(
+    "click",
+    renderOtherModels
+  );
+
+
+if(model){
+  renderOtherModels();
+}
+
+
+
+
+/* =========================================================
+   MODEL PAGE HAMBURGER
+   ========================================================= */
+
+const modelMenuButton=
+  document.getElementById(
+    "modelMenuButton"
+  );
+
+const modelMenuOverlay=
+  document.getElementById(
+    "modelMenuOverlay"
+  );
+
+
+function closeModelMenu(){
+
+  if(!modelMenuOverlay){
+    return;
+  }
+
+  modelMenuOverlay
+    .classList.remove(
+      "open"
+    );
+
+  modelMenuOverlay
+    .setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+}
+
+
+modelMenuButton
+  ?.addEventListener(
+    "click",
+    event=>{
+
+      event.stopPropagation();
+
+      modelMenuOverlay
+        ?.classList.add(
+          "open"
+        );
+
+      modelMenuOverlay
+        ?.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+    }
+  );
+
+
+modelMenuOverlay
+  ?.addEventListener(
+    "click",
+    event=>{
+
+      if(
+        event.target===
+        modelMenuOverlay
+      ){
+        closeModelMenu();
+      }
+
+    }
+  );
+
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+      closeModelMenu();
+    }
+
+  }
+);
 
 </script>
 
