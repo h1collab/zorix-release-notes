@@ -6,6 +6,92 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
+<meta name="zorix-build" content="1788157593">
+
+<script data-zorix-freshness>
+(function(){
+  "use strict";
+
+  var expected="1788157593";
+  var endpoint="/build-version.txt";
+
+  function checkFreshness(){
+    try {
+      fetch(
+        endpoint + "?fresh=" + Date.now(),
+        {
+          cache:"no-store"
+        }
+      )
+      .then(function(response){
+        if(!response.ok){
+          return "";
+        }
+
+        return response.text();
+      })
+      .then(function(value){
+        var latest=String(value || "").trim();
+
+        if(
+          !latest ||
+          latest===expected
+        ){
+          return;
+        }
+
+        var current=
+          new URL(
+            window.location.href
+          );
+
+        if(
+          current.searchParams.get("__v")
+          === latest
+        ){
+          return;
+        }
+
+        current.searchParams.set(
+          "__v",
+          latest
+        );
+
+        window.location.replace(
+          current.toString()
+        );
+      })
+      .catch(function(){});
+    } catch(error) {}
+  }
+
+  checkFreshness();
+
+  window.addEventListener(
+    "pageshow",
+    function(event){
+      if(event.persisted){
+        checkFreshness();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "visibilitychange",
+    function(){
+      if(
+        document.visibilityState===
+        "visible"
+      ){
+        checkFreshness();
+      }
+    }
+  );
+
+})();
+</script>
+
+
 <meta name="zorix-build" content="1788157268">
 <script>
 (function(){
@@ -282,7 +368,11 @@
       <a class="brand" href="#">zorix</a>
       <div class="nav-center"><a href="#notes">Products</a><a href="#notes">Research</a><a href="#notes">Developers</a><a href="#about">Company</a></div>
       <div class="nav-right"><a class="pill" href="#notes">Documentation</a><a class="pill dark" href="#notes">Explore Zorix</a></div>
-    </nav>
+    
+<a href="/status/">
+  Status
+</a>
+</nav>
   </header>
 
   <main>
@@ -345,8 +435,8 @@
 
 
 
-<script src="releases.js?v=1788157268"></script>
-<script src="details.js?v=1788157268"></script>
+<script src="releases.js?v=1788157593"></script>
+<script src="details.js?v=1788157593"></script>
 
 <script>
 const releases = window.ZORIX_RELEASES || [];

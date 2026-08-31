@@ -7,6 +7,92 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
+<meta name="zorix-build" content="1788157593">
+
+<script data-zorix-freshness>
+(function(){
+  "use strict";
+
+  var expected="1788157593";
+  var endpoint="/build-version.txt";
+
+  function checkFreshness(){
+    try {
+      fetch(
+        endpoint + "?fresh=" + Date.now(),
+        {
+          cache:"no-store"
+        }
+      )
+      .then(function(response){
+        if(!response.ok){
+          return "";
+        }
+
+        return response.text();
+      })
+      .then(function(value){
+        var latest=String(value || "").trim();
+
+        if(
+          !latest ||
+          latest===expected
+        ){
+          return;
+        }
+
+        var current=
+          new URL(
+            window.location.href
+          );
+
+        if(
+          current.searchParams.get("__v")
+          === latest
+        ){
+          return;
+        }
+
+        current.searchParams.set(
+          "__v",
+          latest
+        );
+
+        window.location.replace(
+          current.toString()
+        );
+      })
+      .catch(function(){});
+    } catch(error) {}
+  }
+
+  checkFreshness();
+
+  window.addEventListener(
+    "pageshow",
+    function(event){
+      if(event.persisted){
+        checkFreshness();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "visibilitychange",
+    function(){
+      if(
+        document.visibilityState===
+        "visible"
+      ){
+        checkFreshness();
+      }
+    }
+  );
+
+})();
+</script>
+
+
 <meta name="zorix-build" content="1788157268">
 <script>
 (function(){
@@ -867,7 +953,7 @@ h1{
 
     <span class="provider-logo">
       <img
-        src="/number-of-calls/assets/logos/deepseek.svg?v=1788157268"
+        src="/number-of-calls/assets/logos/deepseek.svg?v=1788157593"
         alt=""
       >
     </span>
@@ -1057,8 +1143,8 @@ h1{
 </div>
 
 
-<script src="/number-of-calls/models.js?v=1788157268"></script>
-<script src="/number-of-calls/usage.js?v=1788157268"></script>
+<script src="/number-of-calls/models.js?v=1788157593"></script>
+<script src="/number-of-calls/usage.js?v=1788157593"></script>
 
 <script>
 

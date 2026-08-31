@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-from html.parser import HTMLParser
-from urllib.parse import (
-    urlsplit,
-    urlunsplit,
-    parse_qsl,
-    urlencode,
-)
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 import re
 import time
 
@@ -31,7 +25,7 @@ SKIP = {
 
 
 def external(url):
-    x = url.lower().strip()
+    x = str(url).strip().lower()
 
     return (
         x.startswith("http://")
@@ -45,7 +39,7 @@ def external(url):
     )
 
 
-def with_param(url, key, value):
+def version_url(url):
 
     if external(url):
         return url
@@ -58,11 +52,11 @@ def with_param(url, key, value):
             parsed.query,
             keep_blank_values=True
         )
-        if k != key
+        if k != "v"
     ]
 
     query.append(
-        (key, value)
+        ("v", VERSION)
     )
 
     return urlunsplit(
@@ -76,181 +70,162 @@ def with_param(url, key, value):
     )
 
 
-ASSET_EXT = re.compile(
+ASSET_RE = re.compile(
     r'\.(?:js|css|svg|png|jpe?g|webp|gif|ico)$',
     re.I
 )
 
 
-def asset_url(url):
-
-    if external(url):
-        return url
-
-    path = urlsplit(url).path
-
-    if not ASSET_EXT.search(path):
-        return url
-
-    return with_param(
-        url,
-        "v",
-        VERSION
-    )
-
-
-def page_url(url):
-
-    if external(url):
-        return url
-
-    parsed = urlsplit(url)
-    path = parsed.path
-
-    # Assets/downloads are not page links.
-    if "." in Path(path).name and not path.endswith(".html"):
-        return url
-
-    if (
-        not path
-        or path.endswith("/")
-        or path.endswith(".html")
-        or path in {".", ".."}
-    ):
-        return with_param(
-            url,
-            "__v",
-            VERSION
-        )
-
-    return url
-
-
-CACHE_META = '''
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-'''
-
-
-def freshness_block():
-
-    # 注意：
-    # script 内不出现任何 .js/.css/.svg asset 字符串，
-    # bump_assets 完全不会改 inline script。
-    return f'''
-<meta name="zorix-build" content="{VERSION}">
-<script>
-(function(){{
-  var expected="{VERSION}";
-  var endpoint="/build-version.txt";
-
-  try {{
-    fetch(
-      endpoint + "?fresh=" + Date.now(),
-      {{
-        cache:"no-store"
-      }}
-    )
-    .then(function(r){{
-      return r.ok ? r.text() : "";
-    }})
-    .then(function(latest){{
-      latest=String(latest || "").trim();
-
-      if(
-        latest &&
-        latest !== expected
-      ){{
-        var next=new URL(
-          window.location.href
-        );
-
-        next.searchParams.set(
-          "__v",
-          latest
-        );
-
-        window.location.replace(
-          next.toString()
-        );
-      }}
-    }})
-    .catch(function(){{}});
-  }} catch(e) {{}}
-}})();
-</script>
-'''
-
-
-def clean_generated_head(s):
-
-    # Cache meta
-    s = re.sub(
-        r'\s*<meta\s+http-equiv=["\']Cache-Control["\'][^>]*>',
-        "",
-        s,
-        flags=re.I
-    )
-
-    s = re.sub(
-        r'\s*<meta\s+http-equiv=["\']Pragma["\'][^>]*>',
-        "",
-        s,
-        flags=re.I
-    )
-
-    s = re.sub(
-        r'\s*<meta\s+http-equiv=["\']Expires["\'][^>]*>',
-        "",
-        s,
-        flags=re.I
-    )
-
-    # Build marker + its immediately following generated script.
-    s = re.sub(
-        r'''
-        \s*
-        <meta\s+name=["']zorix-build["'][^>]*>
-        \s*
-        <script>
-        [\s\S]*?
-        </script>
-        ''',
-        "",
-        s,
-        count=1,
-        flags=re.I | re.X
-    )
-
-    return s
-
-
-# ============================================================
-# Attribute-level HTML rewriting.
-# This never searches arbitrary inline JS text.
-# ============================================================
-
+# Only real tag attributes.
 ATTR_RE = re.compile(
+    r'''(?P<before>\b(?:src|href)=["'])
+        (?P<url>[^"']+)
+        (?P<after>["'])''',
+    re.I | re.X
+)
+
+
+CACHE_BLOCK_RE = re.compile(
     r'''
-    (?P<prefix>
-      \b(?:src|href)=["']
-    )
-    (?P<url>[^"']+)
-    (?P<quote>["'])
+    \s*
+    <meta\s+http-equiv=["']Cache-Control["'][^>]*>
+    |
+    \s*
+    <meta\s+http-equiv=["']Pragma["'][^>]*>
+    |
+    \s*
+    <meta\s+http-equiv=["']Expires["'][^>]*>
     ''',
     re.I | re.X
 )
 
 
-def process_html(p):
+BUILD_BLOCK_RE = re.compile(
+    r'''
+    \s*
+    <meta\s+name=["']zorix-build["'][^>]*>
+    \s*
+    <script\s+data-zorix-freshness>
+    [\s\S]*?
+    </script>
+    ''',
+    re.I | re.X
+)
 
-    original = p.read_text(
-        encoding="utf-8"
+
+def generated_head():
+
+    return f'''
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<meta name="zorix-build" content="{VERSION}">
+
+<script data-zorix-freshness>
+(function(){{
+  "use strict";
+
+  var expected="{VERSION}";
+  var endpoint="/build-version.txt";
+
+  function checkFreshness(){{
+    try {{
+      fetch(
+        endpoint + "?fresh=" + Date.now(),
+        {{
+          cache:"no-store"
+        }}
+      )
+      .then(function(response){{
+        if(!response.ok){{
+          return "";
+        }}
+
+        return response.text();
+      }})
+      .then(function(value){{
+        var latest=String(value || "").trim();
+
+        if(
+          !latest ||
+          latest===expected
+        ){{
+          return;
+        }}
+
+        var current=
+          new URL(
+            window.location.href
+          );
+
+        if(
+          current.searchParams.get("__v")
+          === latest
+        ){{
+          return;
+        }}
+
+        current.searchParams.set(
+          "__v",
+          latest
+        );
+
+        window.location.replace(
+          current.toString()
+        );
+      }})
+      .catch(function(){{}});
+    }} catch(error) {{}}
+  }}
+
+  checkFreshness();
+
+  window.addEventListener(
+    "pageshow",
+    function(event){{
+      if(event.persisted){{
+        checkFreshness();
+      }}
+    }}
+  );
+
+  document.addEventListener(
+    "visibilitychange",
+    function(){{
+      if(
+        document.visibilityState===
+        "visible"
+      ){{
+        checkFreshness();
+      }}
+    }}
+  );
+
+}})();
+</script>
+'''
+
+
+def process_html(path):
+
+    original = path.read_text(
+        encoding="utf-8",
+        errors="ignore"
     )
 
-    s = clean_generated_head(
-        original
+    s = original
+
+    # Remove only our generated cache fields.
+    s = CACHE_BLOCK_RE.sub(
+        "",
+        s
+    )
+
+    s = BUILD_BLOCK_RE.sub(
+        "",
+        s,
+        count=1
     )
 
     head = re.search(
@@ -261,66 +236,45 @@ def process_html(p):
 
     if head:
 
-        inject = (
-            "\n"
-            + CACHE_META
-            + freshness_block()
-        )
-
         s = (
             s[:head.end()]
-            + inject
+            + "\n"
+            + generated_head()
             + s[head.end():]
         )
 
-    def attr_replace(m):
 
-        prefix = m.group("prefix")
-        url = m.group("url")
-        quote = m.group("quote")
+    # Only version assets inside actual tags.
+    def replace_attr(match):
 
-        tag_start = s.rfind(
-            "<",
-            0,
-            m.start()
-        )
+        before = match.group("before")
+        url = match.group("url")
+        after = match.group("after")
 
-        tag_end = s.find(
-            ">",
-            m.start()
-        )
+        if external(url):
+            return match.group(0)
 
-        tag = (
-            s[tag_start:tag_end+1]
-            if tag_start >= 0 and tag_end >= 0
-            else ""
-        ).lower()
+        path_only = urlsplit(url).path
 
-        if (
-            "<script" in tag
-            or "<img" in tag
-            or "<source" in tag
-            or "<link" in tag
-        ):
-            url = asset_url(url)
-
-        elif "<a" in tag:
-            url = page_url(url)
+        if not ASSET_RE.search(path_only):
+            return match.group(0)
 
         return (
-            prefix
-            + url
-            + quote
+            before
+            + version_url(url)
+            + after
         )
 
+
     s = ATTR_RE.sub(
-        attr_replace,
+        replace_attr,
         s
     )
 
+
     if s != original:
 
-        p.write_text(
+        path.write_text(
             s,
             encoding="utf-8"
         )
@@ -331,32 +285,47 @@ def process_html(p):
 
 
 CSS_URL_RE = re.compile(
-    r'''
-    (url\(\s*["']?)
-    ([^)"']+)
-    (["']?\s*\))
-    ''',
+    r'''(url\(\s*["']?)
+        ([^)"']+)
+        (["']?\s*\))''',
     re.I | re.X
 )
 
 
-def process_css(p):
+def process_css(path):
 
-    original = p.read_text(
-        encoding="utf-8"
+    original = path.read_text(
+        encoding="utf-8",
+        errors="ignore"
     )
 
+    def replace(match):
+
+        url = match.group(2)
+
+        if external(url):
+            return match.group(0)
+
+        if not ASSET_RE.search(
+            urlsplit(url).path
+        ):
+            return match.group(0)
+
+        return (
+            match.group(1)
+            + version_url(url)
+            + match.group(3)
+        )
+
+
     s = CSS_URL_RE.sub(
-        lambda m:
-            m.group(1)
-            + asset_url(m.group(2))
-            + m.group(3),
+        replace,
         original
     )
 
     if s != original:
 
-        p.write_text(
+        path.write_text(
             s,
             encoding="utf-8"
         )
@@ -369,43 +338,45 @@ def process_css(p):
 changed=[]
 
 
-for p in ROOT.rglob("*"):
+for path in ROOT.rglob("*"):
 
-    if not p.is_file():
+    if not path.is_file():
         continue
 
     if any(
         part in SKIP
-        for part in p.parts
+        for part in path.parts
     ):
         continue
 
-    try:
-        rel=str(
-            p.relative_to(ROOT)
-        )
-    except ValueError:
-        continue
+    if path.suffix.lower()==".html":
 
-    if p.suffix.lower()==".html":
+        if process_html(path):
+            changed.append(
+                str(
+                    path.relative_to(ROOT)
+                )
+            )
 
-        if process_html(p):
-            changed.append(rel)
+    elif path.suffix.lower()==".css":
 
-    elif p.suffix.lower()==".css":
-
-        if process_css(p):
-            changed.append(rel)
+        if process_css(path):
+            changed.append(
+                str(
+                    path.relative_to(ROOT)
+                )
+            )
 
 
 print()
-print("ZORIX SAFE CACHE BUST")
-print("---------------------")
+print("ZORIX SAFE CACHE VERSION")
+print("------------------------")
 print("Build:", VERSION)
-print("HTML pages protected")
-print("JS/CSS/image src versioned")
-print("Inline JavaScript untouched")
-print("Files changed:", len(changed))
+print("Inline JavaScript: untouched")
+print("HTML navigation: untouched")
+print("Assets versioned:", True)
+print("HTML freshness checker:", True)
+print("Changed:", len(changed))
 
-for item in changed:
-    print(" ", item)
+for name in changed:
+    print(" ", name)
