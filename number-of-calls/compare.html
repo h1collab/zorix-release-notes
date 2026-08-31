@@ -1,11 +1,67 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+
+<meta name="zorix-build" content="1788156881">
+<script>
+(function(){
+  var expected="1788156881";
+
+  try{
+    fetch(
+      "/build-version.txt?_=" + Date.now(),
+      {
+        cache:"no-store",
+        headers:{
+          "Cache-Control":"no-cache"
+        }
+      }
+    )
+    .then(function(response){
+      if(!response.ok){
+        return null;
+      }
+      return response.text();
+    })
+    .then(function(latest){
+      if(!latest){
+        return;
+      }
+
+      latest=latest.trim();
+
+      if(
+        latest &&
+        latest!==expected
+      ){
+        var url=
+          new URL(
+            window.location.href          ?v=1788156881);
+
+        url.searchParams.set(
+          "__v",
+          latest
+        );
+
+        window.location.replace(
+          url.toString()
+        );
+      }
+    })
+    .catch(function(){});
+  }catch(e){}
+})();
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Compare models | Zorix Code</title>
 
@@ -1264,13 +1320,13 @@ h1{
 <header>
   <nav class="nav">
 
-    <a class="brand" href="../">
+    <a class="brand" href="../?__v=1788156881">
       zorix
     </a>
 
     <div class="nav-right">
-      <a href="./">Usage</a>
-      <a href="./#benchmarks">Benchmarks</a>
+      <a href="./?__v=1788156881">Usage</a>
+      <a href="./?__v=1788156881#benchmarks">Benchmarks</a>
       <a href="https://doc.zorix.it/">Docs</a>
     </div>
 
@@ -1279,7 +1335,7 @@ h1{
 
 <main>
 
-<a class="back" href="./#benchmarks">
+<a class="back" href="./?__v=1788156881#benchmarks">
   ← Back to benchmarks
 </a>
 
@@ -1762,11 +1818,11 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788153534"></script>
-<script src="./usage.js?v=1788153534"></script>
-<script src="./benchmarks.js?v=1788153534"></script>
-<script src="./external-benchmarks.js?v=1788153534"></script>
-<script src="./voting/votes.js?v=1788153534"></script>
+<script src="./models.js?v=1788156881"></script>
+<script src="./usage.js?v=1788156881"></script>
+<script src="./benchmarks.js?v=1788156881"></script>
+<script src="./external-benchmarks.js?v=1788156881"></script>
+<script src="./voting/votes.js?v=1788156881"></script>
 
 <script>
 
@@ -1956,7 +2012,7 @@ function modelLogo(m){
   if(m.logo){
     return `
       <div class="logo">
-        <img src="${m.logo}" alt="">
+        <img src="${m.logo}?v=1788156881" alt="">
       </div>
     `;
   }
@@ -3320,7 +3376,7 @@ function render(){
 
 
   const url =
-    new URL(location.href);
+    new URL(location.href?v=1788156881);
 
   url.searchParams.set("a",a.id);
   url.searchParams.set("b",b.id);
@@ -3440,7 +3496,7 @@ function pickerLogoHTML(model){
 
     return `
       <img
-        src="${src}"
+        src="${src}?v=1788156881"
         alt=""
       >
     `;

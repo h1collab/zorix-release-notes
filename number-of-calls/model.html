@@ -3,14 +3,70 @@
 
 <head>
 
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<meta name="zorix-build" content="1788156881">
+<script>
+(function(){
+  var expected="1788156881";
+
+  try{
+    fetch(
+      "/build-version.txt?_=" + Date.now(),
+      {
+        cache:"no-store",
+        headers:{
+          "Cache-Control":"no-cache"
+        }
+      }
+    )
+    .then(function(response){
+      if(!response.ok){
+        return null;
+      }
+      return response.text();
+    })
+    .then(function(latest){
+      if(!latest){
+        return;
+      }
+
+      latest=latest.trim();
+
+      if(
+        latest &&
+        latest!==expected
+      ){
+        var url=
+          new URL(
+            window.location.href          ?v=1788156881);
+
+        url.searchParams.set(
+          "__v",
+          latest
+        );
+
+        window.location.replace(
+          url.toString()
+        );
+      }
+    })
+    .catch(function(){});
+  }catch(e){}
+})();
+</script>
+
+
+
+
+
 <meta charset="utf-8">
 <meta
   name="viewport"
   content="width=device-width,initial-scale=1"
 >
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 
 <title>Model | Zorix Code</title>
 
@@ -1513,26 +1569,26 @@ h1{
 
     <a
       class="brand"
-      href="./"
+      href="./?__v=1788156881"
     >
       zorix
     </a>
 
     <div class="nav-links">
 
-      <a href="./">
+      <a href="./?__v=1788156881">
         Usage
       </a>
 
-      <a href="./#benchmarks">
+      <a href="./?__v=1788156881#benchmarks">
         Benchmarks
       </a>
 
-      <a href="./compare.html">
+      <a href="./compare.html?__v=1788156881">
         Compare
       </a>
 
-      <a href="./share/">
+      <a href="./share/?__v=1788156881">
         Charts
       </a>
 
@@ -1584,7 +1640,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./"
+      href="./?__v=1788156881"
     >
       <div>
 
@@ -1607,7 +1663,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./models/"
+      href="./models/?__v=1788156881"
     >
       <div>
 
@@ -1630,7 +1686,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./#benchmarks"
+      href="./?__v=1788156881#benchmarks"
     >
       <div>
 
@@ -1653,7 +1709,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./compare.html"
+      href="./compare.html?__v=1788156881"
     >
       <div>
 
@@ -1676,7 +1732,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./voting/"
+      href="./voting/?__v=1788156881"
     >
       <div>
 
@@ -1699,7 +1755,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./share/"
+      href="./share/?__v=1788156881"
     >
       <div>
 
@@ -1750,7 +1806,7 @@ h1{
 
   <a
     class="back"
-    href="./"
+    href="./?__v=1788156881"
   >
     ← All models
   </a>
@@ -2064,7 +2120,7 @@ h1{
 
     <a
       class="bottom-button"
-      href="./voting/"
+      href="./voting/?__v=1788156881"
     >
       Voting leaderboard ↗
     </a>
@@ -2074,11 +2130,11 @@ h1{
 </div>
 
 
-<script src="./models.js?v=1788155917"></script>
-<script src="./model-profiles.js?v=1788155917"></script>
-<script src="./model-faq.js?v=1788155917"></script>
-<script src="./benchmarks.js?v=1788155917"></script>
-<script src="./external-benchmarks.js?v=1788155917"></script>
+<script src="./models.js?v=1788156881"></script>
+<script src="./model-profiles.js?v=1788156881"></script>
+<script src="./model-faq.js?v=1788156881"></script>
+<script src="./benchmarks.js?v=1788156881"></script>
+<script src="./external-benchmarks.js?v=1788156881"></script>
 
 <script>
 
@@ -2785,7 +2841,7 @@ if(!model){
     .innerHTML=`
       <a
         class="back"
-        href="./"
+        href="./?__v=1788156881"
       >
         ← All models
       </a>
@@ -2814,7 +2870,7 @@ if(!model){
 
     logo.innerHTML=`
       <img
-        src="${model.logo}"
+        src="${model.logo}?v=1788156881"
         alt=""
       >
     `;
@@ -3717,7 +3773,7 @@ function otherModelLogo(item){
 
     return `
       <img
-        src="${item.logo}"
+        src="${item.logo}?v=1788156881"
         alt=""
       >
     `;
@@ -3824,11 +3880,7 @@ function renderOtherModels(){
         return `
           <a
             class="other-model-card"
-            href="./model.html?id=${
-              encodeURIComponent(
-                item.id
-              )
-            }"
+            href="./model.html?id=%24%7B++++++++++++++encodeURIComponent%28++++++++++++++++item.id++++++++++++++%29++++++++++++%7D&__v=1788156881"
           >
 
             <div class="other-model-top">

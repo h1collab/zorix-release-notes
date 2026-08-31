@@ -1,11 +1,67 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+
+<meta name="zorix-build" content="1788156881">
+<script>
+(function(){
+  var expected="1788156881";
+
+  try{
+    fetch(
+      "/build-version.txt?_=" + Date.now(),
+      {
+        cache:"no-store",
+        headers:{
+          "Cache-Control":"no-cache"
+        }
+      }
+    )
+    .then(function(response){
+      if(!response.ok){
+        return null;
+      }
+      return response.text();
+    })
+    .then(function(latest){
+      if(!latest){
+        return;
+      }
+
+      latest=latest.trim();
+
+      if(
+        latest &&
+        latest!==expected
+      ){
+        var url=
+          new URL(
+            window.location.href          ?v=1788156881);
+
+        url.searchParams.set(
+          "__v",
+          latest
+        );
+
+        window.location.replace(
+          url.toString()
+        );
+      }
+    })
+    .catch(function(){});
+  }catch(e){}
+})();
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Model usage | Zorix Code</title>
 
 <style>
@@ -1913,14 +1969,14 @@ h1{
 
 <header>
   <nav class="nav">
-    <a class="brand" href="../">zorix</a>
+    <a class="brand" href="../?__v=1788156881">zorix</a>
 
     <div class="nav-actions">
       <div class="nav-right">
-        <a href="./">Usage</a>
-        <a href="./models/">Models</a>
-      <a href="./voting/">Voting</a>
-        <a href="./share/">Charts</a>
+        <a href="./?__v=1788156881">Usage</a>
+        <a href="./models/?__v=1788156881">Models</a>
+      <a href="./voting/?__v=1788156881">Voting</a>
+        <a href="./share/?__v=1788156881">Charts</a>
         <a href="#benchmarks">Benchmarks</a>
         <a href="https://doc.zorix.it/">Docs</a>
       </div>
@@ -1984,7 +2040,7 @@ h1{
 
     <a
       class="menu-item menu-item-rich"
-      href="./"
+      href="./?__v=1788156881"
     >
       <div class="menu-item-copy">
 
@@ -2005,7 +2061,7 @@ h1{
 
     <a
       class="menu-item menu-item-rich"
-      href="./models/"
+      href="./models/?__v=1788156881"
     >
       <div class="menu-item-copy">
 
@@ -2047,7 +2103,7 @@ h1{
 
     <a
       class="menu-item menu-item-rich"
-      href="./compare.html"
+      href="./compare.html?__v=1788156881"
     >
       <div class="menu-item-copy">
 
@@ -2068,7 +2124,7 @@ h1{
 
     <a
       class="menu-item menu-item-rich"
-      href="./voting/"
+      href="./voting/?__v=1788156881"
     >
       <div class="menu-item-copy">
 
@@ -2089,7 +2145,7 @@ h1{
 
     <a
       class="menu-item menu-item-rich"
-      href="./share/"
+      href="./share/?__v=1788156881"
     >
       <div class="menu-item-copy">
 
@@ -2110,7 +2166,7 @@ h1{
 
     <a
       class="menu-item menu-item-rich"
-      href="./quota/"
+      href="./quota/?__v=1788156881"
     >
       <div class="menu-item-copy">
 
@@ -2152,7 +2208,7 @@ h1{
 
     <a
       class="menu-item menu-item-rich"
-      href="../"
+      href="../?__v=1788156881"
     >
       <div class="menu-item-copy">
 
@@ -2530,9 +2586,9 @@ h1{
 
 </main>
 
-<script src="./models.js?v=1788156487"></script>
-<script src="./usage.js?v=1788156487"></script>
-<script src="./quota.js?v=1788156487"></script>
+<script src="./models.js?v=1788156881"></script>
+<script src="./usage.js?v=1788156881"></script>
+<script src="./quota.js?v=1788156881"></script>
 
 <script>
 const modelsData = window.ZORIX_MODEL_DETAILS || [];
@@ -2983,11 +3039,7 @@ function renderModels(){
         return `
           <a
             class="model-row"
-            href="./model.html?id=${
-              encodeURIComponent(
-                model.id
-              )
-            }"
+            href="./model.html?id=%24%7B++++++++++++++encodeURIComponent%28++++++++++++++++model.id++++++++++++++%29++++++++++++%7D&__v=1788156881"
           >
 
             <div class="rank">
@@ -3000,7 +3052,7 @@ function renderModels(){
                 model.logo
                   ? `
                     <img
-                      src="${model.logo}"
+                      src="${model.logo}?v=1788156881"
                       alt=""
                     >
                   `
@@ -3162,7 +3214,7 @@ function showPopover(day, stackEl, source){
         ${
           row.id
           ? `<a class="popover-model-link"
-                href="./model.html?id=${encodeURIComponent(row.id)}">
+                href="./model.html?id=%24%7BencodeURIComponent%28row.id%29%7D&__v=1788156881">
                 ${row.name}
              </a>`
           : `<span>${row.name}</span>`
@@ -3718,7 +3770,7 @@ function pickerLogo(model){
 
     return `
       <img
-        src="${model.logo}"
+        src="${model.logo}?v=1788156881"
         alt=""
       >
     `;
@@ -4786,7 +4838,7 @@ function renderBenchmark(key){
             <div class="bench-logo">
 
               <img
-                src="${item.logo}"
+                src="${item.logo}?v=1788156881"
                 alt=""
               >
 
@@ -4961,7 +5013,7 @@ function renderBenchmark(key){
               item.logo
                 ? `
                   <img
-                    src="${item.logo}"
+                    src="${item.logo}?v=1788156881"
                     alt=""
                   >
                 `

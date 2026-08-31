@@ -1,11 +1,67 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+
+<meta name="zorix-build" content="1788156881">
+<script>
+(function(){
+  var expected="1788156881";
+
+  try{
+    fetch(
+      "/build-version.txt?_=" + Date.now(),
+      {
+        cache:"no-store",
+        headers:{
+          "Cache-Control":"no-cache"
+        }
+      }
+    )
+    .then(function(response){
+      if(!response.ok){
+        return null;
+      }
+      return response.text();
+    })
+    .then(function(latest){
+      if(!latest){
+        return;
+      }
+
+      latest=latest.trim();
+
+      if(
+        latest &&
+        latest!==expected
+      ){
+        var url=
+          new URL(
+            window.location.href          ?v=1788156881);
+
+        url.searchParams.set(
+          "__v",
+          latest
+        );
+
+        window.location.replace(
+          url.toString()
+        );
+      }
+    })
+    .catch(function(){});
+  }catch(e){}
+})();
+</script>
+
+
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Release notes | Zorix</title>
   <meta name="description" content="Product updates, model releases, research, and platform changes from Zorix." />
   <meta name="theme-color" content="#f7f7f5" />
@@ -294,22 +350,8 @@
 </div>
 
 <div class="toast" id="toast">RSS feed URL copied</div>
-<script>
-(function(){
-  var s=document.createElement("script");
-  s.src='releases.js'+"?v="+Date.now();
-  s.async=false;
-  document.head.appendChild(s);
-})();
-</script>
-<script>
-(function(){
-  var s=document.createElement("script");
-  s.src='details.js'+"?v="+Date.now();
-  s.async=false;
-  document.head.appendChild(s);
-})();
-</script>
+
+
 <script>
 const releases = window.ZORIX_RELEASES || [];
 
@@ -633,4 +675,8 @@ feed.addEventListener('keydown', e => {
 
 document.getElementById('copyRss').onclick=async()=>{let url=new URL('rss.xml',location.href).href;try{await navigator.clipboard.writeText(url)}catch(e){}let t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)};
 </script>
+
+<script src="releases.js?v=1788156881"></script>
+<script src="details.js?v=1788156881"></script>
+
 </body></html>
