@@ -2440,7 +2440,6 @@ h1{
       </button>
 
       <button
-        class="active"
         type="button"
         data-usage-range="7d"
       >
@@ -2448,6 +2447,7 @@ h1{
       </button>
 
       <button
+        class="active"
         type="button"
         data-usage-range="30d"
       >
@@ -2769,7 +2769,7 @@ const shades = [
 
 let logMode=false;
 let filter='all';
-let usageRange='7d';
+let usageRange='30d';
 let selectedModelIds=new Set(
   modelsData.map(model=>model.id)
 );
