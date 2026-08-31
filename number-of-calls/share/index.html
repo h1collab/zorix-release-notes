@@ -565,10 +565,6 @@ canvas{
         Usage index
       </option>
 
-      <option value="genebench-v1">
-        GeneBench v1 · Exact SVG
-      </option>
-
       <option value="trend">
         Weekly token curve
       </option>
@@ -579,6 +575,10 @@ canvas{
 
       <option value="benchmark">
         Benchmark ranking
+      </option>
+
+      <option value="coding-benchmark-svg">
+        Metron Coding Benchmark · SVG
       </option>
 
       <option value="voting">
@@ -689,25 +689,23 @@ canvas{
       Download PNG
     </button>
 
-    <a
-      class="download"
-      id="downloadExactSvgButton"
-      href="./genebench-v1.svg"
-      download="genebench-v1.svg"
-      style="
-        display:none;
-        align-items:center;
-        justify-content:center;
-        margin-left:8px;
-        text-decoration:none;
-      "
-    >
-      Download SVG
-    </a>
 
     <button
       class="download"
-      id="downloadExactPngButton"
+      id="downloadCodingSvgButton"
+      type="button"
+      style="
+        display:none;
+        margin-left:8px;
+      "
+    >
+      Download SVG
+    </button>
+
+
+    <button
+      class="download"
+      id="downloadCodingPngButton"
       type="button"
       style="
         display:none;
@@ -773,12 +771,13 @@ canvas{
       height="900"
     ></canvas>
 
+
     <div
-      id="exactSvgPreview"
+      id="codingBenchmarkSvgPreview"
       style="
         display:none;
         min-width:680px;
-        min-height:520px;
+        min-height:540px;
         align-items:center;
         justify-content:center;
         background:#fff;
@@ -786,19 +785,14 @@ canvas{
       "
     >
 
-      <img
-        id="geneBenchExactImage"
-        src="./genebench-v1.svg"
-        alt="GeneBench v1"
-        width="424"
-        height="488"
+      <div
+        id="codingBenchmarkSvgHost"
         style="
-          display:block;
           width:424px;
           height:488px;
-          max-width:none;
+          flex:0 0 auto;
         "
-      >
+      ></div>
 
     </div>
 
@@ -6438,16 +6432,31 @@ render();
 </script>
 
 
+
+
+
 <script>
 
 /* ============================================================
-   GENEBENCH_EXACT_SVG_V1
+   METRON_CODING_BENCHMARK_SVG_V1
 
-   This mode intentionally renders the supplied SVG directly.
-   It does not recreate the chart with Canvas.
+   Exact 424 x 488 publication layout.
+
+   Data source:
+   window.ZORIX_BENCHMARKS
+
+   This visualization uses current published internal-preview
+   benchmark observations. It does not generate benchmark data.
    ============================================================ */
 
 (function(){
+
+  "use strict";
+
+
+  const REPORT_ID =
+    "coding-benchmark-svg";
+
 
   const report =
     document.getElementById(
@@ -6463,7 +6472,13 @@ render();
 
   const exactPreview =
     document.getElementById(
-      "exactSvgPreview"
+      "codingBenchmarkSvgPreview"
+    );
+
+
+  const host =
+    document.getElementById(
+      "codingBenchmarkSvgHost"
     );
 
 
@@ -6475,29 +6490,17 @@ render();
 
   const svgDownload =
     document.getElementById(
-      "downloadExactSvgButton"
+      "downloadCodingSvgButton"
     );
 
 
   const pngDownload =
     document.getElementById(
-      "downloadExactPngButton"
+      "downloadCodingPngButton"
     );
 
 
-  const previewMeta =
-    document.getElementById(
-      "previewMeta"
-    );
-
-
-  const previewTitle =
-    document.querySelector(
-      ".preview-title"
-    );
-
-
-  const metric =
+  const metricSelect =
     document.getElementById(
       "metricSelect"
     );
@@ -6509,35 +6512,871 @@ render();
     );
 
 
-  const trend =
+  const trendControls =
     document.getElementById(
       "trendControls"
     );
 
 
-  function isExact(){
+  const previewTitle =
+    document.querySelector(
+      ".preview-title"
+    );
+
+
+  const previewMeta =
+    document.getElementById(
+      "previewMeta"
+    );
+
+
+  const BENCHMARKS =
+    window.ZORIX_BENCHMARKS
+    ||
+    {
+      meta:{},
+      scores:{}
+    };
+
+
+  const SERIES = [
+
+    {
+      id:
+        "nex-coder-38-neptune",
+
+      label:
+        "Nex Coder 3.8",
+
+      color:
+        "#133463"
+    },
+
+    {
+      id:
+        "claude-opus-5",
+
+      label:
+        "Claude Opus 5",
+
+      color:
+        "#1f4e94"
+    },
+
+    {
+      id:
+        "gpt-56-luna",
+
+      label:
+        "GPT-5.6 Luna",
+
+      color:
+        "#2c67c5"
+    },
+
+    {
+      id:
+        "gemini-37-flash",
+
+      label:
+        "Gemini 3.7 Flash",
+
+      color:
+        "#873e60"
+    }
+
+  ];
+
+
+  const METRICS = [
+
+    {
+      id:
+        "swe-verified",
+
+      label:
+        "SWE-V"
+    },
+
+    {
+      id:
+        "swe-pro",
+
+      label:
+        "SWE-Pro"
+    },
+
+    {
+      id:
+        "terminal-21",
+
+      label:
+        "Terminal"
+    },
+
+    {
+      id:
+        "livecode",
+
+      label:
+        "LiveCode"
+    },
+
+    {
+      id:
+        "humaneval-plus",
+
+      label:
+        "HE+"
+    }
+
+  ];
+
+
+  function esc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function active(){
 
     return (
       report
       &&
       report.value
       ===
-      "genebench-v1"
+      REPORT_ID
     );
 
   }
 
 
-  function syncExactMode(){
+  function score(
+    modelId,
+    metricId
+  ){
 
-    const active =
-      isExact();
+    const value =
+      BENCHMARKS
+      .scores?.[
+        modelId
+      ]?.[
+        metricId
+      ];
+
+
+    const n =
+      Number(value);
+
+
+    return Number.isFinite(n)
+      ? n
+      : null;
+
+  }
+
+
+  function x(index){
+
+    /*
+     * Original plot width: 268
+     * Original plot origin: x 108
+     */
+
+    const left=108;
+
+    const positions=[
+      6,
+      70,
+      134,
+      198,
+      262
+    ];
+
+
+    return (
+      left
+      +
+      positions[index]
+    );
+
+  }
+
+
+  function y(value){
+
+    /*
+     * Original plot:
+     * y = 147
+     * height = 276
+     *
+     * Benchmark scale:
+     * 70% -> bottom
+     * 100% -> top
+     */
+
+    const top=147;
+    const height=276;
+
+    const min=70;
+    const max=100;
+
+
+    return (
+      top
+      +
+      (
+        max-value
+      )
+      /
+      (
+        max-min
+      )
+      *
+      height
+    );
+
+  }
+
+
+  function zorixLogo(){
+
+    /*
+     * Inline Zorix logo.
+     * No external SVG dependency when downloading.
+     */
+
+    return `
+
+      <defs>
+
+        <linearGradient
+          id="zorixCoreShare"
+          x1="32"
+          y1="24"
+          x2="130"
+          y2="136"
+          gradientUnits="userSpaceOnUse"
+        >
+
+          <stop
+            offset="0%"
+            stop-color="#2563EB"
+          />
+
+          <stop
+            offset="45%"
+            stop-color="#06B6D4"
+          />
+
+          <stop
+            offset="100%"
+            stop-color="#22C55E"
+          />
+
+        </linearGradient>
+
+
+        <linearGradient
+          id="zorixZShare"
+          x1="45"
+          y1="42"
+          x2="115"
+          y2="118"
+          gradientUnits="userSpaceOnUse"
+        >
+
+          <stop
+            offset="0%"
+            stop-color="#FFFFFF"
+          />
+
+          <stop
+            offset="100%"
+            stop-color="#E0F2FE"
+          />
+
+        </linearGradient>
+
+      </defs>
+
+
+      <g
+        role="presentation"
+        aria-hidden="true"
+        focusable="false"
+        transform="
+          translate(372,24)
+          scale(0.1282051282051282)
+        "
+      >
+
+        <rect
+          x="20"
+          y="20"
+          width="120"
+          height="120"
+          rx="34"
+          fill="url(#zorixCoreShare)"
+        />
+
+
+        <path
+          d="
+            M48 50
+            H112
+            L92 73
+            H108
+            L55 112
+            L76 86
+            H52
+            L72 63
+            H48
+            Z
+          "
+          fill="url(#zorixZShare)"
+        />
+
+
+        <path
+          d="
+            M38 92
+            C52 118
+             91 128
+             120 96
+          "
+          fill="none"
+          stroke="#FFFFFF"
+          stroke-width="8"
+          stroke-linecap="round"
+          opacity="0.35"
+        />
+
+
+        <circle
+          cx="116"
+          cy="42"
+          r="7"
+          fill="#FFFFFF"
+          opacity="0.9"
+        />
+
+
+        <circle
+          cx="42"
+          cy="118"
+          r="5"
+          fill="#FFFFFF"
+          opacity="0.65"
+        />
+
+      </g>
+    `;
+
+  }
+
+
+  function legend(){
+
+    return SERIES
+      .map(
+        (series,index)=>{
+
+          const yy =
+            80
+            +
+            index*16;
+
+
+          return `
+
+            <g
+              transform="
+                translate(
+                  108,
+                  ${yy}
+                )
+              "
+            >
+
+              <path
+                transform="
+                  translate(
+                    7,
+                    7
+                  )
+                "
+                d="
+                  M5,0
+                  A5,5,0,1,1,-5,0
+                  A5,5,0,1,1,5,0
+                "
+                fill="${series.color}"
+                stroke="${series.color}"
+                stroke-width="1.5"
+                opacity="1"
+              />
+
+
+              <text
+                text-anchor="start"
+                transform="
+                  translate(
+                    18,
+                    11
+                  )
+                "
+                font-family="
+                  OpenAI Sans,
+                  OpenAI Sans Variable Scripts,
+                  sans-serif
+                "
+                font-size="14px"
+                font-weight="normal"
+                fill="#000"
+                opacity="1"
+              >
+                ${esc(series.label)}
+              </text>
+
+            </g>
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
+  function yAxis(){
+
+    const ticks=[
+      70,
+      80,
+      90,
+      100
+    ];
+
+
+    const tickMarkup =
+      ticks
+      .map(
+        value=>{
+
+          const yy =
+            y(value);
+
+
+          return `
+
+            <line
+              x1="108"
+              x2="103"
+              y1="${yy}"
+              y2="${yy}"
+              stroke="#000"
+              stroke-width="1"
+            />
+
+
+            <text
+              x="93"
+              y="${yy+4}"
+              text-anchor="end"
+              font-family="
+                SF Mono,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace
+              "
+              font-size="12px"
+              font-weight="normal"
+              fill="#000"
+              opacity="1"
+            >
+              ${value}%
+            </text>
+          `;
+
+        }
+      )
+      .join("");
+
+
+    return `
+
+      ${tickMarkup}
+
+
+      <line
+        x1="108"
+        x2="108"
+        y1="147"
+        y2="423"
+        stroke="#000"
+        stroke-width="1"
+        opacity="1"
+      />
+
+
+      <text
+        text-anchor="middle"
+        x="51"
+        y="285"
+        transform="
+          rotate(
+            -90
+            51
+            285
+          )
+        "
+        font-family="
+          OpenAI Sans,
+          OpenAI Sans Variable Scripts,
+          sans-serif
+        "
+        font-size="14px"
+        font-weight="normal"
+        fill="#000"
+      >
+        Score
+      </text>
+    `;
+
+  }
+
+
+  function xAxis(){
+
+    const labels =
+      METRICS
+      .map(
+        (metric,index)=>{
+
+          const xx =
+            x(index);
+
+
+          return `
+
+            <line
+              x1="${xx}"
+              x2="${xx}"
+              y1="423"
+              y2="428"
+              stroke="#000"
+              stroke-width="1"
+            />
+
+
+            <text
+              x="${xx}"
+              y="449"
+              text-anchor="middle"
+              font-family="
+                SF Mono,
+                SFMono-Regular,
+                Menlo,
+                Consolas,
+                monospace
+              "
+              font-size="8.5px"
+              font-weight="normal"
+              fill="#000"
+            >
+              ${esc(metric.label)}
+            </text>
+          `;
+
+        }
+      )
+      .join("");
+
+
+    return `
+
+      ${labels}
+
+
+      <line
+        x1="108"
+        x2="376"
+        y1="423"
+        y2="423"
+        stroke="#000"
+        stroke-width="1"
+        opacity="1"
+      />
+
+
+      <text
+        text-anchor="middle"
+        x="242"
+        y="480"
+        font-family="
+          OpenAI Sans,
+          OpenAI Sans Variable Scripts,
+          sans-serif
+        "
+        font-size="14px"
+        font-weight="normal"
+        fill="#000"
+      >
+        Benchmark
+      </text>
+    `;
+
+  }
+
+
+  function seriesMarkup(){
+
+    return SERIES
+      .map(
+        series=>{
+
+          const values =
+            METRICS
+            .map(
+              metric=>
+                score(
+                  series.id,
+                  metric.id
+                )
+            );
+
+
+          const points =
+            values
+            .map(
+              (value,index)=>{
+
+                if(value===null){
+                  return null;
+                }
+
+
+                return {
+                  x:
+                    x(index),
+
+                  y:
+                    y(value),
+
+                  value,
+
+                  metric:
+                    METRICS[index]
+                };
+
+              }
+            )
+            .filter(Boolean);
+
+
+          if(!points.length){
+            return "";
+          }
+
+
+          const path =
+            points
+            .map(
+              (point,index)=>
+                (
+                  index===0
+                    ? "M"
+                    : "L"
+                )
+                +
+                point.x.toFixed(3)
+                +
+                ","
+                +
+                point.y.toFixed(3)
+            )
+            .join("");
+
+
+          const symbols =
+            points
+            .map(
+              point=>`
+
+                <path
+                  aria-label="
+                    benchmark: ${esc(point.metric.label)};
+                    score: ${point.value}%;
+                    model: ${esc(series.label)}
+                  "
+                  role="graphics-symbol"
+                  aria-roledescription="point"
+                  transform="
+                    translate(
+                      ${point.x},
+                      ${point.y}
+                    )
+                  "
+                  d="
+                    M4.183,0
+                    A4.183,4.183,0,1,1,-4.183,0
+                    A4.183,4.183,0,1,1,4.183,0
+                  "
+                  fill="${series.color}"
+                  stroke-width="1.5"
+                  opacity="1"
+                />
+
+              `
+            )
+            .join("");
+
+
+          return `
+
+            <g
+              role="graphics-object"
+              aria-roledescription="line series"
+            >
+
+              <path
+                aria-label="
+                  model:
+                  ${esc(series.label)}
+                "
+                role="graphics-symbol"
+                aria-roledescription="line mark"
+                d="${path}"
+                fill="none"
+                stroke="${series.color}"
+                stroke-width="2"
+              />
+
+
+              ${symbols}
+
+            </g>
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
+  function buildSvg(){
+
+    return `
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        class="marks"
+        width="424"
+        height="488"
+        viewBox="0 0 424 488"
+        role="img"
+        aria-label="Metron Coding Benchmark"
+      >
+
+        <rect
+          x="0"
+          y="0"
+          width="424"
+          height="488"
+          fill="#fff"
+          stroke="none"
+          role="presentation"
+          aria-hidden="true"
+          data-vega-export-background="true"
+        />
+
+
+        <text
+          x="32"
+          y="24"
+          fill="#000"
+          font-family="
+            OpenAI Sans,
+            OpenAI Sans Variable Scripts,
+            sans-serif
+          "
+          font-size="16"
+          font-weight="bold"
+          dominant-baseline="text-before-edge"
+          text-anchor="start"
+        >
+          Metron Coding Benchmark
+        </text>
+
+
+        ${zorixLogo()}
+
+
+        ${legend()}
+
+
+        <path
+          class="background"
+          aria-hidden="true"
+          d="
+            M108.5,147.5
+            h268
+            v276
+            h-268
+            Z
+          "
+          fill="none"
+        />
+
+
+        ${yAxis()}
+
+        ${xAxis()}
+
+        ${seriesMarkup()}
+
+      </svg>
+    `;
+
+  }
+
+
+  function renderExactSvg(){
+
+    if(!host){
+      return;
+    }
+
+
+    host.innerHTML =
+      buildSvg();
+
+  }
+
+
+  function syncMode(){
+
+    const enabled =
+      active();
 
 
     if(canvas){
 
       canvas.style.display =
-        active
+        enabled
           ? "none"
           : "block";
 
@@ -6547,7 +7386,7 @@ render();
     if(exactPreview){
 
       exactPreview.style.display =
-        active
+        enabled
           ? "flex"
           : "none";
 
@@ -6557,7 +7396,7 @@ render();
     if(normalDownload){
 
       normalDownload.style.display =
-        active
+        enabled
           ? "none"
           : "";
 
@@ -6567,8 +7406,8 @@ render();
     if(svgDownload){
 
       svgDownload.style.display =
-        active
-          ? "inline-flex"
+        enabled
+          ? ""
           : "none";
 
     }
@@ -6577,17 +7416,17 @@ render();
     if(pngDownload){
 
       pngDownload.style.display =
-        active
+        enabled
           ? ""
           : "none";
 
     }
 
 
-    if(metric){
+    if(metricSelect){
 
-      metric.disabled =
-        active;
+      metricSelect.disabled =
+        enabled;
 
     }
 
@@ -6595,217 +7434,147 @@ render();
     if(modelCount){
 
       modelCount.disabled =
-        active;
-
-    }
-
-
-    if(trend && active){
-
-      trend.style.display =
-        "none";
-
-    }
-
-
-    if(previewTitle && active){
-
-      previewTitle.textContent =
-        "424 × 488";
-
-    }
-
-
-    if(previewMeta && active){
-
-      previewMeta.textContent =
-        "GeneBench v1 · exact supplied SVG";
+        enabled;
 
     }
 
 
     if(
-      !active
+      trendControls
       &&
-      previewTitle
+      enabled
     ){
 
-      previewTitle.textContent =
-        "1600 × 900";
+      trendControls.style.display =
+        "none";
+
+    }
+
+
+    if(enabled){
+
+      renderExactSvg();
+
+
+      if(previewTitle){
+
+        previewTitle.textContent =
+          "424 × 488";
+
+      }
+
+
+      if(previewMeta){
+
+        previewMeta.textContent =
+          "Metron Coding Benchmark · internal preview";
+
+      }
+
+    }else{
+
+      if(previewTitle){
+
+        previewTitle.textContent =
+          "1600 × 900";
+
+      }
 
     }
 
   }
 
 
-  async function downloadExactPng(){
+  function svgText(){
 
-    try{
-
-      const response =
-        await fetch(
-          "./genebench-v1.svg",
-          {
-            cache:"no-store"
-          }
-        );
-
-
-      const text =
-        await response.text();
-
-
-      const blob =
-        new Blob(
-          [text],
-          {
-            type:
-              "image/svg+xml;charset=utf-8"
-          }
-        );
-
-
-      const url =
-        URL.createObjectURL(
-          blob
-        );
-
-
-      const image =
-        new Image();
-
-
-      image.onload =
-        ()=>{
-
-          const output =
-            document.createElement(
-              "canvas"
-            );
-
-
-          /*
-           * Keep the source dimensions exactly:
-           * 424 x 488.
-           */
-          output.width=424;
-          output.height=488;
-
-
-          const context =
-            output.getContext(
-              "2d"
-            );
-
-
-          context.fillStyle="#fff";
-
-          context.fillRect(
-            0,
-            0,
-            424,
-            488
-          );
-
-
-          context.drawImage(
-            image,
-            0,
-            0,
-            424,
-            488
-          );
-
-
-          output.toBlob(
-            png=>{
-
-              if(!png){
-                return;
-              }
-
-
-              const pngUrl =
-                URL.createObjectURL(
-                  png
-                );
-
-
-              const a =
-                document.createElement(
-                  "a"
-                );
-
-
-              a.href =
-                pngUrl;
-
-              a.download =
-                "genebench-v1.png";
-
-
-              document.body
-                .appendChild(a);
-
-
-              a.click();
-
-              a.remove();
-
-
-              setTimeout(
-                ()=>{
-                  URL.revokeObjectURL(
-                    pngUrl
-                  );
-                },
-                1000
-              );
-
-            },
-            "image/png"
-          );
-
-
-          URL.revokeObjectURL(
-            url
-          );
-
-        };
-
-
-      image.src=url;
-
-    }catch(error){
-
-      console.error(
-        "Exact SVG PNG export failed:",
-        error
+    const svg =
+      host
+      ?.querySelector(
+        "svg"
       );
 
+
+    if(!svg){
+      return "";
     }
+
+
+    return (
+      '<?xml version="1.0" encoding="UTF-8"?>\n'
+      +
+      svg.outerHTML
+    );
 
   }
 
 
-  report
+  function downloadBlob(
+    blob,
+    filename
+  ){
+
+    const url =
+      URL.createObjectURL(
+        blob
+      );
+
+
+    const a =
+      document.createElement(
+        "a"
+      );
+
+
+    a.href=url;
+
+    a.download=
+      filename;
+
+
+    document.body
+      .appendChild(a);
+
+
+    a.click();
+
+    a.remove();
+
+
+    setTimeout(
+      ()=>{
+        URL.revokeObjectURL(
+          url
+        );
+      },
+      1000
+    );
+
+  }
+
+
+  svgDownload
     ?.addEventListener(
-      "change",
+      "click",
       ()=>{
 
-        /*
-         * Older Share renderers can update after
-         * the same change event, so apply exact mode
-         * again at the end of the event loop.
-         */
-        setTimeout(
-          syncExactMode,
-          0
-        );
+        const text =
+          svgText();
 
-        setTimeout(
-          syncExactMode,
-          60
+
+        if(!text){
+          return;
+        }
+
+
+        downloadBlob(
+          new Blob(
+            [text],
+            {
+              type:
+                "image/svg+xml;charset=utf-8"
+            }
+          ),
+          "metron-coding-benchmark.svg"
         );
 
       }
@@ -6815,11 +7584,139 @@ render();
   pngDownload
     ?.addEventListener(
       "click",
-      downloadExactPng
+      ()=>{
+
+        const text =
+          svgText();
+
+
+        if(!text){
+          return;
+        }
+
+
+        const sourceBlob =
+          new Blob(
+            [text],
+            {
+              type:
+                "image/svg+xml;charset=utf-8"
+            }
+          );
+
+
+        const sourceUrl =
+          URL.createObjectURL(
+            sourceBlob
+          );
+
+
+        const image =
+          new Image();
+
+
+        image.onload =
+          ()=>{
+
+            const output =
+              document.createElement(
+                "canvas"
+              );
+
+
+            /*
+             * Preserve the exact supplied-style
+             * publication dimensions.
+             */
+
+            output.width=424;
+            output.height=488;
+
+
+            const context =
+              output.getContext(
+                "2d"
+              );
+
+
+            context.fillStyle=
+              "#fff";
+
+
+            context.fillRect(
+              0,
+              0,
+              424,
+              488
+            );
+
+
+            context.drawImage(
+              image,
+              0,
+              0,
+              424,
+              488
+            );
+
+
+            output.toBlob(
+              png=>{
+
+                if(png){
+
+                  downloadBlob(
+                    png,
+                    "metron-coding-benchmark.png"
+                  );
+
+                }
+
+              },
+              "image/png"
+            );
+
+
+            URL.revokeObjectURL(
+              sourceUrl
+            );
+
+          };
+
+
+        image.src =
+          sourceUrl;
+
+      }
     );
 
 
-  syncExactMode();
+  report
+    ?.addEventListener(
+      "change",
+      ()=>{
+
+        /*
+         * Existing Share renderers also react to this control.
+         * Apply exact SVG mode after their event handlers.
+         */
+
+        setTimeout(
+          syncMode,
+          0
+        );
+
+
+        setTimeout(
+          syncMode,
+          80
+        );
+
+      }
+    );
+
+
+  syncMode();
 
 })();
 
