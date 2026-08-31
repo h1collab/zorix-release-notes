@@ -5,7 +5,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788181089">
+<meta name="zorix-build" content="1788203797">
 
 
 
@@ -2440,6 +2440,7 @@ h1{
       </button>
 
       <button
+        class="active"
         type="button"
         data-usage-range="7d"
       >
@@ -2447,7 +2448,6 @@ h1{
       </button>
 
       <button
-        class="active"
         type="button"
         data-usage-range="30d"
       >
@@ -2578,11 +2578,178 @@ h1{
 </main>
 
 <script src="./models.js?v=1788181089"></script>
-<script src="./usage.js?v=1788181089"></script>
+<script src="./usage.js?v=1788203797"></script>
 <script src="./quota.js?v=1788181089"></script>
 
 <script>
-const modelsData = window.ZORIX_MODEL_DETAILS || [];
+/*
+ * TOKEN_MODEL_DATA_MERGE_V1
+ *
+ * models.js owns rich model metadata.
+ * usage.js owns current token observations.
+ *
+ * Usage-only models with a stable ID, such as GPT-5.6 Terra,
+ * must still be visible on the token page.
+ */
+const modelsData =
+  (()=>{
+
+    const details =
+      Array.isArray(
+        window.ZORIX_MODEL_DETAILS
+      )
+        ? window.ZORIX_MODEL_DETAILS
+        : [];
+
+
+    const usageRows =
+      Array.isArray(
+        window.ZORIX_CODE_USAGE?.models
+      )
+        ? window.ZORIX_CODE_USAGE.models
+        : [];
+
+
+    const byId =
+      new Map();
+
+
+    details.forEach(
+      model=>{
+
+        if(!model?.id){
+          return;
+        }
+
+
+        byId.set(
+          model.id,
+          {
+            ...model
+          }
+        );
+
+      }
+    );
+
+
+    /*
+     * Only merge usage rows that have a real stable ID.
+     * This avoids guessing identities from display names.
+     */
+    usageRows.forEach(
+      row=>{
+
+        if(!row?.id){
+          return;
+        }
+
+
+        const existing =
+          byId.get(
+            row.id
+          )
+          ||
+          {};
+
+
+        byId.set(
+          row.id,
+          {
+            ...existing,
+            ...row,
+
+            id:
+              row.id,
+
+            name:
+              existing.name
+              ||
+              row.name
+              ||
+              row.id,
+
+            provider:
+              existing.provider
+              ||
+              row.provider
+              ||
+              "",
+
+            family:
+              existing.family
+              ||
+              row.family
+              ||
+              "",
+
+            logo:
+              existing.logo
+              ||
+              row.logo
+              ||
+              "",
+
+            color:
+              existing.color
+              ||
+              row.color
+              ||
+              "#111111",
+
+            dailyTokens:
+              Number(
+                row.dailyTokens
+                ??
+                row.tokens
+                ??
+                existing.dailyTokens
+                ??
+                0
+              ),
+
+            weeklyTokens:
+              (
+                row.weeklyTokens
+                ??
+                existing.weeklyTokens
+                ??
+                null
+              ),
+
+            weeklyOnlyTokens:
+              Boolean(
+                row.weeklyOnlyTokens
+                ??
+                existing.weeklyOnlyTokens
+                ??
+                false
+              ),
+
+            chart:
+              Array.isArray(
+                existing.chart
+              )
+                ? existing.chart
+                : (
+                    Array.isArray(
+                      row.chart
+                    )
+                      ? row.chart
+                      : []
+                  )
+          }
+        );
+
+      }
+    );
+
+
+    return [
+      ...byId.values()
+    ];
+
+  })();
 const quota = window.ZORIX_PUBLIC_QUOTA || {
   current:0,
   totalIssued:0,
@@ -2602,7 +2769,7 @@ const shades = [
 
 let logMode=false;
 let filter='all';
-let usageRange='30d';
+let usageRange='7d';
 let selectedModelIds=new Set(
   modelsData.map(model=>model.id)
 );
