@@ -565,6 +565,10 @@ canvas{
         Usage index
       </option>
 
+      <option value="genebench-v1">
+        GeneBench v1 · Exact SVG
+      </option>
+
       <option value="trend">
         Weekly token curve
       </option>
@@ -685,6 +689,34 @@ canvas{
       Download PNG
     </button>
 
+    <a
+      class="download"
+      id="downloadExactSvgButton"
+      href="./genebench-v1.svg"
+      download="genebench-v1.svg"
+      style="
+        display:none;
+        align-items:center;
+        justify-content:center;
+        margin-left:8px;
+        text-decoration:none;
+      "
+    >
+      Download SVG
+    </a>
+
+    <button
+      class="download"
+      id="downloadExactPngButton"
+      type="button"
+      style="
+        display:none;
+        margin-left:8px;
+      "
+    >
+      Download PNG
+    </button>
+
   </div>
 
 
@@ -740,6 +772,35 @@ canvas{
       width="1600"
       height="900"
     ></canvas>
+
+    <div
+      id="exactSvgPreview"
+      style="
+        display:none;
+        min-width:680px;
+        min-height:520px;
+        align-items:center;
+        justify-content:center;
+        background:#fff;
+        border-radius:7px;
+      "
+    >
+
+      <img
+        id="geneBenchExactImage"
+        src="./genebench-v1.svg"
+        alt="GeneBench v1"
+        width="424"
+        height="488"
+        style="
+          display:block;
+          width:424px;
+          height:488px;
+          max-width:none;
+        "
+      >
+
+    </div>
 
   </div>
 
@@ -6371,6 +6432,394 @@ render();
     );
 
   }
+
+})();
+
+</script>
+
+
+<script>
+
+/* ============================================================
+   GENEBENCH_EXACT_SVG_V1
+
+   This mode intentionally renders the supplied SVG directly.
+   It does not recreate the chart with Canvas.
+   ============================================================ */
+
+(function(){
+
+  const report =
+    document.getElementById(
+      "reportType"
+    );
+
+
+  const canvas =
+    document.getElementById(
+      "chartCanvas"
+    );
+
+
+  const exactPreview =
+    document.getElementById(
+      "exactSvgPreview"
+    );
+
+
+  const normalDownload =
+    document.getElementById(
+      "downloadButton"
+    );
+
+
+  const svgDownload =
+    document.getElementById(
+      "downloadExactSvgButton"
+    );
+
+
+  const pngDownload =
+    document.getElementById(
+      "downloadExactPngButton"
+    );
+
+
+  const previewMeta =
+    document.getElementById(
+      "previewMeta"
+    );
+
+
+  const previewTitle =
+    document.querySelector(
+      ".preview-title"
+    );
+
+
+  const metric =
+    document.getElementById(
+      "metricSelect"
+    );
+
+
+  const modelCount =
+    document.getElementById(
+      "modelCountSelect"
+    );
+
+
+  const trend =
+    document.getElementById(
+      "trendControls"
+    );
+
+
+  function isExact(){
+
+    return (
+      report
+      &&
+      report.value
+      ===
+      "genebench-v1"
+    );
+
+  }
+
+
+  function syncExactMode(){
+
+    const active =
+      isExact();
+
+
+    if(canvas){
+
+      canvas.style.display =
+        active
+          ? "none"
+          : "block";
+
+    }
+
+
+    if(exactPreview){
+
+      exactPreview.style.display =
+        active
+          ? "flex"
+          : "none";
+
+    }
+
+
+    if(normalDownload){
+
+      normalDownload.style.display =
+        active
+          ? "none"
+          : "";
+
+    }
+
+
+    if(svgDownload){
+
+      svgDownload.style.display =
+        active
+          ? "inline-flex"
+          : "none";
+
+    }
+
+
+    if(pngDownload){
+
+      pngDownload.style.display =
+        active
+          ? ""
+          : "none";
+
+    }
+
+
+    if(metric){
+
+      metric.disabled =
+        active;
+
+    }
+
+
+    if(modelCount){
+
+      modelCount.disabled =
+        active;
+
+    }
+
+
+    if(trend && active){
+
+      trend.style.display =
+        "none";
+
+    }
+
+
+    if(previewTitle && active){
+
+      previewTitle.textContent =
+        "424 × 488";
+
+    }
+
+
+    if(previewMeta && active){
+
+      previewMeta.textContent =
+        "GeneBench v1 · exact supplied SVG";
+
+    }
+
+
+    if(
+      !active
+      &&
+      previewTitle
+    ){
+
+      previewTitle.textContent =
+        "1600 × 900";
+
+    }
+
+  }
+
+
+  async function downloadExactPng(){
+
+    try{
+
+      const response =
+        await fetch(
+          "./genebench-v1.svg",
+          {
+            cache:"no-store"
+          }
+        );
+
+
+      const text =
+        await response.text();
+
+
+      const blob =
+        new Blob(
+          [text],
+          {
+            type:
+              "image/svg+xml;charset=utf-8"
+          }
+        );
+
+
+      const url =
+        URL.createObjectURL(
+          blob
+        );
+
+
+      const image =
+        new Image();
+
+
+      image.onload =
+        ()=>{
+
+          const output =
+            document.createElement(
+              "canvas"
+            );
+
+
+          /*
+           * Keep the source dimensions exactly:
+           * 424 x 488.
+           */
+          output.width=424;
+          output.height=488;
+
+
+          const context =
+            output.getContext(
+              "2d"
+            );
+
+
+          context.fillStyle="#fff";
+
+          context.fillRect(
+            0,
+            0,
+            424,
+            488
+          );
+
+
+          context.drawImage(
+            image,
+            0,
+            0,
+            424,
+            488
+          );
+
+
+          output.toBlob(
+            png=>{
+
+              if(!png){
+                return;
+              }
+
+
+              const pngUrl =
+                URL.createObjectURL(
+                  png
+                );
+
+
+              const a =
+                document.createElement(
+                  "a"
+                );
+
+
+              a.href =
+                pngUrl;
+
+              a.download =
+                "genebench-v1.png";
+
+
+              document.body
+                .appendChild(a);
+
+
+              a.click();
+
+              a.remove();
+
+
+              setTimeout(
+                ()=>{
+                  URL.revokeObjectURL(
+                    pngUrl
+                  );
+                },
+                1000
+              );
+
+            },
+            "image/png"
+          );
+
+
+          URL.revokeObjectURL(
+            url
+          );
+
+        };
+
+
+      image.src=url;
+
+    }catch(error){
+
+      console.error(
+        "Exact SVG PNG export failed:",
+        error
+      );
+
+    }
+
+  }
+
+
+  report
+    ?.addEventListener(
+      "change",
+      ()=>{
+
+        /*
+         * Older Share renderers can update after
+         * the same change event, so apply exact mode
+         * again at the end of the event loop.
+         */
+        setTimeout(
+          syncExactMode,
+          0
+        );
+
+        setTimeout(
+          syncExactMode,
+          60
+        );
+
+      }
+    );
+
+
+  pngDownload
+    ?.addEventListener(
+      "click",
+      downloadExactPng
+    );
+
+
+  syncExactMode();
 
 })();
 
