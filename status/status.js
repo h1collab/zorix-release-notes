@@ -1,5 +1,5 @@
 window.ZORIX_STATUS = {
-  "updatedAt": "2026-08-31T14:57:00+02:00",
+  "updatedAt": "2026-08-31T14:58:09+02:00",
   "overall": "outage",
   "message": "Zorix Code support for Nex Coder and VIREXA was restored at 14:57 CEST. Other published service conditions remain unchanged.",
   "components": [
@@ -31,7 +31,7 @@ window.ZORIX_STATUS = {
       "id": "virexa",
       "name": "VIREXA",
       "description": "Image generation systems.",
-      "status": "operational"
+      "status": "degraded"
     },
     {
       "id": "public-quota",
