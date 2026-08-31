@@ -1,5 +1,5 @@
 window.ZORIX_STATUS = {
-  "updatedAt": "2026-08-31T13:52:01+02:00",
+  "updatedAt": "2026-08-31T13:52:53+02:00",
   "overall": "outage",
   "message": "Nex Coder and VIREXA support in Zorix Code is temporarily paused due to exceptionally high demand.",
   "components": [
@@ -13,7 +13,7 @@ window.ZORIX_STATUS = {
       "id": "zorix-code",
       "name": "Zorix Code",
       "description": "Coding environment, tools and agent workflows.",
-      "status": "maintenance"
+      "status": "partial_outage"
     },
     {
       "id": "metron",
@@ -25,13 +25,13 @@ window.ZORIX_STATUS = {
       "id": "nex",
       "name": "Nex models",
       "description": "Nex and Nex Coder model availability.",
-      "status": "outage"
+      "status": "maintenance"
     },
     {
       "id": "virexa",
       "name": "VIREXA",
       "description": "Image generation systems.",
-      "status": "outage"
+      "status": "maintenance"
     },
     {
       "id": "public-quota",
