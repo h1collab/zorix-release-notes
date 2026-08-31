@@ -1406,6 +1406,100 @@ h1{
 
 }
 
+
+/* =========================================================
+   MODEL FAQ
+   ========================================================= */
+
+.faq-list{
+  border-top:1px solid var(--line);
+}
+
+.faq-item{
+  border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+  width:100%;
+
+  padding:22px 0;
+
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 26px;
+
+  gap:18px;
+  align-items:center;
+
+  border:0;
+
+  background:transparent;
+
+  cursor:pointer;
+  text-align:left;
+}
+
+.faq-question-text{
+  font-size:17px;
+
+  letter-spacing:-.025em;
+}
+
+.faq-plus{
+  width:25px;
+  height:25px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--line);
+  border-radius:50%;
+
+  color:var(--muted);
+
+  font-size:17px;
+
+  transition:
+    transform .16s ease,
+    background .16s ease;
+}
+
+.faq-item.open
+.faq-plus{
+  transform:rotate(45deg);
+
+  background:var(--soft);
+}
+
+.faq-answer{
+  display:none;
+
+  max-width:790px;
+
+  padding:
+    0
+    50px
+    24px
+    0;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.65;
+}
+
+.faq-item.open
+.faq-answer{
+  display:block;
+}
+
+.faq-empty{
+  padding:24px 0;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
 </style>
 
 </head>
@@ -1882,6 +1976,34 @@ h1{
   </section>
 
 
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Frequently asked questions
+      </div>
+
+      <div class="section-copy">
+        Common questions about this specific model,
+        its Zorix Metron usage and how its data is represented.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="faq-list"
+    id="modelFaq"
+  ></div>
+
+</section>
+
 <section
   class="section"
   id="otherModelsSection"
@@ -1952,10 +2074,11 @@ h1{
 </div>
 
 
-<script src="./models.js?v=1788152770"></script>
-<script src="./model-profiles.js?v=1788152770"></script>
-<script src="./benchmarks.js?v=1788152770"></script>
-<script src="./external-benchmarks.js?v=1788152770"></script>
+<script src="./models.js?v=1788153534"></script>
+<script src="./model-profiles.js?v=1788153534"></script>
+<script src="./model-faq.js?v=1788153534"></script>
+<script src="./benchmarks.js?v=1788153534"></script>
+<script src="./external-benchmarks.js?v=1788153534"></script>
 
 <script>
 
@@ -3866,6 +3989,125 @@ document.addEventListener(
 
   }
 );
+
+
+
+
+/* =========================================================
+   MODEL-SPECIFIC FAQ
+   ========================================================= */
+
+function renderModelFaq(){
+
+  const target =
+    document.getElementById(
+      "modelFaq"
+    );
+
+
+  if(!target || !model){
+    return;
+  }
+
+
+  const catalog =
+    window.ZORIX_MODEL_FAQ || {};
+
+
+  const items =
+    catalog[
+      model.id
+    ] || [];
+
+
+  if(!items.length){
+
+    target.innerHTML=`
+      <div class="faq-empty">
+        No FAQ has been published for this model yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  target.innerHTML =
+    items.map(
+      (item,index)=>`
+
+        <div class="faq-item">
+
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span class="faq-question-text">
+              ${item.q}
+            </span>
+
+            <span class="faq-plus">
+              +
+            </span>
+
+          </button>
+
+
+          <div class="faq-answer">
+            ${item.a}
+          </div>
+
+        </div>
+
+      `
+    ).join("");
+
+
+  target
+    .querySelectorAll(
+      ".faq-item"
+    )
+    .forEach(
+      item=>{
+
+        const button =
+          item.querySelector(
+            ".faq-question"
+          );
+
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            const open =
+              item.classList
+                .toggle(
+                  "open"
+                );
+
+
+            button.setAttribute(
+              "aria-expanded",
+              open
+                ? "true"
+                : "false"
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+if(model){
+  renderModelFaq();
+}
 
 </script>
 

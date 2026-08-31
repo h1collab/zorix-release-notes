@@ -177,7 +177,7 @@ window.ZORIX_MODEL_DETAILS = [
     id: "gemini-37-flash",
     name: "Gemini 3.7 Flash",
     provider: "Google",
-    logo: "/number-of-calls/assets/logos/gemini.svg?v=1788117825",
+    logo: "/number-of-calls/assets/logos/google.svg",
     family: "Gemini 3.7",
     status: "Available",
 
@@ -422,5 +422,135 @@ window.ZORIX_MODEL_DETAILS = [
       1495,1500,1505,1500,1498,1502,1500,1500,1500,1500
     ]
   },
+
+  {
+    id: "gemini-36-flash",
+    name: "Gemini 3.6 Flash",
+    provider: "Google",
+    logo: "/number-of-calls/assets/logos/google.svg",
+    family: "Gemini 3.6",
+    status: "Available",
+
+    dailyTokens: 12785714286,
+    weeklyTokens: 89500000000,
+
+    context: "Undisclosed",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Gemini Flash",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Metron",
+    color: "#4285F4",
+
+    about: "Gemini 3.6 Flash is tracked as a Google Flash-family model inside Zorix Metron. The recorded usage supplied for this deployment is 89.5B tokens per week, normalized to approximately 12.786B tokens per day.",
+
+    docs: "",
+
+    chart: [
+      9.8,10.1,10.4,10.8,11.1,11.4,11.8,
+      12.0,12.2,12.4,12.6,12.7,12.78
+    ]
+  }
+,
+
+  {
+    id: "muse-spark-12",
+    name: "Muse Spark 1.2",
+    provider: "Meta",
+    logo: "/number-of-calls/assets/logos/meta.svg",
+    family: "Muse Spark",
+    status: "Available",
+
+    dailyTokens: 11130000000,
+    weeklyTokens: 77910000000,
+
+    context: "Undisclosed",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Undisclosed",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Metron",
+    color: "#0082FB",
+
+    about: "Muse Spark 1.2 is a Meta model tracked by Zorix Metron. Its supplied usage measurement is 77.91B tokens per week, corresponding to an average normalized daily volume of 11.13B tokens.",
+
+    docs: "",
+
+    chart: [
+      8.7,9.0,9.3,9.6,9.9,10.2,
+      10.5,10.7,10.9,11.0,11.13
+    ]
+  }
+,
+
+  {
+    id: "glm-51",
+    name: "GLM 5.1",
+    provider: "Z.ai",
+    logo: "/number-of-calls/assets/logos/glm.svg",
+    family: "GLM 5.1",
+    status: "Available",
+
+    dailyTokens: 271428571,
+    weeklyTokens: 1900000000,
+
+    context: "Undisclosed",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "GLM",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Metron",
+    color: "#111111",
+
+    about: "GLM 5.1 is separately tracked from GLM 5.2 Max and GLM 5.3 Flash in Zorix Metron. The supplied weekly usage figure is 1.9B, normalized to approximately 271.43M per day under the site's token-volume metric.",
+
+    docs: "",
+
+    chart: [
+      190,205,218,230,241,250,
+      259,264,268,271.43
+    ]
+  }
+,
+
+  {
+    id: "nvidia-nemotron-3-ultra",
+    name: "NVIDIA Nemotron 3 Ultra",
+    provider: "NVIDIA",
+    logo: "/number-of-calls/assets/logos/nvidia.svg",
+    family: "Nemotron 3",
+    status: "Available",
+
+    dailyTokens: 6100000000,
+
+    context: "Undisclosed",
+    parameters: "Undisclosed",
+    activeParameters: "Undisclosed",
+    architecture: "Nemotron",
+
+    inputPrice: "—",
+    outputPrice: "—",
+
+    source: "Zorix Metron",
+    color: "#74B71B",
+
+    about: "NVIDIA Nemotron 3 Ultra entered the Zorix Metron catalog on August 30, 2026. Its first recorded day reached 9.1B tokens. The current August 31 daily value is 6.1B tokens, so the model page preserves the launch-day decline rather than replacing today's value with the higher first-day figure.",
+
+    docs: "",
+
+    chart: [
+      9100000000,
+      6100000000
+    ]
+  }
 
 ];

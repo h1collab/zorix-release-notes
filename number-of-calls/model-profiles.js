@@ -234,6 +234,76 @@ window.ZORIX_MODEL_PROFILES = {
     benchmarkNote: null
   }
 
+,
+  "gemini-36-flash": {
+    slug: "google/gemini-3.6-flash",
+    tagline: "Google Flash-family deployment tracked by Zorix Metron.",
+    description: "Gemini 3.6 Flash is tracked separately from Gemini 3.7 Flash so usage between the two generations is not merged. Its supplied traffic measurement is 89.5B tokens per week, equivalent to approximately 12.786B tokens per day when normalized for the usage ranking.",
+    highlights: [
+      "89.5B recorded tokens per week",
+      "Approximately 12.786B normalized per day",
+      "Google Gemini Flash family",
+      "Separately tracked from Gemini 3.7 Flash"
+    ],
+    modalities: ["Text", "Code"],
+    released: "—",
+    availability: "Available",
+    weights: null,
+    benchmarkNote: "Only Zorix Metron benchmark results should be attached to the main benchmark section."
+  },
+
+  "muse-spark-12": {
+    slug: "meta/muse-spark-1.2",
+    tagline: "Meta model deployment tracked through Zorix Metron.",
+    description: "Muse Spark 1.2 is tracked as a Meta deployment in Zorix Metron. The current supplied measurement is 77.91B tokens per week, equal to a normalized average of 11.13B tokens per day. Technical fields remain undisclosed where no catalog value has been supplied.",
+    highlights: [
+      "77.91B recorded tokens per week",
+      "11.13B normalized tokens per day",
+      "Meta provider",
+      "Independent usage accounting"
+    ],
+    modalities: ["Text"],
+    released: "—",
+    availability: "Available",
+    weights: null,
+    benchmarkNote: null
+  },
+
+  "glm-51": {
+    slug: "zai/glm-5.1",
+    tagline: "GLM 5.1 deployment separately tracked from newer GLM variants.",
+    description: "GLM 5.1 is maintained as a separate Z.ai model entry so its traffic is not combined with GLM 5.2 Max or GLM 5.3 Flash. The supplied weekly usage value is 1.9B under the current Zorix Metron token-volume metric.",
+    highlights: [
+      "1.9B recorded weekly usage",
+      "Approximately 271.43M normalized per day",
+      "Separate GLM 5.1 traffic accounting",
+      "Z.ai provider"
+    ],
+    modalities: ["Text", "Code"],
+    released: "—",
+    availability: "Available",
+    weights: null,
+    benchmarkNote: null
+  },
+
+  "nvidia-nemotron-3-ultra": {
+    slug: "nvidia/nemotron-3-ultra",
+    tagline: "New NVIDIA Nemotron deployment with two days of Metron traffic history.",
+    description: "NVIDIA Nemotron 3 Ultra was added to the tracked catalog on August 30, 2026. It recorded 9.1B tokens on its launch day and 6.1B tokens on August 31. Because only two real daily observations currently exist, the model page shows those two points rather than fabricating a longer historical trend.",
+    highlights: [
+      "Added August 30, 2026",
+      "Launch day: 9.1B tokens",
+      "August 31: 6.1B tokens",
+      "NVIDIA provider",
+      "Two real daily observations currently available"
+    ],
+    modalities: ["Text", "Code"],
+    released: "Aug 30, 2026",
+    availability: "Available",
+    weights: null,
+    benchmarkNote: "No Zorix Metron benchmark score has been supplied yet."
+  }
+
 };
 
 

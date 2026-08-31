@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-30T21:33:20+02:00",
+  "updatedAt": "2026-08-31T07:18:53+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -8,7 +8,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Nex Coder 3.8",
       "tokens": 3220000000000,
       "status": "Preview",
-      "share": 39.136
+      "share": 38.9925
     },
     {
       "name": "Zorix Nex Coder 3.7 Pro (Max)",
@@ -17,7 +17,7 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 1500000000000,
       "weeklyTokens": 10500000000000,
       "status": "Available",
-      "share": 18.2311
+      "share": 18.1642
     },
     {
       "name": "DeepSeek V4 Flash 0731",
@@ -25,7 +25,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "DeepSeek V4",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 14.5849
+      "share": 14.5314
     },
     {
       "name": "Claude Opus 5",
@@ -33,7 +33,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Claude Opus",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 14.5849
+      "share": 14.5314
     },
     {
       "name": "Tencent Hy3",
@@ -41,7 +41,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Hy3",
       "tokens": 950000000000,
       "status": "Available",
-      "share": 11.5463
+      "share": 11.504
     },
     {
       "name": "Kimi K2.7 Code",
@@ -50,7 +50,33 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 157142857143,
       "weeklyTokens": 1100000000000,
       "status": "Available",
-      "share": 1.9099
+      "share": 1.9029
+    },
+    {
+      "name": "Gemini 3.6 Flash",
+      "provider": "Google",
+      "family": "Gemini 3.6",
+      "tokens": 12785714286,
+      "weeklyTokens": 89500000000,
+      "status": "Available",
+      "share": 0.1548
+    },
+    {
+      "name": "Muse Spark 1.2",
+      "provider": "Meta",
+      "family": "Muse Spark",
+      "tokens": 11130000000,
+      "weeklyTokens": 77910000000,
+      "status": "Available",
+      "share": 0.1348
+    },
+    {
+      "name": "NVIDIA Nemotron 3 Ultra",
+      "provider": "NVIDIA",
+      "family": "Nemotron 3",
+      "tokens": 6100000000,
+      "status": "Available",
+      "share": 0.0739
     },
     {
       "name": "Gemini 3.7 Flash",
@@ -60,6 +86,15 @@ window.ZORIX_CODE_USAGE = {
       "weeklyTokens": 2900000000,
       "status": "Available",
       "share": 0.005
+    },
+    {
+      "name": "GLM 5.1",
+      "provider": "Z.ai",
+      "family": "GLM 5.1",
+      "tokens": 271428571,
+      "weeklyTokens": 1900000000,
+      "status": "Available",
+      "share": 0.0033
     },
     {
       "name": "Xiaomi MiMo-V2.5",

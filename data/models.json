@@ -120,5 +120,36 @@
     "tokens": 1500000000000,
     "weeklyTokens": 10500000000000,
     "status": "Available"
+  },
+  {
+    "name": "Gemini 3.6 Flash",
+    "provider": "Google",
+    "family": "Gemini 3.6",
+    "tokens": 12785714286,
+    "weeklyTokens": 89500000000,
+    "status": "Available"
+  },
+  {
+    "name": "Muse Spark 1.2",
+    "provider": "Meta",
+    "family": "Muse Spark",
+    "tokens": 11130000000,
+    "weeklyTokens": 77910000000,
+    "status": "Available"
+  },
+  {
+    "name": "GLM 5.1",
+    "provider": "Z.ai",
+    "family": "GLM 5.1",
+    "tokens": 271428571,
+    "weeklyTokens": 1900000000,
+    "status": "Available"
+  },
+  {
+    "name": "NVIDIA Nemotron 3 Ultra",
+    "provider": "NVIDIA",
+    "family": "Nemotron 3",
+    "tokens": 6100000000,
+    "status": "Available"
   }
 ]
