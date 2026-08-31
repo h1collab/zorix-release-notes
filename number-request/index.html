@@ -1,0 +1,1029 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  name="description"
+  content="Zorix model request counts."
+>
+
+<title>
+  Model requests | Zorix Metron
+</title>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#0d0d0d;
+  --muted:#6b6b67;
+  --line:#deded9;
+  --soft:#f5f5f2;
+  --soft2:#fafaf8;
+  --max:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:30;
+
+  border-bottom:
+    1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.95);
+
+  backdrop-filter:
+    blur(14px);
+}
+
+.nav{
+  max-width:var(--max);
+
+  min-height:64px;
+
+  margin:auto;
+  padding:
+    0
+    24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:22px;
+}
+
+.brand{
+  font-size:20px;
+  font-weight:600;
+
+  letter-spacing:-.045em;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+
+  gap:23px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.nav-right a.active{
+  color:#111;
+}
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    70px
+    24px
+    120px;
+}
+
+.hero{
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    minmax(260px,420px);
+
+  gap:50px;
+
+  align-items:end;
+
+  padding-bottom:54px;
+}
+
+.eyebrow{
+  margin-bottom:18px;
+
+  color:var(--muted);
+
+  font-size:14px;
+}
+
+h1{
+  margin:0;
+
+  font-size:
+    clamp(
+      60px,
+      9vw,
+      116px
+    );
+
+  line-height:.89;
+
+  font-weight:500;
+
+  letter-spacing:-.067em;
+}
+
+.hero-copy{
+  margin:
+    0
+    0
+    5px;
+
+  color:var(--muted);
+
+  font-size:16px;
+  line-height:1.55;
+}
+
+.summary{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  border-top:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.summary-cell{
+  min-height:155px;
+
+  padding:
+    27px
+    0
+    30px;
+
+  border-right:
+    1px solid var(--line);
+}
+
+.summary-cell:not(:first-child){
+  padding-left:28px;
+}
+
+.summary-cell:last-child{
+  border-right:0;
+}
+
+.summary-label{
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+.summary-value{
+  margin-top:31px;
+
+  font-size:
+    clamp(
+      34px,
+      5vw,
+      56px
+    );
+
+  letter-spacing:-.055em;
+}
+
+.section{
+  padding:
+    58px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.section-head{
+  display:flex;
+
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:24px;
+
+  margin-bottom:28px;
+}
+
+.section-title{
+  font-size:32px;
+
+  letter-spacing:-.045em;
+}
+
+.section-copy{
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-bottom:25px;
+}
+
+.control{
+  min-height:42px;
+
+  min-width:220px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+
+  outline:none;
+}
+
+.models{
+  border-bottom:
+    1px solid var(--line);
+}
+
+.model-row{
+  min-height:94px;
+
+  display:grid;
+
+  grid-template-columns:
+    46px
+    46px
+    minmax(0,1fr)
+    auto
+    24px;
+
+  gap:15px;
+
+  align-items:center;
+
+  border-top:
+    1px solid var(--line);
+}
+
+.rank{
+  color:var(--muted);
+
+  font-size:17px;
+}
+
+.model-logo{
+  width:38px;
+  height:38px;
+
+  display:grid;
+  place-items:center;
+}
+
+.model-logo img{
+  width:32px;
+  height:32px;
+
+  object-fit:contain;
+}
+
+.model-name{
+  font-size:19px;
+
+  letter-spacing:-.025em;
+
+  text-decoration:underline;
+
+  text-decoration-thickness:1px;
+
+  text-underline-offset:4px;
+}
+
+.provider{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+.request-value{
+  text-align:right;
+}
+
+.requests{
+  font-size:18px;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.share{
+  margin-top:7px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.arrow{
+  color:#999;
+
+  font-size:18px;
+}
+
+.note{
+  padding:17px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  background:var(--soft2);
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.6;
+}
+
+.empty-chart{
+  min-height:180px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+
+  background:var(--soft2);
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:12px;
+  line-height:1.6;
+}
+
+@media(max-width:740px){
+
+  main{
+    padding:
+      42px
+      18px
+      90px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+
+    gap:27px;
+  }
+
+  .summary{
+    grid-template-columns:1fr;
+  }
+
+  .summary-cell{
+    padding-left:0 !important;
+
+    border-right:0;
+
+    border-bottom:
+      1px solid var(--line);
+  }
+
+  .model-row{
+    grid-template-columns:
+      29px
+      39px
+      minmax(0,1fr)
+      auto;
+
+    gap:9px;
+  }
+
+  .arrow{
+    display:none;
+  }
+
+  .model-name{
+    font-size:15px;
+  }
+
+  .requests{
+    font-size:14px;
+  }
+
+  .nav-right{
+    gap:12px;
+
+    font-size:10px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="/number-request/"
+    >
+      Metron
+    </a>
+
+
+    <nav class="nav-right">
+
+      <a href="/number-of-calls/">
+        Tokens
+      </a>
+
+      <a
+        class="active"
+        href="/number-request/"
+      >
+        Requests
+      </a>
+
+      <a href="/number-of-calls/voting/">
+        Voting
+      </a>
+
+      <a href="/status/">
+        Status
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <section class="hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Zorix Metron · Requests
+      </div>
+
+      <h1>
+        Model
+        <br>
+        requests
+      </h1>
+
+    </div>
+
+
+    <p class="hero-copy">
+      Request counts recorded for models
+      available through Zorix services.
+      These values are independent from token usage.
+    </p>
+
+  </section>
+
+
+  <section class="summary">
+
+    <div class="summary-cell">
+
+      <div class="summary-label">
+        Total requests
+      </div>
+
+      <div
+        class="summary-value"
+        id="totalRequests"
+      >
+        —
+      </div>
+
+    </div>
+
+
+    <div class="summary-cell">
+
+      <div class="summary-label">
+        Models tracked
+      </div>
+
+      <div
+        class="summary-value"
+        id="modelsTracked"
+      >
+        —
+      </div>
+
+    </div>
+
+
+    <div class="summary-cell">
+
+      <div class="summary-label">
+        Leading model
+      </div>
+
+      <div
+        class="summary-value"
+        id="leadingValue"
+      >
+        —
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="section-title">
+          Request ranking
+        </div>
+
+        <div class="section-copy">
+          Current published request-count snapshot
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="controls">
+
+      <input
+        class="control"
+        id="search"
+        placeholder="Search models"
+        autocomplete="off"
+      >
+
+
+      <select
+        class="control"
+        id="provider"
+      >
+        <option value="">
+          All providers
+        </option>
+      </select>
+
+    </div>
+
+
+    <div
+      class="models"
+      id="models"
+    ></div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="section-title">
+          Request history
+        </div>
+
+        <div class="section-copy">
+          Published observations only
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="empty-chart"
+      id="history"
+    >
+      Historical request series has not been published yet.
+      No synthetic history is generated.
+    </div>
+
+  </section>
+
+
+  <div class="note">
+    Request counts and token counts are separate metrics.
+    No request value on this page is calculated from token usage.
+  </div>
+
+</main>
+
+
+<script src="/number-of-calls/model-index.js"></script>
+<script src="/number-request/requests.js"></script>
+
+<script>
+
+const DATA =
+  window.ZORIX_REQUEST_USAGE
+  ||
+  {
+    models:[],
+    totalRequests:0,
+    history:[]
+  };
+
+
+const INDEX =
+  Array.isArray(
+    window.ZORIX_MODEL_INDEX
+  )
+    ? window.ZORIX_MODEL_INDEX
+    : [];
+
+
+const byId =
+  new Map(
+    INDEX.map(
+      item=>[
+        item.id,
+        item
+      ]
+    )
+  );
+
+
+function compact(value){
+
+  const n =
+    Number(
+      value || 0
+    );
+
+
+  if(n>=1e9){
+
+    return (
+      n/1e9
+    )
+    .toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits:2
+      }
+    )
+    +
+    "B";
+  }
+
+
+  if(n>=1e6){
+
+    return (
+      n/1e6
+    )
+    .toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits:2
+      }
+    )
+    +
+    "M";
+  }
+
+
+  return n.toLocaleString(
+    "en-US"
+  );
+
+}
+
+
+function esc(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;");
+
+}
+
+
+function logoFor(item){
+
+  const meta =
+    byId.get(
+      item.id
+    );
+
+
+  return (
+    meta?.logo
+    ||
+    "/number-of-calls/assets/logos/zorix.svg"
+  );
+
+}
+
+
+function render(){
+
+  const search =
+    document
+      .getElementById(
+        "search"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const provider =
+    document
+      .getElementById(
+        "provider"
+      )
+      .value;
+
+
+  const rows =
+    DATA.models
+    .filter(
+      item=>{
+
+        const matchesSearch =
+          !search
+          ||
+          (
+            item.name
+            +
+            " "
+            +
+            item.provider
+          )
+          .toLowerCase()
+          .includes(
+            search
+          );
+
+
+        const matchesProvider =
+          !provider
+          ||
+          item.provider===provider;
+
+
+        return (
+          matchesSearch
+          &&
+          matchesProvider
+        );
+
+      }
+    );
+
+
+  document
+    .getElementById(
+      "models"
+    )
+    .innerHTML =
+      rows.map(
+        (item,index)=>`
+
+          <a
+            class="model-row"
+            href="/number-of-calls/models/${encodeURIComponent(item.id)}/"
+          >
+
+            <div class="rank">
+              ${index+1}
+            </div>
+
+
+            <div class="model-logo">
+
+              <img
+                src="${esc(logoFor(item))}"
+                alt=""
+              >
+
+            </div>
+
+
+            <div>
+
+              <div class="model-name">
+                ${esc(item.name)}
+              </div>
+
+              <div class="provider">
+                ${esc(item.provider)}
+              </div>
+
+            </div>
+
+
+            <div class="request-value">
+
+              <div class="requests">
+                ${compact(item.requests)} requests
+              </div>
+
+              <div class="share">
+                ${
+                  Number(
+                    item.share || 0
+                  )
+                  .toFixed(2)
+                }% share
+              </div>
+
+            </div>
+
+
+            <div class="arrow">
+              ›
+            </div>
+
+          </a>
+
+        `
+      )
+      .join("");
+
+}
+
+
+const providers =
+  [
+    ...new Set(
+      DATA.models.map(
+        item=>
+          item.provider
+      )
+    )
+  ]
+  .sort();
+
+
+document
+  .getElementById(
+    "provider"
+  )
+  .innerHTML +=
+    providers.map(
+      provider=>`
+        <option value="${esc(provider)}">
+          ${esc(provider)}
+        </option>
+      `
+    )
+    .join("");
+
+
+document
+  .getElementById(
+    "totalRequests"
+  )
+  .textContent =
+    compact(
+      DATA.totalRequests
+    );
+
+
+document
+  .getElementById(
+    "modelsTracked"
+  )
+  .textContent =
+    DATA.models.length;
+
+
+document
+  .getElementById(
+    "leadingValue"
+  )
+  .textContent =
+    DATA.models.length
+      ? compact(
+          DATA.models[0].requests
+        )
+      : "—";
+
+
+document
+  .getElementById(
+    "search"
+  )
+  .addEventListener(
+    "input",
+    render
+  );
+
+
+document
+  .getElementById(
+    "provider"
+  )
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+render();
+
+</script>
+
+</body>
+
+</html>
