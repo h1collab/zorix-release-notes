@@ -1,0 +1,1106 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+  Request share | Zorix Metron
+</title>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#6b6b67;
+  --line:#deded9;
+  --soft:#f5f5f2;
+  --max:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+
+  background:#fff;
+  color:#111;
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+select{
+  font:inherit;
+}
+
+header{
+  border-bottom:
+    1px solid var(--line);
+}
+
+.nav{
+  max-width:var(--max);
+
+  min-height:66px;
+
+  margin:auto;
+  padding:
+    0
+    24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  font-size:18px;
+  font-weight:600;
+}
+
+.brand img{
+  width:30px;
+  height:30px;
+}
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    55px
+    24px
+    100px;
+}
+
+.hero{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(260px,400px);
+
+  gap:45px;
+
+  align-items:end;
+
+  padding-bottom:35px;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.eyebrow{
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+h1{
+  margin:
+    10px
+    0
+    0;
+
+  font-size:
+    clamp(
+      45px,
+      8vw,
+      90px
+    );
+
+  line-height:.93;
+
+  font-weight:500;
+
+  letter-spacing:-.06em;
+}
+
+.copy{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:14px;
+  line-height:1.6;
+}
+
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:9px;
+
+  padding:
+    25px
+    0;
+}
+
+.control{
+  min-height:43px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+}
+
+.button{
+  min-height:43px;
+
+  padding:
+    0
+    14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+
+  cursor:pointer;
+}
+
+.button.primary{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+.preview{
+  overflow:auto;
+
+  padding:14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:14px;
+
+  background:#efefec;
+}
+
+svg{
+  display:block;
+
+  width:100%;
+  min-width:700px;
+  height:auto;
+
+  background:#fff;
+}
+
+.note{
+  margin-top:17px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.55;
+}
+
+@media(max-width:720px){
+
+  main{
+    padding:
+      35px
+      15px
+      80px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .button,
+  .control{
+    flex:1;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="/number-request/"
+    >
+
+      <img
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt=""
+      >
+
+      Zorix Metron
+
+    </a>
+
+
+    <a href="/number-request/">
+      Requests
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+  <section class="hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Public media
+      </div>
+
+      <h1>
+        Request
+        <br>
+        share
+      </h1>
+
+    </div>
+
+
+    <p class="copy">
+      Publication-ready request distribution chart
+      generated directly from the current Zorix Metron
+      request snapshot.
+    </p>
+
+  </section>
+
+
+  <div class="controls">
+
+    <select
+      class="control"
+      id="count"
+    >
+
+      <option value="5">
+        Top 5
+      </option>
+
+      <option
+        value="10"
+        selected
+      >
+        Top 10
+      </option>
+
+      <option value="20">
+        Top 20
+      </option>
+
+    </select>
+
+
+    <button
+      class="button"
+      id="share"
+      type="button"
+    >
+      Share
+    </button>
+
+
+    <button
+      class="button"
+      id="downloadSvg"
+      type="button"
+    >
+      Download SVG
+    </button>
+
+
+    <button
+      class="button primary"
+      id="downloadPng"
+      type="button"
+    >
+      Download PNG
+    </button>
+
+  </div>
+
+
+  <div class="preview">
+
+    <svg
+      id="chart"
+      xmlns="http://www.w3.org/2000/svg"
+      width="1000"
+      height="760"
+      viewBox="0 0 1000 760"
+      role="img"
+      aria-label="Zorix request share chart"
+    ></svg>
+
+  </div>
+
+
+  <div class="note">
+    The curve connects models in current request-rank order.
+    Y-axis is each model's share of the published request total.
+    It is not a time-series chart.
+  </div>
+
+</main>
+
+
+<script src="/number-request/requests.js"></script>
+
+<script>
+
+const DATA =
+  window.ZORIX_REQUEST_USAGE
+  ||
+  {
+    models:[]
+  };
+
+
+const chart =
+  document.getElementById(
+    "chart"
+  );
+
+
+function esc(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;");
+
+}
+
+
+function fmt(value){
+
+  const n=
+    Number(
+      value || 0
+    );
+
+
+  if(n>=1e9){
+
+    return (
+      n/1e9
+    )
+    .toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits:2
+      }
+    )
+    +
+    "B";
+  }
+
+
+  return n.toLocaleString(
+    "en-US"
+  );
+
+}
+
+
+const colors=[
+  "#133463",
+  "#1f4e94",
+  "#2c67c5",
+  "#4f46e5",
+  "#7c3aed",
+  "#0f766e",
+  "#b45309",
+  "#be123c",
+  "#475569",
+  "#111111",
+  "#0369a1",
+  "#6d28d9",
+  "#15803d",
+  "#c2410c",
+  "#9f1239",
+  "#334155",
+  "#4338ca",
+  "#0e7490",
+  "#854d0e",
+  "#525252"
+];
+
+
+function render(){
+
+  const count =
+    Number(
+      document
+        .getElementById(
+          "count"
+        )
+        .value
+    );
+
+
+  const rows =
+    [...DATA.models]
+    .sort(
+      (a,b)=>
+        Number(b.requests || 0)
+        -
+        Number(a.requests || 0)
+    )
+    .slice(
+      0,
+      count
+    );
+
+
+  const W=1000;
+  const H=760;
+
+  const plot={
+    x:110,
+    y:150,
+    w:780,
+    h:400
+  };
+
+
+  const maxShare =
+    Math.max(
+      ...rows.map(
+        item=>
+          Number(item.share || 0)
+      ),
+      1
+    );
+
+
+  const yMax =
+    Math.max(
+      5,
+      Math.ceil(
+        maxShare/5
+      )*5
+    );
+
+
+  const px =
+    index=>
+      plot.x
+      +
+      (
+        index
+        /
+        Math.max(
+          1,
+          rows.length-1
+        )
+      )
+      *
+      plot.w;
+
+
+  const py =
+    share=>
+      plot.y
+      +
+      plot.h
+      -
+      (
+        Number(share)
+        /
+        yMax
+      )
+      *
+      plot.h;
+
+
+  let grid="";
+
+
+  for(
+    let i=0;
+    i<=5;
+    i++
+  ){
+
+    const value=
+      yMax*i/5;
+
+    const yy=
+      py(value);
+
+
+    grid += `
+
+      <line
+        x1="${plot.x}"
+        x2="${plot.x+plot.w}"
+        y1="${yy}"
+        y2="${yy}"
+        stroke="#ededE9"
+      />
+
+      <text
+        x="${plot.x-15}"
+        y="${yy+4}"
+        text-anchor="end"
+        font-family="SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="13"
+        fill="#111"
+      >
+        ${value.toFixed(0)}%
+      </text>
+    `;
+
+  }
+
+
+  const points =
+    rows
+    .map(
+      (item,index)=>
+        (
+          px(index)
+          +
+          ","
+          +
+          py(item.share)
+        )
+    )
+    .join(" ");
+
+
+  const marks =
+    rows.map(
+      (item,index)=>{
+
+        const x=px(index);
+        const y=py(item.share);
+
+        return `
+
+          <circle
+            cx="${x}"
+            cy="${y}"
+            r="6"
+            fill="${colors[index]}"
+          >
+            <title>
+              ${esc(item.name)}
+              · ${fmt(item.requests)} requests
+              · ${Number(item.share).toFixed(2)}%
+            </title>
+          </circle>
+
+
+          <text
+            x="${x}"
+            y="${plot.y+plot.h+25}"
+            text-anchor="middle"
+            font-family="SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="11"
+            fill="#111"
+          >
+            ${index+1}
+          </text>
+        `;
+
+      }
+    )
+    .join("");
+
+
+  const legend =
+    rows.map(
+      (item,index)=>{
+
+        const col =
+          index < 10
+            ? 0
+            : 1;
+
+        const row =
+          index % 10;
+
+        const x =
+          110
+          +
+          col*400;
+
+        const y =
+          625
+          +
+          row*12.5;
+
+
+        return `
+
+          <circle
+            cx="${x}"
+            cy="${y}"
+            r="4"
+            fill="${colors[index]}"
+          />
+
+          <text
+            x="${x+11}"
+            y="${y+4}"
+            font-size="10"
+            fill="#111"
+          >
+            ${index+1}. ${esc(item.name)}
+            · ${Number(item.share).toFixed(2)}%
+          </text>
+        `;
+
+      }
+    )
+    .join("");
+
+
+  chart.innerHTML=`
+
+    <rect
+      x="0"
+      y="0"
+      width="${W}"
+      height="${H}"
+      fill="#fff"
+    />
+
+
+    <text
+      x="70"
+      y="48"
+      fill="#000"
+      font-size="22"
+      font-weight="700"
+    >
+      Zorix Metron · Request Share
+    </text>
+
+
+    <text
+      x="70"
+      y="78"
+      fill="#666"
+      font-size="12"
+    >
+      Current published request snapshot
+    </text>
+
+
+    <image
+      href="/number-of-calls/assets/logos/zorix.svg"
+      x="880"
+      y="31"
+      width="42"
+      height="42"
+    />
+
+
+    ${grid}
+
+
+    <line
+      x1="${plot.x}"
+      x2="${plot.x}"
+      y1="${plot.y}"
+      y2="${plot.y+plot.h}"
+      stroke="#000"
+      stroke-width="1"
+    />
+
+
+    <line
+      x1="${plot.x}"
+      x2="${plot.x+plot.w}"
+      y1="${plot.y+plot.h}"
+      y2="${plot.y+plot.h}"
+      stroke="#000"
+      stroke-width="1"
+    />
+
+
+    <polyline
+      points="${points}"
+      fill="none"
+      stroke="#133463"
+      stroke-width="2.4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+
+    ${marks}
+
+
+    <text
+      x="${plot.x + plot.w/2}"
+      y="${plot.y+plot.h+60}"
+      text-anchor="middle"
+      font-size="14"
+      fill="#000"
+    >
+      Request rank
+    </text>
+
+
+    <text
+      x="35"
+      y="${plot.y+plot.h/2}"
+      text-anchor="middle"
+      font-size="14"
+      fill="#000"
+      transform="
+        rotate(
+          -90
+          35
+          ${plot.y+plot.h/2}
+        )
+      "
+    >
+      Share of requests
+    </text>
+
+
+    ${legend}
+  `;
+
+}
+
+
+function svgText(){
+
+  const clone =
+    chart.cloneNode(true);
+
+
+  clone.setAttribute(
+    "xmlns",
+    "http://www.w3.org/2000/svg"
+  );
+
+
+  return (
+    '<?xml version="1.0" encoding="UTF-8"?>\n'
+    +
+    clone.outerHTML
+  );
+
+}
+
+
+function downloadBlob(
+  blob,
+  filename
+){
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const a =
+    document.createElement(
+      "a"
+    );
+
+
+  a.href=url;
+  a.download=filename;
+
+
+  document.body
+    .appendChild(a);
+
+
+  a.click();
+  a.remove();
+
+
+  setTimeout(
+    ()=>{
+      URL.revokeObjectURL(url);
+    },
+    1000
+  );
+
+}
+
+
+document
+  .getElementById(
+    "downloadSvg"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      downloadBlob(
+        new Blob(
+          [
+            svgText()
+          ],
+          {
+            type:
+              "image/svg+xml;charset=utf-8"
+          }
+        ),
+        "zorix-request-share.svg"
+      );
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "downloadPng"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const blob =
+        new Blob(
+          [
+            svgText()
+          ],
+          {
+            type:
+              "image/svg+xml;charset=utf-8"
+          }
+        );
+
+
+      const url =
+        URL.createObjectURL(
+          blob
+        );
+
+
+      const image =
+        new Image();
+
+
+      image.onload=()=>{
+
+        const canvas =
+          document.createElement(
+            "canvas"
+          );
+
+
+        canvas.width=2000;
+        canvas.height=1520;
+
+
+        const ctx =
+          canvas.getContext(
+            "2d"
+          );
+
+
+        ctx.fillStyle="#fff";
+
+        ctx.fillRect(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+
+        ctx.drawImage(
+          image,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+
+        canvas.toBlob(
+          output=>{
+
+            if(output){
+
+              downloadBlob(
+                output,
+                "zorix-request-share.png"
+              );
+
+            }
+
+          },
+          "image/png"
+        );
+
+
+        URL.revokeObjectURL(
+          url
+        );
+
+      };
+
+
+      image.src=url;
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "share"
+  )
+  .addEventListener(
+    "click",
+    async ()=>{
+
+      const url =
+        location.href;
+
+
+      if(navigator.share){
+
+        try{
+
+          await navigator.share({
+            title:
+              "Zorix Metron · Request Share",
+
+            text:
+              "Current model request distribution.",
+
+            url
+          });
+
+          return;
+
+        }catch(error){
+
+          if(
+            error.name
+            ===
+            "AbortError"
+          ){
+            return;
+          }
+
+        }
+
+      }
+
+
+      try{
+
+        await navigator
+          .clipboard
+          .writeText(
+            url
+          );
+
+
+        const button =
+          document.getElementById(
+            "share"
+          );
+
+
+        button.textContent=
+          "Link copied";
+
+
+        setTimeout(
+          ()=>{
+            button.textContent=
+              "Share";
+          },
+          1500
+        );
+
+      }catch(error){}
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "count"
+  )
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+render();
+
+</script>
+
+</body>
+
+</html>

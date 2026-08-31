@@ -489,6 +489,111 @@ h1{
 
 }
 
+
+
+/* ============================================================
+   REQUEST_SHARE_CHART_V1
+   ============================================================ */
+
+.share-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.share-button{
+  min-height:38px;
+  padding:0 12px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--line);
+  border-radius:8px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  font-size:11px;
+}
+
+.share-button.primary{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+.request-share-shell{
+  overflow:auto;
+
+  padding:18px;
+
+  border:1px solid var(--line);
+  border-radius:12px;
+
+  background:#fff;
+}
+
+.request-share-svg{
+  display:block;
+
+  width:100%;
+  min-width:720px;
+  height:auto;
+}
+
+.request-share-legend{
+  margin-top:18px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:8px 15px;
+}
+
+.request-share-legend-item{
+  display:flex;
+  align-items:center;
+
+  gap:7px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.request-share-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#111;
+}
+
+.request-share-note{
+  margin-top:14px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.55;
+}
+
+@media(max-width:740px){
+
+  .share-actions{
+    width:100%;
+  }
+
+  .share-button{
+    flex:1;
+  }
+
+}
+
 </style>
 
 </head>
@@ -519,6 +624,10 @@ h1{
         href="/number-request/"
       >
         Requests
+      </a>
+
+      <a href="/number-request/share/">
+        Share
       </a>
 
       <a href="/number-of-calls/voting/">
@@ -661,6 +770,73 @@ h1{
       class="models"
       id="models"
     ></div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="section-title">
+          Request share
+        </div>
+
+        <div class="section-copy">
+          Distribution of the current published request snapshot
+        </div>
+
+      </div>
+
+
+      <div class="share-actions">
+
+        <a
+          class="share-button"
+          href="/number-request/share/"
+        >
+          Open share view
+        </a>
+
+        <button
+          class="share-button primary"
+          id="shareRequestsButton"
+          type="button"
+        >
+          Share
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="request-share-shell">
+
+      <svg
+        class="request-share-svg"
+        id="requestShareChart"
+        viewBox="0 0 1000 500"
+        role="img"
+        aria-label="Request share by model rank"
+      ></svg>
+
+    </div>
+
+
+    <div
+      class="request-share-legend"
+      id="requestShareLegend"
+    ></div>
+
+
+    <div class="request-share-note">
+      X-axis represents current request ranking.
+      Y-axis represents each model's share of all published requests.
+      This is a snapshot distribution, not a historical series.
+    </div>
 
   </section>
 
@@ -1019,6 +1195,497 @@ document
     render
   );
 
+
+
+/* ============================================================
+   REQUEST_SHARE_RENDERER_V1
+   ============================================================ */
+
+function requestShareColor(index){
+
+  const colors=[
+    "#133463",
+    "#1f4e94",
+    "#2c67c5",
+    "#4f46e5",
+    "#7c3aed",
+    "#0f766e",
+    "#b45309",
+    "#be123c",
+    "#475569",
+    "#111111"
+  ];
+
+  return colors[
+    index % colors.length
+  ];
+
+}
+
+
+function renderRequestShareChart(){
+
+  const svg =
+    document.getElementById(
+      "requestShareChart"
+    );
+
+  const legend =
+    document.getElementById(
+      "requestShareLegend"
+    );
+
+  if(!svg || !legend){
+    return;
+  }
+
+
+  const rows =
+    [...DATA.models]
+    .sort(
+      (a,b)=>
+        Number(b.requests || 0)
+        -
+        Number(a.requests || 0)
+    );
+
+
+  if(!rows.length){
+
+    svg.innerHTML="";
+    legend.innerHTML="";
+
+    return;
+  }
+
+
+  const W=1000;
+  const H=500;
+
+  const pad={
+    left:78,
+    right:40,
+    top:45,
+    bottom:72
+  };
+
+
+  const maxShare =
+    Math.max(
+      ...rows.map(
+        item=>
+          Number(
+            item.share || 0
+          )
+      )
+    );
+
+
+  const yMax =
+    Math.max(
+      5,
+      Math.ceil(
+        maxShare / 5
+      ) * 5
+    );
+
+
+  const x =
+    index=>
+      pad.left
+      +
+      (
+        index
+        /
+        Math.max(
+          1,
+          rows.length-1
+        )
+      )
+      *
+      (
+        W
+        -
+        pad.left
+        -
+        pad.right
+      );
+
+
+  const y =
+    value=>
+      H
+      -
+      pad.bottom
+      -
+      (
+        Number(value)
+        /
+        yMax
+      )
+      *
+      (
+        H
+        -
+        pad.top
+        -
+        pad.bottom
+      );
+
+
+  let grid="";
+
+
+  const tickCount=5;
+
+
+  for(
+    let i=0;
+    i<=tickCount;
+    i++
+  ){
+
+    const value =
+      yMax
+      *
+      i
+      /
+      tickCount;
+
+    const yy =
+      y(value);
+
+
+    grid += `
+
+      <line
+        x1="${pad.left}"
+        x2="${W-pad.right}"
+        y1="${yy}"
+        y2="${yy}"
+        stroke="#ecece8"
+        stroke-width="1"
+      />
+
+      <text
+        x="${pad.left-15}"
+        y="${yy+4}"
+        text-anchor="end"
+        font-family="SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="12"
+        fill="#666"
+      >
+        ${value.toFixed(0)}%
+      </text>
+    `;
+
+  }
+
+
+  const points =
+    rows
+    .map(
+      (item,index)=>
+        (
+          x(index)
+          +
+          ","
+          +
+          y(
+            item.share
+          )
+        )
+    )
+    .join(" ");
+
+
+  const symbols =
+    rows
+    .map(
+      (item,index)=>{
+
+        const xx=x(index);
+        const yy=y(item.share);
+
+        return `
+
+          <circle
+            cx="${xx}"
+            cy="${yy}"
+            r="5"
+            fill="${requestShareColor(index)}"
+          >
+            <title>
+              ${esc(item.name)} ·
+              ${compact(item.requests)} requests ·
+              ${Number(item.share).toFixed(2)}%
+            </title>
+          </circle>
+
+
+          <text
+            x="${xx}"
+            y="${H-pad.bottom+25}"
+            text-anchor="middle"
+            font-family="SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="10"
+            fill="#555"
+          >
+            ${index+1}
+          </text>
+        `;
+
+      }
+    )
+    .join("");
+
+
+  svg.innerHTML=`
+
+    <rect
+      x="0"
+      y="0"
+      width="${W}"
+      height="${H}"
+      fill="#fff"
+    />
+
+
+    <text
+      x="${pad.left}"
+      y="22"
+      font-size="18"
+      font-weight="600"
+      fill="#111"
+    >
+      Request share
+    </text>
+
+
+    ${grid}
+
+
+    <line
+      x1="${pad.left}"
+      x2="${pad.left}"
+      y1="${pad.top}"
+      y2="${H-pad.bottom}"
+      stroke="#111"
+      stroke-width="1"
+    />
+
+
+    <line
+      x1="${pad.left}"
+      x2="${W-pad.right}"
+      y1="${H-pad.bottom}"
+      y2="${H-pad.bottom}"
+      stroke="#111"
+      stroke-width="1"
+    />
+
+
+    <polyline
+      points="${points}"
+      fill="none"
+      stroke="#133463"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+
+    ${symbols}
+
+
+    <text
+      x="${
+        (
+          pad.left
+          +
+          W
+          -
+          pad.right
+        ) / 2
+      }"
+      y="${H-18}"
+      text-anchor="middle"
+      font-size="13"
+      fill="#111"
+    >
+      Request rank
+    </text>
+
+
+    <text
+      x="20"
+      y="${
+        (
+          pad.top
+          +
+          H
+          -
+          pad.bottom
+        ) / 2
+      }"
+      text-anchor="middle"
+      font-size="13"
+      fill="#111"
+      transform="
+        rotate(
+          -90
+          20
+          ${
+            (
+              pad.top
+              +
+              H
+              -
+              pad.bottom
+            ) / 2
+          }
+        )
+      "
+    >
+      Share of requests
+    </text>
+  `;
+
+
+  legend.innerHTML =
+    rows
+    .slice(
+      0,
+      10
+    )
+    .map(
+      (item,index)=>`
+
+        <div class="request-share-legend-item">
+
+          <span
+            class="request-share-dot"
+            style="
+              background:
+                ${requestShareColor(index)}
+            "
+          ></span>
+
+          <span>
+            ${index+1}.
+            ${esc(item.name)}
+            ·
+            ${Number(item.share).toFixed(2)}%
+          </span>
+
+        </div>
+
+      `
+    )
+    .join("");
+
+}
+
+
+async function shareRequestRanking(){
+
+  const url =
+    location.origin
+    +
+    "/number-request/share/";
+
+
+  const payload={
+    title:
+      "Zorix Metron · Request ranking",
+
+    text:
+      "Current Zorix Metron model request ranking.",
+
+    url
+  };
+
+
+  if(navigator.share){
+
+    try{
+
+      await navigator.share(
+        payload
+      );
+
+      return;
+
+    }catch(error){
+
+      if(
+        error
+        &&
+        error.name
+        ===
+        "AbortError"
+      ){
+        return;
+      }
+
+    }
+
+  }
+
+
+  try{
+
+    await navigator
+      .clipboard
+      .writeText(
+        url
+      );
+
+
+    const button =
+      document.getElementById(
+        "shareRequestsButton"
+      );
+
+
+    if(button){
+
+      const old =
+        button.textContent;
+
+      button.textContent =
+        "Link copied";
+
+
+      setTimeout(
+        ()=>{
+          button.textContent=old;
+        },
+        1600
+      );
+
+    }
+
+  }catch(error){
+
+    location.href=url;
+
+  }
+
+}
+
+
+document
+  .getElementById(
+    "shareRequestsButton"
+  )
+  ?.addEventListener(
+    "click",
+    shareRequestRanking
+  );
+
+
+renderRequestShareChart();
 
 render();
 
