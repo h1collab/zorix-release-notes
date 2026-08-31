@@ -1,0 +1,1793 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>Zorix Open Model</title>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#6f6f69;
+  --line:#e3e3df;
+  --line2:#ededE9;
+  --soft:#f7f7f5;
+  --soft2:#fbfbfa;
+  --accent:#7c3aed;
+  --max:1080px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
+header{
+  position:sticky;
+  top:0;
+
+  z-index:50;
+
+  background:
+    rgba(255,255,255,.96);
+
+  border-bottom:
+    1px solid var(--line);
+
+  backdrop-filter:
+    blur(15px);
+}
+
+.nav{
+  max-width:var(--max);
+
+  min-height:72px;
+
+  margin:auto;
+  padding:
+    11px
+    20px;
+
+  display:flex;
+  align-items:center;
+
+  gap:15px;
+}
+
+.brand-logo{
+  width:42px;
+  height:42px;
+
+  display:grid;
+  place-items:center;
+
+  flex:0 0 42px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+}
+
+.brand-logo img{
+  width:29px;
+  height:29px;
+}
+
+.search{
+  flex:1;
+
+  min-height:44px;
+
+  display:flex;
+  align-items:center;
+
+  padding:
+    0
+    15px;
+
+  color:#92928d;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:11px;
+
+  font-size:12px;
+}
+
+.nav-link{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    30px
+    20px
+    95px;
+}
+
+.back{
+  display:inline-flex;
+
+  margin-bottom:31px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.model-head{
+  display:grid;
+
+  grid-template-columns:
+    52px
+    minmax(0,1fr)
+    auto;
+
+  gap:14px;
+
+  align-items:start;
+}
+
+.model-logo{
+  width:50px;
+  height:50px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:13px;
+
+  background:#fff;
+}
+
+.model-logo img{
+  width:34px;
+  height:34px;
+}
+
+.owner{
+  color:#999;
+
+  font-size:11px;
+}
+
+.official{
+  margin-left:6px;
+
+  color:var(--accent);
+
+  font-size:9px;
+}
+
+h1{
+  margin:
+    5px
+    0
+    0;
+
+  font-size:
+    clamp(
+      27px,
+      5vw,
+      41px
+    );
+
+  line-height:1.05;
+
+  font-weight:600;
+
+  letter-spacing:-.045em;
+
+  overflow-wrap:anywhere;
+}
+
+.like{
+  min-height:38px;
+
+  padding:
+    0
+    11px;
+
+  display:flex;
+  align-items:center;
+
+  gap:7px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  color:#5f5f5b;
+
+  font-size:11px;
+}
+
+.like svg{
+  width:14px;
+  height:14px;
+}
+
+.tags{
+  margin-top:21px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:7px;
+}
+
+.tag{
+  min-height:31px;
+
+  padding:
+    0
+    10px;
+
+  display:inline-flex;
+  align-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+
+  color:#555;
+
+  font-size:10px;
+}
+
+.actions{
+  margin-top:28px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr;
+
+  gap:8px;
+}
+
+.action{
+  min-height:47px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  font-size:12px;
+}
+
+.action.primary{
+  color:#fff;
+
+  background:#111;
+
+  border-color:#111;
+}
+
+.deploy-panel{
+  display:none;
+
+  margin-top:9px;
+
+  padding:17px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:11px;
+
+  background:var(--soft2);
+}
+
+.deploy-panel.open{
+  display:block;
+}
+
+.deploy-title{
+  font-size:13px;
+  font-weight:550;
+}
+
+.deploy-copy{
+  margin-top:7px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.55;
+}
+
+.tabs{
+  margin-top:31px;
+
+  display:flex;
+
+  gap:25px;
+
+  overflow:auto;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.tab{
+  min-height:45px;
+
+  padding:
+    0
+    1px;
+
+  border:0;
+
+  border-bottom:
+    2px solid transparent;
+
+  background:transparent;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  white-space:nowrap;
+
+  font-size:11px;
+}
+
+.tab.active{
+  color:#111;
+
+  border-bottom-color:#111;
+}
+
+.panel{
+  display:none;
+
+  padding-top:31px;
+}
+
+.panel.active{
+  display:block;
+}
+
+.download-panel{
+  display:grid;
+
+  grid-template-columns:
+    190px
+    minmax(0,1fr);
+
+  gap:25px;
+
+  align-items:center;
+
+  padding:
+    24px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.metric-label{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.metric-value{
+  margin-top:7px;
+
+  font-size:23px;
+  font-weight:550;
+}
+
+.chart-empty{
+  min-height:82px;
+
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.spark{
+  width:100%;
+  height:82px;
+
+  display:block;
+}
+
+.model-summary{
+  margin-top:31px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,1fr);
+
+  gap:8px;
+}
+
+.summary-item{
+  min-height:78px;
+
+  padding:14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+}
+
+.summary-label{
+  color:var(--muted);
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.055em;
+}
+
+.summary-value{
+  margin-top:9px;
+
+  font-size:13px;
+
+  overflow-wrap:anywhere;
+}
+
+.section{
+  margin-top:41px;
+}
+
+.section h2{
+  margin:0;
+
+  font-size:24px;
+  font-weight:550;
+
+  letter-spacing:-.04em;
+}
+
+.section-copy{
+  max-width:790px;
+
+  margin-top:13px;
+
+  color:#454541;
+
+  font-size:13px;
+  line-height:1.7;
+}
+
+.rows{
+  margin-top:17px;
+
+  border-top:
+    1px solid var(--line);
+}
+
+.row{
+  min-height:53px;
+
+  display:grid;
+
+  grid-template-columns:
+    210px
+    minmax(0,1fr);
+
+  gap:16px;
+
+  align-items:center;
+
+  border-bottom:
+    1px solid var(--line);
+
+  font-size:11px;
+}
+
+.row-label{
+  color:var(--muted);
+}
+
+.hardware{
+  margin-top:34px;
+
+  padding:17px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+}
+
+.hardware-title{
+  font-size:13px;
+  font-weight:550;
+}
+
+.hardware-grid{
+  margin-top:14px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:7px;
+}
+
+.hardware-item{
+  min-height:31px;
+
+  padding:
+    0
+    10px;
+
+  display:inline-flex;
+  align-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+
+  color:#555;
+
+  font-size:10px;
+}
+
+.file-list{
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+
+  overflow:hidden;
+}
+
+.file-row{
+  min-height:57px;
+
+  padding:
+    0
+    15px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:12px;
+
+  align-items:center;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.file-row:last-child{
+  border-bottom:0;
+}
+
+.file-name{
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+
+  font-size:10px;
+}
+
+.file-type{
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.empty{
+  padding:
+    50px
+    20px;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:11px;
+}
+
+.community-card{
+  padding:21px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+}
+
+.community-title{
+  font-size:16px;
+  font-weight:550;
+}
+
+.community-copy{
+  margin-top:9px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.6;
+}
+
+@media(max-width:720px){
+
+  .nav-link{
+    display:none;
+  }
+
+  main{
+    padding:
+      25px
+      14px
+      75px;
+  }
+
+  .model-head{
+    grid-template-columns:
+      45px
+      minmax(0,1fr)
+      auto;
+
+    gap:9px;
+  }
+
+  .model-logo{
+    width:43px;
+    height:43px;
+  }
+
+  .model-logo img{
+    width:29px;
+    height:29px;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  .like{
+    padding:
+      0
+      8px;
+  }
+
+  .actions{
+    grid-template-columns:1fr;
+  }
+
+  .download-panel{
+    grid-template-columns:1fr;
+  }
+
+  .chart-empty{
+    justify-content:flex-start;
+  }
+
+  .model-summary{
+    grid-template-columns:1fr;
+  }
+
+  .row{
+    grid-template-columns:1fr;
+
+    gap:5px;
+
+    padding:
+      12px
+      0;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand-logo"
+      href="/open-source/ranking/"
+    >
+
+      <img
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt="Zorix"
+      >
+
+    </a>
+
+
+    <a
+      class="search"
+      href="/open-source/ranking/"
+    >
+      Search Zorix models
+    </a>
+
+
+    <a
+      class="nav-link"
+      href="/number-of-calls/"
+    >
+      Metron
+    </a>
+
+
+    <a
+      class="nav-link"
+      href="/status/"
+    >
+      Status
+    </a>
+
+  </div>
+
+</header>
+
+
+<main id="page">
+
+  <a
+    class="back"
+    href="/open-source/ranking/"
+  >
+    Open source ranking
+  </a>
+
+
+  <div class="model-head">
+
+    <div class="model-logo">
+
+      <img
+        id="modelLogo"
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt="Zorix"
+      >
+
+    </div>
+
+
+    <div>
+
+      <div class="owner">
+        Zorix /
+        <span class="official">
+          Official
+        </span>
+      </div>
+
+      <h1 id="modelName">
+        Model
+      </h1>
+
+    </div>
+
+
+    <div class="like">
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 20.3s-7.2-4.3-9.5-8.5C.6 8.4 2.2 4.7 6 4.7c2.3 0 3.7 1.3 4.5 2.5.8-1.2 2.2-2.5 4.5-2.5 3.8 0 5.4 3.7 3.5 7.1-2.3 4.2-6.5 8.5-6.5 8.5Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+        />
+      </svg>
+
+      <span id="likes">
+        0
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="tags"
+    id="tags"
+  ></div>
+
+
+  <div class="actions">
+
+    <button
+      class="action"
+      id="deployButton"
+      type="button"
+    >
+      Deploy
+    </button>
+
+
+    <button
+      class="action"
+      id="copyButton"
+      type="button"
+    >
+      Copy model ID
+    </button>
+
+
+    <button
+      class="action primary"
+      id="useButton"
+      type="button"
+    >
+      Use this model
+    </button>
+
+  </div>
+
+
+  <div
+    class="deploy-panel"
+    id="deployPanel"
+  >
+
+    <div
+      class="deploy-title"
+      id="deployTitle"
+    >
+      Runtime
+    </div>
+
+    <div
+      class="deploy-copy"
+      id="deployCopy"
+    ></div>
+
+  </div>
+
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      data-panel="modelCard"
+      type="button"
+    >
+      Model card
+    </button>
+
+    <button
+      class="tab"
+      data-panel="filesPanel"
+      type="button"
+    >
+      Files
+    </button>
+
+    <button
+      class="tab"
+      data-panel="communityPanel"
+      type="button"
+    >
+      Community
+    </button>
+
+  </div>
+
+
+  <section
+    class="panel active"
+    id="modelCard"
+  >
+
+    <div class="download-panel">
+
+      <div>
+
+        <div class="metric-label">
+          Downloads last month
+        </div>
+
+        <div
+          class="metric-value"
+          id="downloads"
+        >
+          0
+        </div>
+
+      </div>
+
+
+      <div id="chart"></div>
+
+    </div>
+
+
+    <div
+      class="model-summary"
+      id="summary"
+    ></div>
+
+
+    <div class="hardware">
+
+      <div class="hardware-title">
+        Hardware compatibility
+      </div>
+
+      <div
+        class="hardware-grid"
+        id="hardware"
+      ></div>
+
+    </div>
+
+
+    <div class="section">
+
+      <h2>
+        Model card
+      </h2>
+
+      <div
+        class="section-copy"
+        id="description"
+      ></div>
+
+    </div>
+
+
+    <div class="section">
+
+      <h2>
+        Technical information
+      </h2>
+
+      <div
+        class="rows"
+        id="technical"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <section
+    class="panel"
+    id="filesPanel"
+  >
+
+    <div
+      class="file-list"
+      id="files"
+    ></div>
+
+  </section>
+
+
+  <section
+    class="panel"
+    id="communityPanel"
+  >
+
+    <div class="community-card">
+
+      <div class="community-title">
+        Community
+      </div>
+
+      <div class="community-copy">
+        Community discussion data has not been
+        published on the Zorix Open Source site yet.
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script src="/open-source/open-source.js"></script>
+
+<script>
+
+const SLUG =
+  "__MODEL_SLUG__";
+
+
+const DB =
+  window.ZORIX_OPEN_SOURCE
+  ||
+  {
+    models:[]
+  };
+
+
+const model =
+  (
+    DB.models
+    ||
+    []
+  )
+  .find(
+    item=>
+      item.slug===SLUG
+  );
+
+
+function esc(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;");
+
+}
+
+
+function number(value){
+
+  return Number(
+    value || 0
+  )
+  .toLocaleString(
+    "en-US"
+  );
+
+}
+
+
+function valueOrMissing(value){
+
+  if(
+    value===null
+    ||
+    value===undefined
+    ||
+    value===""
+  ){
+    return "Not published";
+  }
+
+  return String(value);
+
+}
+
+
+function summaryItem(
+  label,
+  value
+){
+
+  return `
+    <div class="summary-item">
+
+      <div class="summary-label">
+        ${esc(label)}
+      </div>
+
+      <div class="summary-value">
+        ${esc(
+          valueOrMissing(
+            value
+          )
+        )}
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function row(
+  label,
+  value
+){
+
+  return `
+    <div class="row">
+
+      <div class="row-label">
+        ${esc(label)}
+      </div>
+
+      <div>
+        ${esc(
+          valueOrMissing(
+            value
+          )
+        )}
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function renderChart(){
+
+  const history =
+    (
+      model.downloadHistory
+      ||
+      []
+    )
+    .filter(
+      item=>
+        Number.isFinite(
+          Number(
+            item.value
+          )
+        )
+    );
+
+
+  if(history.length<2){
+
+    return `
+      <div class="chart-empty">
+        Historical download series not published.
+      </div>
+    `;
+
+  }
+
+
+  const values =
+    history.map(
+      item=>
+        Number(
+          item.value
+        )
+    );
+
+
+  const w=540;
+  const h=82;
+
+
+  let min=
+    Math.min(
+      ...values
+    );
+
+  let max=
+    Math.max(
+      ...values
+    );
+
+
+  if(min===max){
+    min-=1;
+    max+=1;
+  }
+
+
+  const points =
+    values.map(
+      (value,index)=>{
+
+        const x =
+          index
+          /
+          Math.max(
+            1,
+            values.length-1
+          )
+          *
+          w;
+
+
+        const y =
+          h
+          -
+          6
+          -
+          (
+            value-min
+          )
+          /
+          (
+            max-min
+          )
+          *
+          (
+            h-12
+          );
+
+
+        return (
+          x.toFixed(1)
+          +
+          ","
+          +
+          y.toFixed(1)
+        );
+
+      }
+    )
+    .join(" ");
+
+
+  return `
+    <svg
+      class="spark"
+      viewBox="0 0 ${w} ${h}"
+      preserveAspectRatio="none"
+      role="img"
+      aria-label="Download history"
+    >
+
+      <polyline
+        points="${points}"
+        fill="none"
+        stroke="#7c3aed"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+    </svg>
+  `;
+
+}
+
+
+if(!model){
+
+  document
+    .getElementById(
+      "page"
+    )
+    .innerHTML=`
+
+      <a
+        class="back"
+        href="/open-source/ranking/"
+      >
+        Open source ranking
+      </a>
+
+      <div class="empty">
+        Model not found.
+      </div>
+    `;
+
+}else{
+
+  document.title =
+    model.name
+    +
+    " | Zorix Open Source";
+
+
+  document
+    .getElementById(
+      "modelName"
+    )
+    .textContent =
+      model.name;
+
+
+  document
+    .getElementById(
+      "modelLogo"
+    )
+    .src =
+      model.logo;
+
+
+  document
+    .getElementById(
+      "likes"
+    )
+    .textContent =
+      number(
+        model.likes
+      );
+
+
+  const tagValues = [
+    ...(model.formats || []),
+    ...(model.languages || []),
+    ...(model.tags || []),
+    (
+      model.license
+        ? (
+            "License: "
+            +
+            model.license
+          )
+        : ""
+    )
+  ]
+  .filter(Boolean);
+
+
+  document
+    .getElementById(
+      "tags"
+    )
+    .innerHTML =
+      tagValues
+      .map(
+        item=>`
+          <span class="tag">
+            ${esc(item)}
+          </span>
+        `
+      )
+      .join("");
+
+
+  document
+    .getElementById(
+      "downloads"
+    )
+    .textContent =
+      number(
+        model.downloadsLastMonth
+      );
+
+
+  document
+    .getElementById(
+      "chart"
+    )
+    .innerHTML =
+      renderChart();
+
+
+  document
+    .getElementById(
+      "summary"
+    )
+    .innerHTML =
+
+      summaryItem(
+        "Model size",
+        model.modelSize
+          ? model.modelSize + " params"
+          : null
+      )
+
+      +
+
+      summaryItem(
+        "Architecture",
+        model.architecture
+      )
+
+      +
+
+      summaryItem(
+        "Format",
+        (
+          model.formats
+          ||
+          []
+        ).join(", ")
+      )
+
+      +
+
+      summaryItem(
+        "Chat template",
+        model.chatTemplate
+      );
+
+
+  document
+    .getElementById(
+      "hardware"
+    )
+    .innerHTML =
+      (
+        model.platforms
+        ||
+        []
+      )
+      .map(
+        item=>`
+          <span class="hardware-item">
+            ${esc(item)}
+          </span>
+        `
+      )
+      .join("");
+
+
+  document
+    .getElementById(
+      "description"
+    )
+    .textContent =
+      model.description;
+
+
+  document
+    .getElementById(
+      "technical"
+    )
+    .innerHTML =
+
+      row(
+        "Developer",
+        "Zorix"
+      )
+
+      +
+
+      row(
+        "Model ID",
+        model.id
+      )
+
+      +
+
+      row(
+        "Task",
+        model.task
+      )
+
+      +
+
+      row(
+        "Model size",
+        model.modelSize
+          ? model.modelSize + " params"
+          : null
+      )
+
+      +
+
+      row(
+        "Architecture",
+        model.architecture
+      )
+
+      +
+
+      row(
+        "Context length",
+        model.contextLength
+      )
+
+      +
+
+      row(
+        "Runtime",
+        model.runtime
+      )
+
+      +
+
+      row(
+        "Quantization",
+        model.quantization
+      )
+
+      +
+
+      row(
+        "Languages",
+        (
+          model.languages
+          ||
+          []
+        ).join(", ")
+      )
+
+      +
+
+      row(
+        "License",
+        model.license
+      );
+
+
+  const files =
+    model.files
+    ||
+    [];
+
+
+  document
+    .getElementById(
+      "files"
+    )
+    .innerHTML =
+
+      files.length
+
+        ? files.map(
+            item=>`
+
+              <div class="file-row">
+
+                <div class="file-name">
+                  ${esc(item.name || item)}
+                </div>
+
+                <div class="file-type">
+                  ${esc(item.type || "File")}
+                </div>
+
+              </div>
+
+            `
+          )
+          .join("")
+
+        : `
+            <div class="empty">
+              Individual file names have not been
+              published on this Zorix page yet.
+            </div>
+          `;
+
+
+  const deployPanel =
+    document.getElementById(
+      "deployPanel"
+    );
+
+
+  document
+    .getElementById(
+      "deployTitle"
+    )
+    .textContent =
+      model.runtime
+      ||
+      "Runtime";
+
+
+  document
+    .getElementById(
+      "deployCopy"
+    )
+    .textContent =
+      model.runtime
+
+        ? (
+            "This model is associated with "
+            +
+            model.runtime
+            +
+            ". Runtime-specific instructions will "
+            +
+            "be displayed here when published."
+          )
+
+        : (
+            "Deployment instructions have not been published."
+          );
+
+
+  document
+    .getElementById(
+      "deployButton"
+    )
+    .onclick =
+      ()=>{
+
+        deployPanel
+          .classList
+          .toggle(
+            "open"
+          );
+
+      };
+
+
+  document
+    .getElementById(
+      "useButton"
+    )
+    .onclick =
+      ()=>{
+
+        deployPanel
+          .classList
+          .add(
+            "open"
+          );
+
+      };
+
+
+  document
+    .getElementById(
+      "copyButton"
+    )
+    .onclick =
+      async ()=>{
+
+        try{
+
+          await navigator
+            .clipboard
+            .writeText(
+              model.id
+            );
+
+
+          document
+            .getElementById(
+              "copyButton"
+            )
+            .textContent =
+              "Copied";
+
+        }catch(error){
+
+          document
+            .getElementById(
+              "copyButton"
+            )
+            .textContent =
+              model.id;
+
+        }
+
+      };
+
+}
+
+
+document
+  .querySelectorAll(
+    ".tab"
+  )
+  .forEach(
+    button=>{
+
+      button
+        .addEventListener(
+          "click",
+          ()=>{
+
+            document
+              .querySelectorAll(
+                ".tab"
+              )
+              .forEach(
+                item=>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            document
+              .querySelectorAll(
+                ".panel"
+              )
+              .forEach(
+                item=>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            button
+              .classList
+              .add(
+                "active"
+              );
+
+
+            document
+              .getElementById(
+                button.dataset.panel
+              )
+              .classList
+              .add(
+                "active"
+              );
+
+          }
+        );
+
+    }
+  );
+
+</script>
+
+</body>
+
+</html>

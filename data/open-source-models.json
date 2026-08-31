@@ -1,7 +1,6 @@
 {
   "dataAsOf": "2026-08-31",
   "owner": "Zorix",
-  "registry": "Zorix Open Source",
   "models": [
     {
       "id": "zorix-nano-0.8b-gguf",
@@ -9,18 +8,24 @@
       "name": "Zorix-Nano-0.8B-GGUF",
       "owner": "Zorix",
       "official": true,
+
       "logo": "/number-of-calls/assets/logos/zorix.svg",
+
       "downloadsLastMonth": 53,
       "likes": 4,
+
       "license": "apache-2.0",
+
       "formats": [
         "GGUF"
       ],
+
       "languages": [
         "Chinese",
         "English",
         "Italian"
       ],
+
       "tags": [
         "zorix-gguf-run",
         "zorix-nano",
@@ -32,6 +37,7 @@
         "termux",
         "conversational"
       ],
+
       "platforms": [
         "Linux",
         "Debian",
@@ -39,16 +45,25 @@
         "Android",
         "Termux"
       ],
+
       "parameters": 800000000,
       "modelSize": "0.8B",
       "architecture": "zorix-nano",
+
       "runtime": "Zorix GGUF Run",
+
       "task": "Conversational",
+
       "contextLength": null,
+
       "quantization": null,
+
       "chatTemplate": null,
+
       "description": "Zorix-Nano-0.8B-GGUF is an official Zorix open model. This page contains the public model metadata currently published by Zorix.",
+
       "files": [],
+
       "downloadHistory": []
     }
   ]
