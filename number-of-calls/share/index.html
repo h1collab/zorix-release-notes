@@ -462,6 +462,43 @@ canvas{
 }
 
 
+
+
+/* ============================================================
+   METRON_LANDSCAPE_CONTROLS_V1
+   ============================================================ */
+
+#landscapeControls{
+  display:none;
+}
+
+#landscapeControls.active{
+  display:contents;
+}
+
+.controls.landscape-active{
+  grid-template-columns:
+    repeat(4,minmax(0,1fr))
+    auto;
+}
+
+@media(max-width:1000px){
+
+  .controls.landscape-active{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+}
+
+@media(max-width:760px){
+
+  .controls.landscape-active{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
 
 </head>
@@ -577,6 +614,10 @@ canvas{
         Benchmark ranking
       </option>
 
+      <option value="model-landscape">
+        AI Model Landscape
+      </option>
+
       <option value="coding-benchmark-svg">
         Metron Coding Benchmark · SVG
       </option>
@@ -644,11 +685,100 @@ canvas{
         Top 12
       </option>
 
+      <option value="20">
+        Top 20
+      </option>
+
     </select>
 
   </div>
 
 
+
+
+
+  <div id="landscapeControls">
+
+    <div class="control-group">
+
+      <label class="control-label">
+        X axis
+      </label>
+
+      <select
+        class="control-select"
+        id="landscapeX"
+      >
+
+        <option value="requests">
+          Request count
+        </option>
+
+        <option value="request-rank">
+          Request rank
+        </option>
+
+        <option value="usage-rank">
+          Usage rank
+        </option>
+
+        <option value="votes">
+          Community voting score
+        </option>
+
+        <option value="swe-verified">
+          SWE-bench Verified
+        </option>
+
+        <option value="terminal-21">
+          Terminal-Bench 2.1
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="control-group">
+
+      <label class="control-label">
+        Y axis
+      </label>
+
+      <select
+        class="control-select"
+        id="landscapeY"
+      >
+
+        <option value="votes">
+          Community voting score
+        </option>
+
+        <option value="requests">
+          Request count
+        </option>
+
+        <option value="request-rank">
+          Request rank
+        </option>
+
+        <option value="usage-rank">
+          Usage rank
+        </option>
+
+        <option value="swe-verified">
+          SWE-bench Verified
+        </option>
+
+        <option value="terminal-21">
+          Terminal-Bench 2.1
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
 
 
   <div
@@ -823,6 +953,7 @@ canvas{
 <script src="../usage.js?v=1788181089"></script>
 <script src="../benchmarks.js?v=1788181089"></script>
 
+<script src="/number-request/requests.js"></script>
 <script src="../image-ai.js?v=1788181089"></script>
 <script src="../intelligence-cost.js?v=1788181089"></script>
 
@@ -7717,6 +7848,2797 @@ render();
 
 
   syncMode();
+
+})();
+
+</script>
+
+
+<script>
+
+/* ============================================================
+   METRON_MODEL_LANDSCAPE_V1
+
+   Uses only currently published Metron data.
+
+   Dotted paths connect models from the same provider.
+   They do NOT represent release chronology or evolution.
+   ============================================================ */
+
+(function(){
+
+  "use strict";
+
+
+  const report =
+    document.getElementById(
+      "reportType"
+    );
+
+  const xSelect =
+    document.getElementById(
+      "landscapeX"
+    );
+
+  const ySelect =
+    document.getElementById(
+      "landscapeY"
+    );
+
+  const landscapeControls =
+    document.getElementById(
+      "landscapeControls"
+    );
+
+  const metricGroup =
+    document
+      .getElementById(
+        "metricSelect"
+      )
+      ?.closest(
+        ".control-group"
+      );
+
+  const countSelect =
+    document.getElementById(
+      "modelCountSelect"
+    );
+
+  const controls =
+    document.querySelector(
+      ".controls"
+    );
+
+  const status =
+    document.getElementById(
+      "shareDataStatus"
+    );
+
+  const previewMeta =
+    document.getElementById(
+      "previewMeta"
+    );
+
+  const previewTitle =
+    document.querySelector(
+      ".preview-title"
+    );
+
+  const landCanvas =
+    document.getElementById(
+      "chartCanvas"
+    );
+
+  const landCtx =
+    landCanvas
+      ?.getContext(
+        "2d"
+      );
+
+
+  const MODEL_DATA =
+    window.ZORIX_MODEL_DETAILS
+    ||
+    [];
+
+  const USAGE_DATA =
+    window.ZORIX_CODE_USAGE
+    ||
+    {
+      models:[]
+    };
+
+  const REQUEST_DATA =
+    window.ZORIX_REQUEST_USAGE
+    ||
+    {
+      models:[]
+    };
+
+  const VOTE_DATA =
+    window.ZORIX_COMMUNITY_VOTES
+    ||
+    {
+      models:[]
+    };
+
+  const BENCH_DATA =
+    window.ZORIX_BENCHMARKS
+    ||
+    {
+      scores:{}
+    };
+
+
+  const WIDTH=1600;
+  const HEIGHT=900;
+
+
+  /* ========================================================
+     ID / MODEL LOOKUPS
+     ======================================================== */
+
+  function canonicalId(id){
+
+    if(
+      id
+      ===
+      "nvidia-nemotron-3-ultra"
+    ){
+      return "nemotron-3-ultra";
+    }
+
+    return String(
+      id || ""
+    );
+
+  }
+
+
+  function normalizeName(value){
+
+    return String(
+      value || ""
+    )
+    .toLowerCase()
+    .replace(/[—–]/g,"-")
+    .replace(/\s+/g," ")
+    .trim();
+
+  }
+
+
+  const metaById =
+    new Map();
+
+  const idByName =
+    new Map();
+
+
+  MODEL_DATA.forEach(
+    item=>{
+
+      const id =
+        canonicalId(
+          item.id
+        );
+
+      if(id){
+        metaById.set(
+          id,
+          item
+        );
+      }
+
+      if(item.name){
+
+        idByName.set(
+          normalizeName(
+            item.name
+          ),
+          id
+        );
+
+      }
+
+    }
+  );
+
+
+  function resolveUsageId(row){
+
+    const direct =
+      canonicalId(
+        row.id
+      );
+
+    if(
+      direct
+      &&
+      metaById.has(
+        direct
+      )
+    ){
+      return direct;
+    }
+
+
+    const byName =
+      idByName.get(
+        normalizeName(
+          row.name
+        )
+      );
+
+    return byName || direct;
+
+  }
+
+
+  const usageRows =
+    [...(
+      USAGE_DATA.models
+      ||
+      []
+    )]
+    .sort(
+      (a,b)=>
+        Number(
+          b.tokens || 0
+        )
+        -
+        Number(
+          a.tokens || 0
+        )
+    );
+
+
+  const usageById =
+    new Map();
+
+  const usageRank =
+    new Map();
+
+
+  usageRows.forEach(
+    (row,index)=>{
+
+      const id =
+        resolveUsageId(
+          row
+        );
+
+      if(!id){
+        return;
+      }
+
+      usageById.set(
+        id,
+        row
+      );
+
+      usageRank.set(
+        id,
+        index+1
+      );
+
+    }
+  );
+
+
+  const requestRows =
+    [...(
+      REQUEST_DATA.models
+      ||
+      []
+    )]
+    .sort(
+      (a,b)=>
+        Number(
+          b.requests || 0
+        )
+        -
+        Number(
+          a.requests || 0
+        )
+    );
+
+
+  const requestById =
+    new Map();
+
+  const requestRank =
+    new Map();
+
+
+  requestRows.forEach(
+    (row,index)=>{
+
+      const id =
+        canonicalId(
+          row.id
+        );
+
+      requestById.set(
+        id,
+        row
+      );
+
+      requestRank.set(
+        id,
+        index+1
+      );
+
+    }
+  );
+
+
+  const voteRows =
+    [...(
+      VOTE_DATA.models
+      ||
+      []
+    )]
+    .filter(
+      row=>
+        Number(
+          row.votes || 0
+        )
+        >
+        0
+    )
+    .sort(
+      (a,b)=>
+        Number(
+          b.votes || 0
+        )
+        -
+        Number(
+          a.votes || 0
+        )
+    );
+
+
+  const voteById =
+    new Map();
+
+
+  voteRows.forEach(
+    row=>{
+
+      voteById.set(
+        canonicalId(
+          row.id
+        ),
+        row
+      );
+
+    }
+  );
+
+
+  const benchmarkScores =
+    BENCH_DATA.scores
+    ||
+    {};
+
+
+  /* ========================================================
+     PROVIDERS
+     ======================================================== */
+
+  const providerColors={
+
+    "Zorix":
+      "#7446c8",
+
+    "OpenAI":
+      "#111111",
+
+    "Anthropic":
+      "#a45a1b",
+
+    "Google":
+      "#377fc1",
+
+    "Z.ai":
+      "#387dc0",
+
+    "DeepSeek":
+      "#2552b5",
+
+    "Moonshot AI":
+      "#118f87",
+
+    "Tencent":
+      "#d84c4c",
+
+    "Xiaomi":
+      "#e96c22",
+
+    "Meta":
+      "#4267b2",
+
+    "NVIDIA":
+      "#5f8f16"
+  };
+
+
+  const providerLogos={
+
+    "Zorix":
+      "/number-of-calls/assets/logos/zorix.svg",
+
+    "OpenAI":
+      "/number-of-calls/assets/logos/openai.svg",
+
+    "Anthropic":
+      "/number-of-calls/assets/logos/anthropic.svg",
+
+    "Google":
+      "/number-of-calls/assets/logos/google.svg",
+
+    "Z.ai":
+      "/number-of-calls/assets/logos/glm.svg",
+
+    "DeepSeek":
+      "/number-of-calls/assets/logos/deepseek.svg",
+
+    "Moonshot AI":
+      "/number-of-calls/assets/logos/kimi.svg",
+
+    "Tencent":
+      "/number-of-calls/assets/logos/hunyuan.svg",
+
+    "Xiaomi":
+      "/number-of-calls/assets/logos/mimo.svg",
+
+    "Meta":
+      "/number-of-calls/assets/logos/meta.svg",
+
+    "NVIDIA":
+      "/number-of-calls/assets/logos/nvidia.svg"
+  };
+
+
+  function modelMeta(id){
+
+    return (
+      metaById.get(
+        canonicalId(id)
+      )
+      ||
+      {}
+    );
+
+  }
+
+
+  function modelName(id){
+
+    const meta =
+      modelMeta(id);
+
+    const request =
+      requestById.get(
+        canonicalId(id)
+      );
+
+    const usage =
+      usageById.get(
+        canonicalId(id)
+      );
+
+    return (
+      meta.name
+      ||
+      request?.name
+      ||
+      usage?.name
+      ||
+      id
+    );
+
+  }
+
+
+  function modelProvider(id){
+
+    const meta =
+      modelMeta(id);
+
+    const request =
+      requestById.get(
+        canonicalId(id)
+      );
+
+    const usage =
+      usageById.get(
+        canonicalId(id)
+      );
+
+    return (
+      meta.provider
+      ||
+      request?.provider
+      ||
+      usage?.provider
+      ||
+      "Other"
+    );
+
+  }
+
+
+  function normalizeLogo(url){
+
+    if(!url){
+      return "";
+    }
+
+    if(
+      url.startsWith("/")
+      ||
+      url.startsWith("http")
+    ){
+      return url;
+    }
+
+    if(
+      url.startsWith(
+        "assets/"
+      )
+    ){
+      return (
+        "/number-of-calls/"
+        +
+        url
+      );
+    }
+
+    return url;
+  }
+
+
+  function modelLogo(id){
+
+    const meta =
+      modelMeta(id);
+
+    const provider =
+      modelProvider(id);
+
+    return (
+      normalizeLogo(
+        meta.logo
+      )
+      ||
+      providerLogos[
+        provider
+      ]
+      ||
+      "/number-of-calls/assets/logos/zorix.svg"
+    );
+
+  }
+
+
+  /* ========================================================
+     METRICS
+     ======================================================== */
+
+  const metricDefinitions={
+
+    "requests":{
+
+      label:
+        "Request count (B)",
+
+      rank:false,
+
+      format:
+        value=>
+          (
+            value
+            .toLocaleString(
+              "en-US",
+              {
+                maximumFractionDigits:2
+              }
+            )
+            +
+            "B"
+          )
+
+    },
+
+
+    "request-rank":{
+
+      label:
+        "Request rank",
+
+      rank:true,
+
+      format:
+        value=>
+          "#"
+          +
+          Math.round(
+            value
+          )
+
+    },
+
+
+    "usage-rank":{
+
+      label:
+        "Usage rank",
+
+      rank:true,
+
+      format:
+        value=>
+          "#"
+          +
+          Math.round(
+            value
+          )
+
+    },
+
+
+    "votes":{
+
+      label:
+        "Community voting score",
+
+      rank:false,
+
+      format:
+        value=>
+          Math.round(
+            value
+          )
+          .toLocaleString(
+            "en-US"
+          )
+
+    },
+
+
+    "swe-verified":{
+
+      label:
+        "SWE-bench Verified",
+
+      rank:false,
+
+      benchmark:true,
+
+      format:
+        value=>
+          value
+          .toFixed(1)
+          +
+          "%"
+
+    },
+
+
+    "terminal-21":{
+
+      label:
+        "Terminal-Bench 2.1",
+
+      rank:false,
+
+      benchmark:true,
+
+      format:
+        value=>
+          value
+          .toFixed(1)
+          +
+          "%"
+
+    }
+
+  };
+
+
+  function metricValue(
+    id,
+    metric
+  ){
+
+    id =
+      canonicalId(id);
+
+
+    if(
+      metric
+      ===
+      "requests"
+    ){
+
+      const value =
+        requestById
+        .get(id)
+        ?.requests;
+
+      if(
+        !Number.isFinite(
+          Number(value)
+        )
+      ){
+        return null;
+      }
+
+      return (
+        Number(value)
+        /
+        1_000_000_000
+      );
+
+    }
+
+
+    if(
+      metric
+      ===
+      "request-rank"
+    ){
+
+      return (
+        requestRank.get(id)
+        ??
+        null
+      );
+
+    }
+
+
+    if(
+      metric
+      ===
+      "usage-rank"
+    ){
+
+      return (
+        usageRank.get(id)
+        ??
+        null
+      );
+
+    }
+
+
+    if(
+      metric
+      ===
+      "votes"
+    ){
+
+      const value =
+        voteById
+        .get(id)
+        ?.votes;
+
+      if(
+        !Number.isFinite(
+          Number(value)
+        )
+        ||
+        Number(value)<=0
+      ){
+        return null;
+      }
+
+      return Number(
+        value
+      );
+
+    }
+
+
+    const scores =
+      benchmarkScores[
+        id
+      ];
+
+
+    if(!scores){
+      return null;
+    }
+
+
+    const value =
+      scores[
+        metric
+      ];
+
+
+    return Number.isFinite(
+      Number(value)
+    )
+      ? Number(value)
+      : null;
+
+  }
+
+
+  function allIds(){
+
+    const ids =
+      new Set();
+
+
+    metaById.forEach(
+      (_,id)=>
+        ids.add(id)
+    );
+
+
+    requestById.forEach(
+      (_,id)=>
+        ids.add(id)
+    );
+
+
+    voteById.forEach(
+      (_,id)=>
+        ids.add(id)
+    );
+
+
+    Object
+      .keys(
+        benchmarkScores
+      )
+      .forEach(
+        id=>
+          ids.add(
+            canonicalId(id)
+          )
+      );
+
+
+    usageById.forEach(
+      (_,id)=>
+        ids.add(id)
+    );
+
+
+    return [
+      ...ids
+    ];
+
+  }
+
+
+  function priority(id){
+
+    return Math.min(
+      usageRank.get(id)
+      ??
+      999,
+
+      requestRank.get(id)
+      ??
+      999
+    );
+
+  }
+
+
+  /* ========================================================
+     CANVAS HELPERS
+     ======================================================== */
+
+  function clear(){
+
+    if(!landCtx){
+      return;
+    }
+
+    landCtx.clearRect(
+      0,
+      0,
+      WIDTH,
+      HEIGHT
+    );
+
+    landCtx.fillStyle=
+      "#ffffff";
+
+    landCtx.fillRect(
+      0,
+      0,
+      WIDTH,
+      HEIGHT
+    );
+
+  }
+
+
+  function roundedRect(
+    x,
+    y,
+    w,
+    h,
+    r
+  ){
+
+    landCtx.beginPath();
+
+    landCtx.moveTo(
+      x+r,
+      y
+    );
+
+    landCtx.lineTo(
+      x+w-r,
+      y
+    );
+
+    landCtx.quadraticCurveTo(
+      x+w,
+      y,
+      x+w,
+      y+r
+    );
+
+    landCtx.lineTo(
+      x+w,
+      y+h-r
+    );
+
+    landCtx.quadraticCurveTo(
+      x+w,
+      y+h,
+      x+w-r,
+      y+h
+    );
+
+    landCtx.lineTo(
+      x+r,
+      y+h
+    );
+
+    landCtx.quadraticCurveTo(
+      x,
+      y+h,
+      x,
+      y+h-r
+    );
+
+    landCtx.lineTo(
+      x,
+      y+r
+    );
+
+    landCtx.quadraticCurveTo(
+      x,
+      y,
+      x+r,
+      y
+    );
+
+    landCtx.closePath();
+
+  }
+
+
+  function getDomain(
+    values,
+    metric
+  ){
+
+    let min =
+      Math.min(
+        ...values
+      );
+
+    let max =
+      Math.max(
+        ...values
+      );
+
+
+    const def =
+      metricDefinitions[
+        metric
+      ];
+
+
+    if(def?.rank){
+
+      min =
+        Math.max(
+          1,
+          Math.floor(
+            min
+          )
+        );
+
+      max =
+        Math.ceil(
+          max
+        );
+
+      if(min===max){
+        max=min+1;
+      }
+
+      return [
+        min,
+        max
+      ];
+
+    }
+
+
+    if(min===max){
+
+      min-=1;
+      max+=1;
+
+    }else{
+
+      const pad =
+        (
+          max-min
+        )
+        *
+        .08;
+
+      min-=pad;
+      max+=pad;
+
+    }
+
+
+    if(min>=0){
+      min=
+        Math.max(
+          0,
+          min
+        );
+    }
+
+
+    return [
+      min,
+      max
+    ];
+
+  }
+
+
+  function quartile(
+    values,
+    q
+  ){
+
+    const sorted =
+      [...values]
+      .sort(
+        (a,b)=>
+          a-b
+      );
+
+
+    const pos =
+      (
+        sorted.length-1
+      )
+      *
+      q;
+
+
+    const low =
+      Math.floor(
+        pos
+      );
+
+
+    const high =
+      Math.ceil(
+        pos
+      );
+
+
+    if(low===high){
+      return sorted[low];
+    }
+
+
+    return (
+      sorted[low]
+      +
+      (
+        sorted[high]
+        -
+        sorted[low]
+      )
+      *
+      (
+        pos-low
+      )
+    );
+
+  }
+
+
+  function axisTicks(
+    domain,
+    metric,
+    count=5
+  ){
+
+    const def =
+      metricDefinitions[
+        metric
+      ];
+
+
+    if(def?.rank){
+
+      const ticks=[];
+
+      for(
+        let i=0;
+        i<=count;
+        i++
+      ){
+
+        const value =
+          Math.round(
+            domain[0]
+            +
+            (
+              domain[1]
+              -
+              domain[0]
+            )
+            *
+            i
+            /
+            count
+          );
+
+        if(
+          !ticks.includes(
+            value
+          )
+        ){
+          ticks.push(
+            value
+          );
+        }
+
+      }
+
+      return ticks;
+
+    }
+
+
+    return Array.from(
+      {
+        length:
+          count+1
+      },
+      (_,i)=>
+        domain[0]
+        +
+        (
+          domain[1]
+          -
+          domain[0]
+        )
+        *
+        i
+        /
+        count
+    );
+
+  }
+
+
+  function clipLabel(
+    text,
+    max=27
+  ){
+
+    text =
+      String(text);
+
+    return (
+      text.length>max
+        ? (
+            text.slice(
+              0,
+              max-1
+            )
+            +
+            "…"
+          )
+        : text
+    );
+
+  }
+
+
+  /* ========================================================
+     IMAGE CACHE
+     ======================================================== */
+
+  const imageCache =
+    new Map();
+
+
+  function loadImage(
+    url
+  ){
+
+    if(
+      imageCache.has(
+        url
+      )
+    ){
+      return imageCache.get(
+        url
+      );
+    }
+
+
+    const promise =
+      new Promise(
+        resolve=>{
+
+          const image =
+            new Image();
+
+
+          image.onload =
+            ()=>resolve(
+              image
+            );
+
+
+          image.onerror =
+            ()=>resolve(
+              null
+            );
+
+
+          image.src =
+            url;
+
+        }
+      );
+
+
+    imageCache.set(
+      url,
+      promise
+    );
+
+
+    return promise;
+
+  }
+
+
+  /* ========================================================
+     LANDSCAPE
+     ======================================================== */
+
+  async function drawLandscape(){
+
+    if(
+      !landCtx
+      ||
+      !xSelect
+      ||
+      !ySelect
+    ){
+      return;
+    }
+
+
+    clear();
+
+
+    const xMetric =
+      xSelect.value;
+
+    const yMetric =
+      ySelect.value;
+
+
+    const xDef =
+      metricDefinitions[
+        xMetric
+      ];
+
+    const yDef =
+      metricDefinitions[
+        yMetric
+      ];
+
+
+    const count =
+      Number(
+        countSelect?.value
+        ||
+        12
+      );
+
+
+    let points =
+      allIds()
+      .map(
+        id=>{
+
+          const x =
+            metricValue(
+              id,
+              xMetric
+            );
+
+          const y =
+            metricValue(
+              id,
+              yMetric
+            );
+
+
+          if(
+            x===null
+            ||
+            y===null
+          ){
+            return null;
+          }
+
+
+          return {
+            id,
+            x,
+            y,
+            name:
+              modelName(id),
+            provider:
+              modelProvider(id)
+          };
+
+        }
+      )
+      .filter(Boolean)
+      .sort(
+        (a,b)=>
+          priority(a.id)
+          -
+          priority(b.id)
+      )
+      .slice(
+        0,
+        count
+      );
+
+
+    if(!points.length){
+
+      landCtx.fillStyle=
+        "#111";
+
+      landCtx.font=
+        "600 42px Georgia, serif";
+
+      landCtx.fillText(
+        "AI Model Landscape",
+        45,
+        65
+      );
+
+
+      landCtx.fillStyle=
+        "#777";
+
+      landCtx.font=
+        "20px Arial, sans-serif";
+
+      landCtx.fillText(
+        "No models have both selected metrics.",
+        45,
+        135
+      );
+
+      return;
+    }
+
+
+    const plot={
+      left:110,
+      top:220,
+      right:1530,
+      bottom:710
+    };
+
+
+    const plotW =
+      plot.right
+      -
+      plot.left;
+
+    const plotH =
+      plot.bottom
+      -
+      plot.top;
+
+
+    const xValues =
+      points.map(
+        p=>p.x
+      );
+
+    const yValues =
+      points.map(
+        p=>p.y
+      );
+
+
+    const xDomain =
+      getDomain(
+        xValues,
+        xMetric
+      );
+
+    const yDomain =
+      getDomain(
+        yValues,
+        yMetric
+      );
+
+
+    function mapX(value){
+
+      const t =
+        (
+          value
+          -
+          xDomain[0]
+        )
+        /
+        (
+          xDomain[1]
+          -
+          xDomain[0]
+        );
+
+      return (
+        plot.left
+        +
+        t*plotW
+      );
+
+    }
+
+
+    function mapY(value){
+
+      let t =
+        (
+          value
+          -
+          yDomain[0]
+        )
+        /
+        (
+          yDomain[1]
+          -
+          yDomain[0]
+        );
+
+
+      if(
+        yDef?.rank
+      ){
+
+        return (
+          plot.top
+          +
+          t*plotH
+        );
+
+      }
+
+
+      return (
+        plot.bottom
+        -
+        t*plotH
+      );
+
+    }
+
+
+    /* ------------------------------------------------------
+       TITLE
+       ------------------------------------------------------ */
+
+    landCtx.fillStyle=
+      "#171717";
+
+    landCtx.font=
+      "500 38px Georgia, 'Times New Roman', serif";
+
+    landCtx.fillText(
+      "AI Model Landscape",
+      28,
+      55
+    );
+
+
+    landCtx.fillStyle=
+      "#737373";
+
+    landCtx.font=
+      "16px Arial, sans-serif";
+
+    landCtx.fillText(
+      (
+        "Current Metron model positions · "
+        +
+        xDef.label
+        +
+        " vs. "
+        +
+        yDef.label
+        +
+        " · dotted paths group models by provider"
+      ),
+      28,
+      86
+    );
+
+
+    /* ------------------------------------------------------
+       BRAND
+       ------------------------------------------------------ */
+
+    const zorix =
+      await loadImage(
+        "/number-of-calls/assets/logos/zorix.svg"
+      );
+
+
+    if(zorix){
+
+      landCtx.drawImage(
+        zorix,
+        1320,
+        34,
+        38,
+        38
+      );
+
+    }
+
+
+    landCtx.fillStyle=
+      "#4b4b4b";
+
+    landCtx.font=
+      "20px Georgia, serif";
+
+    landCtx.fillText(
+      "Model Landscape",
+      1370,
+      62
+    );
+
+
+    /* ------------------------------------------------------
+       LEGEND
+       ------------------------------------------------------ */
+
+    const providers =
+      [
+        ...new Set(
+          points.map(
+            p=>p.provider
+          )
+        )
+      ];
+
+
+    let legendX=28;
+    let legendY=145;
+
+
+    landCtx.font=
+      "14px Arial, sans-serif";
+
+
+    providers.forEach(
+      provider=>{
+
+        const color =
+          providerColors[
+            provider
+          ]
+          ||
+          "#666";
+
+
+        landCtx.beginPath();
+
+        landCtx.arc(
+          legendX,
+          legendY,
+          6,
+          0,
+          Math.PI*2
+        );
+
+        landCtx.fillStyle=
+          color;
+
+        landCtx.fill();
+
+
+        landCtx.fillStyle=
+          "#383838";
+
+        landCtx.fillText(
+          provider,
+          legendX+14,
+          legendY+5
+        );
+
+
+        const width =
+          landCtx.measureText(
+            provider
+          ).width;
+
+
+        legendX +=
+          width
+          +
+          58;
+
+
+        if(
+          legendX>1450
+        ){
+
+          legendX=28;
+          legendY+=27;
+
+        }
+
+      }
+    );
+
+
+    /* ------------------------------------------------------
+       TOP QUARTILE ZONE
+       ------------------------------------------------------ */
+
+    let zoneBoundary;
+
+
+    if(
+      yDef?.rank
+    ){
+
+      const threshold =
+        yDomain[0]
+        +
+        (
+          yDomain[1]
+          -
+          yDomain[0]
+        )
+        *
+        .25;
+
+      zoneBoundary =
+        mapY(
+          threshold
+        );
+
+    }else{
+
+      const threshold =
+        quartile(
+          yValues,
+          .75
+        );
+
+      zoneBoundary =
+        mapY(
+          threshold
+        );
+
+    }
+
+
+    landCtx.fillStyle=
+      "rgba(219,239,214,.62)";
+
+    landCtx.fillRect(
+      plot.left,
+      plot.top,
+      plotW,
+      Math.max(
+        0,
+        zoneBoundary
+        -
+        plot.top
+      )
+    );
+
+
+    landCtx.fillStyle=
+      "#476447";
+
+    landCtx.font=
+      "600 13px Arial, sans-serif";
+
+    landCtx.fillText(
+      "Top quartile zone",
+      plot.left+12,
+      plot.top+21
+    );
+
+
+    /* ------------------------------------------------------
+       GRID / AXES
+       ------------------------------------------------------ */
+
+    landCtx.strokeStyle=
+      "#e7e7e7";
+
+    landCtx.lineWidth=1;
+
+
+    const xTicks =
+      axisTicks(
+        xDomain,
+        xMetric,
+        5
+      );
+
+
+    const yTicks =
+      axisTicks(
+        yDomain,
+        yMetric,
+        5
+      );
+
+
+    landCtx.font=
+      "12px ui-monospace, SFMono-Regular, Menlo, monospace";
+
+
+    xTicks.forEach(
+      value=>{
+
+        const x =
+          mapX(
+            value
+          );
+
+
+        landCtx.beginPath();
+
+        landCtx.moveTo(
+          x,
+          plot.top
+        );
+
+        landCtx.lineTo(
+          x,
+          plot.bottom
+        );
+
+        landCtx.stroke();
+
+
+        landCtx.fillStyle=
+          "#666";
+
+        landCtx.textAlign=
+          "center";
+
+
+        landCtx.fillText(
+          xDef.format(
+            value
+          ),
+          x,
+          plot.bottom+28
+        );
+
+      }
+    );
+
+
+    yTicks.forEach(
+      value=>{
+
+        const y =
+          mapY(
+            value
+          );
+
+
+        landCtx.beginPath();
+
+        landCtx.moveTo(
+          plot.left,
+          y
+        );
+
+        landCtx.lineTo(
+          plot.right,
+          y
+        );
+
+        landCtx.stroke();
+
+
+        landCtx.fillStyle=
+          "#666";
+
+        landCtx.textAlign=
+          "right";
+
+
+        landCtx.fillText(
+          yDef.format(
+            value
+          ),
+          plot.left-12,
+          y+4
+        );
+
+      }
+    );
+
+
+    landCtx.strokeStyle=
+      "#c8c8c8";
+
+    landCtx.beginPath();
+
+    landCtx.moveTo(
+      plot.left,
+      plot.top
+    );
+
+    landCtx.lineTo(
+      plot.left,
+      plot.bottom
+    );
+
+    landCtx.lineTo(
+      plot.right,
+      plot.bottom
+    );
+
+    landCtx.stroke();
+
+
+    landCtx.textAlign=
+      "center";
+
+    landCtx.fillStyle=
+      "#333";
+
+    landCtx.font=
+      "600 14px Arial, sans-serif";
+
+    landCtx.fillText(
+      xDef.label,
+      (
+        plot.left
+        +
+        plot.right
+      )
+      /
+      2,
+      785
+    );
+
+
+    landCtx.save();
+
+    landCtx.translate(
+      31,
+      (
+        plot.top
+        +
+        plot.bottom
+      )
+      /
+      2
+    );
+
+    landCtx.rotate(
+      -Math.PI/2
+    );
+
+    landCtx.fillText(
+      yDef.label,
+      0,
+      0
+    );
+
+    landCtx.restore();
+
+
+    /* ------------------------------------------------------
+       PROVIDER FAMILY PATHS
+       ------------------------------------------------------ */
+
+    const byProvider =
+      new Map();
+
+
+    points.forEach(
+      point=>{
+
+        if(
+          !byProvider.has(
+            point.provider
+          )
+        ){
+
+          byProvider.set(
+            point.provider,
+            []
+          );
+
+        }
+
+
+        byProvider
+          .get(
+            point.provider
+          )
+          .push(
+            point
+          );
+
+      }
+    );
+
+
+    byProvider.forEach(
+      (group,provider)=>{
+
+        if(
+          group.length<2
+        ){
+          return;
+        }
+
+
+        group.sort(
+          (a,b)=>
+            a.x-b.x
+        );
+
+
+        landCtx.save();
+
+        landCtx.setLineDash(
+          [
+            2,
+            6
+          ]
+        );
+
+        landCtx.strokeStyle=
+          providerColors[
+            provider
+          ]
+          ||
+          "#888";
+
+        landCtx.globalAlpha=
+          .35;
+
+        landCtx.lineWidth=
+          1.5;
+
+        landCtx.beginPath();
+
+
+        group.forEach(
+          (point,index)=>{
+
+            const x =
+              mapX(
+                point.x
+              );
+
+            const y =
+              mapY(
+                point.y
+              );
+
+
+            if(index===0){
+
+              landCtx.moveTo(
+                x,
+                y
+              );
+
+            }else{
+
+              landCtx.lineTo(
+                x,
+                y
+              );
+
+            }
+
+          }
+        );
+
+
+        landCtx.stroke();
+
+        landCtx.restore();
+
+      }
+    );
+
+
+    /* ------------------------------------------------------
+       POINTS + LABELS
+       ------------------------------------------------------ */
+
+    landCtx.font=
+      "13px Arial, sans-serif";
+
+
+    points.forEach(
+      (point,index)=>{
+
+        const x =
+          mapX(
+            point.x
+          );
+
+        const y =
+          mapY(
+            point.y
+          );
+
+
+        const color =
+          providerColors[
+            point.provider
+          ]
+          ||
+          "#666";
+
+
+        landCtx.beginPath();
+
+        landCtx.arc(
+          x,
+          y,
+          7,
+          0,
+          Math.PI*2
+        );
+
+        landCtx.fillStyle=
+          color;
+
+        landCtx.fill();
+
+
+        landCtx.strokeStyle=
+          "#fff";
+
+        landCtx.lineWidth=
+          2;
+
+        landCtx.stroke();
+
+
+        const rightSide =
+          x
+          <
+          plot.right-220;
+
+
+        landCtx.fillStyle=
+          "#3a3a3a";
+
+        landCtx.textAlign=
+          rightSide
+            ? "left"
+            : "right";
+
+
+        const offset =
+          index%2===0
+            ? -9
+            : 17;
+
+
+        landCtx.fillText(
+          clipLabel(
+            point.name,
+            30
+          ),
+          x
+          +
+          (
+            rightSide
+              ? 11
+              : -11
+          ),
+          y+offset
+        );
+
+      }
+    );
+
+
+    /* ------------------------------------------------------
+       FOOTNOTES
+       ------------------------------------------------------ */
+
+    landCtx.textAlign=
+      "left";
+
+    landCtx.fillStyle=
+      "#707070";
+
+    landCtx.font=
+      "12px Arial, sans-serif";
+
+
+    landCtx.fillText(
+      (
+        "• Dots show current model positions. "
+        +
+        "Dotted paths connect models from the same provider; "
+        +
+        "they are not release or evolution paths."
+      ),
+      28,
+      842
+    );
+
+
+    landCtx.fillText(
+      (
+        "• Benchmark values retain the Zorix internal-preview framing. "
+        +
+        "Models missing either selected observation are omitted instead of estimated."
+      ),
+      28,
+      868
+    );
+
+
+    if(status){
+
+      status.style.display=
+        "block";
+
+      status.textContent=
+        (
+          points.length
+          +
+          " models shown · "
+          +
+          xDef.label
+          +
+          " × "
+          +
+          yDef.label
+          +
+          " · missing observations omitted"
+        );
+
+    }
+
+
+    if(previewMeta){
+
+      previewMeta.textContent=
+        (
+          "AI Model Landscape · "
+          +
+          xDef.label
+          +
+          " × "
+          +
+          yDef.label
+        );
+
+    }
+
+
+    if(previewTitle){
+
+      previewTitle.textContent=
+        "1600 × 900";
+
+    }
+
+  }
+
+
+  /* ========================================================
+     VOTING IMAGE WITH MODEL LOGOS
+     ======================================================== */
+
+  async function drawVotingWithLogos(){
+
+    if(!landCtx){
+      return;
+    }
+
+
+    clear();
+
+
+    const count =
+      Number(
+        countSelect?.value
+        ||
+        10
+      );
+
+
+    const rows =
+      voteRows.slice(
+        0,
+        count
+      );
+
+
+    /* header */
+
+    landCtx.fillStyle=
+      "#111";
+
+    landCtx.font=
+      "500 54px Georgia, 'Times New Roman', serif";
+
+    landCtx.textAlign=
+      "left";
+
+    landCtx.fillText(
+      "Community Voting Ranking",
+      60,
+      82
+    );
+
+
+    landCtx.fillStyle=
+      "#777";
+
+    landCtx.font=
+      "17px Arial, sans-serif";
+
+    landCtx.fillText(
+      (
+        "Current Zorix Metron community-vote snapshot"
+        +
+        (
+          VOTE_DATA.updatedAt
+            ? (
+                " · "
+                +
+                new Date(
+                  VOTE_DATA.updatedAt
+                )
+                .toLocaleString(
+                  "en-US"
+                )
+              )
+            : ""
+        )
+      ),
+      60,
+      118
+    );
+
+
+    const zorix =
+      await loadImage(
+        "/number-of-calls/assets/logos/zorix.svg"
+      );
+
+
+    if(zorix){
+
+      landCtx.drawImage(
+        zorix,
+        1420,
+        53,
+        52,
+        52
+      );
+
+    }
+
+
+    landCtx.fillStyle=
+      "#333";
+
+    landCtx.font=
+      "19px Georgia, serif";
+
+    landCtx.textAlign=
+      "right";
+
+    landCtx.fillText(
+      "Zorix Metron",
+      1400,
+      86
+    );
+
+
+    if(!rows.length){
+
+      landCtx.textAlign=
+        "left";
+
+      landCtx.fillStyle=
+        "#777";
+
+      landCtx.font=
+        "22px Arial, sans-serif";
+
+      landCtx.fillText(
+        "No published voting observations.",
+        60,
+        220
+      );
+
+      return;
+    }
+
+
+    const maxVote =
+      Math.max(
+        ...rows.map(
+          row=>
+            Number(
+              row.votes || 0
+            )
+        )
+      );
+
+
+    const rowTop=175;
+
+    const availableHeight=610;
+
+    const rowHeight =
+      Math.min(
+        67,
+        availableHeight
+        /
+        rows.length
+      );
+
+
+    for(
+      let index=0;
+      index<rows.length;
+      index++
+    ){
+
+      const row =
+        rows[index];
+
+      const id =
+        canonicalId(
+          row.id
+        );
+
+      const y =
+        rowTop
+        +
+        index*rowHeight;
+
+
+      landCtx.strokeStyle=
+        "#e5e5e5";
+
+      landCtx.lineWidth=1;
+
+      landCtx.beginPath();
+
+      landCtx.moveTo(
+        60,
+        y+rowHeight-8
+      );
+
+      landCtx.lineTo(
+        1540,
+        y+rowHeight-8
+      );
+
+      landCtx.stroke();
+
+
+      /* rank */
+
+      landCtx.fillStyle=
+        "#777";
+
+      landCtx.font=
+        "600 18px ui-monospace, SFMono-Regular, Menlo, monospace";
+
+      landCtx.textAlign=
+        "left";
+
+      landCtx.fillText(
+        String(
+          index+1
+        )
+        .padStart(
+          2,
+          "0"
+        ),
+        65,
+        y+31
+      );
+
+
+      /* model/provider logo */
+
+      const logo =
+        await loadImage(
+          modelLogo(id)
+        );
+
+
+      if(logo){
+
+        landCtx.drawImage(
+          logo,
+          125,
+          y+5,
+          36,
+          36
+        );
+
+      }else{
+
+        roundedRect(
+          125,
+          y+5,
+          36,
+          36,
+          8
+        );
+
+        landCtx.strokeStyle=
+          "#ccc";
+
+        landCtx.stroke();
+
+      }
+
+
+      /* model */
+
+      landCtx.fillStyle=
+        "#111";
+
+      landCtx.font=
+        "600 19px Arial, sans-serif";
+
+      landCtx.fillText(
+        clipLabel(
+          modelName(id),
+          38
+        ),
+        182,
+        y+24
+      );
+
+
+      landCtx.fillStyle=
+        "#777";
+
+      landCtx.font=
+        "12px Arial, sans-serif";
+
+      landCtx.fillText(
+        modelProvider(id),
+        182,
+        y+43
+      );
+
+
+      /* score bar */
+
+      const barX=605;
+
+      const barMax=610;
+
+      const barW =
+        Number(
+          row.votes
+        )
+        /
+        maxVote
+        *
+        barMax;
+
+
+      landCtx.fillStyle=
+        "#efefed";
+
+      landCtx.fillRect(
+        barX,
+        y+15,
+        barMax,
+        13
+      );
+
+
+      landCtx.fillStyle=
+        providerColors[
+          modelProvider(id)
+        ]
+        ||
+        "#444";
+
+      landCtx.fillRect(
+        barX,
+        y+15,
+        barW,
+        13
+      );
+
+
+      /* score */
+
+      landCtx.fillStyle=
+        "#111";
+
+      landCtx.font=
+        "600 21px ui-monospace, SFMono-Regular, Menlo, monospace";
+
+      landCtx.textAlign=
+        "right";
+
+      landCtx.fillText(
+        Number(
+          row.votes
+        )
+        .toLocaleString(
+          "en-US"
+        ),
+        1475,
+        y+27
+      );
+
+
+      landCtx.fillStyle=
+        "#777";
+
+      landCtx.font=
+        "12px Arial, sans-serif";
+
+      landCtx.fillText(
+        (
+          Number(
+            row.uncertainty || 0
+          )
+          >0
+            ? (
+                "±"
+                +
+                row.uncertainty
+              )
+            : "published value"
+        ),
+        1475,
+        y+45
+      );
+
+    }
+
+
+    landCtx.textAlign=
+      "left";
+
+    landCtx.fillStyle=
+      "#737373";
+
+    landCtx.font=
+      "12px Arial, sans-serif";
+
+    landCtx.fillText(
+      (
+        "Model and provider logos are shown beside each voting entry. "
+        +
+        "Values are the current published Metron voting snapshot."
+      ),
+      60,
+      855
+    );
+
+
+    if(status){
+
+      status.style.display=
+        "block";
+
+      status.textContent=
+        (
+          rows.length
+          +
+          " voting entries shown · model logos included"
+        );
+
+    }
+
+
+    if(previewMeta){
+
+      previewMeta.textContent=
+        "Community Voting Ranking · logos included";
+
+    }
+
+
+    if(previewTitle){
+
+      previewTitle.textContent=
+        "1600 × 900";
+
+    }
+
+  }
+
+
+  /* ========================================================
+     MODE CONTROL
+     ======================================================== */
+
+  function syncControls(){
+
+    const landscape =
+      report?.value
+      ===
+      "model-landscape";
+
+
+    landscapeControls
+      ?.classList.toggle(
+        "active",
+        landscape
+      );
+
+
+    controls
+      ?.classList.toggle(
+        "landscape-active",
+        landscape
+      );
+
+
+    if(metricGroup){
+
+      metricGroup.style.display =
+        landscape
+          ? "none"
+          : "";
+
+    }
+
+  }
+
+
+  async function renderSpecial(){
+
+    syncControls();
+
+
+    if(
+      report?.value
+      ===
+      "model-landscape"
+    ){
+
+      await drawLandscape();
+
+      return;
+
+    }
+
+
+    if(
+      report?.value
+      ===
+      "voting"
+    ){
+
+      await drawVotingWithLogos();
+
+    }
+
+  }
+
+
+  function scheduleSpecialRender(){
+
+    /*
+     * The existing share renderer also listens to these controls.
+     * Run this renderer afterward so the final downloadable canvas
+     * contains the landscape / voting-logo version.
+     */
+
+    setTimeout(
+      renderSpecial,
+      80
+    );
+
+    setTimeout(
+      renderSpecial,
+      320
+    );
+
+  }
+
+
+  report
+    ?.addEventListener(
+      "change",
+      scheduleSpecialRender
+    );
+
+
+  xSelect
+    ?.addEventListener(
+      "change",
+      scheduleSpecialRender
+    );
+
+
+  ySelect
+    ?.addEventListener(
+      "change",
+      scheduleSpecialRender
+    );
+
+
+  countSelect
+    ?.addEventListener(
+      "change",
+      scheduleSpecialRender
+    );
+
+
+  syncControls();
 
 })();
 
