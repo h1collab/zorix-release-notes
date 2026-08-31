@@ -151,5 +151,31 @@
     "family": "Nemotron 3",
     "tokens": 6100000000,
     "status": "Available"
+  },
+  {
+    "id": "wolf-theta",
+    "name": "Wolf Theta",
+    "provider": "Undisclosed",
+    "family": "Wolf Theta",
+    "tokens": 0,
+    "status": "Blind test",
+    "logo": "/number-of-calls/assets/logos/wolf-theta.svg",
+    "color": "#7A8A9A",
+    "includeInTokenRanking": false,
+    "usageMetric": "requests",
+    "weeklyRequests": 87980000000,
+    "launchDate": "2026-08-31",
+    "blindTest": true,
+    "underlyingModel": "Not disclosed during blind testing",
+    "context": "Undisclosed",
+    "parameters": "Undisclosed",
+    "activeParameters": "Undisclosed",
+    "architecture": "Undisclosed",
+    "inputPrice": "Not published",
+    "outputPrice": "Not published",
+    "source": "Zorix Metron blind-test telemetry",
+    "about": "Wolf Theta is a blind-test model alias launched on Aug 31, 2026. Its underlying model is intentionally not disclosed during blind testing. Current published data records a community voting score of 1,553 and a weekly request volume of 87.98B. No token usage or historical request series is published.",
+    "docs": "",
+    "chart": []
   }
 ]

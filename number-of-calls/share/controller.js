@@ -115,12 +115,70 @@
 
   const DATA={
 
+    /* SHARE_MODEL_INDEX_FALLBACK_V1 */
+
     models:
-      Array.isArray(
-        window.ZORIX_MODEL_DETAILS
-      )
-        ? window.ZORIX_MODEL_DETAILS
-        : [],
+      (()=>{
+
+        const map =
+          new Map();
+
+
+        (
+          window.ZORIX_MODEL_INDEX ||
+          []
+        )
+        .forEach(
+          model=>{
+
+            if(model?.id){
+
+              map.set(
+                model.id,
+                model
+              );
+
+            }
+
+          }
+        );
+
+
+        (
+          window.ZORIX_MODEL_DETAILS ||
+          []
+        )
+        .forEach(
+          model=>{
+
+            if(!model?.id){
+              return;
+            }
+
+
+            map.set(
+              model.id,
+              {
+                ...(
+                  map.get(
+                    model.id
+                  )
+                  ||
+                  {}
+                ),
+                ...model
+              }
+            );
+
+          }
+        );
+
+
+        return [
+          ...map.values()
+        ];
+
+      })(),
 
     usage:
       window.ZORIX_CODE_USAGE

@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-08-31T19:41:33+02:00",
+  "updatedAt": "2026-08-31T20:43:21+02:00",
   "metric": "community_votes",
   "models": [
     {
@@ -30,6 +30,11 @@ window.ZORIX_COMMUNITY_VOTES = {
     {
       "id": "glm-53-flash",
       "votes": 1567,
+      "uncertainty": 0
+    },
+    {
+      "id": "wolf-theta",
+      "votes": 1553,
       "uncertainty": 0
     },
     {

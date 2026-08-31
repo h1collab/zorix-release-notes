@@ -396,5 +396,43 @@ window.ZORIX_MODEL_BENCHMARKS = {
     weights: null,
     benchmarkNote: "Uses the Nex Coder 3.7 Pro checkpoint evaluation where applicable. Max is an inference profile, not a separate benchmark checkpoint."
   },
+,
+
+  "wolf-theta": {
+    slug: "blind-test/wolf-theta",
+
+    tagline:
+      "A live blind-test alias with an undisclosed underlying model.",
+
+    description:
+      "Wolf Theta entered blind testing on Aug 31, 2026. "
+      + "The underlying model and architecture are intentionally "
+      + "not disclosed while the blind test is active. "
+      + "Only measurements that have actually been published are shown.",
+
+    highlights: [
+      "Blind-test alias",
+      "Underlying model intentionally undisclosed",
+      "Community voting score: 1,553",
+      "Weekly request volume: 87.98B",
+      "Launched Aug 31, 2026"
+    ],
+
+    modalities: [
+      "Undisclosed"
+    ],
+
+    released:
+      "Aug 31, 2026",
+
+    availability:
+      "Blind test",
+
+    weights:
+      null,
+
+    benchmarkNote:
+      "No reliable benchmark result has been published for Wolf Theta."
+  }
 
 };

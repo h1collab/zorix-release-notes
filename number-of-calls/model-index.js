@@ -18,6 +18,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Nex Coder 3.8 Preview — Neptune is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -39,6 +46,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "DeepSeek V4 Flash 0731 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -60,6 +74,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Tencent Hy3 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -81,6 +102,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Xiaomi MiMo-V2.5 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -102,6 +130,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "GPT-5.6 Luna is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -123,6 +158,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Claude Opus 5 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -144,6 +186,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "GLM 5.3 Flash is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -165,6 +214,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "GLM 5.2 Max is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -186,6 +242,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Gemini 3.7 Flash is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -207,6 +270,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Claude Sonnet 5 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -228,6 +298,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Claude Opus 4.8 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -249,6 +326,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Claude Fable 5 (with fallback max) is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -270,6 +354,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "GPT-5.6 Sol (Max) is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -291,6 +382,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Kimi K2.7 Code is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -312,6 +410,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Kimi K3 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -333,6 +438,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Zorix Nex Coder 3.7 Pro (Max) is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -354,6 +466,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Gemini 3.6 Flash is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -375,6 +494,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "Muse Spark 1.2 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -396,6 +522,13 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "GLM 5.1 is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
     "chart": []
   },
   {
@@ -417,6 +550,41 @@ window.ZORIX_MODEL_INDEX = [
     "outputPrice": "—",
     "about": "NVIDIA Nemotron 3 Ultra is currently listed in Zorix Metron. Usage figures on this page represent traffic recorded inside Zorix Code / Metron.",
     "docs": "",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Code",
+    "includeInTokenRanking": true,
+    "chart": []
+  },
+  {
+    "id": "wolf-theta",
+    "name": "Wolf Theta",
+    "provider": "Undisclosed",
+    "family": "Wolf Theta",
+    "status": "Blind test",
+    "logo": "/number-of-calls/assets/logos/wolf-theta.svg",
+    "color": "#7A8A9A",
+    "dailyTokens": 0,
+    "weeklyTokens": 0,
+    "weeklyEstimated": true,
+    "context": "Undisclosed",
+    "parameters": "Undisclosed",
+    "activeParameters": "Undisclosed",
+    "architecture": "Undisclosed",
+    "inputPrice": "Not published",
+    "outputPrice": "Not published",
+    "about": "Wolf Theta is a blind-test model alias launched on Aug 31, 2026. Its underlying model is intentionally not disclosed during blind testing. Current published data records a community voting score of 1,553 and a weekly request volume of 87.98B. No token usage or historical request series is published.",
+    "docs": "",
+    "usageMetric": "requests",
+    "weeklyRequests": 87980000000,
+    "launchDate": "2026-08-31",
+    "underlyingModel": "Not disclosed during blind testing",
+    "blindTest": true,
+    "source": "Zorix Metron blind-test telemetry",
+    "includeInTokenRanking": false,
     "chart": []
   }
 ];

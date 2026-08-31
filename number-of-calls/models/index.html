@@ -1128,12 +1128,75 @@ h1{
 
 
 <script src="../models.js?v=1788181089"></script>
+<script src="../model-index.js"></script>
 <script src="../model-profiles.js?v=1788181089"></script>
 
 <script>
 
+/* MODEL_INDEX_FALLBACK_V1 */
+
 const models =
-  window.ZORIX_MODEL_DETAILS || [];
+  (()=>{
+
+    const map =
+      new Map();
+
+
+    (
+      window.ZORIX_MODEL_INDEX ||
+      []
+    )
+    .forEach(
+      model=>{
+
+        if(model?.id){
+
+          map.set(
+            model.id,
+            model
+          );
+
+        }
+
+      }
+    );
+
+
+    (
+      window.ZORIX_MODEL_DETAILS ||
+      []
+    )
+    .forEach(
+      model=>{
+
+        if(!model?.id){
+          return;
+        }
+
+
+        map.set(
+          model.id,
+          {
+            ...(
+              map.get(
+                model.id
+              )
+              ||
+              {}
+            ),
+            ...model
+          }
+        );
+
+      }
+    );
+
+
+    return [
+      ...map.values()
+    ];
+
+  })();
 
 const profiles =
   window.ZORIX_MODEL_PROFILES || {};
@@ -1433,11 +1496,33 @@ function renderModels(){
               <div>
 
                 <div class="meta-k">
-                  Daily
+                  ${
+                    model.usageMetric ===
+                    "requests"
+                      ? "Weekly requests"
+                      : "Daily tokens"
+                  }
                 </div>
 
                 <div class="meta-v">
-                  ${fmt(model.dailyTokens)}
+                  ${
+                    model.usageMetric ===
+                    "requests"
+                      ? (
+                          model.weeklyRequests
+                            ? (
+                                fmt(
+                                  model.weeklyRequests
+                                )
+                                +
+                                " / wk"
+                              )
+                            : "Not published"
+                        )
+                      : fmt(
+                          model.dailyTokens
+                        )
+                  }
                 </div>
 
               </div>

@@ -146,5 +146,18 @@ window.ZORIX_REQUEST_USAGE = {
       "share": 0.2101
     }
   ],
-  "history": []
+  "history": [],
+  "weekly": [
+    {
+      "id": "wolf-theta",
+      "name": "Wolf Theta",
+      "provider": "Undisclosed",
+      "status": "Blind test",
+      "logo": "/number-of-calls/assets/logos/wolf-theta.svg",
+      "requests": 87980000000,
+      "period": "week",
+      "launchedAt": "2026-08-31",
+      "note": "Published weekly request volume. Not converted from token usage."
+    }
+  ]
 };

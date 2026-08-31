@@ -776,6 +776,44 @@ h1{
   </section>
 
 
+  <section
+    class="section"
+    id="weeklySection"
+    hidden
+  >
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="section-title">
+          Weekly request observations
+        </div>
+
+        <div class="section-copy">
+          Models whose published request metric uses a weekly window
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="models"
+      id="weeklyModels"
+    ></div>
+
+
+    <div class="request-share-note">
+      Weekly observations are kept separate from the
+      current request snapshot above. Values are not
+      normalized or converted between time windows.
+    </div>
+
+  </section>
+
+
   <section class="section">
 
     <div class="section-head">
@@ -1117,6 +1155,134 @@ function render(){
         `
       )
       .join("");
+
+}
+
+
+function renderWeeklyObservations(){
+
+  const section =
+    document.getElementById(
+      "weeklySection"
+    );
+
+
+  const target =
+    document.getElementById(
+      "weeklyModels"
+    );
+
+
+  const rows =
+    Array.isArray(
+      DATA.weekly
+    )
+      ? [...DATA.weekly]
+        .sort(
+          (a,b)=>
+            Number(
+              b.requests || 0
+            )
+            -
+            Number(
+              a.requests || 0
+            )
+        )
+      : [];
+
+
+  if(
+    !section ||
+    !target ||
+    !rows.length
+  ){
+    return;
+  }
+
+
+  section.hidden =
+    false;
+
+
+  target.innerHTML =
+    rows.map(
+      (item,index)=>`
+
+        <a
+          class="model-row"
+          href="/number-of-calls/models/${encodeURIComponent(item.id)}/"
+        >
+
+          <div class="rank">
+            ${index+1}
+          </div>
+
+
+          <div class="model-logo">
+
+            <img
+              src="${esc(
+                item.logo ||
+                logoFor(item)
+              )}"
+              alt=""
+            >
+
+          </div>
+
+
+          <div>
+
+            <div class="model-name">
+              ${esc(item.name)}
+            </div>
+
+            <div class="provider">
+              ${
+                esc(
+                  item.status ||
+                  item.provider ||
+                  "Published observation"
+                )
+              }
+              ${
+                item.launchedAt
+                  ? (
+                      " · launched "
+                      +
+                      esc(
+                        item.launchedAt
+                      )
+                    )
+                  : ""
+              }
+            </div>
+
+          </div>
+
+
+          <div class="request-value">
+
+            <div class="requests">
+              ${compact(item.requests)} requests / wk
+            </div>
+
+            <div class="share">
+              Separate weekly metric
+            </div>
+
+          </div>
+
+
+          <div class="arrow">
+            ›
+          </div>
+
+        </a>
+
+      `
+    )
+    .join("");
 
 }
 
@@ -1690,6 +1856,7 @@ document
 renderRequestShareChart();
 
 render();
+renderWeeklyObservations();
 
 </script>
 

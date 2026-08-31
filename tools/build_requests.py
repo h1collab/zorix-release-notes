@@ -48,6 +48,33 @@ if not isinstance(
     models = []
 
 
+weekly = data.get(
+    "weekly",
+    []
+)
+
+
+if not isinstance(
+    weekly,
+    list
+):
+
+    weekly = []
+
+
+weekly = sorted(
+    weekly,
+    key=lambda item:
+        int(
+            item.get(
+                "requests",
+                0
+            )
+        ),
+    reverse=True
+)
+
+
 models.sort(
     key=lambda item:
         int(
@@ -124,7 +151,10 @@ payload = {
         data.get(
             "history",
             []
-        )
+        ),
+
+    "weekly":
+        weekly
 }
 
 

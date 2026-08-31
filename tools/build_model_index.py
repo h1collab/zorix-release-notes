@@ -263,15 +263,27 @@ for row in models:
                 ),
 
             "logo":
-                LOGOS.get(
-                    provider,
-                    ""
+                (
+                    row.get(
+                        "logo"
+                    )
+                    or
+                    LOGOS.get(
+                        provider,
+                        ""
+                    )
                 ),
 
             "color":
-                COLORS.get(
-                    provider,
-                    "#111111"
+                (
+                    row.get(
+                        "color"
+                    )
+                    or
+                    COLORS.get(
+                        provider,
+                        "#111111"
+                    )
                 ),
 
             "dailyTokens":
@@ -334,6 +346,49 @@ for row in models:
                 row.get(
                     "docs",
                     ""
+                ),
+
+            "usageMetric":
+                row.get(
+                    "usageMetric",
+                    "tokens"
+                ),
+
+            "weeklyRequests":
+                row.get(
+                    "weeklyRequests"
+                ),
+
+            "launchDate":
+                row.get(
+                    "launchDate",
+                    ""
+                ),
+
+            "underlyingModel":
+                row.get(
+                    "underlyingModel",
+                    ""
+                ),
+
+            "blindTest":
+                bool(
+                    row.get(
+                        "blindTest",
+                        False
+                    )
+                ),
+
+            "source":
+                row.get(
+                    "source",
+                    "Zorix Code"
+                ),
+
+            "includeInTokenRanking":
+                row.get(
+                    "includeInTokenRanking",
+                    True
                 ),
 
             # No fabricated historical chart.

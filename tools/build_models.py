@@ -13,6 +13,18 @@ OUTPUT = ROOT / "number-of-calls" / "usage.js"
 models = json.loads(MODELS.read_text(encoding="utf-8"))
 daily = json.loads(DAILY.read_text(encoding="utf-8"))
 
+# Some catalog entries use non-token metrics.
+# They remain available in the model catalog but must not
+# be mixed into the token ranking.
+models = [
+    model
+    for model in models
+    if model.get(
+        "includeInTokenRanking",
+        True
+    )
+]
+
 models.sort(
     key=lambda x: x.get("tokens", 0),
     reverse=True

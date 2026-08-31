@@ -1915,11 +1915,74 @@ h1{
 
 
 <script src="../models.js?v=1788181089"></script>
+<script src="../model-index.js"></script>
 <script src="./votes.js?v=1788181089"></script>
 
 <script>
+/* VOTING_MODEL_INDEX_FALLBACK_V1 */
+
 const models =
-  window.ZORIX_MODEL_DETAILS || [];
+  (()=>{
+
+    const map =
+      new Map();
+
+
+    (
+      window.ZORIX_MODEL_INDEX ||
+      []
+    )
+    .forEach(
+      model=>{
+
+        if(model?.id){
+
+          map.set(
+            model.id,
+            model
+          );
+
+        }
+
+      }
+    );
+
+
+    (
+      window.ZORIX_MODEL_DETAILS ||
+      []
+    )
+    .forEach(
+      model=>{
+
+        if(!model?.id){
+          return;
+        }
+
+
+        map.set(
+          model.id,
+          {
+            ...(
+              map.get(
+                model.id
+              )
+              ||
+              {}
+            ),
+            ...model
+          }
+        );
+
+      }
+    );
+
+
+    return [
+      ...map.values()
+    ];
+
+  })();
 
 const voteData =
   window.ZORIX_COMMUNITY_VOTES || {
