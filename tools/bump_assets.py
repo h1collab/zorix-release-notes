@@ -101,110 +101,20 @@ CACHE_BLOCK_RE = re.compile(
 
 
 BUILD_BLOCK_RE = re.compile(
-    r'''
-    \s*
-    <meta\s+name=["']zorix-build["'][^>]*>
-    \s*
-    <script\s+data-zorix-freshness>
-    [\s\S]*?
-    </script>
-    ''',
-    re.I | re.X
+    r'\\s*<meta\\s+name=["\\']zorix-build["\\'][^>]*>',
+    re.I
 )
 
 
 def generated_head():
 
-    return f'''
+    return f"""
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
 <meta name="zorix-build" content="{VERSION}">
-
-<script data-zorix-freshness>
-(function(){{
-  "use strict";
-
-  var expected="{VERSION}";
-  var endpoint="/build-version.txt";
-
-  function checkFreshness(){{
-    try {{
-      fetch(
-        endpoint + "?fresh=" + Date.now(),
-        {{
-          cache:"no-store"
-        }}
-      )
-      .then(function(response){{
-        if(!response.ok){{
-          return "";
-        }}
-
-        return response.text();
-      }})
-      .then(function(value){{
-        var latest=String(value || "").trim();
-
-        if(
-          !latest ||
-          latest===expected
-        ){{
-          return;
-        }}
-
-        var current=
-          new URL(
-            window.location.href
-          );
-
-        if(
-          current.searchParams.get("__v")
-          === latest
-        ){{
-          return;
-        }}
-
-        current.searchParams.set(
-          "__v",
-          latest
-        );
-
-        window.location.replace(
-          current.toString()
-        );
-      }})
-      .catch(function(){{}});
-    }} catch(error) {{}}
-  }}
-
-  checkFreshness();
-
-  window.addEventListener(
-    "pageshow",
-    function(event){{
-      if(event.persisted){{
-        checkFreshness();
-      }}
-    }}
-  );
-
-  document.addEventListener(
-    "visibilitychange",
-    function(){{
-      if(
-        document.visibilityState===
-        "visible"
-      ){{
-        checkFreshness();
-      }}
-    }}
-  );
-
-}})();
-</script>
-'''
+"""
 
 
 def process_html(path):

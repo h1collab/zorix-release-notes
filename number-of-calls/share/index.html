@@ -9,131 +9,9 @@
 
 <meta name="zorix-build" content="1788157593">
 
-<script data-zorix-freshness>
-(function(){
-  "use strict";
-
-  var expected="1788157593";
-  var endpoint="/build-version.txt";
-
-  function checkFreshness(){
-    try {
-      fetch(
-        endpoint + "?fresh=" + Date.now(),
-        {
-          cache:"no-store"
-        }
-      )
-      .then(function(response){
-        if(!response.ok){
-          return "";
-        }
-
-        return response.text();
-      })
-      .then(function(value){
-        var latest=String(value || "").trim();
-
-        if(
-          !latest ||
-          latest===expected
-        ){
-          return;
-        }
-
-        var current=
-          new URL(
-            window.location.href
-          );
-
-        if(
-          current.searchParams.get("__v")
-          === latest
-        ){
-          return;
-        }
-
-        current.searchParams.set(
-          "__v",
-          latest
-        );
-
-        window.location.replace(
-          current.toString()
-        );
-      })
-      .catch(function(){});
-    } catch(error) {}
-  }
-
-  checkFreshness();
-
-  window.addEventListener(
-    "pageshow",
-    function(event){
-      if(event.persisted){
-        checkFreshness();
-      }
-    }
-  );
-
-  document.addEventListener(
-    "visibilitychange",
-    function(){
-      if(
-        document.visibilityState===
-        "visible"
-      ){
-        checkFreshness();
-      }
-    }
-  );
-
-})();
-</script>
-
 
 <meta name="zorix-build" content="1788157268">
-<script>
-(function(){
-  var expected="1788157268";
-  var endpoint="/build-version.txt";
 
-  try {
-    fetch(
-      endpoint + "?fresh=" + Date.now(),
-      {
-        cache:"no-store"
-      }
-    )
-    .then(function(r){
-      return r.ok ? r.text() : "";
-    })
-    .then(function(latest){
-      latest=String(latest || "").trim();
-
-      if(
-        latest &&
-        latest !== expected
-      ){
-        var next=new URL(
-          window.location.href
-        );
-
-        next.searchParams.set(
-          "__v",
-          latest
-        );
-
-        window.location.replace(
-          next.toString()
-        );
-      }
-    })
-    .catch(function(){});
-  } catch(e) {}
-})();
-</script>
 
 
 
@@ -549,7 +427,7 @@ canvas{
 
     <a
       class="brand"
-      href="../?__v=1788156881"
+      href="../"
     >
 
       <img
@@ -566,15 +444,15 @@ canvas{
 
     <div class="nav-right">
 
-      <a href="../?__v=1788156881">
+      <a href="../">
         Usage
       </a>
 
-      <a href="../?__v=1788156881#benchmarks">
+      <a href="../#benchmarks">
         Benchmarks
       </a>
 
-      <a href="../voting/?__v=1788157268">
+      <a href="../voting/">
         Voting
       </a>
 

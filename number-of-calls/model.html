@@ -9,131 +9,9 @@
 
 <meta name="zorix-build" content="1788157593">
 
-<script data-zorix-freshness>
-(function(){
-  "use strict";
-
-  var expected="1788157593";
-  var endpoint="/build-version.txt";
-
-  function checkFreshness(){
-    try {
-      fetch(
-        endpoint + "?fresh=" + Date.now(),
-        {
-          cache:"no-store"
-        }
-      )
-      .then(function(response){
-        if(!response.ok){
-          return "";
-        }
-
-        return response.text();
-      })
-      .then(function(value){
-        var latest=String(value || "").trim();
-
-        if(
-          !latest ||
-          latest===expected
-        ){
-          return;
-        }
-
-        var current=
-          new URL(
-            window.location.href
-          );
-
-        if(
-          current.searchParams.get("__v")
-          === latest
-        ){
-          return;
-        }
-
-        current.searchParams.set(
-          "__v",
-          latest
-        );
-
-        window.location.replace(
-          current.toString()
-        );
-      })
-      .catch(function(){});
-    } catch(error) {}
-  }
-
-  checkFreshness();
-
-  window.addEventListener(
-    "pageshow",
-    function(event){
-      if(event.persisted){
-        checkFreshness();
-      }
-    }
-  );
-
-  document.addEventListener(
-    "visibilitychange",
-    function(){
-      if(
-        document.visibilityState===
-        "visible"
-      ){
-        checkFreshness();
-      }
-    }
-  );
-
-})();
-</script>
-
 
 <meta name="zorix-build" content="1788157268">
-<script>
-(function(){
-  var expected="1788157268";
-  var endpoint="/build-version.txt";
 
-  try {
-    fetch(
-      endpoint + "?fresh=" + Date.now(),
-      {
-        cache:"no-store"
-      }
-    )
-    .then(function(r){
-      return r.ok ? r.text() : "";
-    })
-    .then(function(latest){
-      latest=String(latest || "").trim();
-
-      if(
-        latest &&
-        latest !== expected
-      ){
-        var next=new URL(
-          window.location.href
-        );
-
-        next.searchParams.set(
-          "__v",
-          latest
-        );
-
-        window.location.replace(
-          next.toString()
-        );
-      }
-    })
-    .catch(function(){});
-  } catch(e) {}
-})();
-</script>
 
 
 
@@ -1647,26 +1525,26 @@ h1{
 
     <a
       class="brand"
-      href="./?__v=1788157268"
+      href="./"
     >
       zorix
     </a>
 
     <div class="nav-links">
 
-      <a href="./?__v=1788157268">
+      <a href="./">
         Usage
       </a>
 
-      <a href="./?__v=1788157268#benchmarks">
+      <a href="./#benchmarks">
         Benchmarks
       </a>
 
-      <a href="./compare.html?__v=1788157268">
+      <a href="./compare.html">
         Compare
       </a>
 
-      <a href="./share/?__v=1788157268">
+      <a href="./share/">
         Charts
       </a>
 
@@ -1722,7 +1600,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./?__v=1788157268"
+      href="./"
     >
       <div>
 
@@ -1745,7 +1623,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./models/?__v=1788157268"
+      href="./models/"
     >
       <div>
 
@@ -1768,7 +1646,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./?__v=1788157268#benchmarks"
+      href="./#benchmarks"
     >
       <div>
 
@@ -1791,7 +1669,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./compare.html?__v=1788157268"
+      href="./compare.html"
     >
       <div>
 
@@ -1814,7 +1692,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./voting/?__v=1788157268"
+      href="./voting/"
     >
       <div>
 
@@ -1837,7 +1715,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./share/?__v=1788157268"
+      href="./share/"
     >
       <div>
 
@@ -1888,7 +1766,7 @@ h1{
 
   <a
     class="back"
-    href="./?__v=1788157268"
+    href="./"
   >
     ← All models
   </a>
@@ -2202,7 +2080,7 @@ h1{
 
     <a
       class="bottom-button"
-      href="./voting/?__v=1788157268"
+      href="./voting/"
     >
       Voting leaderboard ↗
     </a>
@@ -2923,7 +2801,7 @@ if(!model){
     .innerHTML=`
       <a
         class="back"
-        href="./?__v=1788157268"
+        href="./"
       >
         ← All models
       </a>
@@ -3962,7 +3840,7 @@ function renderOtherModels(){
         return `
           <a
             class="other-model-card"
-            href="./model.html?id=%24%7B++++++++++++++encodeURIComponent%28++++++++++++++++item.id++++++++++++++%29++++++++++++%7D&__v=1788157268"
+            href="./model.html?id=%24%7B++++++++++++++encodeURIComponent%28++++++++++++++++item.id++++++++++++++%29++++++++++++%7D"
           >
 
             <div class="other-model-top">
