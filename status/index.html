@@ -608,11 +608,12 @@ footer{
   <div class="section-head">
 
     <div class="section-title">
-      History
+      Recent events
     </div>
 
     <div class="section-copy">
-      Recent incidents
+      Latest incidents, capacity and security events
+      · <a href="/status/event/">View all</a>
     </div>
 
   </div>
@@ -644,6 +645,7 @@ footer{
 
 
 <script src="./status.js?v=1788181089"></script>
+<script src="/status/event/events.js"></script>
 
 <script>
 
@@ -1069,8 +1071,290 @@ document
     .join("");
 
 
-const incidents=
-  DATA.incidents || [];
+/*
+ * Current active incidents are kept in status.json.
+ *
+ * Permanent historical events are kept separately in
+ * /status/event/events.js so resolved events never vanish
+ * from the Status homepage.
+ */
+const activeIncidents =
+  Array.isArray(
+    DATA.incidents
+  )
+    ? DATA.incidents
+    : [];
+
+
+const eventData =
+  window.ZORIX_STATUS_EVENTS
+  ||
+  {
+    events:[]
+  };
+
+
+const historicalEvents =
+  Array.isArray(
+    eventData.events
+  )
+    ? eventData.events
+    : [];
+
+
+/*
+ * Convert both schemas to one Recent-event shape.
+ */
+const activeRecent =
+  activeIncidents.map(
+    item=>({
+
+      id:
+        item.id
+        ||
+        (
+          "active-"
+          +
+          String(
+            item.startedAt || ""
+          )
+        ),
+
+      title:
+        item.title
+        ||
+        "Service incident",
+
+      status:
+        item.status
+        ||
+        "ongoing",
+
+      message:
+        item.message
+        ||
+        "",
+
+      startedAt:
+        item.startedAt
+        ||
+        "",
+
+      resolvedAt:
+        item.resolvedAt
+        ||
+        "",
+
+      type:
+        item.type
+        ||
+        "incident",
+
+      active:true
+    })
+  );
+
+
+const historicalRecent =
+  historicalEvents.map(
+    item=>({
+
+      id:
+        item.id
+        ||
+        (
+          "event-"
+          +
+          String(
+            item.startedAt || ""
+          )
+        ),
+
+      title:
+        item.title
+        ||
+        "Recorded event",
+
+      status:
+        item.status
+        ||
+        "resolved",
+
+      message:
+        item.summary
+        ||
+        item.message
+        ||
+        "",
+
+      startedAt:
+        item.startedAt
+        ||
+        "",
+
+      resolvedAt:
+        item.resolvedAt
+        ||
+        "",
+
+      type:
+        item.type
+        ||
+        "event",
+
+      severity:
+        item.severity
+        ||
+        "",
+
+      active:
+        item.status !==
+        "resolved"
+    })
+  );
+
+
+/*
+ * Merge without duplicates.
+ *
+ * Active incident copy wins while an incident is ongoing;
+ * after resolution the permanent event record remains.
+ */
+const recentMap =
+  new Map();
+
+
+historicalRecent.forEach(
+  item=>{
+
+    recentMap.set(
+      item.id,
+      item
+    );
+
+  }
+);
+
+
+activeRecent.forEach(
+  item=>{
+
+    recentMap.set(
+      item.id,
+      item
+    );
+
+  }
+);
+
+
+const recentEvents =
+  Array.from(
+    recentMap.values()
+  )
+  .sort(
+    (a,b)=>{
+
+      const at =
+        new Date(
+          a.startedAt || 0
+        ).getTime();
+
+      const bt =
+        new Date(
+          b.startedAt || 0
+        ).getTime();
+
+      return bt-at;
+
+    }
+  )
+  .slice(
+    0,
+    6
+  );
+
+
+function recentStatusLabel(
+  value
+){
+
+  const map={
+
+    resolved:
+      "Resolved",
+
+    ongoing:
+      "Ongoing",
+
+    investigating:
+      "Investigating",
+
+    monitoring:
+      "Monitoring",
+
+    operational:
+      "Operational",
+
+    degraded:
+      "Degraded performance",
+
+    partial_outage:
+      "Partial outage",
+
+    outage:
+      "Major outage",
+
+    maintenance:
+      "Maintenance"
+
+  };
+
+
+  return (
+    map[value]
+    ||
+    value
+    ||
+    "Event"
+  );
+
+}
+
+
+function recentTypeLabel(
+  value
+){
+
+  const map={
+
+    security:
+      "Security",
+
+    capacity:
+      "Capacity",
+
+    infrastructure:
+      "Infrastructure",
+
+    crash:
+      "Crash",
+
+    incident:
+      "Incident"
+
+  };
+
+
+  return (
+    map[value]
+    ||
+    value
+    ||
+    "Event"
+  );
+
+}
 
 
 document
@@ -1078,26 +1362,64 @@ document
     "incidents"
   )
   .innerHTML=
-    incidents.length
-      ? incidents.map(
+
+    recentEvents.length
+
+      ? recentEvents.map(
           item=>`
 
             <article class="incident">
 
               <div class="incident-head">
 
-                <div class="incident-title">
-                  ${
-                    escapeHTML(
-                      item.title
-                    )
-                  }
+                <div>
+
+                  <div class="incident-title">
+                    ${
+                      escapeHTML(
+                        item.title
+                      )
+                    }
+                  </div>
+
+
+                  <div
+                    style="
+                      margin-top:6px;
+                      color:#999;
+                      font-size:9px;
+                      text-transform:uppercase;
+                      letter-spacing:.06em;
+                    "
+                  >
+                    ${
+                      escapeHTML(
+                        recentTypeLabel(
+                          item.type
+                        )
+                      )
+                    }
+
+                    ${
+                      item.severity
+                        ? (
+                            " · "
+                            +
+                            escapeHTML(
+                              item.severity
+                            )
+                          )
+                        : ""
+                    }
+                  </div>
+
                 </div>
+
 
                 <div class="incident-state">
                   ${
                     escapeHTML(
-                      label(
+                      recentStatusLabel(
                         item.status
                       )
                     )
@@ -1123,13 +1445,32 @@ document
 
 
               <div class="incident-time">
+
                 ${
                   item.startedAt
-                    ? new Date(
-                        item.startedAt
-                      ).toLocaleString()
+                    ? (
+                        "Started · "
+                        +
+                        new Date(
+                          item.startedAt
+                        ).toLocaleString()
+                      )
                     : ""
                 }
+
+
+                ${
+                  item.resolvedAt
+                    ? (
+                        " · Resolved · "
+                        +
+                        new Date(
+                          item.resolvedAt
+                        ).toLocaleString()
+                      )
+                    : ""
+                }
+
               </div>
 
             </article>
@@ -1137,9 +1478,10 @@ document
           `
         )
         .join("")
+
       : `
           <div class="empty">
-            No incidents reported.
+            No recent events.
           </div>
         `;
 
