@@ -1,0 +1,324 @@
+{
+  "asOf": "2026-08-31",
+
+  "zorix": {
+    "logo": "/number-of-calls/assets/logos/zorix.svg",
+
+    "code": {
+      "name": "Zorix Code",
+      "url": "https://zorix.it/nexcode",
+      "billing": "Plan-based",
+      "price": "€0 / €8 / €20 / €60 monthly",
+      "note": "Available through the Zorix coding workspace. Exact model access can depend on account tier and rollout."
+    },
+
+    "chat": {
+      "name": "Zorix Chat",
+      "url": "https://zorix.it/chat",
+      "billing": "Plan-based",
+      "price": "€0 / €8 / €20 / €60 monthly",
+      "note": "Available through Zorix Chat when the model is enabled for the account."
+    },
+
+    "plansUrl": "https://zorix.it/"
+  },
+
+  "models": {
+
+    "deepseek-v4-flash-0731": [
+      {
+        "name": "DeepSeek API",
+        "provider": "DeepSeek",
+        "logo": "/number-of-calls/assets/logos/deepseek.svg",
+        "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+        "source": "https://api-docs.deepseek.com/quick_start/pricing/",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$0.22–$0.44",
+        "cache": "$0.007–$0.014",
+        "output": "$0.66–$1.32",
+        "note": "Cache-miss input and output vary between off-peak and peak pricing."
+      }
+    ],
+
+    "tencent-hy3": [
+      {
+        "name": "Tencent Cloud",
+        "provider": "Tencent",
+        "logo": "/number-of-calls/assets/logos/hunyuan.svg",
+        "url": "https://cloud.tencent.com/document/product/1759/127342",
+        "source": "https://cloud.tencent.com/document/product/1759/127342",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "¥1",
+        "cache": "¥0.25",
+        "output": "¥4",
+        "note": "Tencent Cloud Hy3 public token pricing in CNY."
+      }
+    ],
+
+    "mimo-v25": [
+      {
+        "name": "Xiaomi MiMo API",
+        "provider": "Xiaomi",
+        "logo": "/number-of-calls/assets/logos/mimo.svg",
+        "url": "https://mimo.mi.com/models/en-US/mimo-v2.5",
+        "source": "https://mimo.mi.com/docs/en-US/price/pay-as-you-go",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$0.14",
+        "cache": "$0.0028",
+        "output": "$0.28",
+        "note": "Overseas MiMo-V2.5 pay-as-you-go pricing."
+      }
+    ],
+
+    "gpt-56-luna": [
+      {
+        "name": "OpenAI API",
+        "provider": "OpenAI",
+        "logo": "/number-of-calls/assets/logos/openai.svg",
+        "url": "https://developers.openai.com/api/docs/models/compare",
+        "source": "https://developers.openai.com/api/docs/models/compare",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$0.20",
+        "cache": "$0.02",
+        "output": "$1.20",
+        "note": "GPT-5.6 Luna API list pricing."
+      }
+    ],
+
+    "claude-opus-5": [
+      {
+        "name": "Claude API",
+        "provider": "Anthropic",
+        "logo": "/number-of-calls/assets/logos/anthropic.svg",
+        "url": "https://www.anthropic.com/claude/opus",
+        "source": "https://www.anthropic.com/news/claude-opus-5",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$5",
+        "output": "$25",
+        "note": "Claude Opus 5 standard API pricing. Fast mode is priced separately."
+      }
+    ],
+
+    "glm-53-flash": [
+      {
+        "name": "Z.ai API",
+        "provider": "Z.ai",
+        "logo": "/number-of-calls/assets/logos/glm.svg",
+        "url": "https://docs.z.ai/guides/overview/pricing",
+        "source": "https://docs.z.ai/guides/overview/pricing",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$0.075",
+        "cache": "$0.015",
+        "output": "$0.25",
+        "note": "50% launch pricing through 2026-09-09 24:00 UTC+8. List pricing is $0.15 input / $0.50 output."
+      }
+    ],
+
+    "glm-52-max": [
+      {
+        "name": "Z.ai API",
+        "provider": "Z.ai",
+        "logo": "/number-of-calls/assets/logos/glm.svg",
+        "url": "https://docs.z.ai/guides/overview/pricing",
+        "source": "https://docs.z.ai/guides/overview/pricing",
+        "sourceKind": "Official base model rate",
+        "billing": "Per 1M tokens",
+        "input": "$1.40",
+        "cache": "$0.26",
+        "output": "$4.40",
+        "note": "Z.ai publicly prices GLM-5.2 at this rate. The Zorix catalog's Max configuration is not separately priced on the public Z.ai rate card."
+      }
+    ],
+
+    "gemini-37-flash": [
+      {
+        "name": "Gemini API",
+        "provider": "Google",
+        "logo": "/number-of-calls/assets/logos/google.svg",
+        "url": "https://ai.google.dev/gemini-api/docs/pricing",
+        "source": "https://ai.google.dev/gemini-api/docs/pricing",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$0.75",
+        "cache": "$0.075",
+        "output": "$3.75",
+        "note": "Current introductory paid-tier pricing through 2026-12-31. Google also lists a free tier."
+      }
+    ],
+
+    "claude-sonnet-5": [
+      {
+        "name": "Claude API",
+        "provider": "Anthropic",
+        "logo": "/number-of-calls/assets/logos/anthropic.svg",
+        "url": "https://www.anthropic.com/claude/sonnet",
+        "source": "https://www.anthropic.com/claude/sonnet",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$2",
+        "output": "$10",
+        "note": "Claude Sonnet 5 standard API pricing."
+      }
+    ],
+
+    "claude-opus-48": [
+      {
+        "name": "Claude API",
+        "provider": "Anthropic",
+        "logo": "/number-of-calls/assets/logos/anthropic.svg",
+        "url": "https://www.anthropic.com/claude/opus",
+        "source": "https://www.anthropic.com/claude/opus",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$5",
+        "output": "$25",
+        "note": "Claude Opus 4.8 standard API pricing."
+      }
+    ],
+
+    "claude-fable-5-fallback-max": [
+      {
+        "name": "Claude API",
+        "provider": "Anthropic",
+        "logo": "/number-of-calls/assets/logos/anthropic.svg",
+        "url": "https://www.anthropic.com/claude/fable",
+        "source": "https://www.anthropic.com/claude/fable",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$10",
+        "output": "$50",
+        "note": "Direct Fable 5 provider rate. Zorix fallback behavior is a separate routing configuration."
+      }
+    ],
+
+    "gpt-56-sol-max": [
+      {
+        "name": "OpenAI API",
+        "provider": "OpenAI",
+        "logo": "/number-of-calls/assets/logos/openai.svg",
+        "url": "https://developers.openai.com/api/docs/models/compare",
+        "source": "https://developers.openai.com/api/docs/models/compare",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$4",
+        "cache": "$0.40",
+        "output": "$20",
+        "note": "OpenAI lists max as a GPT-5.6 Sol reasoning effort rather than a separate token price."
+      }
+    ],
+
+    "kimi-k27-code": [
+      {
+        "name": "OpenRouter",
+        "provider": "Moonshot AI",
+        "logo": "/number-of-calls/assets/logos/kimi.svg",
+        "url": "https://openrouter.ai/moonshotai/kimi-k2.7-code",
+        "source": "https://openrouter.ai/moonshotai/kimi-k2.7-code",
+        "sourceKind": "Router",
+        "billing": "Per 1M tokens",
+        "input": "$0.66",
+        "cache": "$0.18",
+        "output": "$3.40",
+        "note": "Current OpenRouter listing for Kimi K2.7 Code. Router/provider rates can change."
+      }
+    ],
+
+    "kimi-k3": [
+      {
+        "name": "Moonshot API",
+        "provider": "Moonshot AI",
+        "logo": "/number-of-calls/assets/logos/kimi.svg",
+        "url": "https://platform.moonshot.ai",
+        "source": "https://platform.moonshot.ai/docs/pricing/chat-k3",
+        "sourceKind": "Direct provider",
+        "billing": "Per 1M tokens",
+        "input": "$3",
+        "cache": "$0.30",
+        "output": "$15",
+        "note": "Moonshot direct K3 public rate."
+      },
+
+      {
+        "name": "OpenRouter",
+        "provider": "Moonshot AI",
+        "logo": "/number-of-calls/assets/logos/kimi.svg",
+        "url": "https://openrouter.ai/moonshotai/kimi-k3",
+        "source": "https://openrouter.ai/moonshotai/kimi-k3",
+        "sourceKind": "Router",
+        "billing": "Per 1M tokens",
+        "input": "$2.55",
+        "cache": "$0.256",
+        "output": "$12.75",
+        "note": "Current OpenRouter listed route; provider mix and effective price may change."
+      }
+    ],
+
+    "gemini-36-flash": [
+      {
+        "name": "Gemini API",
+        "provider": "Google",
+        "logo": "/number-of-calls/assets/logos/google.svg",
+        "url": "https://ai.google.dev/gemini-api/docs/pricing",
+        "source": "https://ai.google.dev/gemini-api/docs/pricing",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$0.75",
+        "cache": "$0.075",
+        "output": "$3.75",
+        "note": "Current introductory paid-tier pricing through 2026-12-31. Google also lists a free tier."
+      }
+    ],
+
+    "muse-spark-12": [
+      {
+        "name": "Meta Model API",
+        "provider": "Meta",
+        "logo": "/number-of-calls/assets/logos/meta.svg",
+        "url": "https://ai.meta.com/llama/",
+        "source": "https://modelpricewatch.com/models/meta-muse-spark-1-2/",
+        "sourceKind": "Secondary-verified rate",
+        "billing": "Per 1M tokens",
+        "input": "$1.25",
+        "cache": "$0.15",
+        "output": "$4.25",
+        "note": "Standard-tier public rate reported from Meta's rate card; the linked pricing evidence is secondary because the live Meta price table is not reliably indexable."
+      }
+    ],
+
+    "glm-51": [
+      {
+        "name": "Z.ai API",
+        "provider": "Z.ai",
+        "logo": "/number-of-calls/assets/logos/glm.svg",
+        "url": "https://docs.z.ai/guides/overview/pricing",
+        "source": "https://docs.z.ai/guides/overview/pricing",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$1.40",
+        "cache": "$0.26",
+        "output": "$4.40",
+        "note": "GLM-5.1 public API pricing."
+      }
+    ],
+
+    "nemotron-3-ultra": [
+      {
+        "name": "NVIDIA NIM",
+        "provider": "NVIDIA",
+        "logo": "/number-of-calls/assets/logos/nvidia.svg",
+        "url": "https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b",
+        "source": "https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b",
+        "sourceKind": "Official",
+        "billing": "Prototype / deployment",
+        "price": "Free prototype endpoint",
+        "note": "NVIDIA currently exposes a free prototype endpoint; partner-endpoint and self-hosted deployment cost varies."
+      }
+    ]
+  }
+}

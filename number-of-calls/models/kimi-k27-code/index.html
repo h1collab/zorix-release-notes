@@ -1693,6 +1693,301 @@ h1{
 }
 
 
+
+
+/* =========================================================
+   MODEL PRICE COMPARISON V1
+   ========================================================= */
+
+.pricing-section{
+  padding-top:46px;
+}
+
+.pricing-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
+  gap:10px;
+}
+
+.pricing-card{
+  min-width:0;
+
+  padding:17px;
+
+  display:flex;
+  flex-direction:column;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:13px;
+
+  background:#fff;
+}
+
+.pricing-card.unavailable{
+  background:var(--soft2);
+
+  opacity:.67;
+}
+
+.pricing-top{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:12px;
+}
+
+.pricing-identity{
+  min-width:0;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+}
+
+.pricing-logo{
+  width:34px;
+  height:34px;
+
+  flex:0 0 34px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+}
+
+.pricing-logo img{
+  max-width:25px;
+  max-height:25px;
+
+  object-fit:contain;
+}
+
+.pricing-service{
+  min-width:0;
+
+  font-size:13px;
+  font-weight:550;
+
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.pricing-provider{
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.pricing-badge{
+  flex:0 0 auto;
+
+  min-height:24px;
+
+  display:inline-flex;
+  align-items:center;
+
+  padding:
+    0
+    7px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  color:var(--muted);
+
+  font-size:8px;
+
+  white-space:nowrap;
+}
+
+.pricing-badge.good{
+  color:#087a54;
+  border-color:#b9dfd0;
+  background:#f3fbf8;
+}
+
+.pricing-badge.warn{
+  color:#8b6812;
+  border-color:#e6d8a9;
+  background:#fffbef;
+}
+
+.pricing-main{
+  margin-top:22px;
+}
+
+.pricing-billing{
+  color:var(--muted);
+
+  font-size:9px;
+
+  text-transform:uppercase;
+  letter-spacing:.055em;
+}
+
+.pricing-price{
+  margin-top:8px;
+
+  font-size:21px;
+
+  line-height:1.22;
+
+  letter-spacing:-.035em;
+}
+
+.pricing-token-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
+  gap:7px;
+
+  margin-top:17px;
+}
+
+.pricing-token{
+  min-width:0;
+
+  padding:10px;
+
+  border:
+    1px solid #ecece8;
+
+  border-radius:9px;
+
+  background:var(--soft2);
+}
+
+.pricing-token-k{
+  color:var(--muted);
+
+  font-size:8px;
+}
+
+.pricing-token-v{
+  margin-top:6px;
+
+  font-size:12px;
+
+  line-height:1.25;
+
+  overflow-wrap:anywhere;
+}
+
+.pricing-note-text{
+  margin-top:16px;
+
+  min-height:45px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  line-height:1.5;
+}
+
+.pricing-links{
+  margin-top:auto;
+  padding-top:15px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:7px;
+}
+
+.pricing-link{
+  min-height:31px;
+
+  display:inline-flex;
+  align-items:center;
+
+  padding:
+    0
+    9px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+
+  font-size:9px;
+}
+
+.pricing-link:hover{
+  background:var(--soft);
+}
+
+.pricing-link.disabled{
+  pointer-events:none;
+  cursor:not-allowed;
+
+  color:#aaa;
+}
+
+.pricing-disclaimer{
+  margin-top:16px;
+
+  padding:
+    12px
+    13px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:var(--soft2);
+
+  color:var(--muted);
+
+  font-size:9px;
+  line-height:1.55;
+}
+
+@media(max-width:850px){
+
+  .pricing-grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+}
+
+@media(max-width:560px){
+
+  .pricing-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
 </style>
 
 </head>
@@ -2040,6 +2335,56 @@ h1{
   </section>
 
 
+<section
+  class="section pricing-section"
+  id="pricingSection"
+>
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Access & pricing
+      </div>
+
+      <div
+        style="
+          margin-top:7px;
+          color:var(--muted);
+          font-size:10px;
+        "
+      >
+        Zorix access first · external provider rates second
+      </div>
+
+    </div>
+
+
+    <div class="section-copy">
+      Zorix uses account and plan-based access.
+      External API prices are shown per 1M tokens
+      unless the provider uses another billing model.
+    </div>
+
+  </div>
+
+
+  <div
+    class="pricing-grid"
+    id="pricingGrid"
+  ></div>
+
+
+  <div
+    class="pricing-disclaimer"
+    id="pricingDisclaimer"
+  ></div>
+
+</section>
+
+
+
   <section class="section">
 
     <div class="section-head">
@@ -2338,6 +2683,7 @@ h1{
 <script src="/number-of-calls/models.js?v=1788171825"></script>
 <script src="/number-of-calls/model-index.js?v=1788171825"></script>
 <script src="/number-of-calls/model-analysis.js?v=1788171825"></script>
+<script src="/number-of-calls/model-pricing.js?v=20260831a"></script>
 <script src="/number-of-calls/model-profiles.js?v=1788171825"></script>
 <script src="/number-of-calls/model-faq.js?v=1788171825"></script>
 <script src="/number-of-calls/benchmarks.js?v=1788171825"></script>
@@ -4799,6 +5145,443 @@ if(model){
       +
       encodeURIComponent(
         model.id
+      );
+
+  }
+
+})();
+
+</script>
+
+
+
+<script>
+/* MODEL_PRICING_RENDERER_V1 */
+
+(function(){
+
+  "use strict";
+
+
+  if(
+    typeof model==="undefined"
+    ||
+    !model
+  ){
+    return;
+  }
+
+
+  const root =
+    document.getElementById(
+      "pricingGrid"
+    );
+
+
+  if(!root){
+    return;
+  }
+
+
+  const database =
+    window.ZORIX_MODEL_PRICING
+    ||
+    {
+      zorix:{},
+      models:{}
+    };
+
+
+  const zorix =
+    database.zorix
+    ||
+    {};
+
+
+  function esc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  /*
+   * Nex Coder 3.8 is currently a gray rollout.
+   * The rule applies automatically to future 3.8 variants,
+   * not just Neptune.
+   */
+  const nex38 =
+    String(
+      model.id || ""
+    )
+    .startsWith(
+      "nex-coder-38"
+    )
+    ||
+    String(
+      model.family || ""
+    )
+    .startsWith(
+      "Nex Coder 3.8"
+    );
+
+
+  const routes=[];
+
+
+  routes.push(
+    {
+      name:
+        zorix.code?.name
+        ||
+        "Zorix Code",
+
+      provider:
+        "Zorix",
+
+      logo:
+        zorix.logo,
+
+      url:
+        zorix.code?.url,
+
+      source:
+        zorix.plansUrl,
+
+      sourceKind:
+        "Zorix",
+
+      billing:
+        zorix.code?.billing
+        ||
+        "Plan-based",
+
+      price:
+        zorix.code?.price
+        ||
+        "See Zorix plans",
+
+      note:
+        zorix.code?.note
+        ||
+        "",
+
+      available:true
+    }
+  );
+
+
+  routes.push(
+    {
+      name:
+        zorix.chat?.name
+        ||
+        "Zorix Chat",
+
+      provider:
+        "Zorix",
+
+      logo:
+        zorix.logo,
+
+      url:
+        zorix.chat?.url,
+
+      source:
+        zorix.plansUrl,
+
+      sourceKind:
+        "Zorix",
+
+      billing:
+        zorix.chat?.billing
+        ||
+        "Plan-based",
+
+      price:
+        nex38
+          ? "Not available"
+          : (
+              zorix.chat?.price
+              ||
+              "See Zorix plans"
+            ),
+
+      note:
+        nex38
+          ? (
+              "Nex Coder 3.8 is not supported "
+              +
+              "in Zorix Chat during the current "
+              +
+              "gray rollout. Use Zorix Code."
+            )
+          : (
+              zorix.chat?.note
+              ||
+              ""
+            ),
+
+      available:
+        !nex38
+    }
+  );
+
+
+  (
+    database.models?.[
+      model.id
+    ]
+    ||
+    []
+  )
+  .forEach(
+    route=>
+      routes.push(
+        {
+          ...route,
+          available:true
+        }
+      )
+  );
+
+
+  function tokenCell(
+    label,
+    value
+  ){
+
+    return `
+      <div class="pricing-token">
+
+        <div class="pricing-token-k">
+          ${esc(label)}
+        </div>
+
+        <div class="pricing-token-v">
+          ${esc(value || "—")}
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  function card(route){
+
+    const tokenPricing =
+      route.input
+      ||
+      route.output
+      ||
+      route.cache;
+
+
+    const badgeClass =
+      route.available
+        ? (
+            route.sourceKind==="Official"
+            ||
+            route.sourceKind==="Zorix"
+              ? "good"
+              : ""
+          )
+        : "warn";
+
+
+    return `
+      <article
+        class="pricing-card ${
+          route.available
+            ? ""
+            : "unavailable"
+        }"
+      >
+
+        <div class="pricing-top">
+
+          <div class="pricing-identity">
+
+            <div class="pricing-logo">
+
+              ${
+                route.logo
+                  ? `
+                    <img
+                      src="${esc(route.logo)}"
+                      alt=""
+                      loading="lazy"
+                    >
+                  `
+                  : ""
+              }
+
+            </div>
+
+
+            <div>
+
+              <div class="pricing-service">
+                ${esc(route.name)}
+              </div>
+
+              <div class="pricing-provider">
+                ${esc(route.provider || "")}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <span
+            class="pricing-badge ${badgeClass}"
+          >
+            ${
+              route.available
+                ? esc(
+                    route.sourceKind
+                    ||
+                    "Available"
+                  )
+                : "Gray rollout"
+            }
+          </span>
+
+        </div>
+
+
+        <div class="pricing-main">
+
+          <div class="pricing-billing">
+            ${esc(route.billing || "Pricing")}
+          </div>
+
+
+          ${
+            tokenPricing
+              ? `
+                <div class="pricing-token-grid">
+
+                  ${tokenCell(
+                    "Input",
+                    route.input
+                  )}
+
+                  ${tokenCell(
+                    "Cached",
+                    route.cache
+                  )}
+
+                  ${tokenCell(
+                    "Output",
+                    route.output
+                  )}
+
+                </div>
+              `
+              : `
+                <div class="pricing-price">
+                  ${esc(route.price || "See provider")}
+                </div>
+              `
+          }
+
+        </div>
+
+
+        <div class="pricing-note-text">
+          ${esc(route.note || "")}
+        </div>
+
+
+        <div class="pricing-links">
+
+          ${
+            route.available
+            &&
+            route.url
+              ? `
+                <a
+                  class="pricing-link"
+                  href="${esc(route.url)}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Open ↗
+                </a>
+              `
+              : `
+                <span
+                  class="pricing-link disabled"
+                >
+                  Unavailable
+                </span>
+              `
+          }
+
+
+          ${
+            route.source
+              ? `
+                <a
+                  class="pricing-link"
+                  href="${esc(route.source)}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Pricing source ↗
+                </a>
+              `
+              : ""
+          }
+
+        </div>
+
+      </article>
+    `;
+
+  }
+
+
+  root.innerHTML =
+    routes
+    .map(card)
+    .join("");
+
+
+  const disclaimer =
+    document.getElementById(
+      "pricingDisclaimer"
+    );
+
+
+  if(disclaimer){
+
+    disclaimer.textContent =
+      (
+        "Price snapshot: "
+        +
+        (
+          database.asOf
+          ||
+          "current published data"
+        )
+        +
+        ". Zorix access is plan/account based, "
+        +
+        "so it is not directly equivalent to API "
+        +
+        "per-token billing. External prices can change; "
+        +
+        "open the linked provider source before budgeting."
       );
 
   }
