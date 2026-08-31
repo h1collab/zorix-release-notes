@@ -1500,7 +1500,9 @@ function renderModels(){
                     model.usageMetric ===
                     "requests"
                       ? "Weekly requests"
-                      : "Daily tokens"
+                      : model.weeklyOnlyTokens
+                        ? "Weekly tokens"
+                        : "Daily tokens"
                   }
                 </div>
 
@@ -1519,9 +1521,17 @@ function renderModels(){
                               )
                             : "Not published"
                         )
-                      : fmt(
-                          model.dailyTokens
-                        )
+                      : model.weeklyOnlyTokens
+                        ? (
+                            fmt(
+                              model.weeklyTokens
+                            )
+                            +
+                            " / wk"
+                          )
+                        : fmt(
+                            model.dailyTokens
+                          )
                   }
                 </div>
 

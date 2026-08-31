@@ -301,6 +301,21 @@ window.ZORIX_MODEL_PRICING = {
         "price": "Free prototype endpoint",
         "note": "NVIDIA currently exposes a free prototype endpoint; partner-endpoint and self-hosted deployment cost varies."
       }
+    ],
+    "gpt-56-terra": [
+      {
+        "name": "OpenAI API",
+        "provider": "OpenAI",
+        "logo": "/number-of-calls/assets/logos/openai.svg",
+        "url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+        "source": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+        "sourceKind": "Official",
+        "billing": "Per 1M tokens",
+        "input": "$2",
+        "cache": "$0.20",
+        "output": "$12",
+        "note": "Current OpenAI GPT-5.6 Terra API pricing. The July 30, 2026 price reduction is reflected."
+      }
     ]
   }
 };

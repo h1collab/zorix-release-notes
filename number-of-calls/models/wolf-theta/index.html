@@ -4418,6 +4418,50 @@ if(!model){
             : "Not published"
         );
 
+  }else if(
+    model.weeklyOnlyTokens
+  ){
+
+    const copy =
+      document.getElementById(
+        "usageSectionCopy"
+      );
+
+
+    if(copy){
+
+      copy.textContent =
+        (
+          "A weekly Zorix Metron token observation is published "
+          +
+          "for this model. No measured daily breakdown or "
+          +
+          "historical per-day series has been published."
+        );
+
+    }
+
+
+    document
+      .getElementById(
+        "daily"
+      )
+      .textContent =
+        "Not published";
+
+
+    document
+      .getElementById(
+        "weekly"
+      )
+      .textContent =
+        fmt(
+          weekly()
+        )
+        +
+        " tokens / wk";
+
+
   }else{
 
     document
@@ -4495,6 +4539,35 @@ if(!model){
           "
         >
           Historical request series not published.
+        </div>
+      `
+    );
+
+  }
+
+
+  if(
+    model.weeklyOnlyTokens &&
+    !arr.length
+  ){
+
+    chart.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div
+          style="
+            position:absolute;
+            inset:0;
+            display:grid;
+            place-items:center;
+            color:#777;
+            font-size:12px;
+            text-align:center;
+            padding:30px;
+          "
+        >
+          Historical daily token series not published.
+          Current weekly observation: ${fmt(model.weeklyTokens)} tokens.
         </div>
       `
     );
@@ -5018,15 +5091,25 @@ if(!model){
           ],
           [
             "Daily tokens",
-            fmt(
-              model.dailyTokens
-            )
+            model.weeklyOnlyTokens
+              ? "Not published"
+              : fmt(
+                  model.dailyTokens
+                )
           ],
           [
             "Weekly tokens",
-            fmt(
-              weekly()
-            )
+            model.weeklyOnlyTokens
+              ? (
+                  fmt(
+                    weekly()
+                  )
+                  +
+                  " / wk"
+                )
+              : fmt(
+                  weekly()
+                )
           ]
         ];
 

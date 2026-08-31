@@ -5241,6 +5241,38 @@ window.ZORIX_MODEL_PROVIDERS = {
           }
         }
       ]
+    },
+    "gpt-56-terra": {
+      "modelId": "gpt-56-terra",
+      "modelName": "GPT-5.6 Terra",
+      "source": "OpenAI API",
+      "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "openrouterModel": null,
+      "providers": [
+        {
+          "name": "OpenAI",
+          "slug": "openai",
+          "logo": {
+            "type": "local",
+            "url": "/number-of-calls/assets/logos/openai.svg"
+          },
+          "input": 2.0,
+          "output": 12.0,
+          "cacheRead": 0.2,
+          "cacheWrite": null,
+          "latencyP50": null,
+          "throughputP50": null,
+          "uptime": null,
+          "quantization": null,
+          "contextLength": 1050000,
+          "status": null,
+          "link": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+          "sourceKind": "Official provider",
+          "telemetrySource": null,
+          "billing": "Per 1M tokens"
+        }
+      ],
+      "history": []
     }
   }
 };

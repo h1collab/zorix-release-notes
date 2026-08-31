@@ -1050,7 +1050,17 @@ h1{
 
       return (
         details.length
-          ? details
+          ? [
+              ...fallback.filter(
+                fallbackModel=>
+                  !details.some(
+                    detailModel=>
+                      detailModel.id===
+                      fallbackModel.id
+                  )
+              ),
+              ...details
+            ]
           : fallback
       ).map(
         model=>{
@@ -1603,7 +1613,11 @@ h1{
         </div>
 
         <div class="summary-v">
-          ${fmt(A.dailyTokens)}
+          ${
+            A.weeklyOnlyTokens
+              ? "Not published"
+              : fmt(A.dailyTokens)
+          }
         </div>
 
       </div>
@@ -1616,7 +1630,11 @@ h1{
         </div>
 
         <div class="summary-v">
-          ${fmt(B.dailyTokens)}
+          ${
+            B.weeklyOnlyTokens
+              ? "Not published"
+              : fmt(B.dailyTokens)
+          }
         </div>
 
       </div>

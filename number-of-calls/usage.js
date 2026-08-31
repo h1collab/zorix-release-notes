@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-08-31T12:13:18+02:00",
+  "updatedAt": "2026-08-31T20:59:23+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -173,6 +173,43 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 157143,
       "weeklyTokens": 1100000,
       "status": "Available",
+      "share": 0.0
+    },
+    {
+      "id": "gpt-56-terra",
+      "name": "GPT-5.6 Terra",
+      "provider": "OpenAI",
+      "family": "GPT-5.6",
+      "tokens": 0,
+      "weeklyTokens": 4580000,
+      "weeklyOnlyTokens": true,
+      "status": "Available",
+      "logo": "/number-of-calls/assets/logos/openai.svg",
+      "color": "#1F4E94",
+      "includeInTokenRanking": true,
+      "context": "1.05M tokens",
+      "parameters": "Undisclosed",
+      "activeParameters": "Undisclosed",
+      "architecture": "Closed",
+      "inputPrice": "$2 / M tokens",
+      "outputPrice": "$12 / M tokens",
+      "cachedInputPrice": "$0.20 / M tokens",
+      "officialModelId": "gpt-5.6-terra",
+      "maxOutputTokens": "128K tokens",
+      "knowledgeCutoff": "Feb 16, 2026",
+      "reasoningEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "launchDate": "2026-07-09",
+      "source": "Zorix Metron · weekly token observation",
+      "about": "GPT-5.6 Terra is OpenAI's balanced GPT-5.6 model for workloads that trade off intelligence, speed and cost. OpenAI documents a 1.05M-token context window, a 128K-token maximum output, a Feb 16, 2026 knowledge cutoff and reasoning effort levels from none through max. Zorix Metron currently records an independently supplied weekly usage observation of 4.58M tokens. No measured daily Terra usage or historical per-day series has been published by Zorix.",
+      "docs": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "chart": [],
       "share": 0.0
     }
   ],

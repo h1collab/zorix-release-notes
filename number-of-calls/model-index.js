@@ -25,6 +25,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -53,6 +59,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -81,6 +93,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -109,6 +127,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -137,6 +161,53 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
+    "chart": []
+  },
+  {
+    "id": "gpt-56-terra",
+    "name": "GPT-5.6 Terra",
+    "provider": "OpenAI",
+    "family": "GPT-5.6",
+    "status": "Available",
+    "logo": "/number-of-calls/assets/logos/openai.svg",
+    "color": "#1F4E94",
+    "dailyTokens": 0,
+    "weeklyTokens": 4580000,
+    "weeklyEstimated": false,
+    "context": "1.05M tokens",
+    "parameters": "Undisclosed",
+    "activeParameters": "Undisclosed",
+    "architecture": "Closed",
+    "inputPrice": "$2 / M tokens",
+    "outputPrice": "$12 / M tokens",
+    "about": "GPT-5.6 Terra is OpenAI's balanced GPT-5.6 model for workloads that trade off intelligence, speed and cost. OpenAI documents a 1.05M-token context window, a 128K-token maximum output, a Feb 16, 2026 knowledge cutoff and reasoning effort levels from none through max. Zorix Metron currently records an independently supplied weekly usage observation of 4.58M tokens. No measured daily Terra usage or historical per-day series has been published by Zorix.",
+    "docs": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+    "usageMetric": "tokens",
+    "weeklyRequests": null,
+    "launchDate": "2026-07-09",
+    "underlyingModel": "",
+    "blindTest": false,
+    "source": "Zorix Metron · weekly token observation",
+    "includeInTokenRanking": true,
+    "weeklyOnlyTokens": true,
+    "officialModelId": "gpt-5.6-terra",
+    "knowledgeCutoff": "Feb 16, 2026",
+    "maxOutputTokens": "128K tokens",
+    "reasoningEfforts": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "cachedInputPrice": "$0.20 / M tokens",
     "chart": []
   },
   {
@@ -165,6 +236,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -193,6 +270,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -221,6 +304,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -249,6 +338,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -277,6 +372,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -305,6 +406,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -333,6 +440,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -361,6 +474,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -389,6 +508,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -417,6 +542,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -445,6 +576,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -473,6 +610,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -501,6 +644,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -529,6 +678,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -557,6 +712,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": false,
     "source": "Zorix Code",
     "includeInTokenRanking": true,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   },
   {
@@ -585,6 +746,12 @@ window.ZORIX_MODEL_INDEX = [
     "blindTest": true,
     "source": "Zorix Metron blind-test telemetry",
     "includeInTokenRanking": false,
+    "weeklyOnlyTokens": false,
+    "officialModelId": "",
+    "knowledgeCutoff": "",
+    "maxOutputTokens": "",
+    "reasoningEfforts": [],
+    "cachedInputPrice": "",
     "chart": []
   }
 ];

@@ -298,6 +298,36 @@ window.ZORIX_MODEL_FAQ = {
       q: "Why is its trend much shorter than older models?",
       a: "Only two real daily observations have been supplied so far. Metron does not fabricate earlier history just to make the chart longer."
     }
-  ]
+  ],
 
+  "gpt-56-terra": [
+    {
+      q:
+        "What is GPT-5.6 Terra?",
+
+      a:
+        "Terra is OpenAI's balanced GPT-5.6 model. OpenAI positions it between Sol and Luna for workloads that balance capability and cost."
+    },
+    {
+      q:
+        "Why does Metron only show 4.58M tokens per week?",
+
+      a:
+        "4.58M tokens per week is the currently supplied Zorix Metron observation. No measured daily Terra total was supplied, so Metron does not invent one."
+    },
+    {
+      q:
+        "What are Terra's official API specifications?",
+
+      a:
+        "OpenAI currently documents model ID gpt-5.6-terra, a 1.05M-token context window, 128K maximum output, a Feb 16 2026 knowledge cutoff and reasoning-effort settings from none through max."
+    },
+    {
+      q:
+        "Are the benchmark values on the page Zorix results?",
+
+      a:
+        "No. Terra's attached public benchmark cards are explicitly sourced from OpenAI's GPT-5.6 launch evaluation and remain separate from Zorix internal evaluations."
+    }
+  ],
 };

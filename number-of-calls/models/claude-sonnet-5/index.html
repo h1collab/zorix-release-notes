@@ -2902,7 +2902,10 @@ h1{
         Usage
       </div>
 
-      <div class="section-copy">
+      <div
+        class="section-copy"
+        id="usageSectionCopy"
+      >
         Token traffic recorded for this model
         in the Zorix Code or Metron environment.
       </div>
@@ -2914,7 +2917,10 @@ h1{
 
       <div class="usage-stat">
 
-        <div class="usage-k">
+        <div
+          class="usage-k"
+          id="dailyLabel"
+        >
           Daily
         </div>
 
@@ -2928,7 +2934,10 @@ h1{
 
       <div class="usage-stat">
 
-        <div class="usage-k">
+        <div
+          class="usage-k"
+          id="weeklyLabel"
+        >
           Weekly
         </div>
 
@@ -3198,6 +3207,7 @@ h1{
 <script src="/number-of-calls/model-faq.js?v=1788181089"></script>
 <script src="/number-of-calls/benchmarks.js?v=1788181089"></script>
 <script src="/number-of-calls/external-benchmarks.js?v=1788181089"></script>
+<script src="/number-of-calls/voting/votes.js"></script>
 
 <script>
 
@@ -3301,6 +3311,12 @@ const benchmarkMap =
 
 const externalBenchmarkCatalog =
   window.ZORIX_EXTERNAL_BENCHMARKS || {};
+
+
+const voteCatalog =
+  window.ZORIX_COMMUNITY_VOTES || {
+    models:[]
+  };
 
 
 function normalizeModelKey(value){
@@ -4038,7 +4054,45 @@ if(!model){
 
 
   document.title=
-    `${model.name} | Zorix Code`;
+    (
+      model.blindTest
+        ? `${model.name} | Zorix Metron`
+        : `${model.name} | Zorix Code`
+    );
+
+
+  /* BLIND_TEST_VISIBILITY_V1 */
+
+  if(model.blindTest){
+
+    const accessSection =
+      document.getElementById(
+        "accessSection"
+      );
+
+
+    const providersSection =
+      document.getElementById(
+        "providersSection"
+      );
+
+
+    if(accessSection){
+
+      accessSection.hidden =
+        true;
+
+    }
+
+
+    if(providersSection){
+
+      providersSection.hidden =
+        true;
+
+    }
+
+  }
 
 
   /* identity */
@@ -4271,28 +4325,167 @@ if(!model){
       );
 
 
-  /* usage */
+  /* WOLF_THETA_USAGE_V1 */
 
-  document
-    .getElementById(
-      "daily"
+  const isRequestMetric =
+    model.usageMetric ===
+    "requests";
+
+
+  const modelVote =
+    (
+      voteCatalog.models ||
+      []
     )
-    .textContent=
-      fmt(
-        model.dailyTokens
-      ) +
-      " tokens";
-
-
-  document
-    .getElementById(
-      "weekly"
+    .find(
+      item=>
+        item.id===model.id
     )
-    .textContent=
-      fmt(
-        weekly()
-      ) +
-      " tokens";
+    ||
+    null;
+
+
+  if(isRequestMetric){
+
+    const copy =
+      document.getElementById(
+        "usageSectionCopy"
+      );
+
+
+    if(copy){
+
+      copy.textContent =
+        (
+          "Published request traffic for this blind-test alias. "
+          +
+          "Request figures are kept separate from token usage."
+        );
+
+    }
+
+
+    const dailyLabel =
+      document.getElementById(
+        "dailyLabel"
+      );
+
+
+    const weeklyLabel =
+      document.getElementById(
+        "weeklyLabel"
+      );
+
+
+    if(dailyLabel){
+
+      dailyLabel.textContent =
+        "Daily requests";
+
+    }
+
+
+    if(weeklyLabel){
+
+      weeklyLabel.textContent =
+        "Weekly requests";
+
+    }
+
+
+    document
+      .getElementById(
+        "daily"
+      )
+      .textContent =
+        "Not published";
+
+
+    document
+      .getElementById(
+        "weekly"
+      )
+      .textContent =
+        (
+          model.weeklyRequests
+            ? (
+                fmt(
+                  model.weeklyRequests
+                )
+                +
+                " requests / wk"
+              )
+            : "Not published"
+        );
+
+  }else if(
+    model.weeklyOnlyTokens
+  ){
+
+    const copy =
+      document.getElementById(
+        "usageSectionCopy"
+      );
+
+
+    if(copy){
+
+      copy.textContent =
+        (
+          "A weekly Zorix Metron token observation is published "
+          +
+          "for this model. No measured daily breakdown or "
+          +
+          "historical per-day series has been published."
+        );
+
+    }
+
+
+    document
+      .getElementById(
+        "daily"
+      )
+      .textContent =
+        "Not published";
+
+
+    document
+      .getElementById(
+        "weekly"
+      )
+      .textContent =
+        fmt(
+          weekly()
+        )
+        +
+        " tokens / wk";
+
+
+  }else{
+
+    document
+      .getElementById(
+        "daily"
+      )
+      .textContent=
+        fmt(
+          model.dailyTokens
+        ) +
+        " tokens";
+
+
+    document
+      .getElementById(
+        "weekly"
+      )
+      .textContent=
+        fmt(
+          weekly()
+        ) +
+        " tokens";
+
+  }
 
 
   document
@@ -4301,7 +4494,11 @@ if(!model){
     )
     .textContent=
       model.source ||
-      "Zorix Code";
+      (
+        isRequestMetric
+          ? "Zorix Metron"
+          : "Zorix Code"
+      );
 
 
   /* trend */
@@ -4319,6 +4516,63 @@ if(!model){
     document.getElementById(
       "chart"
     );
+
+
+  if(
+    isRequestMetric &&
+    !arr.length
+  ){
+
+    chart.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div
+          style="
+            position:absolute;
+            inset:0;
+            display:grid;
+            place-items:center;
+            color:#777;
+            font-size:12px;
+            text-align:center;
+            padding:30px;
+          "
+        >
+          Historical request series not published.
+        </div>
+      `
+    );
+
+  }
+
+
+  if(
+    model.weeklyOnlyTokens &&
+    !arr.length
+  ){
+
+    chart.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div
+          style="
+            position:absolute;
+            inset:0;
+            display:grid;
+            place-items:center;
+            color:#777;
+            font-size:12px;
+            text-align:center;
+            padding:30px;
+          "
+        >
+          Historical daily token series not published.
+          Current weekly observation: ${fmt(model.weeklyTokens)} tokens.
+        </div>
+      `
+    );
+
+  }
 
 
   chart.insertAdjacentHTML(
@@ -4744,52 +4998,120 @@ if(!model){
 
   /* details */
 
-  const details=[
-    [
-      "Provider",
-      model.provider
-    ],
-    [
-      "Status",
-      model.status
-    ],
-    [
-      "Context",
-      model.context
-    ],
-    [
-      "Parameters",
-      model.parameters
-    ],
-    [
-      "Active parameters",
-      model.activeParameters
-    ],
-    [
-      "Architecture",
-      model.architecture
-    ],
-    [
-      "Input",
-      model.inputPrice
-    ],
-    [
-      "Output",
-      model.outputPrice
-    ],
-    [
-      "Daily tokens",
-      fmt(
-        model.dailyTokens
-      )
-    ],
-    [
-      "Weekly tokens",
-      fmt(
-        weekly()
-      )
-    ]
-  ];
+  const details=
+    isRequestMetric
+      ? [
+          [
+            "Provider",
+            model.provider
+          ],
+          [
+            "Status",
+            model.status
+          ],
+          [
+            "Released",
+            model.launchDate ||
+            "—"
+          ],
+          [
+            "Underlying model",
+            model.underlyingModel ||
+            "Not disclosed"
+          ],
+          [
+            "Community score",
+            modelVote
+              ? fmt(
+                  modelVote.votes
+                )
+              : "Not published"
+          ],
+          [
+            "Weekly requests",
+            model.weeklyRequests
+              ? (
+                  fmt(
+                    model.weeklyRequests
+                  )
+                  +
+                  " / wk"
+                )
+              : "Not published"
+          ],
+          [
+            "Historical request series",
+            "Not published"
+          ],
+          [
+            "Context",
+            model.context
+          ],
+          [
+            "Parameters",
+            model.parameters
+          ],
+          [
+            "Architecture",
+            model.architecture
+          ]
+        ]
+      : [
+          [
+            "Provider",
+            model.provider
+          ],
+          [
+            "Status",
+            model.status
+          ],
+          [
+            "Context",
+            model.context
+          ],
+          [
+            "Parameters",
+            model.parameters
+          ],
+          [
+            "Active parameters",
+            model.activeParameters
+          ],
+          [
+            "Architecture",
+            model.architecture
+          ],
+          [
+            "Input",
+            model.inputPrice
+          ],
+          [
+            "Output",
+            model.outputPrice
+          ],
+          [
+            "Daily tokens",
+            model.weeklyOnlyTokens
+              ? "Not published"
+              : fmt(
+                  model.dailyTokens
+                )
+          ],
+          [
+            "Weekly tokens",
+            model.weeklyOnlyTokens
+              ? (
+                  fmt(
+                    weekly()
+                  )
+                  +
+                  " / wk"
+                )
+              : fmt(
+                  weekly()
+                )
+          ]
+        ];
 
 
   document
@@ -4814,15 +5136,26 @@ if(!model){
       ).join("");
 
 
-  document
-    .getElementById(
+  const compareButton =
+    document.getElementById(
       "compareButton"
-    )
-    .href=
+    );
+
+
+  if(model.blindTest){
+
+    compareButton.style.display =
+      "none";
+
+  }else{
+
+    compareButton.href =
       "/number-of-calls/compare/?a=" +
       encodeURIComponent(
         model.id
       );
+
+  }
 
 }
 

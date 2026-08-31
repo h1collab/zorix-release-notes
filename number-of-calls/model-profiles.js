@@ -232,9 +232,8 @@ window.ZORIX_MODEL_PROFILES = {
     availability: "Available",
     weights: null,
     benchmarkNote: null
-  }
+  },
 
-,
   "gemini-36-flash": {
     slug: "google/gemini-3.6-flash",
     tagline: "Google Flash-family deployment tracked by Zorix Metron.",
@@ -396,7 +395,6 @@ window.ZORIX_MODEL_BENCHMARKS = {
     weights: null,
     benchmarkNote: "Uses the Nex Coder 3.7 Pro checkpoint evaluation where applicable. Max is an inference profile, not a separate benchmark checkpoint."
   },
-,
 
   "wolf-theta": {
     slug: "blind-test/wolf-theta",
@@ -433,6 +431,50 @@ window.ZORIX_MODEL_BENCHMARKS = {
 
     benchmarkNote:
       "No reliable benchmark result has been published for Wolf Theta."
-  }
+  },
 
+  "gpt-56-terra": {
+    slug:
+      "openai/gpt-5.6-terra",
+
+    tagline:
+      "Balanced GPT-5.6 intelligence for everyday professional and agentic work.",
+
+    description:
+      "GPT-5.6 Terra is OpenAI's balanced member of the GPT-5.6 family. "
+      + "OpenAI positions Terra between Sol and Luna for workloads that need "
+      + "strong reasoning and coding capability without the full cost of the "
+      + "flagship tier. The official API model ID is gpt-5.6-terra. "
+      + "Zorix Metron currently has one published Terra usage measurement: "
+      + "4.58M tokens per week. That weekly total is displayed directly and "
+      + "is not converted into a fabricated historical daily series.",
+
+    highlights: [
+      "Official OpenAI model ID: gpt-5.6-terra",
+      "1.05M-token context window",
+      "128K maximum output",
+      "Knowledge cutoff: Feb 16, 2026",
+      "Reasoning effort: none, low, medium, high, xhigh, max",
+      "Current API price: $2 input / $0.20 cached input / $12 output per 1M tokens",
+      "Zorix Metron usage: 4.58M tokens / week"
+    ],
+
+    modalities: [
+      "Text",
+      "Code",
+      "Tools"
+    ],
+
+    released:
+      "Jul 9, 2026",
+
+    availability:
+      "Available",
+
+    weights:
+      null,
+
+    benchmarkNote:
+      "External benchmark cards use OpenAI's published GPT-5.6 evaluation results; they are not Zorix internal benchmark measurements."
+  },
 };

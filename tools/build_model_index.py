@@ -43,6 +43,9 @@ KNOWN_IDS = {
     "GPT-5.6 Luna":
         "gpt-56-luna",
 
+    "GPT-5.6 Terra":
+        "gpt-56-terra",
+
     "Claude Opus 5":
         "claude-opus-5",
 
@@ -389,6 +392,44 @@ for row in models:
                 row.get(
                     "includeInTokenRanking",
                     True
+                ),
+
+            "weeklyOnlyTokens":
+                bool(
+                    row.get(
+                        "weeklyOnlyTokens",
+                        False
+                    )
+                ),
+
+            "officialModelId":
+                row.get(
+                    "officialModelId",
+                    ""
+                ),
+
+            "knowledgeCutoff":
+                row.get(
+                    "knowledgeCutoff",
+                    ""
+                ),
+
+            "maxOutputTokens":
+                row.get(
+                    "maxOutputTokens",
+                    ""
+                ),
+
+            "reasoningEfforts":
+                row.get(
+                    "reasoningEfforts",
+                    []
+                ),
+
+            "cachedInputPrice":
+                row.get(
+                    "cachedInputPrice",
+                    ""
                 ),
 
             # No fabricated historical chart.

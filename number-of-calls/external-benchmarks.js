@@ -473,4 +473,100 @@ window.ZORIX_EXTERNAL_BENCHMARKS = {
     evaluations: []
   },
 
+  "gpt-56-terra": {
+    label:
+      "OpenAI published GPT-5.6 Terra evaluation",
+
+    sourceType:
+      "provider",
+
+    note:
+      "Official Terra-family results published by OpenAI. These are provider-published evaluation results, not Zorix internal measurements.",
+
+    source:
+      "https://openai.com/index/gpt-5-6/",
+
+    evaluations: [
+      {
+        benchmark:
+          "Artificial Analysis Coding Agent Index v1.1",
+        value:
+          "77.4",
+        unit:
+          "index"
+      },
+      {
+        benchmark:
+          "SWE-Bench Pro",
+        value:
+          "63.4",
+        unit:
+          "%"
+      },
+      {
+        benchmark:
+          "DeepSWE v1.1",
+        value:
+          "69.6",
+        unit:
+          "%"
+      },
+      {
+        benchmark:
+          "Terminal-Bench 2.1",
+        value:
+          "87.4",
+        unit:
+          "%"
+      },
+      {
+        benchmark:
+          "Agents' Last Exam",
+        value:
+          "50.4",
+        unit:
+          "%"
+      },
+      {
+        benchmark:
+          "GDPval-AA v2",
+        value:
+          "1593",
+        unit:
+          "Elo"
+      },
+      {
+        benchmark:
+          "Artificial Analysis Intelligence Index v4.1",
+        value:
+          "55",
+        unit:
+          "index"
+      },
+      {
+        benchmark:
+          "OSWorld 2.0",
+        value:
+          "50.2",
+        unit:
+          "%"
+      },
+      {
+        benchmark:
+          "BrowseComp",
+        value:
+          "87.5",
+        unit:
+          "%"
+      },
+      {
+        benchmark:
+          "Capture-the-Flag Challenges",
+        value:
+          "91.8",
+        unit:
+          "%"
+      }
+    ]
+  },
 };

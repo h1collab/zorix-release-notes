@@ -2022,7 +2022,14 @@ const voteMap =
 
 
 const merged =
-  models.map(
+  models
+  .filter(
+    model=>
+      voteMap.has(
+        model.id
+      )
+  )
+  .map(
     (model,index)=>{
 
       const vote =

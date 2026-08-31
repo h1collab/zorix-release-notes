@@ -2623,10 +2623,36 @@ function fmt(n){
 function visibleModels(){
 
   return modelsData.filter(
-    model=>
-      selectedModelIds.has(
-        model.id
-      )
+    model=>{
+
+      if(
+        !selectedModelIds.has(
+          model.id
+        )
+      ){
+        return false;
+      }
+
+
+      /*
+       * WEEKLY_ONLY_TOKEN_VISIBILITY_V1
+       *
+       * Do not turn a weekly-only observation into
+       * invented Today / 30d / All measurements.
+       */
+      if(model.weeklyOnlyTokens){
+
+        return (
+          usageRange ===
+          '7d'
+        );
+
+      }
+
+
+      return true;
+
+    }
   );
 
 }
@@ -3712,7 +3738,7 @@ function renderChart(){
     }else if(usageRange==='7d'){
 
       note.textContent=
-        'This week uses recorded weeklyTokens where supplied; models without a weekly measurement use the current daily rate × 7. The visible daily shape follows the available normalized trend.';
+        'This week uses recorded weeklyTokens where supplied; models without a weekly measurement use the current daily rate × 7. Weekly-only models are included in the ranking without inventing a daily history; when no real per-day series exists, they are omitted from the stacked daily shape.';
 
     }else{
 
