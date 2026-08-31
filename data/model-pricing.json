@@ -8,20 +8,24 @@
       "name": "Zorix Code",
       "billing": "Paid plan required",
       "price": "Paid subscription required",
-      "note": "Access through Zorix Code requires an active paid Zorix subscription."
+      "note": "Access through Zorix Code requires an active paid Zorix subscription.",
+      "scope": "all_models"
     },
     "chat": {
       "name": "Zorix Chat",
       "url": "https://zorix.it/chat",
       "billing": "Paid plan required",
       "price": "Paid subscription required",
-      "note": "Access through Zorix Chat requires an active paid Zorix subscription."
+      "note": "Access through Zorix Chat requires an active paid Zorix subscription.",
+      "scope": "zorix_models_only"
     },
     "api": {
       "name": "Zorix API",
       "billing": "API service",
       "price": "Temporarily unavailable",
-      "note": "The Zorix API service is currently unavailable. Check Zorix Status for current availability."
+      "note": "The Zorix API service is currently unavailable. Check Zorix Status for current availability.",
+      "status": "unavailable",
+      "statusUrl": "/status/"
     }
   },
   "models": {

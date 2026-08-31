@@ -1991,6 +1991,358 @@ h1{
 }
 
 
+
+
+/* =========================================================
+   METRON PROVIDERS V2
+   ========================================================= */
+
+.access-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+
+.access-card{
+  min-width:0;
+  padding:18px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:#fff;
+}
+
+.access-card.unavailable{
+  background:var(--soft2);
+}
+
+.access-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.access-name{
+  font-size:14px;
+  font-weight:550;
+}
+
+.access-badge{
+  padding:5px 8px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  white-space:nowrap;
+}
+
+.access-badge.good{
+  color:#087a54;
+  border-color:#b9dfd0;
+}
+
+.access-badge.warn{
+  color:#9a6700;
+  border-color:#e5d39c;
+}
+
+.access-value{
+  margin-top:20px;
+
+  font-size:20px;
+
+  letter-spacing:-.035em;
+}
+
+.access-note{
+  margin-top:10px;
+
+  min-height:45px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.5;
+}
+
+.access-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+
+  margin-top:16px;
+}
+
+.access-link{
+  min-height:32px;
+
+  display:inline-flex;
+  align-items:center;
+
+  padding:0 9px;
+
+  border:1px solid var(--line);
+  border-radius:8px;
+
+  font-size:10px;
+}
+
+.access-link:hover{
+  background:var(--soft);
+}
+
+
+.provider-shell{
+  overflow:hidden;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  background:#fff;
+}
+
+.provider-toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+
+  gap:9px;
+
+  padding:14px;
+
+  border-bottom:1px solid var(--line);
+
+  background:var(--soft2);
+}
+
+.provider-select{
+  min-height:38px;
+
+  padding:0 11px;
+
+  border:1px solid var(--line);
+  border-radius:8px;
+
+  background:#fff;
+
+  color:#333;
+
+  font-size:11px;
+}
+
+.provider-source{
+  margin-left:auto;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.provider-table-wrap{
+  overflow:auto;
+}
+
+.provider-table{
+  width:100%;
+
+  border-collapse:collapse;
+
+  min-width:930px;
+}
+
+.provider-table th,
+.provider-table td{
+  padding:13px 14px;
+
+  border-bottom:
+    1px solid #ecece8;
+
+  text-align:left;
+
+  white-space:nowrap;
+}
+
+.provider-table th{
+  background:#fff;
+
+  color:var(--muted);
+
+  font-size:9px;
+  font-weight:500;
+
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+}
+
+.provider-table td{
+  font-size:12px;
+}
+
+.provider-table tr:last-child td{
+  border-bottom:0;
+}
+
+.provider-identity{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  min-width:200px;
+}
+
+.provider-logo{
+  width:32px;
+  height:32px;
+
+  flex:0 0 32px;
+
+  display:grid;
+  place-items:center;
+
+  overflow:hidden;
+
+  border:1px solid var(--line);
+  border-radius:8px;
+
+  background:#fff;
+
+  font-size:10px;
+  font-weight:600;
+}
+
+.provider-logo img{
+  width:23px;
+  height:23px;
+
+  object-fit:contain;
+}
+
+.provider-name{
+  font-size:12px;
+}
+
+.provider-meta{
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.provider-price{
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.provider-empty{
+  padding:35px;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:12px;
+}
+
+.provider-history{
+  margin-top:16px;
+
+  padding:18px;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+}
+
+.provider-history-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:16px;
+}
+
+.provider-history-title{
+  font-size:16px;
+}
+
+.provider-history-tabs{
+  display:flex;
+  gap:5px;
+}
+
+.provider-history-btn{
+  min-height:31px;
+
+  padding:0 9px;
+
+  border:1px solid var(--line);
+  border-radius:7px;
+
+  background:#fff;
+
+  font-size:9px;
+}
+
+.provider-history-btn.active{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+.provider-chart-wrap{
+  margin-top:18px;
+  overflow:auto;
+}
+
+.provider-chart{
+  width:100%;
+  min-width:650px;
+  height:auto;
+
+  display:block;
+}
+
+.provider-chart-empty{
+  padding:40px 0 25px;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+.provider-disclaimer{
+  margin-top:14px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  line-height:1.55;
+}
+
+@media(max-width:760px){
+
+  .access-grid{
+    grid-template-columns:1fr;
+  }
+
+  .provider-source{
+    width:100%;
+    margin-left:0;
+  }
+
+}
+
+
 </style>
 
 </head>
@@ -2338,9 +2690,10 @@ h1{
   </section>
 
 
+
 <section
   class="section pricing-section"
-  id="pricingSection"
+  id="accessSection"
 >
 
   <div class="section-head">
@@ -2348,7 +2701,7 @@ h1{
     <div>
 
       <div class="section-title">
-        Access & pricing
+        Access
       </div>
 
       <div
@@ -2358,34 +2711,186 @@ h1{
           font-size:10px;
         "
       >
-        Zorix paid access · external provider pricing
+        Where this model can be used in Zorix
       </div>
 
     </div>
 
 
     <div class="section-copy">
-      Zorix model access requires a paid subscription
-      through subs.zorix.it. Zorix API availability is
-      reported separately. External API prices are shown
-      per 1M tokens unless stated otherwise.
+      Zorix Code supports Zorix and third-party models.
+      Zorix Chat is limited to Zorix-owned models.
     </div>
 
   </div>
 
 
   <div
-    class="pricing-grid"
-    id="pricingGrid"
+    class="access-grid"
+    id="accessGrid"
   ></div>
 
 
   <div
     class="pricing-disclaimer"
-    id="pricingDisclaimer"
+    id="accessDisclaimer"
   ></div>
 
 </section>
+
+
+
+<section
+  class="section"
+  id="providersSection"
+>
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Providers
+      </div>
+
+      <div
+        style="
+          margin-top:7px;
+          color:var(--muted);
+          font-size:10px;
+        "
+      >
+        Hosting routes, pricing and published performance
+      </div>
+
+    </div>
+
+
+    <div class="section-copy">
+      External provider rows use current public endpoint
+      data when an exact model match is available.
+      Zorix does not estimate missing performance telemetry.
+    </div>
+
+  </div>
+
+
+  <div class="provider-shell">
+
+    <div class="provider-toolbar">
+
+      <select
+        class="provider-select"
+        id="providerSort"
+      >
+        <option value="price">
+          Sort · Input price
+        </option>
+
+        <option value="latency">
+          Sort · Latency
+        </option>
+
+        <option value="throughput">
+          Sort · Throughput
+        </option>
+
+        <option value="uptime">
+          Sort · Uptime
+        </option>
+
+        <option value="name">
+          Sort · Provider
+        </option>
+      </select>
+
+
+      <select
+        class="provider-select"
+        id="providerQuantization"
+      >
+        <option value="">
+          All quantization
+        </option>
+      </select>
+
+
+      <div
+        class="provider-source"
+        id="providerSource"
+      ></div>
+
+    </div>
+
+
+    <div
+      class="provider-table-wrap"
+      id="providerTable"
+    ></div>
+
+  </div>
+
+
+  <div
+    class="provider-history"
+    id="providerHistory"
+  >
+
+    <div class="provider-history-head">
+
+      <div class="provider-history-title">
+        Provider price history
+      </div>
+
+
+      <div class="provider-history-tabs">
+
+        <button
+          class="provider-history-btn active"
+          data-provider-metric="input"
+          type="button"
+        >
+          Input
+        </button>
+
+        <button
+          class="provider-history-btn"
+          data-provider-metric="output"
+          type="button"
+        >
+          Output
+        </button>
+
+        <button
+          class="provider-history-btn"
+          data-provider-metric="cacheRead"
+          type="button"
+        >
+          Cache
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="provider-chart-wrap"
+      id="providerChart"
+    ></div>
+
+  </div>
+
+
+  <div class="provider-disclaimer">
+    External prices and performance metrics are provider-route
+    observations from their cited public source and are separate
+    from Zorix subscription billing. Historical curves contain
+    only real sync snapshots; missing history is never generated.
+  </div>
+
+</section>
+
 
 
 
@@ -2688,6 +3193,7 @@ h1{
 <script src="/number-of-calls/model-index.js?v=1788181089"></script>
 <script src="/number-of-calls/model-analysis.js?v=1788181089"></script>
 <script src="/number-of-calls/model-pricing.js?v=1788181089"></script>
+<script src="/number-of-calls/model-providers.js"></script>
 <script src="/number-of-calls/model-profiles.js?v=1788181089"></script>
 <script src="/number-of-calls/model-faq.js?v=1788181089"></script>
 <script src="/number-of-calls/benchmarks.js?v=1788181089"></script>
@@ -5160,8 +5666,9 @@ if(model){
 
 
 
+
 <script>
-/* MODEL_PRICING_RENDERER_V2 */
+/* METRON_ACCESS_PROVIDER_RENDERER_V3 */
 
 (function(){
 
@@ -5169,7 +5676,7 @@ if(model){
 
 
   if(
-    typeof model === "undefined"
+    typeof model==="undefined"
     ||
     !model
   ){
@@ -5177,30 +5684,44 @@ if(model){
   }
 
 
-  const root =
-    document.getElementById(
-      "pricingGrid"
-    );
-
-
-  if(!root){
-    return;
-  }
-
-
-  const database =
+  const pricingDB =
     window.ZORIX_MODEL_PRICING
     ||
     {
-      zorix:{},
+      zorix:{}
+    };
+
+
+  const providerDB =
+    window.ZORIX_MODEL_PROVIDERS
+    ||
+    {
       models:{}
     };
 
 
   const zorix =
-    database.zorix
+    pricingDB.zorix
     ||
     {};
+
+
+  const isZorixModel =
+    String(
+      model.provider || ""
+    )
+    .toLowerCase()
+    ===
+    "zorix";
+
+
+  const isNex38 =
+    String(
+      model.id || ""
+    )
+    .startsWith(
+      "nex-coder-38"
+    );
 
 
   function esc(value){
@@ -5216,506 +5737,1356 @@ if(model){
   }
 
 
-  /*
-   * Every Nex Coder 3.8 variant is currently
-   * excluded from Zorix Chat during gray rollout.
-   */
-  const nex38 =
-    String(
-      model.id || ""
-    ).startsWith(
-      "nex-coder-38"
-    )
-    ||
-    String(
-      model.family || ""
-    ).startsWith(
-      "Nex Coder 3.8"
+  function money(value){
+
+    if(
+      value===null
+      ||
+      value===undefined
+      ||
+      value===""
+    ){
+      return "—";
+    }
+
+
+    const n =
+      Number(value);
+
+
+    if(!Number.isFinite(n)){
+      return esc(value);
+    }
+
+
+    let digits=2;
+
+    if(n<1){
+      digits=4;
+    }
+
+    if(n<0.01){
+      digits=5;
+    }
+
+
+    return (
+      "$"
+      +
+      n.toLocaleString(
+        "en-US",
+        {
+          minimumFractionDigits:0,
+          maximumFractionDigits:digits
+        }
+      )
     );
 
-
-  const routes = [];
+  }
 
 
   /* ======================================================
-     ZORIX CODE
-
-     No direct product entry is intentionally exposed.
-     Access is through a paid subscription.
+     ACCESS
      ====================================================== */
 
-  routes.push({
+  const accessGrid =
+    document.getElementById(
+      "accessGrid"
+    );
+
+
+  const access=[];
+
+
+  access.push({
 
     name:
-      zorix.code?.name
-      ||
       "Zorix Code",
 
-    provider:
-      "Zorix",
-
-    logo:
-      zorix.logo,
-
-    billing:
-      "Paid plan required",
-
-    price:
-      "Paid subscription required",
-
-    note:
-      zorix.code?.note
-      ||
-      (
-        "Access through Zorix Code requires "
-        +
-        "an active paid Zorix subscription."
-      ),
+    state:
+      "Available",
 
     badge:
       "Paid access",
 
-    available:
-      true,
+    good:true,
 
-    actionUrl:
-      zorix.plansUrl
-      ||
-      "https://subs.zorix.it/",
-
-    actionLabel:
-      "Paid plans ↗"
-
-  });
-
-
-  /* ======================================================
-     ZORIX CHAT
-     ====================================================== */
-
-  routes.push({
-
-    name:
-      zorix.chat?.name
-      ||
-      "Zorix Chat",
-
-    provider:
-      "Zorix",
-
-    logo:
-      zorix.logo,
-
-    billing:
-      nex38
-        ? "Gray rollout"
-        : "Paid plan required",
-
-    price:
-      nex38
-        ? "Not available in Zorix Chat"
-        : "Paid subscription required",
+    value:
+      "Paid subscription required",
 
     note:
-      nex38
+      isZorixModel
         ? (
-            "Nex Coder 3.8 is currently in "
+            "This Zorix model is available "
             +
-            "gray rollout and is not available "
-            +
-            "through Zorix Chat."
+            "through Zorix Code."
           )
         : (
-            zorix.chat?.note
-            ||
-            (
-              "Access through Zorix Chat requires "
-              +
-              "an active paid Zorix subscription."
-            )
+            "Third-party models are supported "
+            +
+            "through Zorix Code."
           ),
 
-    badge:
-      nex38
-        ? "Gray rollout"
-        : "Paid access",
+    links:[
+      {
+        label:
+          "Paid plans ↗",
 
-    available:
-      !nex38,
-
-    actionUrl:
-      nex38
-        ? ""
-        : (
-            zorix.chat?.url
-            ||
-            "https://zorix.it/chat"
-          ),
-
-    actionLabel:
-      "Open Chat ↗",
-
-    secondaryUrl:
-      zorix.plansUrl
-      ||
-      "https://subs.zorix.it/",
-
-    secondaryLabel:
-      "Paid plans ↗"
+        url:
+          zorix.plansUrl
+          ||
+          "https://subs.zorix.it/"
+      }
+    ]
 
   });
 
 
-  /* ======================================================
-     ZORIX API
+  /*
+   * Chat is ONLY rendered on Zorix-owned models.
+   */
+  if(isZorixModel){
 
-     API exists as an access method but is currently
-     unavailable. Do not expose an API endpoint here.
-     ====================================================== */
+    access.push({
 
-  routes.push({
+      name:
+        "Zorix Chat",
+
+      state:
+        isNex38
+          ? "Unavailable"
+          : "Available",
+
+      badge:
+        isNex38
+          ? "Gray rollout"
+          : "Paid access",
+
+      good:
+        !isNex38,
+
+      value:
+        isNex38
+          ? "Not available"
+          : "Paid subscription required",
+
+      note:
+        isNex38
+          ? (
+              "Nex Coder 3.8 is currently "
+              +
+              "excluded from Zorix Chat "
+              +
+              "during gray rollout."
+            )
+          : (
+              "Zorix Chat supports "
+              +
+              "Zorix-owned models."
+            ),
+
+      links:
+        isNex38
+          ? [
+              {
+                label:
+                  "Paid plans ↗",
+
+                url:
+                  zorix.plansUrl
+                  ||
+                  "https://subs.zorix.it/"
+              }
+            ]
+          : [
+              {
+                label:
+                  "Open Chat ↗",
+
+                url:
+                  zorix.chat?.url
+                  ||
+                  "https://zorix.it/chat"
+              },
+
+              {
+                label:
+                  "Paid plans ↗",
+
+                url:
+                  zorix.plansUrl
+                  ||
+                  "https://subs.zorix.it/"
+              }
+            ]
+
+    });
+
+  }
+
+
+  access.push({
 
     name:
-      zorix.api?.name
-      ||
       "Zorix API",
 
-    provider:
-      "Zorix",
+    state:
+      "Unavailable",
 
-    logo:
-      zorix.logo,
+    badge:
+      "Service outage",
 
-    billing:
-      "API service",
+    good:false,
 
-    price:
+    value:
       "Temporarily unavailable",
 
     note:
-      zorix.api?.note
-      ||
       (
-        "The Zorix API service is currently "
+        "The Zorix API service is "
         +
-        "unavailable. Check Zorix Status for "
-        +
-        "current availability."
+        "currently unavailable."
       ),
 
-    badge:
-      "Unavailable",
+    links:[
+      {
+        label:
+          "View status ↗",
 
-    available:
-      false,
-
-    actionUrl:
-      zorix.statusUrl
-      ||
-      "/status/",
-
-    actionLabel:
-      "View status ↗",
-
-    allowUnavailableLink:
-      true
+        url:
+          "/status/"
+      }
+    ]
 
   });
 
 
+  if(accessGrid){
+
+    accessGrid.innerHTML =
+      access.map(
+        item=>`
+
+          <article
+            class="access-card ${
+              item.good
+                ? ""
+                : "unavailable"
+            }"
+          >
+
+            <div class="access-top">
+
+              <div class="access-name">
+                ${esc(item.name)}
+              </div>
+
+
+              <span
+                class="access-badge ${
+                  item.good
+                    ? "good"
+                    : "warn"
+                }"
+              >
+                ${esc(item.badge)}
+              </span>
+
+            </div>
+
+
+            <div class="access-value">
+              ${esc(item.value)}
+            </div>
+
+
+            <div class="access-note">
+              ${esc(item.note)}
+            </div>
+
+
+            <div class="access-links">
+
+              ${
+                item.links
+                .map(
+                  link=>`
+
+                    <a
+                      class="access-link"
+                      href="${esc(link.url)}"
+                      ${
+                        String(
+                          link.url
+                        )
+                        .startsWith("http")
+                          ? (
+                              'target="_blank" '
+                              +
+                              'rel="noopener"'
+                            )
+                          : ""
+                      }
+                    >
+                      ${esc(link.label)}
+                    </a>
+
+                  `
+                )
+                .join("")
+              }
+
+            </div>
+
+          </article>
+
+        `
+      )
+      .join("");
+
+  }
+
+
+  const accessDisclaimer =
+    document.getElementById(
+      "accessDisclaimer"
+    );
+
+
+  if(accessDisclaimer){
+
+    accessDisclaimer.textContent =
+      isZorixModel
+        ? (
+            "Zorix Code supports this model. "
+            +
+            "Zorix Chat is available only for "
+            +
+            "Zorix-owned models, subject to rollout."
+          )
+        : (
+            "This is a third-party model. "
+            +
+            "It is available through Zorix Code, "
+            +
+            "not through Zorix Chat."
+          );
+
+  }
+
+
   /* ======================================================
-     EXTERNAL PROVIDERS
+     PROVIDERS
      ====================================================== */
 
-  (
-    database.models?.[
+  const entry =
+    providerDB.models?.[
       model.id
     ]
     ||
-    []
-  )
-  .forEach(
-    route=>{
-
-      routes.push({
-
-        ...route,
-
-        available:true,
-
-        actionUrl:
-          route.url
-          ||
-          "",
-
-        actionLabel:
-          "Open provider ↗",
-
-        secondaryUrl:
-          route.source
-          ||
-          "",
-
-        secondaryLabel:
-          "Pricing source ↗"
-
-      });
-
-    }
-  );
+    {
+      providers:[],
+      history:[]
+    };
 
 
-  function tokenCell(
-    label,
-    value
+  let providers =
+    Array.isArray(
+      entry.providers
+    )
+      ? [...entry.providers]
+      : [];
+
+
+  const table =
+    document.getElementById(
+      "providerTable"
+    );
+
+
+  const source =
+    document.getElementById(
+      "providerSource"
+    );
+
+
+  const sortSelect =
+    document.getElementById(
+      "providerSort"
+    );
+
+
+  const quantSelect =
+    document.getElementById(
+      "providerQuantization"
+    );
+
+
+  if(source){
+
+    const text =
+      entry.source
+      ||
+      "Provider data not published";
+
+
+    source.innerHTML =
+      entry.sourceUrl
+        ? `
+          <a
+            href="${esc(entry.sourceUrl)}"
+            target="_blank"
+            rel="noopener"
+          >
+            ${esc(text)} ↗
+          </a>
+        `
+        : esc(text);
+
+  }
+
+
+  if(quantSelect){
+
+    const values =
+      [
+        ...new Set(
+          providers
+          .map(
+            item=>
+              item.quantization
+          )
+          .filter(Boolean)
+        )
+      ]
+      .sort();
+
+
+    quantSelect.innerHTML =
+      `
+        <option value="">
+          All quantization
+        </option>
+      `
+      +
+      values.map(
+        value=>`
+          <option value="${esc(value)}">
+            ${esc(value)}
+          </option>
+        `
+      )
+      .join("");
+
+  }
+
+
+  function metric(
+    value,
+    formatter
   ){
 
-    return `
-      <div class="pricing-token">
+    if(
+      value===null
+      ||
+      value===undefined
+      ||
+      value===""
+    ){
+      return "Not measured";
+    }
 
-        <div class="pricing-token-k">
-          ${esc(label)}
+    return formatter(value);
+
+  }
+
+
+  function providerLogo(row){
+
+    const logo =
+      row.logo
+      ||
+      {};
+
+
+    if(logo.url){
+
+      return `
+        <img
+          src="${esc(logo.url)}"
+          alt=""
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        >
+      `;
+
+    }
+
+
+    return esc(
+      String(
+        row.name || "?"
+      )
+      .slice(0,2)
+      .toUpperCase()
+    );
+
+  }
+
+
+  function rawOrMoney(
+    row,
+    rawKey,
+    numericKey
+  ){
+
+    if(row[rawKey]){
+      return esc(
+        row[rawKey]
+      );
+    }
+
+    return money(
+      row[numericKey]
+    );
+
+  }
+
+
+  function renderProviders(){
+
+    if(!table){
+      return;
+    }
+
+
+    const quant =
+      quantSelect?.value
+      ||
+      "";
+
+
+    let rows =
+      providers.filter(
+        row=>
+          !quant
+          ||
+          row.quantization===quant
+      );
+
+
+    const mode =
+      sortSelect?.value
+      ||
+      "price";
+
+
+    const num =
+      (
+        value,
+        fallback
+      )=>{
+        const n =
+          Number(value);
+
+        return Number.isFinite(n)
+          ? n
+          : fallback;
+      };
+
+
+    rows.sort(
+      (a,b)=>{
+
+        if(mode==="latency"){
+          return (
+            num(
+              a.latencyP50,
+              Infinity
+            )
+            -
+            num(
+              b.latencyP50,
+              Infinity
+            )
+          );
+        }
+
+
+        if(mode==="throughput"){
+          return (
+            num(
+              b.throughputP50,
+              -Infinity
+            )
+            -
+            num(
+              a.throughputP50,
+              -Infinity
+            )
+          );
+        }
+
+
+        if(mode==="uptime"){
+          return (
+            num(
+              b.uptime,
+              -Infinity
+            )
+            -
+            num(
+              a.uptime,
+              -Infinity
+            )
+          );
+        }
+
+
+        if(mode==="name"){
+          return String(
+            a.name || ""
+          ).localeCompare(
+            String(
+              b.name || ""
+            )
+          );
+        }
+
+
+        return (
+          num(
+            a.input,
+            Infinity
+          )
+          -
+          num(
+            b.input,
+            Infinity
+          )
+        );
+
+      }
+    );
+
+
+    if(!rows.length){
+
+      table.innerHTML=`
+        <div class="provider-empty">
+          No exact public provider route
+          has been published for this model.
         </div>
+      `;
 
-        <div class="pricing-token-v">
-          ${esc(value || "—")}
+      return;
+    }
+
+
+    table.innerHTML=`
+
+      <table class="provider-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Provider
+            </th>
+
+            <th>
+              Input /M
+            </th>
+
+            <th>
+              Output /M
+            </th>
+
+            <th>
+              Cache read /M
+            </th>
+
+            <th>
+              Latency
+            </th>
+
+            <th>
+              Throughput
+            </th>
+
+            <th>
+              Uptime
+            </th>
+
+            <th>
+              Link
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          ${
+            rows.map(
+              row=>`
+
+                <tr>
+
+                  <td>
+
+                    <div class="provider-identity">
+
+                      <div class="provider-logo">
+                        ${providerLogo(row)}
+                      </div>
+
+
+                      <div>
+
+                        <div class="provider-name">
+                          ${esc(row.name)}
+                        </div>
+
+
+                        <div class="provider-meta">
+                          ${
+                            row.quantization
+                              ? (
+                                  esc(
+                                    row.quantization
+                                  )
+                                  +
+                                  " · "
+                                )
+                              : ""
+                          }
+
+                          ${
+                            esc(
+                              row.telemetrySource
+                              ||
+                              row.sourceKind
+                              ||
+                              ""
+                            )
+                          }
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </td>
+
+
+                  <td class="provider-price">
+                    ${
+                      row.billing
+                        ? esc(row.billing)
+                        : rawOrMoney(
+                            row,
+                            "rawInput",
+                            "input"
+                          )
+                    }
+                  </td>
+
+
+                  <td class="provider-price">
+                    ${
+                      row.billing
+                        ? "Included"
+                        : rawOrMoney(
+                            row,
+                            "rawOutput",
+                            "output"
+                          )
+                    }
+                  </td>
+
+
+                  <td class="provider-price">
+                    ${
+                      row.billing
+                        ? "Included"
+                        : rawOrMoney(
+                            row,
+                            "rawCache",
+                            "cacheRead"
+                          )
+                    }
+                  </td>
+
+
+                  <td>
+                    ${
+                      metric(
+                        row.latencyP50,
+                        value=>
+                          Number(value)
+                          .toFixed(2)
+                          +
+                          " s"
+                      )
+                    }
+                  </td>
+
+
+                  <td>
+                    ${
+                      metric(
+                        row.throughputP50,
+                        value=>
+                          Number(value)
+                          .toFixed(0)
+                          +
+                          " tps"
+                      )
+                    }
+                  </td>
+
+
+                  <td>
+                    ${
+                      metric(
+                        row.uptime,
+                        value=>
+                          Number(value)
+                          .toFixed(2)
+                          +
+                          "%"
+                      )
+                    }
+                  </td>
+
+
+                  <td>
+
+                    ${
+                      row.link
+                        ? `
+                          <a
+                            class="pricing-link"
+                            href="${esc(row.link)}"
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            Open ↗
+                          </a>
+                        `
+                        : "—"
+                    }
+
+                  </td>
+
+                </tr>
+
+              `
+            )
+            .join("")
+          }
+
+        </tbody>
+
+      </table>
+    `;
+
+  }
+
+
+  sortSelect
+    ?.addEventListener(
+      "change",
+      renderProviders
+    );
+
+
+  quantSelect
+    ?.addEventListener(
+      "change",
+      renderProviders
+    );
+
+
+  renderProviders();
+
+
+  /* ======================================================
+     REAL PROVIDER PRICE HISTORY
+     ====================================================== */
+
+  const chartTarget =
+    document.getElementById(
+      "providerChart"
+    );
+
+
+  let historyMetric =
+    "input";
+
+
+  const history =
+    Array.isArray(
+      entry.history
+    )
+      ? entry.history
+      : [];
+
+
+  function historyColor(index){
+
+    const hue =
+      (
+        208
+        +
+        index*47
+      )
+      %
+      360;
+
+    return `hsl(${hue} 62% 48%)`;
+
+  }
+
+
+  function renderHistory(){
+
+    if(!chartTarget){
+      return;
+    }
+
+
+    if(history.length<2){
+
+      chartTarget.innerHTML=`
+        <div class="provider-chart-empty">
+          Historical pricing needs at least
+          two real provider sync snapshots.<br>
+          No synthetic price history is generated.
         </div>
+      `;
 
+      return;
+    }
+
+
+    const latest =
+      history[
+        history.length-1
+      ];
+
+
+    const candidates =
+      Object.entries(
+        latest.providers
+        ||
+        {}
+      )
+      .filter(
+        ([_,item])=>
+          Number.isFinite(
+            Number(
+              item[
+                historyMetric
+              ]
+            )
+          )
+      )
+      .sort(
+        (a,b)=>
+          Number(
+            a[1][historyMetric]
+          )
+          -
+          Number(
+            b[1][historyMetric]
+          )
+      )
+      .slice(
+        0,
+        8
+      );
+
+
+    if(!candidates.length){
+
+      chartTarget.innerHTML=`
+        <div class="provider-chart-empty">
+          No historical ${
+            esc(historyMetric)
+          } prices are available.
+        </div>
+      `;
+
+      return;
+    }
+
+
+    const width=920;
+    const height=330;
+
+    const pad={
+      left:62,
+      right:24,
+      top:25,
+      bottom:52
+    };
+
+
+    const allValues=[];
+
+
+    candidates.forEach(
+      ([key])=>{
+
+        history.forEach(
+          snapshot=>{
+
+            const value =
+              snapshot
+              .providers?.[
+                key
+              ]?.[
+                historyMetric
+              ];
+
+
+            if(
+              Number.isFinite(
+                Number(value)
+              )
+            ){
+              allValues.push(
+                Number(value)
+              );
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    if(!allValues.length){
+      return;
+    }
+
+
+    let min =
+      Math.min(
+        ...allValues
+      );
+
+    let max =
+      Math.max(
+        ...allValues
+      );
+
+
+    if(min===max){
+      min=Math.max(
+        0,
+        min*0.9
+      );
+
+      max=
+        max*1.1
+        +
+        0.001;
+    }
+
+
+    const x =
+      index=>
+        pad.left
+        +
+        (
+          index
+          /
+          Math.max(
+            1,
+            history.length-1
+          )
+        )
+        *
+        (
+          width
+          -
+          pad.left
+          -
+          pad.right
+        );
+
+
+    const y =
+      value=>
+        pad.top
+        +
+        (
+          max-value
+        )
+        /
+        (
+          max-min
+        )
+        *
+        (
+          height
+          -
+          pad.top
+          -
+          pad.bottom
+        );
+
+
+    const lines =
+      candidates.map(
+        ([key,item],index)=>{
+
+          const points =
+            history
+            .map(
+              (snapshot,i)=>{
+
+                const value =
+                  snapshot
+                  .providers?.[
+                    key
+                  ]?.[
+                    historyMetric
+                  ];
+
+
+                if(
+                  !Number.isFinite(
+                    Number(value)
+                  )
+                ){
+                  return null;
+                }
+
+
+                return (
+                  x(i)
+                  +
+                  ","
+                  +
+                  y(
+                    Number(value)
+                  )
+                );
+
+              }
+            )
+            .filter(Boolean)
+            .join(" ");
+
+
+          return `
+            <polyline
+              points="${points}"
+              fill="none"
+              stroke="${historyColor(index)}"
+              stroke-width="2.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          `;
+
+        }
+      )
+      .join("");
+
+
+    const grid = [0,1,2,3]
+      .map(
+        i=>{
+
+          const value =
+            max
+            -
+            (
+              max-min
+            )
+            *
+            i/3;
+
+          const yy =
+            y(value);
+
+
+          return `
+            <line
+              x1="${pad.left}"
+              x2="${width-pad.right}"
+              y1="${yy}"
+              y2="${yy}"
+              stroke="#ecece8"
+            />
+
+            <text
+              x="${pad.left-10}"
+              y="${yy+4}"
+              text-anchor="end"
+              font-size="10"
+              fill="#777"
+            >
+              ${money(value)}
+            </text>
+          `;
+
+        }
+      )
+      .join("");
+
+
+    const legend =
+      candidates.map(
+        ([_,item],index)=>`
+
+          <span
+            style="
+              display:inline-flex;
+              align-items:center;
+              gap:5px;
+              margin-right:12px;
+              margin-top:7px;
+              font-size:9px;
+              color:#666;
+            "
+          >
+
+            <span
+              style="
+                width:8px;
+                height:8px;
+                border-radius:50%;
+                background:${historyColor(index)};
+              "
+            ></span>
+
+            ${esc(item.name)}
+
+          </span>
+
+        `
+      )
+      .join("");
+
+
+    const firstDate =
+      new Date(
+        history[0].at
+      )
+      .toLocaleDateString();
+
+
+    const lastDate =
+      new Date(
+        history[
+          history.length-1
+        ].at
+      )
+      .toLocaleDateString();
+
+
+    chartTarget.innerHTML=`
+
+      <svg
+        class="provider-chart"
+        viewBox="0 0 ${width} ${height}"
+        role="img"
+        aria-label="Provider price history"
+      >
+
+        ${grid}
+
+        ${lines}
+
+        <text
+          x="${pad.left}"
+          y="${height-18}"
+          font-size="10"
+          fill="#777"
+        >
+          ${esc(firstDate)}
+        </text>
+
+        <text
+          x="${width-pad.right}"
+          y="${height-18}"
+          text-anchor="end"
+          font-size="10"
+          fill="#777"
+        >
+          ${esc(lastDate)}
+        </text>
+
+      </svg>
+
+
+      <div>
+        ${legend}
       </div>
     `;
 
   }
 
 
-  function card(route){
+  document
+    .querySelectorAll(
+      "[data-provider-metric]"
+    )
+    .forEach(
+      button=>{
 
-    const tokenPricing =
-      route.input
-      ||
-      route.output
-      ||
-      route.cache;
+        button.addEventListener(
+          "click",
+          ()=>{
 
-
-    const badgeClass =
-      route.available
-        ? "good"
-        : "warn";
-
-
-    const canOpen =
-      route.actionUrl
-      &&
-      (
-        route.available
-        ||
-        route.allowUnavailableLink
-      );
-
-
-    return `
-      <article
-        class="pricing-card ${
-          route.available
-            ? ""
-            : "unavailable"
-        }"
-      >
-
-        <div class="pricing-top">
-
-          <div class="pricing-identity">
-
-            <div class="pricing-logo">
-
-              ${
-                route.logo
-                  ? `
-                    <img
-                      src="${esc(route.logo)}"
-                      alt=""
-                      loading="lazy"
-                    >
-                  `
-                  : ""
-              }
-
-            </div>
-
-
-            <div>
-
-              <div class="pricing-service">
-                ${esc(route.name)}
-              </div>
-
-              <div class="pricing-provider">
-                ${esc(route.provider || "")}
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <span
-            class="pricing-badge ${badgeClass}"
-          >
-            ${esc(
-              route.badge
-              ||
-              route.sourceKind
-              ||
-              (
-                route.available
-                  ? "Available"
-                  : "Unavailable"
+            document
+              .querySelectorAll(
+                "[data-provider-metric]"
               )
-            )}
-          </span>
-
-        </div>
-
-
-        <div class="pricing-main">
-
-          <div class="pricing-billing">
-            ${esc(route.billing || "Pricing")}
-          </div>
+              .forEach(
+                item=>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
 
 
-          ${
-            tokenPricing
-              ? `
-                <div class="pricing-token-grid">
+            button
+              .classList.add(
+                "active"
+              );
 
-                  ${tokenCell(
-                    "Input",
-                    route.input
-                  )}
 
-                  ${tokenCell(
-                    "Cached",
-                    route.cache
-                  )}
+            historyMetric =
+              button.dataset
+                .providerMetric;
 
-                  ${tokenCell(
-                    "Output",
-                    route.output
-                  )}
 
-                </div>
-              `
-              : `
-                <div class="pricing-price">
-                  ${esc(
-                    route.price
-                    ||
-                    "See provider"
-                  )}
-                </div>
-              `
+            renderHistory();
+
           }
+        );
 
-        </div>
-
-
-        <div class="pricing-note-text">
-          ${esc(route.note || "")}
-        </div>
-
-
-        <div class="pricing-links">
-
-          ${
-            canOpen
-              ? `
-                <a
-                  class="pricing-link"
-                  href="${esc(route.actionUrl)}"
-                  ${
-                    String(
-                      route.actionUrl
-                    ).startsWith("http")
-                      ? 'target="_blank" rel="noopener"'
-                      : ""
-                  }
-                >
-                  ${esc(
-                    route.actionLabel
-                    ||
-                    "Open ↗"
-                  )}
-                </a>
-              `
-              : ""
-          }
-
-
-          ${
-            route.secondaryUrl
-            &&
-            route.secondaryUrl !==
-            route.actionUrl
-              ? `
-                <a
-                  class="pricing-link"
-                  href="${esc(route.secondaryUrl)}"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  ${esc(
-                    route.secondaryLabel
-                    ||
-                    "Source ↗"
-                  )}
-                </a>
-              `
-              : ""
-          }
-
-        </div>
-
-      </article>
-    `;
-
-  }
-
-
-  root.innerHTML =
-    routes
-    .map(card)
-    .join("");
-
-
-  const disclaimer =
-    document.getElementById(
-      "pricingDisclaimer"
+      }
     );
 
 
-  if(disclaimer){
-
-    disclaimer.textContent =
-      (
-        "Zorix model access currently requires "
-        +
-        "an active paid subscription through "
-        +
-        "subs.zorix.it. Zorix API service is "
-        +
-        "currently unavailable; refer to Zorix "
-        +
-        "Status for availability. External provider "
-        +
-        "prices are separate from Zorix subscription access."
-      );
-
-  }
+  renderHistory();
 
 })();
 
 </script>
+
 
 
 </body>

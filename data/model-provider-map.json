@@ -1,0 +1,19 @@
+{
+  "deepseek-v4-flash-0731": "deepseek/deepseek-v4-flash-0731",
+  "tencent-hy3": "tencent/hy3",
+  "mimo-v25": "xiaomi/mimo-v2.5",
+  "gpt-56-luna": "openai/gpt-5.6-luna",
+  "claude-opus-5": "anthropic/claude-opus-5",
+  "glm-52-max": "z-ai/glm-5.2",
+  "gemini-37-flash": "google/gemini-3.7-flash",
+  "claude-sonnet-5": "anthropic/claude-sonnet-5",
+  "claude-opus-48": "anthropic/claude-opus-4.8",
+  "claude-fable-5-fallback-max": "anthropic/claude-fable-5",
+  "gpt-56-sol-max": "openai/gpt-5.6-sol",
+  "kimi-k27-code": "moonshotai/kimi-k2.7-code",
+  "kimi-k3": "moonshotai/kimi-k3",
+  "gemini-36-flash": "google/gemini-3.6-flash",
+  "muse-spark-12": "meta/muse-spark-1.2",
+  "glm-51": "z-ai/glm-5.1",
+  "nemotron-3-ultra": "nvidia/nemotron-3-ultra-550b-a55b"
+}
