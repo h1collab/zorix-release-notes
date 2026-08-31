@@ -46,6 +46,19 @@
   const codingHost =
     $('codingBenchmarkSvgHost');
 
+  const svgStyleControls =
+    $('svgStyleControls');
+
+  const svgStyle =
+    $('svgStyle');
+
+  const translateSvgButton =
+    $('downloadTranslateSvgButton');
+
+  const translatePngButton =
+    $('downloadTranslatePngButton');
+
+
   const status =
     $('shareDataStatus');
 
@@ -153,7 +166,17 @@
       ||
       {
         points:[]
+      },
+
+    translate:
+      window.ZORIX_TRANSLATE
+      ||
+      {
+        models:[],
+        scoreBase:1000,
+        requestWindowHours:5
       }
+
 
   };
 
@@ -3803,6 +3826,154 @@
   }
 
 
+
+  /* ========================================================
+     TRANSLATION_SHARE_SVG_V1
+     ======================================================== */
+
+  function translationSvgSpec(){
+
+    const builder =
+      window.ZORIX_TRANSLATE_SVG;
+
+
+    if(
+      !builder
+      ||
+      typeof builder.build
+      !==
+      'function'
+    ){
+
+      return {
+        width:1200,
+        height:675,
+        filename:'zorix-translation-comparison',
+        title:'Translation comparison',
+        svg:`
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1200"
+            height="675"
+            viewBox="0 0 1200 675"
+          >
+            <rect
+              width="1200"
+              height="675"
+              fill="#fff"
+            />
+            <text
+              x="50"
+              y="80"
+              font-family="Arial,sans-serif"
+              font-size="28"
+              fill="#111"
+            >
+              Translation SVG builder unavailable
+            </text>
+          </svg>
+        `
+      };
+
+    }
+
+
+    return builder.build(
+      svgStyle?.value
+      ||
+      'dual',
+      DATA.translate
+    );
+
+  }
+
+
+  function renderTranslationSvg(){
+
+    const spec =
+      translationSvgSpec();
+
+
+    if(codingHost){
+
+      codingHost.innerHTML =
+        spec.svg;
+
+
+      codingHost.style.width =
+        spec.width
+        +
+        'px';
+
+
+      codingHost.style.height =
+        spec.height
+        +
+        'px';
+
+    }
+
+
+    if(codingPreview){
+
+      codingPreview.style.minHeight =
+        Math.max(
+          540,
+          spec.height+30
+        )
+        +
+        'px';
+
+    }
+
+
+    if(previewTitle){
+
+      previewTitle.textContent =
+        spec.width
+        +
+        ' × '
+        +
+        spec.height;
+
+    }
+
+
+    if(previewMeta){
+
+      previewMeta.textContent =
+        spec.title
+        +
+        ' · current published translation data';
+
+    }
+
+
+    if(status){
+
+      status.style.display =
+        'block';
+
+
+      status.textContent =
+        'Translation comparison · '
+        +
+        (
+          svgStyle
+          ?.options[
+            svgStyle.selectedIndex
+          ]
+          ?.textContent
+          ?.trim()
+          ||
+          'SVG'
+        );
+
+    }
+
+  }
+
+
   /* ========================================================
      CONTROLS
      ======================================================== */
@@ -3846,6 +4017,30 @@
 
     const type=
       report.value;
+
+
+    if(svgStyleControls){
+
+      svgStyleControls.style.display=
+        'none';
+
+    }
+
+
+    if(translateSvgButton){
+
+      translateSvgButton.style.display=
+        'none';
+
+    }
+
+
+    if(translatePngButton){
+
+      translatePngButton.style.display=
+        'none';
+
+    }
 
 
     landscapeControls
@@ -4046,6 +4241,73 @@
         );
 
     }else if(
+      type==='translation-compare'
+    ){
+
+      if(metricGroup){
+
+        metricGroup.style.display=
+          'none';
+
+      }
+
+
+      if(countGroup){
+
+        countGroup.style.display=
+          'none';
+
+      }
+
+
+      if(svgStyleControls){
+
+        svgStyleControls.style.display=
+          '';
+
+      }
+
+
+      canvas.style.display=
+        'none';
+
+
+      if(codingPreview){
+
+        codingPreview.style.display=
+          'flex';
+
+      }
+
+
+      if(downloadButton){
+
+        downloadButton.style.display=
+          'none';
+
+      }
+
+
+      if(translateSvgButton){
+
+        translateSvgButton.style.display=
+          '';
+
+      }
+
+
+      if(translatePngButton){
+
+        translatePngButton.style.display=
+          '';
+
+      }
+
+
+      renderTranslationSvg();
+
+
+    }else if(
       type==='coding-benchmark-svg'
     ){
 
@@ -4120,6 +4382,16 @@
 
     const type=
       report.value;
+
+
+    if(
+      type==='translation-compare'
+    ){
+
+      renderTranslationSvg();
+
+      return;
+    }
 
 
     if(
@@ -4529,6 +4801,158 @@
     );
 
 
+
+  translateSvgButton
+    ?.addEventListener(
+      'click',
+      ()=>{
+
+        const spec =
+          translationSvgSpec();
+
+
+        saveBlob(
+          new Blob(
+            [
+              spec.svg
+            ],
+            {
+              type:
+                'image/svg+xml;charset=utf-8'
+            }
+          ),
+          spec.filename
+          +
+          '-'
+          +
+          stamp()
+          +
+          '.svg'
+        );
+
+      }
+    );
+
+
+  translatePngButton
+    ?.addEventListener(
+      'click',
+      ()=>{
+
+        const spec =
+          translationSvgSpec();
+
+
+        const blob =
+          new Blob(
+            [
+              spec.svg
+            ],
+            {
+              type:
+                'image/svg+xml;charset=utf-8'
+            }
+          );
+
+
+        const url =
+          URL.createObjectURL(
+            blob
+          );
+
+
+        const image =
+          new Image();
+
+
+        image.onload =
+          ()=>{
+
+            const output =
+              document.createElement(
+                'canvas'
+              );
+
+
+            output.width =
+              spec.width;
+
+
+            output.height =
+              spec.height;
+
+
+            const outputContext =
+              output.getContext(
+                '2d'
+              );
+
+
+            outputContext.fillStyle =
+              '#fff';
+
+
+            outputContext.fillRect(
+              0,
+              0,
+              spec.width,
+              spec.height
+            );
+
+
+            outputContext.drawImage(
+              image,
+              0,
+              0,
+              spec.width,
+              spec.height
+            );
+
+
+            output.toBlob(
+              png=>{
+
+                saveBlob(
+                  png,
+                  spec.filename
+                  +
+                  '-'
+                  +
+                  stamp()
+                  +
+                  '.png'
+                );
+
+              },
+              'image/png',
+              1
+            );
+
+
+            URL.revokeObjectURL(
+              url
+            );
+
+          };
+
+
+        image.onerror =
+          ()=>{
+
+            URL.revokeObjectURL(
+              url
+            );
+
+          };
+
+
+        image.src =
+          url;
+
+      }
+    );
+
+
   /* ========================================================
      EVENTS — ONLY THESE EXIST AFTER CLEANUP
      ======================================================== */
@@ -4572,6 +4996,13 @@
 
 
   landscapeY
+    ?.addEventListener(
+      'change',
+      scheduleRender
+    );
+
+
+  svgStyle
     ?.addEventListener(
       'change',
       scheduleRender

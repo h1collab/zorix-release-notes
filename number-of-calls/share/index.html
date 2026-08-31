@@ -622,6 +622,11 @@ canvas{
         Metron Coding Benchmark · SVG
       </option>
 
+      <option value="translation-compare">
+        Translation comparison · SVG
+      </option>
+
+
       <option value="voting">
         Voting ranking
       </option>
@@ -783,6 +788,47 @@ canvas{
 
   <div
     class="control-group"
+    id="svgStyleControls"
+    style="display:none"
+  >
+
+    <label class="control-label">
+      SVG style
+    </label>
+
+    <select
+      class="control-select"
+      id="svgStyle"
+    >
+
+      <option value="dual">
+        Dual metric · 1200 × 675
+      </option>
+
+      <option value="compact">
+        Compact · 424 × 488
+      </option>
+
+      <option value="baseline">
+        1000 baseline · 1200 × 675
+      </option>
+
+      <option value="cards">
+        Model cards · 1200 × 675
+      </option>
+
+      <option value="scatter">
+        Requests × score · 1200 × 675
+      </option>
+
+    </select>
+
+  </div>
+
+
+
+  <div
+    class="control-group"
     id="trendControls"
     style="display:none"
   >
@@ -836,6 +882,32 @@ canvas{
     <button
       class="download"
       id="downloadCodingPngButton"
+      type="button"
+      style="
+        display:none;
+        margin-left:8px;
+      "
+    >
+      Download PNG
+    </button>
+
+
+    <button
+      class="download"
+      id="downloadTranslateSvgButton"
+      type="button"
+      style="
+        display:none;
+        margin-left:8px;
+      "
+    >
+      Download SVG
+    </button>
+
+
+    <button
+      class="download"
+      id="downloadTranslatePngButton"
       type="button"
       style="
         display:none;
@@ -957,7 +1029,10 @@ canvas{
 <script src="../image-ai.js?v=1788181089"></script>
 <script src="../intelligence-cost.js?v=1788181089"></script>
 
-<script src="./controller.js?v=1788196793"></script>
+<script src="/translate/translate.js"></script>
+<script src="./translate-svg.js?v=1788199807"></script>
+
+<script src="./controller.js?v=1788199807"></script>
 
 </body>
 </html>
