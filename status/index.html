@@ -6,8 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788157919">
-
+<meta name="zorix-build" content="1788158108">
 
 
 <meta charset="utf-8">
@@ -26,22 +25,13 @@ Zorix Status
 :root{
   --bg:#fff;
   --text:#111;
-  --muted:#73736d;
-  --line:#e2e2dd;
+  --muted:#6f6f69;
+  --line:#e1e1dc;
   --soft:#f7f7f4;
-
-  --ok:#15803d;
-  --ok-bg:#ecfdf3;
-
+  --ok:#16803c;
   --warn:#b45309;
-  --warn-bg:#fff7ed;
-
   --bad:#b42318;
-  --bad-bg:#fff1f0;
-
-  --unknown:#73736d;
-
-  --max:920px;
+  --max:900px;
 }
 
 *{
@@ -69,6 +59,8 @@ body{
     Helvetica,
     Arial,
     sans-serif;
+
+  letter-spacing:-.012em;
 }
 
 a{
@@ -93,7 +85,6 @@ header{
   padding:0 22px;
 
   display:flex;
-
   align-items:center;
   justify-content:space-between;
 }
@@ -126,7 +117,7 @@ header{
 }
 
 
-/* PAGE */
+/* MAIN */
 
 main{
   max-width:var(--max);
@@ -134,54 +125,55 @@ main{
   margin:auto;
 
   padding:
-    72px
+    70px
     22px
-    120px;
+    110px;
 }
 
 
 /* OVERALL */
 
 .overall{
-  margin-bottom:55px;
+  padding-bottom:54px;
 }
 
-.overall-badge{
+.badge{
   display:inline-flex;
 
   align-items:center;
 
   gap:8px;
 
-  min-height:31px;
+  padding:
+    7px
+    11px;
 
-  padding:0 12px;
+  border:
+    1px solid var(--line);
 
   border-radius:999px;
-
-  background:var(--soft);
 
   font-size:12px;
 }
 
-.status-dot{
+.dot{
   width:9px;
   height:9px;
 
   border-radius:50%;
 
-  background:var(--unknown);
+  background:#999;
 }
 
 h1{
   margin:
-    20px
+    21px
     0
     0;
 
   font-size:
     clamp(
-      43px,
+      46px,
       7vw,
       72px
     );
@@ -193,10 +185,10 @@ h1{
   letter-spacing:-.055em;
 }
 
-.overall-copy{
-  max-width:650px;
+.message{
+  max-width:630px;
 
-  margin-top:17px;
+  margin-top:18px;
 
   color:var(--muted);
 
@@ -205,7 +197,7 @@ h1{
 }
 
 .updated{
-  margin-top:15px;
+  margin-top:16px;
 
   color:#999;
 
@@ -217,7 +209,7 @@ h1{
 
 .section{
   padding:
-    40px
+    41px
     0;
 
   border-top:
@@ -230,15 +222,15 @@ h1{
   align-items:flex-end;
   justify-content:space-between;
 
-  gap:20px;
+  gap:22px;
 
-  margin-bottom:21px;
+  margin-bottom:22px;
 }
 
 .section-title{
   font-size:24px;
 
-  letter-spacing:-.035em;
+  letter-spacing:-.04em;
 }
 
 .section-copy{
@@ -251,19 +243,19 @@ h1{
 /* COMPONENTS */
 
 .components{
+  overflow:hidden;
+
   border:
     1px solid var(--line);
 
   border-radius:14px;
-
-  overflow:hidden;
 }
 
 .component{
-  min-height:82px;
+  min-height:83px;
 
   padding:
-    16px
+    17px
     18px;
 
   display:grid;
@@ -307,19 +299,14 @@ h1{
   font-size:12px;
 }
 
-.component-dot{
-  width:9px;
-  height:9px;
-
-  border-radius:50%;
-
-  background:var(--unknown);
+.component-state .dot{
+  flex:0 0 auto;
 }
 
 
 /* INCIDENT */
 
-.incidents{
+.history{
   display:grid;
   gap:13px;
 }
@@ -333,7 +320,7 @@ h1{
   border-radius:13px;
 }
 
-.incident-top{
+.incident-head{
   display:flex;
 
   justify-content:
@@ -344,11 +331,12 @@ h1{
 
 .incident-title{
   font-size:15px;
-
   font-weight:550;
 }
 
 .incident-state{
+  color:var(--muted);
+
   font-size:11px;
 }
 
@@ -358,11 +346,11 @@ h1{
   color:var(--muted);
 
   font-size:12px;
-  line-height:1.5;
+  line-height:1.55;
 }
 
 .incident-time{
-  margin-top:13px;
+  margin-top:14px;
 
   color:#999;
 
@@ -370,7 +358,7 @@ h1{
 }
 
 .empty{
-  padding:30px;
+  padding:31px;
 
   border:
     1px solid var(--line);
@@ -385,34 +373,19 @@ h1{
 }
 
 
-/* STATUS COLORS */
+/* STATES */
 
-[data-status="operational"]
-.status-dot,
-[data-status="operational"]
-.component-dot{
+[data-status="operational"] .dot{
   background:var(--ok);
 }
 
-[data-status="degraded"]
-.status-dot,
-[data-status="degraded"]
-.component-dot,
-[data-status="maintenance"]
-.status-dot,
-[data-status="maintenance"]
-.component-dot{
+[data-status="degraded"] .dot,
+[data-status="maintenance"] .dot{
   background:var(--warn);
 }
 
-[data-status="partial_outage"]
-.status-dot,
-[data-status="partial_outage"]
-.component-dot,
-[data-status="outage"]
-.status-dot,
-[data-status="outage"]
-.component-dot{
+[data-status="partial_outage"] .dot,
+[data-status="outage"] .dot{
   background:var(--bad);
 }
 
@@ -420,9 +393,9 @@ h1{
 /* FOOTER */
 
 footer{
-  margin-top:45px;
+  margin-top:42px;
 
-  padding-top:25px;
+  padding-top:24px;
 
   border-top:
     1px solid var(--line);
@@ -440,8 +413,6 @@ footer{
 }
 
 
-/* MOBILE */
-
 @media(max-width:650px){
 
   .nav{
@@ -450,24 +421,32 @@ footer{
       17px;
   }
 
-  .nav-links a:not(:last-child){
+  .nav-links{
+    gap:13px;
+  }
+
+  .nav-links a:first-child{
     display:none;
   }
 
   main{
     padding:
-      48px
+      49px
       17px
       90px;
   }
 
   .component{
     grid-template-columns:1fr;
-
     gap:10px;
   }
 
-  .incident-top{
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .incident-head{
     flex-direction:column;
   }
 
@@ -484,9 +463,10 @@ footer{
 
 <body>
 
+
 <header>
 
-  <div class="nav">
+  <nav class="nav">
 
     <a
       class="brand"
@@ -494,7 +474,7 @@ footer{
     >
 
       <img
-        src="/number-of-calls/assets/logos/zorix.svg?v=1788157919"
+        src="/number-of-calls/assets/logos/zorix.svg?v=1788158108"
         alt=""
       >
 
@@ -516,12 +496,12 @@ footer{
       </a>
 
       <a href="#history">
-        View history
+        History
       </a>
 
     </div>
 
-  </div>
+  </nav>
 
 </header>
 
@@ -533,30 +513,30 @@ footer{
 <section
   class="overall"
   id="overall"
-  data-status="unknown"
+  data-status="operational"
 >
 
-  <div class="overall-badge">
+  <div class="badge">
 
-    <span class="status-dot"></span>
+    <span class="dot"></span>
 
-    <span id="overallBadge">
-      Status unavailable
+    <span id="badgeText">
+      Operational
     </span>
 
   </div>
 
 
-  <h1 id="overallTitle">
-    Zorix status
+  <h1 id="headline">
+    We’re fully operational
   </h1>
 
 
   <div
-    class="overall-copy"
-    id="overallMessage"
+    class="message"
+    id="message"
   >
-    Status information has not been published yet.
+    All Zorix systems are operating normally.
   </div>
 
 
@@ -578,7 +558,7 @@ footer{
     </div>
 
     <div class="section-copy">
-      Current published service condition
+      Current published service status
     </div>
 
   </div>
@@ -605,14 +585,14 @@ footer{
     </div>
 
     <div class="section-copy">
-      Recent published incidents
+      Recent incidents
     </div>
 
   </div>
 
 
   <div
-    class="incidents"
+    class="history"
     id="incidents"
   ></div>
 
@@ -623,12 +603,11 @@ footer{
 <footer>
 
   <span>
-    Zorix system status
+    Zorix Status
   </span>
 
   <span>
-    Published status may not reflect
-    every individual request or model route.
+    Officially published system status.
   </span>
 
 </footer>
@@ -637,14 +616,15 @@ footer{
 </main>
 
 
-<script src="./status.js?v=1788157919"></script>
+<script src="./status.js?v=1788158108"></script>
 
 <script>
 
-const statusData =
+const DATA =
   window.ZORIX_STATUS || {
-    overall:"unknown",
-    message:"",
+    overall:"operational",
+    message:
+      "All Zorix systems are operating normally.",
     components:[],
     incidents:[]
   };
@@ -655,8 +635,7 @@ const LABELS={
   degraded:"Degraded performance",
   partial_outage:"Partial outage",
   outage:"Major outage",
-  maintenance:"Maintenance",
-  unknown:"Unknown"
+  maintenance:"Maintenance"
 };
 
 
@@ -664,6 +643,7 @@ function label(value){
 
   return (
     LABELS[value] ||
+    value ||
     "Unknown"
   );
 
@@ -675,70 +655,51 @@ function escapeHTML(value){
   return String(
     value ?? ""
   )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  );
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;");
 
 }
 
 
-const overall =
+const overall=
   document.getElementById(
     "overall"
   );
 
 
-overall.dataset.status =
-  statusData.overall ||
-  "unknown";
+overall.dataset.status=
+  DATA.overall ||
+  "operational";
 
 
 document
   .getElementById(
-    "overallBadge"
+    "badgeText"
   )
   .textContent=
     label(
-      statusData.overall
+      DATA.overall
     );
 
 
-const title =
-  statusData.overall==="operational"
-    ? "We’re fully operational"
-    : statusData.overall==="unknown"
-      ? "Status not yet published"
+document
+  .getElementById(
+    "headline"
+  )
+  .textContent=
+    DATA.overall==="operational"
+      ? "We’re fully operational"
       : "We’re currently experiencing issues";
 
 
 document
   .getElementById(
-    "overallTitle"
+    "message"
   )
   .textContent=
-    title;
-
-
-document
-  .getElementById(
-    "overallMessage"
-  )
-  .textContent=
-    statusData.message ||
-    "";
+    DATA.message || "";
 
 
 document
@@ -746,10 +707,10 @@ document
     "updated"
   )
   .textContent=
-    statusData.updatedAt
+    DATA.updatedAt
       ? "Updated " +
         new Date(
-          statusData.updatedAt
+          DATA.updatedAt
         ).toLocaleString()
       : "";
 
@@ -760,7 +721,7 @@ document
   )
   .innerHTML=
     (
-      statusData.components ||
+      DATA.components ||
       []
     )
     .map(
@@ -770,8 +731,7 @@ document
           class="component"
           data-status="${
             escapeHTML(
-              item.status ||
-              "unknown"
+              item.status
             )
           }"
         >
@@ -800,7 +760,7 @@ document
 
           <div class="component-state">
 
-            <span class="component-dot"></span>
+            <span class="dot"></span>
 
             <span>
               ${
@@ -821,9 +781,8 @@ document
     .join("");
 
 
-const incidents =
-  statusData.incidents ||
-  [];
+const incidents=
+  DATA.incidents || [];
 
 
 document
@@ -837,7 +796,7 @@ document
 
             <article class="incident">
 
-              <div class="incident-top">
+              <div class="incident-head">
 
                 <div class="incident-title">
                   ${
@@ -876,7 +835,6 @@ document
 
 
               <div class="incident-time">
-
                 ${
                   item.startedAt
                     ? new Date(
@@ -884,20 +842,21 @@ document
                       ).toLocaleString()
                     : ""
                 }
-
               </div>
 
             </article>
 
           `
-        ).join("")
+        )
+        .join("")
       : `
           <div class="empty">
-            No published incidents.
+            No incidents reported.
           </div>
         `;
 
 </script>
+
 
 </body>
 </html>

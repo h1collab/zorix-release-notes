@@ -1,49 +1,49 @@
 window.ZORIX_STATUS = {
-  "updatedAt": null,
-  "overall": "unknown",
-  "message": "Status information has not been published yet.",
+  "updatedAt": "2026-08-31T08:35:08+02:00",
+  "overall": "operational",
+  "message": "All Zorix systems are operating normally.",
   "components": [
     {
       "id": "zorix-api",
       "name": "Zorix API",
       "description": "Core API requests and model routing.",
-      "status": "unknown"
+      "status": "operational"
     },
     {
       "id": "zorix-code",
       "name": "Zorix Code",
       "description": "Coding environment, tools and agent workflows.",
-      "status": "unknown"
+      "status": "operational"
     },
     {
       "id": "metron",
       "name": "Zorix Metron",
-      "description": "Usage, model catalog, benchmarks and public data.",
-      "status": "unknown"
+      "description": "Usage, models, benchmarks, voting and public data.",
+      "status": "operational"
     },
     {
       "id": "nex",
       "name": "Nex models",
       "description": "Nex and Nex Coder model availability.",
-      "status": "unknown"
+      "status": "operational"
     },
     {
       "id": "virexa",
       "name": "VIREXA",
       "description": "Image generation systems.",
-      "status": "unknown"
+      "status": "operational"
     },
     {
       "id": "public-quota",
       "name": "Public quota",
       "description": "Shared public token capacity and quota accounting.",
-      "status": "unknown"
+      "status": "operational"
     },
     {
       "id": "updates",
       "name": "Updates & documentation",
       "description": "Release notes, documentation and status pages.",
-      "status": "unknown"
+      "status": "operational"
     }
   ],
   "incidents": []

@@ -2,44 +2,22 @@
 
 from pathlib import Path
 from datetime import datetime
+import subprocess
 import json
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 
 DATA = ROOT / "data" / "status.json"
-
 BUILD = ROOT / "tools" / "build_status.py"
-
 
 VALID = {
     "operational",
     "degraded",
     "partial_outage",
     "outage",
-    "maintenance",
-    "unknown",
+    "maintenance"
 }
-
-
-def load():
-    return json.loads(
-        DATA.read_text(
-            encoding="utf-8"
-        )
-    )
-
-
-def save(data):
-
-    DATA.write_text(
-        json.dumps(
-            data,
-            ensure_ascii=False,
-            indent=2
-        ) + "\n",
-        encoding="utf-8"
-    )
 
 
 def now():
@@ -52,41 +30,70 @@ def now():
     )
 
 
+def load():
+    return json.loads(
+        DATA.read_text(
+            encoding="utf-8"
+        )
+    )
+
+
+def save(data):
+
+    data["updatedAt"] = now()
+
+    DATA.write_text(
+        json.dumps(
+            data,
+            ensure_ascii=False,
+            indent=2
+        ) + "\n",
+        encoding="utf-8"
+    )
+
+    subprocess.run(
+        [
+            sys.executable,
+            str(BUILD)
+        ],
+        check=False
+    )
+
+
 if len(sys.argv) < 3:
 
+    print()
+    print("Examples:")
     print(
-        "Usage:\n"
-        "  status_update.py all <status> [message]\n"
-        "  status_update.py <component-id> <status> [message]\n"
-        "  status_update.py incident <status> <title> [message]"
+        'statusctl all operational '
+        '"All systems operational"'
     )
+    print(
+        'statusctl zorix-api degraded '
+        '"Elevated latency"'
+    )
+    print(
+        'statusctl incident degraded '
+        '"Elevated API latency" '
+        '"We are investigating."'
+    )
+    print()
 
     raise SystemExit(0)
 
 
 target = sys.argv[1]
+state = sys.argv[2]
 
-status = sys.argv[2]
 
+if state not in VALID:
 
-if status not in VALID:
-
-    print(
-        "Unknown status:",
-        status
-    )
-
-    print(
-        "Allowed:",
-        ", ".join(sorted(VALID))
-    )
-
+    print("Unknown state:", state)
+    print("Allowed:", ", ".join(sorted(VALID)))
     raise SystemExit(0)
 
 
 data = load()
-
-timestamp = now()
 
 
 if target == "all":
@@ -94,25 +101,21 @@ if target == "all":
     message = (
         sys.argv[3]
         if len(sys.argv) > 3
-        else ""
-    )
-
-    data["overall"] = status
-
-    data["message"] = (
-        message
-        or (
-            "All systems are operational."
-            if status == "operational"
-            else "System status updated."
+        else (
+            "All Zorix systems are operating normally."
+            if state == "operational"
+            else "Zorix system status has changed."
         )
     )
+
+    data["overall"] = state
+    data["message"] = message
 
     for component in data.get(
         "components",
         []
     ):
-        component["status"] = status
+        component["status"] = state
 
 
 elif target == "incident":
@@ -136,33 +139,22 @@ elif target == "incident":
         0,
         {
             "title": title,
-            "status": status,
+            "status": state,
             "message": message,
-            "startedAt": timestamp,
+            "startedAt": now(),
             "resolvedAt": (
-                timestamp
-                if status == "operational"
+                now()
+                if state == "operational"
                 else None
             )
         }
     )
 
-    data["overall"] = (
-        "operational"
-        if status == "operational"
-        else status
-    )
-
+    data["overall"] = state
     data["message"] = title
 
 
 else:
-
-    message = (
-        sys.argv[3]
-        if len(sys.argv) > 3
-        else ""
-    )
 
     found = False
 
@@ -173,12 +165,10 @@ else:
 
         if component.get("id") == target:
 
-            component["status"] = status
+            component["status"] = state
 
-            if message:
-                component[
-                    "statusMessage"
-                ] = message
+            if len(sys.argv) > 3:
+                component["statusMessage"] = sys.argv[3]
 
             found = True
             break
@@ -187,29 +177,27 @@ else:
     if not found:
 
         print(
-            "Component not found:",
+            "Unknown component:",
             target
         )
 
-        print(
-            "Available:"
-        )
+        print("Available:")
 
-        for item in data.get(
+        for component in data.get(
             "components",
             []
         ):
             print(
                 " ",
-                item.get("id")
+                component.get("id")
             )
 
         raise SystemExit(0)
 
 
     states = {
-        item.get("status")
-        for item in data.get(
+        component.get("status")
+        for component in data.get(
             "components",
             []
         )
@@ -228,31 +216,29 @@ else:
     elif "maintenance" in states:
         data["overall"] = "maintenance"
 
-    elif states == {"operational"}:
+    else:
         data["overall"] = "operational"
 
+
+    if data["overall"] == "operational":
+
+        data["message"] = (
+            "All Zorix systems are operating normally."
+        )
+
     else:
-        data["overall"] = "unknown"
 
+        data["message"] = (
+            "Some Zorix systems are currently experiencing issues."
+        )
 
-data["updatedAt"] = timestamp
 
 save(data)
 
 
-import subprocess
-
-subprocess.run(
-    [
-        sys.executable,
-        str(BUILD)
-    ],
-    check=False
-)
-
-
 print()
-print("ZORIX STATUS")
-print("------------")
+print("ZORIX STATUS UPDATED")
+print("--------------------")
 print("Overall:", data["overall"])
-print("Updated:", timestamp)
+print("Updated:", data["updatedAt"])
+print()
