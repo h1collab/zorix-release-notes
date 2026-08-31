@@ -7,56 +7,48 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
-<meta name="zorix-build" content="1788156881">
+<meta name="zorix-build" content="1788157268">
 <script>
 (function(){
-  var expected="1788156881";
+  var expected="1788157268";
+  var endpoint="/build-version.txt";
 
-  try{
+  try {
     fetch(
-      "/build-version.txt?_=" + Date.now(),
+      endpoint + "?fresh=" + Date.now(),
       {
-        cache:"no-store",
-        headers:{
-          "Cache-Control":"no-cache"
-        }
+        cache:"no-store"
       }
     )
-    .then(function(response){
-      if(!response.ok){
-        return null;
-      }
-      return response.text();
+    .then(function(r){
+      return r.ok ? r.text() : "";
     })
     .then(function(latest){
-      if(!latest){
-        return;
-      }
-
-      latest=latest.trim();
+      latest=String(latest || "").trim();
 
       if(
         latest &&
-        latest!==expected
+        latest !== expected
       ){
-        var url=
-          new URL(
-            window.location.href          ?v=1788156881);
+        var next=new URL(
+          window.location.href
+        );
 
-        url.searchParams.set(
+        next.searchParams.set(
           "__v",
           latest
         );
 
         window.location.replace(
-          url.toString()
+          next.toString()
         );
       }
     })
     .catch(function(){});
-  }catch(e){}
+  } catch(e) {}
 })();
 </script>
+
 
 
 
@@ -1284,6 +1276,340 @@ h1{
 
 }
 
+
+/* =========================================================
+   METRON VOTING HISTORY V3
+   ========================================================= */
+
+.vote-v3{
+  margin:
+    34px
+    0
+    48px;
+
+  padding:
+    33px
+    0
+    42px;
+
+  border-top:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.vote-v3-head{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  align-items:flex-end;
+
+  gap:28px;
+
+  margin-bottom:26px;
+}
+
+.vote-v3-title{
+  font-size:30px;
+
+  letter-spacing:-.045em;
+}
+
+.vote-v3-copy{
+  max-width:470px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+
+  text-align:right;
+}
+
+.vote-v3-card{
+  position:relative;
+
+  overflow:hidden;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:16px;
+
+  background:#fff;
+}
+
+.vote-v3-chart-scroll{
+  overflow-x:auto;
+
+  scrollbar-width:thin;
+}
+
+.vote-v3-chart{
+  position:relative;
+
+  min-width:760px;
+  height:430px;
+}
+
+.vote-v3-svg{
+  position:absolute;
+
+  inset:
+    18px
+    18px
+    42px
+    72px;
+
+  width:
+    calc(100% - 90px);
+
+  height:
+    calc(100% - 60px);
+
+  overflow:visible;
+}
+
+.vote-v3-y{
+  position:absolute;
+
+  left:0;
+  top:18px;
+  bottom:42px;
+
+  width:66px;
+
+  border-right:
+    1px solid #ecece9;
+}
+
+.vote-v3-y-label{
+  position:absolute;
+
+  right:9px;
+
+  transform:
+    translateY(50%);
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.vote-v3-x{
+  position:absolute;
+
+  left:72px;
+  right:18px;
+  bottom:0;
+
+  height:39px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.vote-v3-tooltip{
+  position:absolute;
+
+  z-index:10;
+
+  min-width:190px;
+
+  padding:11px 12px;
+
+  border:
+    1px solid #d7d7d2;
+
+  border-radius:11px;
+
+  background:
+    rgba(255,255,255,.97);
+
+  box-shadow:
+    0 12px 35px
+    rgba(0,0,0,.12);
+
+  pointer-events:none;
+
+  opacity:0;
+
+  transform:
+    translate(-50%,-115%);
+
+  transition:
+    opacity .08s ease;
+}
+
+.vote-v3-tooltip.show{
+  opacity:1;
+}
+
+.vote-v3-tooltip-time{
+  margin-bottom:8px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.vote-v3-tooltip-row{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  gap:17px;
+
+  margin-top:5px;
+
+  font-size:11px;
+}
+
+.vote-v3-legend{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(210px,1fr)
+    );
+
+  gap:9px;
+
+  padding:
+    17px;
+
+  border-top:
+    1px solid var(--line);
+}
+
+.vote-v3-legend-item{
+  min-width:0;
+
+  display:grid;
+
+  grid-template-columns:
+    30px
+    minmax(0,1fr)
+    auto;
+
+  gap:9px;
+  align-items:center;
+
+  padding:7px;
+
+  border-radius:9px;
+}
+
+.vote-v3-logo{
+  width:29px;
+  height:29px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+}
+
+.vote-v3-logo img{
+  width:20px;
+  height:20px;
+
+  object-fit:contain;
+}
+
+.vote-v3-name{
+  min-width:0;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
+
+  font-size:11px;
+}
+
+.vote-v3-score{
+  font-size:11px;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.vote-v3-dot{
+  width:8px;
+  height:8px;
+
+  display:inline-block;
+
+  margin-right:6px;
+
+  border-radius:50%;
+}
+
+.vote-v3-empty{
+  min-height:280px;
+
+  display:grid;
+  place-items:center;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+.vote-v3-meta{
+  padding:
+    11px
+    17px;
+
+  border-top:
+    1px solid var(--line);
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+
+@media(max-width:700px){
+
+  .vote-v3-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .vote-v3-copy{
+    text-align:left;
+  }
+
+  .vote-v3-chart{
+    min-width:670px;
+    height:360px;
+  }
+
+  .vote-v3-legend{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
 
 </head>
@@ -1312,7 +1638,7 @@ h1{
         Benchmarks
       </a>
 
-      <a href="./?__v=1788156881">
+      <a href="./?__v=1788157268">
         Voting
       </a>
 
@@ -1363,7 +1689,7 @@ h1{
 
   <a
     class="tab active"
-    href="./?__v=1788156881"
+    href="./?__v=1788157268"
   >
     Voting
   </a>
@@ -1457,6 +1783,94 @@ h1{
 
 </section>
 
+
+<section
+  class="vote-v3"
+  id="voteV3"
+>
+
+  <div class="vote-v3-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Recorded snapshots
+      </div>
+
+      <div class="vote-v3-title">
+        Voting history
+      </div>
+
+    </div>
+
+
+    <div class="vote-v3-copy">
+      Actual recorded voting states.
+      Duplicate states are collapsed for readability;
+      no artificial daily points or interpolated votes
+      are added.
+    </div>
+
+  </div>
+
+
+  <div class="vote-v3-card">
+
+    <div
+      class="vote-v3-chart-scroll"
+      id="voteV3Scroll"
+    >
+
+      <div
+        class="vote-v3-chart"
+        id="voteV3Chart"
+      >
+
+        <div
+          class="vote-v3-y"
+          id="voteV3Y"
+        ></div>
+
+
+        <svg
+          class="vote-v3-svg"
+          id="voteV3Svg"
+          viewBox="0 0 1000 350"
+          preserveAspectRatio="none"
+        ></svg>
+
+
+        <div
+          class="vote-v3-x"
+          id="voteV3X"
+        ></div>
+
+
+        <div
+          class="vote-v3-tooltip"
+          id="voteV3Tooltip"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="vote-v3-legend"
+      id="voteV3Legend"
+    ></div>
+
+
+    <div
+      class="vote-v3-meta"
+      id="voteV3Meta"
+    ></div>
+
+  </div>
+
+</section>
+
 <div class="controls">
 
   <div class="filter-title">
@@ -1511,8 +1925,8 @@ h1{
 
 
 
-<script src="../models.js?v=1788156881"></script>
-<script src="./votes.js?v=1788156881"></script>
+<script src="../models.js?v=1788157268"></script>
+<script src="./votes.js?v=1788157268"></script>
 
 <script>
 const models =
@@ -1734,7 +2148,7 @@ function render(){
 
               <a
                 class="logo"
-                href="../model.html?id=%24%7B++++++++++++++++++encodeURIComponent%28++++++++++++++++++++model.id++++++++++++++++++%29++++++++++++++++%7D&__v=1788156881"
+                href="../model.html?id=%24%7B++++++++++++++++++encodeURIComponent%28++++++++++++++++++++model.id++++++++++++++++++%29++++++++++++++++%7D&__v=1788157268"
               >
                 ${logoHTML(model)}
               </a>
@@ -1744,7 +2158,7 @@ function render(){
 
                 <a
                   class="model-name"
-                  href="../model.html?id=%24%7B++++++++++++++++++++encodeURIComponent%28++++++++++++++++++++++model.id++++++++++++++++++++%29++++++++++++++++++%7D&__v=1788156881"
+                  href="../model.html?id=%24%7B++++++++++++++++++++encodeURIComponent%28++++++++++++++++++++++model.id++++++++++++++++++++%29++++++++++++++++++%7D&__v=1788157268"
                 >
                   ${model.name}
                 </a>
@@ -2302,6 +2716,968 @@ render();
 renderVotingVisualization();
 
 </script>
+
+<script>
+/* METRON_VOTING_CURVE_V3 */
+
+(function(){
+
+  function run(){
+
+    var voting=
+      window.ZORIX_COMMUNITY_VOTES || {
+        models:[],
+        history:[]
+      };
+
+    var models=
+      window.ZORIX_MODEL_DETAILS || [];
+
+
+    var section=
+      document.getElementById(
+        "voteV3"
+      );
+
+    var svg=
+      document.getElementById(
+        "voteV3Svg"
+      );
+
+    var yAxis=
+      document.getElementById(
+        "voteV3Y"
+      );
+
+    var xAxis=
+      document.getElementById(
+        "voteV3X"
+      );
+
+    var legend=
+      document.getElementById(
+        "voteV3Legend"
+      );
+
+    var meta=
+      document.getElementById(
+        "voteV3Meta"
+      );
+
+    var tooltip=
+      document.getElementById(
+        "voteV3Tooltip"
+      );
+
+    var chart=
+      document.getElementById(
+        "voteV3Chart"
+      );
+
+
+    if(
+      !section ||
+      !svg ||
+      !chart
+    ){
+      return;
+    }
+
+
+    var modelMap=
+      new Map(
+        models.map(
+          function(m){
+            return [m.id,m];
+          }
+        )
+      );
+
+
+    /*
+     * Sort raw snapshots.
+     */
+    var raw=
+      Array.isArray(
+        voting.history
+      )
+        ? voting.history
+            .filter(
+              function(s){
+                return (
+                  s &&
+                  s.at &&
+                  s.models
+                );
+              }
+            )
+            .sort(
+              function(a,b){
+                return (
+                  new Date(a.at) -
+                  new Date(b.at)
+                );
+              }
+            )
+        : [];
+
+
+    /*
+     * Collapse snapshots with the same timestamp:
+     * keep the last state encountered for that timestamp.
+     */
+    var sameTime=new Map();
+
+    raw.forEach(
+      function(snapshot){
+        sameTime.set(
+          snapshot.at,
+          snapshot
+        );
+      }
+    );
+
+
+    var timed=
+      Array.from(
+        sameTime.values()
+      ).sort(
+        function(a,b){
+          return (
+            new Date(a.at) -
+            new Date(b.at)
+          );
+        }
+      );
+
+
+    function signature(snapshot){
+
+      return Object.keys(
+        snapshot.models || {}
+      )
+      .sort()
+      .map(
+        function(id){
+
+          var row=
+            snapshot.models[id] || {};
+
+          return (
+            id+
+            ":"+
+            Number(row.votes || 0)+
+            ":"+
+            Number(row.uncertainty || 0)
+          );
+
+        }
+      )
+      .join("|");
+
+    }
+
+
+    /*
+     * Collapse consecutive completely identical states.
+     */
+    var history=[];
+
+    var previousSig=null;
+
+    timed.forEach(
+      function(snapshot){
+
+        var sig=
+          signature(snapshot);
+
+        if(sig===previousSig){
+          return;
+        }
+
+        previousSig=sig;
+
+        history.push(
+          snapshot
+        );
+
+      }
+    );
+
+
+    /*
+     * Ensure current state appears as a last real state
+     * only when it differs from latest snapshot.
+     */
+    if(
+      Array.isArray(voting.models) &&
+      voting.models.length
+    ){
+
+      var currentModels={};
+
+      voting.models.forEach(
+        function(row){
+
+          currentModels[row.id]={
+            votes:
+              Number(
+                row.votes || 0
+              ),
+
+            uncertainty:
+              Number(
+                row.uncertainty || 0
+              )
+          };
+
+        }
+      );
+
+
+      var current={
+        at:
+          voting.updatedAt ||
+          new Date().toISOString(),
+
+        models:
+          currentModels
+      };
+
+
+      if(
+        !history.length ||
+        signature(current)!==
+        signature(
+          history[
+            history.length-1
+          ]
+        )
+      ){
+        history.push(current);
+      }
+
+    }
+
+
+    if(history.length<2){
+
+      svg.innerHTML="";
+
+      yAxis.innerHTML="";
+
+      xAxis.innerHTML="";
+
+      legend.innerHTML=`
+        <div class="vote-v3-empty">
+          At least two different recorded voting states
+          are needed for a history curve.
+        </div>
+      `;
+
+      meta.textContent=
+        `${history.length} distinct recorded state`;
+
+      return;
+    }
+
+
+    /*
+     * IDs that have ever had a non-zero score.
+     */
+    var activeIds=
+      new Set();
+
+
+    history.forEach(
+      function(snapshot){
+
+        Object.entries(
+          snapshot.models || {}
+        )
+        .forEach(
+          function(entry){
+
+            var id=entry[0];
+            var row=entry[1] || {};
+
+            if(
+              Number(
+                row.votes || 0
+              ) > 0
+            ){
+              activeIds.add(id);
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    var currentMap=
+      new Map(
+        (voting.models || [])
+        .map(
+          function(row){
+            return [
+              row.id,
+              Number(row.votes || 0)
+            ];
+          }
+        )
+      );
+
+
+    var ids=
+      Array.from(activeIds)
+      .sort(
+        function(a,b){
+          return (
+            (currentMap.get(b) || 0) -
+            (currentMap.get(a) || 0)
+          );
+        }
+      );
+
+
+    var palette=[
+      "#111111",
+      "#1783FF",
+      "#4D6BFE",
+      "#7C5CE7",
+      "#0082FB",
+      "#D97757",
+      "#2563EB",
+      "#6B6B66",
+      "#FF6900",
+      "#087F5B"
+    ];
+
+
+    var colorMap=
+      new Map();
+
+    ids.forEach(
+      function(id,index){
+
+        var model=
+          modelMap.get(id);
+
+        colorMap.set(
+          id,
+          model?.color ||
+          palette[
+            index %
+            palette.length
+          ]
+        );
+
+      }
+    );
+
+
+    var values=[];
+
+
+    history.forEach(
+      function(snapshot){
+
+        ids.forEach(
+          function(id){
+
+            var value=
+              Number(
+                snapshot.models?.[id]?.votes || 0
+              );
+
+            if(value>0){
+              values.push(value);
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    var minimum=
+      Math.min.apply(
+        null,
+        values
+      );
+
+    var maximum=
+      Math.max.apply(
+        null,
+        values
+      );
+
+
+    /*
+     * Adaptive scale instead of 0..max,
+     * so 1480 vs 1600 is actually readable.
+     */
+    var padding=
+      Math.max(
+        15,
+        (
+          maximum-minimum
+        ) *
+        .18
+      );
+
+
+    var yMin=
+      Math.floor(
+        (minimum-padding)/10
+      )*10;
+
+
+    var yMax=
+      Math.ceil(
+        (maximum+padding)/10
+      )*10;
+
+
+    if(yMax<=yMin){
+      yMax=yMin+100;
+    }
+
+
+    function xFor(index){
+
+      return (
+        history.length===1
+          ? 500
+          : index/
+            (
+              history.length-1
+            )*
+            1000
+      );
+
+    }
+
+
+    function yFor(value){
+
+      return (
+        330 -
+        (
+          (value-yMin)/
+          (yMax-yMin)
+        )*
+        300
+      );
+
+    }
+
+
+    /*
+     * Grid + labels.
+     */
+    var ticks=5;
+
+    var grid="";
+
+    var labels="";
+
+
+    for(
+      var i=0;
+      i<=ticks;
+      i++
+    ){
+
+      var value=
+        yMin+
+        (
+          yMax-yMin
+        )*
+        i/ticks;
+
+
+      var y=
+        yFor(value);
+
+
+      grid+=`
+        <line
+          x1="0"
+          y1="${y}"
+          x2="1000"
+          y2="${y}"
+          stroke="#ecece9"
+          stroke-width="1"
+          vector-effect="non-scaling-stroke"
+        />
+      `;
+
+
+      labels+=`
+        <span
+          class="vote-v3-y-label"
+          style="
+            bottom:${
+              i/ticks*100
+            }%
+          "
+        >
+          ${Math.round(value)}
+        </span>
+      `;
+
+    }
+
+
+    yAxis.innerHTML=
+      labels;
+
+
+    var lineSvg="";
+
+
+    ids.forEach(
+      function(id){
+
+        var points=[];
+
+
+        history.forEach(
+          function(snapshot,index){
+
+            var row=
+              snapshot.models?.[id];
+
+
+            var value=
+              Number(
+                row?.votes || 0
+              );
+
+
+            if(value<=0){
+              return;
+            }
+
+
+            points.push({
+              index:index,
+              value:value,
+              x:xFor(index),
+              y:yFor(value),
+              snapshot:snapshot
+            });
+
+          }
+        );
+
+
+        if(!points.length){
+          return;
+        }
+
+
+        var color=
+          colorMap.get(id);
+
+
+        if(points.length===1){
+
+          lineSvg+=`
+            <circle
+              cx="${points[0].x}"
+              cy="${points[0].y}"
+              r="5"
+              fill="${color}"
+              stroke="#fff"
+              stroke-width="2"
+              vector-effect="non-scaling-stroke"
+            />
+          `;
+
+        }else{
+
+          /*
+           * Straight segments preserve actual snapshot changes.
+           * No invented spline values.
+           */
+          lineSvg+=`
+            <polyline
+              points="${
+                points
+                  .map(
+                    function(p){
+                      return (
+                        p.x+","+p.y
+                      );
+                    }
+                  )
+                  .join(" ")
+              }"
+              fill="none"
+              stroke="${color}"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              vector-effect="non-scaling-stroke"
+            />
+          `;
+
+
+          lineSvg+=
+            points.map(
+              function(p){
+
+                return `
+                  <circle
+                    class="vote-v3-point"
+                    data-model="${id}"
+                    data-index="${p.index}"
+                    cx="${p.x}"
+                    cy="${p.y}"
+                    r="4.5"
+                    fill="${color}"
+                    stroke="#fff"
+                    stroke-width="2"
+                    vector-effect="non-scaling-stroke"
+                    style="cursor:pointer"
+                  />
+                `;
+
+              }
+            ).join("");
+
+        }
+
+      }
+    );
+
+
+    svg.innerHTML=
+      grid+
+      lineSvg;
+
+
+    function shortDate(raw){
+
+      var d=
+        new Date(raw);
+
+      return d.toLocaleString(
+        undefined,
+        {
+          month:"short",
+          day:"numeric",
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      );
+
+    }
+
+
+    xAxis.innerHTML=`
+      <span>
+        ${shortDate(history[0].at)}
+      </span>
+
+      <span>
+        ${
+          shortDate(
+            history[
+              history.length-1
+            ].at
+          )
+        }
+      </span>
+    `;
+
+
+    /*
+     * Legend, current values.
+     */
+    legend.innerHTML=
+      ids.map(
+        function(id){
+
+          var model=
+            modelMap.get(id) || {
+              id:id,
+              name:id,
+              provider:""
+            };
+
+
+          var latest=0;
+          var uncertainty=0;
+
+
+          for(
+            var i=history.length-1;
+            i>=0;
+            i--
+          ){
+
+            var row=
+              history[i]
+              .models?.[id];
+
+            if(
+              row &&
+              Number(row.votes || 0)>0
+            ){
+              latest=
+                Number(
+                  row.votes
+                );
+
+              uncertainty=
+                Number(
+                  row.uncertainty || 0
+                );
+
+              break;
+            }
+
+          }
+
+
+          var logo=
+            model.logo
+              ? `
+                <img
+                  src="${model.logo}"
+                  alt=""
+                >
+              `
+              : `
+                ${
+                  String(
+                    model.provider ||
+                    model.name ||
+                    "?"
+                  ).slice(0,1)
+                }
+              `;
+
+
+          return `
+            <a
+              class="vote-v3-legend-item"
+              href="../model.html?id=%24%7B++++++++++++++++encodeURIComponent%28id%29++++++++++++++%7D&__v=1788157268"
+            >
+
+              <span class="vote-v3-logo">
+                ${logo}
+              </span>
+
+
+              <span class="vote-v3-name">
+
+                <span
+                  class="vote-v3-dot"
+                  style="
+                    background:${
+                      colorMap.get(id)
+                    }
+                  "
+                ></span>
+
+                ${model.name || id}
+
+              </span>
+
+
+              <span class="vote-v3-score">
+                ${
+                  latest.toLocaleString()
+                }${
+                  uncertainty
+                    ? " ±"+uncertainty
+                    : ""
+                }
+              </span>
+
+            </a>
+          `;
+
+        }
+      ).join("");
+
+
+    /*
+     * Hover/click tooltip.
+     */
+    svg
+      .querySelectorAll(
+        ".vote-v3-point"
+      )
+      .forEach(
+        function(node){
+
+          function show(){
+
+            var id=
+              node.dataset.model;
+
+            var index=
+              Number(
+                node.dataset.index
+              );
+
+
+            var snapshot=
+              history[index];
+
+            var value=
+              snapshot.models?.[id];
+
+
+            var model=
+              modelMap.get(id) || {
+                name:id
+              };
+
+
+            tooltip.innerHTML=`
+              <div class="vote-v3-tooltip-time">
+                ${shortDate(snapshot.at)}
+              </div>
+
+              <div class="vote-v3-tooltip-row">
+
+                <strong>
+                  ${model.name}
+                </strong>
+
+                <span>
+                  ${
+                    Number(
+                      value?.votes || 0
+                    ).toLocaleString()
+                  }${
+                    Number(
+                      value?.uncertainty || 0
+                    )
+                      ? " ±"+
+                        Number(
+                          value.uncertainty
+                        )
+                      : ""
+                  }
+                </span>
+
+              </div>
+            `;
+
+
+            var svgBox=
+              svg.getBoundingClientRect();
+
+            var chartBox=
+              chart.getBoundingClientRect();
+
+
+            var cx=
+              Number(
+                node.getAttribute(
+                  "cx"
+                )
+              );
+
+
+            var cy=
+              Number(
+                node.getAttribute(
+                  "cy"
+                )
+              );
+
+
+            tooltip.style.left=
+              (
+                svgBox.left-
+                chartBox.left+
+                cx/1000*
+                svgBox.width
+              )
+              +"px";
+
+
+            tooltip.style.top=
+              (
+                svgBox.top-
+                chartBox.top+
+                cy/350*
+                svgBox.height
+              )
+              +"px";
+
+
+            tooltip.classList.add(
+              "show"
+            );
+
+          }
+
+
+          node.addEventListener(
+            "mouseenter",
+            show
+          );
+
+          node.addEventListener(
+            "click",
+            show
+          );
+
+
+          node.addEventListener(
+            "mouseleave",
+            function(){
+              tooltip.classList.remove(
+                "show"
+              );
+            }
+          );
+
+        }
+      );
+
+
+    meta.textContent=
+      `${raw.length} raw snapshots · `+
+      `${history.length} distinct states · `+
+      `${ids.length} models with recorded scores`;
+
+  }
+
+
+  if(
+    document.readyState===
+    "loading"
+  ){
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function(){
+        setTimeout(run,0);
+      }
+    );
+
+  }else{
+
+    setTimeout(run,0);
+
+  }
+
+})();
+</script>
+
 </body>
 
 </html>

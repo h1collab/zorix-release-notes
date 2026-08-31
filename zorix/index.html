@@ -7,56 +7,48 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
-<meta name="zorix-build" content="1788156881">
+<meta name="zorix-build" content="1788157268">
 <script>
 (function(){
-  var expected="1788156881";
+  var expected="1788157268";
+  var endpoint="/build-version.txt";
 
-  try{
+  try {
     fetch(
-      "/build-version.txt?_=" + Date.now(),
+      endpoint + "?fresh=" + Date.now(),
       {
-        cache:"no-store",
-        headers:{
-          "Cache-Control":"no-cache"
-        }
+        cache:"no-store"
       }
     )
-    .then(function(response){
-      if(!response.ok){
-        return null;
-      }
-      return response.text();
+    .then(function(r){
+      return r.ok ? r.text() : "";
     })
     .then(function(latest){
-      if(!latest){
-        return;
-      }
-
-      latest=latest.trim();
+      latest=String(latest || "").trim();
 
       if(
         latest &&
-        latest!==expected
+        latest !== expected
       ){
-        var url=
-          new URL(
-            window.location.href          ?v=1788156881);
+        var next=new URL(
+          window.location.href
+        );
 
-        url.searchParams.set(
+        next.searchParams.set(
           "__v",
           latest
         );
 
         window.location.replace(
-          url.toString()
+          next.toString()
         );
       }
     })
     .catch(function(){});
-  }catch(e){}
+  } catch(e) {}
 })();
 </script>
+
 
 
 
@@ -793,22 +785,22 @@ h1{
 <header>
   <nav class="nav">
 
-    <a class="brand" href="/?__v=1788156881">
+    <a class="brand" href="/?__v=1788157268">
       zorix
     </a>
 
     <div class="nav-actions">
 
       <div class="nav-links">
-        <a href="/number-of-calls/?__v=1788156881">
+        <a href="/number-of-calls/?__v=1788157268">
           Usage
         </a>
 
-        <a href="/number-of-calls/?__v=1788156881#benchmarks">
+        <a href="/number-of-calls/?__v=1788157268#benchmarks">
           Benchmarks
         </a>
 
-        <a href="/number-of-calls/compare.html?__v=1788156881">
+        <a href="/number-of-calls/compare.html?__v=1788157268">
           Compare
         </a>
       </div>
@@ -837,22 +829,22 @@ h1{
 
     <div class="handle"></div>
 
-    <a href="/number-of-calls/?__v=1788156881">
+    <a href="/number-of-calls/?__v=1788157268">
       <span>Model usage</span>
       <span>›</span>
     </a>
 
-    <a href="/number-of-calls/?__v=1788156881#benchmarks">
+    <a href="/number-of-calls/?__v=1788157268#benchmarks">
       <span>Benchmarks</span>
       <span>›</span>
     </a>
 
-    <a href="/number-of-calls/compare.html?__v=1788156881">
+    <a href="/number-of-calls/compare.html?__v=1788157268">
       <span>Compare models</span>
       <span>›</span>
     </a>
 
-    <a href="/?__v=1788156881">
+    <a href="/?__v=1788157268">
       <span>Release notes</span>
       <span>›</span>
     </a>
@@ -875,7 +867,7 @@ h1{
 
     <span class="provider-logo">
       <img
-        src="/number-of-calls/assets/logos/zorix.svg?v=1788156881"
+        src="/number-of-calls/assets/logos/zorix.svg?v=1788157268"
         alt=""
       >
     </span>
@@ -1065,8 +1057,8 @@ h1{
 </div>
 
 
-<script src="/number-of-calls/models.js?v=1788156881"></script>
-<script src="/number-of-calls/usage.js?v=1788156881"></script>
+<script src="/number-of-calls/models.js?v=1788157268"></script>
+<script src="/number-of-calls/usage.js?v=1788157268"></script>
 
 <script>
 
@@ -1314,7 +1306,7 @@ function renderModels(){
 
             <div class="model-meta">
 
-              <a href="/zorix/?__v=1788156881">
+              <a href="/zorix/?__v=1788157268">
                 by ${providerConfig.name}
               </a>
 
