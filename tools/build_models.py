@@ -67,3 +67,37 @@ if index_builder.exists():
         ],
         check=False
     )
+
+
+# Build extended model analysis metadata.
+analysis_builder = (
+    ROOT /
+    "tools/build_model_analysis.py"
+)
+
+if analysis_builder.exists():
+
+    subprocess.run(
+        [
+            sys.executable,
+            str(analysis_builder)
+        ],
+        check=False
+    )
+
+
+# Build permanent path-based model pages.
+page_builder = (
+    ROOT /
+    "tools/build_model_pages.py"
+)
+
+if page_builder.exists():
+
+    subprocess.run(
+        [
+            sys.executable,
+            str(page_builder)
+        ],
+        check=False
+    )

@@ -1,0 +1,4810 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="zorix-build" content="1788171566">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>Model | Zorix Code</title>
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#0d0d0d;
+  --muted:#666662;
+  --line:#deded9;
+  --soft:#f7f7f5;
+  --soft2:#fbfbf9;
+  --accent:#7c5ce7;
+  --good:#14b87a;
+  --max:1180px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.013em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:30;
+
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  max-width:var(--max);
+  height:66px;
+
+  margin:auto;
+  padding:0 24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:-.045em;
+}
+
+.nav-links{
+  display:flex;
+  gap:24px;
+
+  font-size:14px;
+}
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+  padding:52px 24px 150px;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.back{
+  display:inline-flex;
+
+  margin-bottom:43px;
+
+  color:var(--muted);
+  font-size:13px;
+}
+
+.model-head{
+  padding-bottom:45px;
+
+  border-bottom:1px solid var(--line);
+}
+
+.identity{
+  display:flex;
+
+  gap:16px;
+  align-items:center;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+
+  display:grid;
+  place-items:center;
+
+  flex:0 0 auto;
+
+  border:1px solid var(--line);
+  border-radius:50%;
+}
+
+.logo img{
+  max-width:31px;
+  max-height:31px;
+
+  object-fit:contain;
+}
+
+.logo-fallback{
+  font-size:15px;
+}
+
+.title-wrap{
+  min-width:0;
+}
+
+.provider{
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-bottom:5px;
+
+  cursor:pointer;
+
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+h1{
+  margin:0;
+
+  font-size:clamp(38px,6vw,65px);
+  line-height:.98;
+
+  font-weight:600;
+
+  letter-spacing:-.055em;
+}
+
+.action-row{
+  margin-top:21px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.slug{
+  display:inline-flex;
+  align-items:center;
+
+  padding:10px 0;
+
+  color:#3f3f3c;
+
+  font-size:14px;
+
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+.action{
+  padding:9px 13px;
+
+  border:1px solid var(--line);
+  border-radius:9px;
+
+  background:#fff;
+
+  font-size:13px;
+
+  cursor:pointer;
+}
+
+.action:hover{
+  background:var(--soft);
+}
+
+
+/* =====================================================
+   DESCRIPTION
+   ===================================================== */
+
+.hero-copy{
+  max-width:830px;
+
+  margin-top:40px;
+
+  font-size:clamp(19px,2.2vw,26px);
+  line-height:1.52;
+
+  letter-spacing:-.025em;
+}
+
+.tagline{
+  margin-bottom:14px;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.4;
+}
+
+.highlights{
+  margin:29px 0 0;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+
+  padding:0;
+
+  list-style:none;
+}
+
+.highlights li{
+  padding:7px 10px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  font-size:11px;
+
+  color:#535350;
+}
+
+
+/* =====================================================
+   META GRID
+   ===================================================== */
+
+.meta-grid{
+  margin-top:45px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+
+.meta-card{
+  min-height:123px;
+
+  padding:20px;
+
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.meta-label{
+  color:var(--muted);
+
+  font-size:11px;
+
+  text-transform:uppercase;
+  letter-spacing:.045em;
+}
+
+.meta-value{
+  margin-top:17px;
+
+  font-size:19px;
+  line-height:1.3;
+
+  letter-spacing:-.025em;
+}
+
+.modalities{
+  display:flex;
+
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.modality{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  min-width:29px;
+  height:29px;
+
+  padding:0 8px;
+
+  border-radius:7px;
+
+  background:#f1f1ef;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   SECTIONS
+   ===================================================== */
+
+.section{
+  padding:58px 0;
+
+  border-bottom:1px solid var(--line);
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+
+  gap:28px;
+
+  margin-bottom:28px;
+}
+
+.section-title{
+  font-size:31px;
+
+  letter-spacing:-.045em;
+}
+
+.section-copy{
+  max-width:500px;
+
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   USAGE
+   ===================================================== */
+
+.usage-summary{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.usage-stat{
+  padding:24px 0;
+}
+
+.usage-stat:not(:first-child){
+  padding-left:25px;
+
+  border-left:1px solid var(--line);
+}
+
+.usage-k{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.usage-v{
+  margin-top:14px;
+
+  font-size:31px;
+
+  letter-spacing:-.045em;
+}
+
+.chart{
+  position:relative;
+
+  height:310px;
+
+  margin-top:38px;
+
+  display:flex;
+  align-items:flex-end;
+  gap:4px;
+
+  padding-top:30px;
+
+  border-bottom:1px solid #aaa;
+}
+
+.grid-line{
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  border-top:1px solid #ecece8;
+
+  pointer-events:none;
+}
+
+.bar{
+  position:relative;
+
+  z-index:2;
+
+  flex:1;
+
+  min-width:2px;
+
+  border-radius:2px 2px 0 0;
+}
+
+
+/* =====================================================
+   BENCHMARK
+   ===================================================== */
+
+.bench-empty{
+  padding:34px;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  color:var(--muted);
+
+  font-size:14px;
+}
+
+.bench-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+}
+
+.bench-card{
+  position:relative;
+
+  min-height:240px;
+
+  padding:25px;
+
+  border:1px solid var(--line);
+  border-radius:16px;
+
+  background:#fff;
+
+  cursor:pointer;
+}
+
+.bench-name{
+  font-size:18px;
+
+  letter-spacing:-.025em;
+}
+
+.bench-rank{
+  position:absolute;
+
+  right:22px;
+  top:22px;
+
+  padding:7px 9px;
+
+  border-radius:8px;
+
+  background:#e8f7f1;
+  color:var(--good);
+
+  font-size:11px;
+}
+
+.bench-score-row{
+  margin-top:38px;
+
+  display:flex;
+  align-items:baseline;
+
+  gap:8px;
+}
+
+.bench-score{
+  font-size:58px;
+
+  font-weight:600;
+
+  letter-spacing:-.06em;
+}
+
+.bench-unit{
+  color:var(--muted);
+
+  font-size:16px;
+}
+
+.bench-line{
+  height:8px;
+
+  margin-top:22px;
+
+  overflow:hidden;
+
+  border-radius:99px;
+
+  background:#ededeb;
+}
+
+.bench-fill{
+  height:100%;
+
+  border-radius:99px;
+
+  background:var(--good);
+}
+
+.bench-foot{
+  margin-top:19px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.bench-note{
+  margin-top:20px;
+
+  padding-top:17px;
+
+  border-top:1px solid var(--line);
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   RADAR
+   ===================================================== */
+
+.radar-card{
+  margin-top:17px;
+
+  padding:25px;
+
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+
+.radar-top{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:20px;
+}
+
+.radar-title{
+  font-size:20px;
+
+  letter-spacing:-.03em;
+}
+
+.radar-toggle{
+  display:flex;
+
+  border:1px solid var(--line);
+  border-radius:8px;
+
+  padding:3px;
+}
+
+.radar-toggle span{
+  padding:7px 10px;
+
+  border-radius:5px;
+
+  font-size:11px;
+}
+
+.radar-toggle span.active{
+  background:#fff;
+
+  box-shadow:
+    0 1px 4px rgba(0,0,0,.1);
+
+  color:var(--accent);
+}
+
+.radar-wrap{
+  max-width:600px;
+
+  margin:auto;
+}
+
+.radar{
+  width:100%;
+  height:auto;
+
+  display:block;
+}
+
+
+/* =====================================================
+   SPEC DETAILS
+   ===================================================== */
+
+.detail-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  border-top:1px solid var(--line);
+}
+
+.detail-row{
+  min-height:95px;
+
+  padding:20px 0;
+
+  border-bottom:1px solid var(--line);
+}
+
+.detail-row:nth-child(even){
+  padding-left:24px;
+
+  border-left:1px solid var(--line);
+}
+
+.detail-label{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.detail-value{
+  margin-top:11px;
+
+  font-size:17px;
+}
+
+
+/* =====================================================
+   BOTTOM BAR
+   ===================================================== */
+
+.bottom-actions{
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  z-index:50;
+
+  padding:
+    14px
+    24px
+    max(14px,env(safe-area-inset-bottom));
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(18px);
+
+  border-top:
+    1px solid var(--line);
+}
+
+.bottom-inner{
+  max-width:var(--max);
+
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+}
+
+.bottom-button{
+  min-height:55px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--line);
+  border-radius:10px;
+
+  background:#fff;
+
+  font-size:16px;
+
+  cursor:pointer;
+}
+
+.bottom-button:hover{
+  background:var(--soft);
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media(max-width:760px){
+
+  main{
+    padding:
+      36px
+      18px
+      145px;
+  }
+
+  .nav{
+    padding:
+      0
+      18px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .meta-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .hero-copy{
+    font-size:20px;
+  }
+
+  .usage-summary{
+    grid-template-columns:1fr;
+  }
+
+  .usage-stat:not(:first-child){
+    padding-left:0;
+
+    border-left:0;
+    border-top:1px solid var(--line);
+  }
+
+  .bench-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail-row:nth-child(even){
+    padding-left:0;
+
+    border-left:0;
+  }
+
+  .section-head{
+    align-items:start;
+    flex-direction:column;
+  }
+
+  .chart{
+    height:260px;
+  }
+
+}
+
+
+/* =========================================================
+   PUBLIC / PROVIDER EVALUATIONS
+   ========================================================= */
+
+.public-eval-source{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  margin-bottom:21px;
+}
+
+.public-eval-type{
+  display:inline-flex;
+  align-items:center;
+
+  min-height:26px;
+
+  padding:0 9px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  font-size:10px;
+
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.public-eval-link{
+  color:var(--muted);
+
+  font-size:11px;
+
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.public-eval-list{
+  border-top:1px solid var(--line);
+}
+
+.public-eval-row{
+  min-height:76px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:20px;
+  align-items:center;
+
+  border-bottom:1px solid var(--line);
+}
+
+.public-eval-name{
+  font-size:14px;
+}
+
+.public-eval-detail{
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.45;
+}
+
+.public-eval-value{
+  text-align:right;
+
+  font-size:22px;
+
+  font-variant-numeric:tabular-nums;
+}
+
+.public-eval-unit{
+  margin-left:4px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.public-eval-note{
+  margin-top:18px;
+
+  max-width:700px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+.public-eval-empty{
+  padding:24px;
+
+  border:1px solid var(--line);
+  border-radius:12px;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.55;
+}
+
+@media(max-width:700px){
+
+  .public-eval-row{
+    grid-template-columns:
+      minmax(0,1fr)
+      minmax(80px,auto);
+  }
+
+  .public-eval-value{
+    font-size:18px;
+  }
+
+}
+
+
+/* =========================================================
+   UNIFIED BENCHMARK VIEW
+   ========================================================= */
+
+.bench-source-group{
+  margin-bottom:35px;
+}
+
+.bench-source-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+
+  margin-bottom:16px;
+}
+
+.bench-source-title{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  font-size:17px;
+}
+
+.bench-source-badge{
+  display:inline-flex;
+  align-items:center;
+
+  min-height:24px;
+  padding:0 8px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  color:var(--muted);
+  font-size:9px;
+
+  letter-spacing:.035em;
+  text-transform:uppercase;
+}
+
+.bench-source-note{
+  max-width:470px;
+
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.45;
+
+  text-align:right;
+}
+
+.bench-public-card{
+  cursor:default;
+}
+
+.bench-public-value{
+  margin-top:38px;
+
+  font-size:47px;
+  font-weight:600;
+
+  letter-spacing:-.055em;
+}
+
+.bench-public-unit{
+  margin-left:5px;
+
+  color:var(--muted);
+  font-size:14px;
+}
+
+.bench-public-detail{
+  margin-top:18px;
+
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.45;
+}
+
+.bench-source-link{
+  display:inline-flex;
+
+  margin-top:16px;
+
+  color:var(--muted);
+  font-size:11px;
+
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.bench-no-data{
+  padding:28px;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+
+@media(max-width:700px){
+
+  .bench-source-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .bench-source-note{
+    text-align:left;
+  }
+
+}
+
+
+/* =========================================================
+   OTHER MODELS FROM PROVIDER
+   ========================================================= */
+
+.other-models-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:12px;
+}
+
+.other-model-card{
+  min-height:190px;
+
+  padding:19px;
+
+  display:flex;
+  flex-direction:column;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  background:#fff;
+
+  transition:
+    background .13s ease,
+    transform .13s ease;
+}
+
+.other-model-card:hover{
+  background:var(--soft2);
+
+  transform:
+    translateY(-2px);
+}
+
+.other-model-top{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+}
+
+.other-model-logo{
+  width:36px;
+  height:36px;
+
+  display:grid;
+  place-items:center;
+
+  flex:0 0 36px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+}
+
+.other-model-logo img{
+  width:25px;
+  height:25px;
+
+  object-fit:contain;
+}
+
+.other-model-provider{
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.other-model-name{
+  margin-top:3px;
+
+  font-size:15px;
+  line-height:1.2;
+
+  letter-spacing:-.025em;
+}
+
+.other-model-copy{
+  margin-top:16px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.45;
+
+  display:-webkit-box;
+
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+
+  overflow:hidden;
+}
+
+.other-model-stats{
+  margin-top:auto;
+
+  padding-top:14px;
+
+  display:flex;
+  justify-content:space-between;
+
+  gap:9px;
+
+  border-top:
+    1px solid #ecece9;
+
+  color:#555;
+
+  font-size:10px;
+}
+
+.other-model-empty{
+  padding:25px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:13px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.other-model-refresh{
+  border:0;
+
+  background:transparent;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:11px;
+
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+
+@media(max-width:760px){
+
+  .other-models-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+/* =========================================================
+   MODEL PAGE MENU
+   ========================================================= */
+
+.model-nav-actions{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.model-menu-button{
+  width:42px;
+  height:42px;
+
+  border:0;
+
+  display:grid;
+  place-items:center;
+
+  background:transparent;
+
+  cursor:pointer;
+}
+
+.model-menu-lines{
+  width:23px;
+
+  display:grid;
+  gap:5px;
+}
+
+.model-menu-lines span{
+  display:block;
+
+  height:1.5px;
+
+  border-radius:4px;
+
+  background:#111;
+}
+
+.model-menu-overlay{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  background:
+    rgba(0,0,0,.55);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.17s ease;
+}
+
+.model-menu-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.model-menu-sheet{
+  position:absolute;
+
+  right:18px;
+  top:77px;
+
+  width:min(
+    430px,
+    calc(100vw - 36px)
+  );
+
+  max-height:
+    calc(100vh - 96px);
+
+  overflow:auto;
+
+  padding:10px;
+
+  border:
+    1px solid #d8d8d4;
+
+  border-radius:18px;
+
+  background:#fff;
+
+  box-shadow:
+    0 22px 70px
+    rgba(0,0,0,.18);
+
+  transform:
+    translateY(-8px);
+
+  transition:.17s ease;
+}
+
+.model-menu-overlay.open
+.model-menu-sheet{
+  transform:
+    translateY(0);
+}
+
+.model-menu-top{
+  padding:
+    13px
+    14px
+    16px;
+
+  border-bottom:
+    1px solid #ecece9;
+}
+
+.model-menu-title{
+  font-size:17px;
+
+  letter-spacing:-.025em;
+}
+
+.model-menu-intro{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+.model-menu-item{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto;
+
+  gap:14px;
+  align-items:center;
+
+  padding:14px;
+
+  border-radius:12px;
+}
+
+.model-menu-item:hover{
+  background:var(--soft);
+}
+
+.model-menu-item-title{
+  font-size:14px;
+}
+
+.model-menu-item-desc{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.4;
+}
+
+.model-menu-arrow{
+  color:#888;
+
+  font-size:16px;
+}
+
+
+@media(max-width:760px){
+
+  .model-menu-sheet{
+    left:14px;
+    right:14px;
+    top:auto;
+    bottom:14px;
+
+    width:auto;
+
+    max-height:82vh;
+
+    border-radius:22px;
+  }
+
+}
+
+
+/* =========================================================
+   MODEL FAQ
+   ========================================================= */
+
+.faq-list{
+  border-top:1px solid var(--line);
+}
+
+.faq-item{
+  border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+  width:100%;
+
+  padding:22px 0;
+
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 26px;
+
+  gap:18px;
+  align-items:center;
+
+  border:0;
+
+  background:transparent;
+
+  cursor:pointer;
+  text-align:left;
+}
+
+.faq-question-text{
+  font-size:17px;
+
+  letter-spacing:-.025em;
+}
+
+.faq-plus{
+  width:25px;
+  height:25px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--line);
+  border-radius:50%;
+
+  color:var(--muted);
+
+  font-size:17px;
+
+  transition:
+    transform .16s ease,
+    background .16s ease;
+}
+
+.faq-item.open
+.faq-plus{
+  transform:rotate(45deg);
+
+  background:var(--soft);
+}
+
+.faq-answer{
+  display:none;
+
+  max-width:790px;
+
+  padding:
+    0
+    50px
+    24px
+    0;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.65;
+}
+
+.faq-item.open
+.faq-answer{
+  display:block;
+}
+
+.faq-empty{
+  padding:24px 0;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+
+
+/* =========================================================
+   METRON ANALYSIS MATRIX V1
+   ========================================================= */
+
+.analysis-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
+  border-top:
+    1px solid var(--line);
+
+  border-left:
+    1px solid var(--line);
+}
+
+.analysis-item{
+  min-height:118px;
+
+  padding:18px;
+
+  border-right:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.analysis-label{
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.06em;
+}
+
+.analysis-value{
+  margin-top:14px;
+
+  font-size:16px;
+
+  line-height:1.4;
+
+  letter-spacing:-.025em;
+}
+
+.analysis-value.empty{
+  color:#aaa;
+
+  font-size:13px;
+}
+
+.analysis-pills{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-top:13px;
+}
+
+.analysis-pill{
+  display:inline-flex;
+
+  min-height:27px;
+
+  align-items:center;
+
+  padding:
+    0
+    8px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:999px;
+
+  color:#474743;
+
+  font-size:9px;
+}
+
+.analysis-note{
+  margin-top:20px;
+
+  padding:
+    14px
+    15px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  background:var(--soft2);
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.55;
+}
+
+.analysis-links{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:20px;
+}
+
+.analysis-link{
+  display:inline-flex;
+
+  min-height:37px;
+
+  align-items:center;
+
+  padding:
+    0
+    11px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  font-size:11px;
+}
+
+.analysis-link:hover{
+  background:var(--soft);
+}
+
+@media(max-width:800px){
+
+  .analysis-grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+}
+
+@media(max-width:550px){
+
+  .analysis-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="/number-of-calls/"
+    >
+      zorix
+    </a>
+
+    <div class="nav-links">
+
+      <a href="/number-of-calls/">
+        Usage
+      </a>
+
+      <a href="./#benchmarks">
+        Benchmarks
+      </a>
+
+      <a href="/number-of-calls/compare.html">
+        Compare
+      </a>
+
+      <a href="./share/">
+        Charts
+      </a>
+
+    </div>
+
+  
+    <button
+      class="model-menu-button"
+      id="modelMenuButton"
+      type="button"
+      aria-label="Open navigation"
+    >
+
+      <span class="model-menu-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+
+    </button>
+
+<a href="/status/">
+  Status
+</a>
+</nav>
+
+</header>
+
+
+
+
+<div
+  class="model-menu-overlay"
+  id="modelMenuOverlay"
+  aria-hidden="true"
+>
+
+  <div class="model-menu-sheet">
+
+    <div class="model-menu-top">
+
+      <div class="model-menu-title">
+        Zorix Metron
+      </div>
+
+      <div class="model-menu-intro">
+        Model intelligence, usage,
+        evaluations and community rankings.
+      </div>
+
+    </div>
+
+
+    <a
+      class="model-menu-item"
+      href="/number-of-calls/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Usage
+        </div>
+
+        <div class="model-menu-item-desc">
+          Token volume, model trends,
+          usage filters and traffic share.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="/number-of-calls/models/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Models
+        </div>
+
+        <div class="model-menu-item-desc">
+          Browse and search every model
+          tracked by Zorix Metron.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./#benchmarks"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Benchmarks
+        </div>
+
+        <div class="model-menu-item-desc">
+          Zorix Metron internal benchmark
+          results and model comparisons.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="/number-of-calls/compare.html"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Compare models
+        </div>
+
+        <div class="model-menu-item-desc">
+          Compare specifications, usage
+          and evaluations side by side.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./voting/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Voting
+        </div>
+
+        <div class="model-menu-item-desc">
+          Community rankings and
+          historical voting movement.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="./share/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Public charts
+        </div>
+
+        <div class="model-menu-item-desc">
+          Export Zorix Metron data as
+          publication-ready PNG graphics.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ›
+      </span>
+    </a>
+
+
+    <a
+      class="model-menu-item"
+      href="https://doc.zorix.it/"
+    >
+      <div>
+
+        <div class="model-menu-item-title">
+          Documentation
+        </div>
+
+        <div class="model-menu-item-desc">
+          Technical model documentation
+          and Zorix developer resources.
+        </div>
+
+      </div>
+
+      <span class="model-menu-arrow">
+        ↗
+      </span>
+    </a>
+
+  </div>
+
+</div>
+
+<main id="main">
+
+  <a
+    class="back"
+    href="/number-of-calls/"
+  >
+    ← All models
+  </a>
+
+
+  <section class="model-head">
+
+    <div class="identity">
+
+      <div
+        class="logo"
+        id="logo"
+      ></div>
+
+      <div class="title-wrap">
+
+        <div
+          class="provider"
+          id="provider"
+        ></div>
+
+        <h1 id="name">
+          Model
+        </h1>
+
+      </div>
+
+    </div>
+
+
+    <div class="action-row">
+
+      <span
+        class="slug"
+        id="slug"
+      ></span>
+
+      <button
+        class="action"
+        id="copySlug"
+      >
+        Copy
+      </button>
+
+      <a
+        class="action"
+        id="docs"
+        target="_blank"
+        rel="noopener"
+        hidden
+      >
+        Documentation ↗
+      </a>
+
+      <a
+        class="action"
+        id="weights"
+        target="_blank"
+        rel="noopener"
+        hidden
+      >
+        Model weights ↗
+      </a>
+
+    </div>
+
+
+    <div class="hero-copy">
+
+      <div
+        class="tagline"
+        id="tagline"
+      ></div>
+
+      <div id="description"></div>
+
+      <ul
+        class="highlights"
+        id="highlights"
+      ></ul>
+
+    </div>
+
+
+    <div
+      class="meta-grid"
+      id="metaGrid"
+    ></div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+        Usage
+      </div>
+
+      <div class="section-copy">
+        Token traffic recorded for this model
+        in the Zorix Code or Metron environment.
+      </div>
+
+    </div>
+
+
+    <div class="usage-summary">
+
+      <div class="usage-stat">
+
+        <div class="usage-k">
+          Daily
+        </div>
+
+        <div
+          class="usage-v"
+          id="daily"
+        ></div>
+
+      </div>
+
+
+      <div class="usage-stat">
+
+        <div class="usage-k">
+          Weekly
+        </div>
+
+        <div
+          class="usage-v"
+          id="weekly"
+        ></div>
+
+      </div>
+
+
+      <div class="usage-stat">
+
+        <div class="usage-k">
+          Source
+        </div>
+
+        <div
+          class="usage-v"
+          id="source"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="chart"
+      id="chart"
+    >
+
+      <div
+        class="grid-line"
+        style="top:25%"
+      ></div>
+
+      <div
+        class="grid-line"
+        style="top:50%"
+      ></div>
+
+      <div
+        class="grid-line"
+        style="top:75%"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <section
+    class="section"
+    id="benchmarks"
+  >
+
+    <div class="section-head">
+
+      <div class="section-title">
+        Benchmarks
+      </div>
+
+      <div class="section-copy">
+        Zorix internal results and published external evaluations.
+        Sources are kept separate because benchmark harnesses,
+        settings and model configurations can differ.
+      </div>
+
+    </div>
+
+
+    <div id="benchmarkContent"></div>
+
+  </section>
+
+
+  
+
+
+<section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+        Model details
+      </div>
+
+    </div>
+
+    <div
+      class="detail-grid"
+      id="detailGrid"
+    ></div>
+
+  </section>
+
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Frequently asked questions
+      </div>
+
+      <div class="section-copy">
+        Common questions about this specific model,
+        its Zorix Metron usage and how its data is represented.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="faq-list"
+    id="modelFaq"
+  ></div>
+
+</section>
+
+<section
+  class="section"
+  id="otherModelsSection"
+>
+
+  <div class="section-head">
+
+    <div>
+
+      <div
+        class="section-title"
+        id="otherModelsTitle"
+      >
+        Other models
+      </div>
+
+      <div
+        class="section-copy"
+        id="otherModelsCopy"
+      >
+        More models from the same provider.
+      </div>
+
+    </div>
+
+
+    <button
+      class="other-model-refresh"
+      id="refreshOtherModels"
+      type="button"
+    >
+      Show different models
+    </button>
+
+  </div>
+
+
+  <div
+    class="other-models-grid"
+    id="otherModelsGrid"
+  ></div>
+
+</section>
+
+
+
+<section
+  class="section"
+  id="metronAnalysis"
+>
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Model analysis
+    </div>
+
+    <div class="section-copy">
+      Capabilities, reasoning variants, provider routing,
+      agent compatibility and measured performance telemetry.
+    </div>
+
+  </div>
+
+
+  <div
+    class="analysis-grid"
+    id="analysisGrid"
+  ></div>
+
+
+  <div
+    class="analysis-note"
+    id="analysisNote"
+  >
+    Performance fields only display measurements explicitly
+    recorded by Zorix Metron. Missing telemetry is not estimated.
+  </div>
+
+
+  <div class="analysis-links">
+
+    <a
+      class="analysis-link"
+      id="analysisCompare"
+      href="/number-of-calls/compare.html"
+    >
+      Compare model
+    </a>
+
+    <a
+      class="analysis-link"
+      href="/number-of-calls/explore/"
+    >
+      Explore models
+    </a>
+
+    <a
+      class="analysis-link"
+      href="/number-of-calls/providers/"
+    >
+      Provider analysis
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<div class="bottom-actions">
+
+  <div class="bottom-inner">
+
+    <a
+      class="bottom-button"
+      id="compareButton"
+    >
+      Compare ◫
+    </a>
+
+    <a
+      class="bottom-button"
+      href="./voting/"
+    >
+      Voting leaderboard ↗
+    </a>
+
+  </div>
+
+</div>
+
+
+<script src="../../models.js?v=1788171566"></script>
+<script src="../../model-index.js?v=1788171566"></script>
+<script src="../../model-analysis.js?v=1788171566"></script>
+<script src="../../model-profiles.js?v=1788171566"></script>
+<script src="../../model-faq.js?v=1788171566"></script>
+<script src="../../benchmarks.js?v=1788171566"></script>
+<script src="../../external-benchmarks.js?v=1788171566"></script>
+
+<script>
+
+
+const id =
+  "gpt-56-luna";
+
+
+
+/*
+ * Primary source: full model metadata.
+ * Fallback source: generated model index.
+ *
+ * This prevents one malformed/failed models.js file
+ * from turning every model route into "Model not found".
+ */
+const primaryModels =
+  Array.isArray(
+    window.ZORIX_MODEL_DETAILS
+  )
+    ? window.ZORIX_MODEL_DETAILS
+    : [];
+
+
+const fallbackModels =
+  Array.isArray(
+    window.ZORIX_MODEL_INDEX
+  )
+    ? window.ZORIX_MODEL_INDEX
+    : [];
+
+
+/*
+ * Merge both sources by stable model ID.
+ * Full metadata wins when available.
+ */
+const modelMap =
+  new Map();
+
+
+fallbackModels.forEach(
+  item=>{
+
+    if(item?.id){
+
+      modelMap.set(
+        item.id,
+        item
+      );
+
+    }
+
+  }
+);
+
+
+primaryModels.forEach(
+  item=>{
+
+    if(!item?.id){
+      return;
+    }
+
+
+    const fallback =
+      modelMap.get(
+        item.id
+      )
+      ||
+      {};
+
+
+    modelMap.set(
+      item.id,
+      {
+        ...fallback,
+        ...item
+      }
+    );
+
+  }
+);
+
+
+const models =
+  Array.from(
+    modelMap.values()
+  );
+
+const profiles =
+  window.ZORIX_MODEL_PROFILES || {};
+
+const benchmarkCatalog =
+  window.ZORIX_BENCHMARKS || {
+    metrics:[],
+    scores:{}
+  };
+
+const benchmarkMap =
+  benchmarkCatalog.scores || {};
+
+const externalBenchmarkCatalog =
+  window.ZORIX_EXTERNAL_BENCHMARKS || {};
+
+
+function normalizeModelKey(value){
+
+  return String(
+    value || ""
+  )
+  .trim()
+  .toLowerCase()
+  .replace(
+    /—/g,
+    "-"
+  )
+  .replace(
+    /[^a-z0-9]+/g,
+    "-"
+  )
+  .replace(
+    /^-+|-+$/g,
+    ""
+  );
+
+}
+
+
+/*
+ * Accept:
+ *   ?id=nex-coder-38-neptune
+ *   ?id=Nex Coder 3.8 Preview Neptune
+ *   older slug/name links
+ */
+const requestedKey =
+  normalizeModelKey(
+    id
+  );
+
+
+const model =
+  models.find(
+    item=>
+      item.id===id
+      ||
+      item.name===id
+      ||
+      normalizeModelKey(
+        item.id
+      )===requestedKey
+      ||
+      normalizeModelKey(
+        item.name
+      )===requestedKey
+  );
+
+const profile =
+  profiles[id] || {};
+
+
+const providerRoutes = {
+  "Zorix":"/zorix/",
+  "Anthropic":"/anthropic/",
+  "OpenAI":"/openai/",
+  "Google":"/google/",
+  "DeepSeek":"/deepseek/",
+  "Tencent":"/tencent/",
+  "Xiaomi":"/xiaomi/",
+  "Z.ai":"/zai/"
+};
+
+
+function fmt(n){
+
+  n=Number(n || 0);
+
+  const compact=
+    new Intl.NumberFormat(
+      "en-US",
+      {
+        notation:"compact",
+        maximumFractionDigits:2
+      }
+    );
+
+  return compact.format(n);
+
+}
+
+
+function weekly(){
+
+  if(
+    model.weeklyTokens !== undefined &&
+    model.weeklyTokens !== null
+  ){
+    return Number(
+      model.weeklyTokens
+    );
+  }
+
+  return Number(
+    model.dailyTokens || 0
+  ) * 7;
+
+}
+
+
+function modalityHTML(list){
+
+  return (
+    list || ["Text"]
+  )
+  .map(
+    x=>`
+      <span class="modality">
+        ${x}
+      </span>
+    `
+  )
+  .join("");
+
+}
+
+
+function metaCard(
+  label,
+  value,
+  raw=false
+){
+
+  return `
+    <div class="meta-card">
+
+      <div class="meta-label">
+        ${label}
+      </div>
+
+      <div class="meta-value">
+        ${
+          raw
+          ? value
+          : (value || "—")
+        }
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function rankFor(
+  key,
+  score
+){
+
+  const values=
+    Object.entries(
+      benchmarkMap
+    )
+    .filter(
+      ([_,v])=>
+        Number.isFinite(
+          Number(v[key])
+        )
+    )
+    .map(
+      ([modelId,v])=>({
+        id:modelId,
+        value:Number(v[key])
+      })
+    )
+    .sort(
+      (a,b)=>
+        b.value-a.value
+    );
+
+
+  const index=
+    values.findIndex(
+      x=>x.id===id
+    );
+
+
+  if(index<0)
+    return null;
+
+
+  return {
+    rank:index+1,
+    total:values.length
+  };
+
+}
+
+
+function percentileLabel(
+  rank,
+  total
+){
+
+  if(
+    !rank ||
+    !total
+  ){
+    return "";
+  }
+
+  const pct=
+    Math.ceil(
+      rank/total*100
+    );
+
+  return `Top ${pct}%`;
+
+}
+
+
+function benchmarkCard(
+  title,
+  key,
+  score
+){
+
+  const rank=
+    rankFor(
+      key,
+      score
+    );
+
+
+  return `
+    <div
+      class="bench-card"
+      onclick="
+        location.href=
+          './compare.html?a=${encodeURIComponent(id)}'
+      "
+    >
+
+      <div class="bench-name">
+        ${title}
+      </div>
+
+      ${
+        rank
+        ? `
+          <div class="bench-rank">
+            ${percentileLabel(
+              rank.rank,
+              rank.total
+            )}
+          </div>
+        `
+        : ""
+      }
+
+      <div class="bench-score-row">
+
+        <div class="bench-score">
+          ${score.toFixed(1)}
+        </div>
+
+        <div class="bench-unit">
+          %
+        </div>
+
+      </div>
+
+
+      <div class="bench-line">
+
+        <div
+          class="bench-fill"
+          style="
+            width:${Math.min(
+              100,
+              Math.max(
+                0,
+                score
+              )
+            )}%
+          "
+        ></div>
+
+      </div>
+
+
+      <div class="bench-foot">
+
+        ${
+          rank
+          ? `
+            <span>
+              Rank ${rank.rank}
+              of ${rank.total}
+            </span>
+
+            <span>·</span>
+          `
+          : ""
+        }
+
+        <span>
+          Click to compare
+        </span>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function radarHTML(
+  terminal,
+  swe
+){
+
+  /*
+   * There are currently only two public comparison
+   * axes on this site. The visualization deliberately
+   * does not invent extra benchmark categories.
+   */
+
+  const axes=[
+    {
+      label:"Terminal",
+      value:terminal
+    },
+    {
+      label:"SWE Verified",
+      value:swe
+    },
+    {
+      label:"Terminal",
+      value:terminal
+    },
+    {
+      label:"SWE Verified",
+      value:swe
+    }
+  ];
+
+
+  const cx=300;
+  const cy=210;
+  const radius=145;
+
+
+  function point(
+    index,
+    total,
+    r
+  ){
+
+    const angle=
+      -Math.PI/2 +
+      index/total *
+      Math.PI*2;
+
+    return [
+      cx +
+      Math.cos(angle)*r,
+
+      cy +
+      Math.sin(angle)*r
+    ];
+
+  }
+
+
+  const grid=[];
+
+
+  for(
+    const ratio of
+    [.25,.5,.75,1]
+  ){
+
+    grid.push(
+      axes.map(
+        (_,i)=>
+          point(
+            i,
+            axes.length,
+            radius*ratio
+          ).join(",")
+      ).join(" ")
+    );
+
+  }
+
+
+  const data=
+    axes.map(
+      (axis,i)=>
+        point(
+          i,
+          axes.length,
+          radius*
+          axis.value/100
+        ).join(",")
+    ).join(" ");
+
+
+  const labels=
+    axes.map(
+      (axis,i)=>{
+
+        const [x,y]=
+          point(
+            i,
+            axes.length,
+            radius+33
+          );
+
+        return `
+          <text
+            x="${x}"
+            y="${y}"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            font-size="13"
+            fill="#333"
+          >
+            ${axis.label}
+          </text>
+        `;
+
+      }
+    ).join("");
+
+
+  return `
+    <div class="radar-card">
+
+      <div class="radar-top">
+
+        <div class="radar-title">
+          Benchmark profile
+        </div>
+
+        <div class="radar-toggle">
+          <span class="active">
+            Score
+          </span>
+          <span>
+            Rank
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="radar-wrap">
+
+        <svg
+          class="radar"
+          viewBox="0 0 600 420"
+          role="img"
+          aria-label="Benchmark performance profile"
+        >
+
+          ${
+            grid.map(
+              points=>`
+                <polygon
+                  points="${points}"
+                  fill="none"
+                  stroke="#deded9"
+                  stroke-width="1"
+                />
+              `
+            ).join("")
+          }
+
+
+          ${
+            axes.map(
+              (_,i)=>{
+
+                const [x,y]=
+                  point(
+                    i,
+                    axes.length,
+                    radius
+                  );
+
+                return `
+                  <line
+                    x1="${cx}"
+                    y1="${cy}"
+                    x2="${x}"
+                    y2="${y}"
+                    stroke="#e2e2df"
+                    stroke-width="1"
+                  />
+                `;
+
+              }
+            ).join("")
+          }
+
+
+          <polygon
+            points="${data}"
+            fill="rgba(124,92,231,.16)"
+            stroke="#7c5ce7"
+            stroke-width="4"
+          />
+
+
+          ${
+            axes.map(
+              (axis,i)=>{
+
+                const [x,y]=
+                  point(
+                    i,
+                    axes.length,
+                    radius*
+                    axis.value/100
+                  );
+
+                return `
+                  <circle
+                    cx="${x}"
+                    cy="${y}"
+                    r="5"
+                    fill="#fff"
+                    stroke="#7c5ce7"
+                    stroke-width="4"
+                  />
+                `;
+
+              }
+            ).join("")
+          }
+
+
+          ${labels}
+
+        </svg>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+
+
+function renderPublicEvaluations(){
+
+  const target =
+    document.getElementById(
+      "publicEvaluationContent"
+    );
+
+  if(!target || !model){
+    return;
+  }
+
+
+  const catalog =
+    window.ZORIX_EXTERNAL_BENCHMARKS || {};
+
+
+  const entry =
+    catalog[
+      model.id
+    ];
+
+
+  if(!entry){
+
+    target.innerHTML=`
+      <div class="public-eval-empty">
+        No public evaluation record has been
+        attached for this model yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const evaluations =
+    Array.isArray(
+      entry.evaluations
+    )
+      ? entry.evaluations
+      : [];
+
+
+  const sourceLink =
+    entry.source
+      ? `
+        <a
+          class="public-eval-link"
+          href="${entry.source}"
+          target="_blank"
+          rel="noopener"
+        >
+          View source ↗
+        </a>
+      `
+      : "";
+
+
+  const rows =
+    evaluations.length
+      ? `
+        <div class="public-eval-list">
+
+          ${
+            evaluations.map(
+              item=>`
+
+                <div class="public-eval-row">
+
+                  <div>
+
+                    <div class="public-eval-name">
+                      ${item.benchmark}
+                    </div>
+
+                    ${
+                      item.detail
+                        ? `
+                          <div class="public-eval-detail">
+                            ${item.detail}
+                          </div>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+
+                  <div class="public-eval-value">
+
+                    ${item.value}
+
+                    ${
+                      item.unit
+                        ? `
+                          <span class="public-eval-unit">
+                            ${item.unit}
+                          </span>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+                </div>
+
+              `
+            ).join("")
+          }
+
+        </div>
+      `
+      : `
+        <div class="public-eval-empty">
+          ${
+            entry.note ||
+            "No verified public benchmark attached."
+          }
+        </div>
+      `;
+
+
+  target.innerHTML=`
+
+    <div class="public-eval-source">
+
+      <span class="public-eval-type">
+        ${
+          entry.sourceType ||
+          "external"
+        }
+      </span>
+
+      <strong>
+        ${
+          entry.label ||
+          "Public evaluation"
+        }
+      </strong>
+
+      ${sourceLink}
+
+    </div>
+
+    ${rows}
+
+    ${
+      evaluations.length &&
+      entry.note
+        ? `
+          <div class="public-eval-note">
+            ${entry.note}
+          </div>
+        `
+        : ""
+    }
+
+  `;
+
+}
+
+
+if(!model){
+
+  document
+    .getElementById("main")
+    .innerHTML=`
+      <a
+        class="back"
+        href="/number-of-calls/"
+      >
+        ← All models
+      </a>
+
+      <h1>
+        Model not found
+      </h1>
+    `;
+
+}else{
+
+
+  document.title=
+    `${model.name} | Zorix Code`;
+
+
+  /* identity */
+
+  const logo=
+    document.getElementById(
+      "logo"
+    );
+
+
+  if(model.logo){
+
+    logo.innerHTML=`
+      <img
+        src="${model.logo}?v=1788156881"
+        alt=""
+      >
+    `;
+
+  }else{
+
+    logo.innerHTML=`
+      <span class="logo-fallback">
+        ${model.provider.slice(0,1)}
+      </span>
+    `;
+
+  }
+
+
+  const provider=
+    document.getElementById(
+      "provider"
+    );
+
+  provider.textContent=
+    model.provider;
+
+
+  if(
+    providerRoutes[
+      model.provider
+    ]
+  ){
+
+    provider.onclick=
+      ()=>
+        location.href=
+          providerRoutes[
+            model.provider
+          ];
+
+  }
+
+
+  document
+    .getElementById("name")
+    .textContent=
+      model.name;
+
+
+  const slug=
+    profile.slug ||
+    (
+      model.provider
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-") +
+      "/" +
+      model.id
+    );
+
+
+  document
+    .getElementById("slug")
+    .textContent=
+      slug;
+
+
+  document
+    .getElementById(
+      "copySlug"
+    )
+    .onclick=
+      async ()=>{
+
+        await navigator
+          .clipboard
+          .writeText(slug);
+
+        document
+          .getElementById(
+            "copySlug"
+          )
+          .textContent=
+            "Copied";
+
+      };
+
+
+  if(model.docs){
+
+    const docs=
+      document.getElementById(
+        "docs"
+      );
+
+    docs.href=
+      model.docs;
+
+    docs.hidden=false;
+
+  }
+
+
+  if(profile.weights){
+
+    const weights=
+      document.getElementById(
+        "weights"
+      );
+
+    weights.href=
+      profile.weights;
+
+    weights.hidden=false;
+
+  }
+
+
+  /* unique copy */
+
+  document
+    .getElementById(
+      "tagline"
+    )
+    .textContent=
+      profile.tagline ||
+      model.family;
+
+
+  document
+    .getElementById(
+      "description"
+    )
+    .textContent=
+      profile.description ||
+      model.about ||
+      "";
+
+
+  document
+    .getElementById(
+      "highlights"
+    )
+    .innerHTML=
+      (
+        profile.highlights ||
+        []
+      )
+      .map(
+        x=>`<li>${x}</li>`
+      )
+      .join("");
+
+
+  /* cards */
+
+  document
+    .getElementById(
+      "metaGrid"
+    )
+    .innerHTML=
+
+      metaCard(
+        "Modalities",
+        modalityHTML(
+          profile.modalities
+        ),
+        true
+      )
+
+      +
+
+      metaCard(
+        "Context",
+        model.context
+      )
+
+      +
+
+      metaCard(
+        "Released",
+        profile.released
+      )
+
+      +
+
+      metaCard(
+        "Availability",
+        profile.availability ||
+        model.status
+      )
+
+      +
+
+      metaCard(
+        "Parameters",
+        model.parameters
+      )
+
+      +
+
+      metaCard(
+        "Active parameters",
+        model.activeParameters
+      )
+
+      +
+
+      metaCard(
+        "Architecture",
+        model.architecture
+      )
+
+      +
+
+      metaCard(
+        "Family",
+        model.family
+      );
+
+
+  /* usage */
+
+  document
+    .getElementById(
+      "daily"
+    )
+    .textContent=
+      fmt(
+        model.dailyTokens
+      ) +
+      " tokens";
+
+
+  document
+    .getElementById(
+      "weekly"
+    )
+    .textContent=
+      fmt(
+        weekly()
+      ) +
+      " tokens";
+
+
+  document
+    .getElementById(
+      "source"
+    )
+    .textContent=
+      model.source ||
+      "Zorix Code";
+
+
+  /* trend */
+
+  const arr=
+    model.chart || [];
+
+  const max=
+    Math.max(
+      ...arr,
+      1
+    );
+
+  const chart=
+    document.getElementById(
+      "chart"
+    );
+
+
+  chart.insertAdjacentHTML(
+    "beforeend",
+
+    arr.map(
+      value=>`
+        <div
+          class="bar"
+          style="
+            height:${
+              Math.max(
+                1,
+                value/max*100
+              )
+            }%;
+            background:${
+              model.color ||
+              "#111"
+            }
+          "
+        ></div>
+      `
+    ).join("")
+  );
+
+
+  /* benchmark */
+
+  const internalScores =
+    benchmarkMap[id] || {};
+
+  const externalEntry =
+    externalBenchmarkCatalog[id] || null;
+
+  const benchContent =
+    document.getElementById(
+      "benchmarkContent"
+    );
+
+  const internalMetrics =
+    benchmarkCatalog.metrics || [];
+
+
+  const internalAvailable =
+    internalMetrics.filter(
+      metric=>{
+
+        const value =
+          internalScores[
+            metric.id
+          ];
+
+        return Number.isFinite(
+          Number(value)
+        );
+
+      }
+    );
+
+
+  const externalAvailable =
+    (
+      externalEntry &&
+      Array.isArray(
+        externalEntry.evaluations
+      )
+    )
+      ? externalEntry.evaluations
+      : [];
+
+
+  function internalCard(metric){
+
+    const score =
+      Number(
+        internalScores[
+          metric.id
+        ]
+      );
+
+    const rank =
+      rankFor(
+        metric.id,
+        score
+      );
+
+    return `
+      <div
+        class="bench-card"
+        onclick="
+          location.href=
+            './compare.html?a=${encodeURIComponent(id)}'
+        "
+      >
+
+        <div class="bench-name">
+          ${metric.name}
+        </div>
+
+        ${
+          rank
+            ? `
+              <div class="bench-rank">
+                ${percentileLabel(
+                  rank.rank,
+                  rank.total
+                )}
+              </div>
+            `
+            : ""
+        }
+
+        <div class="bench-score-row">
+
+          <div class="bench-score">
+            ${score.toFixed(1)}
+          </div>
+
+          <div class="bench-unit">
+            %
+          </div>
+
+        </div>
+
+        <div class="bench-line">
+
+          <div
+            class="bench-fill"
+            style="
+              width:${
+                Math.min(
+                  100,
+                  Math.max(
+                    0,
+                    score
+                  )
+                )
+              }%
+            "
+          ></div>
+
+        </div>
+
+        <div class="bench-foot">
+
+          <span>
+            Zorix internal preview
+          </span>
+
+          ${
+            rank
+              ? `
+                <span>·</span>
+                <span>
+                  Rank ${rank.rank}
+                  of ${rank.total}
+                </span>
+              `
+              : ""
+          }
+
+        </div>
+
+      </div>
+    `;
+  }
+
+
+  function externalCard(item){
+
+    const raw =
+      String(
+        item.value ?? "—"
+      );
+
+    const numeric =
+      Number(raw);
+
+    const isNumeric =
+      Number.isFinite(
+        numeric
+      );
+
+    return `
+      <div
+        class="bench-card bench-public-card"
+      >
+
+        <div class="bench-name">
+          ${item.benchmark}
+        </div>
+
+        <div class="bench-public-value">
+
+          ${raw}
+
+          ${
+            item.unit
+              ? `
+                <span class="bench-public-unit">
+                  ${item.unit}
+                </span>
+              `
+              : ""
+          }
+
+        </div>
+
+        ${
+          isNumeric &&
+          (
+            item.unit === "%" ||
+            item.unit === "score"
+          )
+            ? `
+              <div class="bench-line">
+
+                <div
+                  class="bench-fill"
+                  style="
+                    width:${
+                      Math.min(
+                        100,
+                        Math.max(
+                          0,
+                          numeric
+                        )
+                      )
+                    }%
+                  "
+                ></div>
+
+              </div>
+            `
+            : ""
+        }
+
+        ${
+          item.detail
+            ? `
+              <div class="bench-public-detail">
+                ${item.detail}
+              </div>
+            `
+            : ""
+        }
+
+        <div class="bench-foot">
+
+          <span>
+            ${
+              externalEntry?.sourceType ===
+              "provider"
+                ? "Provider published"
+                : externalEntry?.sourceType ===
+                  "third-party"
+                    ? "Third-party evaluation"
+                    : "External evaluation"
+            }
+          </span>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+
+  const sections=[];
+
+
+  /*
+   * Zorix internal results:
+   * only render metrics that actually have scores.
+   *
+   * We deliberately DO NOT render a wall of
+   * "Not evaluated" cards anymore.
+   */
+  if(internalAvailable.length){
+
+    sections.push(`
+      <div class="bench-source-group">
+
+        <div class="bench-source-head">
+
+          <div class="bench-source-title">
+
+            Zorix evaluation
+
+            <span class="bench-source-badge">
+              Internal
+            </span>
+
+          </div>
+
+          <div class="bench-source-note">
+            AA4 internal preview/testing results.
+            They are not third-party leaderboard submissions.
+          </div>
+
+        </div>
+
+        <div class="bench-grid">
+
+          ${
+            internalAvailable
+              .map(internalCard)
+              .join("")
+          }
+
+        </div>
+
+      </div>
+    `);
+
+  }
+
+
+  /*
+   * Provider / third-party results.
+   */
+  if(externalAvailable.length){
+
+    const typeLabel =
+      externalEntry?.sourceType ===
+      "provider"
+        ? "Provider"
+        : externalEntry?.sourceType ===
+          "third-party"
+            ? "Third-party"
+            : "External";
+
+
+    sections.push(`
+      <div class="bench-source-group">
+
+        <div class="bench-source-head">
+
+          <div class="bench-source-title">
+
+            ${
+              externalEntry?.label ||
+              "Public evaluation"
+            }
+
+            <span class="bench-source-badge">
+              ${typeLabel}
+            </span>
+
+          </div>
+
+          <div class="bench-source-note">
+            ${
+              externalEntry?.note ||
+              "Published evaluation results."
+            }
+          </div>
+
+        </div>
+
+        <div class="bench-grid">
+
+          ${
+            externalAvailable
+              .map(externalCard)
+              .join("")
+          }
+
+        </div>
+
+        ${
+          externalEntry?.source
+            ? `
+              <a
+                class="bench-source-link"
+                href="${externalEntry.source}"
+                target="_blank"
+                rel="noopener"
+              >
+                View evaluation source ↗
+              </a>
+            `
+            : ""
+        }
+
+      </div>
+    `);
+
+  }
+
+
+  /*
+   * Only show an empty state when BOTH datasets
+   * genuinely have no evaluation for this model.
+   */
+  if(!sections.length){
+
+    benchContent.innerHTML=`
+      <div class="bench-no-data">
+
+        No reliable benchmark result has been
+        attached for ${model.name} yet.
+
+        <br><br>
+
+        This means the site currently has neither
+        a Zorix internal result nor a verified
+        provider/third-party evaluation for the
+        exact model configuration.
+
+      </div>
+    `;
+
+  }else{
+
+    benchContent.innerHTML=
+      sections.join("");
+
+  }
+
+
+
+  /* details */
+
+  const details=[
+    [
+      "Provider",
+      model.provider
+    ],
+    [
+      "Status",
+      model.status
+    ],
+    [
+      "Context",
+      model.context
+    ],
+    [
+      "Parameters",
+      model.parameters
+    ],
+    [
+      "Active parameters",
+      model.activeParameters
+    ],
+    [
+      "Architecture",
+      model.architecture
+    ],
+    [
+      "Input",
+      model.inputPrice
+    ],
+    [
+      "Output",
+      model.outputPrice
+    ],
+    [
+      "Daily tokens",
+      fmt(
+        model.dailyTokens
+      )
+    ],
+    [
+      "Weekly tokens",
+      fmt(
+        weekly()
+      )
+    ]
+  ];
+
+
+  document
+    .getElementById(
+      "detailGrid"
+    )
+    .innerHTML=
+      details.map(
+        ([label,value])=>`
+          <div class="detail-row">
+
+            <div class="detail-label">
+              ${label}
+            </div>
+
+            <div class="detail-value">
+              ${value || "—"}
+            </div>
+
+          </div>
+        `
+      ).join("");
+
+
+  document
+    .getElementById(
+      "compareButton"
+    )
+    .href=
+      "./compare.html?a=" +
+      encodeURIComponent(
+        model.id
+      );
+
+}
+
+
+
+
+/* =========================================================
+   OTHER MODELS FROM SAME PROVIDER
+   Randomized on every page load.
+   ========================================================= */
+
+function randomUint(max){
+
+  if(max<=1){
+    return 0;
+  }
+
+
+  if(
+    window.crypto &&
+    window.crypto.getRandomValues
+  ){
+
+    const buffer=
+      new Uint32Array(1);
+
+    window.crypto
+      .getRandomValues(
+        buffer
+      );
+
+    return (
+      buffer[0] %
+      max
+    );
+
+  }
+
+
+  return Math.floor(
+    Math.random()*max
+  );
+
+}
+
+
+function shuffled(list){
+
+  const arr=[
+    ...list
+  ];
+
+
+  for(
+    let i=
+      arr.length-1;
+    i>0;
+    i--
+  ){
+
+    const j=
+      randomUint(
+        i+1
+      );
+
+    [
+      arr[i],
+      arr[j]
+    ]=[
+      arr[j],
+      arr[i]
+    ];
+
+  }
+
+
+  return arr;
+
+}
+
+
+function smallFmt(n){
+
+  n=Number(n || 0);
+
+  if(n>=1e15)
+    return (
+      n/1e15
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"P";
+
+  if(n>=1e12)
+    return (
+      n/1e12
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"T";
+
+  if(n>=1e9)
+    return (
+      n/1e9
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"B";
+
+  if(n>=1e6)
+    return (
+      n/1e6
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"M";
+
+  if(n>=1e3)
+    return (
+      n/1e3
+    ).toFixed(2)
+     .replace(/\.00$/,"")
+     +"K";
+
+  return String(
+    Math.round(n)
+  );
+
+}
+
+
+function otherModelLogo(item){
+
+  if(item.logo){
+
+    return `
+      <img
+        src="${item.logo}?v=1788156881"
+        alt=""
+      >
+    `;
+
+  }
+
+
+  return `
+    <span class="logo-fallback">
+      ${
+        String(
+          item.provider || "?"
+        ).slice(0,1)
+      }
+    </span>
+  `;
+
+}
+
+
+function renderOtherModels(){
+
+  const title=
+    document.getElementById(
+      "otherModelsTitle"
+    );
+
+  const copy=
+    document.getElementById(
+      "otherModelsCopy"
+    );
+
+  const grid=
+    document.getElementById(
+      "otherModelsGrid"
+    );
+
+
+  if(
+    !model ||
+    !title ||
+    !grid
+  ){
+    return;
+  }
+
+
+  title.textContent=
+    `Other models from ${model.provider}`;
+
+
+  if(copy){
+
+    copy.textContent=
+      `Explore other ${model.provider} models tracked by Zorix Metron. Recommendations are shuffled on each visit.`;
+
+  }
+
+
+  const candidates=
+    models.filter(
+      item=>
+        item.id!==model.id &&
+        item.provider===
+          model.provider
+    );
+
+
+  if(!candidates.length){
+
+    grid.innerHTML=`
+      <div class="other-model-empty">
+        No other ${
+          model.provider
+        } models are currently
+        tracked in this catalog.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const selected=
+    shuffled(
+      candidates
+    )
+    .slice(
+      0,
+      3
+    );
+
+
+  grid.innerHTML=
+    selected.map(
+      item=>{
+
+        const itemProfile=
+          profiles[
+            item.id
+          ] || {};
+
+
+        return `
+          <a
+            class="other-model-card"
+            href="./model.html?id=%24%7B++++++++++++++encodeURIComponent%28++++++++++++++++item.id++++++++++++++%29++++++++++++%7D"
+          >
+
+            <div class="other-model-top">
+
+              <div class="other-model-logo">
+                ${otherModelLogo(item)}
+              </div>
+
+
+              <div>
+
+                <div class="other-model-provider">
+                  ${item.provider}
+                </div>
+
+                <div class="other-model-name">
+                  ${item.name}
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="other-model-copy">
+              ${
+                itemProfile.tagline ||
+                itemProfile.description ||
+                item.about ||
+                item.family ||
+                ""
+              }
+            </div>
+
+
+            <div class="other-model-stats">
+
+              <span>
+                ${smallFmt(item.dailyTokens)}
+                / day
+              </span>
+
+              <span>
+                ${
+                  item.context ||
+                  "Context —"
+                }
+              </span>
+
+            </div>
+
+          </a>
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+document
+  .getElementById(
+    "refreshOtherModels"
+  )
+  ?.addEventListener(
+    "click",
+    renderOtherModels
+  );
+
+
+if(model){
+  renderOtherModels();
+}
+
+
+
+
+/* =========================================================
+   MODEL PAGE HAMBURGER
+   ========================================================= */
+
+const modelMenuButton=
+  document.getElementById(
+    "modelMenuButton"
+  );
+
+const modelMenuOverlay=
+  document.getElementById(
+    "modelMenuOverlay"
+  );
+
+
+function closeModelMenu(){
+
+  if(!modelMenuOverlay){
+    return;
+  }
+
+  modelMenuOverlay
+    .classList.remove(
+      "open"
+    );
+
+  modelMenuOverlay
+    .setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+}
+
+
+modelMenuButton
+  ?.addEventListener(
+    "click",
+    event=>{
+
+      event.stopPropagation();
+
+      modelMenuOverlay
+        ?.classList.add(
+          "open"
+        );
+
+      modelMenuOverlay
+        ?.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+    }
+  );
+
+
+modelMenuOverlay
+  ?.addEventListener(
+    "click",
+    event=>{
+
+      if(
+        event.target===
+        modelMenuOverlay
+      ){
+        closeModelMenu();
+      }
+
+    }
+  );
+
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+      closeModelMenu();
+    }
+
+  }
+);
+
+
+
+
+/* =========================================================
+   MODEL-SPECIFIC FAQ
+   ========================================================= */
+
+function renderModelFaq(){
+
+  const target =
+    document.getElementById(
+      "modelFaq"
+    );
+
+
+  if(!target || !model){
+    return;
+  }
+
+
+  const catalog =
+    window.ZORIX_MODEL_FAQ || {};
+
+
+  const items =
+    catalog[
+      model.id
+    ] || [];
+
+
+  if(!items.length){
+
+    target.innerHTML=`
+      <div class="faq-empty">
+        No FAQ has been published for this model yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  target.innerHTML =
+    items.map(
+      (item,index)=>`
+
+        <div class="faq-item">
+
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span class="faq-question-text">
+              ${item.q}
+            </span>
+
+            <span class="faq-plus">
+              +
+            </span>
+
+          </button>
+
+
+          <div class="faq-answer">
+            ${item.a}
+          </div>
+
+        </div>
+
+      `
+    ).join("");
+
+
+  target
+    .querySelectorAll(
+      ".faq-item"
+    )
+    .forEach(
+      item=>{
+
+        const button =
+          item.querySelector(
+            ".faq-question"
+          );
+
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            const open =
+              item.classList
+                .toggle(
+                  "open"
+                );
+
+
+            button.setAttribute(
+              "aria-expanded",
+              open
+                ? "true"
+                : "false"
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+if(model){
+  renderModelFaq();
+}
+
+</script>
+
+
+
+<script>
+/* METRON MODEL ANALYSIS */
+
+(function(){
+
+  if(
+    typeof model==="undefined"
+    ||
+    !model
+  ){
+    return;
+  }
+
+
+  const catalog =
+    window.ZORIX_MODEL_ANALYSIS ||
+    {};
+
+
+  const analysis =
+    catalog[
+      model.id
+    ]
+    ||
+    {};
+
+
+  const grid =
+    document.getElementById(
+      "analysisGrid"
+    );
+
+
+  if(!grid){
+    return;
+  }
+
+
+  function esc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function display(value){
+
+    if(
+      value===null
+      ||
+      value===undefined
+      ||
+      value===""
+      ||
+      (
+        Array.isArray(value)
+        &&
+        !value.length
+      )
+    ){
+
+      return `
+        <div class="analysis-value empty">
+          Not published
+        </div>
+      `;
+
+    }
+
+
+    if(Array.isArray(value)){
+
+      return `
+        <div class="analysis-pills">
+
+          ${
+            value.map(
+              item=>`
+                <span class="analysis-pill">
+                  ${esc(item)}
+                </span>
+              `
+            )
+            .join("")
+          }
+
+        </div>
+      `;
+
+    }
+
+
+    return `
+      <div class="analysis-value">
+        ${esc(value)}
+      </div>
+    `;
+
+  }
+
+
+  function measured(
+    value,
+    unit=""
+  ){
+
+    if(
+      value===null
+      ||
+      value===undefined
+      ||
+      value===""
+    ){
+
+      return `
+        <div class="analysis-value empty">
+          Not measured
+        </div>
+      `;
+
+    }
+
+
+    return `
+      <div class="analysis-value">
+        ${esc(value)}${esc(unit)}
+      </div>
+    `;
+
+  }
+
+
+  const fields=[
+
+    [
+      "Model ID",
+      display(
+        model.id
+      )
+    ],
+
+    [
+      "Alias",
+      display(
+        analysis.alias
+      )
+    ],
+
+    [
+      "License",
+      display(
+        analysis.license
+      )
+    ],
+
+    [
+      "Context window",
+      display(
+        model.context
+      )
+    ],
+
+    [
+      "Max output",
+      display(
+        analysis.maxOutput
+      )
+    ],
+
+    [
+      "Knowledge cutoff",
+      display(
+        analysis.knowledgeCutoff
+      )
+    ],
+
+    [
+      "Modalities",
+      display(
+        analysis.modalities
+      )
+    ],
+
+    [
+      "Tools",
+      display(
+        analysis.tools
+      )
+    ],
+
+    [
+      "Reasoning variants",
+      display(
+        analysis.reasoningVariants
+        ||
+        analysis.variants
+      )
+    ],
+
+    [
+      "Agent modes",
+      display(
+        analysis.agentModes
+      )
+    ],
+
+    [
+      "Task fit",
+      display(
+        analysis.taskFit
+      )
+    ],
+
+    [
+      "Provider endpoints",
+      display(
+        analysis.providerEndpoints
+      )
+    ],
+
+    [
+      "Routing",
+      display(
+        analysis.routing
+      )
+    ],
+
+    [
+      "Cost per task",
+      measured(
+        analysis.costPerTask
+      )
+    ],
+
+    [
+      "Output speed",
+      measured(
+        analysis.outputSpeed,
+        " tok/s"
+      )
+    ],
+
+    [
+      "Time to first token",
+      measured(
+        analysis.ttft,
+        " s"
+      )
+    ],
+
+    [
+      "End-to-end response",
+      measured(
+        analysis.totalResponse,
+        " s"
+      )
+    ],
+
+    [
+      "Reasoning time",
+      measured(
+        analysis.reasoningTime,
+        " s"
+      )
+    ]
+
+  ];
+
+
+  grid.innerHTML=
+    fields.map(
+      field=>`
+
+        <div class="analysis-item">
+
+          <div class="analysis-label">
+            ${esc(field[0])}
+          </div>
+
+          ${field[1]}
+
+        </div>
+
+      `
+    )
+    .join("");
+
+
+  const compare =
+    document.getElementById(
+      "analysisCompare"
+    );
+
+
+  if(compare){
+
+    compare.href =
+      "/number-of-calls/compare.html?a="
+      +
+      encodeURIComponent(
+        model.id
+      );
+
+  }
+
+})();
+
+</script>
+
+</body>
+</html>

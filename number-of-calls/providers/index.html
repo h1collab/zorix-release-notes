@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="zorix-build" content="1788171566">
+
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+Provider analysis | Zorix Metron
+</title>
+
+<style>
+
+:root{
+  --text:#111;
+  --muted:#70706a;
+  --line:#e3e3de;
+  --soft:#f7f7f4;
+  --max:1300px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+
+  text-decoration:none;
+}
+
+header{
+  border-bottom:
+    1px solid var(--line);
+}
+
+.nav{
+  max-width:var(--max);
+
+  min-height:68px;
+
+  margin:auto;
+  padding:0 24px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  font-size:19px;
+  font-weight:600;
+
+  letter-spacing:-.045em;
+}
+
+.nav-links{
+  display:flex;
+
+  gap:20px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    66px
+    24px
+    110px;
+}
+
+.eyebrow{
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.08em;
+}
+
+h1{
+  margin:
+    13px
+    0
+    0;
+
+  font-size:
+    clamp(
+      52px,
+      8vw,
+      94px
+    );
+
+  line-height:.91;
+
+  font-weight:500;
+
+  letter-spacing:-.065em;
+}
+
+.copy{
+  max-width:620px;
+
+  margin-top:20px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.55;
+}
+
+.note{
+  margin:
+    35px
+    0
+    20px;
+
+  padding:
+    13px
+    14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:10px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+
+  min-width:900px;
+
+  border-collapse:collapse;
+}
+
+th,
+td{
+  padding:
+    15px
+    11px;
+
+  border-bottom:
+    1px solid var(--line);
+
+  text-align:left;
+}
+
+th{
+  color:var(--muted);
+
+  font-size:9px;
+
+  font-weight:500;
+
+  text-transform:uppercase;
+
+  letter-spacing:.06em;
+}
+
+td{
+  font-size:12px;
+}
+
+.number{
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.provider-name{
+  font-size:14px;
+
+  font-weight:550;
+}
+
+.provider-name:hover{
+  text-decoration:underline;
+}
+
+.sub{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="../"
+    >
+      Zorix Metron
+    </a>
+
+
+    <div class="nav-links">
+
+      <a href="../leaderboard/">
+        Models
+      </a>
+
+      <a href="../explore/">
+        Explore
+      </a>
+
+      <a href="../compare.html">
+        Compare
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+
+<div class="eyebrow">
+  Provider performance
+</div>
+
+
+<h1>
+  Providers
+</h1>
+
+
+<div class="copy">
+  Compare providers represented in the current
+  Zorix Metron catalog using observed Zorix traffic
+  and published benchmark coverage.
+</div>
+
+
+<div class="note">
+  Token volume represents Zorix Code / Metron traffic.
+  It is not global provider usage. Speed, TTFT and
+  end-to-end latency will appear only after Metron
+  records comparable endpoint telemetry.
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+  <thead>
+
+    <tr>
+
+      <th>
+        Rank
+      </th>
+
+      <th>
+        Provider
+      </th>
+
+      <th>
+        Models
+      </th>
+
+      <th>
+        Daily volume
+      </th>
+
+      <th>
+        Weekly volume
+      </th>
+
+      <th>
+        Evaluated models
+      </th>
+
+      <th>
+        Top traffic model
+      </th>
+
+    </tr>
+
+  </thead>
+
+
+  <tbody id="rows"></tbody>
+
+</table>
+
+</div>
+
+
+</main>
+
+
+<script src="../models.js?v=1788171566"></script>
+<script src="../usage.js?v=1788171566"></script>
+<script src="../benchmarks.js?v=1788171566"></script>
+
+
+<script>
+
+(function(){
+
+  const models=
+    Array.isArray(
+      window.ZORIX_MODEL_DETAILS
+    )
+      ? window.ZORIX_MODEL_DETAILS
+      : [];
+
+
+  const usage=
+    Array.isArray(
+      window.ZORIX_CODE_USAGE?.models
+    )
+      ? window.ZORIX_CODE_USAGE.models
+      : [];
+
+
+  const usageByName=
+    new Map(
+      usage.map(
+        row=>[
+          row.name,
+          row
+        ]
+      )
+    );
+
+
+  const benchmark=
+    window.ZORIX_BENCHMARKS
+    ||
+    {
+      scores:{}
+    };
+
+
+  function compact(value){
+
+    const n=
+      Number(value || 0);
+
+
+    for(
+      const [unit,label]
+      of [
+        [1e15,"P"],
+        [1e12,"T"],
+        [1e9,"B"],
+        [1e6,"M"],
+        [1e3,"K"]
+      ]
+    ){
+
+      if(n>=unit){
+
+        const x=n/unit;
+
+        return (
+          x.toFixed(
+            x>=100
+              ? 0
+              : x>=10
+                ? 1
+                : 2
+          )
+          .replace(
+            /\.0+$/,
+            ""
+          )
+          +label
+        );
+
+      }
+
+    }
+
+
+    return Math.round(n)
+      .toLocaleString();
+
+  }
+
+
+  function providerRoute(provider){
+
+    const map={
+
+      "Zorix":
+        "/zorix/",
+
+      "Anthropic":
+        "/anthropic/",
+
+      "OpenAI":
+        "/openai/",
+
+      "Google":
+        "/google/",
+
+      "DeepSeek":
+        "/deepseek/",
+
+      "Tencent":
+        "/tencent/",
+
+      "Xiaomi":
+        "/xiaomi/",
+
+      "Z.ai":
+        "/zai/"
+    };
+
+
+    return map[provider] || null;
+
+  }
+
+
+  const groups=
+    new Map();
+
+
+  models.forEach(
+    model=>{
+
+      const provider=
+        model.provider ||
+        "Unknown";
+
+
+      if(!groups.has(provider)){
+
+        groups.set(
+          provider,
+          {
+            provider,
+            models:[],
+            daily:0,
+            weekly:0,
+            evaluated:0
+          }
+        );
+
+      }
+
+
+      const group=
+        groups.get(provider);
+
+
+      const traffic=
+        usageByName.get(
+          model.name
+        )
+        ||
+        {};
+
+
+      const daily=
+        Number(
+          traffic.tokens ??
+          model.dailyTokens ??
+          0
+        );
+
+
+      const weekly=
+        Number(
+          traffic.weeklyTokens ??
+          model.weeklyTokens ??
+          daily*7
+        );
+
+
+      group.models.push(
+        {
+          ...model,
+          daily
+        }
+      );
+
+
+      group.daily+=daily;
+
+      group.weekly+=weekly;
+
+
+      if(
+        benchmark.scores?.[
+          model.id
+        ]
+      ){
+        group.evaluated++;
+      }
+
+    }
+  );
+
+
+  const rows=[
+    ...groups.values()
+  ]
+  .sort(
+    (a,b)=>
+      b.daily-a.daily
+  );
+
+
+  document
+    .getElementById(
+      "rows"
+    )
+    .innerHTML=
+      rows.map(
+        (group,index)=>{
+
+          group.models.sort(
+            (a,b)=>
+              b.daily-a.daily
+          );
+
+
+          const top=
+            group.models[0];
+
+
+          const route=
+            providerRoute(
+              group.provider
+            );
+
+
+          return `
+
+            <tr>
+
+              <td class="number">
+                #${index+1}
+              </td>
+
+
+              <td>
+
+                ${
+                  route
+                    ? `
+                      <a
+                        class="provider-name"
+                        href="${route}"
+                      >
+                        ${group.provider}
+                      </a>
+                    `
+                    : `
+                      <span class="provider-name">
+                        ${group.provider}
+                      </span>
+                    `
+                }
+
+              </td>
+
+
+              <td class="number">
+                ${group.models.length}
+              </td>
+
+
+              <td class="number">
+                ${compact(group.daily)}
+              </td>
+
+
+              <td class="number">
+                ${compact(group.weekly)}
+              </td>
+
+
+              <td class="number">
+                ${group.evaluated}
+              </td>
+
+
+              <td>
+
+                ${
+                  top
+                    ? `
+                      <a
+                        href="/number-of-calls/models/${
+                          encodeURIComponent(
+                            top.id
+                          )
+                        }/"
+                      >
+                        ${top.name}
+                      </a>
+
+                      <div class="sub">
+                        ${compact(top.daily)}/day
+                      </div>
+                    `
+                    : "—"
+                }
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join("");
+
+})();
+
+</script>
+
+
+</body>
+</html>
