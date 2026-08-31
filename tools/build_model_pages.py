@@ -91,10 +91,11 @@ for model in models:
     # Generated page lives at:
     # /number-of-calls/models/<id>/
     #
-    # Static JS in /number-of-calls/ is two levels up.
+    # Always use absolute static routes so nested model URLs
+    # cannot break script loading.
     page=re.sub(
-        r'''(src=["'])\./''',
-        r'''\1../../''',
+        r'''(src=["'])\./([^"']+)''',
+        r'''\1/number-of-calls/\2''',
         page
     )
 
@@ -107,7 +108,7 @@ for model in models:
 
     page=page.replace(
         'href="./compare.html"',
-        'href="/number-of-calls/compare.html"'
+        'href="/number-of-calls/compare/"'
     )
 
     page=page.replace(
