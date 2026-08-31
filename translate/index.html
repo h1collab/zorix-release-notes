@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+  Translate | Zorix Metron
+</title>
+
+<link
+  rel="stylesheet"
+  href="/translate/site.css"
+>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="/translate/"
+    >
+      <img
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt=""
+      >
+      Translate
+    </a>
+
+    <nav class="nav-links">
+
+      <a
+        class="active"
+        href="/translate/"
+      >
+        Models
+      </a>
+
+      <a href="/translate/benchmark/">
+        Benchmark
+      </a>
+
+      <a href="/translate/voting/">
+        Voting
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="eyebrow">
+    Zorix Metron · Translation
+  </div>
+
+  <h1>
+    Translation
+    <br>
+    models
+  </h1>
+
+  <p class="hero-copy">
+    A dedicated translation model comparison.
+    Translation scores use their own 1000-base scale,
+    while request traffic is reported as requests per
+    five-hour window.
+  </p>
+
+
+  <div class="summary">
+
+    <div class="summary-cell">
+      <div class="k">
+        Models tracked
+      </div>
+      <div
+        class="v"
+        id="modelCount"
+      ></div>
+    </div>
+
+    <div class="summary-cell">
+      <div class="k">
+        Highest score
+      </div>
+      <div
+        class="v"
+        id="topScore"
+      ></div>
+    </div>
+
+    <div class="summary-cell">
+      <div class="k">
+        Highest request volume
+      </div>
+      <div
+        class="v"
+        id="topRequests"
+      ></div>
+    </div>
+
+  </div>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div>
+        <div class="section-title">
+          Current models
+        </div>
+
+        <div class="section-copy">
+          Ranked by translation score
+        </div>
+      </div>
+
+    </div>
+
+    <div
+      class="rows"
+      id="rows"
+    ></div>
+
+  </section>
+
+</main>
+
+
+<script src="/translate/translate.js"></script>
+
+<script>
+
+const DATA =
+  window.ZORIX_TRANSLATE
+  ||
+  {
+    models:[]
+  };
+
+
+function compact(value){
+
+  return (
+    Number(value)/1e9
+  )
+  .toLocaleString(
+    "en-US",
+    {
+      maximumFractionDigits:2
+    }
+  )
+  +
+  "B";
+
+}
+
+
+const rows =
+  [...DATA.models]
+  .sort(
+    (a,b)=>
+      b.score-a.score
+  );
+
+
+document
+  .getElementById(
+    "modelCount"
+  )
+  .textContent =
+    rows.length;
+
+
+document
+  .getElementById(
+    "topScore"
+  )
+  .textContent =
+    rows.length
+      ? rows[0].score
+      : "—";
+
+
+const requestLeader =
+  [...rows]
+  .sort(
+    (a,b)=>
+      b.requests5h-a.requests5h
+  )[0];
+
+
+document
+  .getElementById(
+    "topRequests"
+  )
+  .textContent =
+    requestLeader
+      ? compact(
+          requestLeader.requests5h
+        )
+      : "—";
+
+
+document
+  .getElementById(
+    "rows"
+  )
+  .innerHTML =
+    rows
+    .map(
+      model=>`
+
+        <a
+          class="model-row"
+          href="/translate/models/${model.id}/"
+        >
+
+          <div class="rank">
+            ${model.scoreRank}
+          </div>
+
+          <img
+            class="logo"
+            src="${model.logo}"
+            alt=""
+          >
+
+          <div>
+            <div class="name">
+              ${model.name}
+            </div>
+
+            <div class="provider">
+              ${model.provider}
+              ·
+              ${model.status}
+            </div>
+          </div>
+
+          <div class="metric">
+            <strong>
+              ${model.score}
+            </strong>
+
+            <span class="score-delta">
+              ${
+                model.scoreDelta>=0
+                  ? "+"
+                  : ""
+              }${model.scoreDelta}
+              from base
+            </span>
+          </div>
+
+          <div class="metric secondary-metric">
+            <strong>
+              ${compact(model.requests5h)}
+            </strong>
+
+            <span>
+              requests / 5h
+            </span>
+          </div>
+
+        </a>
+
+      `
+    )
+    .join("");
+
+</script>
+
+</body>
+</html>

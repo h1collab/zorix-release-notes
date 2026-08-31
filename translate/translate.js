@@ -1,0 +1,44 @@
+window.ZORIX_TRANSLATE = {
+  "updatedAt": "2026-08-31T19:44:00+02:00",
+  "category": "translation",
+  "scoreBase": 1000,
+  "requestWindowHours": 5,
+  "models": [
+    {
+      "id": "google-translation-llm",
+      "name": "Google Translation LLM (TLLM)",
+      "provider": "Google",
+      "family": "Cloud Translation",
+      "status": "Available",
+      "logo": "/number-of-calls/assets/logos/google.svg",
+      "color": "#4285F4",
+      "profile": "Standard",
+      "providerModelId": "general/translation-llm",
+      "requests5h": 3500000000,
+      "score": 1010,
+      "docs": "https://docs.cloud.google.com/translate/docs/translation-llm",
+      "about": "Google Translation LLM (TLLM) is the Google Cloud translation model selected for the Zorix Translate comparison. Google documents the model ID as general/translation-llm and describes TLLM as its highest-quality translation model.",
+      "scoreDelta": 10,
+      "scoreRank": 1,
+      "requestRank": 2
+    },
+    {
+      "id": "zorix-nexhate-1-preview-xhigh",
+      "name": "Zorix NexHate 1 Preview (xhigh)",
+      "provider": "Zorix",
+      "family": "NexHate 1",
+      "status": "Preview",
+      "logo": "/number-of-calls/assets/logos/zorix.svg",
+      "color": "#7446C8",
+      "profile": "xhigh",
+      "providerModelId": null,
+      "requests5h": 7100000000,
+      "score": 1007,
+      "docs": "",
+      "about": "Zorix NexHate 1 Preview (xhigh) is a Zorix translation preview model. Current published Zorix Translate data records 7.1B requests per five-hour window and a 1007 translation score on the 1000-base scale.",
+      "scoreDelta": 7,
+      "scoreRank": 2,
+      "requestRank": 1
+    }
+  ]
+};

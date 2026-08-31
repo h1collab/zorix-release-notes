@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+  Translate model | Zorix Metron
+</title>
+
+<link
+  rel="stylesheet"
+  href="/translate/site.css"
+>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="/translate/"
+    >
+      <img
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt=""
+      >
+      Translate
+    </a>
+
+    <nav class="nav-links">
+
+      <a href="/translate/">
+        Models
+      </a>
+
+      <a href="/translate/benchmark/">
+        Benchmark
+      </a>
+
+      <a href="/translate/voting/">
+        Voting
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main id="page">
+
+  <div class="detail-head">
+
+    <div class="detail-logo">
+
+      <img
+        id="logo"
+        alt=""
+      >
+
+    </div>
+
+
+    <div>
+
+      <div
+        class="detail-provider"
+        id="provider"
+      ></div>
+
+      <div
+        class="detail-name"
+        id="name"
+      ></div>
+
+      <div
+        class="badges"
+        id="badges"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="detail-grid">
+
+    <div class="detail-stat">
+
+      <div class="k">
+        Translation score
+      </div>
+
+      <div
+        class="detail-stat-value"
+        id="score"
+      ></div>
+
+    </div>
+
+
+    <div class="detail-stat">
+
+      <div class="k">
+        Change from base
+      </div>
+
+      <div
+        class="detail-stat-value"
+        id="delta"
+      ></div>
+
+    </div>
+
+
+    <div class="detail-stat">
+
+      <div class="k">
+        Requests / 5h
+      </div>
+
+      <div
+        class="detail-stat-value"
+        id="requests"
+      ></div>
+
+    </div>
+
+
+    <div class="detail-stat">
+
+      <div class="k">
+        Score rank
+      </div>
+
+      <div
+        class="detail-stat-value"
+        id="scoreRank"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="info"
+    id="info"
+  ></div>
+
+
+  <div
+    class="about"
+    id="about"
+  ></div>
+
+
+  <div class="actions">
+
+    <a
+      class="action primary"
+      href="/translate/benchmark/"
+    >
+      View benchmark
+    </a>
+
+    <a
+      class="action"
+      href="/translate/voting/"
+    >
+      View voting
+    </a>
+
+    <a
+      class="action"
+      id="docs"
+      target="_blank"
+      rel="noopener"
+      hidden
+    >
+      Documentation
+    </a>
+
+  </div>
+
+
+  <div class="note">
+    Translation scores use a separate 1000-base scale.
+    They are not directly comparable with the general
+    Metron community-voting ranking. Request volume is
+    published as requests per five-hour window and is not
+    derived from token usage.
+  </div>
+
+</main>
+
+
+<script src="/translate/translate.js"></script>
+
+<script>
+
+const MODEL_ID =
+  "zorix-nexhate-1-preview-xhigh";
+
+
+const DATA =
+  window.ZORIX_TRANSLATE
+  ||
+  {
+    models:[],
+    scoreBase:1000
+  };
+
+
+const model =
+  (
+    DATA.models
+    ||
+    []
+  )
+  .find(
+    item=>
+      item.id===MODEL_ID
+  );
+
+
+function esc(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;");
+
+}
+
+
+function compact(value){
+
+  const n =
+    Number(
+      value || 0
+    );
+
+
+  if(n>=1e9){
+
+    return (
+      n/1e9
+    )
+    .toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits:2
+      }
+    )
+    +
+    "B";
+
+  }
+
+
+  return n.toLocaleString(
+    "en-US"
+  );
+
+}
+
+
+function row(
+  key,
+  value
+){
+
+  return `
+    <div class="info-row">
+      <div class="info-key">
+        ${esc(key)}
+      </div>
+      <div class="info-value">
+        ${esc(
+          value === null
+          ||
+          value === undefined
+          ||
+          value === ""
+            ? "Not published"
+            : value
+        )}
+      </div>
+    </div>
+  `;
+
+}
+
+
+if(!model){
+
+  document
+    .getElementById(
+      "page"
+    )
+    .innerHTML =
+      '<div class="note">Model not found.</div>';
+
+}else{
+
+  document.title =
+    model.name
+    +
+    " | Zorix Translate";
+
+
+  document
+    .getElementById(
+      "logo"
+    )
+    .src =
+      model.logo;
+
+
+  document
+    .getElementById(
+      "provider"
+    )
+    .textContent =
+      model.provider;
+
+
+  document
+    .getElementById(
+      "name"
+    )
+    .textContent =
+      model.name;
+
+
+  document
+    .getElementById(
+      "badges"
+    )
+    .innerHTML =
+      [
+        model.status,
+        model.family,
+        model.profile
+      ]
+      .filter(Boolean)
+      .map(
+        value=>`
+          <span class="badge">
+            ${esc(value)}
+          </span>
+        `
+      )
+      .join("");
+
+
+  document
+    .getElementById(
+      "score"
+    )
+    .textContent =
+      model.score;
+
+
+  document
+    .getElementById(
+      "delta"
+    )
+    .textContent =
+      (
+        model.scoreDelta >= 0
+          ? "+"
+          : ""
+      )
+      +
+      model.scoreDelta;
+
+
+  document
+    .getElementById(
+      "requests"
+    )
+    .textContent =
+      compact(
+        model.requests5h
+      );
+
+
+  document
+    .getElementById(
+      "scoreRank"
+    )
+    .textContent =
+      "#"
+      +
+      model.scoreRank;
+
+
+  document
+    .getElementById(
+      "info"
+    )
+    .innerHTML =
+
+      row(
+        "Provider",
+        model.provider
+      )
+
+      +
+
+      row(
+        "Provider model ID",
+        model.providerModelId
+      )
+
+      +
+
+      row(
+        "Family",
+        model.family
+      )
+
+      +
+
+      row(
+        "Profile",
+        model.profile
+      )
+
+      +
+
+      row(
+        "Status",
+        model.status
+      )
+
+      +
+
+      row(
+        "Score base",
+        DATA.scoreBase
+      )
+
+      +
+
+      row(
+        "Score rank",
+        "#"
+        +
+        model.scoreRank
+      )
+
+      +
+
+      row(
+        "Request rank",
+        "#"
+        +
+        model.requestRank
+      )
+
+      +
+
+      row(
+        "Requests / 5h",
+        compact(
+          model.requests5h
+        )
+      )
+
+      +
+
+      row(
+        "Context length",
+        null
+      )
+
+      +
+
+      row(
+        "Parameters",
+        null
+      )
+
+      +
+
+      row(
+        "Historical series",
+        "Not published"
+      );
+
+
+  document
+    .getElementById(
+      "about"
+    )
+    .textContent =
+      model.about;
+
+
+  if(model.docs){
+
+    const docs =
+      document.getElementById(
+        "docs"
+      );
+
+
+    docs.href =
+      model.docs;
+
+    docs.hidden =
+      false;
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>

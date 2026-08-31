@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+  Translation Voting | Zorix Metron
+</title>
+
+<link
+  rel="stylesheet"
+  href="/translate/site.css"
+>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="/translate/"
+    >
+      <img
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt=""
+      >
+      Translate
+    </a>
+
+    <nav class="nav-links">
+
+      <a href="/translate/">
+        Models
+      </a>
+
+      <a href="/translate/benchmark/">
+        Benchmark
+      </a>
+
+      <a
+        class="active"
+        href="/translate/voting/"
+      >
+        Voting
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="eyebrow">
+    Zorix Metron · Translation
+  </div>
+
+  <h1>
+    Translation
+    <br>
+    voting
+  </h1>
+
+  <p class="hero-copy">
+    Current translation voting score.
+    Every model begins from a 1000-base reference.
+    This ranking is independent from the general Metron
+    community-voting leaderboard.
+  </p>
+
+
+  <div class="summary">
+
+    <div class="summary-cell">
+      <div class="k">
+        Base score
+      </div>
+      <div
+        class="v"
+        id="base"
+      ></div>
+    </div>
+
+    <div class="summary-cell">
+      <div class="k">
+        Current leader
+      </div>
+      <div
+        class="v"
+        id="leader"
+      ></div>
+    </div>
+
+    <div class="summary-cell">
+      <div class="k">
+        Lead
+      </div>
+      <div
+        class="v"
+        id="lead"
+      ></div>
+    </div>
+
+  </div>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div>
+        <div class="section-title">
+          Current ranking
+        </div>
+
+        <div class="section-copy">
+          Published 1000-base scores
+        </div>
+      </div>
+
+    </div>
+
+
+    <div
+      class="rows"
+      id="rows"
+    ></div>
+
+  </section>
+
+
+  <div class="note">
+    No vote-count history or uncertainty interval has been
+    published for these translation scores, so neither is
+    synthesized on this page.
+  </div>
+
+</main>
+
+
+<script src="/translate/translate.js"></script>
+
+<script>
+
+const DATA =
+  window.ZORIX_TRANSLATE
+  ||
+  {
+    models:[],
+    scoreBase:1000
+  };
+
+
+const rows =
+  [...DATA.models]
+  .sort(
+    (a,b)=>
+      b.score-a.score
+  );
+
+
+document
+  .getElementById(
+    "base"
+  )
+  .textContent =
+    DATA.scoreBase;
+
+
+document
+  .getElementById(
+    "leader"
+  )
+  .textContent =
+    rows.length
+      ? rows[0].score
+      : "—";
+
+
+document
+  .getElementById(
+    "lead"
+  )
+  .textContent =
+    rows.length>1
+      ? (
+          "+"
+          +
+          (
+            rows[0].score
+            -
+            rows[1].score
+          )
+        )
+      : "—";
+
+
+document
+  .getElementById(
+    "rows"
+  )
+  .innerHTML =
+    rows
+    .map(
+      model=>`
+
+        <a
+          class="model-row"
+          href="/translate/models/${model.id}/"
+        >
+
+          <div class="rank">
+            ${model.scoreRank}
+          </div>
+
+          <img
+            class="logo"
+            src="${model.logo}"
+            alt=""
+          >
+
+          <div>
+
+            <div class="name">
+              ${model.name}
+            </div>
+
+            <div class="provider">
+              ${model.provider}
+            </div>
+
+          </div>
+
+          <div class="metric">
+            <strong>
+              ${model.score}
+            </strong>
+
+            <span class="score-delta">
+              ${
+                model.scoreDelta>=0
+                  ? "+"
+                  : ""
+              }${model.scoreDelta}
+            </span>
+          </div>
+
+          <div class="metric secondary-metric">
+            <strong>
+              #${model.scoreRank}
+            </strong>
+
+            <span>
+              rank
+            </span>
+          </div>
+
+        </a>
+
+      `
+    )
+    .join("");
+
+</script>
+
+</body>
+</html>

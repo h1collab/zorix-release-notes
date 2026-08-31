@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+  Translation Benchmark | Zorix Metron
+</title>
+
+<link
+  rel="stylesheet"
+  href="/translate/site.css"
+>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="/translate/"
+    >
+      <img
+        src="/number-of-calls/assets/logos/zorix.svg"
+        alt=""
+      >
+      Translate
+    </a>
+
+    <nav class="nav-links">
+
+      <a href="/translate/">
+        Models
+      </a>
+
+      <a
+        class="active"
+        href="/translate/benchmark/"
+      >
+        Benchmark
+      </a>
+
+      <a href="/translate/voting/">
+        Voting
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="eyebrow">
+    Zorix Metron · Translation
+  </div>
+
+  <h1>
+    Translation
+    <br>
+    benchmark
+  </h1>
+
+  <p class="hero-copy">
+    Current published translation score and request-load
+    comparison. No MetricX, COMET or BLEU values are shown
+    because those measurements have not been published in
+    the current Zorix Translate dataset.
+  </p>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div>
+        <div class="section-title">
+          Translation score
+        </div>
+
+        <div class="section-copy">
+          1000-base scale
+        </div>
+      </div>
+
+    </div>
+
+    <div
+      class="cards"
+      id="scores"
+    ></div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div>
+        <div class="section-title">
+          Request load
+        </div>
+
+        <div class="section-copy">
+          Published five-hour request window
+        </div>
+      </div>
+
+    </div>
+
+    <div
+      class="cards"
+      id="requests"
+    ></div>
+
+  </section>
+
+
+  <div class="note">
+    Score and request volume are separate measurements.
+    Higher request volume does not automatically imply
+    higher translation quality.
+  </div>
+
+</main>
+
+
+<script src="/translate/translate.js"></script>
+
+<script>
+
+const DATA =
+  window.ZORIX_TRANSLATE
+  ||
+  {
+    models:[],
+    scoreBase:1000
+  };
+
+
+function compact(value){
+
+  return (
+    Number(value)/1e9
+  )
+  .toLocaleString(
+    "en-US",
+    {
+      maximumFractionDigits:2
+    }
+  )
+  +
+  "B";
+
+}
+
+
+function card(
+  model,
+  value,
+  footer,
+  width
+){
+
+  return `
+
+    <a
+      class="card"
+      href="/translate/models/${model.id}/"
+    >
+
+      <div class="card-top">
+
+        <img
+          class="card-logo"
+          src="${model.logo}"
+          alt=""
+        >
+
+        <div>
+
+          <div class="card-name">
+            ${model.name}
+          </div>
+
+          <div class="card-provider">
+            ${model.provider}
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="big-number">
+        ${value}
+      </div>
+
+
+      <div class="base">
+        ${footer}
+      </div>
+
+
+      <div class="bar-shell">
+
+        <div
+          class="bar"
+          style="
+            width:${width}%;
+            background:${model.color}
+          "
+        ></div>
+
+      </div>
+
+    </a>
+  `;
+
+}
+
+
+const scoreRows =
+  [...DATA.models]
+  .sort(
+    (a,b)=>
+      b.score-a.score
+  );
+
+
+const topScore =
+  Math.max(
+    ...scoreRows.map(
+      item=>
+        item.score
+    )
+  );
+
+
+document
+  .getElementById(
+    "scores"
+  )
+  .innerHTML =
+    scoreRows.map(
+      model=>
+        card(
+          model,
+          model.score,
+          (
+            (model.scoreDelta>=0 ? "+" : "")
+            +
+            model.scoreDelta
+            +
+            " from "
+            +
+            DATA.scoreBase
+            +
+            " base"
+          ),
+          (
+            (
+              model.score
+              -
+              DATA.scoreBase
+              +
+              1
+            )
+            /
+            (
+              topScore
+              -
+              DATA.scoreBase
+              +
+              1
+            )
+            *
+            100
+          )
+        )
+    )
+    .join("");
+
+
+const requestRows =
+  [...DATA.models]
+  .sort(
+    (a,b)=>
+      b.requests5h-a.requests5h
+  );
+
+
+const maxRequests =
+  Math.max(
+    ...requestRows.map(
+      item=>
+        item.requests5h
+    )
+  );
+
+
+document
+  .getElementById(
+    "requests"
+  )
+  .innerHTML =
+    requestRows.map(
+      model=>
+        card(
+          model,
+          compact(
+            model.requests5h
+          ),
+          "requests per 5 hours",
+          (
+            model.requests5h
+            /
+            maxRequests
+            *
+            100
+          )
+        )
+    )
+    .join("");
+
+</script>
+
+</body>
+</html>
