@@ -6,7 +6,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788160329">
+<meta name="zorix-build" content="1788161174">
+
+
 
 
 
@@ -470,7 +472,7 @@ canvas{
     >
 
       <img
-        src="../assets/logos/zorix.svg?v=1788160329"
+        src="../assets/logos/zorix.svg?v=1788161174"
         alt=""
       >
 
@@ -753,13 +755,13 @@ canvas{
 
 
 
-<script src="../models.js?v=1788160329"></script>
-<script src="../voting/votes.js?v=1788160329"></script>
-<script src="../usage.js?v=1788160329"></script>
-<script src="../benchmarks.js?v=1788160329"></script>
+<script src="../models.js?v=1788161174"></script>
+<script src="../voting/votes.js?v=1788161174"></script>
+<script src="../usage.js?v=1788161174"></script>
+<script src="../benchmarks.js?v=1788161174"></script>
 
-<script src="../image-ai.js?v=1788160329"></script>
-<script src="../intelligence-cost.js?v=1788160329"></script>
+<script src="../image-ai.js?v=1788161174"></script>
+<script src="../intelligence-cost.js?v=1788161174"></script>
 
 
 
@@ -5094,6 +5096,1276 @@ render();
   }
 
 })();
+</script>
+
+
+<script>
+/* SHARE_PREVIEW_RECOVERY_V3 */
+
+(function(){
+
+  "use strict";
+
+  function $(id){
+    return document.getElementById(id);
+  }
+
+  const canvas = $("chartCanvas");
+
+  if(!canvas){
+    console.error("Share canvas missing.");
+    return;
+  }
+
+  const ctx = canvas.getContext("2d");
+
+  const W = 1600;
+  const H = 900;
+
+  canvas.width = W;
+  canvas.height = H;
+
+
+  /* ========================================================
+     DATA
+     ======================================================== */
+
+  function models(){
+
+    const details =
+      Array.isArray(
+        window.ZORIX_MODEL_DETAILS
+      )
+        ? window.ZORIX_MODEL_DETAILS
+        : [];
+
+
+    const usage =
+      Array.isArray(
+        window.ZORIX_CODE_USAGE?.models
+      )
+        ? window.ZORIX_CODE_USAGE.models
+        : [];
+
+
+    const usageById =
+      new Map();
+
+
+    const usageByName =
+      new Map();
+
+
+    usage.forEach(
+      row=>{
+
+        if(row.id){
+          usageById.set(row.id,row);
+        }
+
+        if(row.name){
+          usageByName.set(row.name,row);
+        }
+
+      }
+    );
+
+
+    if(details.length){
+
+      return details.map(
+        model=>{
+
+          const traffic =
+            usageById.get(model.id)
+            ||
+            usageByName.get(model.name)
+            ||
+            {};
+
+
+          const daily =
+            Number(
+              traffic.tokens ??
+              traffic.dailyTokens ??
+              model.dailyTokens ??
+              model.tokens ??
+              0
+            );
+
+
+          const weekly =
+            Number(
+              traffic.weeklyTokens ??
+              model.weeklyTokens ??
+              (
+                daily > 0
+                  ? daily * 7
+                  : 0
+              )
+            );
+
+
+          return {
+            ...model,
+            dailyTokens:daily,
+            weeklyTokens:weekly
+          };
+
+        }
+      );
+
+    }
+
+
+    return usage.map(
+      (row,index)=>{
+
+        const daily =
+          Number(
+            row.tokens ??
+            row.dailyTokens ??
+            0
+          );
+
+
+        return {
+          id:
+            row.id ||
+            "model-"+index,
+
+          name:
+            row.name ||
+            "Unknown model",
+
+          provider:
+            row.provider ||
+            "",
+
+          dailyTokens:
+            daily,
+
+          weeklyTokens:
+            Number(
+              row.weeklyTokens ??
+              daily*7
+            )
+        };
+
+      }
+    );
+
+  }
+
+
+  function benchmark(){
+
+    return (
+      window.ZORIX_BENCHMARKS
+      ||
+      {
+        metrics:[],
+        scores:{}
+      }
+    );
+
+  }
+
+
+  function votes(){
+
+    return (
+      window.ZORIX_COMMUNITY_VOTES
+      ||
+      {
+        models:[]
+      }
+    );
+
+  }
+
+
+  /* ========================================================
+     HELPERS
+     ======================================================== */
+
+  function fmt(value){
+
+    const n =
+      Number(value || 0);
+
+
+    const units=[
+      [1e15,"P"],
+      [1e12,"T"],
+      [1e9,"B"],
+      [1e6,"M"],
+      [1e3,"K"]
+    ];
+
+
+    for(const [size,suffix] of units){
+
+      if(n>=size){
+
+        return (
+          (n/size)
+          .toFixed(
+            n/size>=100
+              ? 0
+              : n/size>=10
+                ? 1
+                : 2
+          )
+          .replace(/\.0+$/,"")
+          +
+          suffix
+        );
+
+      }
+
+    }
+
+    return Math.round(n).toLocaleString();
+
+  }
+
+
+  function color(provider,index){
+
+    const map={
+      "Zorix":"#111111",
+      "OpenAI":"#111111",
+      "Anthropic":"#D97757",
+      "Google":"#4285F4",
+      "DeepSeek":"#4D6BFE",
+      "Tencent":"#00A7CE",
+      "Xiaomi":"#FF6900",
+      "Z.ai":"#7C5CE7",
+      "Moonshot AI":"#1783FF",
+      "Meta":"#087AEA",
+      "NVIDIA":"#74B71B"
+    };
+
+    const fallback=[
+      "#111111",
+      "#5550B8",
+      "#2563EB",
+      "#C9643B",
+      "#1783FF",
+      "#7C5CE7",
+      "#0082FB"
+    ];
+
+    return (
+      map[provider]
+      ||
+      fallback[
+        index %
+        fallback.length
+      ]
+    );
+
+  }
+
+
+  function clear(){
+
+    ctx.clearRect(0,0,W,H);
+
+    ctx.fillStyle="#FAF9F6";
+    ctx.fillRect(0,0,W,H);
+
+  }
+
+
+  function header(title,subtitle){
+
+    ctx.fillStyle="#74746E";
+    ctx.font="600 21px Arial";
+
+    ctx.fillText(
+      "ZORIX METRON · PUBLIC CHART",
+      70,
+      65
+    );
+
+
+    ctx.fillStyle="#111";
+    ctx.font="600 52px Arial";
+
+    ctx.fillText(
+      title,
+      70,
+      130
+    );
+
+
+    ctx.fillStyle="#74746E";
+    ctx.font="23px Arial";
+
+    ctx.fillText(
+      subtitle,
+      70,
+      174
+    );
+
+  }
+
+
+  function empty(message){
+
+    clear();
+
+    header(
+      "Metron chart",
+      "No compatible data"
+    );
+
+    ctx.fillStyle="#777";
+    ctx.font="28px Arial";
+
+    ctx.fillText(
+      message,
+      70,
+      310
+    );
+
+  }
+
+
+  function count(){
+
+    return Math.max(
+      1,
+      Number(
+        $("modelCountSelect")?.value
+        || 8
+      )
+    );
+
+  }
+
+
+  /* ========================================================
+     RANKING BAR
+     ======================================================== */
+
+  function drawBars(
+    rows,
+    title,
+    subtitle,
+    suffix=""
+  ){
+
+    clear();
+    header(title,subtitle);
+
+
+    rows =
+      rows
+      .filter(
+        row=>
+          Number.isFinite(
+            Number(row.value)
+          )
+      )
+      .slice(
+        0,
+        count()
+      );
+
+
+    if(!rows.length){
+
+      empty(
+        "No records available for this chart."
+      );
+
+      return;
+    }
+
+
+    const values =
+      rows.map(
+        row=>Number(row.value)
+      );
+
+
+    const max =
+      Math.max(...values);
+
+    const min =
+      Math.min(...values);
+
+
+    const floor =
+      Math.max(
+        0,
+        min -
+        Math.max(
+          1,
+          (max-min)*.2
+        )
+      );
+
+
+    const span =
+      Math.max(
+        1,
+        max-floor
+      );
+
+
+    const left=530;
+    const right=1450;
+
+    const top=250;
+
+    const rowH =
+      Math.min(
+        76,
+        510/rows.length
+      );
+
+
+    rows.forEach(
+      (row,index)=>{
+
+        const y =
+          top +
+          index*rowH;
+
+
+        ctx.textAlign="right";
+
+        ctx.fillStyle="#111";
+        ctx.font=
+          index===0
+            ? "600 23px Arial"
+            : "22px Arial";
+
+
+        ctx.fillText(
+          `#${index+1}  ${row.name}`,
+          left-28,
+          y+31
+        );
+
+
+        ctx.textAlign="left";
+
+
+        const width =
+          Math.max(
+            8,
+            (
+              (
+                Number(row.value)-
+                floor
+              )/
+              span
+            )*
+            (
+              right-left
+            )
+          );
+
+
+        ctx.fillStyle =
+          index===0
+            ? "#C9643B"
+            : color(
+                row.provider,
+                index
+              );
+
+
+        if(
+          typeof ctx.roundRect==="function"
+        ){
+
+          ctx.beginPath();
+
+          ctx.roundRect(
+            left,
+            y,
+            width,
+            45,
+            7
+          );
+
+          ctx.fill();
+
+        }else{
+
+          ctx.fillRect(
+            left,
+            y,
+            width,
+            45
+          );
+
+        }
+
+
+        ctx.fillStyle="#111";
+        ctx.font="600 20px Arial";
+
+
+        ctx.fillText(
+          (
+            row.format
+              ? row.format(row.value)
+              : fmt(row.value)
+          )
+          +
+          suffix,
+          left+width+12,
+          y+29
+        );
+
+      }
+    );
+
+
+    ctx.textAlign="left";
+
+    ctx.fillStyle="#777770";
+    ctx.font="17px Arial";
+
+    ctx.fillText(
+      "Current Zorix Metron snapshot",
+      70,
+      840
+    );
+
+  }
+
+
+  /* ========================================================
+     USAGE
+     ======================================================== */
+
+  function drawUsage(){
+
+    const rows =
+      models()
+      .map(
+        model=>({
+          name:model.name,
+          provider:model.provider,
+          value:
+            Number(
+              model.dailyTokens || 0
+            )
+        })
+      )
+      .filter(
+        row=>row.value>0
+      )
+      .sort(
+        (a,b)=>
+          b.value-a.value
+      );
+
+
+    drawBars(
+      rows,
+      "Model token volume",
+      "Daily traffic recorded inside Zorix Code / Metron",
+      "/day"
+    );
+
+  }
+
+
+  /* ========================================================
+     WEEKLY TREND / RANK CURVE
+     ======================================================== */
+
+  function drawTrend(){
+
+    const rows =
+      models()
+      .map(
+        model=>({
+          name:model.name,
+          provider:model.provider,
+          value:
+            Number(
+              model.weeklyTokens || 0
+            )
+        })
+      )
+      .filter(
+        row=>row.value>0
+      )
+      .sort(
+        (a,b)=>
+          a.value-b.value
+      )
+      .slice(
+        -count()
+      );
+
+
+    if(!rows.length){
+
+      empty(
+        "No weekly token data available."
+      );
+
+      return;
+    }
+
+
+    clear();
+
+    header(
+      "Weekly token volume",
+      "Current model ranking curve · logarithmic scale"
+    );
+
+
+    const left=150;
+    const right=1460;
+    const top=255;
+    const bottom=745;
+
+
+    const min =
+      Math.max(
+        1,
+        Math.min(
+          ...rows.map(
+            row=>row.value
+          )
+        )
+      );
+
+
+    const max =
+      Math.max(
+        ...rows.map(
+          row=>row.value
+        )
+      );
+
+
+    let low =
+      Math.floor(
+        Math.log10(min)
+      );
+
+
+    let high =
+      Math.ceil(
+        Math.log10(max)
+      );
+
+
+    if(high<=low){
+      high=low+1;
+    }
+
+
+    function y(value){
+
+      return (
+        bottom -
+        (
+          (
+            Math.log10(
+              Math.max(
+                1,
+                value
+              )
+            )-
+            low
+          )/
+          (high-low)
+        )*
+        (bottom-top)
+      );
+
+    }
+
+
+    ctx.strokeStyle="#DFDFDA";
+    ctx.lineWidth=1;
+
+    ctx.fillStyle="#777770";
+    ctx.font="18px Arial";
+
+
+    for(
+      let exponent=low;
+      exponent<=high;
+      exponent++
+    ){
+
+      const value =
+        10**exponent;
+
+      const py =
+        y(value);
+
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        left,
+        py
+      );
+
+      ctx.lineTo(
+        right,
+        py
+      );
+
+      ctx.stroke();
+
+
+      ctx.fillText(
+        fmt(value),
+        65,
+        py+6
+      );
+
+    }
+
+
+    const points =
+      rows.map(
+        (row,index)=>({
+
+          ...row,
+
+          x:
+            rows.length===1
+              ? (
+                  left+right
+                )/2
+              : left+
+                index/
+                (
+                  rows.length-1
+                )*
+                (
+                  right-left
+                ),
+
+          y:
+            y(row.value)
+
+        })
+      );
+
+
+    ctx.strokeStyle="#171717";
+    ctx.lineWidth=5;
+    ctx.lineJoin="round";
+    ctx.lineCap="round";
+
+    ctx.beginPath();
+
+
+    points.forEach(
+      (point,index)=>{
+
+        if(index===0){
+
+          ctx.moveTo(
+            point.x,
+            point.y
+          );
+
+        }else{
+
+          ctx.lineTo(
+            point.x,
+            point.y
+          );
+
+        }
+
+      }
+    );
+
+
+    ctx.stroke();
+
+
+    points.forEach(
+      (point,index)=>{
+
+        const last =
+          index===
+          points.length-1;
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+          point.x,
+          point.y,
+          last ? 10 : 6,
+          0,
+          Math.PI*2
+        );
+
+
+        ctx.fillStyle =
+          last
+            ? "#E87520"
+            : "#fff";
+
+        ctx.fill();
+
+
+        ctx.strokeStyle =
+          last
+            ? "#E87520"
+            : "#111";
+
+        ctx.lineWidth=3;
+
+        ctx.stroke();
+
+
+        ctx.fillStyle="#111";
+
+        ctx.font=
+          last
+            ? "600 20px Arial"
+            : "17px Arial";
+
+
+        let x =
+          point.x+11;
+
+
+        if(
+          x+300>right
+        ){
+          x=point.x-280;
+        }
+
+
+        ctx.fillText(
+          point.name+
+          " · "+
+          fmt(point.value)+
+          "/wk",
+          x,
+          point.y-13
+        );
+
+      }
+    );
+
+
+    ctx.fillStyle="#777770";
+    ctx.font="17px Arial";
+
+    ctx.fillText(
+      "TOKENS PER WEEK · LOG SCALE",
+      left,
+      220
+    );
+
+
+    ctx.fillText(
+      "Current ranking curve; it is not presented as measured historical time-series data.",
+      left,
+      835
+    );
+
+  }
+
+
+  /* ========================================================
+     BENCHMARK
+     ======================================================== */
+
+  function drawBenchmark(){
+
+    const data =
+      benchmark();
+
+
+    const metricId =
+      $("metricSelect")?.value
+      ||
+      data.metrics?.[0]?.id;
+
+
+    const metric =
+      (
+        data.metrics || []
+      )
+      .find(
+        item=>
+          item.id===metricId
+      );
+
+
+    const modelById =
+      new Map(
+        models().map(
+          model=>[
+            model.id,
+            model
+          ]
+        )
+      );
+
+
+    const rows=[];
+
+
+    Object.entries(
+      data.scores || {}
+    )
+    .forEach(
+      ([id,scores])=>{
+
+        const value =
+          Number(
+            scores?.[metricId]
+          );
+
+
+        if(
+          !Number.isFinite(value)
+        ){
+          return;
+        }
+
+
+        const model =
+          modelById.get(id)
+          ||
+          {
+            name:id,
+            provider:""
+          };
+
+
+        rows.push({
+          name:model.name,
+          provider:model.provider,
+          value,
+          format:
+            n=>
+              Number(n)
+              .toFixed(1)
+        });
+
+      }
+    );
+
+
+    rows.sort(
+      (a,b)=>
+        b.value-a.value
+    );
+
+
+    drawBars(
+      rows,
+      metric?.name ||
+      metricId ||
+      "Benchmark ranking",
+      "Current Zorix Metron benchmark snapshot",
+      " pts"
+    );
+
+  }
+
+
+  /* ========================================================
+     VOTING
+     ======================================================== */
+
+  function drawVoting(){
+
+    const data =
+      votes();
+
+
+    const modelById =
+      new Map(
+        models().map(
+          model=>[
+            model.id,
+            model
+          ]
+        )
+      );
+
+
+    const rows =
+      (
+        data.models || []
+      )
+      .map(
+        row=>{
+
+          const model =
+            modelById.get(
+              row.id
+            )
+            ||
+            {};
+
+
+          return {
+            name:
+              model.name ||
+              row.name ||
+              row.id,
+
+            provider:
+              model.provider ||
+              "",
+
+            value:
+              Number(
+                row.votes || 0
+              ),
+
+            format:
+              n=>
+                Math.round(
+                  Number(n)
+                ).toLocaleString()
+          };
+
+        }
+      )
+      .filter(
+        row=>row.value>0
+      )
+      .sort(
+        (a,b)=>
+          b.value-a.value
+      );
+
+
+    drawBars(
+      rows,
+      "Community voting",
+      "Current recorded voting snapshot",
+      ""
+    );
+
+  }
+
+
+  /* ========================================================
+     INTELLIGENCE / IMAGE FALLBACK
+     ======================================================== */
+
+  function drawGeneric(){
+
+    drawUsage();
+
+  }
+
+
+  /* ========================================================
+     RENDER
+     ======================================================== */
+
+  function render(){
+
+    try{
+
+      const type =
+        $("reportType")?.value
+        ||
+        "usage";
+
+
+      switch(type){
+
+        case "usage":
+        case "ranking":
+          drawUsage();
+          break;
+
+
+        case "trend":
+          drawTrend();
+          break;
+
+
+        case "benchmark":
+          drawBenchmark();
+          break;
+
+
+        case "voting":
+          drawVoting();
+          break;
+
+
+        default:
+          drawGeneric();
+
+      }
+
+
+      const meta =
+        $("previewMeta");
+
+
+      if(meta){
+
+        meta.textContent =
+          "Zorix Metron · "+
+          models().length+
+          " models loaded";
+
+      }
+
+
+      const status =
+        $("shareDataStatus");
+
+
+      if(status){
+
+        status.style.display =
+          "block";
+
+        status.textContent =
+          models().length
+            ? (
+                models().length+
+                " models loaded · preview renderer active."
+              )
+            : (
+                "No models loaded. Check models.js / usage.js."
+              );
+
+      }
+
+    }catch(error){
+
+      console.error(
+        "Metron Share render error:",
+        error
+      );
+
+
+      empty(
+        "Preview renderer error: "+
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ========================================================
+     EVENTS
+     ======================================================== */
+
+  [
+    "reportType",
+    "metricSelect",
+    "modelCountSelect",
+    "trendScale"
+  ]
+  .forEach(
+    id=>{
+
+      $(id)?.addEventListener(
+        "change",
+        ()=>setTimeout(
+          render,
+          0
+        )
+      );
+
+    }
+  );
+
+
+  /*
+   * Guarantee PNG button uses the visible canvas,
+   * regardless of older Share JS state.
+   */
+  $("downloadButton")
+    ?.addEventListener(
+      "click",
+      function(){
+
+        try{
+
+          render();
+
+
+          const link =
+            document.createElement(
+              "a"
+            );
+
+
+          link.download =
+            "zorix-metron-share.png";
+
+
+          link.href =
+            canvas.toDataURL(
+              "image/png"
+            );
+
+
+          link.click();
+
+        }catch(error){
+
+          console.error(error);
+
+        }
+
+      }
+    );
+
+
+  /*
+   * Wait for all preceding static data scripts:
+   * models.js, usage.js, votes.js, benchmarks.js.
+   */
+  if(
+    document.readyState===
+    "loading"
+  ){
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      ()=>setTimeout(
+        render,
+        80
+      )
+    );
+
+  }else{
+
+    setTimeout(
+      render,
+      80
+    );
+
+  }
+
+})();
+
 </script>
 
 </body>
