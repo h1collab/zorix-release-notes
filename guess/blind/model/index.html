@@ -13,7 +13,7 @@
 
 <meta
   name="zorix-build"
-  content="1788250523"
+  content="1788256220"
 >
 
 <meta
@@ -904,6 +904,155 @@ h1{
 }
 
 
+
+
+/* ==========================================================
+   BLIND_GUESS_CURVE_V1
+   ========================================================== */
+
+.guess-curve-section{
+  padding:
+    54px
+    0;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.guess-curve-head{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:30px;
+
+  margin-bottom:26px;
+}
+
+.guess-curve-title{
+  font-size:
+    clamp(
+      29px,
+      4vw,
+      44px
+    );
+
+  letter-spacing:-.05em;
+}
+
+.guess-curve-copy{
+  max-width:480px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+.guess-curve-card{
+  padding:
+    20px
+    20px
+    17px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:16px;
+
+  background:
+    var(--soft2);
+}
+
+.guess-curve-chart{
+  width:100%;
+
+  overflow-x:auto;
+}
+
+.guess-curve-chart svg{
+  display:block;
+
+  width:100%;
+  min-width:680px;
+  height:auto;
+}
+
+.guess-curve-legend{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:
+    10px
+    20px;
+
+  margin-top:18px;
+
+  padding-top:16px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.guess-curve-legend-item{
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.guess-curve-line{
+  width:22px;
+  height:3px;
+
+  border-radius:999px;
+}
+
+.guess-curve-legend-item strong{
+  color:#111;
+
+  font-weight:600;
+}
+
+.guess-curve-note{
+  margin-top:14px;
+
+  color:#888;
+
+  font-size:9px;
+  line-height:1.5;
+}
+
+@media(max-width:720px){
+
+  .guess-curve-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .guess-curve-card{
+    margin-right:-18px;
+
+    border-radius:
+      14px
+      0
+      0
+      14px;
+  }
+
+}
+
+
 </style>
 
 </head>
@@ -1068,6 +1217,59 @@ h1{
 </section>
 
 
+<section class="guess-curve-section">
+
+  <div class="guess-curve-head">
+
+    <div>
+
+      <div class="guess-curve-title">
+        Community vote curve
+      </div>
+
+    </div>
+
+
+    <div class="guess-curve-copy">
+
+      An illustrative view generated from the current
+      published vote totals.
+
+      This is not historical voting telemetry and does not
+      claim to reconstruct the actual timing of past votes.
+
+    </div>
+
+  </div>
+
+
+  <div class="guess-curve-card">
+
+    <div
+      class="guess-curve-chart"
+      id="guessCurve"
+    ></div>
+
+
+    <div
+      class="guess-curve-legend"
+      id="guessCurveLegend"
+    ></div>
+
+
+    <div class="guess-curve-note">
+
+      Illustrative trend · not historical telemetry.
+      The final point of each curve equals the current
+      published tally. Intermediate points are visual only.
+
+    </div>
+
+  </div>
+
+</section>
+
+
 <section class="poll">
 
   <div class="section-head">
@@ -1217,7 +1419,7 @@ h1{
 </main>
 
 
-<script src="./data.js?v=1788250523"></script>
+<script src="./data.js?v=1788256220"></script>
 
 
 <script>
@@ -1377,6 +1579,631 @@ h1{
   }
 
 
+  /* ==================================================
+     BLIND_GUESS_CURVE_RENDER_V1
+     ================================================== */
+
+  function compactVotes(value){
+
+    const number =
+      Number(
+        value || 0
+      );
+
+
+    if(number>=1e9){
+
+      return (
+        number/1e9
+      )
+      .toFixed(1)
+      .replace(
+        /\.0$/,
+        ""
+      )
+      +
+      "B";
+
+    }
+
+
+    if(number>=1e6){
+
+      return (
+        number/1e6
+      )
+      .toFixed(1)
+      .replace(
+        /\.0$/,
+        ""
+      )
+      +
+      "M";
+
+    }
+
+
+    if(number>=1e3){
+
+      return (
+        number/1e3
+      )
+      .toFixed(1)
+      .replace(
+        /\.0$/,
+        ""
+      )
+      +
+      "K";
+
+    }
+
+
+    return number
+      .toLocaleString(
+        "en-US"
+      );
+
+  }
+
+
+  function smoothCurvePath(
+    points
+  ){
+
+    if(!points.length){
+      return "";
+    }
+
+
+    let path =
+      (
+        "M "
+        +
+        points[0][0]
+        +
+        " "
+        +
+        points[0][1]
+      );
+
+
+    for(
+      let i=1;
+      i<points.length;
+      i++
+    ){
+
+      const previous =
+        points[
+          i-1
+        ];
+
+
+      const current =
+        points[i];
+
+
+      const middleX =
+        (
+          previous[0]
+          +
+          current[0]
+        )
+        /
+        2;
+
+
+      path +=
+        (
+          " C "
+          +
+          middleX
+          +
+          " "
+          +
+          previous[1]
+          +
+          ", "
+          +
+          middleX
+          +
+          " "
+          +
+          current[1]
+          +
+          ", "
+          +
+          current[0]
+          +
+          " "
+          +
+          current[1]
+        );
+
+    }
+
+
+    return path;
+
+  }
+
+
+  function renderGuessCurve(){
+
+    const host =
+      document.getElementById(
+        "guessCurve"
+      );
+
+
+    const legend =
+      document.getElementById(
+        "guessCurveLegend"
+      );
+
+
+    if(
+      !host
+      ||
+      !legend
+    ){
+      return;
+    }
+
+
+    const rows =
+      candidates
+      .filter(
+        item=>
+          item.votesPublished
+          &&
+          Number.isFinite(
+            Number(
+              item.votes
+            )
+          )
+      )
+      .map(
+        item=>({
+          ...item,
+          votes:
+            Number(
+              item.votes
+            )
+        })
+      )
+      .sort(
+        (a,b)=>
+          b.votes
+          -
+          a.votes
+      );
+
+
+    if(!rows.length){
+
+      host.innerHTML =
+        `
+          <div
+            style="
+              min-height:260px;
+              display:grid;
+              place-items:center;
+              color:#777;
+              font-size:12px;
+            "
+          >
+            No published vote totals.
+          </div>
+        `;
+
+
+      legend.innerHTML =
+        "";
+
+
+      return;
+
+    }
+
+
+    const width =
+      1000;
+
+
+    const height =
+      360;
+
+
+    const left =
+      72;
+
+
+    const right =
+      34;
+
+
+    const top =
+      30;
+
+
+    const bottom =
+      48;
+
+
+    const plotW =
+      width
+      -
+      left
+      -
+      right;
+
+
+    const plotH =
+      height
+      -
+      top
+      -
+      bottom;
+
+
+    const maximum =
+      Math.max(
+        1,
+        ...rows.map(
+          row=>row.votes
+        )
+      );
+
+
+    /*
+     * Different visual progressions prevent identical-looking
+     * lines while remaining explicitly illustrative.
+     *
+     * Last value is always exactly 1.0 so every line ends on
+     * the current published tally.
+     */
+    const curveShapes = [
+
+      [
+        0,
+        .07,
+        .18,
+        .36,
+        .57,
+        .78,
+        1
+      ],
+
+      [
+        0,
+        .11,
+        .25,
+        .43,
+        .61,
+        .82,
+        1
+      ],
+
+      [
+        0,
+        .05,
+        .15,
+        .31,
+        .52,
+        .75,
+        1
+      ],
+
+      [
+        0,
+        .09,
+        .21,
+        .39,
+        .59,
+        .80,
+        1
+      ]
+
+    ];
+
+
+    const tones = [
+      "#111111",
+      "#5f5f5b",
+      "#989894",
+      "#3f3f3c",
+      "#777773"
+    ];
+
+
+    const grid =
+      [
+        0,
+        .25,
+        .5,
+        .75,
+        1
+      ]
+      .map(
+        ratio=>{
+
+          const y =
+            top
+            +
+            (
+              1-ratio
+            )
+            *
+            plotH;
+
+
+          const value =
+            maximum
+            *
+            ratio;
+
+
+          return `
+            <line
+              x1="${left}"
+              y1="${y}"
+              x2="${
+                width-right
+              }"
+              y2="${y}"
+              stroke="#e4e4df"
+              stroke-width="1"
+            />
+
+            <text
+              x="${left-12}"
+              y="${y+4}"
+              text-anchor="end"
+              fill="#858580"
+              font-size="10"
+              font-family="OpenAI Sans, Inter, Arial, sans-serif"
+            >
+              ${compactVotes(value)}
+            </text>
+          `;
+
+        }
+      )
+      .join("");
+
+
+    const curves =
+      rows
+      .map(
+        (row,index)=>{
+
+          const shape =
+            curveShapes[
+              index
+              %
+              curveShapes.length
+            ];
+
+
+          const points =
+            shape.map(
+              (factor,pointIndex)=>{
+
+                const x =
+                  left
+                  +
+                  (
+                    pointIndex
+                    /
+                    (
+                      shape.length
+                      -
+                      1
+                    )
+                  )
+                  *
+                  plotW;
+
+
+                const value =
+                  row.votes
+                  *
+                  factor;
+
+
+                const y =
+                  top
+                  +
+                  (
+                    1
+                    -
+                    (
+                      value
+                      /
+                      maximum
+                    )
+                  )
+                  *
+                  plotH;
+
+
+                return [
+                  Number(
+                    x.toFixed(2)
+                  ),
+                  Number(
+                    y.toFixed(2)
+                  )
+                ];
+
+              }
+            );
+
+
+          const finalPoint =
+            points[
+              points.length-1
+            ];
+
+
+          const tone =
+            tones[
+              index
+              %
+              tones.length
+            ];
+
+
+          return `
+
+            <path
+              d="${
+                smoothCurvePath(
+                  points
+                )
+              }"
+              fill="none"
+              stroke="${tone}"
+              stroke-width="${
+                index===0
+                  ? 4
+                  : 3
+              }"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+
+            <circle
+              cx="${finalPoint[0]}"
+              cy="${finalPoint[1]}"
+              r="${
+                index===0
+                  ? 5
+                  : 4
+              }"
+              fill="${tone}"
+              stroke="#fff"
+              stroke-width="2"
+            />
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+    host.innerHTML =
+      `
+        <svg
+          viewBox="0 0 ${width} ${height}"
+          role="img"
+          aria-label="Illustrative community vote curve"
+        >
+
+          ${grid}
+
+          <line
+            x1="${left}"
+            y1="${
+              height-bottom
+            }"
+            x2="${
+              width-right
+            }"
+            y2="${
+              height-bottom
+            }"
+            stroke="#aaa"
+            stroke-width="1"
+          />
+
+
+          ${curves}
+
+
+          <text
+            x="${left}"
+            y="${
+              height-15
+            }"
+            fill="#858580"
+            font-size="10"
+            font-family="OpenAI Sans, Inter, Arial, sans-serif"
+          >
+            Illustrative start
+          </text>
+
+
+          <text
+            x="${
+              width-right
+            }"
+            y="${
+              height-15
+            }"
+            text-anchor="end"
+            fill="#858580"
+            font-size="10"
+            font-family="OpenAI Sans, Inter, Arial, sans-serif"
+          >
+            Current published snapshot
+          </text>
+
+        </svg>
+      `;
+
+
+    legend.innerHTML =
+      rows
+      .map(
+        (row,index)=>{
+
+          const tone =
+            tones[
+              index
+              %
+              tones.length
+            ];
+
+
+          return `
+
+            <div class="guess-curve-legend-item">
+
+              <span
+                class="guess-curve-line"
+                style="
+                  background:${tone}
+                "
+              ></span>
+
+              <span>
+                ${esc(
+                  row.name
+                )}
+              </span>
+
+              <strong>
+                ${fmt(
+                  row.votes
+                )}
+              </strong>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
   function render(){
 
     /*
@@ -1393,11 +2220,42 @@ h1{
       maxKnownVotes();
 
 
-    knownVotes.textContent =
+    const calculatedPublishedVotes =
+      candidates
+      .filter(
+        item=>
+          item.votesPublished
+          &&
+          Number.isFinite(
+            Number(
+              item.votes
+            )
+          )
+      )
+      .reduce(
+        (sum,item)=>
+          sum
+          +
+          Number(
+            item.votes
+          ),
+        0
+      );
+
+
+    const canonicalPublishedVotes =
       Number(
         DATA.knownPublishedVotes
-        ||
-        0
+      );
+
+
+    knownVotes.textContent =
+      (
+        Number.isFinite(
+          canonicalPublishedVotes
+        )
+          ? canonicalPublishedVotes
+          : calculatedPublishedVotes
       )
       .toLocaleString(
         "en-US"
@@ -1412,6 +2270,9 @@ h1{
       DATA.status
       ||
       "Open";
+
+
+    renderGuessCurve();
 
 
     candidateRoot.innerHTML =
@@ -1569,84 +2430,11 @@ h1{
       )
       .join("");
 
-    /* Public voting disabled. */
-
-
-
-              const candidate =
-                candidates.find(
-                  item=>
-                    item.id===id
-                );
-
-
-              if(!candidate){
-                return;
-              }
-
-
-              const saved =
-                saveChoice(
-                  id
-                );
-
-
-              localStatus.classList.add(
-                "active"
-              );
-
-
-              localStatus.textContent =
-                saved
-                  ? (
-                      "Your current local choice: "
-                      +
-                      candidate.name
-                      +
-                      ". This selection is stored on this browser and does not change the published public tally."
-                    )
-                  : (
-                      "Your browser did not allow the local vote to be saved."
-                    );
-
-
-              render();
-
-            }
-          );
-
-        }
-      );
-
-
-    if(selected){
-
-      const selectedCandidate =
-        candidates.find(
-          item=>
-            item.id===selected
-        );
-
-
-      if(selectedCandidate){
-
-        localStatus.classList.add(
-          "active"
-        );
-
-
-        localStatus.textContent =
-          (
-            "Your current local choice: "
-            +
-            selectedCandidate.name
-            +
-            ". This selection is stored on this browser and does not change the published public tally."
-          );
-
-      }
-
-    }
+    /*
+     * PUBLIC_READ_ONLY_CLEAN_V2
+     * Public submissions are disabled.
+     * No browser-local vote handler runs here.
+     */
 
   }
 
