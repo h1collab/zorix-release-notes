@@ -13,7 +13,7 @@
 
 <meta
   name="zorix-build"
-  content="1788249582"
+  content="1788250523"
 >
 
 <meta
@@ -804,6 +804,106 @@ h1{
 
 }
 
+
+
+/* ==========================================================
+   PUBLIC_VOTING_DISABLED_V1
+   ========================================================== */
+
+.vote-locked{
+  min-width:145px;
+
+  margin-top:13px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:40px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:9px;
+
+  background:
+    var(--soft);
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  cursor:not-allowed;
+
+  user-select:none;
+}
+
+.anti-abuse-banner{
+  margin-top:18px;
+
+  padding:
+    16px
+    18px;
+
+  display:flex;
+
+  gap:13px;
+
+  align-items:flex-start;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:12px;
+
+  background:
+    var(--soft2);
+}
+
+.anti-abuse-icon{
+  width:28px;
+  height:28px;
+
+  flex:
+    0
+    0
+    28px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:50%;
+
+  font-size:11px;
+}
+
+.anti-abuse-title{
+  font-size:12px;
+  font-weight:600;
+}
+
+.anti-abuse-copy{
+  max-width:680px;
+
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.55;
+}
+
+
 </style>
 
 </head>
@@ -979,10 +1079,11 @@ h1{
 
     <div class="section-copy">
 
-      Choose the model you think is behind Wolf Theta.
+      Published community guesses are shown here as a
+      read-only tally.
 
-      Published counts are shown only when a count has
-      actually been supplied. Missing totals are not shown as zero.
+      Direct voting from this public page is disabled to reduce
+      automated submissions, repeated voting and artificial manipulation.
 
     </div>
 
@@ -996,9 +1097,31 @@ h1{
 
 
   <div
-    class="local-status"
+    class="anti-abuse-banner"
     id="localStatus"
-  ></div>
+  >
+
+    <div class="anti-abuse-icon">
+      ✓
+    </div>
+
+    <div>
+
+      <div class="anti-abuse-title">
+        Public voting is disabled
+      </div>
+
+      <div class="anti-abuse-copy">
+        This page is read-only. Direct browser submissions are not
+        accepted in order to reduce bot voting, repeated submissions
+        and artificial manipulation of the community tally.
+        Published counts are maintained through the controlled
+        administrator workflow.
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1046,17 +1169,17 @@ h1{
     <article class="method-card">
 
       <div class="method-title">
-        Voting on this page
+        Public submissions
       </div>
 
       <div class="method-copy">
 
-        This site is currently served as a static public page.
-        Your selection is saved on this browser only and does not
-        modify the published community tally.
+        Direct public voting is not available on this page.
 
-        A server-backed voting endpoint can replace this local
-        selection layer later.
+        The public site displays published community tallies only.
+        Candidate and vote-count changes are made through the
+        controlled administrator workflow, rather than accepting
+        anonymous browser submissions.
 
       </div>
 
@@ -1094,7 +1217,7 @@ h1{
 </main>
 
 
-<script src="./data.js?v=1788249582"></script>
+<script src="./data.js?v=1788250523"></script>
 
 
 <script>
@@ -1256,8 +1379,14 @@ h1{
 
   function render(){
 
+    /*
+     * PUBLIC_READ_ONLY_V1
+     *
+     * Previous browser-local selections are deliberately
+     * ignored. The public page no longer accepts votes.
+     */
     const selected =
-      currentChoice();
+      "";
 
 
     const maximum =
@@ -1400,23 +1529,12 @@ h1{
                 </div>
 
 
-                <button
-                  class="vote-button ${
-                    selectedNow
-                      ? "selected"
-                      : ""
-                  }"
-                  type="button"
-                  data-vote="${esc(
-                    candidate.id
-                  )}"
+                <div
+                  class="vote-locked"
+                  aria-label="Public voting disabled"
                 >
-                  ${
-                    selectedNow
-                      ? "Your choice"
-                      : "Vote"
-                  }
-                </button>
+                  Public voting disabled
+                </div>
 
               </div>
 
@@ -1451,22 +1569,8 @@ h1{
       )
       .join("");
 
+    /* Public voting disabled. */
 
-    candidateRoot
-      .querySelectorAll(
-        "[data-vote]"
-      )
-      .forEach(
-        button=>{
-
-          button.addEventListener(
-            "click",
-            ()=>{
-
-              const id =
-                button.getAttribute(
-                  "data-vote"
-                );
 
 
               const candidate =

@@ -2,7 +2,7 @@
   "id": "wolf-theta",
   "route": "/guess/blind/model/",
   "title": "What model is Wolf Theta?",
-  "updatedAt": "2026-09-01T10:12:49+02:00",
+  "updatedAt": "2026-09-01T10:15:23+02:00",
   "status": "Open",
   "countsComplete": true,
   "knownPublishedVotes": 3376,
@@ -45,5 +45,12 @@
       "note": "Community reasoning: some voters consider GLM 5.4 Flash less likely because Zhipu has only recently introduced GLM 5.3 Flash, making an immediate jump to 5.4 seem less likely to them."
     }
   ],
-  "note": "Published snapshot: Star Flash 3.6 Preview 799 votes, Gemini 3.8 Flash 577 votes, and GLM 5.4 Flash 397 votes. Candidate identity remains community speculation."
+  "note": "Published snapshot: Star Flash 3.6 Preview 799 votes, Gemini 3.8 Flash 577 votes, and GLM 5.4 Flash 397 votes. Candidate identity remains community speculation.",
+  "publicVotingEnabled": false,
+  "submissionMode": "verified-only",
+  "antiAbuse": {
+    "publicSubmission": false,
+    "reason": "Direct public voting is disabled to reduce automated voting, repeated submissions and artificial vote manipulation.",
+    "management": "Published tallies are maintained through the authenticated local administrator workflow."
+  }
 }
