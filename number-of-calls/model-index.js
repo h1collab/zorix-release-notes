@@ -908,6 +908,30 @@ window.ZORIX_MODEL_INDEX = [
         "finding": "A third-party observation reports that Wolf Theta output contained a watermark that appeared highly suggestive of Zorix branding.",
         "interpretation": "The observation may indicate a Zorix-related generation, serving, rendering, or evaluation layer. It does not establish the identity of Wolf Theta's underlying model.",
         "verification": "No independently reproducible artifact or provider confirmation has been attached yet."
+      },
+      {
+        "id": "flash-class-behavioral-fingerprint",
+        "language": "English",
+        "type": "Behavioral fingerprint",
+        "status": "Unverified",
+        "confidence": "Circumstantial",
+        "finding": "Third-party testers reported that Wolf Theta revealed recognizable behavioral characteristics unusually quickly. Based on those observations, they suspect it may belong to a Flash-class model family.",
+        "interpretation": "The testers did not characterize Wolf Theta as a frontier-tier model. In their comparative testing, however, they reported that Wolf Theta clearly outperformed Zorix Star Flash 3.5 and Gemini 3.7 Flash.",
+        "verification": "The original prompt set, raw outputs and scoring methodology have not been published with this observation. The result remains circumstantial and does not establish Wolf Theta's underlying model.",
+        "references": [
+          {
+            "name": "Zorix Star Flash 3.5",
+            "kind": "Official Zorix model reference",
+            "availability": "External reference",
+            "url": "https://models.zorix.it/"
+          },
+          {
+            "name": "Gemini 3.7 Flash",
+            "kind": "Metron comparison model",
+            "availability": "Tracked by Metron",
+            "url": "/number-of-calls/models/gemini-37-flash/"
+          }
+        ]
       }
     ],
     "thirtyDayTokens": null,

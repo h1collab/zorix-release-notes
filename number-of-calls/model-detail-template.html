@@ -2405,6 +2405,160 @@ h1{
 }
 
 
+
+
+/* =========================================================
+   EVIDENCE_REFERENCE_CAROUSEL_V3
+   ========================================================= */
+
+.evidence-list{
+  display:flex;
+
+  gap:14px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding-bottom:17px;
+
+  scroll-snap-type:
+    x mandatory;
+
+  scroll-behavior:smooth;
+
+  overscroll-behavior-x:
+    contain;
+
+  -webkit-overflow-scrolling:
+    touch;
+}
+
+.evidence-card{
+  flex:
+    0
+    0
+    min(
+      650px,
+      88vw
+    );
+
+  min-width:
+    min(
+      650px,
+      88vw
+    );
+
+  scroll-snap-align:start;
+
+  scroll-snap-stop:always;
+}
+
+.evidence-reference-title{
+  margin-top:22px;
+
+  padding-top:17px;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.055em;
+}
+
+.evidence-references{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:11px;
+}
+
+.evidence-reference{
+  min-width:0;
+
+  display:inline-flex;
+
+  flex-direction:column;
+
+  gap:3px;
+
+  padding:
+    9px
+    11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:10px;
+
+  background:#fff;
+
+  transition:
+    background .15s ease,
+    border-color .15s ease;
+}
+
+.evidence-reference:hover{
+  background:#f3f3f0;
+  border-color:#c2c2bd;
+}
+
+.evidence-reference-name{
+  font-size:11px;
+  font-weight:600;
+}
+
+.evidence-reference-kind{
+  color:var(--muted);
+
+  font-size:8px;
+}
+
+.evidence-reference-arrow{
+  margin-left:5px;
+
+  color:#777;
+}
+
+.evidence-reference-note{
+  margin-top:10px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  line-height:1.5;
+}
+
+@media(max-width:760px){
+
+  .evidence-card{
+    flex-basis:
+      calc(
+        100vw
+        -
+        54px
+      );
+
+    min-width:
+      calc(
+        100vw
+        -
+        54px
+      );
+  }
+
+}
+
+
 </style>
 
 </head>
@@ -5423,7 +5577,7 @@ if(!model){
       ).join("");
 
 
-  /* THIRD_PARTY_EVIDENCE_RENDER_V1 */
+  /* THIRD_PARTY_EVIDENCE_RENDER_V3 */
 
   const evidence =
     Array.isArray(
@@ -5445,6 +5599,97 @@ if(!model){
     );
 
 
+  function evidenceEsc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function evidenceReferenceHTML(
+    reference
+  ){
+
+    const url =
+      String(
+        reference?.url
+        ||
+        ""
+      );
+
+
+    if(!url){
+      return "";
+    }
+
+
+    const external =
+      /^https?:\/\//i
+      .test(
+        url
+      );
+
+
+    return `
+
+      <a
+        class="evidence-reference"
+        href="${evidenceEsc(url)}"
+        ${
+          external
+            ? (
+                'target="_blank" '
+                +
+                'rel="noopener"'
+              )
+            : ""
+        }
+      >
+
+        <span class="evidence-reference-name">
+
+          ${evidenceEsc(
+            reference.name
+            ||
+            "Reference model"
+          )}
+
+          <span class="evidence-reference-arrow">
+            ${
+              external
+                ? "↗"
+                : "→"
+            }
+          </span>
+
+        </span>
+
+
+        <span class="evidence-reference-kind">
+
+          ${evidenceEsc(
+            reference.kind
+            ||
+            reference.availability
+            ||
+            "Reference"
+          )}
+
+        </span>
+
+      </a>
+
+    `;
+
+  }
+
+
   if(
     evidence.length
     &&
@@ -5459,61 +5704,142 @@ if(!model){
 
     evidenceList.innerHTML =
       evidence.map(
-        item=>`
+        item=>{
 
-          <article class="evidence-card">
-
-            <div class="evidence-top">
-
-              <span class="evidence-badge">
-                ${item.language || "Unknown language"}
-              </span>
-
-              <span class="evidence-badge">
-                ${item.type || "Observation"}
-              </span>
-
-              <span class="evidence-badge">
-                ${item.status || "Unverified"}
-              </span>
-
-              <span class="evidence-badge">
-                ${item.confidence || "Unclassified"}
-              </span>
-
-            </div>
+          const references =
+            Array.isArray(
+              item.references
+            )
+              ? item.references
+              : [];
 
 
-            <div class="evidence-title">
-              ${item.finding || "Observation recorded"}
-            </div>
+          return `
+
+            <article class="evidence-card">
+
+              <div class="evidence-top">
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.language
+                    ||
+                    "Unknown language"
+                  )}
+                </span>
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.type
+                    ||
+                    "Observation"
+                  )}
+                </span>
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.status
+                    ||
+                    "Unverified"
+                  )}
+                </span>
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.confidence
+                    ||
+                    "Unclassified"
+                  )}
+                </span>
+
+              </div>
 
 
-            ${
-              item.interpretation
-                ? `
-                  <div class="evidence-copy">
-                    ${item.interpretation}
-                  </div>
-                `
-                : ""
-            }
+              <div class="evidence-title">
+
+                ${evidenceEsc(
+                  item.finding
+                  ||
+                  "Observation recorded"
+                )}
+
+              </div>
 
 
-            ${
-              item.verification
-                ? `
-                  <div class="evidence-warning">
-                    Verification status:
-                    ${item.verification}
-                  </div>
-                `
-                : ""
-            }
+              ${
+                item.interpretation
+                  ? `
 
-          </article>
+                      <div class="evidence-copy">
 
-        `
+                        ${evidenceEsc(
+                          item.interpretation
+                        )}
+
+                      </div>
+
+                    `
+                  : ""
+              }
+
+
+              ${
+                item.verification
+                  ? `
+
+                      <div class="evidence-warning">
+
+                        Verification status:
+                        ${evidenceEsc(
+                          item.verification
+                        )}
+
+                      </div>
+
+                    `
+                  : ""
+              }
+
+
+              ${
+                references.length
+                  ? `
+
+                      <div class="evidence-reference-title">
+                        Models referenced by this observation
+                      </div>
+
+
+                      <div class="evidence-references">
+
+                        ${
+                          references
+                            .map(
+                              evidenceReferenceHTML
+                            )
+                            .join("")
+                        }
+
+                      </div>
+
+
+                      <div class="evidence-reference-note">
+
+                        Reference links do not imply that the
+                        referenced model is the underlying identity
+                        of Wolf Theta.
+
+                      </div>
+
+                    `
+                  : ""
+              }
+
+            </article>
+
+          `;
+
+        }
       )
       .join("");
 
