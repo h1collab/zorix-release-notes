@@ -1,0 +1,1535 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  name="zorix-build"
+  content="1788248803"
+>
+
+<meta
+  http-equiv="Cache-Control"
+  content="no-cache, no-store, must-revalidate, max-age=0"
+>
+
+<meta
+  http-equiv="Pragma"
+  content="no-cache"
+>
+
+<meta
+  http-equiv="Expires"
+  content="0"
+>
+
+<title>
+  What model is Wolf Theta? | Zorix Metron
+</title>
+
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#696966;
+  --line:#deded9;
+  --soft:#f7f7f4;
+  --soft2:#fbfbf9;
+  --max:1080px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.013em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+}
+
+header{
+  position:sticky;
+  top:0;
+
+  z-index:40;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(15px);
+}
+
+.nav{
+  max-width:var(--max);
+  height:66px;
+
+  margin:auto;
+  padding:
+    0
+    24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  font-size:18px;
+  font-weight:600;
+
+  letter-spacing:-.04em;
+}
+
+.nav-right{
+  display:flex;
+
+  gap:23px;
+
+  font-size:13px;
+}
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    65px
+    24px
+    120px;
+}
+
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+.hero{
+  padding-bottom:55px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.eyebrow{
+  margin-bottom:18px;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+.hero-identity{
+  display:flex;
+
+  align-items:center;
+
+  gap:19px;
+}
+
+.hero-logo{
+  width:64px;
+  height:64px;
+
+  flex:0 0 64px;
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:15px;
+
+  background:#0a0a10;
+}
+
+.hero-logo img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+h1{
+  max-width:850px;
+
+  margin:0;
+
+  font-size:
+    clamp(
+      48px,
+      8vw,
+      94px
+    );
+
+  line-height:.94;
+
+  font-weight:500;
+
+  letter-spacing:-.065em;
+}
+
+.hero-copy{
+  max-width:720px;
+
+  margin-top:30px;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.58;
+}
+
+.hero-meta{
+  margin-top:27px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:7px;
+}
+
+.pill{
+  display:inline-flex;
+
+  align-items:center;
+
+  min-height:31px;
+
+  padding:
+    0
+    10px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:999px;
+
+  background:#fff;
+
+  color:#4e4e4b;
+
+  font-size:10px;
+}
+
+
+/* ==========================================================
+   SUMMARY
+   ========================================================== */
+
+.summary{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.summary-item{
+  min-height:128px;
+
+  padding:
+    28px
+    0;
+}
+
+.summary-item:not(:first-child){
+  padding-left:27px;
+
+  border-left:
+    1px solid
+    var(--line);
+}
+
+.summary-k{
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.summary-v{
+  margin-top:14px;
+
+  font-size:
+    clamp(
+      25px,
+      4vw,
+      42px
+    );
+
+  letter-spacing:-.05em;
+}
+
+.summary-sub{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+
+/* ==========================================================
+   POLL
+   ========================================================== */
+
+.poll{
+  padding:
+    55px
+    0;
+}
+
+.section-head{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:30px;
+
+  margin-bottom:28px;
+}
+
+.section-title{
+  font-size:
+    clamp(
+      30px,
+      4vw,
+      45px
+    );
+
+  letter-spacing:-.05em;
+}
+
+.section-copy{
+  max-width:480px;
+
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.55;
+}
+
+.candidates{
+  display:grid;
+
+  gap:12px;
+}
+
+.candidate{
+  position:relative;
+
+  overflow:hidden;
+
+  min-height:156px;
+
+  display:grid;
+
+  grid-template-columns:
+    56px
+    minmax(0,1fr)
+    auto;
+
+  gap:20px;
+
+  align-items:center;
+
+  padding:
+    24px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:16px;
+
+  background:#fff;
+}
+
+.candidate.selected{
+  border-color:#111;
+
+  box-shadow:
+    inset
+    0
+    0
+    0
+    1px
+    #111;
+}
+
+.candidate-logo{
+  position:relative;
+
+  z-index:2;
+
+  width:50px;
+  height:50px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:12px;
+
+  background:#fff;
+}
+
+.candidate-logo img{
+  width:34px;
+  height:34px;
+
+  object-fit:contain;
+}
+
+.candidate-main{
+  position:relative;
+
+  z-index:2;
+
+  min-width:0;
+}
+
+.provider{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.candidate-name{
+  margin-top:6px;
+
+  font-size:
+    clamp(
+      20px,
+      3vw,
+      28px
+    );
+
+  line-height:1.15;
+
+  letter-spacing:-.035em;
+}
+
+.candidate-status{
+  margin-top:10px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.candidate-side{
+  position:relative;
+
+  z-index:2;
+
+  min-width:150px;
+
+  text-align:right;
+}
+
+.vote-count{
+  font-size:24px;
+
+  font-variant-numeric:
+    tabular-nums;
+
+  letter-spacing:-.035em;
+}
+
+.vote-label{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.vote-button{
+  min-width:112px;
+  min-height:40px;
+
+  margin-top:13px;
+
+  padding:
+    0
+    15px;
+
+  border:
+    1px solid
+    #111;
+
+  border-radius:9px;
+
+  background:#111;
+  color:#fff;
+
+  cursor:pointer;
+}
+
+.vote-button:hover{
+  opacity:.84;
+}
+
+.vote-button.selected{
+  border-color:
+    var(--line);
+
+  background:#fff;
+  color:#111;
+}
+
+.vote-progress{
+  position:absolute;
+
+  left:0;
+  bottom:0;
+
+  height:3px;
+
+  background:#111;
+
+  transition:
+    width .25s ease;
+}
+
+.vote-progress.unknown{
+  width:100%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #ddd,
+      #ddd 5px,
+      transparent 5px,
+      transparent 10px
+    );
+}
+
+
+/* ==========================================================
+   LOCAL VOTE
+   ========================================================== */
+
+.local-status{
+  min-height:0;
+
+  margin-top:17px;
+
+  padding:
+    0;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+.local-status.active{
+  padding:
+    14px
+    16px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:11px;
+
+  background:
+    var(--soft);
+}
+
+
+/* ==========================================================
+   METHODOLOGY
+   ========================================================== */
+
+.method{
+  padding-top:50px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.method-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      1fr
+    );
+
+  gap:12px;
+
+  margin-top:25px;
+}
+
+.method-card{
+  padding:22px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:14px;
+
+  background:
+    var(--soft2);
+}
+
+.method-title{
+  font-size:16px;
+
+  letter-spacing:-.025em;
+}
+
+.method-copy{
+  margin-top:10px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.6;
+}
+
+
+/* ==========================================================
+   FOOTER LINK
+   ========================================================== */
+
+.model-link{
+  margin-top:45px;
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  gap:20px;
+
+  padding:
+    22px
+    0;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.model-link-title{
+  font-size:20px;
+
+  letter-spacing:-.03em;
+}
+
+.model-link-copy{
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.model-link-arrow{
+  color:var(--muted);
+
+  font-size:20px;
+}
+
+
+@media(max-width:720px){
+
+  .nav{
+    padding:
+      0
+      18px;
+  }
+
+  .nav-right{
+    gap:14px;
+  }
+
+  main{
+    padding:
+      42px
+      18px
+      80px;
+  }
+
+  .hero-identity{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .summary{
+    grid-template-columns:1fr;
+  }
+
+  .summary-item:not(:first-child){
+    padding-left:0;
+
+    border-left:0;
+
+    border-top:
+      1px solid
+      var(--line);
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .candidate{
+    grid-template-columns:
+      42px
+      minmax(0,1fr);
+
+    gap:13px;
+
+    padding:19px;
+  }
+
+  .candidate-logo{
+    width:40px;
+    height:40px;
+  }
+
+  .candidate-logo img{
+    width:28px;
+    height:28px;
+  }
+
+  .candidate-side{
+    grid-column:
+      1
+      /
+      -1;
+
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    text-align:left;
+  }
+
+  .method-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="/number-of-calls/"
+    >
+      Zorix Metron
+    </a>
+
+
+    <div class="nav-right">
+
+      <a
+        href="/number-of-calls/models/wolf-theta/"
+      >
+        Wolf Theta
+      </a>
+
+      <a
+        href="/number-of-calls/voting/"
+      >
+        Voting
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+<section class="hero">
+
+  <div class="eyebrow">
+    Blind test · Community guess
+  </div>
+
+
+  <div class="hero-identity">
+
+    <div class="hero-logo">
+
+      <img
+        src="/number-of-calls/assets/logos/wolf-theta.svg"
+        alt=""
+      >
+
+    </div>
+
+
+    <h1>
+      What model is Wolf Theta?
+    </h1>
+
+  </div>
+
+
+  <div class="hero-copy">
+
+    Wolf Theta is currently published as a blind-test alias.
+    The underlying model has not been disclosed.
+
+    This page tracks community guesses separately from
+    benchmark results, usage telemetry and third-party observations.
+
+  </div>
+
+
+  <div class="hero-meta">
+
+    <span class="pill">
+      Blind test
+    </span>
+
+    <span class="pill">
+      Underlying model undisclosed
+    </span>
+
+    <span class="pill">
+      Community speculation
+    </span>
+
+  </div>
+
+</section>
+
+
+<section class="summary">
+
+  <div class="summary-item">
+
+    <div class="summary-k">
+      Known published votes
+    </div>
+
+    <div
+      class="summary-v"
+      id="knownVotes"
+    >
+      —
+    </div>
+
+    <div class="summary-sub">
+      Counts with an explicitly published value
+    </div>
+
+  </div>
+
+
+  <div class="summary-item">
+
+    <div class="summary-k">
+      Candidates
+    </div>
+
+    <div
+      class="summary-v"
+      id="candidateCount"
+    >
+      —
+    </div>
+
+    <div class="summary-sub">
+      Current community guess options
+    </div>
+
+  </div>
+
+
+  <div class="summary-item">
+
+    <div class="summary-k">
+      Status
+    </div>
+
+    <div
+      class="summary-v"
+      id="pollStatus"
+    >
+      Open
+    </div>
+
+    <div class="summary-sub">
+      Identity remains undisclosed
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="poll">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      Community guesses
+    </div>
+
+
+    <div class="section-copy">
+
+      Choose the model you think is behind Wolf Theta.
+
+      Published counts are shown only when a count has
+      actually been supplied. Missing totals are not shown as zero.
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="candidates"
+    id="candidates"
+  ></div>
+
+
+  <div
+    class="local-status"
+    id="localStatus"
+  ></div>
+
+</section>
+
+
+<section class="method">
+
+  <div class="section-head">
+
+    <div class="section-title">
+      How to read this poll
+    </div>
+
+
+    <div class="section-copy">
+
+      Community guesses are speculation.
+      A leading vote does not identify the underlying model.
+
+    </div>
+
+  </div>
+
+
+  <div class="method-grid">
+
+    <article class="method-card">
+
+      <div class="method-title">
+        Published tally
+      </div>
+
+      <div class="method-copy">
+
+        The public snapshot currently contains 799 published votes
+        for Zorix Star Flash 3.6 Preview.
+
+        Counts for the other listed candidates have not yet been
+        supplied, so the page does not fabricate values for them.
+
+      </div>
+
+    </article>
+
+
+    <article class="method-card">
+
+      <div class="method-title">
+        Voting on this page
+      </div>
+
+      <div class="method-copy">
+
+        This site is currently served as a static public page.
+        Your selection is saved on this browser only and does not
+        modify the published community tally.
+
+        A server-backed voting endpoint can replace this local
+        selection layer later.
+
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <a
+    class="model-link"
+    href="/number-of-calls/models/wolf-theta/"
+  >
+
+    <div>
+
+      <div class="model-link-title">
+        View Wolf Theta evidence
+      </div>
+
+      <div class="model-link-copy">
+        Usage, blind-test information and third-party observations
+      </div>
+
+    </div>
+
+    <div class="model-link-arrow">
+      →
+    </div>
+
+  </a>
+
+</section>
+
+
+</main>
+
+
+<script src="./data.js?v=1788248803"></script>
+
+
+<script>
+
+(() => {
+
+  "use strict";
+
+
+  const DATA =
+    window.ZORIX_BLIND_MODEL_GUESS
+    ||
+    {
+      candidates:[]
+    };
+
+
+  const STORAGE_KEY =
+    "zorix-wolf-theta-blind-guess-v1";
+
+
+  const candidates =
+    Array.isArray(
+      DATA.candidates
+    )
+      ? DATA.candidates
+      : [];
+
+
+  const knownVotes =
+    document.getElementById(
+      "knownVotes"
+    );
+
+
+  const candidateCount =
+    document.getElementById(
+      "candidateCount"
+    );
+
+
+  const pollStatus =
+    document.getElementById(
+      "pollStatus"
+    );
+
+
+  const candidateRoot =
+    document.getElementById(
+      "candidates"
+    );
+
+
+  const localStatus =
+    document.getElementById(
+      "localStatus"
+    );
+
+
+  function esc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function fmt(value){
+
+    const number =
+      Number(value);
+
+
+    if(!Number.isFinite(number)){
+      return "Not published";
+    }
+
+
+    return number.toLocaleString(
+      "en-US"
+    );
+
+  }
+
+
+  function currentChoice(){
+
+    try{
+
+      return localStorage.getItem(
+        STORAGE_KEY
+      )
+      ||
+      "";
+
+    }catch(error){
+
+      return "";
+
+    }
+
+  }
+
+
+  function saveChoice(id){
+
+    try{
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        id
+      );
+
+      return true;
+
+    }catch(error){
+
+      return false;
+
+    }
+
+  }
+
+
+  function maxKnownVotes(){
+
+    const values =
+      candidates
+      .filter(
+        item=>
+          item.votesPublished
+          &&
+          Number.isFinite(
+            Number(
+              item.votes
+            )
+          )
+      )
+      .map(
+        item=>
+          Number(
+            item.votes
+          )
+      );
+
+
+    return Math.max(
+      1,
+      ...values
+    );
+
+  }
+
+
+  function render(){
+
+    const selected =
+      currentChoice();
+
+
+    const maximum =
+      maxKnownVotes();
+
+
+    knownVotes.textContent =
+      Number(
+        DATA.knownPublishedVotes
+        ||
+        0
+      )
+      .toLocaleString(
+        "en-US"
+      );
+
+
+    candidateCount.textContent =
+      candidates.length;
+
+
+    pollStatus.textContent =
+      DATA.status
+      ||
+      "Open";
+
+
+    candidateRoot.innerHTML =
+      candidates.map(
+        candidate=>{
+
+          const published =
+            candidate.votesPublished
+            &&
+            Number.isFinite(
+              Number(
+                candidate.votes
+              )
+            );
+
+
+          const selectedNow =
+            selected
+            ===
+            candidate.id;
+
+
+          const width =
+            published
+              ? (
+                  Number(
+                    candidate.votes
+                  )
+                  /
+                  maximum
+                  *
+                  100
+                )
+              : 0;
+
+
+          return `
+
+            <article
+              class="candidate ${
+                selectedNow
+                  ? "selected"
+                  : ""
+              }"
+            >
+
+              <div class="candidate-logo">
+
+                <img
+                  src="${esc(
+                    candidate.logo
+                  )}"
+                  alt=""
+                >
+
+              </div>
+
+
+              <div class="candidate-main">
+
+                <div class="provider">
+                  ${esc(candidate.provider)}
+                </div>
+
+                <div class="candidate-name">
+                  ${esc(candidate.name)}
+                </div>
+
+                <div class="candidate-status">
+                  ${esc(
+                    candidate.status
+                    ||
+                    "Candidate"
+                  )}
+                </div>
+
+              </div>
+
+
+              <div class="candidate-side">
+
+                <div>
+
+                  <div class="vote-count">
+                    ${
+                      published
+                        ? fmt(
+                            candidate.votes
+                          )
+                        : "—"
+                    }
+                  </div>
+
+                  <div class="vote-label">
+                    ${
+                      published
+                        ? "published votes"
+                        : "vote count not published"
+                    }
+                  </div>
+
+                </div>
+
+
+                <button
+                  class="vote-button ${
+                    selectedNow
+                      ? "selected"
+                      : ""
+                  }"
+                  type="button"
+                  data-vote="${esc(
+                    candidate.id
+                  )}"
+                >
+                  ${
+                    selectedNow
+                      ? "Your choice"
+                      : "Vote"
+                  }
+                </button>
+
+              </div>
+
+
+              <div
+                class="vote-progress ${
+                  published
+                    ? ""
+                    : "unknown"
+                }"
+                style="${
+                  published
+                    ? (
+                        "width:"
+                        +
+                        Math.max(
+                          2,
+                          width
+                        )
+                        +
+                        "%"
+                      )
+                    : ""
+                }"
+              ></div>
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+    candidateRoot
+      .querySelectorAll(
+        "[data-vote]"
+      )
+      .forEach(
+        button=>{
+
+          button.addEventListener(
+            "click",
+            ()=>{
+
+              const id =
+                button.getAttribute(
+                  "data-vote"
+                );
+
+
+              const candidate =
+                candidates.find(
+                  item=>
+                    item.id===id
+                );
+
+
+              if(!candidate){
+                return;
+              }
+
+
+              const saved =
+                saveChoice(
+                  id
+                );
+
+
+              localStatus.classList.add(
+                "active"
+              );
+
+
+              localStatus.textContent =
+                saved
+                  ? (
+                      "Your current local choice: "
+                      +
+                      candidate.name
+                      +
+                      ". This selection is stored on this browser and does not change the published public tally."
+                    )
+                  : (
+                      "Your browser did not allow the local vote to be saved."
+                    );
+
+
+              render();
+
+            }
+          );
+
+        }
+      );
+
+
+    if(selected){
+
+      const selectedCandidate =
+        candidates.find(
+          item=>
+            item.id===selected
+        );
+
+
+      if(selectedCandidate){
+
+        localStatus.classList.add(
+          "active"
+        );
+
+
+        localStatus.textContent =
+          (
+            "Your current local choice: "
+            +
+            selectedCandidate.name
+            +
+            ". This selection is stored on this browser and does not change the published public tally."
+          );
+
+      }
+
+    }
+
+  }
+
+
+  render();
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

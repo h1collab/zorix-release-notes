@@ -2739,7 +2739,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./voting/"
+      href="/number-of-calls/voting/"
     >
       <div>
 
@@ -3437,7 +3437,7 @@ h1{
 
     <a
       class="bottom-button"
-      href="./voting/"
+      href="/number-of-calls/voting/"
     >
       Voting leaderboard ↗
     </a>
@@ -3448,7 +3448,7 @@ h1{
 
 
 <script src="/number-of-calls/models.js?v=1788181089"></script>
-<script src="/number-of-calls/model-index.js?v=1788247815"></script>
+<script src="/number-of-calls/model-index.js?v=1788248803"></script>
 <script src="/number-of-calls/model-analysis.js?v=1788181089"></script>
 <script src="/number-of-calls/model-pricing.js?v=1788181089"></script>
 <script src="/number-of-calls/model-providers.js"></script>
@@ -5854,8 +5854,28 @@ if(!model){
 
   if(model.blindTest){
 
-    compareButton.style.display =
-      "none";
+    /*
+     * BLIND_MODEL_GUESS_LINK_V1
+     */
+    if(model.guessUrl){
+
+      compareButton.style.display =
+        "";
+
+      compareButton.href =
+        model.guessUrl;
+
+      compareButton.textContent =
+        model.guessQuestion
+          ? "Guess the model"
+          : "Guess model";
+
+    }else{
+
+      compareButton.style.display =
+        "none";
+
+    }
 
   }else{
 

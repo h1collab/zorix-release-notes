@@ -382,6 +382,18 @@ for row in models:
                     )
                 ),
 
+            "guessUrl":
+                row.get(
+                    "guessUrl",
+                    ""
+                ),
+
+            "guessQuestion":
+                row.get(
+                    "guessQuestion",
+                    ""
+                ),
+
             "source":
                 row.get(
                     "source",

@@ -250,7 +250,9 @@
           }
         ]
       }
-    ]
+    ],
+    "guessUrl": "/guess/blind/model/",
+    "guessQuestion": "What model is Wolf Theta?"
   },
   {
     "id": "hy4-preview",
