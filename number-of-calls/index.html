@@ -5,7 +5,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788203797">
+<meta name="zorix-build" content="1788242763">
 
 
 
@@ -2301,8 +2301,9 @@ h1{
   </div>
 
   <div class="chart-note">
-    Trend visualization. Daily model values should be replaced with measured
-    per-day usage when available.
+    Trend visualization. The chart uses available per-day model series.
+    Exact period-only observations may appear in the ranking without
+    synthetic daily points.
   </div>
 <div class="chart-legend" id="chartLegend"></div>
 
@@ -2578,7 +2579,7 @@ h1{
 </main>
 
 <script src="./models.js?v=1788181089"></script>
-<script src="./usage.js?v=1788203797"></script>
+<script src="./usage.js?v=1788242763"></script>
 <script src="./quota.js?v=1788181089"></script>
 
 <script>
@@ -2717,6 +2718,24 @@ const modelsData =
                 null
               ),
 
+            thirtyDayTokens:
+              (
+                row.thirtyDayTokens
+                ??
+                existing.thirtyDayTokens
+                ??
+                null
+              ),
+
+            thirtyDayObserved:
+              Boolean(
+                row.thirtyDayObserved
+                ??
+                existing.thirtyDayObserved
+                ??
+                false
+              ),
+
             weeklyOnlyTokens:
               Boolean(
                 row.weeklyOnlyTokens
@@ -2809,10 +2828,51 @@ function visibleModels(){
        */
       if(model.weeklyOnlyTokens){
 
-        return (
+        /*
+         * PERIOD_ONLY_TOKEN_VISIBILITY_V2
+         *
+         * Terra has published period totals but no measured
+         * daily series:
+         *
+         *   7d  -> weeklyTokens
+         *   30d -> thirtyDayTokens
+         *
+         * Today / All remain hidden because no corresponding
+         * measured observation exists.
+         */
+        if(
           usageRange ===
           '7d'
-        );
+        ){
+
+          return (
+            model.weeklyTokens !==
+            undefined
+            &&
+            model.weeklyTokens !==
+            null
+          );
+
+        }
+
+
+        if(
+          usageRange ===
+          '30d'
+        ){
+
+          return (
+            model.thirtyDayTokens !==
+            undefined
+            &&
+            model.thirtyDayTokens !==
+            null
+          );
+
+        }
+
+
+        return false;
 
       }
 
@@ -2929,6 +2989,39 @@ function periodShort(){
 }
 
 
+function modelPeriodLabel(model){
+
+  if(
+    usageRange==='7d'
+    &&
+    model.weeklyTokens !== undefined
+    &&
+    model.weeklyTokens !== null
+  ){
+
+    return 'observed week';
+
+  }
+
+
+  if(
+    usageRange==='30d'
+    &&
+    model.thirtyDayTokens !== undefined
+    &&
+    model.thirtyDayTokens !== null
+  ){
+
+    return 'observed 30 days';
+
+  }
+
+
+  return periodShort();
+
+}
+
+
 function periodMeasuredLabel(){
 
   if(usageRange==='today'){
@@ -2937,6 +3030,10 @@ function periodMeasuredLabel(){
 
   if(usageRange==='7d'){
     return 'weekly / rate-equivalent';
+  }
+
+  if(usageRange==='30d'){
+    return 'observed / trend-estimated';
   }
 
   return 'trend-estimated';
@@ -3002,6 +3099,27 @@ function rangeModelTokens(model){
     return Number(
       model.dailyTokens || 0
     ) * 7;
+
+  }
+
+
+  /*
+   * EXACT_30_DAY_OBSERVATION_V1
+   *
+   * Use a directly supplied 30-day token observation
+   * when available. Do not infer daily points from it.
+   */
+  if(
+    usageRange==='30d'
+    &&
+    model.thirtyDayTokens !== undefined
+    &&
+    model.thirtyDayTokens !== null
+  ){
+
+    return Number(
+      model.thirtyDayTokens || 0
+    );
 
   }
 
@@ -3283,7 +3401,7 @@ function renderModels(){
 
               <div class="share">
                 ${share.toFixed(2)}% share
-                · ${periodShort()}
+                · ${modelPeriodLabel(model)}
               </div>
 
             </div>

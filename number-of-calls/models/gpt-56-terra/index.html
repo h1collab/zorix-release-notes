@@ -2356,14 +2356,14 @@ h1{
 
     <a
       class="brand"
-      href="/number-of-calls/"
+      href="./"
     >
       zorix
     </a>
 
     <div class="nav-links">
 
-      <a href="/number-of-calls/">
+      <a href="./">
         Usage
       </a>
 
@@ -2431,7 +2431,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="/number-of-calls/"
+      href="./"
     >
       <div>
 
@@ -2597,7 +2597,7 @@ h1{
 
   <a
     class="back"
-    href="/number-of-calls/"
+    href="./"
   >
     ← All models
   </a>
@@ -3213,7 +3213,7 @@ h1{
 
 
 const id =
-  "gpt-56-terra";
+  "__MODEL_ROUTE_ID__";
 
 
 
@@ -4040,7 +4040,7 @@ if(!model){
     .innerHTML=`
       <a
         class="back"
-        href="/number-of-calls/"
+        href="./"
       >
         ← All models
       </a>
@@ -4432,11 +4432,27 @@ if(!model){
 
       copy.textContent =
         (
-          "A weekly Zorix Metron token observation is published "
-          +
-          "for this model. No measured daily breakdown or "
-          +
-          "historical per-day series has been published."
+          (
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+          )
+            ? (
+                "Weekly and 30-day Zorix Metron token observations "
+                +
+                "are published for this model. No measured daily "
+                +
+                "breakdown or historical per-day series has been "
+                +
+                "published."
+              )
+            : (
+                "A weekly Zorix Metron token observation is published "
+                +
+                "for this model. No measured daily breakdown or "
+                +
+                "historical per-day series has been published."
+              )
         );
 
     }
@@ -4568,6 +4584,19 @@ if(!model){
         >
           Historical daily token series not published.
           Current weekly observation: ${fmt(model.weeklyTokens)} tokens.
+          ${
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+              ? (
+                  " Current 30-day observation: "
+                  +
+                  fmt(model.thirtyDayTokens)
+                  +
+                  " tokens."
+                )
+              : ""
+          }
         </div>
       `
     );
@@ -5110,6 +5139,20 @@ if(!model){
               : fmt(
                   weekly()
                 )
+          ],
+          [
+            "30-day tokens",
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+              ? (
+                  fmt(
+                    model.thirtyDayTokens
+                  )
+                  +
+                  " / 30d"
+                )
+              : "Not published"
           ]
         ];
 

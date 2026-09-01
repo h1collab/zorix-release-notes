@@ -402,6 +402,27 @@ for row in models:
                     )
                 ),
 
+            "thirtyDayTokens":
+                (
+                    int(
+                        row.get(
+                            "thirtyDayTokens"
+                        )
+                    )
+                    if row.get(
+                        "thirtyDayTokens"
+                    ) is not None
+                    else None
+                ),
+
+            "thirtyDayObserved":
+                bool(
+                    row.get(
+                        "thirtyDayObserved",
+                        False
+                    )
+                ),
+
             "officialModelId":
                 row.get(
                     "officialModelId",
