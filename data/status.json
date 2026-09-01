@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-08-31T14:58:09+02:00",
+  "updatedAt": "2026-09-01T09:05:53+02:00",
   "overall": "outage",
-  "message": "Zorix Code support for Nex Coder and VIREXA was restored at 14:57 CEST. Other published service conditions remain unchanged.",
+  "message": "Some Zorix systems are currently experiencing issues.",
   "components": [
     {
       "id": "zorix-api",
       "name": "Zorix API",
       "description": "Core API requests and model routing.",
-      "status": "outage"
+      "status": "maintenance"
     },
     {
       "id": "zorix-code",
