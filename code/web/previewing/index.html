@@ -1,0 +1,1961 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  name="zorix-build"
+  content="1788281503"
+>
+
+<meta
+  http-equiv="Cache-Control"
+  content="no-cache, no-store, must-revalidate, max-age=0"
+>
+
+<meta
+  http-equiv="Pragma"
+  content="no-cache"
+>
+
+<meta
+  http-equiv="Expires"
+  content="0"
+>
+
+
+<title>
+  Code model selector preview | Zorix
+</title>
+
+
+<style>
+
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#6b6b67;
+  --line:#deded9;
+  --soft:#f7f7f4;
+  --soft2:#fbfbf9;
+  --max:1120px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  letter-spacing:-.012em;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+}
+
+
+/* ==========================================================
+   NAV
+   ========================================================== */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(15px);
+}
+
+.nav{
+  max-width:var(--max);
+  height:66px;
+
+  margin:auto;
+
+  padding:
+    0
+    24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+}
+
+.brand{
+  font-size:18px;
+  font-weight:600;
+
+  letter-spacing:-.04em;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+
+  gap:18px;
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.live-dot{
+  width:7px;
+  height:7px;
+
+  display:inline-block;
+
+  margin-right:6px;
+
+  border-radius:50%;
+
+  background:#111;
+}
+
+
+/* ==========================================================
+   PAGE
+   ========================================================== */
+
+main{
+  max-width:var(--max);
+
+  margin:auto;
+
+  padding:
+    62px
+    24px
+    120px;
+}
+
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+.hero{
+  padding-bottom:49px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.eyebrow{
+  margin-bottom:15px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+h1{
+  max-width:900px;
+
+  margin:0;
+
+  font-size:
+    clamp(
+      48px,
+      8vw,
+      91px
+    );
+
+  line-height:.93;
+
+  font-weight:500;
+
+  letter-spacing:-.065em;
+}
+
+.hero-copy{
+  max-width:720px;
+
+  margin-top:28px;
+
+  color:var(--muted);
+
+  font-size:14px;
+  line-height:1.6;
+}
+
+.hero-actions{
+  margin-top:23px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:8px;
+}
+
+.refresh-button{
+  min-height:38px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid
+    #111;
+
+  border-radius:9px;
+
+  background:#111;
+  color:#fff;
+
+  cursor:pointer;
+}
+
+.refresh-button:disabled{
+  opacity:.5;
+  cursor:default;
+}
+
+.feed-state{
+  min-height:38px;
+
+  display:flex;
+  align-items:center;
+
+  padding:
+    0
+    12px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:9px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+
+/* ==========================================================
+   SUMMARY
+   ========================================================== */
+
+.summary{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.summary-item{
+  min-height:124px;
+
+  padding:
+    26px
+    18px
+    26px
+    0;
+}
+
+.summary-item:not(:first-child){
+  padding-left:22px;
+
+  border-left:
+    1px solid
+    var(--line);
+}
+
+.summary-k{
+  color:var(--muted);
+
+  font-size:9px;
+
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.summary-v{
+  margin-top:13px;
+
+  font-size:
+    clamp(
+      26px,
+      4vw,
+      38px
+    );
+
+  letter-spacing:-.05em;
+}
+
+.summary-sub{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+
+/* ==========================================================
+   SECTION
+   ========================================================== */
+
+.section{
+  padding:
+    55px
+    0;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.section-head{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:30px;
+
+  margin-bottom:28px;
+}
+
+.section-title{
+  font-size:
+    clamp(
+      28px,
+      4vw,
+      43px
+    );
+
+  letter-spacing:-.05em;
+}
+
+.section-copy{
+  max-width:470px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.6;
+}
+
+
+/* ==========================================================
+   MODEL SELECTOR REPLICA
+   ========================================================== */
+
+.selector-stage{
+  max-width:780px;
+
+  padding:25px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:19px;
+
+  background:
+    var(--soft2);
+}
+
+.selector-window{
+  overflow:hidden;
+
+  border:
+    1px solid
+    #d4d4cf;
+
+  border-radius:14px;
+
+  background:#fff;
+
+  box-shadow:
+    0
+    16px
+    44px
+    rgba(0,0,0,.07);
+}
+
+.selector-top{
+  min-height:64px;
+
+  padding:
+    0
+    18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.selector-label{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.selector-current{
+  margin-top:4px;
+
+  font-size:14px;
+  font-weight:550;
+}
+
+.selector-chevron{
+  color:#777;
+
+  font-size:16px;
+}
+
+.selector-menu{
+  padding:8px;
+}
+
+.selector-row{
+  min-height:67px;
+
+  display:grid;
+
+  grid-template-columns:
+    38px
+    minmax(0,1fr)
+    auto;
+
+  gap:11px;
+
+  align-items:center;
+
+  padding:
+    8px
+    10px;
+
+  border-radius:9px;
+}
+
+.selector-row + .selector-row{
+  margin-top:2px;
+}
+
+.selector-row:hover{
+  background:var(--soft);
+}
+
+.selector-logo{
+  width:34px;
+  height:34px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:9px;
+
+  background:#fff;
+}
+
+.selector-logo img{
+  width:25px;
+  height:25px;
+
+  object-fit:contain;
+}
+
+.selector-fallback{
+  font-size:11px;
+  font-weight:600;
+}
+
+.selector-name{
+  font-size:13px;
+
+  line-height:1.25;
+}
+
+.selector-provider{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.selector-badges{
+  display:flex;
+  flex-wrap:wrap;
+
+  justify-content:flex-end;
+
+  gap:5px;
+}
+
+.badge{
+  display:inline-flex;
+
+  min-height:24px;
+
+  align-items:center;
+
+  padding:
+    0
+    8px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:999px;
+
+  background:#fff;
+
+  color:var(--muted);
+
+  font-size:8px;
+}
+
+.badge.dark{
+  border-color:#111;
+
+  background:#111;
+  color:#fff;
+}
+
+
+/* ==========================================================
+   OBSERVATION CARDS
+   ========================================================== */
+
+.cards{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:12px;
+}
+
+.card{
+  min-height:190px;
+
+  padding:22px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:14px;
+
+  background:#fff;
+}
+
+.card-top{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.card-logo{
+  width:40px;
+  height:40px;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:10px;
+
+  background:#fff;
+}
+
+.card-logo img{
+  width:29px;
+  height:29px;
+
+  object-fit:contain;
+}
+
+.card-name{
+  font-size:17px;
+
+  line-height:1.2;
+
+  letter-spacing:-.025em;
+}
+
+.card-provider{
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.card-badges{
+  margin-top:17px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:5px;
+}
+
+.card-note{
+  margin-top:17px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.6;
+}
+
+
+/* ==========================================================
+   SCREENSHOTS
+   ========================================================== */
+
+.upload-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:14px;
+}
+
+.upload-card{
+  overflow:hidden;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:14px;
+
+  background:#fff;
+}
+
+.upload-image{
+  aspect-ratio:
+    16
+    /
+    10;
+
+  background:var(--soft);
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.upload-image img{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:contain;
+}
+
+.upload-body{
+  padding:17px;
+}
+
+.upload-model{
+  font-size:15px;
+
+  letter-spacing:-.02em;
+}
+
+.upload-meta{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.upload-caption{
+  margin-top:12px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.55;
+}
+
+
+/* ==========================================================
+   EMPTY
+   ========================================================== */
+
+.empty{
+  min-height:150px;
+
+  padding:28px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  border:
+    1px dashed
+    #cecec8;
+
+  border-radius:14px;
+
+  background:
+    var(--soft2);
+}
+
+.empty-title{
+  font-size:17px;
+
+  letter-spacing:-.025em;
+}
+
+.empty-copy{
+  max-width:590px;
+
+  margin-top:8px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.6;
+}
+
+
+/* ==========================================================
+   FOOT
+   ========================================================== */
+
+.source-note{
+  margin-top:28px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  line-height:1.6;
+}
+
+
+@media(max-width:760px){
+
+  .nav{
+    padding:
+      0
+      18px;
+  }
+
+  .nav-right{
+    display:none;
+  }
+
+  main{
+    padding:
+      42px
+      18px
+      80px;
+  }
+
+  .summary{
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+
+  .summary-item:nth-child(3){
+    padding-left:0;
+
+    border-left:0;
+
+    border-top:
+      1px solid
+      var(--line);
+  }
+
+  .summary-item:nth-child(4){
+    border-top:
+      1px solid
+      var(--line);
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .selector-stage{
+    padding:13px;
+  }
+
+  .selector-row{
+    grid-template-columns:
+      34px
+      minmax(0,1fr);
+  }
+
+  .selector-badges{
+    grid-column:
+      1
+      /
+      -1;
+
+    justify-content:flex-start;
+
+    padding-left:45px;
+  }
+
+  .cards,
+  .upload-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      class="brand"
+      href="/"
+    >
+      Zorix
+    </a>
+
+
+    <div class="nav-right">
+
+      <span>
+        <span class="live-dot"></span>
+        Preview feed
+      </span>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+      <a href="/status/">
+        Status
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+<section class="hero">
+
+  <div class="eyebrow">
+    Zorix Code · Web observation
+  </div>
+
+
+  <h1>
+    Model selector<br>
+    preview
+  </h1>
+
+
+  <div class="hero-copy">
+
+    A near-live HTML view of published observations
+    from the Zorix Code model selector.
+
+    Gray-rollout entries, independently confirmed
+    third-party observations and verified user-experience
+    screenshots are kept separate so their evidence level
+    is always visible.
+
+  </div>
+
+
+  <div class="hero-actions">
+
+    <button
+      class="refresh-button"
+      id="refreshButton"
+      type="button"
+    >
+      Refresh now
+    </button>
+
+
+    <div
+      class="feed-state"
+      id="feedState"
+    >
+      Loading observation feed…
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="summary">
+
+  <div class="summary-item">
+
+    <div class="summary-k">
+      Selector entries
+    </div>
+
+    <div
+      class="summary-v"
+      id="selectorCount"
+    >
+      —
+    </div>
+
+    <div class="summary-sub">
+      Published observations
+    </div>
+
+  </div>
+
+
+  <div class="summary-item">
+
+    <div class="summary-k">
+      Gray rollout
+    </div>
+
+    <div
+      class="summary-v"
+      id="grayCount"
+    >
+      —
+    </div>
+
+    <div class="summary-sub">
+      Limited visibility
+    </div>
+
+  </div>
+
+
+  <div class="summary-item">
+
+    <div class="summary-k">
+      Third-party confirmed
+    </div>
+
+    <div
+      class="summary-v"
+      id="thirdPartyCount"
+    >
+      —
+    </div>
+
+    <div class="summary-sub">
+      Independently confirmed
+    </div>
+
+  </div>
+
+
+  <div class="summary-item">
+
+    <div class="summary-k">
+      User screenshots
+    </div>
+
+    <div
+      class="summary-v"
+      id="uploadCount"
+    >
+      —
+    </div>
+
+    <div class="summary-sub">
+      Published user evidence
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Live selector preview
+      </div>
+
+    </div>
+
+
+    <div class="section-copy">
+
+      This reproduces the currently published model-selector
+      observations in HTML.
+
+      It does not claim that every account can see every entry.
+
+    </div>
+
+  </div>
+
+
+  <div class="selector-stage">
+
+    <div class="selector-window">
+
+      <div class="selector-top">
+
+        <div>
+
+          <div class="selector-label">
+            Select model
+          </div>
+
+          <div
+            class="selector-current"
+            id="selectorCurrent"
+          >
+            Loading…
+          </div>
+
+        </div>
+
+        <div class="selector-chevron">
+         ⌄
+        </div>
+
+      </div>
+
+
+      <div
+        class="selector-menu"
+        id="selectorMenu"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Gray rollout
+      </div>
+
+    </div>
+
+
+    <div class="section-copy">
+
+      Models reported in limited or staged availability.
+      Visibility can differ between accounts during rollout.
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="cards"
+    id="grayList"
+  ></div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Third-party confirmed
+      </div>
+
+    </div>
+
+
+    <div class="section-copy">
+
+      Only independently confirmed selector observations
+      belong here.
+
+      Unverified or circumstantial reports are not promoted
+      into this section.
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="cards"
+    id="thirdPartyList"
+  ></div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        User experience
+      </div>
+
+    </div>
+
+
+    <div class="section-copy">
+
+      Screenshots from users who actually observed a model
+      in their Zorix Code selector.
+
+      Images appear only after publication and verification.
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="upload-grid"
+    id="uploadList"
+  ></div>
+
+
+  <div
+    class="source-note"
+    id="sourceNote"
+  ></div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+(() => {
+
+  "use strict";
+
+
+  const DATA_URL =
+    "/data/code-web-previewing.json";
+
+
+  const refreshButton =
+    document.getElementById(
+      "refreshButton"
+    );
+
+
+  const feedState =
+    document.getElementById(
+      "feedState"
+    );
+
+
+  const selectorMenu =
+    document.getElementById(
+      "selectorMenu"
+    );
+
+
+  const selectorCurrent =
+    document.getElementById(
+      "selectorCurrent"
+    );
+
+
+  const grayList =
+    document.getElementById(
+      "grayList"
+    );
+
+
+  const thirdPartyList =
+    document.getElementById(
+      "thirdPartyList"
+    );
+
+
+  const uploadList =
+    document.getElementById(
+      "uploadList"
+    );
+
+
+  const sourceNote =
+    document.getElementById(
+      "sourceNote"
+    );
+
+
+  let loading =
+    false;
+
+
+  function esc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function array(value){
+
+    return Array.isArray(
+      value
+    )
+      ? value
+      : [];
+
+  }
+
+
+  function logoHTML(
+    item,
+    className
+  ){
+
+    if(item.logo){
+
+      return `
+        <div class="${className}">
+          <img
+            src="${esc(item.logo)}"
+            alt=""
+          >
+        </div>
+      `;
+
+    }
+
+
+    return `
+      <div class="${className}">
+        <span class="selector-fallback">
+          ${esc(
+            String(
+              item.name
+              ||
+              "?"
+            )
+            .slice(
+              0,
+              1
+            )
+          )}
+        </span>
+      </div>
+    `;
+
+  }
+
+
+  function badge(
+    value,
+    dark=false
+  ){
+
+    if(!value){
+      return "";
+    }
+
+
+    return `
+      <span
+        class="badge ${
+          dark
+            ? "dark"
+            : ""
+        }"
+      >
+        ${esc(value)}
+      </span>
+    `;
+
+  }
+
+
+  function empty(
+    title,
+    copy
+  ){
+
+    return `
+      <div
+        class="empty"
+        style="
+          grid-column:
+            1
+            /
+            -1;
+        "
+      >
+
+        <div class="empty-title">
+          ${esc(title)}
+        </div>
+
+        <div class="empty-copy">
+          ${esc(copy)}
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  function selectorEntries(
+    data
+  ){
+
+    const map =
+      new Map();
+
+
+    array(
+      data.selector
+      ?.entries
+    )
+    .forEach(
+      item=>{
+
+        if(item?.id){
+
+          map.set(
+            item.id,
+            item
+          );
+
+        }
+
+      }
+    );
+
+
+    array(
+      data.thirdPartyConfirmed
+    )
+    .forEach(
+      item=>{
+
+        if(
+          item?.id
+          &&
+          !map.has(
+            item.id
+          )
+        ){
+
+          map.set(
+            item.id,
+            {
+              ...item,
+
+              evidenceType:
+                "third-party-confirmed",
+
+              status:
+                item.status
+                ||
+                "Third-party confirmed"
+            }
+          );
+
+        }
+
+      }
+    );
+
+
+    return [
+      ...map.values()
+    ];
+
+  }
+
+
+  function modelCard(
+    item
+  ){
+
+    return `
+
+      <article class="card">
+
+        <div class="card-top">
+
+          ${logoHTML(
+            item,
+            "card-logo"
+          )}
+
+
+          <div>
+
+            <div class="card-name">
+              ${esc(item.name)}
+            </div>
+
+            <div class="card-provider">
+              ${esc(
+                item.provider
+                ||
+                "Provider undisclosed"
+              )}
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="card-badges">
+
+          ${badge(
+            item.status
+            ||
+            item.evidenceType,
+            true
+          )}
+
+          ${badge(
+            item.visibility
+          )}
+
+          ${badge(
+            item.confidence
+          )}
+
+        </div>
+
+
+        ${
+          item.note
+            ? `
+                <div class="card-note">
+                  ${esc(item.note)}
+                </div>
+              `
+            : ""
+        }
+
+      </article>
+
+    `;
+
+  }
+
+
+  function render(
+    data
+  ){
+
+    const entries =
+      selectorEntries(
+        data
+      );
+
+
+    const gray =
+      entries.filter(
+        item=>
+          item.evidenceType
+          ===
+          "gray-rollout"
+      );
+
+
+    const confirmed =
+      array(
+        data.thirdPartyConfirmed
+      );
+
+
+    const uploads =
+      array(
+        data.userUploads
+      );
+
+
+    document
+      .getElementById(
+        "selectorCount"
+      )
+      .textContent =
+        entries.length;
+
+
+    document
+      .getElementById(
+        "grayCount"
+      )
+      .textContent =
+        gray.length;
+
+
+    document
+      .getElementById(
+        "thirdPartyCount"
+      )
+      .textContent =
+        confirmed.length;
+
+
+    document
+      .getElementById(
+        "uploadCount"
+      )
+      .textContent =
+        uploads.length;
+
+
+    selectorCurrent.textContent =
+      entries[0]?.name
+      ||
+      "No published selector entries";
+
+
+    selectorMenu.innerHTML =
+      entries.length
+        ? entries
+            .map(
+              item=>`
+
+                <div class="selector-row">
+
+                  ${logoHTML(
+                    item,
+                    "selector-logo"
+                  )}
+
+
+                  <div>
+
+                    <div class="selector-name">
+                      ${esc(item.name)}
+                    </div>
+
+                    <div class="selector-provider">
+                      ${esc(
+                        item.provider
+                        ||
+                        "Provider undisclosed"
+                      )}
+                    </div>
+
+                  </div>
+
+
+                  <div class="selector-badges">
+
+                    ${badge(
+                      item.status
+                      ||
+                      item.evidenceType,
+                      item.evidenceType
+                      ===
+                      "gray-rollout"
+                    )}
+
+                    ${badge(
+                      item.visibility
+                    )}
+
+                  </div>
+
+                </div>
+
+              `
+            )
+            .join("")
+        : empty(
+            "No published entries",
+            (
+              "No Code selector observation "
+              +
+              "has been published yet."
+            )
+          );
+
+
+    grayList.innerHTML =
+      gray.length
+        ? gray
+            .map(
+              modelCard
+            )
+            .join("")
+        : empty(
+            "No gray-rollout observations",
+            (
+              "No staged model-selector observation "
+              +
+              "is currently published."
+            )
+          );
+
+
+    thirdPartyList.innerHTML =
+      confirmed.length
+        ? confirmed
+            .map(
+              modelCard
+            )
+            .join("")
+        : empty(
+            "No third-party-confirmed entries",
+            (
+              "No independently confirmed third-party "
+              +
+              "Code selector observation has been "
+              +
+              "published yet."
+            )
+          );
+
+
+    uploadList.innerHTML =
+      uploads.length
+        ? uploads
+            .map(
+              item=>`
+
+                <article class="upload-card">
+
+                  <div class="upload-image">
+
+                    <img
+                      src="${esc(item.image)}"
+                      alt="${esc(
+                        item.alt
+                        ||
+                        item.modelName
+                        ||
+                        "User experience screenshot"
+                      )}"
+                    >
+
+                  </div>
+
+
+                  <div class="upload-body">
+
+                    <div class="upload-model">
+                      ${esc(
+                        item.modelName
+                        ||
+                        "Model selector observation"
+                      )}
+                    </div>
+
+                    <div class="upload-meta">
+                      ${esc(
+                        item.reportedAt
+                        ||
+                        "Date not published"
+                      )}
+                    </div>
+
+                    ${
+                      item.caption
+                        ? `
+                            <div class="upload-caption">
+                              ${esc(item.caption)}
+                            </div>
+                          `
+                        : ""
+                    }
+
+                  </div>
+
+                </article>
+
+              `
+            )
+            .join("")
+        : empty(
+            "No user screenshots yet",
+            (
+              "There are currently no published "
+              +
+              "user-experience images for the "
+              +
+              "Zorix Code model selector."
+            )
+          );
+
+
+    const updated =
+      data.updatedAt
+        ? new Date(
+            data.updatedAt
+          )
+        : null;
+
+
+    sourceNote.textContent =
+      (
+        data.notes?.uploads
+        ||
+        ""
+      );
+
+
+    feedState.textContent =
+      (
+        "Feed updated · "
+        +
+        (
+          updated
+          &&
+          !Number.isNaN(
+            updated.getTime()
+          )
+            ? updated
+                .toLocaleString()
+            : "timestamp unavailable"
+        )
+        +
+        " · checked "
+        +
+        new Date()
+          .toLocaleTimeString()
+      );
+
+  }
+
+
+  async function loadFeed(
+    silent=false
+  ){
+
+    if(loading){
+      return;
+    }
+
+
+    loading=true;
+
+
+    refreshButton.disabled =
+      true;
+
+
+    if(!silent){
+
+      feedState.textContent =
+        "Checking observation feed…";
+
+    }
+
+
+    try{
+
+      const response =
+        await fetch(
+          (
+            DATA_URL
+            +
+            "?t="
+            +
+            Date.now()
+          ),
+          {
+            cache:"no-store"
+          }
+        );
+
+
+      if(!response.ok){
+
+        throw new Error(
+          "Feed returned HTTP "
+          +
+          response.status
+        );
+
+      }
+
+
+      const data =
+        await response.json();
+
+
+      render(
+        data
+      );
+
+
+    }catch(error){
+
+      feedState.textContent =
+        (
+          "Feed unavailable · "
+          +
+          String(
+            error.message
+            ||
+            error
+          )
+        );
+
+    }finally{
+
+      loading=false;
+
+      refreshButton.disabled =
+        false;
+
+    }
+
+  }
+
+
+  refreshButton
+    .addEventListener(
+      "click",
+      ()=>loadFeed(
+        false
+      )
+    );
+
+
+  loadFeed(
+    false
+  );
+
+
+  /*
+   * Near-live DATA refresh only.
+   * The HTML document itself is never automatically reloaded.
+   */
+  window.setInterval(
+    ()=>loadFeed(
+      true
+    ),
+    15000
+  );
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

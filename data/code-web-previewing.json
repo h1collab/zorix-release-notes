@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "route": "/code/web/previewing/",
+  "title": "Zorix Code model selector preview",
+  "updatedAt": "2026-09-01T18:51:43+02:00",
+  "refreshSeconds": 15,
+  "selector": {
+    "product": "Zorix Code",
+    "label": "Select model",
+    "entries": [
+      {
+        "id": "nex-coder-38-neptune",
+        "name": "Nex Coder 3.8 Preview — Neptune",
+        "provider": "Zorix",
+        "logo": "/number-of-calls/assets/logos/zorix.svg",
+        "evidenceType": "gray-rollout",
+        "status": "Gray rollout",
+        "visibility": "Limited rollout",
+        "confidence": "First-party rollout observation",
+        "note": "Preview availability may vary by account while the gray rollout is active."
+      }
+    ]
+  },
+  "thirdPartyConfirmed": [],
+  "userUploads": [],
+  "notes": {
+    "selector": "This page tracks published observations of the Zorix Code model selector. An entry does not imply universal availability to every user.",
+    "thirdParty": "Only independently confirmed third-party selector observations belong in the confirmed section. Unverified observations stay separate.",
+    "uploads": "User-experience screenshots are shown only after they have been published into this dataset."
+  }
+}
