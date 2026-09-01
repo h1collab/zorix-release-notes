@@ -13,7 +13,7 @@
 
 <meta
   name="zorix-build"
-  content="1788248803"
+  content="1788249582"
 >
 
 <meta
@@ -482,6 +482,17 @@ h1{
   color:var(--muted);
 
   font-size:10px;
+}
+
+.candidate-note{
+  max-width:680px;
+
+  margin-top:9px;
+
+  color:#777;
+
+  font-size:10px;
+  line-height:1.55;
 }
 
 .candidate-side{
@@ -1021,11 +1032,11 @@ h1{
 
       <div class="method-copy">
 
-        The public snapshot currently contains 799 published votes
-        for Zorix Star Flash 3.6 Preview.
+        The current public snapshot contains published counts
+        for all three listed candidates.
 
-        Counts for the other listed candidates have not yet been
-        supplied, so the page does not fabricate values for them.
+        The tally is loaded from the canonical blind-model guess
+        dataset and remains separate from model identity verification.
 
       </div>
 
@@ -1083,7 +1094,7 @@ h1{
 </main>
 
 
-<script src="./data.js?v=1788248803"></script>
+<script src="./data.js?v=1788249582"></script>
 
 
 <script>
@@ -1347,6 +1358,19 @@ h1{
                     "Candidate"
                   )}
                 </div>
+
+
+                ${
+                  candidate.note
+                    ? `
+                      <div class="candidate-note">
+                        ${esc(
+                          candidate.note
+                        )}
+                      </div>
+                    `
+                    : ""
+                }
 
               </div>
 

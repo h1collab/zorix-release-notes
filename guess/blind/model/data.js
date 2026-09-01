@@ -2,10 +2,10 @@ window.ZORIX_BLIND_MODEL_GUESS = {
   "id": "wolf-theta",
   "route": "/guess/blind/model/",
   "title": "What model is Wolf Theta?",
-  "updatedAt": "2026-09-01T08:52:00+02:00",
+  "updatedAt": "2026-09-01T09:59:42+02:00",
   "status": "Open",
-  "countsComplete": false,
-  "knownPublishedVotes": 799,
+  "countsComplete": true,
+  "knownPublishedVotes": 1773,
   "model": {
     "id": "wolf-theta",
     "name": "Wolf Theta",
@@ -21,26 +21,27 @@ window.ZORIX_BLIND_MODEL_GUESS = {
       "logo": "/number-of-calls/assets/logos/zorix.svg",
       "votes": 799,
       "votesPublished": true,
-      "status": "Leading published guess"
+      "status": "Leading community guess"
     },
     {
       "id": "google-gemini-38-flash",
       "provider": "Google",
       "name": "Gemini 3.8 Flash",
       "logo": "/number-of-calls/assets/logos/google.svg",
-      "votes": null,
-      "votesPublished": false,
-      "status": "Candidate"
+      "votes": 577,
+      "votesPublished": true,
+      "status": "Second community guess"
     },
     {
       "id": "zhipu-glm-54-flash",
       "provider": "Zhipu AI / Z.ai",
       "name": "GLM 5.4 Flash",
       "logo": "/number-of-calls/assets/logos/glm.svg",
-      "votes": null,
-      "votesPublished": false,
-      "status": "Candidate"
+      "votes": 397,
+      "votesPublished": true,
+      "status": "Third community guess",
+      "note": "Community reasoning: some voters consider GLM 5.4 Flash less likely because Zhipu has only recently introduced GLM 5.3 Flash, making an immediate jump to 5.4 seem less likely to them."
     }
   ],
-  "note": "Only the Star Flash 3.6 Preview vote count has been published in this snapshot. Missing candidate counts are not interpreted as zero."
+  "note": "Published snapshot: Star Flash 3.6 Preview 799 votes, Gemini 3.8 Flash 577 votes, and GLM 5.4 Flash 397 votes. Candidate identity remains community speculation."
 };
