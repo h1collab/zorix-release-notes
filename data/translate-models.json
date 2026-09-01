@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T19:44:00+02:00",
+  "updatedAt": "2026-09-01T07:50:00+02:00",
   "category": "translation",
   "scoreBase": 1000,
   "requestWindowHours": 5,
@@ -33,6 +33,51 @@
       "score": 1007,
       "docs": "",
       "about": "Zorix NexHate 1 Preview (xhigh) is a Zorix translation preview model. Current published Zorix Translate data records 7.1B requests per five-hour window and a 1007 translation score on the 1000-base scale."
+    },
+    {
+      "id": "google-neural-machine-translation",
+      "name": "Google Neural Machine Translation (NMT)",
+      "provider": "Google",
+      "family": "Cloud Translation",
+      "status": "Available",
+      "logo": "/number-of-calls/assets/logos/google.svg",
+      "color": "#4285F4",
+      "profile": "Standard",
+      "providerModelId": "general/nmt",
+      "requests5h": 2440000000,
+      "score": null,
+      "docs": "https://docs.cloud.google.com/translate/docs/advanced/nmt-model",
+      "about": "Google Neural Machine Translation (NMT) is the standard Google Cloud Translation neural model. Google positions NMT as its fastest translation model for real-time and latency-critical workloads. Its official model ID is general/nmt. The current Zorix Translate observation records 2.44B requests per five-hour window. A Zorix translation score has not been published."
+    },
+    {
+      "id": "hy-mt2-30b-a3b",
+      "name": "Hy-MT2-30B-A3B",
+      "provider": "Tencent Hunyuan",
+      "family": "Hy Translation 2.0",
+      "status": "Available",
+      "logo": "/number-of-calls/assets/logos/hunyuan.svg",
+      "color": "#00A7CE",
+      "profile": "Open source",
+      "providerModelId": "Hy-MT2-30B-A3B",
+      "requests5h": 5870000000,
+      "score": null,
+      "docs": "https://llm.hunyuan.tencent.com/en?tabIndex=0",
+      "about": "Hy-MT2-30B-A3B is a Tencent Hunyuan Hy Translation 2.0 open-source translation model. Tencent documents support for mutual translation across 33 languages and translation-specific instruction following including contextual, glossary, structured and style-adapted translation. The current Zorix Translate observation records 5.87B requests per five-hour window. A Zorix translation score has not been published."
+    },
+    {
+      "id": "zorix-nexhate-xhigh",
+      "name": "Zorix NexHate (xhigh)",
+      "provider": "Zorix",
+      "family": "NexHate",
+      "status": "Tracked",
+      "logo": "/number-of-calls/assets/logos/zorix.svg",
+      "color": "#5E3AA8",
+      "profile": "xhigh",
+      "providerModelId": null,
+      "requests5h": 3110000000,
+      "score": 1005,
+      "docs": "",
+      "about": "Zorix NexHate (xhigh) is tracked separately from Zorix NexHate 1 Preview (xhigh). The current Zorix Translate observation records 3.11B requests per five-hour window and a translation score of 1005 on the 1000-base scale."
     }
   ]
 }

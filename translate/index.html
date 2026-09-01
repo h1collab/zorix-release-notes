@@ -131,7 +131,7 @@
         </div>
 
         <div class="section-copy">
-          Ranked by translation score
+          Published scores first · request-only models remain visible
         </div>
       </div>
 
@@ -147,7 +147,7 @@
 </main>
 
 
-<script src="/translate/translate.js"></script>
+<script src="/translate/translate.js?v=1788242211"></script>
 
 <script>
 
@@ -176,11 +176,81 @@ function compact(value){
 }
 
 
+function hasScore(model){
+
+  return (
+    model
+    &&
+    model.score !== null
+    &&
+    model.score !== undefined
+    &&
+    model.score !== ""
+    &&
+    Number.isFinite(
+      Number(
+        model.score
+      )
+    )
+  );
+
+}
+
+
 const rows =
   [...DATA.models]
   .sort(
-    (a,b)=>
-      b.score-a.score
+    (a,b)=>{
+
+      const aHas =
+        hasScore(a);
+
+      const bHas =
+        hasScore(b);
+
+
+      if(
+        aHas
+        &&
+        bHas
+      ){
+
+        return (
+          Number(b.score)
+          -
+          Number(a.score)
+        );
+
+      }
+
+
+      if(aHas){
+        return -1;
+      }
+
+
+      if(bHas){
+        return 1;
+      }
+
+
+      return (
+        Number(
+          b.requests5h || 0
+        )
+        -
+        Number(
+          a.requests5h || 0
+        )
+      );
+
+    }
+  );
+
+
+const scoredRows =
+  rows.filter(
+    hasScore
   );
 
 
@@ -197,8 +267,8 @@ document
     "topScore"
   )
   .textContent =
-    rows.length
-      ? rows[0].score
+    scoredRows.length
+      ? scoredRows[0].score
       : "—";
 
 
@@ -237,7 +307,11 @@ document
         >
 
           <div class="rank">
-            ${model.scoreRank}
+            ${
+              model.scoreRank
+              ||
+              "—"
+            }
           </div>
 
           <img
@@ -260,16 +334,29 @@ document
 
           <div class="metric">
             <strong>
-              ${model.score}
+              ${
+                hasScore(model)
+                  ? model.score
+                  : "Not published"
+              }
             </strong>
 
             <span class="score-delta">
               ${
-                model.scoreDelta>=0
-                  ? "+"
-                  : ""
-              }${model.scoreDelta}
-              from base
+                hasScore(model)
+                  ? (
+                      (
+                        model.scoreDelta>=0
+                          ? "+"
+                          : ""
+                      )
+                      +
+                      model.scoreDelta
+                      +
+                      " from base"
+                    )
+                  : "score not published"
+              }
             </span>
           </div>
 

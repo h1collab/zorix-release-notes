@@ -137,13 +137,15 @@
   <div class="note">
     Score and request volume are separate measurements.
     Higher request volume does not automatically imply
-    higher translation quality.
+    higher translation quality. Models without a published
+    translation score remain visible in the request section
+    and are omitted from score ranking.
   </div>
 
 </main>
 
 
-<script src="/translate/translate.js"></script>
+<script src="/translate/translate.js?v=1788242211"></script>
 
 <script>
 
@@ -238,11 +240,37 @@ function card(
 }
 
 
+function hasScore(model){
+
+  return (
+    model
+    &&
+    model.score !== null
+    &&
+    model.score !== undefined
+    &&
+    model.score !== ""
+    &&
+    Number.isFinite(
+      Number(
+        model.score
+      )
+    )
+  );
+
+}
+
+
 const scoreRows =
   [...DATA.models]
+  .filter(
+    hasScore
+  )
   .sort(
     (a,b)=>
-      b.score-a.score
+      Number(b.score)
+      -
+      Number(a.score)
   );
 
 

@@ -1,19 +1,46 @@
 (() => {
   'use strict';
 
-  const esc = value =>
-    String(value ?? '')
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;');
 
-  const number = value =>
-    Number(value || 0);
+  const esc = value =>
+    String(
+      value ?? ''
+    )
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+
+
+  const num = value =>
+    Number(
+      value || 0
+    );
+
+
+  const hasScore = model =>
+    Boolean(
+      model
+      &&
+      model.score !== null
+      &&
+      model.score !== undefined
+      &&
+      model.score !== ''
+      &&
+      Number.isFinite(
+        Number(
+          model.score
+        )
+      )
+    );
+
 
   const billion = value =>
     (
-      number(value) / 1e9
+      num(value)
+      /
+      1e9
     )
     .toLocaleString(
       'en-US',
@@ -24,20 +51,62 @@
     +
     'B';
 
+
+  const scoreText = model =>
+    hasScore(model)
+      ? String(model.score)
+      : 'Not published';
+
+
+  const deltaText = (
+    model,
+    base
+  ) => {
+
+    if(!hasScore(model)){
+      return 'score not published';
+    }
+
+
+    const delta =
+      Number(model.score)
+      -
+      Number(base);
+
+
+    return (
+      (delta>=0 ? '+' : '')
+      +
+      delta
+      +
+      ' from base'
+    );
+
+  };
+
+
   const logoUrl = model => {
+
     if(!model?.logo){
       return '';
     }
 
+
     try{
+
       return new URL(
         model.logo,
         location.origin
       ).href;
+
     }catch(error){
+
       return model.logo;
+
     }
+
   };
+
 
   const logo = (
     model,
@@ -45,12 +114,15 @@
     y,
     size
   ) => {
+
     const href =
       logoUrl(model);
+
 
     if(!href){
       return '';
     }
+
 
     return `
       <image
@@ -62,82 +134,121 @@
         preserveAspectRatio="xMidYMid meet"
       />
     `;
+
   };
+
 
   const shortName = model => {
-    if(
-      model.id ===
-      'google-translation-llm'
-    ){
-      return 'Google TLLM';
-    }
 
-    if(
-      model.id ===
-      'zorix-nexhate-1-preview-xhigh'
-    ){
-      return 'NexHate 1 (xhigh)';
-    }
+    const map = {
 
-    return model.name;
+      'google-translation-llm':
+        'Google TLLM',
+
+      'google-neural-machine-translation':
+        'Google NMT',
+
+      'hy-mt2-30b-a3b':
+        'Hy-MT2-30B-A3B',
+
+      'zorix-nexhate-1-preview-xhigh':
+        'NexHate 1 (xhigh)',
+
+      'zorix-nexhate-xhigh':
+        'NexHate (xhigh)'
+
+    };
+
+
+    return (
+      map[
+        model.id
+      ]
+      ||
+      model.name
+    );
+
   };
+
 
   const sorted = data => {
+
     const models =
-      [...(
-        data?.models || []
-      )];
+      [
+        ...(
+          data?.models
+          ||
+          []
+        )
+      ];
+
+
+    const scored =
+      models
+      .filter(
+        hasScore
+      )
+      .sort(
+        (a,b)=>
+          Number(b.score)
+          -
+          Number(a.score)
+      );
+
+
+    const requests =
+      [...models]
+      .sort(
+        (a,b)=>
+          num(b.requests5h)
+          -
+          num(a.requests5h)
+      );
+
 
     return {
+
       models,
 
+      scored,
+
+      requests,
+
       base:
-        number(
-          data?.scoreBase || 1000
-        ),
-
-      score:
-        [...models]
-        .sort(
-          (a,b)=>
-            number(b.score)
-            -
-            number(a.score)
-        ),
-
-      requests:
-        [...models]
-        .sort(
-          (a,b)=>
-            number(b.requests5h)
-            -
-            number(a.requests5h)
+        num(
+          data?.scoreBase
+          ||
+          1000
         )
+
     };
+
   };
+
 
   const brand = (
     width,
     title,
-    subtitle=''
+    subtitle
   ) => `
+
     <text
-      x="42"
-      y="50"
+      x="44"
+      y="49"
       fill="#111"
-      font-family="OpenAI Sans, Arial, sans-serif"
-      font-size="24"
+      font-family="OpenAI Sans,Arial,sans-serif"
+      font-size="23"
       font-weight="700"
     >
       ${esc(title)}
     </text>
 
     <text
-      x="42"
-      y="78"
+      x="44"
+      y="75"
       fill="#6b6b67"
-      font-family="OpenAI Sans, Arial, sans-serif"
-      font-size="12"
+      font-family="OpenAI Sans,Arial,sans-serif"
+      font-size="11"
     >
       ${esc(subtitle)}
     </text>
@@ -149,169 +260,145 @@
           location.origin
         ).href
       )}"
-      x="${width-82}"
-      y="30"
-      width="38"
-      height="38"
+      x="${width-80}"
+      y="28"
+      width="36"
+      height="36"
     />
+
   `;
 
 
   function compact(data){
 
     const {
-      score,
+      requests,
       base
     } = sorted(data);
 
-    const width=424;
-    const height=488;
 
-    const maxScore =
+    const width =
+      560;
+
+
+    const rowHeight =
+      78;
+
+
+    const height =
       Math.max(
-        base+1,
-        ...score.map(
-          model=>
-            number(model.score)
-        )
+        488,
+        154
+        +
+        requests.length
+        *
+        rowHeight
+        +
+        50
       );
 
-    const scaleMax =
-      Math.max(
-        base+12,
-        maxScore+2
-      );
-
-    const startX=68;
-    const endX=366;
-
-    const scoreX = value =>
-      startX
-      +
-      (
-        (
-          number(value)-base
-        )
-        /
-        (
-          scaleMax-base
-        )
-      )
-      *
-      (
-        endX-startX
-      );
 
     const rows =
-      score.map(
+      requests.map(
         (model,index)=>{
 
           const y =
-            177
+            134
             +
-            index*112;
+            index
+            *
+            rowHeight;
 
-          const x =
-            scoreX(
-              model.score
-            );
 
           return `
+
             ${logo(
               model,
-              42,
-              y-25,
-              38
+              44,
+              y,
+              36
             )}
 
             <text
-              x="91"
-              y="${y-7}"
+              x="94"
+              y="${y+15}"
               fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="14"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="13"
               font-weight="600"
             >
               ${esc(shortName(model))}
             </text>
 
             <text
-              x="91"
-              y="${y+13}"
+              x="94"
+              y="${y+35}"
               fill="#777"
-              font-family="SF Mono, monospace"
-              font-size="10"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
               ${esc(model.provider)}
             </text>
 
-            <line
-              x1="${startX}"
-              y1="${y+48}"
-              x2="${endX}"
-              y2="${y+48}"
-              stroke="#e1e1dc"
-              stroke-width="2"
-            />
-
-            <line
-              x1="${startX}"
-              y1="${y+48}"
-              x2="${x}"
-              y2="${y+48}"
-              stroke="${esc(model.color)}"
-              stroke-width="4"
-              stroke-linecap="round"
-            />
-
-            <circle
-              cx="${x}"
-              cy="${y+48}"
-              r="6"
-              fill="${esc(model.color)}"
-            />
-
             <text
-              x="${endX}"
-              y="${y-8}"
-              text-anchor="end"
-              fill="#111"
-              font-family="SF Mono, monospace"
-              font-size="15"
-              font-weight="700"
-            >
-              ${number(model.score)}
-            </text>
-
-            <text
-              x="${endX}"
+              x="516"
               y="${y+13}"
               text-anchor="end"
-              fill="#4e765a"
-              font-family="SF Mono, monospace"
-              font-size="10"
+              fill="#111"
+              font-family="SF Mono,monospace"
+              font-size="13"
+              font-weight="700"
             >
-              +${number(model.score)-base} from base
+              ${billion(model.requests5h)} / 5h
             </text>
 
             <text
-              x="${endX}"
-              y="${y+35}"
+              x="516"
+              y="${y+34}"
               text-anchor="end"
-              fill="#666"
-              font-family="SF Mono, monospace"
-              font-size="10"
+              fill="${hasScore(model) ? '#4e765a' : '#777'}"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
-              ${billion(model.requests5h)} requests / 5h
+              ${
+                hasScore(model)
+                  ? (
+                      'score '
+                      +
+                      model.score
+                      +
+                      ' · '
+                      +
+                      deltaText(
+                        model,
+                        base
+                      )
+                    )
+                  : 'score not published'
+              }
             </text>
+
+            <line
+              x1="44"
+              y1="${y+58}"
+              x2="516"
+              y2="${y+58}"
+              stroke="#e1e1dc"
+            />
+
           `;
+
         }
       )
       .join('');
 
+
     return {
+
       width,
+
       height,
+
       filename:
         'zorix-translation-compact',
 
@@ -335,254 +422,298 @@
           ${brand(
             width,
             'Translation Comparison',
-            '1000-base score · requests per 5-hour window'
+            'Published request observations and translation scores'
           )}
-
-          <line
-            x1="${startX}"
-            y1="126"
-            x2="${endX}"
-            y2="126"
-            stroke="#111"
-          />
-
-          <text
-            x="${startX}"
-            y="117"
-            fill="#555"
-            font-family="SF Mono, monospace"
-            font-size="10"
-          >
-            1000 base
-          </text>
-
-          <text
-            x="${endX}"
-            y="117"
-            text-anchor="end"
-            fill="#555"
-            font-family="SF Mono, monospace"
-            font-size="10"
-          >
-            ${scaleMax}
-          </text>
 
           ${rows}
 
           <text
-            x="42"
-            y="462"
+            x="44"
+            y="${height-25}"
             fill="#777"
-            font-family="SF Mono, monospace"
+            font-family="SF Mono,monospace"
             font-size="9"
           >
-            ZORIX METRON · TRANSLATION SNAPSHOT
+            REQUEST WINDOW: 5 HOURS · SCORE BASE: ${base}
           </text>
 
         </svg>
       `
+
     };
+
   }
 
 
   function dual(data){
 
     const {
-      score,
+      scored,
       requests,
       base
     } = sorted(data);
 
-    const width=1200;
-    const height=675;
 
-    const maxDelta =
+    const width =
+      1200;
+
+
+    const count =
       Math.max(
-        1,
-        ...score.map(
-          model=>
-            number(model.score)-base
-        )
+        scored.length,
+        requests.length,
+        1
       );
 
-    const maxRequests =
+
+    const rowHeight =
+      82;
+
+
+    const height =
       Math.max(
-        1,
-        ...requests.map(
-          model=>
-            number(model.requests5h)
-        )
+        675,
+        205
+        +
+        count
+        *
+        rowHeight
+        +
+        95
       );
 
-    const scoreRows =
-      score.map(
+
+    const leftX =
+      62;
+
+
+    const rightX =
+      630;
+
+
+    const cardTop =
+      118;
+
+
+    const cardBottom =
+      height
+      -
+      72;
+
+
+    const scoredRows =
+      scored.map(
         (model,index)=>{
 
           const y =
-            230
+            205
             +
-            index*150;
+            index
+            *
+            rowHeight;
+
+
+          const delta =
+            Math.max(
+              0,
+              Number(model.score)
+              -
+              base
+            );
+
+
+          const maxDelta =
+            Math.max(
+              1,
+              ...scored.map(
+                item=>
+                  Number(item.score)
+                  -
+                  base
+              )
+            );
+
 
           const bar =
-            (
-              (
-                number(model.score)-base
-              )
-              /
-              maxDelta
-            )
+            delta
+            /
+            maxDelta
             *
-            350;
+            310;
+
 
           return `
+
             ${logo(
               model,
-              70,
-              y-28,
-              44
+              leftX+10,
+              y-22,
+              34
             )}
 
             <text
-              x="130"
-              y="${y-4}"
+              x="${leftX+55}"
+              y="${y-5}"
               fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="17"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="13"
               font-weight="600"
             >
               ${esc(shortName(model))}
             </text>
 
             <rect
-              x="130"
-              y="${y+22}"
-              width="350"
-              height="13"
-              rx="7"
+              x="${leftX+55}"
+              y="${y+11}"
+              width="310"
+              height="8"
+              rx="4"
               fill="#ecece8"
             />
 
             <rect
-              x="130"
-              y="${y+22}"
+              x="${leftX+55}"
+              y="${y+11}"
               width="${bar}"
-              height="13"
-              rx="7"
-              fill="${esc(model.color)}"
+              height="8"
+              rx="4"
+              fill="${esc(model.color || '#111')}"
             />
 
             <text
-              x="500"
-              y="${y+33}"
-              fill="#111"
+              x="${leftX+460}"
+              y="${y+18}"
               text-anchor="end"
-              font-family="SF Mono, monospace"
-              font-size="17"
+              fill="#111"
+              font-family="SF Mono,monospace"
+              font-size="13"
               font-weight="700"
             >
-              ${number(model.score)}
+              ${model.score}
             </text>
 
             <text
-              x="500"
-              y="${y+55}"
-              fill="#58725f"
+              x="${leftX+460}"
+              y="${y+37}"
               text-anchor="end"
-              font-family="SF Mono, monospace"
-              font-size="10"
+              fill="#58725f"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
-              +${number(model.score)-base}
+              ${deltaText(model,base)}
             </text>
+
           `;
+
         }
       )
       .join('');
+
 
     const requestRows =
       requests.map(
         (model,index)=>{
 
           const y =
-            230
+            205
             +
-            index*150;
+            index
+            *
+            rowHeight;
+
+
+          const maxRequests =
+            Math.max(
+              1,
+              ...requests.map(
+                item=>
+                  num(item.requests5h)
+              )
+            );
+
 
           const bar =
-            (
-              number(model.requests5h)
-              /
-              maxRequests
-            )
+            num(model.requests5h)
+            /
+            maxRequests
             *
-            350;
+            310;
+
 
           return `
+
             ${logo(
               model,
-              650,
-              y-28,
-              44
+              rightX+10,
+              y-22,
+              34
             )}
 
             <text
-              x="710"
-              y="${y-4}"
+              x="${rightX+55}"
+              y="${y-5}"
               fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="17"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="13"
               font-weight="600"
             >
               ${esc(shortName(model))}
             </text>
 
             <rect
-              x="710"
-              y="${y+22}"
-              width="350"
-              height="13"
-              rx="7"
+              x="${rightX+55}"
+              y="${y+11}"
+              width="310"
+              height="8"
+              rx="4"
               fill="#ecece8"
             />
 
             <rect
-              x="710"
-              y="${y+22}"
+              x="${rightX+55}"
+              y="${y+11}"
               width="${bar}"
-              height="13"
-              rx="7"
-              fill="${esc(model.color)}"
+              height="8"
+              rx="4"
+              fill="${esc(model.color || '#111')}"
             />
 
             <text
-              x="1080"
-              y="${y+33}"
-              fill="#111"
+              x="${rightX+460}"
+              y="${y+18}"
               text-anchor="end"
-              font-family="SF Mono, monospace"
-              font-size="17"
+              fill="#111"
+              font-family="SF Mono,monospace"
+              font-size="13"
               font-weight="700"
             >
               ${billion(model.requests5h)}
             </text>
 
             <text
-              x="1080"
-              y="${y+55}"
-              fill="#777"
+              x="${rightX+460}"
+              y="${y+37}"
               text-anchor="end"
-              font-family="SF Mono, monospace"
-              font-size="10"
+              fill="#777"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
               requests / 5h
             </text>
+
           `;
+
         }
       )
       .join('');
 
+
     return {
+
       width,
+
       height,
+
       filename:
         'zorix-translation-dual-metric',
 
@@ -606,120 +737,145 @@
           ${brand(
             width,
             'Translation Model Comparison',
-            'Score and request traffic remain separate metrics'
+            'Score and request traffic are independent measurements'
           )}
 
           <rect
             x="42"
-            y="122"
+            y="${cardTop}"
             width="520"
-            height="460"
+            height="${cardBottom-cardTop}"
             rx="18"
             fill="#fff"
             stroke="#deded9"
           />
 
           <rect
-            x="622"
-            y="122"
-            width="536"
-            height="460"
+            x="610"
+            y="${cardTop}"
+            width="548"
+            height="${cardBottom-cardTop}"
             rx="18"
             fill="#fff"
             stroke="#deded9"
           />
 
           <text
-            x="70"
-            y="168"
-            font-family="OpenAI Sans, Arial, sans-serif"
-            font-size="20"
-            font-weight="700"
+            x="${leftX+10}"
+            y="158"
             fill="#111"
+            font-family="OpenAI Sans,Arial,sans-serif"
+            font-size="18"
+            font-weight="700"
           >
             Translation score
           </text>
 
           <text
-            x="650"
-            y="168"
-            font-family="OpenAI Sans, Arial, sans-serif"
-            font-size="20"
-            font-weight="700"
+            x="${leftX+10}"
+            y="179"
+            fill="#777"
+            font-family="SF Mono,monospace"
+            font-size="9"
+          >
+            published scores only · base ${base}
+          </text>
+
+          <text
+            x="${rightX+10}"
+            y="158"
             fill="#111"
+            font-family="OpenAI Sans,Arial,sans-serif"
+            font-size="18"
+            font-weight="700"
           >
             Request load
           </text>
 
           <text
-            x="70"
-            y="192"
-            font-family="SF Mono, monospace"
-            font-size="10"
+            x="${rightX+10}"
+            y="179"
             fill="#777"
+            font-family="SF Mono,monospace"
+            font-size="9"
           >
-            1000-base
+            all published 5-hour observations
           </text>
 
-          <text
-            x="650"
-            y="192"
-            font-family="SF Mono, monospace"
-            font-size="10"
-            fill="#777"
-          >
-            requests per 5 hours
-          </text>
-
-          ${scoreRows}
+          ${scoredRows}
           ${requestRows}
 
           <text
             x="42"
-            y="635"
+            y="${height-30}"
             fill="#777"
-            font-family="SF Mono, monospace"
-            font-size="10"
+            font-family="SF Mono,monospace"
+            font-size="9"
           >
-            SCORE LEADER AND REQUEST LEADER MAY DIFFER
+            MODELS WITHOUT A PUBLISHED SCORE ARE NOT ASSIGNED A SYNTHETIC SCORE
           </text>
 
         </svg>
       `
+
     };
+
   }
 
 
   function baseline(data){
 
     const {
-      score,
+      scored,
       base
     } = sorted(data);
 
-    const width=1200;
-    const height=675;
+
+    const width =
+      1200;
+
+
+    const rowHeight =
+      92;
+
+
+    const height =
+      Math.max(
+        675,
+        230
+        +
+        scored.length
+        *
+        rowHeight
+        +
+        110
+      );
+
+
+    const left =
+      270;
+
+
+    const right =
+      1080;
+
 
     const maxScore =
       Math.max(
         base+12,
-        ...score.map(
+        ...scored.map(
           model=>
-            number(model.score)+2
+            Number(model.score)+2
         )
       );
 
-    const left=210;
-    const right=1090;
-    const top=190;
-    const bottom=520;
 
-    const x = value =>
+    const scoreX = value =>
       left
       +
       (
         (
-          number(value)-base
+          Number(value)-base
         )
         /
         (
@@ -731,135 +887,100 @@
         right-left
       );
 
-    const ticks =
-      Array.from(
-        {
-          length:
-            maxScore-base+1
-        },
-        (_,i)=>
-          base+i
-      )
-      .filter(
-        (_,i)=>
-          i%2===0
-      )
-      .map(
-        value=>`
-          <line
-            x1="${x(value)}"
-            y1="${top}"
-            x2="${x(value)}"
-            y2="${bottom}"
-            stroke="#ecece8"
-          />
-          <text
-            x="${x(value)}"
-            y="${bottom+31}"
-            text-anchor="middle"
-            font-family="SF Mono, monospace"
-            font-size="10"
-            fill="#666"
-          >
-            ${value}
-          </text>
-        `
-      )
-      .join('');
 
     const rows =
-      score.map(
+      scored.map(
         (model,index)=>{
 
           const y =
-            280
+            230
             +
-            index*135;
+            index
+            *
+            rowHeight;
 
-          const pointX =
-            x(
+
+          const x =
+            scoreX(
               model.score
             );
 
+
           return `
+
             ${logo(
               model,
-              72,
-              y-25,
-              42
+              54,
+              y-22,
+              36
             )}
 
             <text
-              x="128"
+              x="105"
               y="${y+5}"
               fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="16"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="14"
               font-weight="600"
             >
               ${esc(shortName(model))}
             </text>
 
             <line
-              x1="${x(base)}"
+              x1="${scoreX(base)}"
               y1="${y}"
-              x2="${pointX}"
+              x2="${x}"
               y2="${y}"
-              stroke="${esc(model.color)}"
+              stroke="${esc(model.color || '#111')}"
               stroke-width="5"
               stroke-linecap="round"
             />
 
             <circle
-              cx="${pointX}"
+              cx="${x}"
               cy="${y}"
-              r="10"
-              fill="${esc(model.color)}"
+              r="9"
+              fill="${esc(model.color || '#111')}"
               stroke="#fff"
               stroke-width="3"
             />
 
             <text
-              x="${pointX}"
-              y="${y-22}"
+              x="${x}"
+              y="${y-20}"
               text-anchor="middle"
               fill="#111"
-              font-family="SF Mono, monospace"
-              font-size="15"
+              font-family="SF Mono,monospace"
+              font-size="13"
               font-weight="700"
             >
-              ${number(model.score)}
+              ${model.score}
             </text>
 
             <text
-              x="${pointX}"
-              y="${y+30}"
-              text-anchor="middle"
-              fill="#58725f"
-              font-family="SF Mono, monospace"
-              font-size="10"
-            >
-              +${number(model.score)-base}
-            </text>
-
-            <text
-              x="1090"
+              x="${right}"
               y="${y+5}"
               text-anchor="end"
               fill="#666"
-              font-family="SF Mono, monospace"
-              font-size="11"
+              font-family="SF Mono,monospace"
+              font-size="10"
             >
               ${billion(model.requests5h)} / 5h
             </text>
+
           `;
+
         }
       )
       .join('');
 
+
     return {
+
       width,
+
       height,
+
       filename:
         'zorix-translation-baseline',
 
@@ -883,218 +1004,290 @@
           ${brand(
             width,
             'Translation Score Baseline',
-            'Every published translation score is shown against the 1000 reference'
+            'Published scores against the 1000 reference'
           )}
 
           <line
-            x1="${x(base)}"
-            y1="${top}"
-            x2="${x(base)}"
-            y2="${bottom}"
+            x1="${scoreX(base)}"
+            y1="170"
+            x2="${scoreX(base)}"
+            y2="${height-95}"
             stroke="#111"
             stroke-width="2"
           />
 
-          ${ticks}
+          <text
+            x="${scoreX(base)}"
+            y="150"
+            text-anchor="middle"
+            fill="#111"
+            font-family="SF Mono,monospace"
+            font-size="10"
+            font-weight="700"
+          >
+            BASE ${base}
+          </text>
+
           ${rows}
 
           <text
-            x="${x(base)}"
-            y="${top-20}"
-            text-anchor="middle"
-            fill="#111"
-            font-family="SF Mono, monospace"
-            font-size="11"
-            font-weight="700"
-          >
-            BASE 1000
-          </text>
-
-          <text
             x="42"
-            y="628"
+            y="${height-34}"
             fill="#777"
-            font-family="SF Mono, monospace"
-            font-size="10"
+            font-family="SF Mono,monospace"
+            font-size="9"
           >
-            NO SYNTHETIC HISTORY · CURRENT PUBLISHED SNAPSHOT ONLY
+            UNSCORED MODELS OMITTED FROM SCORE AXIS
           </text>
 
         </svg>
       `
+
     };
+
   }
 
 
   function cards(data){
 
     const {
-      models,
+      requests,
       base
     } = sorted(data);
 
-    const width=1200;
-    const height=675;
+
+    const width =
+      1200;
+
+
+    const columns =
+      2;
+
+
+    const cardWidth =
+      540;
+
+
+    const cardHeight =
+      250;
+
+
+    const gapX =
+      36;
+
+
+    const gapY =
+      24;
+
+
+    const rowsCount =
+      Math.ceil(
+        requests.length
+        /
+        columns
+      );
+
+
+    const height =
+      Math.max(
+        675,
+        130
+        +
+        rowsCount
+        *
+        (
+          cardHeight
+          +
+          gapY
+        )
+        +
+        60
+      );
+
 
     const cards =
-      models.map(
+      requests.map(
         (model,index)=>{
 
+          const column =
+            index
+            %
+            columns;
+
+
+          const row =
+            Math.floor(
+              index
+              /
+              columns
+            );
+
+
           const x =
-            index===0
-              ? 42
-              : 618;
+            42
+            +
+            column
+            *
+            (
+              cardWidth
+              +
+              gapX
+            );
+
+
+          const y =
+            118
+            +
+            row
+            *
+            (
+              cardHeight
+              +
+              gapY
+            );
+
 
           return `
+
             <rect
               x="${x}"
-              y="142"
-              width="540"
-              height="430"
-              rx="22"
+              y="${y}"
+              width="${cardWidth}"
+              height="${cardHeight}"
+              rx="18"
               fill="#fff"
               stroke="#deded9"
             />
 
             ${logo(
               model,
-              x+34,
-              181,
-              62
+              x+28,
+              y+27,
+              44
             )}
 
             <text
-              x="${x+116}"
-              y="208"
+              x="${x+88}"
+              y="${y+50}"
               fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="21"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="16"
               font-weight="700"
             >
               ${esc(shortName(model))}
             </text>
 
             <text
-              x="${x+116}"
-              y="234"
+              x="${x+88}"
+              y="${y+70}"
               fill="#777"
-              font-family="SF Mono, monospace"
-              font-size="11"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
-              ${esc(model.provider)} · ${esc(model.status)}
+              ${esc(model.provider)}
             </text>
 
             <text
-              x="${x+34}"
-              y="332"
-              fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="13"
+              x="${x+28}"
+              y="${y+123}"
+              fill="#777"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="10"
             >
               Translation score
             </text>
 
             <text
-              x="${x+34}"
-              y="394"
+              x="${x+28}"
+              y="${y+157}"
               fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="58"
-              font-weight="600"
+              font-family="SF Mono,monospace"
+              font-size="${hasScore(model) ? 25 : 15}"
+              font-weight="700"
             >
-              ${number(model.score)}
+              ${esc(scoreText(model))}
             </text>
 
             <text
-              x="${x+182}"
-              y="394"
-              fill="#58725f"
-              font-family="SF Mono, monospace"
-              font-size="13"
-            >
-              +${number(model.score)-base}
-            </text>
-
-            <line
-              x1="${x+34}"
-              y1="428"
-              x2="${x+506}"
-              y2="428"
-              stroke="#e1e1dc"
-            />
-
-            <text
-              x="${x+34}"
-              y="474"
+              x="${x+512}"
+              y="${y+123}"
+              text-anchor="end"
               fill="#777"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="12"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="10"
             >
               Requests / 5h
             </text>
 
             <text
-              x="${x+506}"
-              y="474"
+              x="${x+512}"
+              y="${y+157}"
               text-anchor="end"
               fill="#111"
-              font-family="SF Mono, monospace"
-              font-size="22"
+              font-family="SF Mono,monospace"
+              font-size="25"
               font-weight="700"
             >
               ${billion(model.requests5h)}
             </text>
 
+            <line
+              x1="${x+28}"
+              y1="${y+183}"
+              x2="${x+512}"
+              y2="${y+183}"
+              stroke="#e1e1dc"
+            />
+
             <text
-              x="${x+34}"
-              y="520"
+              x="${x+28}"
+              y="${y+216}"
               fill="#777"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="12"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
-              Score rank
+              ${
+                hasScore(model)
+                  ? (
+                      'score rank #'
+                      +
+                      model.scoreRank
+                      +
+                      ' · '
+                      +
+                      deltaText(
+                        model,
+                        base
+                      )
+                    )
+                  : 'score rank not published'
+              }
             </text>
 
             <text
-              x="${x+185}"
-              y="520"
-              fill="#111"
-              font-family="SF Mono, monospace"
-              font-size="15"
-              font-weight="700"
-            >
-              #${number(model.scoreRank)}
-            </text>
-
-            <text
-              x="${x+300}"
-              y="520"
-              fill="#777"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="12"
-            >
-              Request rank
-            </text>
-
-            <text
-              x="${x+506}"
-              y="520"
+              x="${x+512}"
+              y="${y+216}"
               text-anchor="end"
-              fill="#111"
-              font-family="SF Mono, monospace"
-              font-size="15"
-              font-weight="700"
+              fill="#777"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
-              #${number(model.requestRank)}
+              request rank #${model.requestRank}
             </text>
+
           `;
+
         }
       )
       .join('');
 
+
     return {
+
       width,
+
       height,
+
       filename:
         'zorix-translation-cards',
 
@@ -1118,71 +1311,88 @@
           ${brand(
             width,
             'Translation Model Cards',
-            'Direct score and request comparison'
+            'Current published score and request observations'
           )}
 
           ${cards}
 
           <text
             x="42"
-            y="632"
+            y="${height-26}"
             fill="#777"
-            font-family="SF Mono, monospace"
-            font-size="10"
+            font-family="SF Mono,monospace"
+            font-size="9"
           >
             SCORE BASE ${base} · REQUEST WINDOW 5 HOURS
           </text>
 
         </svg>
       `
+
     };
+
   }
 
 
   function scatter(data){
 
     const {
-      models,
+      scored,
       base
     } = sorted(data);
 
-    const width=1200;
-    const height=675;
 
-    const left=120;
-    const right=1100;
-    const top=155;
-    const bottom=535;
+    const width =
+      1200;
+
+
+    const height =
+      675;
+
+
+    const left =
+      120;
+
+
+    const right =
+      1090;
+
+
+    const top =
+      150;
+
+
+    const bottom =
+      515;
+
 
     const maxRequests =
       Math.max(
         1,
-        ...models.map(
+        ...scored.map(
           model=>
-            number(model.requests5h)
-            /
-            1e9
+            num(model.requests5h)
         )
       )
       *
-      1.16;
+      1.12;
+
 
     const maxScore =
       Math.max(
         base+12,
-        ...models.map(
+        ...scored.map(
           model=>
-            number(model.score)+2
+            Number(model.score)+2
         )
       );
 
-    const x = requests =>
+
+    const x = value =>
       left
       +
       (
-        (
-          number(requests)/1e9
-        )
+        num(value)
         /
         maxRequests
       )
@@ -1191,12 +1401,13 @@
         right-left
       );
 
-    const y = score =>
+
+    const y = value =>
       bottom
       -
       (
         (
-          number(score)-base
+          Number(value)-base
         )
         /
         (
@@ -1208,77 +1419,9 @@
         bottom-top
       );
 
-    const gridX =
-      [0,2,4,6,8]
-      .filter(
-        value=>
-          value<=maxRequests
-      )
-      .map(
-        value=>`
-          <line
-            x1="${x(value*1e9)}"
-            y1="${top}"
-            x2="${x(value*1e9)}"
-            y2="${bottom}"
-            stroke="#ecece8"
-          />
-
-          <text
-            x="${x(value*1e9)}"
-            y="${bottom+30}"
-            text-anchor="middle"
-            fill="#666"
-            font-family="SF Mono, monospace"
-            font-size="10"
-          >
-            ${value}B
-          </text>
-        `
-      )
-      .join('');
-
-    const gridY =
-      [1000,1002,1004,1006,1008,1010,1012]
-      .filter(
-        value=>
-          value<=maxScore
-      )
-      .map(
-        value=>`
-          <line
-            x1="${left}"
-            y1="${y(value)}"
-            x2="${right}"
-            y2="${y(value)}"
-            stroke="${
-              value===base
-                ? '#111'
-                : '#ecece8'
-            }"
-            stroke-width="${
-              value===base
-                ? 2
-                : 1
-            }"
-          />
-
-          <text
-            x="${left-14}"
-            y="${y(value)+4}"
-            text-anchor="end"
-            fill="#666"
-            font-family="SF Mono, monospace"
-            font-size="10"
-          >
-            ${value}
-          </text>
-        `
-      )
-      .join('');
 
     const points =
-      models.map(
+      scored.map(
         model=>{
 
           const px =
@@ -1286,35 +1429,38 @@
               model.requests5h
             );
 
+
           const py =
             y(
               model.score
             );
 
+
           return `
+
             <circle
               cx="${px}"
               cy="${py}"
-              r="24"
+              r="23"
               fill="#fff"
-              stroke="${esc(model.color)}"
+              stroke="${esc(model.color || '#111')}"
               stroke-width="3"
             />
 
             ${logo(
               model,
-              px-15,
-              py-15,
-              30
+              px-14,
+              py-14,
+              28
             )}
 
             <text
               x="${px}"
-              y="${py+47}"
+              y="${py+45}"
               text-anchor="middle"
               fill="#111"
-              font-family="OpenAI Sans, Arial, sans-serif"
-              font-size="13"
+              font-family="OpenAI Sans,Arial,sans-serif"
+              font-size="11"
               font-weight="600"
             >
               ${esc(shortName(model))}
@@ -1322,22 +1468,28 @@
 
             <text
               x="${px}"
-              y="${py+65}"
+              y="${py+62}"
               text-anchor="middle"
               fill="#666"
-              font-family="SF Mono, monospace"
-              font-size="10"
+              font-family="SF Mono,monospace"
+              font-size="9"
             >
-              ${number(model.score)} · ${billion(model.requests5h)}
+              ${model.score} · ${billion(model.requests5h)}
             </text>
+
           `;
+
         }
       )
       .join('');
 
+
     return {
+
       width,
+
       height,
+
       filename:
         'zorix-translation-scatter',
 
@@ -1361,58 +1513,100 @@
           ${brand(
             width,
             'Translation Requests × Score',
-            'Request traffic and translation score shown as independent axes'
+            'Only models with both published measurements are plotted'
           )}
 
-          ${gridX}
-          ${gridY}
+          <line
+            x1="${left}"
+            y1="${bottom}"
+            x2="${right}"
+            y2="${bottom}"
+            stroke="#111"
+          />
+
+          <line
+            x1="${left}"
+            y1="${top}"
+            x2="${left}"
+            y2="${bottom}"
+            stroke="#111"
+          />
+
+          <line
+            x1="${left}"
+            y1="${y(base)}"
+            x2="${right}"
+            y2="${y(base)}"
+            stroke="#d8d8d3"
+            stroke-dasharray="4 6"
+          />
+
+          <text
+            x="${left-14}"
+            y="${y(base)+4}"
+            text-anchor="end"
+            fill="#666"
+            font-family="SF Mono,monospace"
+            font-size="9"
+          >
+            ${base}
+          </text>
+
           ${points}
 
           <text
             x="${(left+right)/2}"
-            y="612"
+            y="596"
             text-anchor="middle"
             fill="#111"
-            font-family="OpenAI Sans, Arial, sans-serif"
-            font-size="14"
+            font-family="OpenAI Sans,Arial,sans-serif"
+            font-size="12"
           >
             Requests per 5 hours
           </text>
 
           <text
-            x="38"
+            x="39"
             y="${(top+bottom)/2}"
             text-anchor="middle"
-            transform="rotate(-90 38 ${(top+bottom)/2})"
+            transform="rotate(-90 39 ${(top+bottom)/2})"
             fill="#111"
-            font-family="OpenAI Sans, Arial, sans-serif"
-            font-size="14"
+            font-family="OpenAI Sans,Arial,sans-serif"
+            font-size="12"
           >
             Translation score
           </text>
 
           <text
             x="42"
-            y="645"
+            y="643"
             fill="#777"
-            font-family="SF Mono, monospace"
-            font-size="10"
+            font-family="SF Mono,monospace"
+            font-size="9"
           >
-            1000-BASE SCORE · NO IMPLIED CAUSAL RELATIONSHIP BETWEEN TRAFFIC AND QUALITY
+            UNSCORED MODELS OMITTED · NO SCORE IS SYNTHESIZED FROM REQUEST VOLUME
           </text>
 
         </svg>
       `
+
     };
+
   }
 
 
-  const BUILDERS={
+  const BUILDERS = {
+
     compact,
+
     dual,
+
     baseline,
+
     cards,
+
     scatter
+
   };
 
 
@@ -1420,24 +1614,34 @@
 
     styles:[
       {
-        id:'compact',
-        name:'Compact · 424 × 488'
+        id:
+          'compact',
+        name:
+          'Compact'
       },
       {
-        id:'dual',
-        name:'Dual metric · 1200 × 675'
+        id:
+          'dual',
+        name:
+          'Dual metric'
       },
       {
-        id:'baseline',
-        name:'1000 baseline · 1200 × 675'
+        id:
+          'baseline',
+        name:
+          '1000 baseline'
       },
       {
-        id:'cards',
-        name:'Model cards · 1200 × 675'
+        id:
+          'cards',
+        name:
+          'Model cards'
       },
       {
-        id:'scatter',
-        name:'Requests × score · 1200 × 675'
+        id:
+          'scatter',
+        name:
+          'Requests × score'
       }
     ],
 
@@ -1453,6 +1657,7 @@
         ]
         ||
         BUILDERS.dual;
+
 
       return builder(
         data

@@ -149,13 +149,15 @@
   <div class="note">
     No vote-count history or uncertainty interval has been
     published for these translation scores, so neither is
-    synthesized on this page.
+    synthesized on this page. Translation models without a
+    published score are not assigned a synthetic 1000 score
+    and do not appear in this ranking.
   </div>
 
 </main>
 
 
-<script src="/translate/translate.js"></script>
+<script src="/translate/translate.js?v=1788242211"></script>
 
 <script>
 
@@ -168,11 +170,37 @@ const DATA =
   };
 
 
+function hasScore(model){
+
+  return (
+    model
+    &&
+    model.score !== null
+    &&
+    model.score !== undefined
+    &&
+    model.score !== ""
+    &&
+    Number.isFinite(
+      Number(
+        model.score
+      )
+    )
+  );
+
+}
+
+
 const rows =
   [...DATA.models]
+  .filter(
+    hasScore
+  )
   .sort(
     (a,b)=>
-      b.score-a.score
+      Number(b.score)
+      -
+      Number(a.score)
   );
 
 

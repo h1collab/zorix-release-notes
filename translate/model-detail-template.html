@@ -211,7 +211,7 @@
 </main>
 
 
-<script src="/translate/translate.js"></script>
+<script src="/translate/translate.js?v=1788242211"></script>
 
 <script>
 
@@ -237,6 +237,24 @@ const model =
   .find(
     item=>
       item.id===MODEL_ID
+  );
+
+
+const hasPublishedScore =
+  Boolean(
+    model
+    &&
+    model.score !== null
+    &&
+    model.score !== undefined
+    &&
+    model.score !== ""
+    &&
+    Number.isFinite(
+      Number(
+        model.score
+      )
+    )
   );
 
 
@@ -379,7 +397,9 @@ if(!model){
       "score"
     )
     .textContent =
-      model.score;
+      hasPublishedScore
+        ? model.score
+        : "Not published";
 
 
   document
@@ -387,13 +407,17 @@ if(!model){
       "delta"
     )
     .textContent =
-      (
-        model.scoreDelta >= 0
-          ? "+"
-          : ""
-      )
-      +
-      model.scoreDelta;
+      hasPublishedScore
+        ? (
+            (
+              model.scoreDelta >= 0
+                ? "+"
+                : ""
+            )
+            +
+            model.scoreDelta
+          )
+        : "Not published";
 
 
   document
@@ -411,9 +435,17 @@ if(!model){
       "scoreRank"
     )
     .textContent =
-      "#"
-      +
-      model.scoreRank;
+      (
+        hasPublishedScore
+        &&
+        model.scoreRank
+      )
+        ? (
+            "#"
+            +
+            model.scoreRank
+          )
+        : "Not published";
 
 
   document
@@ -466,9 +498,17 @@ if(!model){
 
       row(
         "Score rank",
-        "#"
-        +
-        model.scoreRank
+        (
+          hasPublishedScore
+          &&
+          model.scoreRank
+        )
+          ? (
+              "#"
+              +
+              model.scoreRank
+            )
+          : "Not published"
       )
 
       +
