@@ -2435,6 +2435,13 @@ h1{
 
       <button
         type="button"
+        data-usage-range="5h"
+      >
+        5 hours
+      </button>
+
+      <button
+        type="button"
         data-usage-range="today"
       >
         Today
@@ -2579,7 +2586,7 @@ h1{
 </main>
 
 <script src="./models.js?v=1788181089"></script>
-<script src="./usage.js?v=1788242763"></script>
+<script src="./usage.js?v=1788245194"></script>
 <script src="./quota.js?v=1788181089"></script>
 
 <script>
@@ -2826,6 +2833,46 @@ function visibleModels(){
        * Do not turn a weekly-only observation into
        * invented Today / 30d / All measurements.
        */
+      /*
+       * FIVE_HOUR_TOKEN_VISIBILITY_V1
+       *
+       * 5-hour observations are shown only in the
+       * dedicated 5-hour period. They are never
+       * converted to daily or weekly usage.
+       */
+      if(model.fiveHourOnlyTokens){
+
+        return (
+          usageRange ===
+          '5h'
+          &&
+          model.fiveHourTokens !==
+          undefined
+          &&
+          model.fiveHourTokens !==
+          null
+        );
+
+      }
+
+
+      /*
+       * When the dedicated 5-hour period is active,
+       * hide models without an exact 5-hour observation.
+       */
+      if(usageRange === '5h'){
+
+        return (
+          model.fiveHourTokens !==
+          undefined
+          &&
+          model.fiveHourTokens !==
+          null
+        );
+
+      }
+
+
       if(model.weeklyOnlyTokens){
 
         /*
@@ -2905,6 +2952,10 @@ function rangeDays(){
     maxHistoryDays();
 
 
+  if(usageRange==='5h'){
+    return 1;
+  }
+
   if(usageRange==='today'){
     return 1;
   }
@@ -2955,6 +3006,10 @@ function rangeIndices(){
 
 function periodLabel(){
 
+  if(usageRange==='5h'){
+    return '5-hour observation';
+  }
+
   if(usageRange==='today'){
     return 'Today';
   }
@@ -2973,6 +3028,10 @@ function periodLabel(){
 
 function periodShort(){
 
+  if(usageRange==='5h'){
+    return '5 hours';
+  }
+
   if(usageRange==='today'){
     return 'today';
   }
@@ -2990,6 +3049,19 @@ function periodShort(){
 
 
 function modelPeriodLabel(model){
+
+  if(
+    usageRange==='5h'
+    &&
+    model.fiveHourTokens !== undefined
+    &&
+    model.fiveHourTokens !== null
+  ){
+
+    return 'observed 5 hours';
+
+  }
+
 
   if(
     usageRange==='7d'
@@ -3023,6 +3095,10 @@ function modelPeriodLabel(model){
 
 
 function periodMeasuredLabel(){
+
+  if(usageRange==='5h'){
+    return 'observed 5-hour window';
+  }
 
   if(usageRange==='today'){
     return 'current daily';
@@ -3073,6 +3149,28 @@ function trendPeriodTotal(model){
  *   sum of the available normalized trend.
  */
 function rangeModelTokens(model){
+
+  /*
+   * EXACT_FIVE_HOUR_OBSERVATION_V1
+   */
+  if(usageRange==='5h'){
+
+    if(
+      model.fiveHourTokens !== undefined
+      &&
+      model.fiveHourTokens !== null
+    ){
+
+      return Number(
+        model.fiveHourTokens || 0
+      );
+
+    }
+
+
+    return 0;
+
+  }
 
   if(usageRange==='today'){
 

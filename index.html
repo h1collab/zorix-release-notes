@@ -5,7 +5,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788205872">
+<meta name="zorix-build" content="1788245194">
 
 
 
@@ -258,6 +258,167 @@
   }
 }
 
+
+
+/* =========================================================
+   WOLF_THETA_HOME_TICKER_V1
+   ========================================================= */
+
+.wolf-launch-strip{
+  display:block;
+
+  border-bottom:
+    1px solid #262626;
+
+  background:#111;
+  color:#fff;
+
+  overflow:hidden;
+}
+
+.wolf-launch-inner{
+  max-width:1512px;
+  height:52px;
+
+  margin:auto;
+  padding:
+    0
+    var(--gutter);
+
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+}
+
+.wolf-launch-label{
+  flex:0 0 auto;
+
+  color:#8f8f8b;
+
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.wolf-launch-window{
+  min-width:0;
+  height:36px;
+
+  flex:1;
+
+  overflow:hidden;
+}
+
+.wolf-launch-track{
+  display:flex;
+  flex-direction:column;
+
+  animation:
+    wolfThetaTickerVertical
+    5.4s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.wolf-launch-item{
+  height:36px;
+
+  flex:0 0 36px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  white-space:nowrap;
+}
+
+.wolf-launch-logo{
+  width:27px;
+  height:27px;
+
+  flex:0 0 27px;
+
+  overflow:hidden;
+
+  border:
+    1px solid #353535;
+
+  border-radius:7px;
+
+  background:#0b0b10;
+}
+
+.wolf-launch-logo img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+.wolf-launch-name{
+  font-size:13px;
+  font-weight:600;
+}
+
+.wolf-launch-copy{
+  color:#bdbdb8;
+
+  font-size:12px;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.wolf-launch-arrow{
+  flex:0 0 auto;
+
+  color:#999;
+  font-size:14px;
+}
+
+@keyframes wolfThetaTickerVertical{
+
+  0%,
+  38%{
+    transform:
+      translateY(0);
+  }
+
+  62%,
+  100%{
+    transform:
+      translateY(-36px);
+  }
+
+}
+
+@media(
+  prefers-reduced-motion:
+  reduce
+){
+
+  .wolf-launch-track{
+    animation:none;
+  }
+
+}
+
+@media(max-width:620px){
+
+  .wolf-launch-label{
+    display:none;
+  }
+
+  .wolf-launch-copy{
+    font-size:11px;
+  }
+
+}
+
+
 </style>
 </head>
 <body>
@@ -273,6 +434,78 @@
 </a>
 </nav>
   </header>
+
+
+  <a
+    class="wolf-launch-strip"
+    id="wolfThetaLaunchStrip"
+    href="/number-of-calls/models/wolf-theta/"
+    aria-label="Wolf Theta is now live"
+  >
+
+    <div class="wolf-launch-inner">
+
+      <div class="wolf-launch-label">
+        New model
+      </div>
+
+
+      <div class="wolf-launch-window">
+
+        <div class="wolf-launch-track">
+
+          <div class="wolf-launch-item">
+
+            <span class="wolf-launch-logo">
+              <img
+                src="/number-of-calls/assets/logos/wolf-theta.svg"
+                alt=""
+              >
+            </span>
+
+            <span class="wolf-launch-name">
+              Wolf Theta
+            </span>
+
+            <span class="wolf-launch-copy">
+              is now live
+            </span>
+
+          </div>
+
+
+          <div class="wolf-launch-item">
+
+            <span class="wolf-launch-logo">
+              <img
+                src="/number-of-calls/assets/logos/wolf-theta.svg"
+                alt=""
+              >
+            </span>
+
+            <span class="wolf-launch-name">
+              Wolf Theta
+            </span>
+
+            <span class="wolf-launch-copy">
+              Blind test · community score 1553 · 87.98B requests / wk
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="wolf-launch-arrow">
+        ↗
+      </div>
+
+    </div>
+
+  </a>
+
 
   <main>
     <section class="hero">

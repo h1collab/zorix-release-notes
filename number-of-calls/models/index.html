@@ -1500,9 +1500,11 @@ function renderModels(){
                     model.usageMetric ===
                     "requests"
                       ? "Weekly requests"
-                      : model.weeklyOnlyTokens
-                        ? "Weekly tokens"
-                        : "Daily tokens"
+                      : model.fiveHourOnlyTokens
+                        ? "5-hour tokens"
+                        : model.weeklyOnlyTokens
+                          ? "Weekly tokens"
+                          : "Daily tokens"
                   }
                 </div>
 
@@ -1521,17 +1523,25 @@ function renderModels(){
                               )
                             : "Not published"
                         )
-                      : model.weeklyOnlyTokens
+                      : model.fiveHourOnlyTokens
                         ? (
                             fmt(
-                              model.weeklyTokens
+                              model.fiveHourTokens
                             )
                             +
-                            " / wk"
+                            " / 5h"
                           )
-                        : fmt(
-                            model.dailyTokens
-                          )
+                        : model.weeklyOnlyTokens
+                          ? (
+                              fmt(
+                                model.weeklyTokens
+                              )
+                              +
+                              " / wk"
+                            )
+                          : fmt(
+                              model.dailyTokens
+                            )
                   }
                 </div>
 

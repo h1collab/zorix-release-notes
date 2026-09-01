@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-09-01T08:06:03+02:00",
+  "updatedAt": "2026-09-01T08:46:34+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -213,6 +213,37 @@ window.ZORIX_CODE_USAGE = {
       "share": 0.0,
       "thirtyDayTokens": 72110000000,
       "thirtyDayObserved": true
+    },
+    {
+      "id": "hy4-preview",
+      "name": "Tencent Hy4 preview",
+      "provider": "Tencent",
+      "family": "Hy4",
+      "status": "Preview",
+      "tokens": 0,
+      "fiveHourTokens": 17900000000,
+      "fiveHourOnlyTokens": true,
+      "includeInTokenRanking": true,
+      "usageMetric": "tokens",
+      "logo": "/number-of-calls/assets/logos/hunyuan.svg",
+      "color": "#00A7CE",
+      "context": "1M tokens",
+      "parameters": "770B total",
+      "activeParameters": "49B activated",
+      "architecture": "Mixture-of-Experts (MoE) · Gated DSA · iHC · native MTP",
+      "inputPrice": "$0.834 / M tokens",
+      "outputPrice": "$2.501 / M tokens",
+      "cachedInputPrice": "$0.042 / M tokens",
+      "officialModelId": "hy4-preview",
+      "maxInputTokens": "960K tokens",
+      "maxOutputTokens": "64K tokens",
+      "providerReleaseDate": "2026-08-28",
+      "launchDate": "2026-09-01",
+      "source": "Zorix Metron · 5-hour token observation",
+      "about": "Tencent Hy4 preview is a next-generation Mixture-of-Experts flagship model from the Tencent Hy Team. Public Tencent material describes a 770B total-parameter backbone with 49B parameters activated per token, Gated DSA sparse attention, iHC residual connections and native MTP speculative decoding. Tencent publicly released and open-sourced Hy4 preview on Aug 28, 2026. Zorix began tracking the model on Sep 1, 2026. The currently published Zorix Metron observation is 17.9B tokens over a five-hour window. No daily, weekly or 30-day Hy4 token total has been published by Zorix.",
+      "docs": "",
+      "chart": [],
+      "share": 0
     }
   ],
   "daily": [

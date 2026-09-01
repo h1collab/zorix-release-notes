@@ -2343,6 +2343,68 @@ h1{
 }
 
 
+
+
+/* =========================================================
+   THIRD_PARTY_EVIDENCE_STYLE_V1
+   ========================================================= */
+
+.evidence-list{
+  display:grid;
+  gap:10px;
+}
+
+.evidence-card{
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--soft2);
+}
+
+.evidence-top{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+  margin-bottom:15px;
+}
+
+.evidence-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  padding:0 8px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  color:var(--muted);
+  font-size:9px;
+}
+
+.evidence-title{
+  font-size:18px;
+  line-height:1.35;
+  letter-spacing:-.025em;
+}
+
+.evidence-copy{
+  max-width:780px;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+.evidence-warning{
+  margin-top:15px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  color:#777;
+  font-size:10px;
+  line-height:1.55;
+}
+
+
 </style>
 
 </head>
@@ -4419,6 +4481,82 @@ if(!model){
         );
 
   }else if(
+    model.fiveHourOnlyTokens
+  ){
+
+    /* FIVE_HOUR_MODEL_USAGE_V1 */
+
+    const copy =
+      document.getElementById(
+        "usageSectionCopy"
+      );
+
+
+    if(copy){
+
+      copy.textContent =
+        (
+          "A five-hour Zorix Metron token observation is "
+          +
+          "published for this newly tracked model. "
+          +
+          "No daily, weekly or historical token series "
+          +
+          "is inferred from that period total."
+        );
+
+    }
+
+
+    const dailyLabel =
+      document.getElementById(
+        "dailyLabel"
+      );
+
+
+    const weeklyLabel =
+      document.getElementById(
+        "weeklyLabel"
+      );
+
+
+    if(dailyLabel){
+
+      dailyLabel.textContent =
+        "5-hour observation";
+
+    }
+
+
+    if(weeklyLabel){
+
+      weeklyLabel.textContent =
+        "Daily total";
+
+    }
+
+
+    document
+      .getElementById(
+        "daily"
+      )
+      .textContent =
+        fmt(
+          model.fiveHourTokens
+        )
+        +
+        " tokens / 5h";
+
+
+    document
+      .getElementById(
+        "weekly"
+      )
+      .textContent =
+        "Not published";
+
+
+  }else if(
     model.weeklyOnlyTokens
   ){
 
@@ -4432,11 +4570,27 @@ if(!model){
 
       copy.textContent =
         (
-          "A weekly Zorix Metron token observation is published "
-          +
-          "for this model. No measured daily breakdown or "
-          +
-          "historical per-day series has been published."
+          (
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+          )
+            ? (
+                "Weekly and 30-day Zorix Metron token observations "
+                +
+                "are published for this model. No measured daily "
+                +
+                "breakdown or historical per-day series has been "
+                +
+                "published."
+              )
+            : (
+                "A weekly Zorix Metron token observation is published "
+                +
+                "for this model. No measured daily breakdown or "
+                +
+                "historical per-day series has been published."
+              )
         );
 
     }
@@ -4547,6 +4701,36 @@ if(!model){
 
 
   if(
+    model.fiveHourOnlyTokens &&
+    !arr.length
+  ){
+
+    chart.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div
+          style="
+            position:absolute;
+            inset:0;
+            display:grid;
+            place-items:center;
+            color:#777;
+            font-size:12px;
+            text-align:center;
+            padding:30px;
+          "
+        >
+          Historical daily token series not published.
+          Current 5-hour observation:
+          ${fmt(model.fiveHourTokens)} tokens.
+        </div>
+      `
+    );
+
+  }
+
+
+  if(
     model.weeklyOnlyTokens &&
     !arr.length
   ){
@@ -4568,6 +4752,19 @@ if(!model){
         >
           Historical daily token series not published.
           Current weekly observation: ${fmt(model.weeklyTokens)} tokens.
+          ${
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+              ? (
+                  " Current 30-day observation: "
+                  +
+                  fmt(model.thirtyDayTokens)
+                  +
+                  " tokens."
+                )
+              : ""
+          }
         </div>
       `
     );
@@ -5089,9 +5286,50 @@ if(!model){
             "Output",
             model.outputPrice
           ],
+          ...(
+            model.fiveHourTokens !== undefined
+            &&
+            model.fiveHourTokens !== null
+              ? [
+                  [
+                    "5-hour tokens",
+                    fmt(
+                      model.fiveHourTokens
+                    )
+                    +
+                    " / 5h"
+                  ],
+                  [
+                    "Zorix availability",
+                    model.launchDate ||
+                    "Not published"
+                  ],
+                  [
+                    "Provider release",
+                    model.providerReleaseDate ||
+                    "Not published"
+                  ],
+                  [
+                    "Maximum input",
+                    model.maxInputTokens ||
+                    "Not published"
+                  ],
+                  [
+                    "Maximum output",
+                    model.maxOutputTokens ||
+                    "Not published"
+                  ]
+                ]
+              : []
+          ),
+
           [
             "Daily tokens",
-            model.weeklyOnlyTokens
+            (
+              model.fiveHourOnlyTokens
+              ||
+              model.weeklyOnlyTokens
+            )
               ? "Not published"
               : fmt(
                   model.dailyTokens
@@ -5099,17 +5337,33 @@ if(!model){
           ],
           [
             "Weekly tokens",
-            model.weeklyOnlyTokens
-              ? (
-                  fmt(
+            model.fiveHourOnlyTokens
+              ? "Not published"
+              : model.weeklyOnlyTokens
+                ? (
+                    fmt(
+                      weekly()
+                    )
+                    +
+                    " / wk"
+                  )
+                : fmt(
                     weekly()
                   )
+          ],
+          [
+            "30-day tokens",
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+              ? (
+                  fmt(
+                    model.thirtyDayTokens
+                  )
                   +
-                  " / wk"
+                  " / 30d"
                 )
-              : fmt(
-                  weekly()
-                )
+              : "Not published"
           ]
         ];
 
@@ -5134,6 +5388,103 @@ if(!model){
           </div>
         `
       ).join("");
+
+
+  /* THIRD_PARTY_EVIDENCE_RENDER_V1 */
+
+  const evidence =
+    Array.isArray(
+      model.thirdPartyEvidence
+    )
+      ? model.thirdPartyEvidence
+      : [];
+
+
+  const evidenceSection =
+    document.getElementById(
+      "thirdPartyEvidenceSection"
+    );
+
+
+  const evidenceList =
+    document.getElementById(
+      "thirdPartyEvidenceList"
+    );
+
+
+  if(
+    evidence.length
+    &&
+    evidenceSection
+    &&
+    evidenceList
+  ){
+
+    evidenceSection.hidden =
+      false;
+
+
+    evidenceList.innerHTML =
+      evidence.map(
+        item=>`
+
+          <article class="evidence-card">
+
+            <div class="evidence-top">
+
+              <span class="evidence-badge">
+                ${item.language || "Unknown language"}
+              </span>
+
+              <span class="evidence-badge">
+                ${item.type || "Observation"}
+              </span>
+
+              <span class="evidence-badge">
+                ${item.status || "Unverified"}
+              </span>
+
+              <span class="evidence-badge">
+                ${item.confidence || "Unclassified"}
+              </span>
+
+            </div>
+
+
+            <div class="evidence-title">
+              ${item.finding || "Observation recorded"}
+            </div>
+
+
+            ${
+              item.interpretation
+                ? `
+                  <div class="evidence-copy">
+                    ${item.interpretation}
+                  </div>
+                `
+                : ""
+            }
+
+
+            ${
+              item.verification
+                ? `
+                  <div class="evidence-warning">
+                    Verification status:
+                    ${item.verification}
+                  </div>
+                `
+                : ""
+            }
+
+          </article>
+
+        `
+      )
+      .join("");
+
+  }
 
 
   const compareButton =

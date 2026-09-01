@@ -402,6 +402,45 @@ for row in models:
                     )
                 ),
 
+            "fiveHourTokens":
+                (
+                    int(
+                        row.get(
+                            "fiveHourTokens"
+                        )
+                    )
+                    if row.get(
+                        "fiveHourTokens"
+                    ) is not None
+                    else None
+                ),
+
+            "fiveHourOnlyTokens":
+                bool(
+                    row.get(
+                        "fiveHourOnlyTokens",
+                        False
+                    )
+                ),
+
+            "providerReleaseDate":
+                row.get(
+                    "providerReleaseDate",
+                    ""
+                ),
+
+            "maxInputTokens":
+                row.get(
+                    "maxInputTokens",
+                    ""
+                ),
+
+            "thirdPartyEvidence":
+                row.get(
+                    "thirdPartyEvidence",
+                    []
+                ),
+
             "thirtyDayTokens":
                 (
                     int(
