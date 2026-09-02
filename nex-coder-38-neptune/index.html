@@ -1,0 +1,2995 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  name="zorix-build"
+  content="1788334380"
+>
+
+<meta
+  name="description"
+  content="Introducing Nex Coder 3.8 Preview — Neptune, the depth-oriented AA4 profile for repository-scale software engineering."
+>
+
+<meta
+  property="og:title"
+  content="Nex Coder 3.8 Preview — Neptune"
+>
+
+<meta
+  property="og:description"
+  content="The depth-oriented AA4 profile for repository-scale software engineering, adaptive planning, tools and verification."
+>
+
+<meta
+  property="og:type"
+  content="article"
+>
+
+<title>
+  Nex Coder 3.8 Preview — Neptune | Zorix
+</title>
+
+
+<style>
+
+:root{
+  --paper:#f1efe8;
+  --paper-2:#e9e6dc;
+  --ink:#171713;
+  --muted:#68665e;
+  --hair:#bdb9ad;
+  --orange:#d85f35;
+  --blue:#315fdb;
+  --max:1380px;
+  --article:790px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    optimizeLegibility;
+}
+
+body{
+  margin:0;
+
+  background:
+    var(--paper);
+
+  color:
+    var(--ink);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  letter-spacing:
+    -.015em;
+}
+
+a{
+  color:inherit;
+
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+}
+
+
+/* ==========================================================
+   GLOBAL NAV
+   ========================================================== */
+
+.site-header{
+  position:relative;
+
+  z-index:30;
+
+  border-bottom:
+    1px solid
+    var(--hair);
+}
+
+.site-nav{
+  max-width:
+    var(--max);
+
+  min-height:74px;
+
+  margin:auto;
+
+  padding:
+    0
+    30px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  gap:20px;
+
+  align-items:center;
+}
+
+.brand{
+  justify-self:start;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:25px;
+
+  letter-spacing:
+    -.045em;
+}
+
+.nav-links{
+  display:flex;
+
+  gap:29px;
+
+  font-size:12px;
+}
+
+.nav-links a{
+  padding:
+    8px
+    0;
+}
+
+.nav-action{
+  justify-self:end;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  font-size:12px;
+}
+
+.nav-action::after{
+  content:"↗";
+
+  font-size:10px;
+}
+
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+.hero{
+  max-width:
+    var(--max);
+
+  margin:auto;
+
+  padding:
+    70px
+    30px
+    84px;
+}
+
+.hero-month{
+  margin-bottom:
+    26px;
+
+  font-size:12px;
+}
+
+.hero-title-row{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    105px;
+
+  gap:45px;
+
+  align-items:start;
+}
+
+.hero h1{
+  max-width:
+    1060px;
+
+  margin:0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      64px,
+      9.4vw,
+      145px
+    );
+
+  line-height:
+    .84;
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -.075em;
+}
+
+.hero-mark{
+  width:90px;
+  height:90px;
+
+  margin-top:7px;
+
+  display:grid;
+
+  place-items:center;
+
+  border:
+    1px solid
+    var(--ink);
+
+  border-radius:
+    50%;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:36px;
+
+  transform:
+    rotate(-9deg);
+}
+
+.hero-mark span{
+  transform:
+    rotate(9deg);
+}
+
+.hero-kicker{
+  margin-top:
+    50px;
+
+  display:flex;
+
+  gap:13px;
+
+  align-items:center;
+
+  font-size:12px;
+}
+
+.hero-kicker::before{
+  content:"";
+
+  width:33px;
+  height:1px;
+
+  background:
+    var(--ink);
+}
+
+
+/* ==========================================================
+   ARTICLE DIRECTORY
+   ========================================================== */
+
+.directory{
+  max-width:
+    var(--max);
+
+  margin:auto;
+
+  padding:
+    0
+    30px
+    75px;
+}
+
+.directory-row{
+  display:grid;
+
+  grid-template-columns:
+    32px
+    auto
+    minmax(20px,1fr)
+    auto;
+
+  gap:10px;
+
+  align-items:baseline;
+
+  min-height:31px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      16px,
+      1.6vw,
+      22px
+    );
+}
+
+.directory-number{
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:10px;
+}
+
+.directory-dots{
+  overflow:hidden;
+
+  color:
+    #7b786e;
+
+  white-space:nowrap;
+
+  letter-spacing:1px;
+
+  transform:
+    translateY(-2px);
+}
+
+.directory-dots::before{
+  content:
+    "........................................................................................................................................................................................................................................";
+}
+
+.directory-arrow{
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:11px;
+}
+
+
+/* ==========================================================
+   MAIN ARTICLE
+   ========================================================== */
+
+.article{
+  border-top:
+    1px solid
+    var(--hair);
+}
+
+.chapter{
+  max-width:
+    var(--max);
+
+  margin:auto;
+
+  padding:
+    95px
+    30px;
+
+  display:grid;
+
+  grid-template-columns:
+    240px
+    minmax(0,1fr);
+
+  gap:
+    clamp(
+      50px,
+      8vw,
+      125px
+    );
+
+  border-bottom:
+    1px solid
+    var(--hair);
+}
+
+.chapter-index{
+  position:sticky;
+
+  top:28px;
+
+  align-self:start;
+
+  display:flex;
+
+  gap:11px;
+
+  font-size:11px;
+}
+
+.chapter-index-number{
+  min-width:22px;
+}
+
+.chapter-index-title{
+  color:
+    var(--muted);
+}
+
+.chapter-content{
+  min-width:0;
+}
+
+.chapter h2{
+  max-width:880px;
+
+  margin:
+    0
+    0
+    45px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      47px,
+      6vw,
+      88px
+    );
+
+  line-height:
+    .96;
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -.055em;
+}
+
+.lead{
+  max-width:
+    900px;
+
+  margin:0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      25px,
+      3.05vw,
+      43px
+    );
+
+  line-height:
+    1.17;
+
+  letter-spacing:
+    -.035em;
+}
+
+.prose{
+  max-width:
+    var(--article);
+
+  margin-top:
+    35px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    19px;
+
+  line-height:
+    1.55;
+
+  letter-spacing:
+    -.015em;
+}
+
+.prose p{
+  margin:
+    0
+    0
+    24px;
+}
+
+.inline-link{
+  border-bottom:
+    1px solid
+    currentColor;
+}
+
+
+/* ==========================================================
+   LARGE METRICS
+   ========================================================== */
+
+.metric-strip{
+  margin-top:
+    65px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  border-bottom:
+    1px solid
+    var(--ink);
+}
+
+.metric{
+  min-height:
+    190px;
+
+  padding:
+    25px
+    20px
+    27px
+    0;
+}
+
+.metric:not(:first-child){
+  padding-left:
+    27px;
+
+  border-left:
+    1px solid
+    var(--ink);
+}
+
+.metric-label{
+  min-height:
+    34px;
+
+  font-size:10px;
+
+  line-height:1.4;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    .045em;
+}
+
+.metric-value{
+  margin-top:
+    24px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      39px,
+      5vw,
+      68px
+    );
+
+  line-height:
+    .9;
+
+  letter-spacing:
+    -.06em;
+}
+
+.metric-note{
+  margin-top:
+    16px;
+
+  color:
+    var(--muted);
+
+  font-size:9px;
+
+  line-height:1.45;
+}
+
+
+/* ==========================================================
+   PERFORMANCE
+   ========================================================== */
+
+.benchmark-shell{
+  margin-top:
+    62px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
+
+.benchmark-tabs{
+  min-height:
+    68px;
+
+  display:flex;
+
+  gap:
+    27px;
+
+  align-items:center;
+
+  overflow-x:auto;
+
+  border-bottom:
+    1px solid
+    var(--hair);
+}
+
+.benchmark-tab{
+  flex:0 0 auto;
+
+  padding:
+    8px
+    0;
+
+  border:0;
+
+  border-bottom:
+    1px solid
+    transparent;
+
+  background:
+    transparent;
+
+  font-size:11px;
+
+  cursor:pointer;
+}
+
+.benchmark-tab.active{
+  border-bottom-color:
+    var(--ink);
+}
+
+.benchmark-figure{
+  padding:
+    35px
+    0
+    24px;
+}
+
+.figure-title{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  gap:30px;
+
+  margin-bottom:
+    38px;
+
+  font-size:12px;
+}
+
+.figure-sub{
+  color:
+    var(--muted);
+
+  text-align:right;
+
+  font-size:9px;
+
+  line-height:1.45;
+}
+
+.bar-chart{
+  display:grid;
+
+  gap:20px;
+}
+
+.bar-row{
+  display:grid;
+
+  grid-template-columns:
+    minmax(
+      180px,
+      270px
+    )
+    minmax(0,1fr)
+    64px;
+
+  gap:17px;
+
+  align-items:center;
+}
+
+.bar-name{
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:16px;
+}
+
+.bar-track{
+  position:relative;
+
+  height:16px;
+
+  border-bottom:
+    1px solid
+    #aaa69a;
+}
+
+.bar-fill{
+  position:absolute;
+
+  left:0;
+  bottom:-1px;
+
+  height:16px;
+
+  background:
+    var(--ink);
+
+  transform-origin:
+    left center;
+
+  animation:
+    growBar
+    .8s
+    cubic-bezier(.2,.7,.2,1)
+    both;
+}
+
+.bar-row.primary
+.bar-fill{
+  background:
+    var(--orange);
+}
+
+.bar-value{
+  text-align:right;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:18px;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+@keyframes growBar{
+
+  from{
+    transform:
+      scaleX(0);
+  }
+
+  to{
+    transform:
+      scaleX(1);
+  }
+
+}
+
+.benchmark-note{
+  max-width:
+    710px;
+
+  margin-top:
+    35px;
+
+  color:
+    var(--muted);
+
+  font-size:10px;
+
+  line-height:1.55;
+}
+
+
+/* ==========================================================
+   TABLE
+   ========================================================== */
+
+.bench-table-wrap{
+  margin-top:
+    70px;
+
+  overflow-x:auto;
+}
+
+.bench-table{
+  width:100%;
+
+  min-width:
+    780px;
+
+  border-collapse:
+    collapse;
+}
+
+.bench-table th,
+.bench-table td{
+  padding:
+    17px
+    14px;
+
+  border-bottom:
+    1px solid
+    var(--hair);
+
+  text-align:right;
+
+  font-size:11px;
+
+  font-weight:400;
+}
+
+.bench-table th:first-child,
+.bench-table td:first-child{
+  padding-left:0;
+
+  text-align:left;
+}
+
+.bench-table thead th{
+  color:
+    var(--muted);
+
+  font-size:9px;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    .04em;
+}
+
+.bench-table .primary{
+  font-weight:700;
+
+  color:
+    var(--orange);
+}
+
+
+/* ==========================================================
+   FEATURE EDITORIAL
+   ========================================================== */
+
+.feature-grid{
+  margin-top:
+    60px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  border-left:
+    1px solid
+    var(--ink);
+}
+
+.feature{
+  min-height:
+    350px;
+
+  padding:
+    30px;
+
+  border-right:
+    1px solid
+    var(--ink);
+
+  border-bottom:
+    1px solid
+    var(--ink);
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:
+    space-between;
+}
+
+.feature-number{
+  font-size:10px;
+}
+
+.feature-title{
+  max-width:
+    430px;
+
+  margin-top:
+    80px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      28px,
+      3.5vw,
+      50px
+    );
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -.045em;
+}
+
+.feature-copy{
+  max-width:
+    480px;
+
+  margin-top:
+    27px;
+
+  color:
+    var(--muted);
+
+  font-size:12px;
+
+  line-height:
+    1.55;
+}
+
+
+/* ==========================================================
+   PROCESS DIAGRAM
+   ========================================================== */
+
+.process{
+  margin-top:
+    65px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  border-bottom:
+    1px solid
+    var(--ink);
+}
+
+.process-item{
+  position:relative;
+
+  min-height:
+    190px;
+
+  padding:
+    24px;
+}
+
+.process-item:not(:first-child){
+  border-left:
+    1px solid
+    var(--ink);
+}
+
+.process-number{
+  font-size:9px;
+}
+
+.process-title{
+  margin-top:
+    65px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    24px;
+
+  letter-spacing:
+    -.035em;
+}
+
+.process-arrow{
+  position:absolute;
+
+  right:14px;
+  top:50%;
+
+  font-size:19px;
+
+  transform:
+    translateY(-50%);
+}
+
+
+/* ==========================================================
+   QUOTE-LIKE CALLOUT
+   ========================================================== */
+
+.statement{
+  margin-top:
+    70px;
+
+  padding:
+    40px
+    0
+    10px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
+
+.statement-label{
+  font-size:10px;
+}
+
+.statement-text{
+  max-width:
+    930px;
+
+  margin-top:
+    35px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      35px,
+      5vw,
+      68px
+    );
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -.055em;
+}
+
+
+/* ==========================================================
+   AVAILABILITY
+   ========================================================== */
+
+.availability-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  margin-top:
+    60px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
+
+.availability-item{
+  min-height:
+    250px;
+
+  padding:
+    27px
+    26px
+    27px
+    0;
+
+  border-bottom:
+    1px solid
+    var(--ink);
+}
+
+.availability-item:nth-child(even){
+  padding-left:
+    28px;
+
+  border-left:
+    1px solid
+    var(--ink);
+}
+
+.availability-label{
+  font-size:10px;
+}
+
+.availability-value{
+  max-width:
+    500px;
+
+  margin-top:
+    47px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      28px,
+      3vw,
+      45px
+    );
+
+  line-height:1.04;
+
+  letter-spacing:
+    -.04em;
+}
+
+.availability-copy{
+  max-width:
+    490px;
+
+  margin-top:
+    18px;
+
+  color:
+    var(--muted);
+
+  font-size:11px;
+
+  line-height:1.55;
+}
+
+
+/* ==========================================================
+   CTA
+   ========================================================== */
+
+.cta-row{
+  margin-top:
+    50px;
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+}
+
+.cta{
+  min-height:
+    48px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  padding:
+    0
+    17px;
+
+  border:
+    1px solid
+    var(--ink);
+
+  font-size:11px;
+}
+
+.cta.primary{
+  background:
+    var(--ink);
+
+  color:
+    var(--paper);
+}
+
+.cta::after{
+  content:"↗";
+
+  margin-left:15px;
+
+  font-size:9px;
+}
+
+.cta.internal::after{
+  content:"→";
+}
+
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+.footer{
+  max-width:
+    var(--max);
+
+  margin:auto;
+
+  padding:
+    70px
+    30px
+    90px;
+}
+
+.footer-top{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  gap:40px;
+
+  padding-bottom:
+    48px;
+
+  border-bottom:
+    1px solid
+    var(--hair);
+}
+
+.footer-brand{
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      45px,
+      7vw,
+      92px
+    );
+
+  letter-spacing:
+    -.07em;
+}
+
+.footer-links{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      auto
+    );
+
+  gap:
+    10px
+    40px;
+
+  align-content:start;
+
+  font-size:11px;
+}
+
+.footer-bottom{
+  padding-top:
+    20px;
+
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  gap:20px;
+
+  color:
+    var(--muted);
+
+  font-size:9px;
+
+  line-height:1.5;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media(max-width:800px){
+
+  .site-nav{
+    padding:
+      0
+      18px;
+
+    grid-template-columns:
+      1fr
+      auto;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+    padding:
+      45px
+      18px
+      58px;
+  }
+
+  .hero-title-row{
+    grid-template-columns:
+      1fr;
+  }
+
+  .hero-mark{
+    width:68px;
+    height:68px;
+
+    font-size:29px;
+  }
+
+  .directory{
+    padding:
+      0
+      18px
+      55px;
+  }
+
+  .chapter{
+    padding:
+      62px
+      18px;
+
+    grid-template-columns:
+      1fr;
+
+    gap:28px;
+  }
+
+  .chapter-index{
+    position:static;
+  }
+
+  .metric-strip{
+    grid-template-columns:1fr;
+  }
+
+  .metric:not(:first-child){
+    padding-left:0;
+
+    border-left:0;
+
+    border-top:
+      1px solid
+      var(--ink);
+  }
+
+  .bar-row{
+    grid-template-columns:
+      120px
+      minmax(150px,1fr)
+      47px;
+  }
+
+  .feature-grid{
+    grid-template-columns:1fr;
+  }
+
+  .process{
+    grid-template-columns:1fr;
+  }
+
+  .process-item:not(:first-child){
+    border-left:0;
+
+    border-top:
+      1px solid
+      var(--ink);
+  }
+
+  .process-arrow{
+    right:20px;
+
+    transform:
+      rotate(90deg);
+  }
+
+  .availability-grid{
+    grid-template-columns:1fr;
+  }
+
+  .availability-item:nth-child(even){
+    padding-left:0;
+
+    border-left:0;
+  }
+
+  .footer{
+    padding:
+      55px
+      18px
+      70px;
+  }
+
+  .footer-top{
+    flex-direction:column;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+  }
+
+}
+
+@media(
+  prefers-reduced-motion:
+  reduce
+){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  .bar-fill{
+    animation:none;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+  <nav class="site-nav">
+
+    <a
+      class="brand"
+      href="/"
+    >
+      Zorix
+    </a>
+
+
+    <div class="nav-links">
+
+      <a href="/number-of-calls/models/">
+        Models
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+      <a href="/status/">
+        Status
+      </a>
+
+      <a href="/">
+        Updates
+      </a>
+
+    </div>
+
+
+    <a
+      class="nav-action"
+      href="https://subs.zorix.it/"
+      target="_blank"
+      rel="noopener"
+    >
+      Get access
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+<section class="hero">
+
+  <div class="hero-month">
+    September 2026
+  </div>
+
+
+  <div class="hero-title-row">
+
+    <h1>
+      Nex Coder 3.8
+      Preview — Neptune
+    </h1>
+
+
+    <div
+      class="hero-mark"
+      aria-hidden="true"
+    >
+      <span>N</span>
+    </div>
+
+  </div>
+
+
+  <div class="hero-kicker">
+    Zorix Code · AA4 preview
+  </div>
+
+</section>
+
+
+<nav
+  class="directory"
+  aria-label="Article sections"
+>
+
+  <a
+    class="directory-row"
+    href="#introduction"
+  >
+
+    <span class="directory-number">
+      1
+    </span>
+
+    <span>
+      Introduction
+    </span>
+
+    <span
+      class="directory-dots"
+      aria-hidden="true"
+    ></span>
+
+    <span class="directory-arrow">
+      ↓
+    </span>
+
+  </a>
+
+
+  <a
+    class="directory-row"
+    href="#performance"
+  >
+
+    <span class="directory-number">
+      2
+    </span>
+
+    <span>
+      A new coding frontier
+    </span>
+
+    <span
+      class="directory-dots"
+      aria-hidden="true"
+    ></span>
+
+    <span class="directory-arrow">
+      ↓
+    </span>
+
+  </a>
+
+
+  <a
+    class="directory-row"
+    href="#repository"
+  >
+
+    <span class="directory-number">
+      3
+    </span>
+
+    <span>
+      Repository-scale engineering
+    </span>
+
+    <span
+      class="directory-dots"
+      aria-hidden="true"
+    ></span>
+
+    <span class="directory-arrow">
+      ↓
+    </span>
+
+  </a>
+
+
+  <a
+    class="directory-row"
+    href="#verification"
+  >
+
+    <span class="directory-number">
+      4
+    </span>
+
+    <span>
+      Planning, tools, and verification
+    </span>
+
+    <span
+      class="directory-dots"
+      aria-hidden="true"
+    ></span>
+
+    <span class="directory-arrow">
+      ↓
+    </span>
+
+  </a>
+
+
+  <a
+    class="directory-row"
+    href="#availability"
+  >
+
+    <span class="directory-number">
+      5
+    </span>
+
+    <span>
+      Availability
+    </span>
+
+    <span
+      class="directory-dots"
+      aria-hidden="true"
+    ></span>
+
+    <span class="directory-arrow">
+      ↓
+    </span>
+
+  </a>
+
+</nav>
+
+
+<div class="article">
+
+
+<section
+  class="chapter"
+  id="introduction"
+>
+
+  <aside class="chapter-index">
+
+    <span class="chapter-index-number">
+      [1]
+    </span>
+
+    <span class="chapter-index-title">
+      Introduction
+    </span>
+
+  </aside>
+
+
+  <div class="chapter-content">
+
+    <p class="lead">
+
+      We’re introducing Nex Coder 3.8 Preview —
+      Neptune, the depth-oriented profile of the
+      AA4 / Zorix4 generation.
+
+    </p>
+
+
+    <div class="prose">
+
+      <p>
+
+        Neptune is designed for repository-scale software
+        engineering, adaptive planning, tool execution,
+        and verification-heavy workflows.
+
+        It is intended for work where understanding the
+        whole system matters as much as producing the next
+        block of code.
+
+      </p>
+
+
+      <p>
+
+        The current preview profile publishes a
+        2 million token context window.
+
+        Its parameter count remains undisclosed, and
+        Zorix currently describes the architecture as
+        Closed / AA4.
+
+      </p>
+
+
+      <p>
+
+        Neptune is currently a preview model.
+        Availability can differ while the preview is
+        being rolled out.
+
+      </p>
+
+    </div>
+
+
+    <div class="metric-strip">
+
+      <div class="metric">
+
+        <div class="metric-label">
+          Published context
+        </div>
+
+        <div class="metric-value">
+          2M
+        </div>
+
+        <div class="metric-note">
+          tokens
+        </div>
+
+      </div>
+
+
+      <div class="metric">
+
+        <div class="metric-label">
+          Current Zorix Code traffic
+        </div>
+
+        <div
+          class="metric-value"
+          id="dailyTokens"
+        >
+          3.22T
+        </div>
+
+        <div class="metric-note">
+          recorded daily token volume in Zorix Code
+        </div>
+
+      </div>
+
+
+      <div class="metric">
+
+        <div class="metric-label">
+          Current status
+        </div>
+
+        <div class="metric-value">
+          Preview
+        </div>
+
+        <div class="metric-note">
+          availability may vary by account
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  class="chapter"
+  id="performance"
+>
+
+  <aside class="chapter-index">
+
+    <span class="chapter-index-number">
+      [2]
+    </span>
+
+    <span class="chapter-index-title">
+      Performance
+    </span>
+
+  </aside>
+
+
+  <div class="chapter-content">
+
+    <h2>
+      A new coding frontier
+    </h2>
+
+
+    <p class="lead">
+
+      In Zorix’s AA4 internal preview evaluation,
+      Neptune leads the current comparison set across
+      the coding and agentic benchmarks published
+      in the repository.
+
+    </p>
+
+
+    <div class="prose">
+
+      <p>
+
+        The figures below are internal preview and testing
+        results.
+
+        They are not final public benchmark scores and
+        they are not third-party leaderboard submissions.
+
+      </p>
+
+    </div>
+
+
+    <div class="benchmark-shell">
+
+      <div
+        class="benchmark-tabs"
+        id="benchmarkTabs"
+      ></div>
+
+
+      <div class="benchmark-figure">
+
+        <div class="figure-title">
+
+          <span id="figureTitle">
+            SWE-bench Verified
+          </span>
+
+          <span class="figure-sub">
+            Zorix AA4 internal preview<br>
+            higher is better
+          </span>
+
+        </div>
+
+
+        <div
+          class="bar-chart"
+          id="barChart"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <div class="benchmark-note">
+
+      Benchmark figures are sourced from the current
+      Zorix AA4 internal preview evaluation catalog.
+      Differences in harnesses, model settings, tools,
+      or evaluation conditions can make these figures
+      incomparable with independently published results.
+
+    </div>
+
+
+    <div class="bench-table-wrap">
+
+      <table class="bench-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Evaluation
+            </th>
+
+            <th>
+              Neptune
+            </th>
+
+            <th>
+              Nex 3.7
+            </th>
+
+            <th>
+              Opus 5
+            </th>
+
+            <th>
+              Gemini 3.7 Flash
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="benchmarkTable">
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  class="chapter"
+  id="repository"
+>
+
+  <aside class="chapter-index">
+
+    <span class="chapter-index-number">
+      [3]
+    </span>
+
+    <span class="chapter-index-title">
+      Repository work
+    </span>
+
+  </aside>
+
+
+  <div class="chapter-content">
+
+    <h2>
+      Repository-scale engineering
+    </h2>
+
+
+    <p class="lead">
+
+      Neptune is built around the idea that difficult
+      software work is rarely isolated to one file,
+      one function, or one turn.
+
+    </p>
+
+
+    <div class="feature-grid">
+
+      <article class="feature">
+
+        <div class="feature-number">
+          01
+        </div>
+
+        <div>
+
+          <div class="feature-title">
+            Work across the repository
+          </div>
+
+          <div class="feature-copy">
+
+            Use long context to reason across code,
+            configuration, documentation, dependencies,
+            and related implementation details rather
+            than treating files as isolated fragments.
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="feature">
+
+        <div class="feature-number">
+          02
+        </div>
+
+        <div>
+
+          <div class="feature-title">
+            Plan before changing
+          </div>
+
+          <div class="feature-copy">
+
+            Neptune’s preview profile is oriented toward
+            adaptive planning: understanding the task,
+            identifying affected surfaces, and updating
+            the plan as evidence changes.
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="feature">
+
+        <div class="feature-number">
+          03
+        </div>
+
+        <div>
+
+          <div class="feature-title">
+            Use tools as part of the loop
+          </div>
+
+          <div class="feature-copy">
+
+            Tool execution is treated as part of the
+            engineering process—not a final step after
+            reasoning is complete.
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="feature">
+
+        <div class="feature-number">
+          04
+        </div>
+
+        <div>
+
+          <div class="feature-title">
+            Verify the result
+          </div>
+
+          <div class="feature-copy">
+
+            Neptune is designed for verification-heavy
+            workflows where tests, command output, diffs,
+            and resulting system behavior feed back into
+            the next decision.
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  class="chapter"
+  id="verification"
+>
+
+  <aside class="chapter-index">
+
+    <span class="chapter-index-number">
+      [4]
+    </span>
+
+    <span class="chapter-index-title">
+      Agentic workflow
+    </span>
+
+  </aside>
+
+
+  <div class="chapter-content">
+
+    <h2>
+      Planning, tools,
+      and verification
+    </h2>
+
+
+    <p class="lead">
+
+      The goal is not just to produce a plausible patch.
+      It is to keep working until the implementation and
+      the evidence agree.
+
+    </p>
+
+
+    <div class="process">
+
+      <div class="process-item">
+
+        <div class="process-number">
+          01
+        </div>
+
+        <div class="process-title">
+          Understand
+        </div>
+
+        <div class="process-arrow">
+          →
+        </div>
+
+      </div>
+
+
+      <div class="process-item">
+
+        <div class="process-number">
+          02
+        </div>
+
+        <div class="process-title">
+          Plan
+        </div>
+
+        <div class="process-arrow">
+          →
+        </div>
+
+      </div>
+
+
+      <div class="process-item">
+
+        <div class="process-number">
+          03
+        </div>
+
+        <div class="process-title">
+          Execute
+        </div>
+
+        <div class="process-arrow">
+          →
+        </div>
+
+      </div>
+
+
+      <div class="process-item">
+
+        <div class="process-number">
+          04
+        </div>
+
+        <div class="process-title">
+          Verify
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="statement">
+
+      <div class="statement-label">
+        Preview design principle
+      </div>
+
+      <div class="statement-text">
+
+        Depth is useful when it turns more context,
+        more tools, and more steps into a result that
+        can actually be checked.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  class="chapter"
+  id="availability"
+>
+
+  <aside class="chapter-index">
+
+    <span class="chapter-index-number">
+      [5]
+    </span>
+
+    <span class="chapter-index-title">
+      Availability
+    </span>
+
+  </aside>
+
+
+  <div class="chapter-content">
+
+    <h2>
+      Cost and availability
+    </h2>
+
+
+    <p class="lead">
+
+      Nex Coder 3.8 Preview — Neptune is currently
+      available as a Zorix Code preview profile.
+
+    </p>
+
+
+    <div class="availability-grid">
+
+      <div class="availability-item">
+
+        <div class="availability-label">
+          Access
+        </div>
+
+        <div class="availability-value">
+          Paid Zorix subscription required
+        </div>
+
+        <div class="availability-copy">
+
+          Preview visibility can vary between accounts
+          while rollout is active.
+
+        </div>
+
+      </div>
+
+
+      <div class="availability-item">
+
+        <div class="availability-label">
+          Code pricing
+        </div>
+
+        <div class="availability-value">
+          Input and output included
+        </div>
+
+        <div class="availability-copy">
+
+          The current Neptune model profile lists
+          input and output usage as included in
+          Zorix Code access.
+
+        </div>
+
+      </div>
+
+
+      <div class="availability-item">
+
+        <div class="availability-label">
+          Context
+        </div>
+
+        <div class="availability-value">
+          2M tokens
+        </div>
+
+        <div class="availability-copy">
+
+          Published context information for the
+          current Neptune preview profile.
+
+        </div>
+
+      </div>
+
+
+      <div class="availability-item">
+
+        <div class="availability-label">
+          Architecture
+        </div>
+
+        <div class="availability-value">
+          Closed / AA4
+        </div>
+
+        <div class="availability-copy">
+
+          Parameter and active-parameter counts
+          have not been publicly disclosed.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="cta-row">
+
+      <a
+        class="cta primary"
+        href="https://subs.zorix.it/"
+        target="_blank"
+        rel="noopener"
+      >
+        Get access
+      </a>
+
+
+      <a
+        class="cta internal"
+        href="/number-of-calls/models/nex-coder-38-neptune/"
+      >
+        Model details
+      </a>
+
+
+      <a
+        class="cta"
+        href="https://doc.zorix.it/zorix-nex-coder/3.8-aa4"
+        target="_blank"
+        rel="noopener"
+      >
+        Documentation
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      Zorix
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="/number-of-calls/models/">
+        Models
+      </a>
+
+      <a href="/number-of-calls/">
+        Metron
+      </a>
+
+      <a href="/status/">
+        Status
+      </a>
+
+      <a href="/">
+        Release notes
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      Nex Coder 3.8 Preview — Neptune
+    </span>
+
+    <span>
+      Benchmark results shown here are Zorix internal preview/testing figures.
+    </span>
+
+  </div>
+
+</footer>
+
+
+<script
+  src="/number-of-calls/models.js?v=1788334380"
+></script>
+
+<script
+  src="/number-of-calls/benchmarks.js?v=1788334380"
+></script>
+
+
+<script>
+
+(() => {
+
+  "use strict";
+
+
+  const MODEL_ID =
+    "nex-coder-38-neptune";
+
+
+  const MODELS =
+    Array.isArray(
+      window.ZORIX_MODEL_DETAILS
+    )
+      ? window.ZORIX_MODEL_DETAILS
+      : [];
+
+
+  const BENCHMARKS =
+    window.ZORIX_BENCHMARKS
+    ||
+    {
+      metrics:[],
+      scores:{}
+    };
+
+
+  const model =
+    MODELS.find(
+      item=>
+        item.id
+        ===
+        MODEL_ID
+    )
+    ||
+    null;
+
+
+  function compact(
+    value
+  ){
+
+    const n =
+      Number(
+        value
+      );
+
+
+    if(
+      !Number.isFinite(
+        n
+      )
+    ){
+      return "—";
+    }
+
+
+    if(n>=1e12){
+
+      return (
+        n/1e12
+      )
+      .toFixed(2)
+      .replace(
+        /\.?0+$/,
+        ""
+      )
+      +
+      "T";
+
+    }
+
+
+    if(n>=1e9){
+
+      return (
+        n/1e9
+      )
+      .toFixed(2)
+      .replace(
+        /\.?0+$/,
+        ""
+      )
+      +
+      "B";
+
+    }
+
+
+    if(n>=1e6){
+
+      return (
+        n/1e6
+      )
+      .toFixed(2)
+      .replace(
+        /\.?0+$/,
+        ""
+      )
+      +
+      "M";
+
+    }
+
+
+    return n.toLocaleString(
+      "en-US"
+    );
+
+  }
+
+
+  if(
+    model
+    &&
+    Number.isFinite(
+      Number(
+        model.dailyTokens
+      )
+    )
+  ){
+
+    const node =
+      document.getElementById(
+        "dailyTokens"
+      );
+
+
+    if(node){
+
+      node.textContent =
+        compact(
+          model.dailyTokens
+        );
+
+    }
+
+  }
+
+
+  const metricMap =
+    new Map(
+      (
+        BENCHMARKS.metrics
+        ||
+        []
+      )
+      .map(
+        item=>[
+          item.id,
+          item
+        ]
+      )
+    );
+
+
+  const scores =
+    BENCHMARKS.scores
+    ||
+    {};
+
+
+  const comparisonIds = [
+
+    "nex-coder-38-neptune",
+    "nex-coder-37-pro-max",
+    "claude-opus-5",
+    "gemini-37-flash"
+
+  ];
+
+
+  const names = {
+
+    "nex-coder-38-neptune":
+      "Nex Coder 3.8 Neptune",
+
+    "nex-coder-37-pro-max":
+      "Nex Coder 3.7 Pro",
+
+    "claude-opus-5":
+      "Claude Opus 5",
+
+    "gemini-37-flash":
+      "Gemini 3.7 Flash"
+
+  };
+
+
+  const metricIds = [
+
+    "swe-verified",
+    "terminal-21",
+    "forge",
+    "swe-pro"
+
+  ];
+
+
+  const tabs =
+    document.getElementById(
+      "benchmarkTabs"
+    );
+
+
+  const chart =
+    document.getElementById(
+      "barChart"
+    );
+
+
+  const title =
+    document.getElementById(
+      "figureTitle"
+    );
+
+
+  const table =
+    document.getElementById(
+      "benchmarkTable"
+    );
+
+
+  let activeMetric =
+    metricIds[0];
+
+
+  function esc(
+    value
+  ){
+
+    return String(
+      value
+      ??
+      ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function metricName(
+    id
+  ){
+
+    return (
+      metricMap.get(
+        id
+      )
+      ?.name
+      ||
+      id
+    );
+
+  }
+
+
+  function renderTabs(){
+
+    tabs.innerHTML =
+      metricIds
+      .map(
+        id=>`
+
+          <button
+            class="benchmark-tab ${
+              id===activeMetric
+                ? "active"
+                : ""
+            }"
+            type="button"
+            data-metric="${esc(id)}"
+          >
+            ${esc(
+              metricName(
+                id
+              )
+            )}
+          </button>
+
+        `
+      )
+      .join("");
+
+
+    tabs
+      .querySelectorAll(
+        "[data-metric]"
+      )
+      .forEach(
+        button=>{
+
+          button.addEventListener(
+            "click",
+            ()=>{
+
+              activeMetric =
+                button.getAttribute(
+                  "data-metric"
+                )
+                ||
+                metricIds[0];
+
+
+              renderTabs();
+              renderChart();
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+  function renderChart(){
+
+    const metric =
+      activeMetric;
+
+
+    title.textContent =
+      metricName(
+        metric
+      );
+
+
+    const rows =
+      comparisonIds
+      .map(
+        id=>({
+
+          id,
+
+          name:
+            names[id]
+            ||
+            id,
+
+          value:
+            Number(
+              scores[id]
+              ?.[metric]
+            )
+
+        })
+      )
+      .filter(
+        item=>
+          Number.isFinite(
+            item.value
+          )
+      );
+
+
+    const maximum =
+      Math.max(
+        100,
+        ...rows.map(
+          item=>
+            item.value
+        )
+      );
+
+
+    chart.innerHTML =
+      rows
+      .map(
+        item=>`
+
+          <div
+            class="bar-row ${
+              item.id
+              ===
+              MODEL_ID
+                ? "primary"
+                : ""
+            }"
+          >
+
+            <div class="bar-name">
+              ${esc(
+                item.name
+              )}
+            </div>
+
+            <div class="bar-track">
+
+              <div
+                class="bar-fill"
+                style="
+                  width:${
+                    Math.max(
+                      0,
+                      Math.min(
+                        100,
+                        item.value
+                        /
+                        maximum
+                        *
+                        100
+                      )
+                    )
+                  }%
+                "
+              ></div>
+
+            </div>
+
+            <div class="bar-value">
+              ${
+                item.value
+                .toFixed(1)
+              }%
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+  }
+
+
+  function renderTable(){
+
+    table.innerHTML =
+      metricIds
+      .map(
+        metric=>`
+
+          <tr>
+
+            <td>
+              ${esc(
+                metricName(
+                  metric
+                )
+              )}
+            </td>
+
+
+            ${
+              comparisonIds
+              .map(
+                (
+                  id,
+                  index
+                )=>{
+
+                  const raw =
+                    Number(
+                      scores[id]
+                      ?.[metric]
+                    );
+
+
+                  return `
+
+                    <td
+                      class="${
+                        index===0
+                          ? "primary"
+                          : ""
+                      }"
+                    >
+                      ${
+                        Number.isFinite(
+                          raw
+                        )
+                          ? (
+                              raw
+                              .toFixed(1)
+                              +
+                              "%"
+                            )
+                          : "—"
+                      }
+                    </td>
+
+                  `;
+
+                }
+              )
+              .join("")
+            }
+
+          </tr>
+
+        `
+      )
+      .join("");
+
+  }
+
+
+  renderTabs();
+  renderChart();
+  renderTable();
+
+})();
+
+</script>
+
+
+</body>
+
+</html>
