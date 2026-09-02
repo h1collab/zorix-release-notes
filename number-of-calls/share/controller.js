@@ -406,15 +406,43 @@
       );
 
 
+    const visibleRows =
+      voteRowsForSelectedCategory()
+      .slice(
+        0,
+        maximum
+      );
+
+
     shareHighlightRank.innerHTML =
-      Array.from(
-        {
-          length:maximum
-        },
-        (_,index)=>{
+      visibleRows
+      .map(
+        (row,index)=>{
 
           const rank =
             index+1;
+
+
+          const safeName =
+            String(
+              row.name
+              ||
+              row.id
+              ||
+              ''
+            )
+            .replace(
+              /&/g,
+              '&amp;'
+            )
+            .replace(
+              /</g,
+              '&lt;'
+            )
+            .replace(
+              />/g,
+              '&gt;'
+            );
 
 
           return (
@@ -425,6 +453,10 @@
             '">#'
             +
             rank
+            +
+            ' · '
+            +
+            safeName
             +
             '</option>'
           );
@@ -512,6 +544,31 @@
       categories[id]
       ||
       {};
+
+
+    if(
+      category.source
+      ===
+      'root'
+    ){
+
+      return {
+        id,
+        label:
+          category.label
+          ||
+          id,
+        models:
+          DATA.votes.models
+          ||
+          [],
+        history:
+          DATA.votes.history
+          ||
+          []
+      };
+
+    }
 
 
     return {
@@ -1008,15 +1065,34 @@
           dailyTokens:
             daily,
 
+          dailyOnlyTokens:
+            Boolean(
+              row.dailyOnlyTokens
+              ??
+              model?.dailyOnlyTokens
+              ??
+              false
+            ),
+
           weeklyTokens:
-            Number(
-              row.weeklyTokens
-              ??
-              model?.weeklyTokens
-              ??
-              (
-                daily*7
+            (
+              Boolean(
+                row.dailyOnlyTokens
+                ??
+                model?.dailyOnlyTokens
+                ??
+                false
               )
+                ? 0
+                : Number(
+                    row.weeklyTokens
+                    ??
+                    model?.weeklyTokens
+                    ??
+                    (
+                      daily*7
+                    )
+                  )
             )
 
         };
@@ -2648,12 +2724,28 @@
 
         if(index===highlightIndex){
 
+          ctx.fillStyle =
+            'rgba(242,209,61,.10)';
+
+
+          rounded(
+            16,
+            y-8,
+            1515,
+            rowHeight-2,
+            13
+          );
+
+
+          ctx.fill();
+
+
           ctx.strokeStyle =
             '#e0bb00';
 
 
           ctx.lineWidth =
-            4;
+            5;
 
 
           rounded(
@@ -6111,6 +6203,8 @@
     ()=>{
 
       configureControls();
+
+      populateVotingHighlightRanks();
 
       scheduleRender();
 

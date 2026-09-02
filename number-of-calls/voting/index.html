@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788367953">
+<meta name="zorix-build" content="1788373030">
 
 
 
@@ -1996,9 +1996,9 @@ h1{
 
 
 
-<script src="../models.js?v=1788181089"></script>
-<script src="../model-index.js"></script>
-<script src="./votes.js?v=1788367953"></script>
+<script src="../models.js?v=1788373030"></script>
+<script src="../model-index.js?v=1788373030"></script>
+<script src="./votes.js?v=1788373030"></script>
 
 <script>
 /* VOTING_CATEGORY_DATA_SWITCH_V1 */
@@ -2036,20 +2036,42 @@ h1{
     requested = "overall";
   }
 
+  const category =
+    categories[
+      requested
+    ]
+    ||
+    {};
+
+
   const selected =
-    requested === "overall"
+    (
+      requested === "overall"
+      ||
+      category.source === "root"
+    )
       ? {
           label:
-            categories.overall?.label
-            || "Overall",
+            category.label
+            ||
+            (
+              requested === "overall"
+                ? "Overall"
+                : requested
+            ),
           models:
-            raw.models || [],
+            raw.models
+            ||
+            [],
           history:
-            raw.history || []
+            raw.history
+            ||
+            []
         }
       : (
-          categories[requested]
-          || {
+          category
+          ||
+          {
             label:requested,
             models:[],
             history:[]
