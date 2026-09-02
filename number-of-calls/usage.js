@@ -1,5 +1,5 @@
 window.ZORIX_CODE_USAGE = {
-  "updatedAt": "2026-09-01T08:46:34+02:00",
+  "updatedAt": "2026-09-02T19:53:55+02:00",
   "metric": "tokens",
   "models": [
     {
@@ -8,7 +8,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Nex Coder 3.8",
       "tokens": 3220000000000,
       "status": "Preview",
-      "share": 38.9925
+      "share": 38.934
     },
     {
       "name": "Zorix Nex Coder 3.7 Pro (Max)",
@@ -17,7 +17,7 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 1500000000000,
       "weeklyTokens": 10500000000000,
       "status": "Available",
-      "share": 18.1642
+      "share": 18.137
     },
     {
       "name": "DeepSeek V4 Flash 0731",
@@ -25,7 +25,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "DeepSeek V4",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 14.5314
+      "share": 14.5096
     },
     {
       "name": "Claude Opus 5",
@@ -33,7 +33,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Claude Opus",
       "tokens": 1200000000000,
       "status": "Available",
-      "share": 14.5314
+      "share": 14.5096
     },
     {
       "name": "Tencent Hy3",
@@ -41,7 +41,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Hy3",
       "tokens": 950000000000,
       "status": "Available",
-      "share": 11.504
+      "share": 11.4868
     },
     {
       "name": "Kimi K2.7 Code",
@@ -50,7 +50,7 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 157142857143,
       "weeklyTokens": 1100000000000,
       "status": "Available",
-      "share": 1.9029
+      "share": 1.9001
     },
     {
       "name": "Gemini 3.6 Flash",
@@ -59,7 +59,26 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 12785714286,
       "weeklyTokens": 89500000000,
       "status": "Available",
-      "share": 0.1548
+      "share": 0.1546
+    },
+    {
+      "id": "claude-fable-51",
+      "name": "Claude Fable 5.1",
+      "provider": "Anthropic",
+      "family": "Claude Fable",
+      "tokens": 12400000000,
+      "dailyOnlyTokens": true,
+      "status": "Available",
+      "logo": "/number-of-calls/assets/logos/anthropic.svg",
+      "color": "#D97757",
+      "includeInTokenRanking": true,
+      "usageMetric": "tokens",
+      "launchDate": "2026-09-02",
+      "source": "Zorix Metron · 1-day token observation",
+      "about": "Claude Fable 5.1 is tracked by Zorix Metron. The currently published Zorix observation is 12.4B tokens over its first one-day launch window on Sep 2, 2026. No weekly or 30-day Fable 5.1 token total is published here, so the one-day observation is not extrapolated into longer periods.",
+      "docs": "",
+      "chart": [],
+      "share": 0.1499
     },
     {
       "name": "Muse Spark 1.2",
@@ -68,7 +87,7 @@ window.ZORIX_CODE_USAGE = {
       "tokens": 11130000000,
       "weeklyTokens": 77910000000,
       "status": "Available",
-      "share": 0.1348
+      "share": 0.1346
     },
     {
       "name": "NVIDIA Nemotron 3 Ultra",
@@ -76,7 +95,7 @@ window.ZORIX_CODE_USAGE = {
       "family": "Nemotron 3",
       "tokens": 6100000000,
       "status": "Available",
-      "share": 0.0739
+      "share": 0.0738
     },
     {
       "name": "Gemini 3.7 Flash",
@@ -207,12 +226,12 @@ window.ZORIX_CODE_USAGE = {
       ],
       "launchDate": "2026-07-09",
       "source": "Zorix Metron · weekly and 30-day token observations",
-      "about": "GPT-5.6 Terra is OpenAI's balanced GPT-5.6 model for workloads that trade off intelligence, speed and cost. Zorix Metron currently records 4.58M tokens per week and 72.11B tokens per 30 days for Terra. No measured daily Terra series has been published, so no synthetic daily history is generated.",
+      "about": "GPT-5.6 Terra is OpenAI's balanced GPT-5.6 model for workloads that trade off intelligence, speed and cost. OpenAI documents a 1.05M-token context window, a 128K-token maximum output, a Feb 16, 2026 knowledge cutoff and reasoning effort levels from none through max. Zorix Metron currently records two supplied period observations for Terra: 4.58M tokens per week and 72.11B tokens per 30 days. No measured daily Terra series has been published, so these period totals are not converted into a synthetic daily trend.",
       "docs": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
       "chart": [],
-      "share": 0.0,
       "thirtyDayTokens": 72110000000,
-      "thirtyDayObserved": true
+      "thirtyDayObserved": true,
+      "share": 0.0
     },
     {
       "id": "hy4-preview",
@@ -243,7 +262,7 @@ window.ZORIX_CODE_USAGE = {
       "about": "Tencent Hy4 preview is a next-generation Mixture-of-Experts flagship model from the Tencent Hy Team. Public Tencent material describes a 770B total-parameter backbone with 49B parameters activated per token, Gated DSA sparse attention, iHC residual connections and native MTP speculative decoding. Tencent publicly released and open-sourced Hy4 preview on Aug 28, 2026. Zorix began tracking the model on Sep 1, 2026. The currently published Zorix Metron observation is 17.9B tokens over a five-hour window. No daily, weekly or 30-day Hy4 token total has been published by Zorix.",
       "docs": "",
       "chart": [],
-      "share": 0
+      "share": 0.0
     }
   ],
   "daily": [

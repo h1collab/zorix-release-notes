@@ -235,10 +235,23 @@ for row in models:
     )
 
 
+    # DAILY_ONLY_TOKEN_MODEL_INDEX_V1
+    daily_only = bool(
+        row.get(
+            "dailyOnlyTokens",
+            False
+        )
+    )
+
+
     weekly = (
         int(weekly_raw)
         if weekly_raw is not None
-        else daily * 7
+        else (
+            None
+            if daily_only
+            else daily * 7
+        )
     )
 
 
@@ -296,7 +309,11 @@ for row in models:
                 weekly,
 
             "weeklyEstimated":
-                weekly_raw is None,
+                (
+                    weekly_raw is None
+                    and
+                    not daily_only
+                ),
 
             "context":
                 row.get(
@@ -410,6 +427,14 @@ for row in models:
                 bool(
                     row.get(
                         "weeklyOnlyTokens",
+                        False
+                    )
+                ),
+
+            "dailyOnlyTokens":
+                bool(
+                    row.get(
+                        "dailyOnlyTokens",
                         False
                     )
                 ),

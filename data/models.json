@@ -128,6 +128,24 @@
     "status": "Available"
   },
   {
+    "id": "claude-fable-51",
+    "name": "Claude Fable 5.1",
+    "provider": "Anthropic",
+    "family": "Claude Fable",
+    "tokens": 12400000000,
+    "dailyOnlyTokens": true,
+    "status": "Available",
+    "logo": "/number-of-calls/assets/logos/anthropic.svg",
+    "color": "#D97757",
+    "includeInTokenRanking": true,
+    "usageMetric": "tokens",
+    "launchDate": "2026-09-02",
+    "source": "Zorix Metron · 1-day token observation",
+    "about": "Claude Fable 5.1 is tracked by Zorix Metron. The currently published Zorix observation is 12.4B tokens over its first one-day launch window on Sep 2, 2026. No weekly or 30-day Fable 5.1 token total is published here, so the one-day observation is not extrapolated into longer periods.",
+    "docs": "",
+    "chart": []
+  },
+  {
     "name": "GPT-5.6 Sol (Max)",
     "provider": "OpenAI",
     "family": "GPT-5.6",

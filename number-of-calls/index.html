@@ -5,7 +5,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788242763">
+<meta name="zorix-build" content="1788371635">
 
 
 
@@ -2586,7 +2586,7 @@ h1{
 </main>
 
 <script src="./models.js?v=1788181089"></script>
-<script src="./usage.js?v=1788245194"></script>
+<script src="./usage.js?v=1788371635"></script>
 <script src="./quota.js?v=1788181089"></script>
 
 <script>
@@ -2752,6 +2752,15 @@ const modelsData =
                 false
               ),
 
+            dailyOnlyTokens:
+              Boolean(
+                row.dailyOnlyTokens
+                ??
+                existing.dailyOnlyTokens
+                ??
+                false
+              ),
+
             chart:
               Array.isArray(
                 existing.chart
@@ -2868,6 +2877,26 @@ function visibleModels(){
           &&
           model.fiveHourTokens !==
           null
+        );
+
+      }
+
+
+      /*
+       * DAILY_ONLY_TOKEN_VISIBILITY_V1
+       * Exact one-day observations are shown only in Today.
+       */
+      if(model.dailyOnlyTokens){
+
+        return (
+          usageRange ===
+          'today'
+          &&
+          Number(
+            model.dailyTokens || 0
+          )
+          >
+          0
         );
 
       }
@@ -3049,6 +3078,17 @@ function periodShort(){
 
 
 function modelPeriodLabel(model){
+
+  if(
+    usageRange==='today'
+    &&
+    model.dailyOnlyTokens
+  ){
+
+    return 'observed 1 day';
+
+  }
+
 
   if(
     usageRange==='5h'
