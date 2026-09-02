@@ -2,10 +2,10 @@ window.ZORIX_BLIND_MODEL_GUESS = {
   "id": "wolf-theta",
   "route": "/guess/blind/model/",
   "title": "What model is Wolf Theta?",
-  "updatedAt": "2026-09-01T10:15:23+02:00",
+  "updatedAt": "2026-09-02T08:10:19+02:00",
   "status": "Open",
   "countsComplete": true,
-  "knownPublishedVotes": 3376,
+  "knownPublishedVotes": 5757,
   "model": {
     "id": "wolf-theta",
     "name": "Wolf Theta",
@@ -19,7 +19,7 @@ window.ZORIX_BLIND_MODEL_GUESS = {
       "provider": "Zorix",
       "name": "Star Flash 3.6 Preview",
       "logo": "/number-of-calls/assets/logos/zorix.svg",
-      "votes": 1932,
+      "votes": 2931,
       "votesPublished": true,
       "status": "Leading community guess",
       "note": "There's already evidence of testing 3.6 within Zorix, and the community thinks this model is more likely to succeed. In third-party evaluations, it outperformed both Zorix Star Flash 3.5 and Gemini 3.7 flash"
@@ -29,7 +29,7 @@ window.ZORIX_BLIND_MODEL_GUESS = {
       "provider": "Google",
       "name": "Gemini 3.8 Flash",
       "logo": "/number-of-calls/assets/logos/google.svg",
-      "votes": 913,
+      "votes": 1913,
       "votesPublished": true,
       "status": "Second community guess",
       "note": "Since Google has already been testing 3.8 internally, the community thinks it's more likely to be 3.8"
@@ -39,7 +39,7 @@ window.ZORIX_BLIND_MODEL_GUESS = {
       "provider": "Zhipu AI / Z.ai",
       "name": "GLM 5.4 Flash",
       "logo": "/number-of-calls/assets/logos/glm.svg",
-      "votes": 531,
+      "votes": 913,
       "votesPublished": true,
       "status": "Third community guess",
       "note": "Community reasoning: some voters consider GLM 5.4 Flash less likely because Zhipu has only recently introduced GLM 5.3 Flash, making an immediate jump to 5.4 seem less likely to them."
