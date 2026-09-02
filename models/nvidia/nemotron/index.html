@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Nemotron models listed in the Zorix model directory.">
+<title>Nemotron · NVIDIA | Zorix Models</title>
+<style>
+:root{
+  --paper:#f4f2eb;
+  --ink:#151513;
+  --muted:#69665f;
+  --line:#c9c5ba;
+  --soft:#ece9df;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:
+    "OpenAI Sans",
+    "Inter",
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+  letter-spacing:-.012em;
+}
+a{color:inherit;text-decoration:none}
+.site-head{
+  min-height:72px;
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  width:min(var(--max),100%);
+  min-height:72px;
+  margin:auto;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand{font-size:25px;font-weight:650;letter-spacing:-.055em}
+.nav-links{display:flex;gap:22px;color:var(--muted);font-size:11px}
+main{
+  width:min(var(--max),100%);
+  margin:auto;
+  padding:65px 24px 105px;
+}
+.eyebrow{
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.hero{
+  padding-bottom:68px;
+  border-bottom:1px solid var(--ink);
+}
+h1{
+  max-width:980px;
+  margin:22px 0 0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(58px,9vw,126px);
+  line-height:.88;
+  font-weight:400;
+  letter-spacing:-.07em;
+}
+.support-line{
+  max-width:760px;
+  margin-top:38px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(25px,3.6vw,42px);
+  line-height:1.18;
+  letter-spacing:-.035em;
+}
+.hero-copy{
+  max-width:720px;
+  margin-top:24px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+}
+.actions{
+  margin-top:27px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.action{
+  min-height:43px;
+  padding:0 14px;
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--ink);
+  border-radius:7px;
+  font-size:11px;
+}
+.action.primary{background:var(--ink);color:var(--paper)}
+.action.external::after{content:"↗";margin-left:12px;font-size:9px}
+.action.internal::after{content:"→";margin-left:12px;font-size:9px}
+.directory{
+  padding-top:56px;
+}
+.directory-title{
+  margin:0 0 27px;
+  font-size:clamp(30px,4vw,45px);
+  letter-spacing:-.05em;
+}
+.family-grid,
+.provider-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:1px solid var(--ink);
+  border-left:1px solid var(--ink);
+}
+.family-card,
+.provider-card{
+  min-height:190px;
+  padding:22px;
+  border-right:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+}
+.family-card h2,
+.provider-card h2{
+  margin:55px 0 0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(28px,3.6vw,47px);
+  line-height:1;
+  font-weight:400;
+  letter-spacing:-.045em;
+}
+.family-meta,
+.provider-meta{
+  margin-top:15px;
+  color:var(--muted);
+  font-size:10px;
+}
+.model-list{
+  margin-top:50px;
+  border-top:1px solid var(--ink);
+}
+.model-row{
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(150px,.6fr) minmax(180px,.8fr);
+  gap:18px;
+  padding:21px 0;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+}
+.model-name{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+  line-height:1.2;
+}
+.model-status{
+  color:var(--muted);
+  font-size:10px;
+}
+.model-observation{
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.5;
+}
+.note{
+  max-width:760px;
+  margin-top:45px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.6;
+}
+.breadcrumb{
+  margin-bottom:35px;
+  color:var(--muted);
+  font-size:10px;
+}
+.breadcrumb a{border-bottom:1px solid transparent}
+.breadcrumb a:hover{border-bottom-color:currentColor}
+footer{
+  border-top:1px solid var(--line);
+}
+.footer-inner{
+  width:min(var(--max),100%);
+  margin:auto;
+  padding:40px 24px 55px;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  color:var(--muted);
+  font-size:9px;
+}
+@media(max-width:720px){
+  .nav{padding:0 18px}
+  .nav-links{display:none}
+  main{padding:45px 18px 78px}
+  .family-grid,.provider-grid{grid-template-columns:1fr}
+  .model-row{grid-template-columns:1fr;gap:7px}
+  .footer-inner{padding:35px 18px 48px;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <nav class="nav">
+    <a class="brand" href="/">Zorix</a>
+    <div class="nav-links">
+      <a href="/models/">Models</a>
+      <a href="/number-of-calls/">Metron</a>
+      <a href="/status/">Status</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/models/">Models</a>
+    &nbsp;/&nbsp;
+    <a href="/models/nvidia/">NVIDIA</a>
+    &nbsp;/&nbsp;
+    Nemotron
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">Zorix Metron</div>
+    <h1>Nemotron</h1>
+    <div class="support-line">Added to Zorix Metron support</div>
+    <div class="hero-copy">
+      NVIDIA · 1 model in this family.
+      Provider ownership and Zorix Metron support are shown separately.
+    </div>
+    <div class="actions">
+      <a class="action primary internal" href="/number-of-calls/">Open Metron</a>
+    </div>
+  </section>
+
+  <section class="directory">
+    <h2 class="directory-title">Models</h2>
+    <div class="model-list">
+      
+<div class="model-row">
+  <div>
+    <div class="model-name">NVIDIA Nemotron 3 Ultra</div>
+  </div>
+  <div class="model-status">
+    Available
+  </div>
+  <div class="model-observation">
+    6.1B recorded tokens
+  </div>
+</div>
+
+    </div>
+    
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>Zorix Models</span>
+    <span>Metron support and usage observations remain separate from provider ownership.</span>
+  </div>
+</footer>
+</body>
+</html>
