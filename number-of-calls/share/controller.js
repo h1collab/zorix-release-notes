@@ -5400,7 +5400,7 @@
       if(voteCategoryControls){
 
         voteCategoryControls.style.display=
-          '';
+          'block';
 
       }
 
@@ -5418,7 +5418,7 @@
       ){
 
         votingHighlightControls.style.display=
-          '';
+          'block';
 
 
         controls
