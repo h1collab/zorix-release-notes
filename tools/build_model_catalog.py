@@ -452,7 +452,7 @@ def family_page(provider, pslug, fslug, label, rows):
 
     if provider == "Anthropic" and fslug == "claude":
         actions.append(
-            '<a class="action external" href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">Related provider article</a>'
+            '<a class="action external" href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">More details</a>'
         )
 
     model_rows = "".join(model_card(row) for row in rows)
@@ -461,7 +461,7 @@ def family_page(provider, pslug, fslug, label, rows):
     if provider == "Anthropic" and fslug == "claude":
         related_note = """
 <div class="note">
-  Related provider reading links to Anthropic’s “Claude Fable and Mythos 5.1”
+  More details links to Anthropic’s “Claude Fable and Mythos 5.1”
   article. That external article is not evidence that Zorix Metron tracks every
   model named there; this page lists only models present in the current Zorix
   model dataset.
