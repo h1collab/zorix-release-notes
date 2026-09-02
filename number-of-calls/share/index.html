@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788367953">
+<meta name="zorix-build" content="1788372100">
 
 
 
@@ -525,6 +525,32 @@ canvas{
   }
 }
 
+
+/* SHARE_VOTING_HIGHLIGHT_RANK_V1 */
+
+#votingHighlightControls{
+  display:none;
+}
+
+.controls.voting-card-active{
+  grid-template-columns:
+    repeat(5,minmax(0,1fr))
+    auto;
+}
+
+@media(max-width:1100px){
+  .controls.voting-card-active{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:760px){
+  .controls.voting-card-active{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 
 </head>
@@ -658,7 +684,7 @@ canvas{
       </option>
 
       <option value="voting-card">
-        Voting leaderboard · Arena style
+        Voting leaderboard
       </option>
 
       <option value="intelligence-cost">
@@ -755,6 +781,22 @@ canvas{
     <select
       class="control-select"
       id="shareVoteCategory"
+    ></select>
+  </div>
+
+
+  <div
+    class="control-group"
+    id="votingHighlightControls"
+  >
+    <label class="control-label">
+      Highlight rank
+    </label>
+
+    <select
+      class="control-select"
+      id="shareHighlightRank"
+      aria-label="Choose highlighted rank"
     ></select>
   </div>
 
@@ -1090,7 +1132,7 @@ canvas{
 <script src="/translate/translate.js?v=1788242211"></script>
 <script src="./translate-svg.js?v=1788242211"></script>
 
-<script src="./controller.js?v=1788367953"></script>
+<script src="./controller.js?v=1788372100"></script>
 
 </body>
 </html>

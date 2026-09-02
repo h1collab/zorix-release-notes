@@ -69,6 +69,16 @@
     $('shareVoteCategory');
 
 
+  /* SHARE_VOTING_HIGHLIGHT_DOM_V1 */
+
+  const votingHighlightControls =
+    $('votingHighlightControls');
+
+
+  const shareHighlightRank =
+    $('shareHighlightRank');
+
+
   const status =
     $('shareDataStatus');
 
@@ -341,6 +351,114 @@
       )
         ? current
         : 'overall';
+
+  }
+
+
+  /* SHARE_VOTING_HIGHLIGHT_DATA_V1 */
+
+  function populateVotingHighlightRanks(){
+
+    if(!shareHighlightRank){
+      return;
+    }
+
+
+    const requestedCount =
+      Math.max(
+        1,
+        Math.min(
+          35,
+          Number(
+            count?.value
+            ||
+            8
+          )
+        )
+      );
+
+
+    const availableRows =
+      voteRowsForSelectedCategory()
+      .length;
+
+
+    const maximum =
+      Math.max(
+        1,
+        Math.min(
+          requestedCount,
+          availableRows
+          ||
+          requestedCount
+        )
+      );
+
+
+    const previous =
+      Math.max(
+        1,
+        Number(
+          shareHighlightRank.value
+          ||
+          1
+        )
+      );
+
+
+    shareHighlightRank.innerHTML =
+      Array.from(
+        {
+          length:maximum
+        },
+        (_,index)=>{
+
+          const rank =
+            index+1;
+
+
+          return (
+            '<option value="'
+            +
+            rank
+            +
+            '">#'
+            +
+            rank
+            +
+            '</option>'
+          );
+
+        }
+      )
+      .join('');
+
+
+    shareHighlightRank.value =
+      String(
+        Math.min(
+          previous,
+          maximum
+        )
+      );
+
+  }
+
+
+  function selectedVotingHighlightRank(){
+
+    return Math.max(
+      1,
+      Math.min(
+        35,
+        Number(
+          shareHighlightRank
+          ?.value
+          ||
+          1
+        )
+      )
+    );
 
   }
 
@@ -2118,7 +2236,7 @@
   }
 
 
-  /* SHARE_VOTING_ARENA_CARD_V1 */
+  /* SHARE_VOTING_LEADERBOARD_CARD_V2 */
 
   async function drawVotingCard(
     serial
@@ -2206,7 +2324,7 @@
 
 
       text(
-        'External Arena scores are not converted into Zorix community votes.',
+        'Only published Zorix community voting scores are shown in this report.',
         55,
         318,
         18,
@@ -2238,8 +2356,28 @@
     }
 
 
-    const top =
-      rows[0];
+    const requestedHighlightRank =
+      selectedVotingHighlightRank();
+
+
+    const highlightIndex =
+      Math.min(
+        rows.length-1,
+        Math.max(
+          0,
+          requestedHighlightRank-1
+        )
+      );
+
+
+    const highlighted =
+      rows[
+        highlightIndex
+      ];
+
+
+    const highlightedRank =
+      highlightIndex+1;
 
 
     ctx.font =
@@ -2248,7 +2386,7 @@
 
     const prefix =
       clip(
-        top.name,
+        highlighted.name,
         34
       )
       +
@@ -2291,7 +2429,11 @@
 
 
     text(
-      'Ranked #1',
+      (
+        'Ranked #'
+        +
+        highlightedRank
+      ),
       82+
       highlightWidth,
       142,
@@ -2504,7 +2646,7 @@
           rowHeight;
 
 
-        if(index===0){
+        if(index===highlightIndex){
 
           ctx.strokeStyle =
             '#e0bb00';
@@ -5012,11 +5154,20 @@
     }
 
 
+    if(votingHighlightControls){
+
+      votingHighlightControls.style.display=
+        'none';
+
+    }
+
+
     controls
       ?.classList.remove(
         'landscape-active',
         'trend-active',
-        'voting-active'
+        'voting-active',
+        'voting-card-active'
       );
 
 
@@ -5166,6 +5317,24 @@
         ?.classList.add(
           'voting-active'
         );
+
+
+      if(
+        type==='voting-card'
+        &&
+        votingHighlightControls
+      ){
+
+        votingHighlightControls.style.display=
+          '';
+
+
+        controls
+          ?.classList.add(
+            'voting-card-active'
+          );
+
+      }
 
     }else if(
       type==='intelligence-cost'
@@ -5957,7 +6126,13 @@
 
   count.addEventListener(
     'change',
-    scheduleRender
+    ()=>{
+
+      populateVotingHighlightRanks();
+
+      scheduleRender();
+
+    }
   );
 
 
@@ -5992,11 +6167,26 @@
   shareVoteCategory
     ?.addEventListener(
       'change',
+      ()=>{
+
+        populateVotingHighlightRanks();
+
+        scheduleRender();
+
+      }
+    );
+
+
+  shareHighlightRank
+    ?.addEventListener(
+      'change',
       scheduleRender
     );
 
 
   populateVotingCategories();
+
+  populateVotingHighlightRanks();
 
   configureControls();
 
