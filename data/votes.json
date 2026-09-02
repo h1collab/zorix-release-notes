@@ -3245,16 +3245,12 @@
       "note": "Control Center bulk voting update"
     }
   ],
-  "defaultCategory": "overall",
+  "defaultCategory": "webdev",
   "categories": {
-    "overall": {
-      "label": "Overall"
-    },
     "webdev": {
       "label": "WebDev",
-      "description": "Community voting for WebDev-specific model preference.",
-      "models": [],
-      "history": []
+      "description": "Zorix community voting score for WebDev.",
+      "source": "root"
     }
   }
 }

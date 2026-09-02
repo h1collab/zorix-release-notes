@@ -42,25 +42,44 @@ raw_categories = data.get("categories", {})
 if not isinstance(raw_categories, dict):
     raw_categories = {}
 
-categories = {
-    "overall": {
-        "label": str(
-            raw_categories
-            .get("overall", {})
-            .get("label", "Overall")
-        ) or "Overall"
-    }
-}
+categories = {}
 
 for category_id, raw in raw_categories.items():
     category_id = str(category_id).strip()
 
     if (
         not category_id
-        or category_id == "overall"
         or not isinstance(raw, dict)
     ):
         continue
+
+    source = str(
+        raw.get(
+            "source",
+            ""
+        )
+    ).strip()
+
+    if source == "root":
+
+        category_models = models
+        category_history = history
+
+    else:
+
+        category_models = sort_models(
+            raw.get(
+                "models",
+                []
+            )
+        )
+
+        category_history = list_or_empty(
+            raw.get(
+                "history",
+                []
+            )
+        )
 
     categories[category_id] = {
         "label": str(
@@ -69,19 +88,26 @@ for category_id, raw in raw_categories.items():
         "description": str(
             raw.get("description", "")
         ),
-        "models": sort_models(
-            raw.get("models", [])
-        ),
-        "history": list_or_empty(
-            raw.get("history", [])
-        )
+        "source": source,
+        "models": category_models,
+        "history": category_history
     }
 
 default_category = str(
-    data.get("defaultCategory") or "overall"
+    data.get("defaultCategory") or "webdev"
 )
 
-if default_category not in categories:
+if (
+    default_category not in categories
+    and categories
+):
+    default_category = next(
+        iter(
+            categories
+        )
+    )
+
+if not categories:
     default_category = "overall"
 
 payload = {

@@ -1,7 +1,7 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-02T18:46:31+02:00",
+  "updatedAt": "2026-09-02T18:52:34+02:00",
   "metric": "community_votes",
-  "defaultCategory": "overall",
+  "defaultCategory": "webdev",
   "models": [
     {
       "id": "nex-coder-38-neptune",
@@ -3248,14 +3248,3255 @@ window.ZORIX_COMMUNITY_VOTES = {
     }
   ],
   "categories": {
-    "overall": {
-      "label": "Overall"
-    },
     "webdev": {
       "label": "WebDev",
-      "description": "Community voting for WebDev-specific model preference.",
-      "models": [],
-      "history": []
+      "description": "Zorix community voting score for WebDev.",
+      "source": "root",
+      "models": [
+        {
+          "id": "nex-coder-38-neptune",
+          "votes": 1688,
+          "uncertainty": 3
+        },
+        {
+          "id": "claude-fable-5-fallback-max",
+          "votes": 1673,
+          "uncertainty": 2
+        },
+        {
+          "id": "gpt-56-sol-max",
+          "votes": 1649,
+          "uncertainty": 3
+        },
+        {
+          "id": "nex-coder-37-pro-max",
+          "votes": 1634,
+          "uncertainty": 3
+        },
+        {
+          "id": "claude-opus-5",
+          "votes": 1622,
+          "uncertainty": 4
+        },
+        {
+          "id": "glm-53-flash",
+          "votes": 1577,
+          "uncertainty": 0
+        },
+        {
+          "id": "wolf-theta",
+          "votes": 1559,
+          "uncertainty": 0
+        },
+        {
+          "id": "claude-sonnet-5",
+          "votes": 1536,
+          "uncertainty": 0
+        },
+        {
+          "id": "glm-52-max",
+          "votes": 1529,
+          "uncertainty": 0
+        },
+        {
+          "id": "kimi-k3",
+          "votes": 1520,
+          "uncertainty": 4
+        },
+        {
+          "id": "deepseek-v4-flash-0731",
+          "votes": 1502,
+          "uncertainty": 5
+        },
+        {
+          "id": "gpt-56-luna",
+          "votes": 1501,
+          "uncertainty": 0
+        },
+        {
+          "id": "gemini-37-flash",
+          "votes": 1495,
+          "uncertainty": 4
+        },
+        {
+          "id": "kimi-k27-code",
+          "votes": 1490,
+          "uncertainty": 5
+        },
+        {
+          "id": "claude-opus-48",
+          "votes": 1479,
+          "uncertainty": 0
+        },
+        {
+          "id": "nvidia-nemotron-3-ultra",
+          "votes": 1442,
+          "uncertainty": 0
+        },
+        {
+          "id": "glm-51",
+          "votes": 1392,
+          "uncertainty": 12
+        },
+        {
+          "id": "gemini-36-flash",
+          "votes": 1379,
+          "uncertainty": 1
+        },
+        {
+          "id": "mimo-v25",
+          "votes": 1369,
+          "uncertainty": 2
+        },
+        {
+          "id": "tencent-hy3",
+          "votes": 1342,
+          "uncertainty": 9
+        },
+        {
+          "id": "muse-spark-12",
+          "votes": 1332,
+          "uncertainty": 2
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-08-30T20:35:26+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1507,
+              "uncertainty": 5
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1552,
+              "uncertainty": 4
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1496,
+              "uncertainty": 6
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1488,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          }
+        },
+        {
+          "at": "2026-08-30T21:40:08+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1507,
+              "uncertainty": 5
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1552,
+              "uncertainty": 4
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1496,
+              "uncertainty": 6
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1488,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          }
+        },
+        {
+          "at": "2026-08-30T21:40:08+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1507,
+              "uncertainty": 5
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1552,
+              "uncertainty": 4
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1496,
+              "uncertainty": 6
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1488,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          }
+        },
+        {
+          "at": "2026-08-30T21:40:08+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1507,
+              "uncertainty": 5
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1552,
+              "uncertainty": 4
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1496,
+              "uncertainty": 6
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1488,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1540,
+              "uncertainty": 3
+            }
+          }
+        },
+        {
+          "at": "2026-08-30T21:40:18+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1507,
+              "uncertainty": 5
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1600,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1496,
+              "uncertainty": 6
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1488,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1540,
+              "uncertainty": 3
+            }
+          }
+        },
+        {
+          "at": "2026-08-30T21:40:19+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1600,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1496,
+              "uncertainty": 6
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1488,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1540,
+              "uncertainty": 3
+            }
+          }
+        },
+        {
+          "at": "2026-08-30T21:40:19+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1600,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1488,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1540,
+              "uncertainty": 3
+            }
+          }
+        },
+        {
+          "at": "2026-08-30T21:40:19+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1600,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1540,
+              "uncertainty": 3
+            }
+          }
+        },
+        {
+          "at": "2026-08-31T17:34:33+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1540,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: nex-coder-38-neptune"
+        },
+        {
+          "at": "2026-08-31T17:34:33+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: nex-coder-37-pro-max"
+        },
+        {
+          "at": "2026-08-31T17:34:33+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1510,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: claude-opus-5"
+        },
+        {
+          "at": "2026-08-31T17:34:53+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: kimi-k3"
+        },
+        {
+          "at": "2026-08-31T17:35:04+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1290,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gpt-56-luna"
+        },
+        {
+          "at": "2026-08-31T17:35:30+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gpt-56-luna"
+        },
+        {
+          "at": "2026-08-31T17:35:43+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: claude-fable-5-fallback-max"
+        },
+        {
+          "at": "2026-08-31T17:36:00+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: tencent-hy3"
+        },
+        {
+          "at": "2026-08-31T17:36:13+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gpt-56-sol-max"
+        },
+        {
+          "at": "2026-08-31T17:36:24+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: glm-53-flash"
+        },
+        {
+          "at": "2026-08-31T19:29:52+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: claude-opus-48"
+        },
+        {
+          "at": "2026-08-31T19:30:02+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: glm-52-max"
+        },
+        {
+          "at": "2026-08-31T19:30:13+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: claude-sonnet-5"
+        },
+        {
+          "at": "2026-08-31T19:30:36+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gemini-36-flash"
+        },
+        {
+          "at": "2026-08-31T19:30:57+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 0,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: glm-51"
+        },
+        {
+          "at": "2026-08-31T19:31:07+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: nvidia-nemotron-3-ultra"
+        },
+        {
+          "at": "2026-08-31T19:31:14+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 0,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: mimo-v25"
+        },
+        {
+          "at": "2026-08-31T19:31:24+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1575,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: muse-spark-12"
+        },
+        {
+          "at": "2026-08-31T19:40:11+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1619,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1584,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gpt-56-sol-max"
+        },
+        {
+          "at": "2026-08-31T19:40:12+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1585,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1619,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: nex-coder-37-pro-max"
+        },
+        {
+          "at": "2026-08-31T19:40:12+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1589,
+              "uncertainty": 0
+            },
+            "gpt-56-sol-max": {
+              "votes": 1619,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: claude-opus-5"
+        },
+        {
+          "at": "2026-08-31T19:40:13+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1619,
+              "uncertainty": 0
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: claude-fable-5-fallback-max"
+        },
+        {
+          "at": "2026-08-31T19:40:26+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1611,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gpt-56-sol-max"
+        },
+        {
+          "at": "2026-08-31T19:40:45+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1668,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: nex-coder-38-neptune"
+        },
+        {
+          "at": "2026-08-31T19:41:32+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1668,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1630,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1619,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gpt-56-sol-max"
+        },
+        {
+          "at": "2026-08-31T19:41:32+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1668,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1630,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1629,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: nex-coder-37-pro-max"
+        },
+        {
+          "at": "2026-09-01T09:04:18+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1668,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1332,
+              "uncertainty": 0
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1630,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1629,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 2
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            },
+            "wolf-theta": {
+              "votes": 1553,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: muse-spark-12"
+        },
+        {
+          "at": "2026-09-01T09:04:19+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1668,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1369,
+              "uncertainty": 2
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1630,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1629,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1339,
+              "uncertainty": 0
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 2
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            },
+            "wolf-theta": {
+              "votes": 1553,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: mimo-v25"
+        },
+        {
+          "at": "2026-09-01T09:04:19+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1668,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1369,
+              "uncertainty": 2
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1567,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1469,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1651,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1630,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1629,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1379,
+              "uncertainty": 1
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 2
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1441,
+              "uncertainty": 0
+            },
+            "wolf-theta": {
+              "votes": 1553,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center update: gemini-36-flash"
+        },
+        {
+          "at": "2026-09-01T09:05:38+02:00",
+          "models": {
+            "claude-opus-5": {
+              "votes": 1622,
+              "uncertainty": 4
+            },
+            "nex-coder-38-neptune": {
+              "votes": 1688,
+              "uncertainty": 3
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1502,
+              "uncertainty": 5
+            },
+            "tencent-hy3": {
+              "votes": 1342,
+              "uncertainty": 9
+            },
+            "mimo-v25": {
+              "votes": 1369,
+              "uncertainty": 2
+            },
+            "gpt-56-luna": {
+              "votes": 1501,
+              "uncertainty": 0
+            },
+            "glm-53-flash": {
+              "votes": 1577,
+              "uncertainty": 0
+            },
+            "glm-52-max": {
+              "votes": 1529,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1495,
+              "uncertainty": 4
+            },
+            "claude-sonnet-5": {
+              "votes": 1536,
+              "uncertainty": 0
+            },
+            "claude-opus-48": {
+              "votes": 1479,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 1673,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1649,
+              "uncertainty": 3
+            },
+            "kimi-k27-code": {
+              "votes": 1490,
+              "uncertainty": 5
+            },
+            "kimi-k3": {
+              "votes": 1520,
+              "uncertainty": 4
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1634,
+              "uncertainty": 3
+            },
+            "gemini-36-flash": {
+              "votes": 1379,
+              "uncertainty": 1
+            },
+            "muse-spark-12": {
+              "votes": 1332,
+              "uncertainty": 2
+            },
+            "glm-51": {
+              "votes": 1392,
+              "uncertainty": 12
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1442,
+              "uncertainty": 0
+            },
+            "wolf-theta": {
+              "votes": 1559,
+              "uncertainty": 0
+            }
+          },
+          "note": "Control Center bulk voting update"
+        }
+      ]
     }
   }
 };
