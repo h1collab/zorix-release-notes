@@ -3244,5 +3244,17 @@
       },
       "note": "Control Center bulk voting update"
     }
-  ]
+  ],
+  "defaultCategory": "overall",
+  "categories": {
+    "overall": {
+      "label": "Overall"
+    },
+    "webdev": {
+      "label": "WebDev",
+      "description": "Community voting for WebDev-specific model preference.",
+      "models": [],
+      "history": []
+    }
+  }
 }

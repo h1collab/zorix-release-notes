@@ -59,6 +59,16 @@
     $('downloadTranslatePngButton');
 
 
+  /* SHARE_VOTING_CATEGORY_DOM_V1 */
+
+  const voteCategoryControls =
+    $('voteCategoryControls');
+
+
+  const shareVoteCategory =
+    $('shareVoteCategory');
+
+
   const status =
     $('shareDataStatus');
 
@@ -237,6 +247,261 @@
 
 
   };
+
+
+  /* SHARE_VOTING_CATEGORY_DATA_V1 */
+
+  function votingCategoryEntries(){
+
+    const categories =
+      (
+        DATA.votes.categories
+        &&
+        typeof DATA.votes.categories
+        ===
+        'object'
+      )
+        ? DATA.votes.categories
+        : {};
+
+
+    return [
+
+      [
+        'overall',
+        categories.overall
+        ?.label
+        ||
+        'Overall'
+      ],
+
+      ...Object.entries(
+        categories
+      )
+      .filter(
+        ([id])=>
+          id!=='overall'
+      )
+      .map(
+        ([id,item])=>[
+          id,
+          item?.label || id
+        ]
+      )
+
+    ];
+
+  }
+
+
+  function populateVotingCategories(){
+
+    if(!shareVoteCategory){
+      return;
+    }
+
+
+    const entries =
+      votingCategoryEntries();
+
+
+    const current =
+      shareVoteCategory.value
+      ||
+      DATA.votes.defaultCategory
+      ||
+      'overall';
+
+
+    shareVoteCategory.innerHTML =
+      entries
+      .map(
+        ([id,label])=>
+          (
+            '<option value="'
+            +
+            String(id)
+            .replace(/"/g,'&quot;')
+            +
+            '">'
+            +
+            String(label)
+            .replace(/&/g,'&amp;')
+            .replace(/</g,'&lt;')
+            +
+            '</option>'
+          )
+      )
+      .join('');
+
+
+    shareVoteCategory.value =
+      entries.some(
+        ([id])=>id===current
+      )
+        ? current
+        : 'overall';
+
+  }
+
+
+  function selectedVotingCategory(){
+
+    const id =
+      shareVoteCategory
+      ?.value
+      ||
+      DATA.votes.defaultCategory
+      ||
+      'overall';
+
+
+    const categories =
+      (
+        DATA.votes.categories
+        &&
+        typeof DATA.votes.categories
+        ===
+        'object'
+      )
+        ? DATA.votes.categories
+        : {};
+
+
+    if(id==='overall'){
+
+      return {
+        id:'overall',
+        label:
+          categories.overall
+          ?.label
+          ||
+          'Overall',
+        models:
+          DATA.votes.models
+          ||
+          [],
+        history:
+          DATA.votes.history
+          ||
+          []
+      };
+
+    }
+
+
+    const category =
+      categories[id]
+      ||
+      {};
+
+
+    return {
+      id,
+      label:
+        category.label
+        ||
+        id,
+      models:
+        Array.isArray(
+          category.models
+        )
+          ? category.models
+          : [],
+      history:
+        Array.isArray(
+          category.history
+        )
+          ? category.history
+          : []
+    };
+
+  }
+
+
+  function voteRowsForSelectedCategory(){
+
+    const category =
+      selectedVotingCategory();
+
+
+    return (
+      category.models
+      ||
+      []
+    )
+    .map(
+      (row,index)=>{
+
+        const id =
+          canon(
+            row.id
+          );
+
+
+        const model =
+          modelFor(
+            id,
+            row.name
+          );
+
+
+        return {
+          ...row,
+          id,
+          name:
+            model?.name
+            ||
+            row.name
+            ||
+            row.id,
+          provider:
+            model?.provider
+            ||
+            row.provider
+            ||
+            '',
+          logo:
+            modelLogo(
+              id,
+              row.name,
+              model?.provider
+              ||
+              row.provider
+              ||
+              ''
+            ),
+          color:
+            modelColor(
+              id,
+              row.name,
+              model?.provider
+              ||
+              row.provider
+              ||
+              '',
+              index
+            ),
+          votes:
+            Number(
+              row.votes
+              ||
+              0
+            )
+        };
+
+      }
+    )
+    .filter(
+      row=>
+        row.votes>0
+    )
+    .sort(
+      (a,b)=>
+        b.votes-a.votes
+    );
+
+  }
 
 
   const providerColors={
@@ -1788,17 +2053,19 @@
 
   async function drawVoting(serial){
 
-    const rows=
-      voteRows.map(
+    const category =
+      selectedVotingCategory();
+
+
+    const rows =
+      voteRowsForSelectedCategory()
+      .map(
         row=>({
-
           ...row,
-
           value:
             Number(
               row.votes
             )
-
         })
       );
 
@@ -1806,8 +2073,18 @@
     return drawBars(
       serial,
       rows,
-      'Metron Community Voting',
-      'Current published community-vote ranking',
+      (
+        'Metron Community Voting · '
+        +
+        category.label
+      ),
+      (
+        'Current published '
+        +
+        category.label
+        +
+        ' community-vote ranking'
+      ),
       row=>
         Number(
           row.value
@@ -1828,7 +2105,619 @@
               )
             : ''
         ),
-      'SOURCE: ZORIX METRON COMMUNITY VOTING'
+      (
+        'SOURCE: ZORIX METRON COMMUNITY VOTING · CATEGORY: '
+        +
+        String(
+          category.label
+        )
+        .toUpperCase()
+      )
+    );
+
+  }
+
+
+  /* SHARE_VOTING_ARENA_CARD_V1 */
+
+  async function drawVotingCard(
+    serial
+  ){
+
+    const category =
+      selectedVotingCategory();
+
+
+    const rows =
+      voteRowsForSelectedCategory()
+      .slice(
+        0,
+        Math.max(
+          1,
+          Number(
+            count.value
+            ||
+            8
+          )
+        )
+      );
+
+
+    clear(
+      '#faf8f1'
+    );
+
+
+    text(
+      (
+        'Community Voting: '
+        +
+        category.label
+      ),
+      55,
+      80,
+      51,
+      '400',
+      '#171713',
+      'left',
+      'Georgia, "Times New Roman", serif'
+    );
+
+
+    text(
+      'ZORIX',
+      1315,
+      70,
+      34,
+      '700',
+      '#171713',
+      'left'
+    );
+
+
+    text(
+      'METRON',
+      1318,
+      102,
+      15,
+      '600',
+      '#5f5b54',
+      'left',
+      'ui-monospace, monospace'
+    );
+
+
+    if(!rows.length){
+
+      text(
+        (
+          'No '
+          +
+          category.label
+          +
+          ' voting scores published yet.'
+        ),
+        55,
+        270,
+        32,
+        '600',
+        '#33302b'
+      );
+
+
+      text(
+        'External Arena scores are not converted into Zorix community votes.',
+        55,
+        318,
+        18,
+        '400',
+        '#6b675f'
+      );
+
+
+      text(
+        (
+          'SOURCE: ZORIX METRON COMMUNITY VOTING · CATEGORY: '
+          +
+          String(
+            category.label
+          )
+          .toUpperCase()
+        ),
+        55,
+        850,
+        12,
+        '400',
+        '#6b675f',
+        'left',
+        'ui-monospace, monospace'
+      );
+
+
+      return;
+    }
+
+
+    const top =
+      rows[0];
+
+
+    ctx.font =
+      'italic 46px Georgia, "Times New Roman", serif';
+
+
+    const prefix =
+      clip(
+        top.name,
+        34
+      )
+      +
+      ':';
+
+
+    const highlightWidth =
+      Math.min(
+        900,
+        ctx.measureText(
+          prefix
+        ).width
+        +
+        22
+      );
+
+
+    ctx.fillStyle =
+      '#f2d13d';
+
+
+    ctx.fillRect(
+      55,
+      101,
+      highlightWidth,
+      51
+    );
+
+
+    text(
+      prefix,
+      64,
+      142,
+      46,
+      '400',
+      '#171713',
+      'left',
+      'Georgia, "Times New Roman", serif'
+    );
+
+
+    text(
+      'Ranked #1',
+      82+
+      highlightWidth,
+      142,
+      43,
+      '400',
+      '#171713',
+      'left',
+      'Georgia, "Times New Roman", serif'
+    );
+
+
+    const logos =
+      await Promise.all(
+        rows.map(
+          row=>
+            loadImage(
+              row.logo
+            )
+        )
+      );
+
+
+    if(
+      serial
+      !==
+      renderSerial
+    ){
+      return;
+    }
+
+
+    const values =
+      rows.map(
+        row=>
+          Number(
+            row.votes
+          )
+      );
+
+
+    const minimum =
+      Math.min(
+        ...values
+      );
+
+
+    const maximum =
+      Math.max(
+        ...values
+      );
+
+
+    const domainLow =
+      Math.max(
+        0,
+        Math.floor(
+          (
+            minimum-50
+          )
+          /
+          50
+        )
+        *
+        50
+      );
+
+
+    const domainHigh =
+      Math.ceil(
+        (
+          maximum+10
+        )
+        /
+        50
+      )
+      *
+      50;
+
+
+    const barLeft =
+      650;
+
+
+    const barRight =
+      1430;
+
+
+    const availableHeight =
+      548;
+
+
+    const rowTop =
+      225;
+
+
+    const rowHeight =
+      Math.min(
+        52,
+        availableHeight
+        /
+        rows.length
+      );
+
+
+    const labelSize =
+      rowHeight<31
+        ? 16
+        : rowHeight<40
+          ? 20
+          : 25;
+
+
+    const valueSize =
+      rowHeight<31
+        ? 14
+        : 19;
+
+
+    const barHeight =
+      Math.max(
+        12,
+        Math.min(
+          30,
+          rowHeight*.62
+        )
+      );
+
+
+    for(
+      let tick=domainLow;
+      tick<=domainHigh;
+      tick+=50
+    ){
+
+      const x =
+        barLeft
+        +
+        (
+          (
+            tick-domainLow
+          )
+          /
+          Math.max(
+            1,
+            domainHigh-domainLow
+          )
+        )
+        *
+        (
+          barRight-barLeft
+        );
+
+
+      ctx.strokeStyle =
+        '#e2ddd1';
+
+
+      ctx.lineWidth =
+        1;
+
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        x,
+        rowTop-12
+      );
+
+      ctx.lineTo(
+        x,
+        rowTop+
+        rows.length*
+        rowHeight+
+        12
+      );
+
+      ctx.stroke();
+
+
+      text(
+        Number(
+          tick
+        )
+        .toLocaleString(
+          'en-US'
+        ),
+        x,
+        rowTop+
+        rows.length*
+        rowHeight+
+        40,
+        13,
+        '400',
+        '#6a655c',
+        'center',
+        'ui-monospace, monospace'
+      );
+
+    }
+
+
+    rows.forEach(
+      (row,index)=>{
+
+        const y =
+          rowTop
+          +
+          index
+          *
+          rowHeight;
+
+
+        if(index===0){
+
+          ctx.strokeStyle =
+            '#e0bb00';
+
+
+          ctx.lineWidth =
+            4;
+
+
+          rounded(
+            16,
+            y-8,
+            1515,
+            rowHeight-2,
+            13
+          );
+
+
+          ctx.stroke();
+
+        }
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+          64,
+          y+
+          rowHeight*.36,
+          Math.max(
+            12,
+            rowHeight*.26
+          ),
+          0,
+          Math.PI*2
+        );
+
+
+        ctx.strokeStyle =
+          '#d5d0c4';
+
+
+        ctx.lineWidth =
+          2;
+
+
+        ctx.stroke();
+
+
+        text(
+          String(
+            index+1
+          ),
+          64,
+          y+
+          rowHeight*.36+
+          6,
+          rowHeight<35
+            ? 13
+            : 18,
+          '500',
+          '#5d5952',
+          'center'
+        );
+
+
+        text(
+          clip(
+            row.name,
+            rowHeight<35
+              ? 24
+              : 34
+          ),
+          105,
+          y+
+          rowHeight*.36+
+          7,
+          labelSize,
+          '500',
+          '#26231f'
+        );
+
+
+        const logo =
+          logos[index];
+
+
+        if(logo){
+
+          const size =
+            Math.max(
+              18,
+              Math.min(
+                30,
+                rowHeight*.62
+              )
+            );
+
+
+          ctx.drawImage(
+            logo,
+            565,
+            y+
+            rowHeight*.36
+            -
+            size/2,
+            size,
+            size
+          );
+
+        }
+
+
+        const progress =
+          (
+            Number(
+              row.votes
+            )
+            -
+            domainLow
+          )
+          /
+          Math.max(
+            1,
+            domainHigh-domainLow
+          );
+
+
+        const width =
+          Math.max(
+            4,
+            progress
+            *
+            (
+              barRight-barLeft
+            )
+          );
+
+
+        ctx.fillStyle =
+          '#1d3197';
+
+
+        rounded(
+          barLeft,
+          y+
+          rowHeight*.36
+          -
+          barHeight/2,
+          width,
+          barHeight,
+          3
+        );
+
+
+        ctx.fill();
+
+
+        text(
+          Number(
+            row.votes
+          )
+          .toLocaleString(
+            'en-US'
+          ),
+          Math.min(
+            1512,
+            barLeft+
+            width+
+            17
+          ),
+          y+
+          rowHeight*.36+
+          7,
+          valueSize,
+          '500',
+          '#6a655c',
+          'left',
+          'ui-monospace, monospace'
+        );
+
+      }
+    );
+
+
+    text(
+      (
+        'SOURCE: ZORIX METRON COMMUNITY VOTING · CATEGORY: '
+        +
+        String(
+          category.label
+        )
+        .toUpperCase()
+      ),
+      55,
+      850,
+      12,
+      '400',
+      '#6b675f',
+      'left',
+      'ui-monospace, monospace'
+    );
+
+
+    text(
+      'NOTE: COMMUNITY VOTE SCORE',
+      1290,
+      850,
+      12,
+      '400',
+      '#6b675f',
+      'left',
+      'ui-monospace, monospace'
     );
 
   }
@@ -4115,10 +5004,19 @@
     }
 
 
+    if(voteCategoryControls){
+
+      voteCategoryControls.style.display=
+        'none';
+
+    }
+
+
     controls
       ?.classList.remove(
         'landscape-active',
-        'trend-active'
+        'trend-active',
+        'voting-active'
       );
 
 
@@ -4241,7 +5139,11 @@
           'trend-active'
         );
 
-    }else if(type==='voting'){
+    }else if(
+      type==='voting'
+      ||
+      type==='voting-card'
+    ){
 
       setOptions(
         [[
@@ -4250,6 +5152,20 @@
         ]],
         true
       );
+
+
+      if(voteCategoryControls){
+
+        voteCategoryControls.style.display=
+          '';
+
+      }
+
+
+      controls
+        ?.classList.add(
+          'voting-active'
+        );
 
     }else if(
       type==='intelligence-cost'
@@ -4497,6 +5413,12 @@
     }else if(type==='voting'){
 
       await drawVoting(
+        serial
+      );
+
+    }else if(type==='voting-card'){
+
+      await drawVotingCard(
         serial
       );
 
@@ -5066,6 +5988,15 @@
       scheduleRender
     );
 
+
+  shareVoteCategory
+    ?.addEventListener(
+      'change',
+      scheduleRender
+    );
+
+
+  populateVotingCategories();
 
   configureControls();
 

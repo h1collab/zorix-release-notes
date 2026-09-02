@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788181089">
+<meta name="zorix-build" content="1788367590">
 
 
 
@@ -1595,6 +1595,61 @@ h1{
 
 }
 
+
+/* VOTING_CATEGORY_SELECTOR_V1 */
+
+.vote-category-bar{
+  margin:27px 0 4px;
+  padding:16px 17px;
+
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(180px,280px);
+  gap:18px;
+  align-items:center;
+
+  border:1px solid var(--line);
+  border-radius:12px;
+
+  background:var(--soft);
+}
+
+.vote-category-title{
+  font-size:13px;
+  font-weight:600;
+}
+
+.vote-category-copy{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.45;
+}
+
+.vote-category-state{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:9px;
+}
+
+.vote-category-select{
+  width:100%;
+  min-height:42px;
+
+  padding:0 12px;
+
+  border:1px solid var(--line);
+  border-radius:9px;
+
+  background:#fff;
+  outline:none;
+}
+
+@media(max-width:700px){
+  .vote-category-bar{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 
 </head>
@@ -1692,6 +1747,33 @@ h1{
 
 
 
+
+
+<section
+  class="vote-category-bar"
+  aria-label="Voting category"
+>
+  <div>
+    <div class="vote-category-title">
+      Voting category
+    </div>
+
+    <div class="vote-category-copy">
+      Rankings and recorded history are separated by task category.
+    </div>
+
+    <div
+      class="vote-category-state"
+      id="voteCategoryState"
+    ></div>
+  </div>
+
+  <select
+    class="vote-category-select"
+    id="voteCategorySelect"
+    aria-label="Select voting category"
+  ></select>
+</section>
 
 <section class="vote-viz-v3">
 
@@ -1916,7 +1998,167 @@ h1{
 
 <script src="../models.js?v=1788181089"></script>
 <script src="../model-index.js"></script>
-<script src="./votes.js?v=1788181089"></script>
+<script src="./votes.js?v=1788367590"></script>
+
+<script>
+/* VOTING_CATEGORY_DATA_SWITCH_V1 */
+(() => {
+  const raw =
+    window.ZORIX_COMMUNITY_VOTES
+    || {
+      models:[],
+      history:[],
+      categories:{}
+    };
+
+  const categories =
+    (
+      raw.categories
+      && typeof raw.categories === "object"
+    )
+      ? raw.categories
+      : {};
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  let requested =
+    params.get("category")
+    || raw.defaultCategory
+    || "overall";
+
+  if (
+    requested !== "overall"
+    && !categories[requested]
+  ) {
+    requested = "overall";
+  }
+
+  const selected =
+    requested === "overall"
+      ? {
+          label:
+            categories.overall?.label
+            || "Overall",
+          models:
+            raw.models || [],
+          history:
+            raw.history || []
+        }
+      : (
+          categories[requested]
+          || {
+            label:requested,
+            models:[],
+            history:[]
+          }
+        );
+
+  window.ZORIX_COMMUNITY_VOTES = {
+    ...raw,
+    activeCategory:requested,
+    activeCategoryLabel:
+      selected.label || requested,
+    models:
+      Array.isArray(selected.models)
+        ? selected.models
+        : [],
+    history:
+      Array.isArray(selected.history)
+        ? selected.history
+        : []
+  };
+
+  const select =
+    document.getElementById(
+      "voteCategorySelect"
+    );
+
+  const state =
+    document.getElementById(
+      "voteCategoryState"
+    );
+
+  const entries = [
+    [
+      "overall",
+      categories.overall?.label
+      || "Overall"
+    ],
+    ...Object.entries(categories)
+      .filter(([id]) => id !== "overall")
+      .map(
+        ([id,item]) => [
+          id,
+          item?.label || id
+        ]
+      )
+  ];
+
+  if (select) {
+    select.innerHTML =
+      entries.map(
+        ([id,label]) =>
+          '<option value="'
+          + String(id)
+            .replace(/"/g,"&quot;")
+          + '">'
+          + String(label)
+            .replace(/&/g,"&amp;")
+            .replace(/</g,"&lt;")
+          + '</option>'
+      ).join("");
+
+    select.value = requested;
+
+    select.addEventListener(
+      "change",
+      () => {
+        const next =
+          select.value || "overall";
+
+        const url =
+          new URL(
+            window.location.href
+          );
+
+        if (next === "overall") {
+          url.searchParams.delete(
+            "category"
+          );
+        } else {
+          url.searchParams.set(
+            "category",
+            next
+          );
+        }
+
+        window.location.href =
+          url.toString();
+      }
+    );
+  }
+
+  if (state) {
+    const count =
+      Array.isArray(selected.models)
+        ? selected.models.length
+        : 0;
+
+    state.textContent =
+      (
+        (selected.label || requested)
+        + " · "
+        + count
+        + " published model score"
+        + (count === 1 ? "" : "s")
+      );
+  }
+})();
+</script>
+
 
 <script>
 /* VOTING_MODEL_INDEX_FALLBACK_V1 */

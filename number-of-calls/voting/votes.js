@@ -1,6 +1,7 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-01T09:05:38+02:00",
+  "updatedAt": "2026-09-02T18:46:31+02:00",
   "metric": "community_votes",
+  "defaultCategory": "overall",
   "models": [
     {
       "id": "nex-coder-38-neptune",
@@ -3245,5 +3246,16 @@ window.ZORIX_COMMUNITY_VOTES = {
       },
       "note": "Control Center bulk voting update"
     }
-  ]
+  ],
+  "categories": {
+    "overall": {
+      "label": "Overall"
+    },
+    "webdev": {
+      "label": "WebDev",
+      "description": "Community voting for WebDev-specific model preference.",
+      "models": [],
+      "history": []
+    }
+  }
 };
