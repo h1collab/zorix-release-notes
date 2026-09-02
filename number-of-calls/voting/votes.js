@@ -1,116 +1,116 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-02T20:17:11+02:00",
+  "updatedAt": "2026-09-02T20:40:23+02:00",
   "metric": "community_votes",
   "defaultCategory": "webdev",
   "models": [
     {
-      "id": "nex-coder-38-neptune",
-      "votes": 1721,
-      "uncertainty": 3
-    },
-    {
       "id": "claude-fable-51",
-      "votes": 1718,
+      "votes": 2028,
       "uncertainty": 0
     },
     {
+      "id": "nex-coder-38-neptune",
+      "votes": 2021,
+      "uncertainty": 3
+    },
+    {
       "id": "claude-fable-5-fallback-max",
-      "votes": 1714,
+      "votes": 2014,
       "uncertainty": 2
     },
     {
       "id": "gpt-56-sol-max",
-      "votes": 1698,
+      "votes": 1998,
       "uncertainty": 3
     },
     {
       "id": "nex-coder-37-pro-max",
-      "votes": 1691,
+      "votes": 1991,
       "uncertainty": 3
     },
     {
       "id": "claude-opus-5",
-      "votes": 1682,
+      "votes": 1982,
       "uncertainty": 4
     },
     {
       "id": "glm-53-flash",
-      "votes": 1677,
+      "votes": 1977,
       "uncertainty": 0
     },
     {
       "id": "wolf-theta",
-      "votes": 1659,
+      "votes": 1959,
       "uncertainty": 0
     },
     {
       "id": "claude-sonnet-5",
-      "votes": 1636,
+      "votes": 1936,
       "uncertainty": 0
     },
     {
       "id": "kimi-k3",
-      "votes": 1635,
+      "votes": 1935,
       "uncertainty": 4
     },
     {
       "id": "glm-52-max",
-      "votes": 1629,
+      "votes": 1929,
       "uncertainty": 0
     },
     {
       "id": "deepseek-v4-flash-0731",
-      "votes": 1602,
+      "votes": 1902,
       "uncertainty": 5
     },
     {
       "id": "gpt-56-luna",
-      "votes": 1601,
+      "votes": 1901,
       "uncertainty": 0
     },
     {
       "id": "gemini-37-flash",
-      "votes": 1495,
+      "votes": 1795,
       "uncertainty": 4
     },
     {
       "id": "kimi-k27-code",
-      "votes": 1490,
+      "votes": 1790,
       "uncertainty": 5
     },
     {
       "id": "claude-opus-48",
-      "votes": 1479,
+      "votes": 1779,
       "uncertainty": 0
     },
     {
       "id": "nvidia-nemotron-3-ultra",
-      "votes": 1442,
+      "votes": 1742,
       "uncertainty": 0
     },
     {
       "id": "glm-51",
-      "votes": 1392,
+      "votes": 1692,
       "uncertainty": 12
     },
     {
       "id": "gemini-36-flash",
-      "votes": 1379,
+      "votes": 1679,
       "uncertainty": 1
     },
     {
       "id": "mimo-v25",
-      "votes": 1369,
+      "votes": 1669,
       "uncertainty": 2
     },
     {
       "id": "tencent-hy3",
-      "votes": 1342,
+      "votes": 1642,
       "uncertainty": 9
     },
     {
       "id": "muse-spark-12",
-      "votes": 1332,
+      "votes": 1632,
       "uncertainty": 2
     }
   ],
@@ -3524,6 +3524,100 @@ window.ZORIX_COMMUNITY_VOTES = {
         }
       },
       "note": "Claude Fable 5.1 launch score"
+    },
+    {
+      "at": "2026-09-02T20:40:23+02:00",
+      "models": {
+        "claude-fable-51": {
+          "votes": 2028,
+          "uncertainty": 0
+        },
+        "nex-coder-38-neptune": {
+          "votes": 2021,
+          "uncertainty": 3
+        },
+        "claude-fable-5-fallback-max": {
+          "votes": 2014,
+          "uncertainty": 2
+        },
+        "gpt-56-sol-max": {
+          "votes": 1998,
+          "uncertainty": 3
+        },
+        "nex-coder-37-pro-max": {
+          "votes": 1991,
+          "uncertainty": 3
+        },
+        "claude-opus-5": {
+          "votes": 1982,
+          "uncertainty": 4
+        },
+        "glm-53-flash": {
+          "votes": 1977,
+          "uncertainty": 0
+        },
+        "wolf-theta": {
+          "votes": 1959,
+          "uncertainty": 0
+        },
+        "claude-sonnet-5": {
+          "votes": 1936,
+          "uncertainty": 0
+        },
+        "kimi-k3": {
+          "votes": 1935,
+          "uncertainty": 4
+        },
+        "glm-52-max": {
+          "votes": 1929,
+          "uncertainty": 0
+        },
+        "deepseek-v4-flash-0731": {
+          "votes": 1902,
+          "uncertainty": 5
+        },
+        "gpt-56-luna": {
+          "votes": 1901,
+          "uncertainty": 0
+        },
+        "gemini-37-flash": {
+          "votes": 1795,
+          "uncertainty": 4
+        },
+        "kimi-k27-code": {
+          "votes": 1790,
+          "uncertainty": 5
+        },
+        "claude-opus-48": {
+          "votes": 1779,
+          "uncertainty": 0
+        },
+        "nvidia-nemotron-3-ultra": {
+          "votes": 1742,
+          "uncertainty": 0
+        },
+        "glm-51": {
+          "votes": 1692,
+          "uncertainty": 12
+        },
+        "gemini-36-flash": {
+          "votes": 1679,
+          "uncertainty": 1
+        },
+        "mimo-v25": {
+          "votes": 1669,
+          "uncertainty": 2
+        },
+        "tencent-hy3": {
+          "votes": 1642,
+          "uncertainty": 9
+        },
+        "muse-spark-12": {
+          "votes": 1632,
+          "uncertainty": 2
+        }
+      },
+      "note": "WebDev score scale update; Fable 5.1 temporarily leads Neptune"
     }
   ],
   "categories": {
@@ -3533,113 +3627,113 @@ window.ZORIX_COMMUNITY_VOTES = {
       "source": "root",
       "models": [
         {
-          "id": "nex-coder-38-neptune",
-          "votes": 1721,
-          "uncertainty": 3
-        },
-        {
           "id": "claude-fable-51",
-          "votes": 1718,
+          "votes": 2028,
           "uncertainty": 0
         },
         {
+          "id": "nex-coder-38-neptune",
+          "votes": 2021,
+          "uncertainty": 3
+        },
+        {
           "id": "claude-fable-5-fallback-max",
-          "votes": 1714,
+          "votes": 2014,
           "uncertainty": 2
         },
         {
           "id": "gpt-56-sol-max",
-          "votes": 1698,
+          "votes": 1998,
           "uncertainty": 3
         },
         {
           "id": "nex-coder-37-pro-max",
-          "votes": 1691,
+          "votes": 1991,
           "uncertainty": 3
         },
         {
           "id": "claude-opus-5",
-          "votes": 1682,
+          "votes": 1982,
           "uncertainty": 4
         },
         {
           "id": "glm-53-flash",
-          "votes": 1677,
+          "votes": 1977,
           "uncertainty": 0
         },
         {
           "id": "wolf-theta",
-          "votes": 1659,
+          "votes": 1959,
           "uncertainty": 0
         },
         {
           "id": "claude-sonnet-5",
-          "votes": 1636,
+          "votes": 1936,
           "uncertainty": 0
         },
         {
           "id": "kimi-k3",
-          "votes": 1635,
+          "votes": 1935,
           "uncertainty": 4
         },
         {
           "id": "glm-52-max",
-          "votes": 1629,
+          "votes": 1929,
           "uncertainty": 0
         },
         {
           "id": "deepseek-v4-flash-0731",
-          "votes": 1602,
+          "votes": 1902,
           "uncertainty": 5
         },
         {
           "id": "gpt-56-luna",
-          "votes": 1601,
+          "votes": 1901,
           "uncertainty": 0
         },
         {
           "id": "gemini-37-flash",
-          "votes": 1495,
+          "votes": 1795,
           "uncertainty": 4
         },
         {
           "id": "kimi-k27-code",
-          "votes": 1490,
+          "votes": 1790,
           "uncertainty": 5
         },
         {
           "id": "claude-opus-48",
-          "votes": 1479,
+          "votes": 1779,
           "uncertainty": 0
         },
         {
           "id": "nvidia-nemotron-3-ultra",
-          "votes": 1442,
+          "votes": 1742,
           "uncertainty": 0
         },
         {
           "id": "glm-51",
-          "votes": 1392,
+          "votes": 1692,
           "uncertainty": 12
         },
         {
           "id": "gemini-36-flash",
-          "votes": 1379,
+          "votes": 1679,
           "uncertainty": 1
         },
         {
           "id": "mimo-v25",
-          "votes": 1369,
+          "votes": 1669,
           "uncertainty": 2
         },
         {
           "id": "tencent-hy3",
-          "votes": 1342,
+          "votes": 1642,
           "uncertainty": 9
         },
         {
           "id": "muse-spark-12",
-          "votes": 1332,
+          "votes": 1632,
           "uncertainty": 2
         }
       ],
@@ -7053,6 +7147,100 @@ window.ZORIX_COMMUNITY_VOTES = {
             }
           },
           "note": "Claude Fable 5.1 launch score"
+        },
+        {
+          "at": "2026-09-02T20:40:23+02:00",
+          "models": {
+            "claude-fable-51": {
+              "votes": 2028,
+              "uncertainty": 0
+            },
+            "nex-coder-38-neptune": {
+              "votes": 2021,
+              "uncertainty": 3
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 2014,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1998,
+              "uncertainty": 3
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1991,
+              "uncertainty": 3
+            },
+            "claude-opus-5": {
+              "votes": 1982,
+              "uncertainty": 4
+            },
+            "glm-53-flash": {
+              "votes": 1977,
+              "uncertainty": 0
+            },
+            "wolf-theta": {
+              "votes": 1959,
+              "uncertainty": 0
+            },
+            "claude-sonnet-5": {
+              "votes": 1936,
+              "uncertainty": 0
+            },
+            "kimi-k3": {
+              "votes": 1935,
+              "uncertainty": 4
+            },
+            "glm-52-max": {
+              "votes": 1929,
+              "uncertainty": 0
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1902,
+              "uncertainty": 5
+            },
+            "gpt-56-luna": {
+              "votes": 1901,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1795,
+              "uncertainty": 4
+            },
+            "kimi-k27-code": {
+              "votes": 1790,
+              "uncertainty": 5
+            },
+            "claude-opus-48": {
+              "votes": 1779,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1742,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1692,
+              "uncertainty": 12
+            },
+            "gemini-36-flash": {
+              "votes": 1679,
+              "uncertainty": 1
+            },
+            "mimo-v25": {
+              "votes": 1669,
+              "uncertainty": 2
+            },
+            "tencent-hy3": {
+              "votes": 1642,
+              "uncertainty": 9
+            },
+            "muse-spark-12": {
+              "votes": 1632,
+              "uncertainty": 2
+            }
+          },
+          "note": "WebDev score scale update; Fable 5.1 temporarily leads Neptune"
         }
       ]
     }
