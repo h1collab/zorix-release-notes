@@ -625,6 +625,8 @@
           ...row,
           id,
           name:
+            row.voteLabel
+            ||
             model?.name
             ||
             row.name

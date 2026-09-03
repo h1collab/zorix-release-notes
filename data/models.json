@@ -301,5 +301,21 @@
     "about": "Tencent Hy4 preview is a next-generation Mixture-of-Experts flagship model from the Tencent Hy Team. Public Tencent material describes a 770B total-parameter backbone with 49B parameters activated per token, Gated DSA sparse attention, iHC residual connections and native MTP speculative decoding. Tencent publicly released and open-sourced Hy4 preview on Aug 28, 2026. Zorix began tracking the model on Sep 1, 2026. The currently published Zorix Metron observation is 17.9B tokens over a five-hour window. No daily, weekly or 30-day Hy4 token total has been published by Zorix.",
     "docs": "",
     "chart": []
+  },
+  {
+    "id": "gemini-38-flash",
+    "name": "Gemini 3.8 Flash",
+    "provider": "Google",
+    "family": "Gemini 3.8",
+    "tokens": 0,
+    "status": "Voting tracked",
+    "logo": "/number-of-calls/assets/logos/google.svg",
+    "color": "#4285F4",
+    "includeInTokenRanking": false,
+    "usageMetric": "community_votes",
+    "source": "Zorix Metron community voting",
+    "about": "Gemini 3.8 Flash is currently represented in Zorix Metron WebDev community voting. No Zorix token-usage or request-volume observation is published for this model in this entry.",
+    "docs": "",
+    "chart": []
   }
 ]
