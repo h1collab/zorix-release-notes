@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788181089">
+<meta name="zorix-build" content="1788417752">
 
 
 
@@ -2343,6 +2343,310 @@ h1{
 }
 
 
+
+
+/* =========================================================
+   THIRD_PARTY_EVIDENCE_STYLE_V1
+   ========================================================= */
+
+.evidence-list{
+  display:grid;
+  gap:10px;
+}
+
+.evidence-card{
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--soft2);
+}
+
+.evidence-top{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+  margin-bottom:15px;
+}
+
+.evidence-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  padding:0 8px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  color:var(--muted);
+  font-size:9px;
+}
+
+.evidence-title{
+  font-size:18px;
+  line-height:1.35;
+  letter-spacing:-.025em;
+}
+
+.evidence-copy{
+  max-width:780px;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+.evidence-warning{
+  margin-top:15px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  color:#777;
+  font-size:10px;
+  line-height:1.55;
+}
+
+
+
+
+/* =========================================================
+   EVIDENCE_REFERENCE_CAROUSEL_V3
+   ========================================================= */
+
+.evidence-list{
+  display:flex;
+
+  gap:14px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding-bottom:17px;
+
+  scroll-snap-type:
+    x mandatory;
+
+  scroll-behavior:smooth;
+
+  overscroll-behavior-x:
+    contain;
+
+  -webkit-overflow-scrolling:
+    touch;
+}
+
+.evidence-card{
+  flex:
+    0
+    0
+    min(
+      650px,
+      88vw
+    );
+
+  min-width:
+    min(
+      650px,
+      88vw
+    );
+
+  scroll-snap-align:start;
+
+  scroll-snap-stop:always;
+}
+
+.evidence-reference-title{
+  margin-top:22px;
+
+  padding-top:17px;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.055em;
+}
+
+.evidence-references{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:11px;
+}
+
+.evidence-reference{
+  min-width:0;
+
+  display:inline-flex;
+
+  flex-direction:column;
+
+  gap:3px;
+
+  padding:
+    9px
+    11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:10px;
+
+  background:#fff;
+
+  transition:
+    background .15s ease,
+    border-color .15s ease;
+}
+
+.evidence-reference:hover{
+  background:#f3f3f0;
+  border-color:#c2c2bd;
+}
+
+.evidence-reference-name{
+  font-size:11px;
+  font-weight:600;
+}
+
+.evidence-reference-kind{
+  color:var(--muted);
+
+  font-size:8px;
+}
+
+.evidence-reference-arrow{
+  margin-left:5px;
+
+  color:#777;
+}
+
+.evidence-reference-note{
+  margin-top:10px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  line-height:1.5;
+}
+
+@media(max-width:760px){
+
+  .evidence-card{
+    flex-basis:
+      calc(
+        100vw
+        -
+        54px
+      );
+
+    min-width:
+      calc(
+        100vw
+        -
+        54px
+      );
+  }
+
+}
+
+
+
+/* NEPTUNE_RESEARCH_CARD_V1 */
+.neptune-research{
+  display:none;
+  padding:58px 0;
+  border-bottom:1px solid var(--line);
+}
+.neptune-research-card{
+  padding:26px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--soft2);
+}
+.neptune-research-top{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:flex-start;
+}
+.neptune-research-kicker{
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.neptune-research-title{
+  max-width:760px;
+  margin-top:10px;
+  font-size:clamp(25px,4vw,39px);
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+.neptune-research-status{
+  flex:0 0 auto;
+  padding:7px 9px;
+  border:1px solid rgba(20,184,122,.28);
+  border-radius:999px;
+  color:var(--good);
+  font-size:10px;
+}
+.neptune-research-formula{
+  margin-top:30px;
+  padding:22px;
+  overflow-x:auto;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(18px,2.8vw,28px);
+  white-space:nowrap;
+}
+.neptune-research-copy{
+  max-width:820px;
+  margin-top:25px;
+  color:#44443f;
+  font-size:13px;
+  line-height:1.65;
+}
+.neptune-research-meta{
+  margin-top:22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.neptune-research-chip{
+  padding:7px 9px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  font-size:9px;
+}
+.neptune-research-link{
+  display:inline-flex;
+  align-items:center;
+  margin-top:24px;
+  padding:10px 13px;
+  border:1px solid var(--text);
+  border-radius:9px;
+  background:#fff;
+  font-size:12px;
+}
+.neptune-research-link::after{
+  content:"→";
+  margin-left:12px;
+}
+@media(max-width:700px){
+  .neptune-research-top{flex-direction:column}
+}
+
 </style>
 
 </head>
@@ -2523,7 +2827,7 @@ h1{
 
     <a
       class="model-menu-item"
-      href="./voting/"
+      href="/number-of-calls/voting/"
     >
       <div>
 
@@ -3037,6 +3341,39 @@ h1{
 
 
 
+<section
+  class="section"
+  id="thirdPartyEvidenceSection"
+  hidden
+>
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="section-title">
+        Third-party observations
+      </div>
+
+      <div class="section-copy">
+        External observations that may help investigate
+        Wolf Theta's identity. These records are not treated
+        as confirmation of the underlying model.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="evidence-list"
+    id="thirdPartyEvidenceList"
+  ></div>
+
+</section>
+
+
 <section class="section">
 
   <div class="section-head">
@@ -3172,6 +3509,53 @@ h1{
 
 </section>
 
+
+<!-- NEPTUNE_RESEARCH_CARD_V1 -->
+<section
+  class="neptune-research"
+  id="neptuneResearchSection"
+  aria-labelledby="neptuneResearchTitle"
+>
+  <div class="neptune-research-card">
+    <div class="neptune-research-top">
+      <div>
+        <div class="neptune-research-kicker">
+          Neptune Research · Sep 3, 2026
+        </div>
+        <div class="neptune-research-title" id="neptuneResearchTitle">
+          Degree-variance correction for independent sets
+        </div>
+      </div>
+      <div class="neptune-research-status">Proved</div>
+    </div>
+
+    <div class="neptune-research-formula">
+      α(G) ≥ n/(d̄+1) + nσ²<sub>d</sub>/((d̄+1)²(Δ+1))
+    </div>
+
+    <div class="neptune-research-copy">
+      Neptune produced a proof from the Caro–Wei bound and an exact
+      algebraic identity, then reported an exhaustive finite cross-check
+      through all labeled simple graphs on at most six vertices.
+      Historical novelty is not claimed.
+    </div>
+
+    <div class="neptune-research-meta">
+      <span class="neptune-research-chip">Analytic proof</span>
+      <span class="neptune-research-chip">n ≤ 6 exhaustive check</span>
+      <span class="neptune-research-chip">0 reported counterexamples</span>
+      <span class="neptune-research-chip">Novelty unverified</span>
+    </div>
+
+    <a
+      class="neptune-research-link"
+      href="/number-of-calls/models/nex-coder-38-neptune/research/degree-variance-independent-set/"
+    >
+      Open full research note
+    </a>
+  </div>
+</section>
+
 </main>
 
 
@@ -3188,7 +3572,7 @@ h1{
 
     <a
       class="bottom-button"
-      href="./voting/"
+      href="/number-of-calls/voting/"
     >
       Voting leaderboard ↗
     </a>
@@ -4419,6 +4803,82 @@ if(!model){
         );
 
   }else if(
+    model.fiveHourOnlyTokens
+  ){
+
+    /* FIVE_HOUR_MODEL_USAGE_V1 */
+
+    const copy =
+      document.getElementById(
+        "usageSectionCopy"
+      );
+
+
+    if(copy){
+
+      copy.textContent =
+        (
+          "A five-hour Zorix Metron token observation is "
+          +
+          "published for this newly tracked model. "
+          +
+          "No daily, weekly or historical token series "
+          +
+          "is inferred from that period total."
+        );
+
+    }
+
+
+    const dailyLabel =
+      document.getElementById(
+        "dailyLabel"
+      );
+
+
+    const weeklyLabel =
+      document.getElementById(
+        "weeklyLabel"
+      );
+
+
+    if(dailyLabel){
+
+      dailyLabel.textContent =
+        "5-hour observation";
+
+    }
+
+
+    if(weeklyLabel){
+
+      weeklyLabel.textContent =
+        "Daily total";
+
+    }
+
+
+    document
+      .getElementById(
+        "daily"
+      )
+      .textContent =
+        fmt(
+          model.fiveHourTokens
+        )
+        +
+        " tokens / 5h";
+
+
+    document
+      .getElementById(
+        "weekly"
+      )
+      .textContent =
+        "Not published";
+
+
+  }else if(
     model.weeklyOnlyTokens
   ){
 
@@ -4432,11 +4892,27 @@ if(!model){
 
       copy.textContent =
         (
-          "A weekly Zorix Metron token observation is published "
-          +
-          "for this model. No measured daily breakdown or "
-          +
-          "historical per-day series has been published."
+          (
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+          )
+            ? (
+                "Weekly and 30-day Zorix Metron token observations "
+                +
+                "are published for this model. No measured daily "
+                +
+                "breakdown or historical per-day series has been "
+                +
+                "published."
+              )
+            : (
+                "A weekly Zorix Metron token observation is published "
+                +
+                "for this model. No measured daily breakdown or "
+                +
+                "historical per-day series has been published."
+              )
         );
 
     }
@@ -4547,6 +5023,36 @@ if(!model){
 
 
   if(
+    model.fiveHourOnlyTokens &&
+    !arr.length
+  ){
+
+    chart.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div
+          style="
+            position:absolute;
+            inset:0;
+            display:grid;
+            place-items:center;
+            color:#777;
+            font-size:12px;
+            text-align:center;
+            padding:30px;
+          "
+        >
+          Historical daily token series not published.
+          Current 5-hour observation:
+          ${fmt(model.fiveHourTokens)} tokens.
+        </div>
+      `
+    );
+
+  }
+
+
+  if(
     model.weeklyOnlyTokens &&
     !arr.length
   ){
@@ -4568,6 +5074,19 @@ if(!model){
         >
           Historical daily token series not published.
           Current weekly observation: ${fmt(model.weeklyTokens)} tokens.
+          ${
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+              ? (
+                  " Current 30-day observation: "
+                  +
+                  fmt(model.thirtyDayTokens)
+                  +
+                  " tokens."
+                )
+              : ""
+          }
         </div>
       `
     );
@@ -5089,9 +5608,50 @@ if(!model){
             "Output",
             model.outputPrice
           ],
+          ...(
+            model.fiveHourTokens !== undefined
+            &&
+            model.fiveHourTokens !== null
+              ? [
+                  [
+                    "5-hour tokens",
+                    fmt(
+                      model.fiveHourTokens
+                    )
+                    +
+                    " / 5h"
+                  ],
+                  [
+                    "Zorix availability",
+                    model.launchDate ||
+                    "Not published"
+                  ],
+                  [
+                    "Provider release",
+                    model.providerReleaseDate ||
+                    "Not published"
+                  ],
+                  [
+                    "Maximum input",
+                    model.maxInputTokens ||
+                    "Not published"
+                  ],
+                  [
+                    "Maximum output",
+                    model.maxOutputTokens ||
+                    "Not published"
+                  ]
+                ]
+              : []
+          ),
+
           [
             "Daily tokens",
-            model.weeklyOnlyTokens
+            (
+              model.fiveHourOnlyTokens
+              ||
+              model.weeklyOnlyTokens
+            )
               ? "Not published"
               : fmt(
                   model.dailyTokens
@@ -5099,17 +5659,33 @@ if(!model){
           ],
           [
             "Weekly tokens",
-            model.weeklyOnlyTokens
-              ? (
-                  fmt(
+            model.fiveHourOnlyTokens
+              ? "Not published"
+              : model.weeklyOnlyTokens
+                ? (
+                    fmt(
+                      weekly()
+                    )
+                    +
+                    " / wk"
+                  )
+                : fmt(
                     weekly()
                   )
+          ],
+          [
+            "30-day tokens",
+            model.thirtyDayTokens !== undefined
+            &&
+            model.thirtyDayTokens !== null
+              ? (
+                  fmt(
+                    model.thirtyDayTokens
+                  )
                   +
-                  " / wk"
+                  " / 30d"
                 )
-              : fmt(
-                  weekly()
-                )
+              : "Not published"
           ]
         ];
 
@@ -5136,6 +5712,275 @@ if(!model){
       ).join("");
 
 
+  /* THIRD_PARTY_EVIDENCE_RENDER_V3 */
+
+  const evidence =
+    Array.isArray(
+      model.thirdPartyEvidence
+    )
+      ? model.thirdPartyEvidence
+      : [];
+
+
+  const evidenceSection =
+    document.getElementById(
+      "thirdPartyEvidenceSection"
+    );
+
+
+  const evidenceList =
+    document.getElementById(
+      "thirdPartyEvidenceList"
+    );
+
+
+  function evidenceEsc(value){
+
+    return String(
+      value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+
+  }
+
+
+  function evidenceReferenceHTML(
+    reference
+  ){
+
+    const url =
+      String(
+        reference?.url
+        ||
+        ""
+      );
+
+
+    if(!url){
+      return "";
+    }
+
+
+    const external =
+      /^https?:\/\//i
+      .test(
+        url
+      );
+
+
+    return `
+
+      <a
+        class="evidence-reference"
+        href="${evidenceEsc(url)}"
+        ${
+          external
+            ? (
+                'target="_blank" '
+                +
+                'rel="noopener"'
+              )
+            : ""
+        }
+      >
+
+        <span class="evidence-reference-name">
+
+          ${evidenceEsc(
+            reference.name
+            ||
+            "Reference model"
+          )}
+
+          <span class="evidence-reference-arrow">
+            ${
+              external
+                ? "↗"
+                : "→"
+            }
+          </span>
+
+        </span>
+
+
+        <span class="evidence-reference-kind">
+
+          ${evidenceEsc(
+            reference.kind
+            ||
+            reference.availability
+            ||
+            "Reference"
+          )}
+
+        </span>
+
+      </a>
+
+    `;
+
+  }
+
+
+  if(
+    evidence.length
+    &&
+    evidenceSection
+    &&
+    evidenceList
+  ){
+
+    evidenceSection.hidden =
+      false;
+
+
+    evidenceList.innerHTML =
+      evidence.map(
+        item=>{
+
+          const references =
+            Array.isArray(
+              item.references
+            )
+              ? item.references
+              : [];
+
+
+          return `
+
+            <article class="evidence-card">
+
+              <div class="evidence-top">
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.language
+                    ||
+                    "Unknown language"
+                  )}
+                </span>
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.type
+                    ||
+                    "Observation"
+                  )}
+                </span>
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.status
+                    ||
+                    "Unverified"
+                  )}
+                </span>
+
+                <span class="evidence-badge">
+                  ${evidenceEsc(
+                    item.confidence
+                    ||
+                    "Unclassified"
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="evidence-title">
+
+                ${evidenceEsc(
+                  item.finding
+                  ||
+                  "Observation recorded"
+                )}
+
+              </div>
+
+
+              ${
+                item.interpretation
+                  ? `
+
+                      <div class="evidence-copy">
+
+                        ${evidenceEsc(
+                          item.interpretation
+                        )}
+
+                      </div>
+
+                    `
+                  : ""
+              }
+
+
+              ${
+                item.verification
+                  ? `
+
+                      <div class="evidence-warning">
+
+                        Verification status:
+                        ${evidenceEsc(
+                          item.verification
+                        )}
+
+                      </div>
+
+                    `
+                  : ""
+              }
+
+
+              ${
+                references.length
+                  ? `
+
+                      <div class="evidence-reference-title">
+                        Models referenced by this observation
+                      </div>
+
+
+                      <div class="evidence-references">
+
+                        ${
+                          references
+                            .map(
+                              evidenceReferenceHTML
+                            )
+                            .join("")
+                        }
+
+                      </div>
+
+
+                      <div class="evidence-reference-note">
+
+                        Reference links do not imply that the
+                        referenced model is the underlying identity
+                        of Wolf Theta.
+
+                      </div>
+
+                    `
+                  : ""
+              }
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
   const compareButton =
     document.getElementById(
       "compareButton"
@@ -5144,8 +5989,28 @@ if(!model){
 
   if(model.blindTest){
 
-    compareButton.style.display =
-      "none";
+    /*
+     * BLIND_MODEL_GUESS_LINK_V1
+     */
+    if(model.guessUrl){
+
+      compareButton.style.display =
+        "";
+
+      compareButton.href =
+        model.guessUrl;
+
+      compareButton.textContent =
+        model.guessQuestion
+          ? "Guess the model"
+          : "Guess model";
+
+    }else{
+
+      compareButton.style.display =
+        "none";
+
+    }
 
   }else{
 
@@ -7421,6 +8286,58 @@ if(model){
 </script>
 
 
+
+
+<script>
+/* NEPTUNE_RESEARCH_CARD_V1 */
+(() => {
+  const isNeptune =
+    window.location.pathname.includes(
+      "/number-of-calls/models/nex-coder-38-neptune/"
+    );
+
+  if(!isNeptune){
+    return;
+  }
+
+  const section =
+    document.getElementById(
+      "neptuneResearchSection"
+    );
+
+  if(section){
+    section.style.display = "block";
+  }
+
+  const actions =
+    document.querySelector(
+      ".action-row"
+    );
+
+  if(
+    actions
+    &&
+    !actions.querySelector(
+      "[data-neptune-research-link]"
+    )
+  ){
+    const link =
+      document.createElement(
+        "a"
+      );
+
+    link.className = "action";
+    link.dataset.neptuneResearchLink = "1";
+    link.href =
+      "/number-of-calls/models/nex-coder-38-neptune/research/degree-variance-independent-set/";
+    link.textContent = "Research result";
+
+    actions.appendChild(
+      link
+    );
+  }
+})();
+</script>
 
 </body>
 </html>
