@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-03T10:00:01+02:00",
+  "updatedAt": "2026-09-03T10:09:34+02:00",
   "metric": "community_votes",
   "defaultCategory": "webdev",
   "models": [
@@ -20,11 +20,6 @@ window.ZORIX_COMMUNITY_VOTES = {
       "uncertainty": 0
     },
     {
-      "id": "gemini-38-flash",
-      "votes": 2016,
-      "uncertainty": 3
-    },
-    {
       "id": "claude-fable-5-fallback-max",
       "votes": 2014,
       "uncertainty": 2
@@ -37,6 +32,11 @@ window.ZORIX_COMMUNITY_VOTES = {
     {
       "id": "nex-coder-37-pro-max",
       "votes": 1991,
+      "uncertainty": 3
+    },
+    {
+      "id": "gemini-38-flash",
+      "votes": 1988,
       "uncertainty": 3
     },
     {
@@ -3722,6 +3722,104 @@ window.ZORIX_COMMUNITY_VOTES = {
         }
       },
       "note": "WebDev reversal: Neptune Max retakes lead; Gemini 3.8 Flash rises beside Theta"
+    },
+    {
+      "at": "2026-09-03T10:09:33+02:00",
+      "models": {
+        "nex-coder-38-neptune": {
+          "votes": 2048,
+          "uncertainty": 3
+        },
+        "claude-fable-51": {
+          "votes": 2028,
+          "uncertainty": 0
+        },
+        "wolf-theta": {
+          "votes": 2017,
+          "uncertainty": 0
+        },
+        "claude-fable-5-fallback-max": {
+          "votes": 2014,
+          "uncertainty": 2
+        },
+        "gpt-56-sol-max": {
+          "votes": 1998,
+          "uncertainty": 3
+        },
+        "nex-coder-37-pro-max": {
+          "votes": 1991,
+          "uncertainty": 3
+        },
+        "gemini-38-flash": {
+          "votes": 1988,
+          "uncertainty": 3
+        },
+        "claude-opus-5": {
+          "votes": 1982,
+          "uncertainty": 4
+        },
+        "glm-53-flash": {
+          "votes": 1977,
+          "uncertainty": 0
+        },
+        "claude-sonnet-5": {
+          "votes": 1936,
+          "uncertainty": 0
+        },
+        "kimi-k3": {
+          "votes": 1935,
+          "uncertainty": 4
+        },
+        "glm-52-max": {
+          "votes": 1929,
+          "uncertainty": 0
+        },
+        "deepseek-v4-flash-0731": {
+          "votes": 1902,
+          "uncertainty": 5
+        },
+        "gpt-56-luna": {
+          "votes": 1901,
+          "uncertainty": 0
+        },
+        "gemini-37-flash": {
+          "votes": 1795,
+          "uncertainty": 4
+        },
+        "kimi-k27-code": {
+          "votes": 1790,
+          "uncertainty": 5
+        },
+        "claude-opus-48": {
+          "votes": 1779,
+          "uncertainty": 0
+        },
+        "nvidia-nemotron-3-ultra": {
+          "votes": 1742,
+          "uncertainty": 0
+        },
+        "glm-51": {
+          "votes": 1692,
+          "uncertainty": 12
+        },
+        "gemini-36-flash": {
+          "votes": 1679,
+          "uncertainty": 1
+        },
+        "mimo-v25": {
+          "votes": 1669,
+          "uncertainty": 2
+        },
+        "tencent-hy3": {
+          "votes": 1642,
+          "uncertainty": 9
+        },
+        "muse-spark-12": {
+          "votes": 1632,
+          "uncertainty": 2
+        }
+      },
+      "note": "Gemini 3.8 Flash corrected to WebDev top 7 below GPT-5.6 Sol Max and Claude Fable 5"
     }
   ],
   "categories": {
@@ -3747,11 +3845,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "uncertainty": 0
         },
         {
-          "id": "gemini-38-flash",
-          "votes": 2016,
-          "uncertainty": 3
-        },
-        {
           "id": "claude-fable-5-fallback-max",
           "votes": 2014,
           "uncertainty": 2
@@ -3764,6 +3857,11 @@ window.ZORIX_COMMUNITY_VOTES = {
         {
           "id": "nex-coder-37-pro-max",
           "votes": 1991,
+          "uncertainty": 3
+        },
+        {
+          "id": "gemini-38-flash",
+          "votes": 1988,
           "uncertainty": 3
         },
         {
@@ -7449,6 +7547,104 @@ window.ZORIX_COMMUNITY_VOTES = {
             }
           },
           "note": "WebDev reversal: Neptune Max retakes lead; Gemini 3.8 Flash rises beside Theta"
+        },
+        {
+          "at": "2026-09-03T10:09:33+02:00",
+          "models": {
+            "nex-coder-38-neptune": {
+              "votes": 2048,
+              "uncertainty": 3
+            },
+            "claude-fable-51": {
+              "votes": 2028,
+              "uncertainty": 0
+            },
+            "wolf-theta": {
+              "votes": 2017,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 2014,
+              "uncertainty": 2
+            },
+            "gpt-56-sol-max": {
+              "votes": 1998,
+              "uncertainty": 3
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 1991,
+              "uncertainty": 3
+            },
+            "gemini-38-flash": {
+              "votes": 1988,
+              "uncertainty": 3
+            },
+            "claude-opus-5": {
+              "votes": 1982,
+              "uncertainty": 4
+            },
+            "glm-53-flash": {
+              "votes": 1977,
+              "uncertainty": 0
+            },
+            "claude-sonnet-5": {
+              "votes": 1936,
+              "uncertainty": 0
+            },
+            "kimi-k3": {
+              "votes": 1935,
+              "uncertainty": 4
+            },
+            "glm-52-max": {
+              "votes": 1929,
+              "uncertainty": 0
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1902,
+              "uncertainty": 5
+            },
+            "gpt-56-luna": {
+              "votes": 1901,
+              "uncertainty": 0
+            },
+            "gemini-37-flash": {
+              "votes": 1795,
+              "uncertainty": 4
+            },
+            "kimi-k27-code": {
+              "votes": 1790,
+              "uncertainty": 5
+            },
+            "claude-opus-48": {
+              "votes": 1779,
+              "uncertainty": 0
+            },
+            "nvidia-nemotron-3-ultra": {
+              "votes": 1742,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1692,
+              "uncertainty": 12
+            },
+            "gemini-36-flash": {
+              "votes": 1679,
+              "uncertainty": 1
+            },
+            "mimo-v25": {
+              "votes": 1669,
+              "uncertainty": 2
+            },
+            "tencent-hy3": {
+              "votes": 1642,
+              "uncertainty": 9
+            },
+            "muse-spark-12": {
+              "votes": 1632,
+              "uncertainty": 2
+            }
+          },
+          "note": "Gemini 3.8 Flash corrected to WebDev top 7 below GPT-5.6 Sol Max and Claude Fable 5"
         }
       ]
     }
