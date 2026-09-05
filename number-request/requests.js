@@ -147,6 +147,42 @@ window.ZORIX_REQUEST_USAGE = {
     }
   ],
   "history": [],
+  "observationsUpdatedAt": "2026-09-05T08:42:13+02:00",
+  "observations": [
+    {
+      "id": "gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "provider": "OpenAI",
+      "logo": "/number-of-calls/assets/logos/openai.svg",
+      "requests": 242130000000,
+      "period": "10h",
+      "periodHours": 10,
+      "note": "Supplied 10-hour request observation. Not converted from token usage.",
+      "observedAt": "2026-09-05T08:42:13+02:00"
+    },
+    {
+      "id": "nex-coder-39-alara-preview",
+      "name": "Nex Coder 3.9 Alara Preview",
+      "provider": "Zorix",
+      "logo": "/number-of-calls/assets/logos/zorix.svg",
+      "requests": 212100000000,
+      "period": "10h",
+      "periodHours": 10,
+      "note": "Supplied 10-hour request observation. Internal preview model. Not converted from token usage.",
+      "observedAt": "2026-09-05T08:42:13+02:00"
+    },
+    {
+      "id": "claude-fable-51",
+      "name": "Claude Fable 5.1",
+      "provider": "Anthropic",
+      "logo": "/number-of-calls/assets/logos/anthropic.svg",
+      "requests": 176980000000,
+      "period": "10h",
+      "periodHours": 10,
+      "note": "Supplied 10-hour request observation. Kept separate from the one-day token observation.",
+      "observedAt": "2026-09-05T08:42:13+02:00"
+    }
+  ],
   "weekly": [
     {
       "id": "wolf-theta",

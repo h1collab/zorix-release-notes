@@ -5,6 +5,7 @@
 <head>
 
 <meta charset="utf-8">
+<meta name="zorix-build" content="1788590533">
 
 <meta
   name="viewport"
@@ -776,6 +777,39 @@ h1{
   </section>
 
 
+  <!-- REQUEST_PERIOD_OBSERVATIONS_UI_V1 -->
+  <section
+    class="section"
+    id="periodObservationSection"
+    hidden
+  >
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">
+          10-hour request observations
+        </div>
+
+        <div class="section-copy">
+          Exact published request observations using the same 10-hour window
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="models"
+      id="periodObservationModels"
+    ></div>
+
+    <div class="request-share-note">
+      These 10-hour request observations are kept separate from the older
+      current request snapshot and from weekly observations. They are not
+      normalized into another time window and are not converted from token usage.
+    </div>
+
+  </section>
+
+
   <section
     class="section"
     id="weeklySection"
@@ -919,8 +953,8 @@ h1{
 </main>
 
 
-<script src="/number-of-calls/model-index.js"></script>
-<script src="/number-request/requests.js"></script>
+<script src="/number-of-calls/model-index.js?v=1788590533"></script>
+<script src="/number-request/requests.js?v=1788590533"></script>
 
 <script>
 
@@ -1155,6 +1189,101 @@ function render(){
         `
       )
       .join("");
+
+}
+
+
+function renderPeriodObservations(){
+
+  const section =
+    document.getElementById(
+      "periodObservationSection"
+    );
+
+  const target =
+    document.getElementById(
+      "periodObservationModels"
+    );
+
+  const rows =
+    Array.isArray(
+      DATA.observations
+    )
+      ? [...DATA.observations]
+        .filter(
+          item=>
+            String(
+              item.period || ""
+            ) === "10h"
+        )
+        .sort(
+          (a,b)=>
+            Number(b.requests || 0)
+            -
+            Number(a.requests || 0)
+        )
+      : [];
+
+  if(
+    !section ||
+    !target ||
+    !rows.length
+  ){
+    return;
+  }
+
+  section.hidden = false;
+
+  target.innerHTML =
+    rows.map(
+      (item,index)=>`
+
+        <a
+          class="model-row"
+          href="/number-of-calls/models/${encodeURIComponent(item.id)}/"
+        >
+
+          <div class="rank">
+            ${index+1}
+          </div>
+
+          <div class="model-logo">
+            <img
+              src="${esc(item.logo || logoFor(item))}"
+              alt=""
+            >
+          </div>
+
+          <div>
+            <div class="model-name">
+              ${esc(item.name)}
+            </div>
+
+            <div class="provider">
+              ${esc(item.provider || "Published observation")}
+              · 10-hour observation
+            </div>
+          </div>
+
+          <div class="request-value">
+            <div class="requests">
+              ${compact(item.requests)} requests / 10h
+            </div>
+
+            <div class="share">
+              Exact period metric
+            </div>
+          </div>
+
+          <div class="arrow">
+            ›
+          </div>
+
+        </a>
+
+      `
+    )
+    .join("");
 
 }
 
@@ -1856,6 +1985,7 @@ document
 renderRequestShareChart();
 
 render();
+renderPeriodObservations();
 renderWeeklyObservations();
 
 </script>

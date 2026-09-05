@@ -75,6 +75,39 @@ weekly = sorted(
 )
 
 
+# REQUEST_PERIOD_OBSERVATIONS_V1
+observations = data.get(
+    "observations",
+    []
+)
+
+if not isinstance(
+    observations,
+    list
+):
+    observations = []
+
+observations = sorted(
+    observations,
+    key=lambda item: (
+        int(
+            item.get(
+                "periodHours",
+                0
+            )
+            or 0
+        ),
+        -int(
+            item.get(
+                "requests",
+                0
+            )
+            or 0
+        )
+    )
+)
+
+
 models.sort(
     key=lambda item:
         int(
@@ -152,6 +185,14 @@ payload = {
             "history",
             []
         ),
+
+    "observationsUpdatedAt":
+        data.get(
+            "observationsUpdatedAt"
+        ),
+
+    "observations":
+        observations,
 
     "weekly":
         weekly
