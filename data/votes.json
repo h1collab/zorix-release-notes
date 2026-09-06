@@ -26,7 +26,8 @@
     {
       "id": "wolf-theta",
       "votes": 2053,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "Zorix Star Flash 3.6"
     },
     {
       "id": "claude-fable-5-fallback-max",

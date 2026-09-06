@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-06T11:41:18+02:00",
+  "updatedAt": "2026-09-06T11:49:33+02:00",
   "metric": "community_votes",
   "defaultCategory": "webdev",
   "models": [
@@ -28,7 +28,8 @@ window.ZORIX_COMMUNITY_VOTES = {
     {
       "id": "wolf-theta",
       "votes": 2053,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "Zorix Star Flash 3.6"
     },
     {
       "id": "claude-fable-5-fallback-max",
@@ -4297,7 +4298,8 @@ window.ZORIX_COMMUNITY_VOTES = {
         {
           "id": "wolf-theta",
           "votes": 2053,
-          "uncertainty": 0
+          "uncertainty": 0,
+          "voteLabel": "Zorix Star Flash 3.6"
         },
         {
           "id": "claude-fable-5-fallback-max",
