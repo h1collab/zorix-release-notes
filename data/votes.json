@@ -3,29 +3,29 @@
   "models": [
     {
       "id": "nex-coder-39-alara-preview",
-      "votes": 2102,
+      "votes": 2116,
       "uncertainty": 0,
       "voteLabel": "Nex Coder 3.9 Alara Preview"
     },
     {
       "id": "nex-coder-38-neptune",
-      "votes": 2078,
-      "uncertainty": 3,
+      "votes": 2094,
+      "uncertainty": 2,
       "voteLabel": "Nex Coder 3.8 Preview Neptune (Max)"
     },
     {
       "id": "gpt-6-astra",
-      "votes": 2067,
-      "uncertainty": 3
+      "votes": 2092,
+      "uncertainty": 2
     },
     {
       "id": "claude-fable-51",
-      "votes": 2058,
+      "votes": 2091,
       "uncertainty": 0
     },
     {
       "id": "wolf-theta",
-      "votes": 2047,
+      "votes": 2053,
       "uncertainty": 0
     },
     {
@@ -4152,6 +4152,116 @@
         }
       },
       "note": "Alara Preview enters WebDev at #1, 24 points above Neptune; current score scale moved upward"
+    },
+    {
+      "at": "2026-09-06T11:41:18+02:00",
+      "models": {
+        "nex-coder-39-alara-preview": {
+          "votes": 2116,
+          "uncertainty": 0
+        },
+        "nex-coder-38-neptune": {
+          "votes": 2094,
+          "uncertainty": 2
+        },
+        "gpt-6-astra": {
+          "votes": 2092,
+          "uncertainty": 2
+        },
+        "claude-fable-51": {
+          "votes": 2091,
+          "uncertainty": 0
+        },
+        "wolf-theta": {
+          "votes": 2053,
+          "uncertainty": 0
+        },
+        "claude-fable-5-fallback-max": {
+          "votes": 2044,
+          "uncertainty": 2
+        },
+        "gpt-56-sol-max": {
+          "votes": 2028,
+          "uncertainty": 3
+        },
+        "gemini-38-flash": {
+          "votes": 2027,
+          "uncertainty": 3
+        },
+        "muse-spark-13": {
+          "votes": 2026,
+          "uncertainty": 2
+        },
+        "nex-coder-37-pro-max": {
+          "votes": 2021,
+          "uncertainty": 3
+        },
+        "claude-opus-5": {
+          "votes": 2012,
+          "uncertainty": 4
+        },
+        "glm-53-flash": {
+          "votes": 2007,
+          "uncertainty": 0
+        },
+        "claude-sonnet-5": {
+          "votes": 1966,
+          "uncertainty": 0
+        },
+        "kimi-k3": {
+          "votes": 1965,
+          "uncertainty": 4
+        },
+        "glm-52-max": {
+          "votes": 1959,
+          "uncertainty": 0
+        },
+        "deepseek-v4-flash-0731": {
+          "votes": 1932,
+          "uncertainty": 5
+        },
+        "gpt-56-luna": {
+          "votes": 1931,
+          "uncertainty": 0
+        },
+        "gemini-37-flash": {
+          "votes": 1825,
+          "uncertainty": 4
+        },
+        "kimi-k27-code": {
+          "votes": 1820,
+          "uncertainty": 5
+        },
+        "claude-opus-48": {
+          "votes": 1809,
+          "uncertainty": 0
+        },
+        "nvidia-nemotron-3-ultra": {
+          "votes": 1772,
+          "uncertainty": 0
+        },
+        "glm-51": {
+          "votes": 1722,
+          "uncertainty": 12
+        },
+        "gemini-36-flash": {
+          "votes": 1709,
+          "uncertainty": 1
+        },
+        "mimo-v25": {
+          "votes": 1699,
+          "uncertainty": 2
+        },
+        "tencent-hy3": {
+          "votes": 1672,
+          "uncertainty": 9
+        },
+        "muse-spark-12": {
+          "votes": 1662,
+          "uncertainty": 2
+        }
+      },
+      "note": "Control Center bulk voting update"
     }
   ],
   "defaultCategory": "webdev",
