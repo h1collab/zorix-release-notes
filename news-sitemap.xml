@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <!-- Keep only articles originally published within the last 2 days. -->
+  <!-- Neptune was first published on 2026-09-02, so it is not backdated here. -->
+</urlset>
