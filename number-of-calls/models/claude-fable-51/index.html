@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="1788181089">
+<meta name="zorix-build" content="1788417752">
 
 
 
@@ -2559,6 +2559,94 @@ h1{
 }
 
 
+
+/* NEPTUNE_RESEARCH_CARD_V1 */
+.neptune-research{
+  display:none;
+  padding:58px 0;
+  border-bottom:1px solid var(--line);
+}
+.neptune-research-card{
+  padding:26px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--soft2);
+}
+.neptune-research-top{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:flex-start;
+}
+.neptune-research-kicker{
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.neptune-research-title{
+  max-width:760px;
+  margin-top:10px;
+  font-size:clamp(25px,4vw,39px);
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+.neptune-research-status{
+  flex:0 0 auto;
+  padding:7px 9px;
+  border:1px solid rgba(20,184,122,.28);
+  border-radius:999px;
+  color:var(--good);
+  font-size:10px;
+}
+.neptune-research-formula{
+  margin-top:30px;
+  padding:22px;
+  overflow-x:auto;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(18px,2.8vw,28px);
+  white-space:nowrap;
+}
+.neptune-research-copy{
+  max-width:820px;
+  margin-top:25px;
+  color:#44443f;
+  font-size:13px;
+  line-height:1.65;
+}
+.neptune-research-meta{
+  margin-top:22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.neptune-research-chip{
+  padding:7px 9px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  font-size:9px;
+}
+.neptune-research-link{
+  display:inline-flex;
+  align-items:center;
+  margin-top:24px;
+  padding:10px 13px;
+  border:1px solid var(--text);
+  border-radius:9px;
+  background:#fff;
+  font-size:12px;
+}
+.neptune-research-link::after{
+  content:"→";
+  margin-left:12px;
+}
+@media(max-width:700px){
+  .neptune-research-top{flex-direction:column}
+}
+
 </style>
 
 </head>
@@ -3419,6 +3507,53 @@ h1{
 
   </div>
 
+</section>
+
+
+<!-- NEPTUNE_RESEARCH_CARD_V1 -->
+<section
+  class="neptune-research"
+  id="neptuneResearchSection"
+  aria-labelledby="neptuneResearchTitle"
+>
+  <div class="neptune-research-card">
+    <div class="neptune-research-top">
+      <div>
+        <div class="neptune-research-kicker">
+          Neptune Research · Sep 3, 2026
+        </div>
+        <div class="neptune-research-title" id="neptuneResearchTitle">
+          Degree-variance correction for independent sets
+        </div>
+      </div>
+      <div class="neptune-research-status">Proved</div>
+    </div>
+
+    <div class="neptune-research-formula">
+      α(G) ≥ n/(d̄+1) + nσ²<sub>d</sub>/((d̄+1)²(Δ+1))
+    </div>
+
+    <div class="neptune-research-copy">
+      Neptune produced a proof from the Caro–Wei bound and an exact
+      algebraic identity, then reported an exhaustive finite cross-check
+      through all labeled simple graphs on at most six vertices.
+      Historical novelty is not claimed.
+    </div>
+
+    <div class="neptune-research-meta">
+      <span class="neptune-research-chip">Analytic proof</span>
+      <span class="neptune-research-chip">n ≤ 6 exhaustive check</span>
+      <span class="neptune-research-chip">0 reported counterexamples</span>
+      <span class="neptune-research-chip">Novelty unverified</span>
+    </div>
+
+    <a
+      class="neptune-research-link"
+      href="/number-of-calls/models/nex-coder-38-neptune/research/degree-variance-independent-set/"
+    >
+      Open full research note
+    </a>
+  </div>
 </section>
 
 </main>
@@ -8151,6 +8286,58 @@ if(model){
 </script>
 
 
+
+
+<script>
+/* NEPTUNE_RESEARCH_CARD_V1 */
+(() => {
+  const isNeptune =
+    window.location.pathname.includes(
+      "/number-of-calls/models/nex-coder-38-neptune/"
+    );
+
+  if(!isNeptune){
+    return;
+  }
+
+  const section =
+    document.getElementById(
+      "neptuneResearchSection"
+    );
+
+  if(section){
+    section.style.display = "block";
+  }
+
+  const actions =
+    document.querySelector(
+      ".action-row"
+    );
+
+  if(
+    actions
+    &&
+    !actions.querySelector(
+      "[data-neptune-research-link]"
+    )
+  ){
+    const link =
+      document.createElement(
+        "a"
+      );
+
+    link.className = "action";
+    link.dataset.neptuneResearchLink = "1";
+    link.href =
+      "/number-of-calls/models/nex-coder-38-neptune/research/degree-variance-independent-set/";
+    link.textContent = "Research result";
+
+    actions.appendChild(
+      link
+    );
+  }
+})();
+</script>
 
 </body>
 </html>
