@@ -292,7 +292,7 @@
     "color": "#2563EB",
     "includeInTokenRanking": false,
     "usageMetric": "requests",
-    "weeklyRequests": 87980000000,
+    "weeklyRequests": 4220000000000,
     "blindTest": false,
     "underlyingModel": "Zorix Star Flash 3.6",
     "context": "Undisclosed",
@@ -301,12 +301,13 @@
     "architecture": "Undisclosed",
     "inputPrice": "Not published",
     "outputPrice": "Not published",
-    "source": "Zorix identity disclosure + Zorix Metron telemetry",
-    "about": "Zorix Star Flash 3.6 was previously served under the blind-test alias Wolf Theta. Its identity has now been revealed. Zorix Metron currently records a WebDev community voting score of 2,053 and a supplied weekly observation of 87.98B requests. Request counts remain separate from token usage, and no token volume is inferred from this request observation.",
+    "source": "Zorix identity disclosure + Zorix Metron supplied 7-day and 30-day request observations",
+    "about": "Zorix Star Flash 3.6 was previously served under the blind-test alias Wolf Theta. Its identity has now been revealed. Zorix Metron records supplied request observations of 4.22T requests over 7 days and 12.15T requests over 30 days. These are exact period observations: they are not normalized into daily traffic, not extrapolated into other windows, and are kept separate from token usage.",
     "docs": "",
     "chart": [],
     "formerAlias": "Wolf Theta",
-    "blindTestStartDate": "2026-08-31"
+    "blindTestStartDate": "2026-08-31",
+    "thirtyDayRequests": 12150000000000
   },
   {
     "id": "hy4-preview",

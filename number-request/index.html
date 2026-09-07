@@ -787,11 +787,11 @@ h1{
     <div class="section-head">
       <div>
         <div class="section-title">
-          10-hour request observations
+          Period request observations
         </div>
 
         <div class="section-copy">
-          Exact published request observations using the same 10-hour window
+          Published request observations using their exact reported time windows
         </div>
       </div>
     </div>
@@ -802,9 +802,9 @@ h1{
     ></div>
 
     <div class="request-share-note">
-      These 10-hour request observations are kept separate from the older
-      current request snapshot and from weekly observations. They are not
-      normalized into another time window and are not converted from token usage.
+      Period observations preserve their original time windows.
+      They are kept separate from the current request snapshot and are not
+      normalized into another window or converted from token usage.
     </div>
 
   </section>
@@ -1210,12 +1210,6 @@ function renderPeriodObservations(){
       DATA.observations
     )
       ? [...DATA.observations]
-        .filter(
-          item=>
-            String(
-              item.period || ""
-            ) === "10h"
-        )
         .sort(
           (a,b)=>
             Number(b.requests || 0)
@@ -1261,13 +1255,13 @@ function renderPeriodObservations(){
 
             <div class="provider">
               ${esc(item.provider || "Published observation")}
-              · 10-hour observation
+              · ${esc(item.period || "period")} observation
             </div>
           </div>
 
           <div class="request-value">
             <div class="requests">
-              ${compact(item.requests)} requests / 10h
+              ${compact(item.requests)} requests / ${esc(item.period || "period")}
             </div>
 
             <div class="share">

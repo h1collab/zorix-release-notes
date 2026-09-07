@@ -379,6 +379,11 @@ for row in models:
                     "weeklyRequests"
                 ),
 
+            "thirtyDayRequests":
+                row.get(
+                    "thirtyDayRequests"
+                ),
+
             "launchDate":
                 row.get(
                     "launchDate",
