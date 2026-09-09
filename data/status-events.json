@@ -1,6 +1,53 @@
 {
-  "updatedAt": "2026-08-31T14:56:24+02:00",
+  "updatedAt": "2026-09-09T20:52:39+02:00",
   "events": [
+    {
+      "id": "zrx-20260909-1723-sovreign-nex38",
+      "type": "infrastructure",
+      "severity": "major",
+      "status": "ongoing",
+      "title": "Nex Coder 3.8 availability issue affecting SovreIgn users",
+      "summary": "Since 17:23 CEST on September 9, 2026, SovreIgn users and regular, Free, Nex, Core and Apex users may be unable to use Nex Coder 3.8. The event is ongoing.",
+      "startedAt": "2026-09-09T17:23:00+02:00",
+      "affected": [
+        "nex",
+        "zorix-code"
+      ],
+      "source": "Zorix operational notice",
+      "sourceRef": "2026-09-09 17:23 CEST Nex Coder 3.8 availability notice",
+      "attribution": null,
+      "details": [
+        "The issue began at 17:23 CEST on September 9, 2026.",
+        "SovreIgn users are affected.",
+        "Regular and Free users may be affected.",
+        "Nex, Core and Apex users may be affected.",
+        "Affected users may be unable to use Nex Coder 3.8.",
+        "No resolution time has been published yet."
+      ]
+    },
+    {
+      "id": "zrx-20260907-1300-virexa35-research",
+      "type": "infrastructure",
+      "severity": "moderate",
+      "status": "resolved",
+      "title": "VIREXA service paused during Zorix VIREXA 3.5 research",
+      "summary": "VIREXA-related service availability was paused from 13:00 to 18:00 CEST on September 7, 2026 while Zorix conducted research work on Zorix VIREXA 3.5.",
+      "startedAt": "2026-09-07T13:00:00+02:00",
+      "resolvedAt": "2026-09-07T18:00:00+02:00",
+      "affected": [
+        "virexa"
+      ],
+      "source": "Zorix operational record",
+      "sourceRef": "2026-09-07 VIREXA 3.5 research service pause",
+      "attribution": null,
+      "details": [
+        "The service pause began at 13:00 CEST on September 7, 2026.",
+        "The pause was associated with research work on Zorix VIREXA 3.5.",
+        "VIREXA-related service availability resumed at 18:00 CEST.",
+        "The recorded pause lasted 5 hours.",
+        "This event is recorded as research and maintenance activity, not as a security compromise."
+      ]
+    },
     {
       "id": "zrx-20260831-1345-code-capacity",
       "type": "capacity",

@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-09T20:44:27+02:00",
+  "updatedAt": "2026-09-09T20:52:39+02:00",
   "overall": "partial_outage",
-  "message": "Some Zorix systems are currently experiencing issues.",
+  "message": "Some Zorix systems are currently experiencing issues, including Nex Coder 3.8 availability for affected user groups.",
   "components": [
     {
       "id": "zorix-api",
@@ -26,7 +26,8 @@
       "id": "nex",
       "name": "Nex models",
       "description": "Nex and Nex Coder model availability.",
-      "status": "operational"
+      "status": "partial_outage",
+      "statusMessage": "Since 17:23 CEST on Sep 9, some SovreIgn, regular, Free, Nex, Core and Apex users may be unable to use Nex Coder 3.8."
     },
     {
       "id": "virexa",
