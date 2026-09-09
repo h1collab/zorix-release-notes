@@ -1,6 +1,6 @@
 window.ZORIX_STATUS = {
-  "updatedAt": "2026-09-09T20:44:18+02:00",
-  "overall": "outage",
+  "updatedAt": "2026-09-09T20:44:26+02:00",
+  "overall": "partial_outage",
   "message": "Some Zorix systems are currently experiencing issues.",
   "components": [
     {
@@ -38,7 +38,7 @@ window.ZORIX_STATUS = {
       "id": "public-quota",
       "name": "Public quota",
       "description": "Shared public token capacity and quota accounting.",
-      "status": "outage"
+      "status": "partial_outage"
     },
     {
       "id": "updates",
