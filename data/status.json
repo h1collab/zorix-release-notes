@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-01T09:05:53+02:00",
+  "updatedAt": "2026-09-09T20:44:13+02:00",
   "overall": "outage",
   "message": "Some Zorix systems are currently experiencing issues.",
   "components": [
@@ -7,7 +7,8 @@
       "id": "zorix-api",
       "name": "Zorix API",
       "description": "Core API requests and model routing.",
-      "status": "maintenance"
+      "status": "maintenance",
+      "statusMessage": "It's working at maintenance for secure events"
     },
     {
       "id": "zorix-code",
