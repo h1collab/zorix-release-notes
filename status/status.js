@@ -1,5 +1,5 @@
 window.ZORIX_STATUS = {
-  "updatedAt": "2026-09-09T20:44:13+02:00",
+  "updatedAt": "2026-09-09T20:44:17+02:00",
   "overall": "outage",
   "message": "Some Zorix systems are currently experiencing issues.",
   "components": [
