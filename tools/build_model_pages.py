@@ -122,6 +122,13 @@ for model in models:
     )
 
 
+    # Normalize generated HTML so git diff --check stays clean.
+    page = "\n".join(
+        line.rstrip()
+        for line in page.splitlines()
+    ) + "\n"
+
+
     outdir=(
         MODELS_DIR /
         model_id

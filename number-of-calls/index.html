@@ -37,6 +37,8 @@
 
 
 
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Model usage | Zorix Code</title>
@@ -2585,8 +2587,8 @@ h1{
 
 </main>
 
-<script src="./models.js?v=5a49cb3e6c72"></script>
-<script src="./usage.js?v=a698b187d9fa"></script>
+<script src="./models.js?v=dfc2b15e094d"></script>
+<script src="./usage.js?v=18690ec5bd6e"></script>
 <script src="./quota.js?v=d8af1e3acf84"></script>
 
 <script>
@@ -2837,6 +2839,32 @@ function visibleModels(){
 
 
       /*
+       * EXACT_30_DAY_DATASET_V1
+       *
+       * The 30-day ranking contains published 30-day observations
+       * only. Do not synthesize a 30-day total from daily/weekly data.
+       */
+      if(usageRange === '30d'){
+
+        return (
+          model.thirtyDayTokens !== undefined
+          &&
+          model.thirtyDayTokens !== null
+        );
+
+      }
+
+
+      /*
+       * Models whose only token observation is the 30-day total
+       * stay out of Today / week / All views.
+       */
+      if(model.thirtyDayOnlyTokens){
+        return false;
+      }
+
+
+      /*
        * WEEKLY_ONLY_TOKEN_VISIBILITY_V1
        *
        * Do not turn a weekly-only observation into
@@ -3048,7 +3076,7 @@ function periodLabel(){
   }
 
   if(usageRange==='30d'){
-    return '30-day trend';
+    return '30 days';
   }
 
   return 'All available trend';
@@ -3124,7 +3152,11 @@ function modelPeriodLabel(model){
     model.thirtyDayTokens !== null
   ){
 
-    return 'observed 30 days';
+    return (
+      model.thirtyDayPeriodLabel
+      ||
+      '30 days'
+    );
 
   }
 
@@ -3512,7 +3544,13 @@ function renderModels(){
             <div>
 
               <div class="model-name">
-                ${model.name}
+                ${
+                  usageRange === '30d'
+                  &&
+                  model.thirtyDayLabel
+                    ? model.thirtyDayLabel
+                    : model.name
+                }
               </div>
 
               <div class="provider">

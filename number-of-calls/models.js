@@ -523,7 +523,7 @@ window.ZORIX_MODEL_DETAILS = [
 ,
 
   {
-    id: "nvidia-nemotron-3-ultra",
+    id: "nemotron-3-ultra",
     name: "NVIDIA Nemotron 3 Ultra",
     provider: "NVIDIA",
     logo: "/number-of-calls/assets/logos/nvidia.svg?v=1788156881",

@@ -504,6 +504,26 @@ for row in models:
                     )
                 ),
 
+            "thirtyDayOnlyTokens":
+                bool(
+                    row.get(
+                        "thirtyDayOnlyTokens",
+                        False
+                    )
+                ),
+
+            "thirtyDayLabel":
+                row.get(
+                    "thirtyDayLabel",
+                    ""
+                ),
+
+            "thirtyDayPeriodLabel":
+                row.get(
+                    "thirtyDayPeriodLabel",
+                    ""
+                ),
+
             "officialModelId":
                 row.get(
                     "officialModelId",
