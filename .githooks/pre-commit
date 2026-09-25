@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+printf '%s\n' 'Refreshing Zorix static asset hashes...'
+CHECK_OK=1
+
+python tools/bump_assets.py --stage || {
+  printf '%s\n' 'WARNING: asset refresh failed; commit stopped.'
+  CHECK_OK=0
+}
+
+if [ "$CHECK_OK" -eq 1 ]; then
+  git diff --cached --check || {
+    printf '%s\n' 'WARNING: git diff --cached --check failed; commit stopped.'
+    CHECK_OK=0
+  }
+fi
+
+[ "$CHECK_OK" -eq 1 ]

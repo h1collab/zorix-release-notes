@@ -1,30 +1,13 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-from urllib.parse import (
-    urlsplit,
-    urlunsplit,
-    parse_qsl,
-    urlencode,
-)
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
+import argparse
+import hashlib
 import re
-import time
-
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-
-VERSION = str(int(time.time()))
-
-
-# ============================================================
-# BUILD VERSION
-# ============================================================
-
-(ROOT / "build-version.txt").write_text(
-    VERSION + "\n",
-    encoding="utf-8"
-)
-
 
 SKIP = {
     ".git",
@@ -35,15 +18,26 @@ SKIP = {
     "venv",
 }
 
+ASSET_RE = re.compile(r'\.(?:js|css|svg|png|jpe?g|webp|gif|ico)$', re.I)
+ATTR_RE = re.compile(
+    r'''(?P<before>\b(?:src|href)=["'])(?P<url>[^"']+)(?P<after>["'])''',
+    re.I,
+)
+CSS_URL_RE = re.compile(
+    r'''(url\(\s*["']?)([^)"']+)(["']?\s*\))''',
+    re.I,
+)
+CACHE_META_RE = re.compile(
+    r'''\s*<meta\s+http-equiv=["']Cache-Control["'][^>]*>'''
+    r'''|\s*<meta\s+http-equiv=["']Pragma["'][^>]*>'''
+    r'''|\s*<meta\s+http-equiv=["']Expires["'][^>]*>'''
+    r'''|\s*<meta\s+name=["']zorix-build["'][^>]*>''',
+    re.I,
+)
 
-# ============================================================
-# URL HELPERS
-# ============================================================
 
 def external(url):
-
     value = str(url).strip().lower()
-
     return (
         value.startswith("http://")
         or value.startswith("https://")
@@ -56,28 +50,60 @@ def external(url):
     )
 
 
-def version_url(url):
+def generated_head():
+    return (
+        '\n<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">\n'
+        '<meta http-equiv="Pragma" content="no-cache">\n'
+        '<meta http-equiv="Expires" content="0">\n'
+    )
 
+
+def resolve_local(owner, url):
+    parsed = urlsplit(url)
+    raw = parsed.path
+    if not raw:
+        return None
+
+    if raw.startswith("/"):
+        candidate = ROOT / raw.lstrip("/")
+    else:
+        candidate = owner.parent / raw
+
+    try:
+        candidate = candidate.resolve()
+        candidate.relative_to(ROOT.resolve())
+    except Exception:
+        return None
+
+    return candidate if candidate.is_file() else None
+
+
+def digest_file(path):
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()[:12]
+
+
+def version_url(owner, url):
     if external(url):
         return url
 
     parsed = urlsplit(url)
+    if not ASSET_RE.search(parsed.path):
+        return url
+
+    local = resolve_local(owner, url)
+    if local is None:
+        return url
 
     query = [
         (key, value)
-        for key, value in parse_qsl(
-            parsed.query,
-            keep_blank_values=True
-        )
+        for key, value in parse_qsl(parsed.query, keep_blank_values=True)
         if key != "v"
     ]
-
-    query.append(
-        (
-            "v",
-            VERSION
-        )
-    )
+    query.append(("v", digest_file(local)))
 
     return urlunsplit(
         (
@@ -90,276 +116,133 @@ def version_url(url):
     )
 
 
-# ============================================================
-# ASSETS
-# ============================================================
-
-ASSET_RE = re.compile(
-    r'\.(?:js|css|svg|png|jpe?g|webp|gif|ico)$',
-    re.I
-)
-
-
-ATTR_RE = re.compile(
-    r'''(?P<before>\b(?:src|href)=["'])
-        (?P<url>[^"']+)
-        (?P<after>["'])''',
-    re.I | re.X
-)
-
-
-CSS_URL_RE = re.compile(
-    r'''(url\(\s*["']?)
-        ([^)"']+)
-        (["']?\s*\))''',
-    re.I | re.X
-)
-
-
-# ============================================================
-# OLD CACHE META
-# ============================================================
-
-CACHE_META_RE = re.compile(
-    r'''
-    \s*<meta\s+http-equiv=["']Cache-Control["'][^>]*>
-    |
-    \s*<meta\s+http-equiv=["']Pragma["'][^>]*>
-    |
-    \s*<meta\s+http-equiv=["']Expires["'][^>]*>
-    |
-    \s*<meta\s+name=["']zorix-build["'][^>]*>
-    ''',
-    re.I | re.X
-)
-
-
-def generated_head():
-
-    return f'''
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta name="zorix-build" content="{VERSION}">
-'''
-
-
-# ============================================================
-# HTML
-# ============================================================
-
-def process_html(path):
-
-    original = path.read_text(
-        encoding="utf-8",
-        errors="ignore"
-    )
-
-    s = original
-
-
-    # Remove previous generated meta only.
-    s = CACHE_META_RE.sub(
-        "",
-        s
-    )
-
-
-    # Absolutely remove any remaining old auto-refresh script.
+def strip_old_refresh_scripts(s):
     def remove_refresh_script(match):
-
         block = match.group(0)
-
         if (
             "build-version.txt" in block
             or "checkFreshness" in block
-            or (
-                "__v" in block
-                and "location.replace" in block
-            )
+            or ("__v" in block and "location.replace" in block)
         ):
             return ""
-
         return block
 
-
-    s = re.sub(
+    return re.sub(
         r'<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?</script>',
         remove_refresh_script,
         s,
-        flags=re.I
+        flags=re.I,
     )
 
 
-    head = re.search(
-        r'<head\b[^>]*>',
-        s,
-        re.I
-    )
+def process_html(path):
+    original = path.read_text(encoding="utf-8", errors="ignore")
+    s = CACHE_META_RE.sub("", original)
+    s = strip_old_refresh_scripts(s)
 
+    head = re.search(r'<head\b[^>]*>', s, re.I)
     if head:
+        s = s[:head.end()] + generated_head() + s[head.end():]
 
-        s = (
-            s[:head.end()]
-            + "\n"
-            + generated_head()
-            + s[head.end():]
-        )
-
-
-    # Only touch actual src/href attributes pointing to assets.
     def replace_attr(match):
-
-        before = match.group("before")
-        url = match.group("url")
-        after = match.group("after")
-
-
-        if external(url):
-            return match.group(0)
-
-
-        path_only = urlsplit(
-            url
-        ).path
-
-
-        if not ASSET_RE.search(
-            path_only
-        ):
-            return match.group(0)
-
-
         return (
-            before
-            + version_url(url)
-            + after
+            match.group("before")
+            + version_url(path, match.group("url"))
+            + match.group("after")
         )
 
-
-    s = ATTR_RE.sub(
-        replace_attr,
-        s
-    )
-
+    s = ATTR_RE.sub(replace_attr, s)
 
     if s != original:
-
-        path.write_text(
-            s,
-            encoding="utf-8"
-        )
-
+        path.write_text(s, encoding="utf-8")
         return True
-
-
     return False
 
 
-# ============================================================
-# CSS
-# ============================================================
-
 def process_css(path):
-
-    original = path.read_text(
-        encoding="utf-8",
-        errors="ignore"
-    )
-
+    original = path.read_text(encoding="utf-8", errors="ignore")
 
     def replace(match):
-
-        url = match.group(2)
-
-
-        if external(url):
-            return match.group(0)
-
-
-        if not ASSET_RE.search(
-            urlsplit(url).path
-        ):
-            return match.group(0)
-
-
         return (
             match.group(1)
-            + version_url(url)
+            + version_url(path, match.group(2))
             + match.group(3)
         )
 
-
-    s = CSS_URL_RE.sub(
-        replace,
-        original
-    )
-
+    s = CSS_URL_RE.sub(replace, original)
 
     if s != original:
-
-        path.write_text(
-            s,
-            encoding="utf-8"
-        )
-
+        path.write_text(s, encoding="utf-8")
         return True
-
-
     return False
 
 
-# ============================================================
-# WALK SITE
-# ============================================================
+def site_asset_manifest():
+    rows = []
+    for path in ROOT.rglob("*"):
+        if not path.is_file():
+            continue
+        if any(part in SKIP for part in path.parts):
+            continue
+        if path.suffix.lower() not in {
+            ".js", ".css", ".svg", ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico"
+        }:
+            continue
+        rows.append((str(path.relative_to(ROOT)), digest_file(path)))
 
-changed = []
-
-
-for path in ROOT.rglob("*"):
-
-    if not path.is_file():
-        continue
-
-
-    if any(
-        part in SKIP
-        for part in path.parts
-    ):
-        continue
-
-
-    if path.suffix.lower() == ".html":
-
-        if process_html(path):
-
-            changed.append(
-                str(
-                    path.relative_to(ROOT)
-                )
-            )
+    rows.sort()
+    h = hashlib.sha256()
+    for name, digest in rows:
+        h.update(name.encode("utf-8"))
+        h.update(b"\0")
+        h.update(digest.encode("ascii"))
+        h.update(b"\n")
+    return h.hexdigest()[:16]
 
 
-    elif path.suffix.lower() == ".css":
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--stage", action="store_true")
+    args = parser.parse_args()
 
-        if process_css(path):
+    changed = []
 
-            changed.append(
-                str(
-                    path.relative_to(ROOT)
-                )
-            )
+    for path in ROOT.rglob("*"):
+        if not path.is_file():
+            continue
+        if any(part in SKIP for part in path.parts):
+            continue
+
+        if path.suffix.lower() == ".html":
+            if process_html(path):
+                changed.append(path)
+        elif path.suffix.lower() == ".css":
+            if process_css(path):
+                changed.append(path)
+
+    build_version = site_asset_manifest()
+    version_path = ROOT / "build-version.txt"
+    old_version = version_path.read_text(encoding="utf-8").strip() if version_path.exists() else ""
+    if old_version != build_version:
+        version_path.write_text(build_version + "\n", encoding="utf-8")
+        changed.append(version_path)
+
+    if args.stage and changed:
+        rel = [str(path.relative_to(ROOT)) for path in changed]
+        subprocess.run(["git", "add", "--", *rel], cwd=ROOT, check=True)
+
+    print()
+    print("ZORIX CONTENT-HASH ASSET VERSIONING")
+    print("-----------------------------------")
+    print("Build manifest:", build_version)
+    print("Automatic page reload: DISABLED")
+    print("Navigation rewriting: DISABLED")
+    print("Per-request Date.now cache busting: DISABLED")
+    print("Content-hash asset versioning: ENABLED")
+    print("Changed files:", len(changed))
+    for path in changed:
+        print(" ", path.relative_to(ROOT))
 
 
-print()
-print("ZORIX STATIC ASSET VERSIONING")
-print("-----------------------------")
-print("Build:", VERSION)
-print("Automatic HTML refresh: DISABLED")
-print("__v navigation rewriting: DISABLED")
-print("Inline JavaScript rewriting: DISABLED")
-print("JS/CSS/image cache busting: ENABLED")
-print("Changed files:", len(changed))
-
-for name in changed:
-    print(" ", name)
+if __name__ == "__main__":
+    main()
