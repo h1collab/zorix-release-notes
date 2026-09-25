@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-06T11:49:33+02:00",
+  "updatedAt": "2026-09-25T16:25:06+02:00",
   "metric": "community_votes",
   "defaultCategory": "webdev",
   "models": [
@@ -107,9 +107,10 @@ window.ZORIX_COMMUNITY_VOTES = {
       "uncertainty": 0
     },
     {
-      "id": "nvidia-nemotron-3-ultra",
+      "id": "nemotron-3-ultra",
       "votes": 1772,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "NVIDIA Nemotron 3 Ultra"
     },
     {
       "id": "glm-51",
@@ -135,6 +136,22 @@ window.ZORIX_COMMUNITY_VOTES = {
       "id": "muse-spark-12",
       "votes": 1662,
       "uncertainty": 2
+    },
+    {
+      "id": "gpt-56-terra",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Awaiting votes",
+      "voteLabel": "GPT-5.6 Terra"
+    },
+    {
+      "id": "hy4-preview",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Awaiting votes",
+      "voteLabel": "Tencent Hy4 preview"
     }
   ],
   "history": [
@@ -757,7 +774,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -843,7 +860,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -929,7 +946,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1015,7 +1032,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1101,7 +1118,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1187,7 +1204,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1273,7 +1290,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1359,7 +1376,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1445,7 +1462,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1531,7 +1548,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1617,7 +1634,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1703,7 +1720,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1789,7 +1806,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1875,7 +1892,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 0,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -1961,7 +1978,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 0,
           "uncertainty": 0
         }
@@ -2047,7 +2064,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2133,7 +2150,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2219,7 +2236,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2305,7 +2322,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2391,7 +2408,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2477,7 +2494,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2563,7 +2580,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2649,7 +2666,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2735,7 +2752,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2821,7 +2838,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2907,7 +2924,7 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
+        "nemotron-3-ultra": {
           "votes": 1441,
           "uncertainty": 0
         }
@@ -2993,12 +3010,12 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1441,
-          "uncertainty": 0
-        },
         "wolf-theta": {
           "votes": 1553,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1441,
           "uncertainty": 0
         }
       },
@@ -3083,12 +3100,12 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1441,
-          "uncertainty": 0
-        },
         "wolf-theta": {
           "votes": 1553,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1441,
           "uncertainty": 0
         }
       },
@@ -3173,12 +3190,12 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1441,
-          "uncertainty": 0
-        },
         "wolf-theta": {
           "votes": 1553,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1441,
           "uncertainty": 0
         }
       },
@@ -3263,12 +3280,12 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1442,
-          "uncertainty": 0
-        },
         "wolf-theta": {
           "votes": 1559,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1442,
           "uncertainty": 0
         }
       },
@@ -3353,12 +3370,12 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1442,
-          "uncertainty": 0
-        },
         "wolf-theta": {
           "votes": 1559,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1442,
           "uncertainty": 0
         }
       },
@@ -3443,12 +3460,12 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1442,
-          "uncertainty": 0
-        },
         "wolf-theta": {
           "votes": 1659,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1442,
           "uncertainty": 0
         }
       },
@@ -3533,16 +3550,16 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1392,
           "uncertainty": 12
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1442,
-          "uncertainty": 0
-        },
         "wolf-theta": {
           "votes": 1659,
           "uncertainty": 0
         },
         "claude-fable-51": {
           "votes": 1718,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1442,
           "uncertainty": 0
         }
       },
@@ -3615,10 +3632,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1779,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1742,
-          "uncertainty": 0
-        },
         "glm-51": {
           "votes": 1692,
           "uncertainty": 12
@@ -3638,6 +3651,10 @@ window.ZORIX_COMMUNITY_VOTES = {
         "muse-spark-12": {
           "votes": 1632,
           "uncertainty": 2
+        },
+        "nemotron-3-ultra": {
+          "votes": 1742,
+          "uncertainty": 0
         }
       },
       "note": "WebDev score scale update; Fable 5.1 temporarily leads Neptune"
@@ -3713,10 +3730,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1779,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1742,
-          "uncertainty": 0
-        },
         "glm-51": {
           "votes": 1692,
           "uncertainty": 12
@@ -3736,6 +3749,10 @@ window.ZORIX_COMMUNITY_VOTES = {
         "muse-spark-12": {
           "votes": 1632,
           "uncertainty": 2
+        },
+        "nemotron-3-ultra": {
+          "votes": 1742,
+          "uncertainty": 0
         }
       },
       "note": "WebDev reversal: Neptune Max retakes lead; Gemini 3.8 Flash rises beside Theta"
@@ -3811,10 +3828,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1779,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1742,
-          "uncertainty": 0
-        },
         "glm-51": {
           "votes": 1692,
           "uncertainty": 12
@@ -3834,6 +3847,10 @@ window.ZORIX_COMMUNITY_VOTES = {
         "muse-spark-12": {
           "votes": 1632,
           "uncertainty": 2
+        },
+        "nemotron-3-ultra": {
+          "votes": 1742,
+          "uncertainty": 0
         }
       },
       "note": "Gemini 3.8 Flash corrected to WebDev top 7 below GPT-5.6 Sol Max and Claude Fable 5"
@@ -3913,10 +3930,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1779,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1742,
-          "uncertainty": 0
-        },
         "glm-51": {
           "votes": 1692,
           "uncertainty": 12
@@ -3936,6 +3949,10 @@ window.ZORIX_COMMUNITY_VOTES = {
         "muse-spark-12": {
           "votes": 1632,
           "uncertainty": 2
+        },
+        "nemotron-3-ultra": {
+          "votes": 1742,
+          "uncertainty": 0
         }
       },
       "note": "Muse Spark 1.3 enters WebDev voting slightly below GPT-5.6 Sol Max"
@@ -4019,10 +4036,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1779,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1742,
-          "uncertainty": 0
-        },
         "glm-51": {
           "votes": 1692,
           "uncertainty": 12
@@ -4042,6 +4055,10 @@ window.ZORIX_COMMUNITY_VOTES = {
         "muse-spark-12": {
           "votes": 1632,
           "uncertainty": 2
+        },
+        "nemotron-3-ultra": {
+          "votes": 1742,
+          "uncertainty": 0
         }
       },
       "note": "GPT-6 Astra enters near Neptune and above Fable 5.1; Muse Spark 1.3 moves to #8"
@@ -4129,10 +4146,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1809,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1772,
-          "uncertainty": 0
-        },
         "glm-51": {
           "votes": 1722,
           "uncertainty": 12
@@ -4152,6 +4165,10 @@ window.ZORIX_COMMUNITY_VOTES = {
         "muse-spark-12": {
           "votes": 1662,
           "uncertainty": 2
+        },
+        "nemotron-3-ultra": {
+          "votes": 1772,
+          "uncertainty": 0
         }
       },
       "note": "Alara Preview enters WebDev at #1, 24 points above Neptune; current score scale moved upward"
@@ -4239,10 +4256,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "votes": 1809,
           "uncertainty": 0
         },
-        "nvidia-nemotron-3-ultra": {
-          "votes": 1772,
-          "uncertainty": 0
-        },
         "glm-51": {
           "votes": 1722,
           "uncertainty": 12
@@ -4262,6 +4275,10 @@ window.ZORIX_COMMUNITY_VOTES = {
         "muse-spark-12": {
           "votes": 1662,
           "uncertainty": 2
+        },
+        "nemotron-3-ultra": {
+          "votes": 1772,
+          "uncertainty": 0
         }
       },
       "note": "Control Center bulk voting update"
@@ -4377,9 +4394,10 @@ window.ZORIX_COMMUNITY_VOTES = {
           "uncertainty": 0
         },
         {
-          "id": "nvidia-nemotron-3-ultra",
+          "id": "nemotron-3-ultra",
           "votes": 1772,
-          "uncertainty": 0
+          "uncertainty": 0,
+          "voteLabel": "NVIDIA Nemotron 3 Ultra"
         },
         {
           "id": "glm-51",
@@ -4405,6 +4423,22 @@ window.ZORIX_COMMUNITY_VOTES = {
           "id": "muse-spark-12",
           "votes": 1662,
           "uncertainty": 2
+        },
+        {
+          "id": "gpt-56-terra",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Awaiting votes",
+          "voteLabel": "GPT-5.6 Terra"
+        },
+        {
+          "id": "hy4-preview",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Awaiting votes",
+          "voteLabel": "Tencent Hy4 preview"
         }
       ],
       "history": [
@@ -5027,7 +5061,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5113,7 +5147,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5199,7 +5233,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5285,7 +5319,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5371,7 +5405,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5457,7 +5491,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5543,7 +5577,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5629,7 +5663,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5715,7 +5749,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5801,7 +5835,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5887,7 +5921,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -5973,7 +6007,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -6059,7 +6093,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -6145,7 +6179,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 0,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -6231,7 +6265,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 0,
               "uncertainty": 0
             }
@@ -6317,7 +6351,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -6403,7 +6437,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -6489,7 +6523,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -6575,7 +6609,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -6661,7 +6695,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -6747,7 +6781,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -6833,7 +6867,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -6919,7 +6953,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -7005,7 +7039,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -7091,7 +7125,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -7177,7 +7211,7 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
+            "nemotron-3-ultra": {
               "votes": 1441,
               "uncertainty": 0
             }
@@ -7263,12 +7297,12 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1441,
-              "uncertainty": 0
-            },
             "wolf-theta": {
               "votes": 1553,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1441,
               "uncertainty": 0
             }
           },
@@ -7353,12 +7387,12 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1441,
-              "uncertainty": 0
-            },
             "wolf-theta": {
               "votes": 1553,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1441,
               "uncertainty": 0
             }
           },
@@ -7443,12 +7477,12 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1441,
-              "uncertainty": 0
-            },
             "wolf-theta": {
               "votes": 1553,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1441,
               "uncertainty": 0
             }
           },
@@ -7533,12 +7567,12 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1442,
-              "uncertainty": 0
-            },
             "wolf-theta": {
               "votes": 1559,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1442,
               "uncertainty": 0
             }
           },
@@ -7623,12 +7657,12 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1442,
-              "uncertainty": 0
-            },
             "wolf-theta": {
               "votes": 1559,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1442,
               "uncertainty": 0
             }
           },
@@ -7713,12 +7747,12 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1442,
-              "uncertainty": 0
-            },
             "wolf-theta": {
               "votes": 1659,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1442,
               "uncertainty": 0
             }
           },
@@ -7803,16 +7837,16 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1392,
               "uncertainty": 12
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1442,
-              "uncertainty": 0
-            },
             "wolf-theta": {
               "votes": 1659,
               "uncertainty": 0
             },
             "claude-fable-51": {
               "votes": 1718,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1442,
               "uncertainty": 0
             }
           },
@@ -7885,10 +7919,6 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1779,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1742,
-              "uncertainty": 0
-            },
             "glm-51": {
               "votes": 1692,
               "uncertainty": 12
@@ -7908,6 +7938,10 @@ window.ZORIX_COMMUNITY_VOTES = {
             "muse-spark-12": {
               "votes": 1632,
               "uncertainty": 2
+            },
+            "nemotron-3-ultra": {
+              "votes": 1742,
+              "uncertainty": 0
             }
           },
           "note": "WebDev score scale update; Fable 5.1 temporarily leads Neptune"
@@ -7983,10 +8017,6 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1779,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1742,
-              "uncertainty": 0
-            },
             "glm-51": {
               "votes": 1692,
               "uncertainty": 12
@@ -8006,6 +8036,10 @@ window.ZORIX_COMMUNITY_VOTES = {
             "muse-spark-12": {
               "votes": 1632,
               "uncertainty": 2
+            },
+            "nemotron-3-ultra": {
+              "votes": 1742,
+              "uncertainty": 0
             }
           },
           "note": "WebDev reversal: Neptune Max retakes lead; Gemini 3.8 Flash rises beside Theta"
@@ -8081,10 +8115,6 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1779,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1742,
-              "uncertainty": 0
-            },
             "glm-51": {
               "votes": 1692,
               "uncertainty": 12
@@ -8104,6 +8134,10 @@ window.ZORIX_COMMUNITY_VOTES = {
             "muse-spark-12": {
               "votes": 1632,
               "uncertainty": 2
+            },
+            "nemotron-3-ultra": {
+              "votes": 1742,
+              "uncertainty": 0
             }
           },
           "note": "Gemini 3.8 Flash corrected to WebDev top 7 below GPT-5.6 Sol Max and Claude Fable 5"
@@ -8183,10 +8217,6 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1779,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1742,
-              "uncertainty": 0
-            },
             "glm-51": {
               "votes": 1692,
               "uncertainty": 12
@@ -8206,6 +8236,10 @@ window.ZORIX_COMMUNITY_VOTES = {
             "muse-spark-12": {
               "votes": 1632,
               "uncertainty": 2
+            },
+            "nemotron-3-ultra": {
+              "votes": 1742,
+              "uncertainty": 0
             }
           },
           "note": "Muse Spark 1.3 enters WebDev voting slightly below GPT-5.6 Sol Max"
@@ -8289,10 +8323,6 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1779,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1742,
-              "uncertainty": 0
-            },
             "glm-51": {
               "votes": 1692,
               "uncertainty": 12
@@ -8312,6 +8342,10 @@ window.ZORIX_COMMUNITY_VOTES = {
             "muse-spark-12": {
               "votes": 1632,
               "uncertainty": 2
+            },
+            "nemotron-3-ultra": {
+              "votes": 1742,
+              "uncertainty": 0
             }
           },
           "note": "GPT-6 Astra enters near Neptune and above Fable 5.1; Muse Spark 1.3 moves to #8"
@@ -8399,10 +8433,6 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1809,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1772,
-              "uncertainty": 0
-            },
             "glm-51": {
               "votes": 1722,
               "uncertainty": 12
@@ -8422,6 +8452,10 @@ window.ZORIX_COMMUNITY_VOTES = {
             "muse-spark-12": {
               "votes": 1662,
               "uncertainty": 2
+            },
+            "nemotron-3-ultra": {
+              "votes": 1772,
+              "uncertainty": 0
             }
           },
           "note": "Alara Preview enters WebDev at #1, 24 points above Neptune; current score scale moved upward"
@@ -8509,10 +8543,6 @@ window.ZORIX_COMMUNITY_VOTES = {
               "votes": 1809,
               "uncertainty": 0
             },
-            "nvidia-nemotron-3-ultra": {
-              "votes": 1772,
-              "uncertainty": 0
-            },
             "glm-51": {
               "votes": 1722,
               "uncertainty": 12
@@ -8532,6 +8562,10 @@ window.ZORIX_COMMUNITY_VOTES = {
             "muse-spark-12": {
               "votes": 1662,
               "uncertainty": 2
+            },
+            "nemotron-3-ultra": {
+              "votes": 1772,
+              "uncertainty": 0
             }
           },
           "note": "Control Center bulk voting update"

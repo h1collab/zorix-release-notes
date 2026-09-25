@@ -185,5 +185,21 @@
       "observedAt": "2026-09-07T20:21:22+02:00"
     }
   ],
-  "observationsUpdatedAt": "2026-09-07T20:21:22+02:00"
+  "observationsUpdatedAt": "2026-09-07T20:21:22+02:00",
+  "unpublished": [
+    {
+      "id": "gpt-56-terra",
+      "name": "GPT-5.6 Terra",
+      "provider": "OpenAI",
+      "status": "Awaiting observation",
+      "note": "No published Zorix request observation is recorded for this model."
+    },
+    {
+      "id": "hy4-preview",
+      "name": "Tencent Hy4 preview",
+      "provider": "Tencent",
+      "status": "Awaiting observation",
+      "note": "No published Zorix request observation is recorded for this model."
+    }
+  ]
 }

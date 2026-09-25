@@ -2276,6 +2276,10 @@ const voteMap =
           votes:Number(
             item.votes || 0
           ),
+          published:item.published !== false,
+          status:String(
+            item.status || ""
+          ),
           uncertainty:Number(
             item.uncertainty || 0
           ),
@@ -2312,6 +2316,8 @@ const merged =
         ...model,
         name:vote.voteLabel || model.name,
         votes:vote.votes,
+        published:vote.published !== false,
+        status:vote.status || "",
         uncertainty:vote.uncertainty,
         originalIndex:index
       };
@@ -2441,6 +2447,7 @@ function render(){
       )
       .sort(
         (a,b)=>
+          Number(b.published)-Number(a.published) ||
           b.votes-a.votes ||
           a.originalIndex-b.originalIndex
       );
@@ -2466,7 +2473,7 @@ function render(){
               </span>
 
               <strong>
-                ${index+1}
+                ${model.published ? index+1 : "—"}
               </strong>
 
             </div>
@@ -2506,22 +2513,30 @@ function render(){
 
             <div
               class="score ${
-                model.votes===0
+                (!model.published || model.votes===0)
                   ? "zero"
                   : ""
               }"
             >
 
               <div class="score-main">
-                ${fmtVotes(model.votes)}
+                ${
+                  model.published
+                    ? fmtVotes(model.votes)
+                    : "Awaiting"
+                }
               </div>
 
               <div class="score-sub">
 
                 ${
-                  model.uncertainty
-                    ? `±${model.uncertainty}`
-                    : "votes"
+                  model.published
+                    ? (
+                        model.uncertainty
+                          ? `±${model.uncertainty}`
+                          : "votes"
+                      )
+                    : (model.status || "Awaiting votes")
                 }
 
               </div>
@@ -2553,7 +2568,7 @@ function renderVotingVisualization(){
   const current =
     [...merged]
       .filter(
-        model=>model.votes>0
+        model=>model.published && model.votes>0
       )
       .sort(
         (a,b)=>

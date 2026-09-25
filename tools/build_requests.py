@@ -195,7 +195,13 @@ payload = {
         observations,
 
     "weekly":
-        weekly
+        weekly,
+
+    "unpublished":
+        data.get(
+            "unpublished",
+            []
+        )
 }
 
 

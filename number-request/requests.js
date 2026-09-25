@@ -206,5 +206,21 @@ window.ZORIX_REQUEST_USAGE = {
       "launchedAt": "2026-08-31",
       "note": "Supplied 7-day request observation. Not normalized and not converted from token usage."
     }
+  ],
+  "unpublished": [
+    {
+      "id": "gpt-56-terra",
+      "name": "GPT-5.6 Terra",
+      "provider": "OpenAI",
+      "status": "Awaiting observation",
+      "note": "No published Zorix request observation is recorded for this model."
+    },
+    {
+      "id": "hy4-preview",
+      "name": "Tencent Hy4 preview",
+      "provider": "Tencent",
+      "status": "Awaiting observation",
+      "note": "No published Zorix request observation is recorded for this model."
+    }
   ]
 };
