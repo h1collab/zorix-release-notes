@@ -2164,18 +2164,31 @@ h1{
   }
 
   if (state) {
-    const count =
+    const rows =
       Array.isArray(selected.models)
-        ? selected.models.length
-        : 0;
+        ? selected.models
+        : [];
+
+    const publishedCount =
+      rows.filter(
+        item=>item?.published !== false
+      ).length;
+
+    const pendingCount =
+      rows.length - publishedCount;
 
     state.textContent =
       (
         (selected.label || requested)
         + " · "
-        + count
+        + publishedCount
         + " published model score"
-        + (count === 1 ? "" : "s")
+        + (publishedCount === 1 ? "" : "s")
+        + (
+            pendingCount
+              ? " · " + pendingCount + " pending"
+              : ""
+          )
       );
   }
 })();

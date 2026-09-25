@@ -150,6 +150,70 @@
       "published": false,
       "status": "Awaiting votes",
       "voteLabel": "Tencent Hy4 preview"
+    },
+    {
+      "id": "claude-opus-55",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Claude Opus 5.5"
+    },
+    {
+      "id": "claude-mythos-51",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Claude Mythos 5.1"
+    },
+    {
+      "id": "gpt-6-sol",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "GPT-6 Sol"
+    },
+    {
+      "id": "gpt-6-luna",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "GPT-6 Luna"
+    },
+    {
+      "id": "deepseek-v41-flash",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "DeepSeek V4.1 Flash"
+    },
+    {
+      "id": "gemini-38-flash-cyber",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Gemini 3.8 Flash Cyber"
+    },
+    {
+      "id": "grok-47",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Grok 4.7"
+    },
+    {
+      "id": "nemotron-35-lightning",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "NVIDIA Nemotron 3.5 Lightning"
     }
   ],
   "history": [

@@ -1,5 +1,5 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-25T16:25:06+02:00",
+  "updatedAt": "2026-09-25T16:33:18+02:00",
   "metric": "community_votes",
   "defaultCategory": "webdev",
   "models": [
@@ -138,6 +138,38 @@ window.ZORIX_COMMUNITY_VOTES = {
       "uncertainty": 2
     },
     {
+      "id": "claude-mythos-51",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Claude Mythos 5.1"
+    },
+    {
+      "id": "claude-opus-55",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Claude Opus 5.5"
+    },
+    {
+      "id": "deepseek-v41-flash",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "DeepSeek V4.1 Flash"
+    },
+    {
+      "id": "gemini-38-flash-cyber",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Gemini 3.8 Flash Cyber"
+    },
+    {
       "id": "gpt-56-terra",
       "votes": null,
       "uncertainty": 0,
@@ -146,12 +178,44 @@ window.ZORIX_COMMUNITY_VOTES = {
       "voteLabel": "GPT-5.6 Terra"
     },
     {
+      "id": "gpt-6-luna",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "GPT-6 Luna"
+    },
+    {
+      "id": "gpt-6-sol",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "GPT-6 Sol"
+    },
+    {
+      "id": "grok-47",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "Grok 4.7"
+    },
+    {
       "id": "hy4-preview",
       "votes": null,
       "uncertainty": 0,
       "published": false,
       "status": "Awaiting votes",
       "voteLabel": "Tencent Hy4 preview"
+    },
+    {
+      "id": "nemotron-35-lightning",
+      "votes": null,
+      "uncertainty": 0,
+      "published": false,
+      "status": "Pending",
+      "voteLabel": "NVIDIA Nemotron 3.5 Lightning"
     }
   ],
   "history": [
@@ -4425,6 +4489,38 @@ window.ZORIX_COMMUNITY_VOTES = {
           "uncertainty": 2
         },
         {
+          "id": "claude-mythos-51",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "Claude Mythos 5.1"
+        },
+        {
+          "id": "claude-opus-55",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "Claude Opus 5.5"
+        },
+        {
+          "id": "deepseek-v41-flash",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "DeepSeek V4.1 Flash"
+        },
+        {
+          "id": "gemini-38-flash-cyber",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "Gemini 3.8 Flash Cyber"
+        },
+        {
           "id": "gpt-56-terra",
           "votes": null,
           "uncertainty": 0,
@@ -4433,12 +4529,44 @@ window.ZORIX_COMMUNITY_VOTES = {
           "voteLabel": "GPT-5.6 Terra"
         },
         {
+          "id": "gpt-6-luna",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "GPT-6 Luna"
+        },
+        {
+          "id": "gpt-6-sol",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "GPT-6 Sol"
+        },
+        {
+          "id": "grok-47",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "Grok 4.7"
+        },
+        {
           "id": "hy4-preview",
           "votes": null,
           "uncertainty": 0,
           "published": false,
           "status": "Awaiting votes",
           "voteLabel": "Tencent Hy4 preview"
+        },
+        {
+          "id": "nemotron-35-lightning",
+          "votes": null,
+          "uncertainty": 0,
+          "published": false,
+          "status": "Pending",
+          "voteLabel": "NVIDIA Nemotron 3.5 Lightning"
         }
       ],
       "history": [

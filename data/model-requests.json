@@ -200,6 +200,70 @@
       "provider": "Tencent",
       "status": "Awaiting observation",
       "note": "No published Zorix request observation is recorded for this model."
+    },
+    {
+      "id": "claude-opus-55",
+      "name": "Claude Opus 5.5",
+      "provider": "Anthropic",
+      "logo": "/number-of-calls/assets/logos/anthropic.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "claude-mythos-51",
+      "name": "Claude Mythos 5.1",
+      "provider": "Anthropic",
+      "logo": "/number-of-calls/assets/logos/anthropic.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "gpt-6-sol",
+      "name": "GPT-6 Sol",
+      "provider": "OpenAI",
+      "logo": "/number-of-calls/assets/logos/openai.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "provider": "OpenAI",
+      "logo": "/number-of-calls/assets/logos/openai.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "deepseek-v41-flash",
+      "name": "DeepSeek V4.1 Flash",
+      "provider": "DeepSeek",
+      "logo": "/number-of-calls/assets/logos/deepseek.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "gemini-38-flash-cyber",
+      "name": "Gemini 3.8 Flash Cyber",
+      "provider": "Google",
+      "logo": "/number-of-calls/assets/logos/google.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "grok-47",
+      "name": "Grok 4.7",
+      "provider": "SpaceXAI",
+      "logo": "",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "nemotron-35-lightning",
+      "name": "NVIDIA Nemotron 3.5 Lightning",
+      "provider": "NVIDIA",
+      "logo": "/number-of-calls/assets/logos/nvidia.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
     }
   ]
 }
