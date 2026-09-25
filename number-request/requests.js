@@ -273,7 +273,7 @@ window.ZORIX_REQUEST_USAGE = {
     {
       "id": "grok-47",
       "name": "Grok 4.7",
-      "provider": "SpaceXAI",
+      "provider": "xAI",
       "logo": "",
       "status": "Awaiting request observation",
       "note": "No request count has been published by Zorix Metron. No value is inferred."
@@ -283,6 +283,46 @@ window.ZORIX_REQUEST_USAGE = {
       "name": "NVIDIA Nemotron 3.5 Lightning",
       "provider": "NVIDIA",
       "logo": "/number-of-calls/assets/logos/nvidia.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "nex-coder-4-plutos-preview",
+      "name": "Nex Coder 4 Plutos Preview",
+      "provider": "Zorix",
+      "logo": "/number-of-calls/assets/logos/zorix.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "glm-53",
+      "name": "GLM 5.3",
+      "provider": "Z.ai",
+      "logo": "/number-of-calls/assets/logos/glm.svg",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "qwen-38-omni-flash",
+      "name": "Qwen 3.8 Omni Flash",
+      "provider": "Alibaba",
+      "logo": "",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "mistral-large-3",
+      "name": "Mistral Large 3",
+      "provider": "Mistral AI",
+      "logo": "",
+      "status": "Awaiting request observation",
+      "note": "No request count has been published by Zorix Metron. No value is inferred."
+    },
+    {
+      "id": "mistral-medium-35",
+      "name": "Mistral Medium 3.5",
+      "provider": "Mistral AI",
+      "logo": "",
       "status": "Awaiting request observation",
       "note": "No request count has been published by Zorix Metron. No value is inferred."
     }

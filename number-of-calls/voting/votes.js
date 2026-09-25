@@ -1,141 +1,229 @@
 window.ZORIX_COMMUNITY_VOTES = {
-  "updatedAt": "2026-09-25T16:33:18+02:00",
+  "updatedAt": "2026-09-25T16:54:20+02:00",
   "metric": "community_votes",
   "defaultCategory": "webdev",
   "models": [
     {
+      "id": "nex-coder-4-plutos-preview",
+      "votes": 2248,
+      "uncertainty": 3,
+      "voteLabel": "Nex Coder 4 Plutos Preview"
+    },
+    {
+      "id": "gpt-6-astra",
+      "votes": 2182,
+      "uncertainty": 3,
+      "voteLabel": "GPT-6 Astra"
+    },
+    {
+      "id": "grok-47",
+      "votes": 2169,
+      "uncertainty": 4,
+      "voteLabel": "Grok 4.7"
+    },
+    {
+      "id": "claude-opus-55",
+      "votes": 2163,
+      "uncertainty": 3,
+      "voteLabel": "Claude Opus 5.5"
+    },
+    {
+      "id": "claude-fable-51",
+      "votes": 2153,
+      "uncertainty": 3,
+      "voteLabel": "Claude Fable 5.1"
+    },
+    {
+      "id": "gpt-6-sol",
+      "votes": 2141,
+      "uncertainty": 4,
+      "voteLabel": "GPT-6 Sol"
+    },
+    {
       "id": "nex-coder-39-alara-preview",
       "votes": 2116,
       "uncertainty": 0,
-      "voteLabel": "Nex Coder 3.9 Alara Preview"
+      "voteLabel": "Nex Coder 3.9 AI"
     },
     {
       "id": "nex-coder-38-neptune",
       "votes": 2094,
       "uncertainty": 2,
-      "voteLabel": "Nex Coder 3.8 Preview Neptune (Max)"
+      "voteLabel": "Nex Coder 3.8 Pro"
     },
     {
-      "id": "gpt-6-astra",
-      "votes": 2092,
-      "uncertainty": 2
-    },
-    {
-      "id": "claude-fable-51",
-      "votes": 2091,
-      "uncertainty": 0
+      "id": "glm-53",
+      "votes": 2081,
+      "uncertainty": 5,
+      "voteLabel": "GLM 5.3"
     },
     {
       "id": "wolf-theta",
       "votes": 2053,
       "uncertainty": 0,
-      "voteLabel": "Zorix Star Flash 3.6"
+      "voteLabel": "Zorix Star Flash"
     },
     {
       "id": "claude-fable-5-fallback-max",
       "votes": 2044,
-      "uncertainty": 2
+      "uncertainty": 2,
+      "voteLabel": "Claude Fable 5"
+    },
+    {
+      "id": "deepseek-v41-flash",
+      "votes": 2038,
+      "uncertainty": 4,
+      "voteLabel": "DeepSeek V4.1 Flash"
     },
     {
       "id": "gpt-56-sol-max",
       "votes": 2028,
-      "uncertainty": 3
+      "uncertainty": 3,
+      "voteLabel": "GPT-5.6 Sol (Max)"
     },
     {
       "id": "gemini-38-flash",
       "votes": 2027,
-      "uncertainty": 3
+      "uncertainty": 3,
+      "voteLabel": "Gemini 3.8 Flash"
     },
     {
       "id": "muse-spark-13",
       "votes": 2026,
-      "uncertainty": 2
+      "uncertainty": 2,
+      "voteLabel": "Muse Spark 1.3"
     },
     {
       "id": "nex-coder-37-pro-max",
       "votes": 2021,
-      "uncertainty": 3
+      "uncertainty": 3,
+      "voteLabel": "Zorix Nex Coder"
     },
     {
       "id": "claude-opus-5",
       "votes": 2012,
-      "uncertainty": 4
+      "uncertainty": 4,
+      "voteLabel": "Claude Opus 5"
     },
     {
       "id": "glm-53-flash",
       "votes": 2007,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "GLM 5.3 Flash"
+    },
+    {
+      "id": "qwen-38-omni-flash",
+      "votes": 1998,
+      "uncertainty": 4,
+      "voteLabel": "Qwen 3.8 Omni Flash"
+    },
+    {
+      "id": "gpt-6-luna",
+      "votes": 1992,
+      "uncertainty": 3,
+      "voteLabel": "GPT-6 Luna"
     },
     {
       "id": "claude-sonnet-5",
       "votes": 1966,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "Claude Sonnet 5"
     },
     {
       "id": "kimi-k3",
       "votes": 1965,
-      "uncertainty": 4
+      "uncertainty": 4,
+      "voteLabel": "Kimi K3"
     },
     {
       "id": "glm-52-max",
       "votes": 1959,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "GLM 5.2 Max"
     },
     {
       "id": "deepseek-v4-flash-0731",
       "votes": 1932,
-      "uncertainty": 5
+      "uncertainty": 5,
+      "voteLabel": "DeepSeek V4 Flash"
     },
     {
       "id": "gpt-56-luna",
       "votes": 1931,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "GPT-5.6 Luna"
+    },
+    {
+      "id": "nemotron-35-lightning",
+      "votes": 1914,
+      "uncertainty": 6,
+      "voteLabel": "NVIDIA Nemotron 3.5 Lightning"
+    },
+    {
+      "id": "mistral-large-3",
+      "votes": 1888,
+      "uncertainty": 5,
+      "voteLabel": "Mistral Large 3"
+    },
+    {
+      "id": "mistral-medium-35",
+      "votes": 1856,
+      "uncertainty": 5,
+      "voteLabel": "Mistral Medium 3.5"
     },
     {
       "id": "gemini-37-flash",
       "votes": 1825,
-      "uncertainty": 4
+      "uncertainty": 4,
+      "voteLabel": "Gemini 3.7 Flash"
     },
     {
       "id": "kimi-k27-code",
       "votes": 1820,
-      "uncertainty": 5
+      "uncertainty": 5,
+      "voteLabel": "Kimi K2.7 Code"
     },
     {
       "id": "claude-opus-48",
       "votes": 1809,
-      "uncertainty": 0
+      "uncertainty": 0,
+      "voteLabel": "Claude Opus 4.8"
     },
     {
       "id": "nemotron-3-ultra",
       "votes": 1772,
       "uncertainty": 0,
-      "voteLabel": "NVIDIA Nemotron 3 Ultra"
+      "voteLabel": "NVIDIA Nemotron"
     },
     {
       "id": "glm-51",
       "votes": 1722,
-      "uncertainty": 12
+      "uncertainty": 12,
+      "voteLabel": "GLM 5.1"
     },
     {
       "id": "gemini-36-flash",
       "votes": 1709,
-      "uncertainty": 1
+      "uncertainty": 1,
+      "voteLabel": "Gemini 3.6 Flash"
     },
     {
       "id": "mimo-v25",
       "votes": 1699,
-      "uncertainty": 2
+      "uncertainty": 2,
+      "voteLabel": "Xiaomi MiMo-V2"
     },
     {
       "id": "tencent-hy3",
       "votes": 1672,
-      "uncertainty": 9
+      "uncertainty": 9,
+      "voteLabel": "Tencent HY3"
     },
     {
       "id": "muse-spark-12",
       "votes": 1662,
-      "uncertainty": 2
+      "uncertainty": 2,
+      "voteLabel": "Muse Spark 1.2"
     },
     {
       "id": "claude-mythos-51",
@@ -144,22 +232,6 @@ window.ZORIX_COMMUNITY_VOTES = {
       "published": false,
       "status": "Pending",
       "voteLabel": "Claude Mythos 5.1"
-    },
-    {
-      "id": "claude-opus-55",
-      "votes": null,
-      "uncertainty": 0,
-      "published": false,
-      "status": "Pending",
-      "voteLabel": "Claude Opus 5.5"
-    },
-    {
-      "id": "deepseek-v41-flash",
-      "votes": null,
-      "uncertainty": 0,
-      "published": false,
-      "status": "Pending",
-      "voteLabel": "DeepSeek V4.1 Flash"
     },
     {
       "id": "gemini-38-flash-cyber",
@@ -178,44 +250,12 @@ window.ZORIX_COMMUNITY_VOTES = {
       "voteLabel": "GPT-5.6 Terra"
     },
     {
-      "id": "gpt-6-luna",
-      "votes": null,
-      "uncertainty": 0,
-      "published": false,
-      "status": "Pending",
-      "voteLabel": "GPT-6 Luna"
-    },
-    {
-      "id": "gpt-6-sol",
-      "votes": null,
-      "uncertainty": 0,
-      "published": false,
-      "status": "Pending",
-      "voteLabel": "GPT-6 Sol"
-    },
-    {
-      "id": "grok-47",
-      "votes": null,
-      "uncertainty": 0,
-      "published": false,
-      "status": "Pending",
-      "voteLabel": "Grok 4.7"
-    },
-    {
       "id": "hy4-preview",
       "votes": null,
       "uncertainty": 0,
       "published": false,
       "status": "Awaiting votes",
       "voteLabel": "Tencent Hy4 preview"
-    },
-    {
-      "id": "nemotron-35-lightning",
-      "votes": null,
-      "uncertainty": 0,
-      "published": false,
-      "status": "Pending",
-      "voteLabel": "NVIDIA Nemotron 3.5 Lightning"
     }
   ],
   "history": [
@@ -4346,6 +4386,160 @@ window.ZORIX_COMMUNITY_VOTES = {
         }
       },
       "note": "Control Center bulk voting update"
+    },
+    {
+      "at": "2026-09-25T16:54:20+02:00",
+      "models": {
+        "nex-coder-4-plutos-preview": {
+          "votes": 2248,
+          "uncertainty": 3
+        },
+        "gpt-6-astra": {
+          "votes": 2182,
+          "uncertainty": 3
+        },
+        "grok-47": {
+          "votes": 2169,
+          "uncertainty": 4
+        },
+        "claude-opus-55": {
+          "votes": 2163,
+          "uncertainty": 3
+        },
+        "claude-fable-51": {
+          "votes": 2153,
+          "uncertainty": 3
+        },
+        "gpt-6-sol": {
+          "votes": 2141,
+          "uncertainty": 4
+        },
+        "nex-coder-39-alara-preview": {
+          "votes": 2116,
+          "uncertainty": 0
+        },
+        "nex-coder-38-neptune": {
+          "votes": 2094,
+          "uncertainty": 2
+        },
+        "glm-53": {
+          "votes": 2081,
+          "uncertainty": 5
+        },
+        "wolf-theta": {
+          "votes": 2053,
+          "uncertainty": 0
+        },
+        "claude-fable-5-fallback-max": {
+          "votes": 2044,
+          "uncertainty": 2
+        },
+        "deepseek-v41-flash": {
+          "votes": 2038,
+          "uncertainty": 4
+        },
+        "gpt-56-sol-max": {
+          "votes": 2028,
+          "uncertainty": 3
+        },
+        "gemini-38-flash": {
+          "votes": 2027,
+          "uncertainty": 3
+        },
+        "muse-spark-13": {
+          "votes": 2026,
+          "uncertainty": 2
+        },
+        "nex-coder-37-pro-max": {
+          "votes": 2021,
+          "uncertainty": 3
+        },
+        "claude-opus-5": {
+          "votes": 2012,
+          "uncertainty": 4
+        },
+        "glm-53-flash": {
+          "votes": 2007,
+          "uncertainty": 0
+        },
+        "qwen-38-omni-flash": {
+          "votes": 1998,
+          "uncertainty": 4
+        },
+        "gpt-6-luna": {
+          "votes": 1992,
+          "uncertainty": 3
+        },
+        "claude-sonnet-5": {
+          "votes": 1966,
+          "uncertainty": 0
+        },
+        "kimi-k3": {
+          "votes": 1965,
+          "uncertainty": 4
+        },
+        "glm-52-max": {
+          "votes": 1959,
+          "uncertainty": 0
+        },
+        "deepseek-v4-flash-0731": {
+          "votes": 1932,
+          "uncertainty": 5
+        },
+        "gpt-56-luna": {
+          "votes": 1931,
+          "uncertainty": 0
+        },
+        "nemotron-35-lightning": {
+          "votes": 1914,
+          "uncertainty": 6
+        },
+        "mistral-large-3": {
+          "votes": 1888,
+          "uncertainty": 5
+        },
+        "mistral-medium-35": {
+          "votes": 1856,
+          "uncertainty": 5
+        },
+        "gemini-37-flash": {
+          "votes": 1825,
+          "uncertainty": 4
+        },
+        "kimi-k27-code": {
+          "votes": 1820,
+          "uncertainty": 5
+        },
+        "claude-opus-48": {
+          "votes": 1809,
+          "uncertainty": 0
+        },
+        "nemotron-3-ultra": {
+          "votes": 1772,
+          "uncertainty": 0
+        },
+        "glm-51": {
+          "votes": 1722,
+          "uncertainty": 12
+        },
+        "gemini-36-flash": {
+          "votes": 1709,
+          "uncertainty": 1
+        },
+        "mimo-v25": {
+          "votes": 1699,
+          "uncertainty": 2
+        },
+        "tencent-hy3": {
+          "votes": 1672,
+          "uncertainty": 9
+        },
+        "muse-spark-12": {
+          "votes": 1662,
+          "uncertainty": 2
+        }
+      },
+      "note": "Sep 25 WebDev ranking update: Nex Coder 4 Plutos enters at #1"
     }
   ],
   "categories": {
@@ -4355,138 +4549,226 @@ window.ZORIX_COMMUNITY_VOTES = {
       "source": "root",
       "models": [
         {
+          "id": "nex-coder-4-plutos-preview",
+          "votes": 2248,
+          "uncertainty": 3,
+          "voteLabel": "Nex Coder 4 Plutos Preview"
+        },
+        {
+          "id": "gpt-6-astra",
+          "votes": 2182,
+          "uncertainty": 3,
+          "voteLabel": "GPT-6 Astra"
+        },
+        {
+          "id": "grok-47",
+          "votes": 2169,
+          "uncertainty": 4,
+          "voteLabel": "Grok 4.7"
+        },
+        {
+          "id": "claude-opus-55",
+          "votes": 2163,
+          "uncertainty": 3,
+          "voteLabel": "Claude Opus 5.5"
+        },
+        {
+          "id": "claude-fable-51",
+          "votes": 2153,
+          "uncertainty": 3,
+          "voteLabel": "Claude Fable 5.1"
+        },
+        {
+          "id": "gpt-6-sol",
+          "votes": 2141,
+          "uncertainty": 4,
+          "voteLabel": "GPT-6 Sol"
+        },
+        {
           "id": "nex-coder-39-alara-preview",
           "votes": 2116,
           "uncertainty": 0,
-          "voteLabel": "Nex Coder 3.9 Alara Preview"
+          "voteLabel": "Nex Coder 3.9 AI"
         },
         {
           "id": "nex-coder-38-neptune",
           "votes": 2094,
           "uncertainty": 2,
-          "voteLabel": "Nex Coder 3.8 Preview Neptune (Max)"
+          "voteLabel": "Nex Coder 3.8 Pro"
         },
         {
-          "id": "gpt-6-astra",
-          "votes": 2092,
-          "uncertainty": 2
-        },
-        {
-          "id": "claude-fable-51",
-          "votes": 2091,
-          "uncertainty": 0
+          "id": "glm-53",
+          "votes": 2081,
+          "uncertainty": 5,
+          "voteLabel": "GLM 5.3"
         },
         {
           "id": "wolf-theta",
           "votes": 2053,
           "uncertainty": 0,
-          "voteLabel": "Zorix Star Flash 3.6"
+          "voteLabel": "Zorix Star Flash"
         },
         {
           "id": "claude-fable-5-fallback-max",
           "votes": 2044,
-          "uncertainty": 2
+          "uncertainty": 2,
+          "voteLabel": "Claude Fable 5"
+        },
+        {
+          "id": "deepseek-v41-flash",
+          "votes": 2038,
+          "uncertainty": 4,
+          "voteLabel": "DeepSeek V4.1 Flash"
         },
         {
           "id": "gpt-56-sol-max",
           "votes": 2028,
-          "uncertainty": 3
+          "uncertainty": 3,
+          "voteLabel": "GPT-5.6 Sol (Max)"
         },
         {
           "id": "gemini-38-flash",
           "votes": 2027,
-          "uncertainty": 3
+          "uncertainty": 3,
+          "voteLabel": "Gemini 3.8 Flash"
         },
         {
           "id": "muse-spark-13",
           "votes": 2026,
-          "uncertainty": 2
+          "uncertainty": 2,
+          "voteLabel": "Muse Spark 1.3"
         },
         {
           "id": "nex-coder-37-pro-max",
           "votes": 2021,
-          "uncertainty": 3
+          "uncertainty": 3,
+          "voteLabel": "Zorix Nex Coder"
         },
         {
           "id": "claude-opus-5",
           "votes": 2012,
-          "uncertainty": 4
+          "uncertainty": 4,
+          "voteLabel": "Claude Opus 5"
         },
         {
           "id": "glm-53-flash",
           "votes": 2007,
-          "uncertainty": 0
+          "uncertainty": 0,
+          "voteLabel": "GLM 5.3 Flash"
+        },
+        {
+          "id": "qwen-38-omni-flash",
+          "votes": 1998,
+          "uncertainty": 4,
+          "voteLabel": "Qwen 3.8 Omni Flash"
+        },
+        {
+          "id": "gpt-6-luna",
+          "votes": 1992,
+          "uncertainty": 3,
+          "voteLabel": "GPT-6 Luna"
         },
         {
           "id": "claude-sonnet-5",
           "votes": 1966,
-          "uncertainty": 0
+          "uncertainty": 0,
+          "voteLabel": "Claude Sonnet 5"
         },
         {
           "id": "kimi-k3",
           "votes": 1965,
-          "uncertainty": 4
+          "uncertainty": 4,
+          "voteLabel": "Kimi K3"
         },
         {
           "id": "glm-52-max",
           "votes": 1959,
-          "uncertainty": 0
+          "uncertainty": 0,
+          "voteLabel": "GLM 5.2 Max"
         },
         {
           "id": "deepseek-v4-flash-0731",
           "votes": 1932,
-          "uncertainty": 5
+          "uncertainty": 5,
+          "voteLabel": "DeepSeek V4 Flash"
         },
         {
           "id": "gpt-56-luna",
           "votes": 1931,
-          "uncertainty": 0
+          "uncertainty": 0,
+          "voteLabel": "GPT-5.6 Luna"
+        },
+        {
+          "id": "nemotron-35-lightning",
+          "votes": 1914,
+          "uncertainty": 6,
+          "voteLabel": "NVIDIA Nemotron 3.5 Lightning"
+        },
+        {
+          "id": "mistral-large-3",
+          "votes": 1888,
+          "uncertainty": 5,
+          "voteLabel": "Mistral Large 3"
+        },
+        {
+          "id": "mistral-medium-35",
+          "votes": 1856,
+          "uncertainty": 5,
+          "voteLabel": "Mistral Medium 3.5"
         },
         {
           "id": "gemini-37-flash",
           "votes": 1825,
-          "uncertainty": 4
+          "uncertainty": 4,
+          "voteLabel": "Gemini 3.7 Flash"
         },
         {
           "id": "kimi-k27-code",
           "votes": 1820,
-          "uncertainty": 5
+          "uncertainty": 5,
+          "voteLabel": "Kimi K2.7 Code"
         },
         {
           "id": "claude-opus-48",
           "votes": 1809,
-          "uncertainty": 0
+          "uncertainty": 0,
+          "voteLabel": "Claude Opus 4.8"
         },
         {
           "id": "nemotron-3-ultra",
           "votes": 1772,
           "uncertainty": 0,
-          "voteLabel": "NVIDIA Nemotron 3 Ultra"
+          "voteLabel": "NVIDIA Nemotron"
         },
         {
           "id": "glm-51",
           "votes": 1722,
-          "uncertainty": 12
+          "uncertainty": 12,
+          "voteLabel": "GLM 5.1"
         },
         {
           "id": "gemini-36-flash",
           "votes": 1709,
-          "uncertainty": 1
+          "uncertainty": 1,
+          "voteLabel": "Gemini 3.6 Flash"
         },
         {
           "id": "mimo-v25",
           "votes": 1699,
-          "uncertainty": 2
+          "uncertainty": 2,
+          "voteLabel": "Xiaomi MiMo-V2"
         },
         {
           "id": "tencent-hy3",
           "votes": 1672,
-          "uncertainty": 9
+          "uncertainty": 9,
+          "voteLabel": "Tencent HY3"
         },
         {
           "id": "muse-spark-12",
           "votes": 1662,
-          "uncertainty": 2
+          "uncertainty": 2,
+          "voteLabel": "Muse Spark 1.2"
         },
         {
           "id": "claude-mythos-51",
@@ -4495,22 +4777,6 @@ window.ZORIX_COMMUNITY_VOTES = {
           "published": false,
           "status": "Pending",
           "voteLabel": "Claude Mythos 5.1"
-        },
-        {
-          "id": "claude-opus-55",
-          "votes": null,
-          "uncertainty": 0,
-          "published": false,
-          "status": "Pending",
-          "voteLabel": "Claude Opus 5.5"
-        },
-        {
-          "id": "deepseek-v41-flash",
-          "votes": null,
-          "uncertainty": 0,
-          "published": false,
-          "status": "Pending",
-          "voteLabel": "DeepSeek V4.1 Flash"
         },
         {
           "id": "gemini-38-flash-cyber",
@@ -4529,44 +4795,12 @@ window.ZORIX_COMMUNITY_VOTES = {
           "voteLabel": "GPT-5.6 Terra"
         },
         {
-          "id": "gpt-6-luna",
-          "votes": null,
-          "uncertainty": 0,
-          "published": false,
-          "status": "Pending",
-          "voteLabel": "GPT-6 Luna"
-        },
-        {
-          "id": "gpt-6-sol",
-          "votes": null,
-          "uncertainty": 0,
-          "published": false,
-          "status": "Pending",
-          "voteLabel": "GPT-6 Sol"
-        },
-        {
-          "id": "grok-47",
-          "votes": null,
-          "uncertainty": 0,
-          "published": false,
-          "status": "Pending",
-          "voteLabel": "Grok 4.7"
-        },
-        {
           "id": "hy4-preview",
           "votes": null,
           "uncertainty": 0,
           "published": false,
           "status": "Awaiting votes",
           "voteLabel": "Tencent Hy4 preview"
-        },
-        {
-          "id": "nemotron-35-lightning",
-          "votes": null,
-          "uncertainty": 0,
-          "published": false,
-          "status": "Pending",
-          "voteLabel": "NVIDIA Nemotron 3.5 Lightning"
         }
       ],
       "history": [
@@ -8697,6 +8931,160 @@ window.ZORIX_COMMUNITY_VOTES = {
             }
           },
           "note": "Control Center bulk voting update"
+        },
+        {
+          "at": "2026-09-25T16:54:20+02:00",
+          "models": {
+            "nex-coder-4-plutos-preview": {
+              "votes": 2248,
+              "uncertainty": 3
+            },
+            "gpt-6-astra": {
+              "votes": 2182,
+              "uncertainty": 3
+            },
+            "grok-47": {
+              "votes": 2169,
+              "uncertainty": 4
+            },
+            "claude-opus-55": {
+              "votes": 2163,
+              "uncertainty": 3
+            },
+            "claude-fable-51": {
+              "votes": 2153,
+              "uncertainty": 3
+            },
+            "gpt-6-sol": {
+              "votes": 2141,
+              "uncertainty": 4
+            },
+            "nex-coder-39-alara-preview": {
+              "votes": 2116,
+              "uncertainty": 0
+            },
+            "nex-coder-38-neptune": {
+              "votes": 2094,
+              "uncertainty": 2
+            },
+            "glm-53": {
+              "votes": 2081,
+              "uncertainty": 5
+            },
+            "wolf-theta": {
+              "votes": 2053,
+              "uncertainty": 0
+            },
+            "claude-fable-5-fallback-max": {
+              "votes": 2044,
+              "uncertainty": 2
+            },
+            "deepseek-v41-flash": {
+              "votes": 2038,
+              "uncertainty": 4
+            },
+            "gpt-56-sol-max": {
+              "votes": 2028,
+              "uncertainty": 3
+            },
+            "gemini-38-flash": {
+              "votes": 2027,
+              "uncertainty": 3
+            },
+            "muse-spark-13": {
+              "votes": 2026,
+              "uncertainty": 2
+            },
+            "nex-coder-37-pro-max": {
+              "votes": 2021,
+              "uncertainty": 3
+            },
+            "claude-opus-5": {
+              "votes": 2012,
+              "uncertainty": 4
+            },
+            "glm-53-flash": {
+              "votes": 2007,
+              "uncertainty": 0
+            },
+            "qwen-38-omni-flash": {
+              "votes": 1998,
+              "uncertainty": 4
+            },
+            "gpt-6-luna": {
+              "votes": 1992,
+              "uncertainty": 3
+            },
+            "claude-sonnet-5": {
+              "votes": 1966,
+              "uncertainty": 0
+            },
+            "kimi-k3": {
+              "votes": 1965,
+              "uncertainty": 4
+            },
+            "glm-52-max": {
+              "votes": 1959,
+              "uncertainty": 0
+            },
+            "deepseek-v4-flash-0731": {
+              "votes": 1932,
+              "uncertainty": 5
+            },
+            "gpt-56-luna": {
+              "votes": 1931,
+              "uncertainty": 0
+            },
+            "nemotron-35-lightning": {
+              "votes": 1914,
+              "uncertainty": 6
+            },
+            "mistral-large-3": {
+              "votes": 1888,
+              "uncertainty": 5
+            },
+            "mistral-medium-35": {
+              "votes": 1856,
+              "uncertainty": 5
+            },
+            "gemini-37-flash": {
+              "votes": 1825,
+              "uncertainty": 4
+            },
+            "kimi-k27-code": {
+              "votes": 1820,
+              "uncertainty": 5
+            },
+            "claude-opus-48": {
+              "votes": 1809,
+              "uncertainty": 0
+            },
+            "nemotron-3-ultra": {
+              "votes": 1772,
+              "uncertainty": 0
+            },
+            "glm-51": {
+              "votes": 1722,
+              "uncertainty": 12
+            },
+            "gemini-36-flash": {
+              "votes": 1709,
+              "uncertainty": 1
+            },
+            "mimo-v25": {
+              "votes": 1699,
+              "uncertainty": 2
+            },
+            "tencent-hy3": {
+              "votes": 1672,
+              "uncertainty": 9
+            },
+            "muse-spark-12": {
+              "votes": 1662,
+              "uncertainty": 2
+            }
+          },
+          "note": "Sep 25 WebDev ranking update: Nex Coder 4 Plutos enters at #1"
         }
       ]
     }
