@@ -11,6 +11,8 @@
 
 
 
+
+
 <meta charset="utf-8">
 
 <meta
@@ -411,12 +413,64 @@ svg{
 
 <script>
 
-const DATA =
+let DATA =
   window.ZORIX_REQUEST_USAGE
   ||
   {
     models:[]
   };
+
+
+async function refreshCanonicalRequestShare(){
+
+  try{
+    const response = await fetch(
+      '/data/model-requests.json',
+      {
+        cache:'no-store',
+        headers:{
+          'Cache-Control':'no-cache',
+          'Pragma':'no-cache'
+        }
+      }
+    );
+
+    if(!response.ok){
+      throw new Error(
+        'model-requests.json returned ' + response.status
+      );
+    }
+
+    const raw = await response.json();
+    const rows = Array.isArray(raw.models)
+      ? raw.models.map(item=>({...item}))
+      : [];
+
+    const total = rows.reduce(
+      (sum,item)=>sum + Number(item.requests || 0),
+      0
+    );
+
+    rows.forEach(item=>{
+      const value=Number(item.requests || 0);
+      item.share = total
+        ? Math.round(value / total * 1000000) / 10000
+        : 0;
+    });
+
+    DATA = {
+      ...raw,
+      totalRequests:total,
+      models:rows
+    };
+
+  }catch(error){
+    console.warn(
+      'Request Share live refresh failed; using loaded versioned fallback data.',
+      error
+    );
+  }
+}
 
 
 const chart =
@@ -752,7 +806,7 @@ function render(){
       fill="#666"
       font-size="12"
     >
-      Current published request snapshot
+      Current published request snapshot · ${esc(DATA.updatedAt || "not dated")}
     </text>
 
 
@@ -1104,7 +1158,9 @@ document
   );
 
 
-render();
+refreshCanonicalRequestShare().then(
+  render
+);
 
 </script>
 

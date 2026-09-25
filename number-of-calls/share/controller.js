@@ -259,6 +259,133 @@
   };
 
 
+  /* SHARE_CANONICAL_LIVE_DATA_V1
+   *
+   * The generated JS files above remain a safe fallback, but Share
+   * refreshes the canonical same-origin sources whenever the page opens.
+   * No Date.now() URL rewriting and no reload loop are used.
+   */
+  async function refreshCanonicalShareData(){
+
+    const fetchText =
+      async url=>{
+        const response = await fetch(
+          url,
+          {
+            cache:'no-store',
+            headers:{
+              'Cache-Control':'no-cache',
+              'Pragma':'no-cache'
+            }
+          }
+        );
+
+        if(!response.ok){
+          throw new Error(
+            url + ' returned ' + response.status
+          );
+        }
+
+        return response.text();
+      };
+
+    const fetchJson =
+      async url=>
+        JSON.parse(
+          await fetchText(url)
+        );
+
+    const results =
+      await Promise.allSettled([
+        fetchJson('/data/votes.json'),
+        fetchJson('/data/model-requests.json'),
+        fetchText('/number-of-calls/model-index.js')
+      ]);
+
+    const voteResult = results[0];
+    const requestResult = results[1];
+    const modelResult = results[2];
+
+    if(voteResult.status==='fulfilled'){
+      DATA.votes = voteResult.value;
+    }
+
+    if(requestResult.status==='fulfilled'){
+      const raw = requestResult.value || {};
+      const rows = Array.isArray(raw.models)
+        ? raw.models.map(item=>({...item}))
+        : [];
+
+      const total = rows.reduce(
+        (sum,item)=>sum + Number(item.requests || 0),
+        0
+      );
+
+      rows.forEach(item=>{
+        const value = Number(item.requests || 0);
+        item.share = total
+          ? Math.round(value / total * 1000000) / 10000
+          : 0;
+      });
+
+      DATA.requests = {
+        ...raw,
+        totalRequests:total,
+        models:rows
+      };
+    }
+
+    if(modelResult.status==='fulfilled'){
+      try{
+        const box = {};
+        new Function(
+          'window',
+          modelResult.value
+        )(box);
+
+        if(Array.isArray(box.ZORIX_MODEL_INDEX)){
+          DATA.models = box.ZORIX_MODEL_INDEX;
+
+          modelById.clear();
+          modelByName.clear();
+
+          DATA.models.forEach(model=>{
+            if(!model?.id){
+              return;
+            }
+
+            modelById.set(
+              canon(model.id),
+              model
+            );
+
+            modelByName.set(
+              norm(model.name),
+              model
+            );
+          });
+        }
+      }catch(error){
+        console.warn(
+          'Share model-index live refresh failed; using loaded fallback.',
+          error
+        );
+      }
+    }
+
+    const failed = results.filter(
+      item=>item.status==='rejected'
+    );
+
+    if(failed.length){
+      console.warn(
+        'Some live Share sources failed; loaded versioned fallback data is being used.',
+        failed
+      );
+    }
+  }
+
+
   /* SHARE_VOTING_CATEGORY_DATA_V1 */
 
   function votingCategoryEntries(){
@@ -5157,6 +5284,398 @@
   }
 
 
+  /* SHARE_AGENT_INDEX_LIVE_V1 */
+  async function drawAgentIndexLive(serial){
+
+    const localW = 1600;
+    const localH = 1180;
+
+    canvas.width = localW;
+    canvas.height = localH;
+
+    if(previewTitle){
+      previewTitle.textContent = '1600 × 1180';
+    }
+
+    ctx.clearRect(0,0,localW,localH);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,localW,localH);
+
+    const requestedCount = Math.max(
+      5,
+      Math.min(
+        20,
+        Number(count?.value || 10)
+      )
+    );
+
+    const category = selectedVotingCategory();
+
+    const allVotes = voteRowsForSelectedCategory()
+      .filter(row=>
+        row.published !== false
+        && Number(row.votes || 0) > 0
+      );
+
+    const topRows = allVotes.slice(0, requestedCount);
+
+    const requestMap = new Map(
+      (DATA.requests.models || [])
+        .filter(row=>Number(row.requests || 0) > 0)
+        .map(row=>[
+          canon(row.id),
+          row
+        ])
+    );
+
+    const overlap = allVotes
+      .map(row=>({
+        ...row,
+        request:
+          requestMap.get(canon(row.id))
+          || null
+      }))
+      .filter(row=>row.request)
+      .slice(0,20);
+
+    const voteUpdated =
+      String(DATA.votes.updatedAt || 'not dated');
+
+    const requestUpdated =
+      String(DATA.requests.updatedAt || 'not dated');
+
+    const providerColor = provider=>
+      providerColors[provider]
+      || '#515151';
+
+    const roundedRect = (x,y,w,h,r,fill)=>{
+      const radius = Math.min(r,w/2,h/2);
+      ctx.beginPath();
+      ctx.moveTo(x+radius,y);
+      ctx.arcTo(x+w,y,x+w,y+h,radius);
+      ctx.arcTo(x+w,y+h,x,y+h,radius);
+      ctx.arcTo(x,y+h,x,y,radius);
+      ctx.arcTo(x,y,x+w,y,radius);
+      ctx.closePath();
+      ctx.fillStyle=fill;
+      ctx.fill();
+    };
+
+    const fitLabel = (value,max=20)=>{
+      const s=String(value || '');
+      return s.length>max
+        ? s.slice(0,max-1)+'…'
+        : s;
+    };
+
+    const drawHeader = (
+      title,
+      subtitle,
+      y
+    )=>{
+      ctx.fillStyle='#151515';
+      ctx.font='600 31px Georgia, "Times New Roman", serif';
+      ctx.textAlign='left';
+      ctx.fillText(title,28,y);
+
+      ctx.fillStyle='#77736d';
+      ctx.font='15px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.fillText(subtitle,28,y+27);
+
+      ctx.fillStyle='#5f46b8';
+      ctx.font='650 17px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.textAlign='right';
+      ctx.fillText('Zorix Metron',1570,y+4);
+      ctx.textAlign='left';
+    };
+
+    drawHeader(
+      'Zorix Metron WebDev Agent Index',
+      `${category.label || 'WebDev'} community voting score · higher is better · ${voteUpdated}`,
+      43
+    );
+
+    // --------------------------------------------------------
+    // TOP: bar ranking
+    // --------------------------------------------------------
+    const barPlot = {
+      x:50,
+      y:105,
+      w:1500,
+      h:300
+    };
+
+    const maxVote = Math.max(
+      1,
+      ...topRows.map(row=>Number(row.votes || 0))
+    );
+
+    const yMax = Math.ceil(maxVote / 250) * 250;
+
+    for(let i=1;i<=4;i++){
+      const gy = barPlot.y + barPlot.h - (barPlot.h*i/4);
+      ctx.strokeStyle='#dad8d3';
+      ctx.lineWidth=1;
+      ctx.setLineDash([3,5]);
+      ctx.beginPath();
+      ctx.moveTo(barPlot.x,gy);
+      ctx.lineTo(barPlot.x+barPlot.w,gy);
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    const slot = barPlot.w / Math.max(1,topRows.length);
+    const barW = Math.max(34, Math.min(92, slot*0.72));
+
+    topRows.forEach((row,index)=>{
+      const value = Number(row.votes || 0);
+      const h = value / yMax * barPlot.h;
+      const x = barPlot.x + slot*index + (slot-barW)/2;
+      const y = barPlot.y + barPlot.h - h;
+
+      roundedRect(
+        x,
+        y,
+        barW,
+        h,
+        7,
+        providerColor(row.provider)
+      );
+
+      ctx.fillStyle='#fff';
+      ctx.font='650 17px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.textAlign='center';
+      ctx.fillText(
+        String(value),
+        x+barW/2,
+        Math.min(barPlot.y+barPlot.h-15, y+Math.max(26,h*0.5))
+      );
+
+      ctx.fillStyle='#141414';
+      ctx.font='600 12px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.fillText(
+        fitLabel(row.provider,13),
+        x+barW/2,
+        barPlot.y+barPlot.h+25
+      );
+
+      ctx.fillStyle='#4f4f4b';
+      ctx.font='11px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.fillText(
+        fitLabel(row.name,18),
+        x+barW/2,
+        barPlot.y+barPlot.h+44
+      );
+
+      const uncertainty = Number(row.uncertainty || 0);
+      if(uncertainty>0){
+        ctx.fillStyle='#85817a';
+        ctx.font='10px "OpenAI Sans", Inter, Arial, sans-serif';
+        ctx.fillText(
+          `±${uncertainty}`,
+          x+barW/2,
+          barPlot.y+barPlot.h+60
+        );
+      }
+    });
+
+    ctx.textAlign='left';
+
+    // Provider legend
+    const providers = [];
+    topRows.forEach(row=>{
+      if(row.provider && !providers.includes(row.provider)){
+        providers.push(row.provider);
+      }
+    });
+
+    let lx=50;
+    const ly=500;
+    providers.slice(0,10).forEach(provider=>{
+      ctx.fillStyle=providerColor(provider);
+      ctx.beginPath();
+      ctx.arc(lx,ly,6,0,Math.PI*2);
+      ctx.fill();
+
+      ctx.fillStyle='#343430';
+      ctx.font='12px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.fillText(provider,lx+11,ly+4);
+      lx += Math.max(92, ctx.measureText(provider).width+38);
+    });
+
+    ctx.strokeStyle='#d7d4ce';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(28,535);
+    ctx.lineTo(1572,535);
+    ctx.stroke();
+
+    // --------------------------------------------------------
+    // BOTTOM: score vs published request volume
+    // --------------------------------------------------------
+    drawHeader(
+      'Community Voting Score vs. Published Request Volume',
+      `Only models with both published observations · request snapshot ${requestUpdated}`,
+      590
+    );
+
+    const plot = {
+      x:110,
+      y:665,
+      w:1400,
+      h:400
+    };
+
+    if(!overlap.length){
+      ctx.fillStyle='#77736d';
+      ctx.font='22px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.fillText(
+        'No models currently have both a published vote score and request observation.',
+        plot.x,
+        plot.y+80
+      );
+      return;
+    }
+
+    const logRequests = overlap.map(row=>
+      Math.log10(Number(row.request.requests || 1))
+    );
+    const votes = overlap.map(row=>Number(row.votes || 0));
+
+    const minLog = Math.min(...logRequests);
+    const maxLog = Math.max(...logRequests);
+    const minVote = Math.min(...votes);
+    const maxVote2 = Math.max(...votes);
+
+    const xPad = Math.max(.15,(maxLog-minLog)*.08);
+    const yPad = Math.max(25,(maxVote2-minVote)*.12);
+
+    const xMin = minLog-xPad;
+    const xMax = maxLog+xPad;
+    const yMin = Math.max(0,minVote-yPad);
+    const yMax2 = maxVote2+yPad;
+
+    const px = value=>
+      plot.x +
+      (Math.log10(Math.max(1,value))-xMin)/(xMax-xMin)*plot.w;
+
+    const py = value=>
+      plot.y + plot.h -
+      (Number(value)-yMin)/(yMax2-yMin)*plot.h;
+
+    // light upper-right region to echo the supplied template without
+    // calling it a cost-efficiency quadrant.
+    ctx.fillStyle='#f1f7ef';
+    ctx.fillRect(
+      plot.x+plot.w*0.52,
+      plot.y,
+      plot.w*0.48,
+      plot.h*0.48
+    );
+
+    ctx.fillStyle='#78906e';
+    ctx.font='11px "OpenAI Sans", Inter, Arial, sans-serif';
+    ctx.fillText(
+      'higher voting score · larger published request observation',
+      plot.x+plot.w*0.54,
+      plot.y+22
+    );
+
+    for(let i=0;i<=4;i++){
+      const yy=plot.y+plot.h*i/4;
+      ctx.strokeStyle='#e2e0db';
+      ctx.lineWidth=1;
+      ctx.setLineDash([2,5]);
+      ctx.beginPath();
+      ctx.moveTo(plot.x,yy);
+      ctx.lineTo(plot.x+plot.w,yy);
+      ctx.stroke();
+
+      const value=yMax2-(yMax2-yMin)*i/4;
+      ctx.fillStyle='#77736d';
+      ctx.font='11px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.textAlign='right';
+      ctx.fillText(String(Math.round(value)),plot.x-12,yy+4);
+    }
+    ctx.setLineDash([]);
+
+    for(let i=0;i<=5;i++){
+      const log=xMin+(xMax-xMin)*i/5;
+      const xx=plot.x+plot.w*i/5;
+      ctx.fillStyle='#77736d';
+      ctx.font='11px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.textAlign='center';
+      ctx.fillText(
+        compact(Math.pow(10,log)),
+        xx,
+        plot.y+plot.h+24
+      );
+    }
+
+    ctx.strokeStyle='#8b8881';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(plot.x,plot.y);
+    ctx.lineTo(plot.x,plot.y+plot.h);
+    ctx.lineTo(plot.x+plot.w,plot.y+plot.h);
+    ctx.stroke();
+
+    overlap.forEach((row,index)=>{
+      const requests=Number(row.request.requests || 0);
+      const score=Number(row.votes || 0);
+      const x=px(requests);
+      const y=py(score);
+
+      ctx.fillStyle=providerColor(row.provider);
+      ctx.beginPath();
+      ctx.arc(x,y,8,0,Math.PI*2);
+      ctx.fill();
+
+      ctx.strokeStyle='#fff';
+      ctx.lineWidth=2;
+      ctx.stroke();
+
+      const alignRight = x > plot.x + plot.w*0.72;
+      ctx.textAlign=alignRight ? 'right' : 'left';
+      ctx.fillStyle='#3f3f3b';
+      ctx.font='11px "OpenAI Sans", Inter, Arial, sans-serif';
+      ctx.fillText(
+        fitLabel(row.name,30),
+        x + (alignRight ? -12 : 12),
+        y + (index%2 ? 17 : -11)
+      );
+    });
+
+    ctx.textAlign='center';
+    ctx.fillStyle='#363633';
+    ctx.font='13px "OpenAI Sans", Inter, Arial, sans-serif';
+    ctx.fillText(
+      'Published request observation · logarithmic scale',
+      plot.x+plot.w/2,
+      plot.y+plot.h+58
+    );
+
+    ctx.save();
+    ctx.translate(34,plot.y+plot.h/2);
+    ctx.rotate(-Math.PI/2);
+    ctx.fillText('Community voting score',0,0);
+    ctx.restore();
+
+    ctx.textAlign='left';
+    ctx.fillStyle='#8a867f';
+    ctx.font='11px "OpenAI Sans", Inter, Arial, sans-serif';
+    ctx.fillText(
+      'Voting and request counts are separate Zorix Metron metrics. No missing request values are inferred.',
+      50,
+      1150
+    );
+
+    if(serial!==renderSerial){
+      return;
+    }
+  }
+
+
   /* ========================================================
      CONTROLS
      ======================================================== */
@@ -5314,6 +5833,11 @@
     }
 
 
+    if(type!=='agent-index-live'){
+      canvas.width=W;
+      canvas.height=H;
+    }
+
     if(previewTitle){
 
       previewTitle.textContent=
@@ -5429,6 +5953,27 @@
           );
 
       }
+
+    }else if(
+      type==='agent-index-live'
+    ){
+
+      setOptions(
+        [[
+          'live-votes-requests',
+          'Live votes + published requests'
+        ]],
+        true
+      );
+
+      if(voteCategoryControls){
+        voteCategoryControls.style.display='block';
+      }
+
+      controls
+        ?.classList.add(
+          'voting-active'
+        );
 
     }else if(
       type==='intelligence-cost'
@@ -5686,6 +6231,14 @@
       );
 
     }else if(
+      type==='agent-index-live'
+    ){
+
+      await drawAgentIndexLive(
+        serial
+      );
+
+    }else if(
       type==='model-landscape'
     ){
 
@@ -5749,14 +6302,22 @@
 
 
       status.textContent=
-        'Single renderer active · '
-        +
-        report
-        .options[
-          report.selectedIndex
-        ]
-        ?.textContent
-        .trim();
+        type==='agent-index-live'
+          ? (
+              'Live canonical data · votes '
+              + String(DATA.votes.updatedAt || 'not dated')
+              + ' · requests '
+              + String(DATA.requests.updatedAt || 'not dated')
+            )
+          : (
+              'Single renderer active · '
+              + report
+                .options[
+                  report.selectedIndex
+                ]
+                ?.textContent
+                .trim()
+            );
 
     }
 
@@ -6280,12 +6841,25 @@
     );
 
 
-  populateVotingCategories();
+  (async()=>{
 
-  populateVotingHighlightRanks();
+    try{
+      await refreshCanonicalShareData();
+    }catch(error){
+      console.warn(
+        'Share live refresh failed; using loaded versioned fallback data.',
+        error
+      );
+    }
 
-  configureControls();
+    populateVotingCategories();
 
-  scheduleRender();
+    populateVotingHighlightRanks();
+
+    configureControls();
+
+    scheduleRender();
+
+  })();
 
 })();
