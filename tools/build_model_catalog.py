@@ -395,6 +395,17 @@ def shell(title, body, description="Zorix model directory"):
 
 
 def write(path, text):
+    style = '<link rel="stylesheet" href="/assets/css/research-shell.css">'
+    script = '<script defer src="/assets/js/research-shell.js"></script>'
+
+    if "/assets/css/research-shell.css" not in text:
+        text = text.replace("</head>", style + "\n</head>", 1)
+
+    if "/assets/js/research-shell.js" not in text:
+        text = text.replace("</body>", script + "\n</body>", 1)
+
+    text = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
+
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
 

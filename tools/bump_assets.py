@@ -140,6 +140,15 @@ def process_html(path):
     s = CACHE_META_RE.sub("", original)
     s = strip_old_refresh_scripts(s)
 
+    style = '<link rel="stylesheet" href="/assets/css/research-shell.css">'
+    script = '<script defer src="/assets/js/research-shell.js"></script>'
+
+    if "/assets/css/research-shell.css" not in s:
+        s = s.replace("</head>", style + "\n</head>", 1)
+
+    if "/assets/js/research-shell.js" not in s:
+        s = s.replace("</body>", script + "\n</body>", 1)
+
     head = re.search(r'<head\b[^>]*>', s, re.I)
     if head:
         s = s[:head.end()] + generated_head() + s[head.end():]

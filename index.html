@@ -41,6 +41,8 @@
 
 
 
+
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Release notes | Zorix</title>
@@ -71,7 +73,7 @@
     .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,18px);opacity:0;transition:.2s;background:#111;color:#fff;border-radius:999px;padding:10px 14px;font-size:13px;pointer-events:none;z-index:80}.toast.show{opacity:1;transform:translate(-50%,0)}
     @media(max-width:920px){.nav{grid-template-columns:1fr auto}.nav-center{display:none}.hero-row{align-items:flex-start;flex-direction:column}.toolbar{grid-template-columns:1fr 1fr}.toolbar .spacer{display:none}.search-wrap{grid-column:1/-1}.footer-grid{grid-template-columns:1fr 1fr}.note,.month-empty{grid-template-columns:1fr;gap:20px}.meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.status{margin-top:0}.content{max-width:none}}
     @media(max-width:560px){.nav-right .pill:first-child{display:none}h1{font-size:clamp(62px,20vw,92px)}.hero{padding-top:70px}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column}.content p,.content ul{font-size:16px}.note{padding:32px 0 38px}}
-  
+
 /* Release detail modal */
 .note{
   cursor:pointer;
@@ -424,6 +426,7 @@
 
 
 </style>
+<link rel="stylesheet" href="/assets/css/research-shell.css?v=3526d0a86674">
 </head>
 <body>
 <div class="shell">
@@ -432,7 +435,7 @@
       <a class="brand" href="#">zorix</a>
       <div class="nav-center"><a href="#notes">Products</a><a href="#notes">Research</a><a href="#notes">Developers</a><a href="#about">Company</a></div>
       <div class="nav-right"><a class="pill" href="#notes">Documentation</a><a class="pill dark" href="#notes">Explore Zorix</a></div>
-    
+
 <a href="/status/">
   Status
 </a>
@@ -1254,4 +1257,5 @@ window.addEventListener(
 );
 </script>
 
+<script defer src="/assets/js/research-shell.js?v=49f95addf759"></script>
 </body></html>
