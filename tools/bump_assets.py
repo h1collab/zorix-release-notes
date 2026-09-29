@@ -140,6 +140,19 @@ def process_html(path):
     s = CACHE_META_RE.sub("", original)
     s = strip_old_refresh_scripts(s)
 
+    s = re.sub(
+        r"\\s*<link\\b[^>]*href=[\"'][^\"']*aa-layout\\.css(?:\\?[^\"']*)?[\"'][^>]*>\\s*",
+        "\\n",
+        s,
+        flags=re.I,
+    )
+    s = re.sub(
+        r"\\s*<script\\b[^>]*src=[\"'][^\"']*aa-layout\\.js(?:\\?[^\"']*)?[\"'][^>]*>\\s*</script>\\s*",
+        "\\n",
+        s,
+        flags=re.I,
+    )
+
     style = '<link rel="stylesheet" href="/assets/css/research-shell.css">'
     script = '<script defer src="/assets/js/research-shell.js"></script>'
 

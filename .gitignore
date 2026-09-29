@@ -1,1 +1,4 @@
 number-of-calls/models/**/.zorix-generated-model
+
+__pycache__/
+*.pyc
