@@ -1,1158 +1,227 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Zorix Metron publication-ready model analysis charts.">
 <title>Zorix Metron · Public charts</title>
-
-
-<style>
-
-:root{
-  --bg:#fff;
-  --text:#111;
-  --muted:#6b6b67;
-  --line:#deded9;
-  --soft:#f6f6f3;
-  --max:1180px;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-
-body{
-  margin:0;
-
-  background:var(--bg);
-  color:var(--text);
-
-  font-family:
-    "OpenAI Sans",
-    "Inter",
-    ui-sans-serif,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Helvetica,
-    Arial,
-    sans-serif;
-
-  letter-spacing:-.012em;
-}
-
-button,
-select{
-  font:inherit;
-  color:inherit;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-
-/* ============================================================
-   NAV
-   ============================================================ */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-
-  border-bottom:1px solid var(--line);
-
-  background:
-    rgba(255,255,255,.94);
-
-  backdrop-filter:
-    blur(15px);
-}
-
-.nav{
-  max-width:var(--max);
-  height:66px;
-
-  margin:auto;
-  padding:0 24px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.brand img{
-  width:31px;
-  height:31px;
-}
-
-.brand strong{
-  font-size:19px;
-  font-weight:600;
-
-  letter-spacing:-.04em;
-}
-
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:22px;
-
-  color:#444;
-
-  font-size:13px;
-}
-
-
-/* ============================================================
-   MAIN
-   ============================================================ */
-
-main{
-  max-width:var(--max);
-
-  margin:auto;
-
-  padding:
-    70px
-    24px
-    120px;
-}
-
-.hero{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    minmax(250px,390px);
-
-  gap:55px;
-
-  align-items:end;
-
-  padding-bottom:53px;
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-.eyebrow{
-  margin-bottom:15px;
-
-  color:var(--muted);
-
-  font-size:13px;
-}
-
-h1{
-  margin:0;
-
-  font-size:
-    clamp(54px,8vw,105px);
-
-  line-height:.91;
-
-  font-weight:500;
-
-  letter-spacing:-.065em;
-}
-
-.hero-copy{
-  margin:0 0 6px;
-
-  color:var(--muted);
-
-  font-size:15px;
-  line-height:1.55;
-}
-
-
-/* ============================================================
-   CONTROLS
-   ============================================================ */
-
-.controls{
-  padding:
-    31px
-    0;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,minmax(0,1fr))
-    auto;
-
-  gap:10px;
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-.control-group{
-  min-width:0;
-}
-
-.control-label{
-  display:block;
-
-  margin-bottom:7px;
-
-  color:var(--muted);
-
-  font-size:10px;
-}
-
-.control-select{
-  width:100%;
-  min-height:46px;
-
-  padding:
-    0
-    38px
-    0
-    13px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius:11px;
-
-  background:#fff;
-
-  outline:none;
-
-  font-size:13px;
-}
-
-.control-select:focus{
-  border-color:#aaa;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(0,0,0,.035);
-}
-
-.download-wrap{
-  display:flex;
-  align-items:flex-end;
-}
-
-.download{
-  min-height:46px;
-
-  padding:
-    0
-    18px;
-
-  border:0;
-  border-radius:11px;
-
-  background:#111;
-  color:#fff;
-
-  cursor:pointer;
-
-  font-size:13px;
-}
-
-.download:hover{
-  opacity:.86;
-}
-
-
-/* ============================================================
-   PREVIEW
-   ============================================================ */
-
-.preview-section{
-  padding-top:42px;
-}
-
-.preview-head{
-  display:flex;
-
-  align-items:flex-end;
-  justify-content:space-between;
-
-  gap:25px;
-
-  margin-bottom:18px;
-}
-
-.preview-title{
-  font-size:29px;
-
-  letter-spacing:-.045em;
-}
-
-.preview-meta{
-  color:var(--muted);
-
-  font-size:11px;
-}
-
-.canvas-shell{
-  width:100%;
-
-  overflow:auto;
-
-  border:
-    1px solid var(--line);
-
-  border-radius:16px;
-
-  background:#efefec;
-
-  padding:14px;
-}
-
-canvas{
-  display:block;
-
-  width:100%;
-  height:auto;
-
-  min-width:680px;
-
-  background:#faf9f5;
-
-  border-radius:7px;
-}
-
-.note{
-  max-width:760px;
-
-  margin-top:20px;
-
-  color:var(--muted);
-
-  font-size:11px;
-  line-height:1.55;
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media(max-width:760px){
-
-  .nav{
-    padding:
-      0
-      18px;
-  }
-
-  .nav-right{
-    display:none;
-  }
-
-  main{
-    padding:
-      43px
-      18px
-      90px;
-  }
-
-  .hero{
-    grid-template-columns:1fr;
-    gap:25px;
-  }
-
-  .controls{
-    grid-template-columns:1fr;
-  }
-
-  .download-wrap{
-    margin-top:4px;
-  }
-
-  .download{
-    width:100%;
-  }
-
-  .preview-head{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-}
-
-
-
-/* SHARE TREND V1 */
-
-.controls.trend-active{
-  grid-template-columns:
-    repeat(4,minmax(0,1fr))
-    auto;
-}
-
-@media(max-width:900px){
-
-  .controls.trend-active{
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-  }
-
-}
-
-@media(max-width:760px){
-
-  .controls.trend-active{
-    grid-template-columns:1fr;
-  }
-
-}
-
-
-
-
-/* ============================================================
-   METRON_LANDSCAPE_CONTROLS_V1
-   ============================================================ */
-
-#landscapeControls{
-  display:none;
-}
-
-#landscapeControls.active{
-  display:contents;
-}
-
-.controls.landscape-active{
-  grid-template-columns:
-    repeat(4,minmax(0,1fr))
-    auto;
-}
-
-@media(max-width:1000px){
-
-  .controls.landscape-active{
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-  }
-
-}
-
-@media(max-width:760px){
-
-  .controls.landscape-active{
-    grid-template-columns:1fr;
-  }
-
-}
-
-
-/* SHARE_VOTING_CATEGORY_V1 */
-
-#voteCategoryControls{
-  display:none;
-}
-
-.controls.voting-active{
-  grid-template-columns:
-    repeat(4,minmax(0,1fr))
-    auto;
-}
-
-@media(max-width:1000px){
-  .controls.voting-active{
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-  }
-}
-
-@media(max-width:760px){
-  .controls.voting-active{
-    grid-template-columns:1fr;
-  }
-}
-
-
-/* SHARE_VOTING_HIGHLIGHT_RANK_V1 */
-
-#votingHighlightControls{
-  display:none;
-}
-
-.controls.voting-card-active{
-  grid-template-columns:
-    repeat(5,minmax(0,1fr))
-    auto;
-}
-
-@media(max-width:1100px){
-  .controls.voting-card-active{
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-  }
-}
-
-@media(max-width:760px){
-  .controls.voting-card-active{
-    grid-template-columns:1fr;
-  }
-}
-
-
-/* SHARE_VOTING_VISIBLE_CONTROLS_V2 */
-
-.controls.voting-active #voteCategoryControls{
-  display:block;
-}
-
-.controls.voting-card-active #votingHighlightControls{
-  display:block;
-}
-
-</style>
-
+<link rel="stylesheet" href="./aa-layout.css?v=9c9d6e712ebe">
 </head>
-
-
-<body>
-
-
+<body class="aa-rebuild">
 <header>
-
-  <nav class="nav">
-
-    <a
-      class="brand"
-      href="../"
-    >
-
-      <img
-        src="../assets/logos/zorix.svg?v=53953f635a22"
-        alt=""
-      >
-
-      <strong>
-        Zorix Metron
-      </strong>
-
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="/number-of-calls/">
+      <img src="/number-of-calls/assets/logos/zorix.svg?v=53953f635a22" alt="">
+      <strong>Zorix Metron</strong>
     </a>
-
-
     <div class="nav-right">
-
-      <a href="../">
-        Usage
-      </a>
-
-      <a href="../#benchmarks">
-        Benchmarks
-      </a>
-
-      <a href="../voting/">
-        Voting
-      </a>
-
+      <a href="/number-of-calls/">Models</a>
+      <a href="/number-of-calls/voting/">Voting</a>
+      <a href="/number-request/">Requests</a>
+      <a href="/number-of-calls/#benchmarks">Benchmarks</a>
+      <a href="/number-of-calls/providers/">Providers</a>
     </div>
-
+    <div class="aa-nav-actions">
+      <a class="aa-nav-button" href="/number-of-calls/">Open Metron</a>
+      <button class="aa-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    </div>
   </nav>
-
 </header>
 
-
-
 <main>
-
-
-<section class="hero">
-
-  <div>
-
-    <div class="eyebrow">
-      Public media
-    </div>
-
-    <h1>
-      Metron<br>
-      charts
-    </h1>
-
-  </div>
-
-
-  <p class="hero-copy">
-
-    Generate publication-ready PNG charts
-    from Zorix Metron model usage and
-    benchmark data.
-
-    Images are rendered locally in your browser
-    at 1600 × 900 and can be saved directly.
-
-  </p>
-
-</section>
-
-
-
-<section class="controls">
-
-
-  <div class="control-group">
-
-    <label class="control-label">
-      Report
-    </label>
-
-    <select
-      class="control-select"
-      id="reportType"
-    >
-
-      <option value="usage">
-        Usage index
-      </option>
-
-      <option value="trend">
-        Weekly token curve
-      </option>
-
-      <option value="ranking">
-        Usage ranking
-      </option>
-
-      <option value="benchmark">
-        Benchmark ranking
-      </option>
-
-      <option value="model-landscape">
-        AI Model Landscape
-      </option>
-
-      <option value="coding-benchmark-svg">
-        Metron Coding Benchmark · SVG
-      </option>
-
-      <option value="translation-compare">
-        Translation comparison · SVG
-      </option>
-
-
-      <option value="voting">
-        Voting ranking
-      </option>
-
-      <option value="voting-card">
-        Voting leaderboard
-      </option>
-
-
-      <option value="agent-index-live">
-        Live Agent Index · Voting + Requests
-      </option>
-
-      <option value="intelligence-cost">
-        Intelligence × cost
-      </option>
-
-      <option value="image-ai">
-        Image AI Top 7
-      </option>
-
-    </select>
-
-  </div>
-
-
-
-  <div class="control-group">
-
-    <label class="control-label">
-      Metric
-    </label>
-
-    <select
-      class="control-select"
-      id="metricSelect"
-    ></select>
-
-  </div>
-
-
-
-  <div class="control-group">
-
-    <label class="control-label">
-      Models
-    </label>
-
-    <select
-      class="control-select"
-      id="modelCountSelect"
-    >
-
-      <option value="5">
-        Top 5
-      </option>
-
-      <option
-        value="8"
-        selected
-      >
-        Top 8
-      </option>
-
-      <option value="10">
-        Top 10
-      </option>
-
-      <option value="12">
-        Top 12
-      </option>
-
-      <option value="20">
-        Top 20
-      </option>
-
-      <option value="25">
-        Top 25
-      </option>
-
-      <option value="30">
-        Top 30
-      </option>
-
-      <option value="35">
-        Top 35
-      </option>
-
-    </select>
-
-  </div>
-
-
-
-
-
-  <div
-    class="control-group"
-    id="voteCategoryControls"
-  >
-    <label class="control-label">
-      Voting category
-    </label>
-
-    <select
-      class="control-select"
-      id="shareVoteCategory"
-    ></select>
-  </div>
-
-
-  <div
-    class="control-group"
-    id="votingHighlightControls"
-  >
-    <label class="control-label">
-      Yellow model
-    </label>
-
-    <select
-      class="control-select"
-      id="shareHighlightRank"
-      aria-label="Choose model with yellow highlight"
-    ></select>
-  </div>
-
-
-  <div id="landscapeControls">
-
-    <div class="control-group">
-
-      <label class="control-label">
-        X axis
-      </label>
-
-      <select
-        class="control-select"
-        id="landscapeX"
-      >
-
-        <option value="requests">
-          Request count
-        </option>
-
-        <option value="request-rank">
-          Request rank
-        </option>
-
-        <option value="usage-rank">
-          Usage rank
-        </option>
-
-        <option value="votes">
-          Community voting score
-        </option>
-
-        <option value="swe-verified">
-          SWE-bench Verified
-        </option>
-
-        <option value="terminal-21">
-          Terminal-Bench 2.1
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="control-group">
-
-      <label class="control-label">
-        Y axis
-      </label>
-
-      <select
-        class="control-select"
-        id="landscapeY"
-      >
-
-        <option value="votes">
-          Community voting score
-        </option>
-
-        <option value="requests">
-          Request count
-        </option>
-
-        <option value="request-rank">
-          Request rank
-        </option>
-
-        <option value="usage-rank">
-          Usage rank
-        </option>
-
-        <option value="swe-verified">
-          SWE-bench Verified
-        </option>
-
-        <option value="terminal-21">
-          Terminal-Bench 2.1
-        </option>
-
-      </select>
-
-    </div>
-
-  </div>
-
-
-  <div
-    class="control-group"
-    id="svgStyleControls"
-    style="display:none"
-  >
-
-    <label class="control-label">
-      SVG style
-    </label>
-
-    <select
-      class="control-select"
-      id="svgStyle"
-    >
-
-      <option value="dual">
-        Dual metric · 1200 × 675
-      </option>
-
-      <option value="compact">
-        Compact · 424 × 488
-      </option>
-
-      <option value="baseline">
-        1000 baseline · 1200 × 675
-      </option>
-
-      <option value="cards">
-        Model cards · 1200 × 675
-      </option>
-
-      <option value="scatter">
-        Requests × score · 1200 × 675
-      </option>
-
-    </select>
-
-  </div>
-
-
-
-  <div
-    class="control-group"
-    id="trendControls"
-    style="display:none"
-  >
-
-    <label class="control-label">
-      Scale
-    </label>
-
-    <select
-      class="control-select"
-      id="trendScale"
-    >
-
-      <option value="log" selected>
-        Logarithmic
-      </option>
-
-      <option value="linear">
-        Linear
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <div class="download-wrap">
-
-    <button
-      class="download"
-      id="downloadButton"
-      type="button"
-    >
-      Download PNG
-    </button>
-
-
-    <button
-      class="download"
-      id="downloadCodingSvgButton"
-      type="button"
-      style="
-        display:none;
-        margin-left:8px;
-      "
-    >
-      Download SVG
-    </button>
-
-
-    <button
-      class="download"
-      id="downloadCodingPngButton"
-      type="button"
-      style="
-        display:none;
-        margin-left:8px;
-      "
-    >
-      Download PNG
-    </button>
-
-
-    <button
-      class="download"
-      id="downloadTranslateSvgButton"
-      type="button"
-      style="
-        display:none;
-        margin-left:8px;
-      "
-    >
-      Download SVG
-    </button>
-
-
-    <button
-      class="download"
-      id="downloadTranslatePngButton"
-      type="button"
-      style="
-        display:none;
-        margin-left:8px;
-      "
-    >
-      Download PNG
-    </button>
-
-  </div>
-
-
-</section>
-
-
-
-<div
-  id="shareDataStatus"
-  style="
-    margin-top:18px;
-    padding:11px 13px;
-    border:1px solid var(--line);
-    border-radius:10px;
-    color:var(--muted);
-    font-size:11px;
-    display:none;
-  "
-></div>
-
-
-<section class="preview-section">
-
-  <div class="preview-head">
-
+  <section class="hero">
     <div>
+      <div class="eyebrow">Independent Zorix model analysis</div>
+      <h1>Model data, ready to share.</h1>
+    </div>
+    <p class="hero-copy">
+      Publication-ready charts built from the current Zorix Metron datasets.
+      Voting is refreshed from the canonical source when the page opens;
+      request charts preserve the timestamp of the latest published request observation.
+    </p>
+  </section>
 
-      <div class="eyebrow">
-        Preview
+  <section class="aa-metric-strip" aria-label="Data notes">
+    <div class="aa-metric-card">
+      <span>Voting</span>
+      <strong>Canonical WebDev community scores</strong>
+    </div>
+    <div class="aa-metric-card">
+      <span>Requests</span>
+      <strong>Published observations only · no inferred volume</strong>
+    </div>
+    <div class="aa-metric-card">
+      <span>Token usage</span>
+      <strong>Exact period observations stay separate from requests</strong>
+    </div>
+  </section>
+
+  <nav class="aa-section-nav" aria-label="Chart templates">
+    <button class="aa-report-tab active" type="button" data-report-target="agent-index-live">Coding Agent Index</button>
+    <button class="aa-report-tab" type="button" data-report-target="voting">Voting</button>
+    <button class="aa-report-tab" type="button" data-report-target="voting-card">Leaderboard</button>
+    <button class="aa-report-tab" type="button" data-report-target="ranking">Usage ranking</button>
+    <button class="aa-report-tab" type="button" data-report-target="trend">Token trend</button>
+    <button class="aa-report-tab" type="button" data-report-target="benchmark">Benchmarks</button>
+    <button class="aa-report-tab" type="button" data-report-target="model-landscape">Landscape</button>
+    <button class="aa-report-tab" type="button" data-report-target="intelligence-cost">Cost map</button>
+    <button class="aa-report-tab" type="button" data-report-target="translation-compare">Translation</button>
+  </nav>
+
+  <section class="aa-workspace">
+    <div class="aa-workspace-head">
+      <div>
+        <div class="aa-kicker">Zorix Metron charts</div>
+        <h2>Analysis workspace</h2>
+      </div>
+      <p>
+        The interface follows a compact research-dashboard layout: controls stay close to the chart,
+        data provenance remains visible, and exports preserve the selected renderer.
+      </p>
+    </div>
+
+    <section class="controls">
+      <div class="control-group">
+        <label class="control-label" for="reportType">Report</label>
+        <select class="control-select" id="reportType">
+          <option value="usage">Usage index</option>
+          <option value="trend">Weekly token curve</option>
+          <option value="ranking">Usage ranking</option>
+          <option value="benchmark">Benchmark ranking</option>
+          <option value="model-landscape">AI Model Landscape</option>
+          <option value="coding-benchmark-svg">Metron Coding Benchmark · SVG</option>
+          <option value="translation-compare">Translation comparison · SVG</option>
+          <option value="voting">Voting ranking</option>
+          <option value="voting-card">Voting leaderboard</option>
+          <option value="agent-index-live" selected>Live Agent Index · Voting + Requests</option>
+          <option value="intelligence-cost">Intelligence × cost</option>
+          <option value="image-ai">Image AI Top 7</option>
+        </select>
       </div>
 
-      <div class="preview-title">
-        1600 × 900
+      <div class="control-group">
+        <label class="control-label" for="metricSelect">Metric</label>
+        <select class="control-select" id="metricSelect"></select>
       </div>
 
+      <div class="control-group">
+        <label class="control-label" for="modelCountSelect">Models</label>
+        <select class="control-select" id="modelCountSelect">
+          <option value="5">Top 5</option>
+          <option value="8">Top 8</option>
+          <option value="10" selected>Top 10</option>
+          <option value="12">Top 12</option>
+          <option value="20">Top 20</option>
+          <option value="25">Top 25</option>
+          <option value="30">Top 30</option>
+          <option value="35">Top 35</option>
+        </select>
+      </div>
+
+      <div class="control-group" id="voteCategoryControls">
+        <label class="control-label" for="shareVoteCategory">Voting category</label>
+        <select class="control-select" id="shareVoteCategory"></select>
+      </div>
+
+      <div class="control-group" id="votingHighlightControls">
+        <label class="control-label" for="shareHighlightRank">Highlight model</label>
+        <select class="control-select" id="shareHighlightRank"></select>
+      </div>
+
+      <div id="landscapeControls">
+        <div class="control-group">
+          <label class="control-label" for="landscapeX">X axis</label>
+          <select class="control-select" id="landscapeX">
+            <option value="requests">Request count</option>
+            <option value="request-rank">Request rank</option>
+            <option value="usage-rank">Usage rank</option>
+            <option value="votes">Community voting score</option>
+            <option value="swe-verified">SWE-bench Verified</option>
+            <option value="terminal-21">Terminal-Bench 2.1</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="landscapeY">Y axis</label>
+          <select class="control-select" id="landscapeY">
+            <option value="votes">Community voting score</option>
+            <option value="requests">Request count</option>
+            <option value="request-rank">Request rank</option>
+            <option value="usage-rank">Usage rank</option>
+            <option value="swe-verified">SWE-bench Verified</option>
+            <option value="terminal-21">Terminal-Bench 2.1</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="control-group" id="svgStyleControls" style="display:none">
+        <label class="control-label" for="svgStyle">SVG style</label>
+        <select class="control-select" id="svgStyle">
+          <option value="dual">Dual metric · 1200 × 675</option>
+          <option value="compact">Compact · 424 × 488</option>
+          <option value="baseline">1000 baseline · 1200 × 675</option>
+          <option value="cards">Model cards · 1200 × 675</option>
+          <option value="scatter">Requests × score · 1200 × 675</option>
+        </select>
+      </div>
+
+      <div class="control-group" id="trendControls" style="display:none">
+        <label class="control-label" for="trendScale">Scale</label>
+        <select class="control-select" id="trendScale">
+          <option value="log" selected>Logarithmic</option>
+          <option value="linear">Linear</option>
+        </select>
+      </div>
+
+      <div class="download-wrap">
+        <button class="download" id="downloadButton" type="button">Download PNG</button>
+        <button class="download" id="downloadCodingSvgButton" type="button" style="display:none">Download SVG</button>
+        <button class="download" id="downloadCodingPngButton" type="button" style="display:none">Download PNG</button>
+        <button class="download" id="downloadTranslateSvgButton" type="button" style="display:none">Download SVG</button>
+        <button class="download" id="downloadTranslatePngButton" type="button" style="display:none">Download PNG</button>
+      </div>
+    </section>
+
+    <div id="shareDataStatus" class="aa-data-status" style="display:none"></div>
+    <div class="aa-snapshot-line">
+      <span><span class="aa-snapshot-dot"></span>Live canonical refresh enabled</span>
+      <span id="aaLiveDataText">Waiting for current data…</span>
     </div>
 
+    <section class="preview-section">
+      <div class="preview-head">
+        <div>
+          <div class="eyebrow">Preview</div>
+          <div class="preview-title">1600 × 1180</div>
+        </div>
+        <div class="preview-meta" id="previewMeta">Zorix Metron</div>
+      </div>
 
-    <div
-      class="preview-meta"
-      id="previewMeta"
-    >
-      Zorix Metron
-    </div>
+      <div class="canvas-shell">
+        <canvas id="chartCanvas" width="1600" height="1180"></canvas>
+        <div id="codingBenchmarkSvgPreview" style="display:none;min-width:680px;min-height:540px;align-items:center;justify-content:center;background:#fff;border-radius:12px">
+          <div id="codingBenchmarkSvgHost" style="width:424px;height:488px;flex:0 0 auto"></div>
+        </div>
+      </div>
 
-  </div>
-
-
-  <div class="canvas-shell">
-
-    <canvas
-      id="chartCanvas"
-      width="1600"
-      height="900"
-    ></canvas>
-
-
-    <div
-      id="codingBenchmarkSvgPreview"
-      style="
-        display:none;
-        min-width:680px;
-        min-height:540px;
-        align-items:center;
-        justify-content:center;
-        background:#fff;
-        border-radius:7px;
-      "
-    >
-
-      <div
-        id="codingBenchmarkSvgHost"
-        style="
-          width:424px;
-          height:488px;
-          flex:0 0 auto;
-        "
-      ></div>
-
-    </div>
-
-  </div>
-
-
-  <div class="note">
-
-    Usage figures represent token traffic recorded
-    inside Zorix Code / Metron and should not be
-    interpreted as global provider usage.
-
-    Benchmark cards retain their source framing;
-    Zorix internal preview evaluations are not
-    represented as independent third-party submissions.
-
-  </div>
-
-</section>
-
-
+      <div class="note">
+        Voting, requests, token usage and benchmark values are separate metrics.
+        Period-only observations are not normalized into another time window and missing request values are never inferred.
+      </div>
+    </section>
+  </section>
 </main>
-
-
 
 <script src="../models.js?v=dfc2b15e094d"></script>
 <script src="../model-index.js?v=afed5c9058a9"></script>
 <script src="../voting/votes.js?v=2336f8d3ca9c"></script>
 <script src="../usage.js?v=18690ec5bd6e"></script>
 <script src="../benchmarks.js?v=59cb729ed388"></script>
-
 <script src="/number-request/requests.js?v=bc7e53839ee7"></script>
 <script src="../image-ai.js?v=872a81aeb28e"></script>
 <script src="../intelligence-cost.js?v=4f22ba48e4d1"></script>
-
 <script src="/translate/translate.js?v=6f4c221f979a"></script>
 <script src="./translate-svg.js?v=abb72bff7d1d"></script>
-
 <script src="./controller.js?v=0ee341f9883a"></script>
-
+<script src="./aa-layout.js?v=ddad4e962680"></script>
 </body>
 </html>
